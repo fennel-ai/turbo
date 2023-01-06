@@ -1,4 +1,4 @@
-const { DOCS_URL } = process.env;
+const { BLOG_URL, DOCS_URL } = process.env;
 
 module.exports = {
   reactStrictMode: true,
@@ -10,6 +10,14 @@ module.exports = {
       {
         source: "/:path*",
         destination: `/:path*`,
+      },
+      {
+        source: "/blog",
+        destination: `${BLOG_URL}/blog`,
+      },
+      {
+        source: "/blog/:path*",
+        destination: `${BLOG_URL}/blog/:path*`,
       },
       {
         source: "/docs",
