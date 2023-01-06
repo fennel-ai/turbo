@@ -23,6 +23,7 @@ importers:
       next: 13.0.0
       react: 18.2.0
       react-dom: 18.2.0
+      styles: workspace:*
       tsconfig: workspace:*
       typescript: ^4.5.3
       ui: workspace:*
@@ -30,6 +31,7 @@ importers:
       next: 13.0.0_pjwopsidmaokadturxaafygjp4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      styles: link:../../packages/styles
       ui: link:../../packages/ui
     devDependencies:
       '@babel/core': 7.20.12
@@ -52,6 +54,7 @@ importers:
       next: 13.0.0
       react: 18.2.0
       react-dom: 18.2.0
+      styles: workspace:*
       tsconfig: workspace:*
       typescript: ^4.5.3
       ui: workspace:*
@@ -59,6 +62,7 @@ importers:
       next: 13.0.0_pjwopsidmaokadturxaafygjp4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      styles: link:../../packages/styles
       ui: link:../../packages/ui
     devDependencies:
       '@babel/core': 7.20.12
@@ -81,6 +85,7 @@ importers:
       next: 13.0.0
       react: 18.2.0
       react-dom: 18.2.0
+      styles: workspace:*
       tsconfig: workspace:*
       typescript: ^4.5.3
       ui: workspace:*
@@ -88,6 +93,7 @@ importers:
       next: 13.0.0_pjwopsidmaokadturxaafygjp4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      styles: link:../../packages/styles
       ui: link:../../packages/ui
     devDependencies:
       '@babel/core': 7.20.12
