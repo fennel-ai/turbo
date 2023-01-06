@@ -23,7 +23,7 @@ Similar to traditional monorepos, this setup gives us a one-stop shop for our fr
 
 - Handles hoisting, deduplication and collision avoidance with dependencies for all apps & packages within the repo.
 - Allows us to easily create shared libraries that can be consumed by our Website, Blog, Docs etc.
-- Provides helpers for deploying all of the above, without turning us insane.
+- Provides helpers for managing & deploying all of the above, without turning us insane.
 
 We also leverage [Next.js Multi-Zones](https://nextjs.org/docs/advanced-features/multi-zones) so we can develop the blog, docs, etc. in isolation - but then in production deploy as one application, meaning we don't need any additional proxy setups to have the blog at `/blog`, or the docs at `/docs`. Same goes for building - if we need to recompile the blog, we can do so without having to also rebuild the website, docs and shared libraries.
 
