@@ -6,6 +6,8 @@ Once you have PNPM installed locally, you can run `pnpm install` in the root of 
 
 After this you can run `pnpm dev` to spin up the Site@`http://localhost:3000` and Storybook@`http://localhost:6006` and start coding! 🧑‍💻
 
+Check out [Turborepo](https://turbo.build/repo)
+
 ## Contents
 ### Applications
 - **Web**: Fennel Website
@@ -25,9 +27,9 @@ Similar to traditional monorepos, this setup gives us a one-stop shop for our fr
 - Allows us to easily create shared libraries that can be consumed by our Website, Blog, Docs etc.
 - Provides helpers for managing & deploying all of the above, without turning us insane.
 
-We also leverage [Next.js Multi-Zones](https://nextjs.org/docs/advanced-features/multi-zones) so we can develop the blog, docs, etc. in isolation - but then in production deploy as one application, meaning we don't need any additional proxy setups to have the blog at `/blog`, or the docs at `/docs`. Same goes for building - if we need to recompile the blog, we can do so without having to also rebuild the website, docs and shared libraries.
+We also leverage [Next.js Multi-Zones](https://nextjs.org/docs/advanced-features/multi-zones) so we can develop the blog, docs, etc. in isolation as separate applications, but then in production deploy as one site. We don't need any additional proxy setups to have the blog at `/blog`, or the docs at `/docs`. Same goes for building - if we need to recompile the blog, we can do so without having to also rebuild the website, docs and shared libraries. This avoids any `O(n)` issues with build times as the amount of content increases.
 
-Each app remains independent and can be deployed both individually, and as part of a larger whole - there is no restriction on spinning up some other web application, having it live here in the repo - but then deploy it to Netlify separately from everything else (Not that we should! 😝)
+Each app remains independent and can be deployed both individually, and as part of a larger whole - there is no restriction on spinning up some other web application, having it live here in the repo, but deploy it completely separately to the rest of the website.
 
 Each package can be consumed and shared between apps internally within the repo, but also deployed to NPM and included in any other completely unrelated project.
 
