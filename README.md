@@ -1,12 +1,20 @@
 # Fennel "Turbo"
 One-stop shop for developing, deploying and managing our frontend touch-points and related modules.
 
+Includes:
+- Statically Generated Website, Blog and Documentation site
+	- Developed as separate applications, and deployed as a single site via [Next.js Multi-Zones](https://nextjs.org/docs/advanced-features/multi-zones)
+- Shared Component Libraries
+- Shared Styles Libraries
+- Shared Configuration Files
+- Storybook (Isolated [Component / Design System] Development Environment)
+
 ## Getting Started
 Once you have PNPM installed locally, you can run `pnpm install` in the root of the repo to get everything installed. 
 
 After this you can run `pnpm dev` to spin up the Site@`http://localhost:3000` and Storybook@`http://localhost:6006` and start coding! 🧑‍💻
 
-Check out [Turborepo](https://turbo.build/repo)
+Check out [Turborepo](https://turbo.build/repo) & [Next.js Multi-Zones](https://nextjs.org/docs/advanced-features/multi-zones) for more info on how & why the repo is setup this way.
 
 ## Contents
 ### Applications
