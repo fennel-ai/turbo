@@ -14,8 +14,8 @@ const baseStyles = {
 	cursor: 'pointer',
 	fontSize: '0.875rem',
 	lineHeight: '1rem',
-	fontWeight: '500',
 	fontFamily: 'Satoshi Variable',
+	fontVariationSettings: "'wght' 600",
 };
 
 const styles = {

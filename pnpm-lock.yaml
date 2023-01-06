@@ -174,12 +174,15 @@ importers:
       babel-loader: ^8.3.0
       react: ^18.2.0
       react-dom: ^18.2.0
+      styles: workspace:*
       typescript: ^4.9.3
       ui: workspace:*
       vite: ^4.0.0
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      styles: link:../packages/styles
+      ui: link:../packages/ui
     devDependencies:
       '@babel/core': 7.20.12
       '@storybook/addon-actions': 6.5.15_biqbaboplfbrettd7655fr4n2y
@@ -195,7 +198,6 @@ importers:
       '@vitejs/plugin-react': 3.0.1_vite@4.0.4
       babel-loader: 8.3.0_la66t7xldg4uecmyawueag5wkm
       typescript: 4.9.4
-      ui: link:../packages/ui
       vite: 4.0.4
 
 packages:
