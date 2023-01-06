@@ -7,7 +7,7 @@ Includes:
 - Shared Component Libraries
 - Shared Styles Libraries
 - Shared Configuration Files
-- Storybook (Isolated [Component / Design System] Development Environment)
+- Storybook (Isolated [Component / Design System] Development Environment & Visual Testing)
 
 ## Getting Started
 Once you have PNPM installed locally, you can run `pnpm install` in the root of the repo to get everything installed. 
