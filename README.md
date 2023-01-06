@@ -33,8 +33,8 @@ Each app remains independent and can be deployed both individually, and as part 
 
 Each package can be consumed and shared between apps internally within the repo, but also deployed to NPM and included in any other completely unrelated project.
 
-> As an example, right now the console lives in another repo. We can publish our `styles` and `ui` packages to NPM and the console can also install them, even though it lives in a completely "unrelated" repo.
+> As an example, right now the console lives in another repo. We can publish our `styles` and `ui` packages to NPM so that the console can also install them, even though it lives in a completely separate repository.
 
-### TL:DR;
+### TL:DR
 We get ultimate flexibility, compose-ability and modularity. (plus some magic for super easy deployments and CI/CD if we deploy to Vercel.) 
 > Deploying the apps in here to Vercel also means we only have the one hosting bill to worry about, even if we want to split everything up and deploy them as distinct websites on unique domains. 
