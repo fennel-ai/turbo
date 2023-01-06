@@ -1,5 +1,10 @@
 # Fennel "Turbo"
-One-stop shop for developing, deploying and managing our frontend touch-points.
+One-stop shop for developing, deploying and managing our frontend touch-points and related modules.
+
+## Getting Started
+Once you have PNPM installed locally, you can run `pnpm install` in the root of the repo to get everything installed. 
+
+After this you can run `pnpm dev` to spin up the Site@`http://localhost:3000` and Storybook@`http://localhost:6006` and start coding! 🧑‍💻
 
 ## Contents
 ### Applications
