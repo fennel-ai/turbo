@@ -1,5 +1,5 @@
 # Fennel "Turbo"
-One-stop shop for developing, deploying and managing our frontend touchpoints.
+One-stop shop for developing, deploying and managing our frontend touch-points.
 
 ## Contents
 ### Applications
