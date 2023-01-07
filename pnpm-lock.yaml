@@ -9,7 +9,7 @@ importers:
       turbo: latest
     devDependencies:
       eslint-config-fennel: link:packages/eslint-config-fennel
-      prettier: 2.8.1
+      prettier: 2.8.2
       turbo: 1.6.3
 
   apps/blog:
@@ -126,12 +126,14 @@ importers:
     specifiers:
       eslint: ^7.32.0
       eslint-config-fennel: workspace:*
+      figtok: ^0.2.1
       react: ^18.2.0
       tsconfig: workspace:*
       typescript: ^4.5.2
     devDependencies:
       eslint: 7.32.0
       eslint-config-fennel: link:../eslint-config-fennel
+      figtok: 0.2.1
       react: 18.2.0
       tsconfig: link:../tsconfig
       typescript: 4.9.4
@@ -7132,6 +7134,11 @@ packages:
     resolution: {integrity: sha512-0btnI/H8f2pavGMN8w40mlSKOfTK2SVJmBfBeVIj3kNw0swwgzyRq0d5TJVOwodFmtvpPeWPN/MCcfuWF0Ezbw==}
     dev: true
 
+  /figtok/0.2.1:
+    resolution: {integrity: sha512-oaJ4nBetwF805SQ7664GwdVzu6S2YfjbZqhrQlw73F/IU9+9e1sQKRDEt4elh/6lUMycpvp2GPJmeEy4k6HXlg==}
+    requiresBuild: true
+    dev: true
+
   /file-entry-cache/6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -10216,8 +10223,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier/2.8.1:
-    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+  /prettier/2.8.2:
+    resolution: {integrity: sha512-BtRV9BcncDyI2tsuS19zzhzoxD8Dh8LiCx7j7tHzrkz8GFXAexeWFdi22mjE1d16dftH2qNaytVxqiRTGlMfpw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
