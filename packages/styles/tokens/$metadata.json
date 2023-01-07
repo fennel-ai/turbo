@@ -5,8 +5,6 @@
     "palette/dark",
     "typography",
     "syntax/light",
-    "syntax/dark",
-    "syntax/light_mono",
-    "syntax/dark_mono"
+    "syntax/dark"
   ]
 }
