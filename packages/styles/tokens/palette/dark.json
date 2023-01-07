@@ -1,0 +1,66 @@
+{
+  "primary": {
+    "accent": {
+      "value": "{ref.purple.70}",
+      "type": "color"
+    },
+    "on": {
+      "value": "{ref.purple.5}",
+      "type": "color"
+    },
+    "alt": {
+      "accent": {
+        "value": "{ref.purple.1}",
+        "type": "color"
+      },
+      "on": {
+        "value": "{ref.purple.90}",
+        "type": "color"
+      }
+    }
+  },
+  "background": {
+    "value": "{ref.grey.5}",
+    "type": "color"
+  },
+  "surface": {
+    "value": "{ref.grey.5}",
+    "type": "color"
+  },
+  "on": {
+    "value": "{ref.grey.90}",
+    "type": "color"
+  },
+  "on-alt": {
+    "value": "{ref.grey.70}",
+    "type": "color"
+  },
+  "border": {
+    "value": "{ref.grey.20}",
+    "type": "color"
+  },
+  "shadow": {
+    "value": "{ref.grey.0}",
+    "type": "color"
+  },
+  "disabled": {
+    "background": {
+      "value": "rgba({on}, 8%)",
+      "type": "color"
+    },
+    "on": {
+      "value": "rgba({on}, 24%)",
+      "type": "color"
+    }
+  },
+  "inverted": {
+    "background": {
+      "value": "{ref.grey.99}",
+      "type": "color"
+    },
+    "on": {
+      "value": "{ref.grey.10}",
+      "type": "color"
+    }
+  }
+}
