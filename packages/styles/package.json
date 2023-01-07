@@ -5,6 +5,8 @@
 	"types": "./index.tsx",
 	"license": "MIT",
 	"scripts": {
+		"dev": "figtok",
+		"build": "figtok",
 		"lint": "eslint *.ts*"
 	},
 	"devDependencies": {
