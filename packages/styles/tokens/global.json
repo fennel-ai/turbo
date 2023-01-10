@@ -506,5 +506,12 @@
       "value": "100%",
       "type": "opacity"
     }
+  },
+  "glass": {
+    "value": {
+      "backgroundBlur": "32",
+      "fill": "rgba({ref.grey.100}, 80%)"
+    },
+    "type": "composition"
   }
 }
