@@ -3,6 +3,7 @@
 body {
 	font-family: 'Satoshi Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-synthesis: none;
+	font-feature-settings: "tnum"; /*! Enables numeric variants with Satoshi Variable - may want to restrict this to only li:marker elements */
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
