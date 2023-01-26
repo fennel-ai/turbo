@@ -1,7 +1,7 @@
 {
   "syntax": {
     "keyword": {
-      "value": "{ref.red.60}",
+      "value": "{ref.purple.600}",
       "type": "color",
       "description": "Pre-defined and reserved words."
     },
@@ -11,27 +11,27 @@
       "description": "Functions/Methods/Classes/Types that are available out of the box."
     },
     "class-name": {
-      "value": "{ref.purple.50}",
+      "value": "{ref.blue.600}",
       "type": "color",
       "description": "The name of a class, interface, trait, or type."
     },
     "function": {
-      "value": "{ref.blue.50}",
+      "value": "{ref.purple.800}",
       "type": "color",
       "description": "The name of a function or method."
     },
     "boolean": {
-      "value": "{ref.green.50}",
+      "value": "{ref.red.700}",
       "type": "color",
       "description": "True and false, and pairs with similar concepts (e.g. yes and no)."
     },
     "number": {
-      "value": "{ref.blue.30}",
+      "value": "{ref.red.700}",
       "type": "color",
       "description": "A numerical value, regardless of base and order, and no matter real or imaginary."
     },
     "string": {
-      "value": "{ref.purple.50}",
+      "value": "{ref.green.800}",
       "type": "color",
       "description": "Literal text, including numbers and symbols and maybe even more special characters."
     },
@@ -41,7 +41,7 @@
       "description": "A string that can comprise only a single character, enforced by the language."
     },
     "symbol": {
-      "value": "#E39D35",
+      "value": "{ref.green.500}",
       "type": "color",
       "description": "A primitive data type found in some languages, can be thought of as an identifier."
     },
@@ -56,58 +56,58 @@
       "description": "A link to another page or resource."
     },
     "operator": {
-      "value": "{ref.red.60}",
+      "value": "{ref.purple.800}",
       "type": "color",
       "description": "A symbol that represents an action or process, whether it's a mathematical operation, logical operation, and so on."
     },
     "variable": {
-      "value": "{ref.green.60}",
+      "value": "{ref.green.800}",
       "type": "color",
       "description": "The name of a variable. This token is intended to be used sparingly. It's generally used on special variables (e.g. Less or Bash), not general variables from imperative and procedural programming languages (e.g. C, JavaScript, Python)."
     },
     "constant": {
-      "value": "#E39D35",
+      "value": "{syntax.variable}",
       "type": "color",
       "description": "The name of a constant."
     },
     "property": {
-      "value": "{syntax.plain.foreground}",
+      "value": "{ref.grey.700}",
       "type": "color",
       "description": "An attribute/characteristic or object/map key."
     },
     "punctutation": {
-      "value": "{ref.grey.40}",
+      "value": "{ref.grey.500}",
       "type": "color",
       "description": "Punctuation such as brackets, parentheses, commas, and more."
     },
     "important": {
-      "value": "{ref.red.30}",
+      "value": "{ref.red.600}",
       "type": "color",
       "description": "Anything that is important and needs special highlighting."
     },
     "comment": {
-      "value": "{ref.grey.70}",
+      "value": "rgba({syntax.plain.foreground}, 56%)",
       "type": "color",
       "description": "Code comments.\n"
     },
     "diff": {
       "inserted": {
-        "value": "{ref.green.70}",
+        "value": "{ref.green.700}",
         "type": "color"
       },
       "deleted": {
-        "value": "{ref.red.60}",
+        "value": "{ref.red.600}",
         "type": "color"
       }
     },
     "plain": {
       "background": {
-        "value": "{ref.grey.99}",
+        "value": "{ref.grey.100}",
         "type": "color",
         "description": "Background color for code blocks"
       },
       "foreground": {
-        "value": "{ref.grey.30}",
+        "value": "{ref.grey.600}",
         "type": "color",
         "description": "Foreground color for non-tokenized elements within the syntax"
       }

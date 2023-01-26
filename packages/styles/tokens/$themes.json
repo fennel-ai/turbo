@@ -5,7 +5,7 @@
     "selectedTokenSets": {
       "global": "enabled",
       "palette/light": "enabled",
-      "syntax/dark": "enabled"
+      "syntax": "enabled"
     },
     "$figmaStyleReferences": {
       "ref.purple.0": "S:9ddc52f2e3160634667178827f8f2c6cb13366f8,",
@@ -178,7 +178,7 @@
     "selectedTokenSets": {
       "global": "enabled",
       "palette/dark": "enabled",
-      "syntax/dark": "enabled"
+      "syntax": "enabled"
     },
     "$figmaStyleReferences": {
       "ref.purple.0": "S:9ddc52f2e3160634667178827f8f2c6cb13366f8,",
