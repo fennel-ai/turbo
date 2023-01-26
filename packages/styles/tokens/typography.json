@@ -1,12 +1,24 @@
 {
   "syntax": {
-    "value": {
-      "fontFamily": "{fontFamilies.code}",
-      "fontWeight": "{fontWeights.semibold}",
-      "lineHeight": "{typescale.9}",
-      "fontSize": "{typescale.3}",
-      "letterSpacing": "2%"
+    "code": {
+      "value": {
+        "fontFamily": "{fontFamilies.code}",
+        "fontWeight": "{fontWeights.semibold}",
+        "lineHeight": "{typescale.9}",
+        "fontSize": "{typescale.3}",
+        "letterSpacing": "2%"
+      },
+      "type": "typography"
     },
-    "type": "typography"
+    "line-number": {
+      "value": {
+        "fontFamily": "{fontFamilies.code}",
+        "fontWeight": "{fontWeights.semibold}",
+        "lineHeight": "{typescale.9}",
+        "fontSize": "{typescale.2}",
+        "letterSpacing": "2%"
+      },
+      "type": "typography"
+    }
   }
 }

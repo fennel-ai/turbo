@@ -345,7 +345,7 @@
       "ref.grey.900": "S:97121fd2c433a00ea3ce64e64c10e799840e8811,",
       "ref.black": "S:403d87ecd1eebce929216719819379365900f257,",
       "ref.white": "S:e08541ffe8969c31c0093c3b41fd02369648348b,",
-      "syntax": "S:49a3b7cd47d1470c9d850c312d2336e6ef5842c2,"
+      "syntax.code": "S:49a3b7cd47d1470c9d850c312d2336e6ef5842c2,"
     }
   }
 ]

@@ -16,7 +16,7 @@
       "description": "The name of a class, interface, trait, or type."
     },
     "function": {
-      "value": "{ref.purple.800}",
+      "value": "{ref.yellow.600}",
       "type": "color",
       "description": "The name of a function or method."
     },
@@ -31,7 +31,7 @@
       "description": "A numerical value, regardless of base and order, and no matter real or imaginary."
     },
     "string": {
-      "value": "{ref.green.800}",
+      "value": "{ref.purple.800}",
       "type": "color",
       "description": "Literal text, including numbers and symbols and maybe even more special characters."
     },
@@ -107,7 +107,7 @@
         "description": "Background color for code blocks"
       },
       "foreground": {
-        "value": "{ref.grey.600}",
+        "value": "{ref.grey.700}",
         "type": "color",
         "description": "Foreground color for non-tokenized elements within the syntax"
       }
