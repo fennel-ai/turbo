@@ -1,65 +1,65 @@
 {
   "primary": {
     "accent": {
-      "value": "{ref.purple.70}",
+      "value": "{ref.purple.700}",
       "type": "color"
     },
     "on": {
-      "value": "{ref.purple.5}",
+      "value": "{ref.purple.100}",
       "type": "color"
     },
     "alt": {
       "accent": {
-        "value": "{ref.purple.1}",
+        "value": "{ref.purple.200}",
         "type": "color"
       },
       "on": {
-        "value": "{ref.purple.90}",
+        "value": "{ref.purple.900}",
         "type": "color"
       }
     }
   },
   "background": {
-    "value": "{ref.grey.5}",
+    "value": "{ref.grey.100}",
     "type": "color"
   },
   "surface": {
-    "value": "{ref.grey.5}",
+    "value": "{ref.grey.200}",
     "type": "color"
   },
   "on": {
-    "value": "{ref.grey.90}",
+    "value": "{ref.grey.900}",
     "type": "color"
   },
   "on-alt": {
-    "value": "{ref.grey.70}",
+    "value": "{ref.grey.700}",
     "type": "color"
   },
   "border": {
-    "value": "{ref.grey.20}",
+    "value": "{ref.grey.300}",
     "type": "color"
   },
   "shadow": {
-    "value": "{ref.grey.0}",
+    "value": "{ref.black}",
     "type": "color"
   },
   "disabled": {
     "background": {
-      "value": "rgba({on}, 8%)",
+      "value": "rgba({on}, {opacity.3})",
       "type": "color"
     },
     "on": {
-      "value": "rgba({on}, 24%)",
+      "value": "rgba({on}, {opacity.7})",
       "type": "color"
     }
   },
   "inverted": {
     "background": {
-      "value": "{ref.grey.99}",
+      "value": "{ref.grey.900}",
       "type": "color"
     },
     "on": {
-      "value": "{ref.grey.10}",
+      "value": "{ref.grey.100}",
       "type": "color"
     }
   }
