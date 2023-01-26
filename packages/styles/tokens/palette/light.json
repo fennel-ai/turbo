@@ -45,11 +45,11 @@
   },
   "disabled": {
     "background": {
-      "value": "rgba({on}, 8%)",
+      "value": "rgba({on}, {opacity.3})",
       "type": "color"
     },
     "on": {
-      "value": "rgba({on}, 24%)",
+      "value": "rgba({on}, {opacity.7})",
       "type": "color"
     }
   },
