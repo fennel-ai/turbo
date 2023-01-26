@@ -11,7 +11,7 @@
       "description": "Functions/Methods/Classes/Types that are available out of the box."
     },
     "class-name": {
-      "value": "{ref.blue.700}",
+      "value": "{ref.blue.600}",
       "type": "color",
       "description": "The name of a class, interface, trait, or type."
     },
@@ -86,7 +86,7 @@
       "description": "Anything that is important and needs special highlighting."
     },
     "comment": {
-      "value": "{ref.grey.400}",
+      "value": "rgba({syntax.plain.foreground}, 56%)",
       "type": "color",
       "description": "Code comments.\n"
     },
@@ -102,12 +102,12 @@
     },
     "plain": {
       "background": {
-        "value": "{ref.purple.100}",
+        "value": "{ref.grey.100}",
         "type": "color",
         "description": "Background color for code blocks"
       },
       "foreground": {
-        "value": "{ref.grey.900}",
+        "value": "{ref.grey.600}",
         "type": "color",
         "description": "Foreground color for non-tokenized elements within the syntax"
       }
