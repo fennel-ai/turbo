@@ -113,7 +113,6 @@
       "syntax.variable": "S:a694621ebbd701097ff07919cd116354523dbcc7,",
       "syntax.constant": "S:0f85e6b10fd167aff91733e3e1592ff13669dcb3,",
       "syntax.property": "S:165550661e1505b203e1453648473829fef3aeae,",
-      "syntax.punctutation": "S:b5dbd13ff6412c824047f32f43504565e1f54078,",
       "syntax.important": "S:4ee5c39a4cb5a1c376d2f671f8a38970cd142b25,",
       "syntax.comment": "S:268248e3b638d77b7bbaf6c3f6ee1f8fb127b960,",
       "syntax.diff.inserted": "S:8345781b8f8a557a5fa0de2dd7f37335d4d8a360,",
@@ -170,7 +169,8 @@
       "ref.grey.800": "S:28bfa470371e1b836c4c5e8650715542eb1f6365,",
       "ref.grey.900": "S:97121fd2c433a00ea3ce64e64c10e799840e8811,",
       "ref.black": "S:403d87ecd1eebce929216719819379365900f257,",
-      "ref.white": "S:e08541ffe8969c31c0093c3b41fd02369648348b,"
+      "ref.white": "S:e08541ffe8969c31c0093c3b41fd02369648348b,",
+      "syntax.punctuation": "S:b5dbd13ff6412c824047f32f43504565e1f54078,"
     }
   },
   {
@@ -287,7 +287,6 @@
       "syntax.variable": "S:a694621ebbd701097ff07919cd116354523dbcc7,",
       "syntax.constant": "S:0f85e6b10fd167aff91733e3e1592ff13669dcb3,",
       "syntax.property": "S:165550661e1505b203e1453648473829fef3aeae,",
-      "syntax.punctutation": "S:b5dbd13ff6412c824047f32f43504565e1f54078,",
       "syntax.important": "S:4ee5c39a4cb5a1c376d2f671f8a38970cd142b25,",
       "syntax.comment": "S:268248e3b638d77b7bbaf6c3f6ee1f8fb127b960,",
       "syntax.diff.inserted": "S:8345781b8f8a557a5fa0de2dd7f37335d4d8a360,",
@@ -346,7 +345,8 @@
       "ref.black": "S:403d87ecd1eebce929216719819379365900f257,",
       "ref.white": "S:e08541ffe8969c31c0093c3b41fd02369648348b,",
       "syntax.code": "S:53fb2edfcaa4d535cb2b74629b77866323163b32,",
-      "syntax.line-number": "S:8ffafec38963b3353795f4cd8e3049dd6dd972b3,"
+      "syntax.line-number": "S:8ffafec38963b3353795f4cd8e3049dd6dd972b3,",
+      "syntax.punctuation": "S:b5dbd13ff6412c824047f32f43504565e1f54078,"
     }
   }
 ]

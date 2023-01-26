@@ -56,7 +56,7 @@
       "description": "A link to another page or resource."
     },
     "operator": {
-      "value": "{ref.blue.700}",
+      "value": "{syntax.punctuation}",
       "type": "color",
       "description": "A symbol that represents an action or process, whether it's a mathematical operation, logical operation, and so on."
     },
@@ -75,7 +75,7 @@
       "type": "color",
       "description": "An attribute/characteristic or object/map key."
     },
-    "punctutation": {
+    "punctuation": {
       "value": "{ref.grey.500}",
       "type": "color",
       "description": "Punctuation such as brackets, parentheses, commas, and more."
