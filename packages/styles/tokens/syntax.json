@@ -16,17 +16,17 @@
       "description": "The name of a class, interface, trait, or type."
     },
     "function": {
-      "value": "{ref.yellow.600}",
+      "value": "{ref.purple.700}",
       "type": "color",
       "description": "The name of a function or method."
     },
     "boolean": {
-      "value": "{ref.red.700}",
+      "value": "{ref.red.600}",
       "type": "color",
       "description": "True and false, and pairs with similar concepts (e.g. yes and no)."
     },
     "number": {
-      "value": "{ref.red.700}",
+      "value": "{ref.red.600}",
       "type": "color",
       "description": "A numerical value, regardless of base and order, and no matter real or imaginary."
     },
@@ -56,12 +56,12 @@
       "description": "A link to another page or resource."
     },
     "operator": {
-      "value": "{ref.purple.800}",
+      "value": "{ref.blue.700}",
       "type": "color",
       "description": "A symbol that represents an action or process, whether it's a mathematical operation, logical operation, and so on."
     },
     "variable": {
-      "value": "{ref.green.800}",
+      "value": "{ref.green.500}",
       "type": "color",
       "description": "The name of a variable. This token is intended to be used sparingly. It's generally used on special variables (e.g. Less or Bash), not general variables from imperative and procedural programming languages (e.g. C, JavaScript, Python)."
     },
