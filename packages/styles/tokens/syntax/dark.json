@@ -71,7 +71,7 @@
       "description": "The name of a constant."
     },
     "property": {
-      "value": "{ref.grey.800}",
+      "value": "{ref.grey.700}",
       "type": "color",
       "description": "An attribute/characteristic or object/map key."
     },
