@@ -21,7 +21,7 @@
       "description": "The name of a function or method."
     },
     "boolean": {
-      "value": "{ref.red.600}",
+      "value": "{ref.blue.600}",
       "type": "color",
       "description": "True and false, and pairs with similar concepts (e.g. yes and no)."
     },
@@ -41,7 +41,7 @@
       "description": "A string that can comprise only a single character, enforced by the language."
     },
     "symbol": {
-      "value": "{ref.green.500}",
+      "value": "{syntax.variable}",
       "type": "color",
       "description": "A primitive data type found in some languages, can be thought of as an identifier."
     },
