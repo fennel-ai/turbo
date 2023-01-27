@@ -436,7 +436,7 @@
   "glass": {
     "value": {
       "backgroundBlur": "32",
-      "fill": "rgba({ref.grey.100}, 80%)"
+      "fill": "rgba({surface}, 85%)"
     },
     "type": "composition"
   }
