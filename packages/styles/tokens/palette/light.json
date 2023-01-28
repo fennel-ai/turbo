@@ -17,7 +17,7 @@
       "type": "color"
     }
   },
-  "background": {
+  "bg": {
     "default": {
       "value": "{ref.white}",
       "type": "color"
@@ -27,7 +27,7 @@
       "type": "color"
     }
   },
-  "foreground": {
+  "fg": {
     "default": {
       "value": "{ref.grey.100}",
       "type": "color"
@@ -37,8 +37,8 @@
       "type": "color"
     }
   },
-  "inverted": {
-    "background": {
+  "inv": {
+    "bg": {
       "default": {
         "value": "{ref.grey.200}",
         "type": "color"
@@ -48,7 +48,7 @@
         "type": "color"
       }
     },
-    "foreground": {
+    "fg": {
       "default": {
         "value": "{ref.grey.900}",
         "type": "color"
