@@ -1,4 +1,14 @@
 {
+  "disabled": {
+    "background": {
+      "value": "rgba({foreground.default}, {opacity.3})",
+      "type": "color"
+    },
+    "on": {
+      "value": "rgba({foreground.default}, {opacity.7})",
+      "type": "color"
+    }
+  },
   "syntax": {
     "code": {
       "value": {

@@ -4,36 +4,60 @@
       "value": "{ref.purple.500}",
       "type": "color"
     },
-    "on": {
+    "on-accent": {
       "value": "{ref.purple.900}",
       "type": "color"
     },
-    "alt": {
-      "accent": {
-        "value": "{ref.purple.800}",
-        "type": "color"
-      },
-      "on": {
-        "value": "{ref.purple.200}",
-        "type": "color"
-      }
+    "background": {
+      "value": "{ref.purple.800}",
+      "type": "color"
+    },
+    "on-background": {
+      "value": "{ref.purple.200}",
+      "type": "color"
     }
   },
   "background": {
-    "value": "{ref.grey.900}",
-    "type": "color"
+    "default": {
+      "value": "{ref.white}",
+      "type": "color"
+    },
+    "muted": {
+      "value": "{ref.grey.900}",
+      "type": "color"
+    }
   },
-  "surface": {
-    "value": "{ref.white}",
-    "type": "color"
+  "foreground": {
+    "default": {
+      "value": "{ref.grey.100}",
+      "type": "color"
+    },
+    "muted": {
+      "value": "{ref.grey.400}",
+      "type": "color"
+    }
   },
-  "on": {
-    "value": "{ref.grey.100}",
-    "type": "color"
-  },
-  "on-alt": {
-    "value": "{ref.grey.400}",
-    "type": "color"
+  "inverted": {
+    "background": {
+      "default": {
+        "value": "{ref.grey.200}",
+        "type": "color"
+      },
+      "muted": {
+        "value": "{ref.grey.100}",
+        "type": "color"
+      }
+    },
+    "foreground": {
+      "default": {
+        "value": "{ref.grey.900}",
+        "type": "color"
+      },
+      "muted": {
+        "value": "{ref.grey.700}",
+        "type": "color"
+      }
+    }
   },
   "border": {
     "value": "{ref.grey.800}",
@@ -42,25 +66,5 @@
   "shadow": {
     "value": "{ref.grey.300}",
     "type": "color"
-  },
-  "disabled": {
-    "background": {
-      "value": "rgba({on}, {opacity.3})",
-      "type": "color"
-    },
-    "on": {
-      "value": "rgba({on}, {opacity.7})",
-      "type": "color"
-    }
-  },
-  "inverted": {
-    "background": {
-      "value": "{ref.grey.100}",
-      "type": "color"
-    },
-    "on": {
-      "value": "{ref.grey.900}",
-      "type": "color"
-    }
   }
 }
