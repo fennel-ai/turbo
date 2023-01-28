@@ -5,11 +5,11 @@
       "type": "color"
     },
     "on-accent": {
-      "value": "{ref.purple.900}",
+      "value": "{ref.white}",
       "type": "color"
     },
     "background": {
-      "value": "{ref.purple.800}",
+      "value": "{ref.purple.900}",
       "type": "color"
     },
     "on-background": {
@@ -23,11 +23,11 @@
       "type": "color"
     },
     "on-accent": {
-      "value": "{ref.blue.900}",
+      "value": "{ref.white}",
       "type": "color"
     },
     "background": {
-      "value": "{ref.blue.800}",
+      "value": "{ref.blue.900}",
       "type": "color"
     },
     "on-background": {
@@ -41,11 +41,11 @@
       "type": "color"
     },
     "on-accent": {
-      "value": "{ref.red.900}",
+      "value": "{ref.white}",
       "type": "color"
     },
     "background": {
-      "value": "{ref.red.800}",
+      "value": "{ref.red.900}",
       "type": "color"
     },
     "on-background": {
@@ -59,11 +59,11 @@
       "type": "color"
     },
     "on-accent": {
-      "value": "{ref.yellow.900}",
+      "value": "{ref.white}",
       "type": "color"
     },
     "background": {
-      "value": "{ref.yellow.800}",
+      "value": "{ref.yellow.900}",
       "type": "color"
     },
     "on-background": {
@@ -77,11 +77,11 @@
       "type": "color"
     },
     "on-accent": {
-      "value": "{ref.green.900}",
+      "value": "{ref.white}",
       "type": "color"
     },
     "background": {
-      "value": "{ref.green.800}",
+      "value": "{ref.green.900}",
       "type": "color"
     },
     "on-background": {
