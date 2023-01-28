@@ -4,8 +4,8 @@
     "colors/bright",
     "palette/light",
     "palette/dark",
-    "typography",
-    "syntax",
+    "theme",
+    "syntax-theme",
     "colors/pale"
   ]
 }

@@ -1,0 +1,58 @@
+{
+  "background": {
+    "value": "{bg.muted}",
+    "type": "color"
+  },
+  "surface": {
+    "value": "{bg.default}",
+    "type": "color"
+  },
+  "text": {
+    "value": "{fg.default}",
+    "type": "color"
+  },
+  "text-alt": {
+    "value": "{fg.muted}",
+    "type": "color"
+  },
+  "border": {
+    "value": "{fg.border}",
+    "type": "color"
+  },
+  "shadow": {
+    "value": "{fg.shadow}",
+    "type": "color"
+  },
+  "disabled": {
+    "background": {
+      "value": "rgba({fg.default}, {opacity.3})",
+      "type": "color"
+    },
+    "foreground": {
+      "value": "rgba({fg.default}, {opacity.7})",
+      "type": "color"
+    }
+  },
+  "syntax": {
+    "code": {
+      "value": {
+        "fontFamily": "{fontFamilies.code}",
+        "fontWeight": "{fontWeights.semibold}",
+        "lineHeight": "{typescale.9}",
+        "fontSize": "{typescale.3}",
+        "letterSpacing": "2%"
+      },
+      "type": "typography"
+    },
+    "line-number": {
+      "value": {
+        "fontFamily": "{fontFamilies.code}",
+        "fontWeight": "{fontWeights.semibold}",
+        "lineHeight": "{typescale.9}",
+        "fontSize": "{typescale.2}",
+        "letterSpacing": "2%"
+      },
+      "type": "typography"
+    }
+  }
+}
