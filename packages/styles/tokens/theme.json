@@ -1,4 +1,28 @@
 {
+  "background": {
+    "value": "{bg.muted}",
+    "type": "color"
+  },
+  "surface": {
+    "value": "{bg.default}",
+    "type": "color"
+  },
+  "text": {
+    "value": "{fg.default}",
+    "type": "color"
+  },
+  "text-alt": {
+    "value": "{fg.muted}",
+    "type": "color"
+  },
+  "border": {
+    "value": "{fg.border}",
+    "type": "color"
+  },
+  "shadow": {
+    "value": "{fg.shadow}",
+    "type": "color"
+  },
   "disabled": {
     "background": {
       "value": "rgba({fg.default}, {opacity.3})",
@@ -30,13 +54,5 @@
       },
       "type": "typography"
     }
-  },
-  "background": {
-    "value": "{bg.muted}",
-    "type": "color"
-  },
-  "surface": {
-    "value": "{bg.default}",
-    "type": "color"
   }
 }

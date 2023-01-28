@@ -35,6 +35,14 @@
     "muted": {
       "value": "{ref.grey.700}",
       "type": "color"
+    },
+    "border": {
+      "value": "{ref.grey.300}",
+      "type": "color"
+    },
+    "shadow": {
+      "value": "{ref.black}",
+      "type": "color"
     }
   },
   "inv": {
@@ -58,13 +66,5 @@
         "type": "color"
       }
     }
-  },
-  "border": {
-    "value": "{ref.grey.300}",
-    "type": "color"
-  },
-  "shadow": {
-    "value": "{ref.black}",
-    "type": "color"
   }
 }
