@@ -7,8 +7,7 @@
       "palette/dark": "enabled",
       "syntax": "enabled",
       "typography": "enabled",
-      "colors/bright": "enabled",
-      "colors/pale": "disabled"
+      "colors/bright": "enabled"
     },
     "$figmaStyleReferences": {
       "ref.purple.0": "S:9ddc52f2e3160634667178827f8f2c6cb13366f8,",
@@ -185,8 +184,7 @@
       "palette/light": "enabled",
       "syntax": "enabled",
       "typography": "enabled",
-      "colors/bright": "enabled",
-      "colors/pale": "disabled"
+      "colors/bright": "enabled"
     },
     "$figmaStyleReferences": {
       "ref.purple.0": "S:9ddc52f2e3160634667178827f8f2c6cb13366f8,",
