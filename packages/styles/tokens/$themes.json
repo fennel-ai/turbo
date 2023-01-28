@@ -51,7 +51,6 @@
       "border": "S:80e00c5bcb701f31ac64490342a4153c31806201,",
       "shadow": "S:6dec67c20020a5ae574e3be48a526ea694d0546e,",
       "disabled.background": "S:e979cfe341c5c840cd5d715ff67f9d73b048fb23,",
-      "disabled.on": "S:7871b6d4f75cd9d8d5782233c948c912f80682e8,",
       "syntax.keyword": "S:25b5feae981d185e0bf9f017f465248df0819b01,",
       "syntax.builtins": "S:20eb48d3142caa34d5f4c9c53524123ac0a3bdc5,",
       "syntax.class-name": "S:8c554b8110c50df27dfdeafe73c58efa70cd76c5,",
@@ -73,7 +72,8 @@
       "syntax.diff.inserted": "S:8345781b8f8a557a5fa0de2dd7f37335d4d8a360,",
       "syntax.diff.deleted": "S:bbf80d2861eb720ad3e22326ce4046fca6877dc6,",
       "syntax.plain.background": "S:653446d1d39e7594f392d5b09dd79325af746b11,",
-      "syntax.plain.foreground": "S:11aef09df84eb159977779f24dd23f519a9a86da,"
+      "syntax.plain.foreground": "S:11aef09df84eb159977779f24dd23f519a9a86da,",
+      "disabled.foreground": "S:092686af0ec4e5a59b41f081ab41c305abdd35d9,"
     }
   },
   {
@@ -128,7 +128,6 @@
       "border": "S:80e00c5bcb701f31ac64490342a4153c31806201,",
       "shadow": "S:6dec67c20020a5ae574e3be48a526ea694d0546e,",
       "disabled.background": "S:e979cfe341c5c840cd5d715ff67f9d73b048fb23,",
-      "disabled.on": "S:7871b6d4f75cd9d8d5782233c948c912f80682e8,",
       "syntax.keyword": "S:25b5feae981d185e0bf9f017f465248df0819b01,",
       "syntax.builtins": "S:20eb48d3142caa34d5f4c9c53524123ac0a3bdc5,",
       "syntax.class-name": "S:8c554b8110c50df27dfdeafe73c58efa70cd76c5,",
@@ -150,7 +149,8 @@
       "syntax.diff.inserted": "S:8345781b8f8a557a5fa0de2dd7f37335d4d8a360,",
       "syntax.diff.deleted": "S:bbf80d2861eb720ad3e22326ce4046fca6877dc6,",
       "syntax.plain.background": "S:653446d1d39e7594f392d5b09dd79325af746b11,",
-      "syntax.plain.foreground": "S:11aef09df84eb159977779f24dd23f519a9a86da,"
+      "syntax.plain.foreground": "S:11aef09df84eb159977779f24dd23f519a9a86da,",
+      "disabled.foreground": "S:7871b6d4f75cd9d8d5782233c948c912f80682e8,"
     }
   }
 ]

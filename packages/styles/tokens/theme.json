@@ -28,7 +28,7 @@
       "value": "rgba({fg.default}, {opacity.3})",
       "type": "color"
     },
-    "on": {
+    "foreground": {
       "value": "rgba({fg.default}, {opacity.7})",
       "type": "color"
     }
