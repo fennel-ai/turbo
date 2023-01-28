@@ -129,7 +129,9 @@
       "ref.grey.800": "S:da9bdd8039392ce1466d0661ccebe0f75fc8ef95,",
       "ref.grey.900": "S:042d0b1c459bae2da2cfe3670ea63b40f8ae1dae,",
       "ref.black": "S:686a410eac948dd423fe6b6816a8859ad54014b6,",
-      "ref.white": "S:be5b2b881f0a8665e88ee02ab19f196047af7414,"
+      "ref.white": "S:be5b2b881f0a8665e88ee02ab19f196047af7414,",
+      "button.background": "S:fc4d17a877868aae593ec7a9243d227291e145a9,",
+      "button.foreground": "S:2fb2026d7054d41616e2d5f94c4b469f6fbca85e,"
     }
   },
   {
