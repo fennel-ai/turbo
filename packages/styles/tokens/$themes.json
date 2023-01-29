@@ -10,8 +10,6 @@
       "syntax-theme": "enabled"
     },
     "$figmaStyleReferences": {
-      "syntax.code": "S:53fb2edfcaa4d535cb2b74629b77866323163b32,",
-      "syntax.line-number": "S:8ffafec38963b3353795f4cd8e3049dd6dd972b3,",
       "primary.accent": "S:4c7026b2e43bebaf69031790cbceae7849bc62ec,",
       "primary.on-accent": "S:b65632d20382ebf6c85ac5774deb92828dd9865a,",
       "primary.background": "S:56194c4b9f3da47893f3c5ca7ea9644cd79e0703,",
@@ -145,8 +143,6 @@
       "colors/pale": "enabled"
     },
     "$figmaStyleReferences": {
-      "syntax.code": "S:53fb2edfcaa4d535cb2b74629b77866323163b32,",
-      "syntax.line-number": "S:8ffafec38963b3353795f4cd8e3049dd6dd972b3,",
       "primary.accent": "S:4c7026b2e43bebaf69031790cbceae7849bc62ec,",
       "primary.on-accent": "S:b65632d20382ebf6c85ac5774deb92828dd9865a,",
       "primary.background": "S:56194c4b9f3da47893f3c5ca7ea9644cd79e0703,",
@@ -281,8 +277,6 @@
       "syntax-theme": "enabled"
     },
     "$figmaStyleReferences": {
-      "syntax.code": "S:53fb2edfcaa4d535cb2b74629b77866323163b32,",
-      "syntax.line-number": "S:8ffafec38963b3353795f4cd8e3049dd6dd972b3,",
       "primary.accent": "S:4c7026b2e43bebaf69031790cbceae7849bc62ec,",
       "primary.on-accent": "S:b65632d20382ebf6c85ac5774deb92828dd9865a,",
       "primary.background": "S:56194c4b9f3da47893f3c5ca7ea9644cd79e0703,",
@@ -358,8 +352,6 @@
       "colors/pale": "enabled"
     },
     "$figmaStyleReferences": {
-      "syntax.code": "S:53fb2edfcaa4d535cb2b74629b77866323163b32,",
-      "syntax.line-number": "S:8ffafec38963b3353795f4cd8e3049dd6dd972b3,",
       "primary.accent": "S:4c7026b2e43bebaf69031790cbceae7849bc62ec,",
       "primary.on-accent": "S:b65632d20382ebf6c85ac5774deb92828dd9865a,",
       "primary.background": "S:56194c4b9f3da47893f3c5ca7ea9644cd79e0703,",
