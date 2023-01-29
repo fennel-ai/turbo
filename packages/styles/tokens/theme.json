@@ -147,15 +147,29 @@
     }
   },
   "button": {
+    "default": {
+      "neutral": {
+        "bg": {
+          "value": "{inv.bg.muted}",
+          "type": "color"
+        },
+        "fg": {
+          "value": "{inv.fg.default}",
+          "type": "color"
+        }
+      },
+      "primary": {
+        "bg": {
+          "value": "{primary.accent}",
+          "type": "color"
+        },
+        "fg": {
+          "value": "{primary.on-accent}",
+          "type": "color"
+        }
+      }
+    },
     "neutral": {
-      "bg": {
-        "value": "{inv.bg.muted}",
-        "type": "color"
-      },
-      "fg": {
-        "value": "{inv.fg.default}",
-        "type": "color"
-      },
       "shadow": {
         "value": [
           {
@@ -171,7 +185,7 @@
             "y": "0",
             "blur": "0",
             "spread": "1",
-            "color": "{button.neutral.bg}",
+            "color": "{button.default.neutral.bg}",
             "type": "dropShadow"
           },
           {
@@ -202,7 +216,7 @@
             "y": "0",
             "blur": "0",
             "spread": "1",
-            "color": "{button.primary.bg}",
+            "color": "{button.default.primary.bg}",
             "type": "dropShadow"
           },
           {
@@ -215,14 +229,6 @@
           }
         ],
         "type": "boxShadow"
-      },
-      "bg": {
-        "value": "{primary.accent}",
-        "type": "color"
-      },
-      "fg": {
-        "value": "{primary.on-accent}",
-        "type": "color"
       }
     },
     "pill": {
@@ -231,10 +237,32 @@
         "type": "borderRadius"
       }
     },
-    "default": {
+    "rounded": {
       "radius": {
         "value": "{radii.sm}",
         "type": "borderRadius"
+      }
+    },
+    "flat": {
+      "neutral": {
+        "bg": {
+          "value": "rgba({text}, 0%)",
+          "type": "color"
+        },
+        "fg": {
+          "value": "{text}",
+          "type": "color"
+        }
+      },
+      "primary": {
+        "bg": {
+          "value": "rgba({primary.accent}, 0%)",
+          "type": "color"
+        },
+        "fg": {
+          "value": "{primary.accent}",
+          "type": "color"
+        }
       }
     }
   }
