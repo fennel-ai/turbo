@@ -331,5 +331,11 @@
       "value": "{opacity.2}",
       "type": "opacity"
     }
+  },
+  "icon-button": {
+    "radius": {
+      "value": "{radii.md}",
+      "type": "borderRadius"
+    }
   }
 }
