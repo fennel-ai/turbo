@@ -135,8 +135,8 @@
       "button.neutral.fg": "S:5c2636191abae01529ab5623286b7ac4bc18d77b,",
       "button.primary.bg": "S:6eda547769635db06e8ad1eb124ee27609586712,",
       "button.primary.fg": "S:8d6bac4ffbeb4530aa3d3551b54ee3d58555da55,",
-      "syntax.code": "S:576fe3bc2063ffb90d2314710f66f352d8fa57cc,",
-      "syntax.line-number": "S:38514e694b5ad74bf2638845f558f41be1281963,",
+      "syntax.code": "S:a4f8a64981665f4333d0bccb85d11ae4c1679a3d,",
+      "syntax.line-number": "S:e6bee76df96de555acdf6afcebae51f3d4cc32a9,",
       "code-block.snippet.code": "S:53fb2edfcaa4d535cb2b74629b77866323163b32,",
       "code-block.snippet.line-number": "S:8ffafec38963b3353795f4cd8e3049dd6dd972b3,",
       "code-block.filename.text": "S:23aba5d3f30ae9e40f2b3aa279c121f5ff83d98a,",
@@ -150,7 +150,12 @@
       "button.flat.neutral.bg": "S:9e2544e84f3c86a35afd0e8779d13df1bd364e21,",
       "button.flat.neutral.fg": "S:a51606a4038e3bb8c008fc4822e3a687b6acb15d,",
       "button.flat.primary.bg": "S:8dd9b8d4af997768da34f06202bb7301bc7e7a73,",
-      "button.flat.primary.fg": "S:0e87f34867e874d7246c35b76fdc2cad29bdff7b,"
+      "button.flat.primary.fg": "S:0e87f34867e874d7246c35b76fdc2cad29bdff7b,",
+      "button.default.primary-alt.bg": "S:e7f326725a1737839bcc8b5df5119985ff53074b,",
+      "button.default.primary-alt.fg": "S:3a51f54c9e0240d257cc4cb5b05181b467f151d7,",
+      "button.primary-alt.shadow": "S:0f00d7bcf456b2f8ae01e44b4a38ceb143c406f4,",
+      "button.flat.primary-alt.bg": "S:3922f2d69025cc7f0847bd4f197f6fa2491bbcee,",
+      "button.flat.primary-alt.fg": "S:ac1955c3a61c5fe5990c71bc169423c5a56f2f65,"
     }
   },
   {

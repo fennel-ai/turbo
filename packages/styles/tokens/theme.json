@@ -167,6 +167,16 @@
           "value": "{primary.on-accent}",
           "type": "color"
         }
+      },
+      "primary-alt": {
+        "bg": {
+          "value": "{primary.background}",
+          "type": "color"
+        },
+        "fg": {
+          "value": "{primary.on-background}",
+          "type": "color"
+        }
       }
     },
     "neutral": {
@@ -231,6 +241,37 @@
         "type": "boxShadow"
       }
     },
+    "primary-alt": {
+      "shadow": {
+        "value": [
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "2",
+            "spread": "0",
+            "color": "rgba({shadow}, {opacity.6})",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "0",
+            "blur": "0",
+            "spread": "1",
+            "color": "{button.default.primary-alt.bg}",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "3",
+            "blur": "6",
+            "spread": "0",
+            "color": "rgba({shadow}, {opacity.5})",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow"
+      }
+    },
     "pill": {
       "radius": {
         "value": "999px",
@@ -279,11 +320,11 @@
       "type": "opacity"
     },
     "hover": {
-      "value": "{opacity.2}",
+      "value": "{opacity.1}",
       "type": "opacity"
     },
     "active": {
-      "value": "{opacity.4}",
+      "value": "{opacity.3}",
       "type": "opacity"
     },
     "selected": {
