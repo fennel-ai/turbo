@@ -128,6 +128,22 @@
         }
       ],
       "type": "boxShadow"
+    },
+    "filename": {
+      "text": {
+        "value": {
+          "fontFamily": "{fontFamilies.code}",
+          "fontWeight": "{fontWeights.regular}",
+          "lineHeight": "{typescale.9}",
+          "fontSize": "{typescale.2}",
+          "letterSpacing": "2%"
+        },
+        "type": "typography"
+      },
+      "color": {
+        "value": "rgba({ref.white}, {opacity.11})",
+        "type": "color"
+      }
     }
   }
 }
