@@ -1,3 +1,5 @@
+import fs from 'fs-extra';
+
 import navigation from '../.content/navigation.json';
 import manifest from '../.content/manifest.json';
 
@@ -40,7 +42,7 @@ export const listPaths = () => {
 /**
  * Given a slug, returns the relevant page from the docs in the manifest.
  */
-export const getPage = (slug: string): ManifestPage => {
+export const getPage = async (slug: string): Promise<string> => {
 	const m = manifest as Record<string, ManifestPage>;
-	return m[slug];
+	return fs.readFile(m[slug].path, 'utf-8');
 }

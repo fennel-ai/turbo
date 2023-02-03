@@ -1,13 +1,16 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+
 import { getNavigation, getPage, listPaths, ManifestPage, Navigation } from "../lib/getNavigation";
 
 type Props = {
 	navigation: Navigation,
-	page: ManifestPage,
+	source: MDXRemoteSerializeResult,
 }
 
-export default function DocPage({ navigation, page }: Props) {
+export default function DocPage({ navigation, source }: Props) {
 	return (
 		<div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2rem' }}>
 			<aside style={{gridColumn: 'span 3'}}>
@@ -25,24 +28,25 @@ export default function DocPage({ navigation, page }: Props) {
 				}
 			</aside>
 			<main style={{gridColumn: 'span 8'}}>
-				<h1>{page.title}</h1>
+				<MDXRemote {...source} />
 			</main>
 		</div>
 	);
 }
 
-export const getStaticProps: GetStaticProps<Props> = (ctx) => {
+export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 	const navigation = getNavigation();
 	
 	const { params } = ctx;
 	const slug = (params!.slug as string[]).join('/');
 
-	const page = getPage(slug);
+	const page = await getPage(slug);
+	const source = await serialize(page, { parseFrontmatter: true });
 
 	return {
 		props: {
 			navigation,
-			page,
+			source,
 		}
 	}
 }
