@@ -3,7 +3,7 @@ import Link from "next/link";
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
-import { getNavigation, getPage, listPaths, Navigation } from "../lib/getNavigation";
+import { getNavigation, getPage, listPaths, Navigation } from "../lib/utils";
 
 type Props = {
 	navigation: Navigation,

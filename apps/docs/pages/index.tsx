@@ -1,5 +1,5 @@
 import { Button } from "ui";
-import { getNavigation, Navigation } from "../lib/getNavigation";
+import { getNavigation, Navigation } from "../lib/utils";
 
 type Props = {
 	navigation: Navigation,
