@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import Link from "next/link";
 import { getNavigation, getPage, listPaths, ManifestPage, Navigation } from "../lib/getNavigation";
 
 type Props = {
@@ -11,12 +12,12 @@ export default function DocPage({ navigation, page }: Props) {
 		<div>
 			<h1>{page.title}</h1>
 			{
-				navigation.map(({ title, slug, pages }) => (
-					<ul key={slug}>
-						<li>{title}</li>
+				navigation.map((section) => (
+					<ul key={section.slug}>
+						<li>{section.title}</li>
 						<ul>
-							{pages.map(({ title, slug }) => (
-								<li key={slug}>{title}</li>
+							{section.pages.map(({ title, slug }) => (
+								<li key={slug}><Link aria-label={title} href={`/${section.slug}/${slug}`}>{title}</Link></li>
 							))}
 						</ul>
 					</ul>
