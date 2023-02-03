@@ -1,6 +1,7 @@
 import path from 'node:path';
 
 import { fetchContents } from './fetchContents.js';
+import { createManifest } from './createManifest.js';
 
 export const withGitDocs = (opts = {}) => async (nextConfig) => {
 	const { token, dir = '.content/md' } = opts;
@@ -9,5 +10,7 @@ export const withGitDocs = (opts = {}) => async (nextConfig) => {
 
 	await fetchContents(token, CWD);
 	
+	await createManifest(CWD);
+
 	return nextConfig;
 };
