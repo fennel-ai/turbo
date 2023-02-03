@@ -16,7 +16,7 @@ export const createManifest = async (dir) => {
 
   const summary = await fs.readFile(path.join(dir, 'SUMMARY.md'), 'utf-8');
 
-  // Convert markdown to ast
+  // Convert markdown to ast so we can reliably transform and query the tree of markdown elements.
   const ast = fromMarkdown(summary);
 
   let sectionOrder = 0;
@@ -42,6 +42,7 @@ export const createManifest = async (dir) => {
 
 		const title = toString(link);
 
+		// Construct the page obj.
 		let page = {
 			title,
 			path: fullPath,
@@ -59,10 +60,11 @@ export const createManifest = async (dir) => {
 	
 	// Add the section to navigation map
 	navigation.push(section);
-	sectionOrder++;
+
+	sectionOrder++; // increment section counter.
   })
   
-
+  // write the manifest files to disk
   await fs.writeJSON(path.join(dir, "../", "navigation.json"), navigation);
   await fs.writeJSON(path.join(dir, "../", "manifest.json"), manifest);
 };
