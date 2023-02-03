@@ -1,7 +1,11 @@
 import { Button } from "ui";
-import { getNavigation } from "../lib/getNavigation";
+import { getNavigation, Navigation } from "../lib/getNavigation";
 
-export default function Docs({ navigation }) {
+type Props = {
+	navigation: Navigation,
+}
+
+export default function Docs({ navigation }: Props) {
   return (
     <div>
       <h1>Docs</h1>
@@ -22,7 +26,11 @@ export default function Docs({ navigation }) {
   );
 }
 
-export function getStaticProps() {
+type StaticProps = {
+	props: Props,
+}
+
+export function getStaticProps(): StaticProps {
 	const navigation = getNavigation();
 
 	return {
