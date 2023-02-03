@@ -1,14 +1,15 @@
-import { GetStaticPaths } from "next";
-import { getNavigation, Navigation } from "../lib/getNavigation";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { getNavigation, getPage, listPaths, ManifestPage, Navigation } from "../lib/getNavigation";
 
 type Props = {
 	navigation: Navigation,
+	page: ManifestPage,
 }
 
-export default function DocPage({ navigation }: Props) {
+export default function DocPage({ navigation, page }: Props) {
 	return (
 		<div>
-			<h1>DocPage</h1>
+			<h1>{page.title}</h1>
 			{
 				navigation.map(({ title, slug, pages }) => (
 					<ul key={slug}>
@@ -25,29 +26,26 @@ export default function DocPage({ navigation }: Props) {
 	);
 }
 
-type StaticProps = {
-	props: Props,
-}
-
-export function getStaticProps(): StaticProps {
+export const getStaticProps: GetStaticProps<Props> = (ctx) => {
 	const navigation = getNavigation();
+	
+	const { params } = ctx;
+	const slug = (params!.slug as string[]).join('/');
+
+	const page = getPage(slug);
 
 	return {
 		props: {
 			navigation,
+			page,
 		}
 	}
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
+	const paths = listPaths();
 	return {
-		paths: [
-			{
-				params: {
-					slug: ['getting-started', 'welcome-to-fennel']
-				}
-			}
-		],
+		paths: paths,
 		fallback: false,
 	}
 }
