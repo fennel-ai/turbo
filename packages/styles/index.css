@@ -1,6 +1,8 @@
 @import './fonts/index.css';
 
 body {
+	margin: 0;
+	padding: 0;
 	font-family: 'Satoshi Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-synthesis: none;
 	font-feature-settings: "tnum"; /*! Enables the numeric character variants with Satoshi Variable - may want to restrict this to only li:marker elements */
