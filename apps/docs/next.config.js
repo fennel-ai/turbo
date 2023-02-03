@@ -1,6 +1,6 @@
-import { withGitDocs } from './plugins/with-git-docs/index.js';
+import { withGitbook } from './plugins/with-gitbook/index.js';
 
-const GitDocs = withGitDocs({
+const gitbook = withGitbook({
 	token: process.env.GITHUB_TOKEN,
 });
 
@@ -12,4 +12,4 @@ const nextConfig = {
   },
 };
 
-export default GitDocs(nextConfig)
+export default gitbook(nextConfig)

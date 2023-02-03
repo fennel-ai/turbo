@@ -3,7 +3,7 @@ import { createManifest } from './createManifest.js';
 
 import { fetchContents } from './fetchContents.js';
 
-export const withGitDocs = (opts = {}) => async (nextConfig) => {
+export const withGitbook = (opts = {}) => async (nextConfig) => {
 	const { token, dir = '.content/md' } = opts;
 
 	const CWD = path.join(process.cwd(), dir);
