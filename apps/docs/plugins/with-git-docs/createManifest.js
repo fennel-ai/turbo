@@ -1,6 +1,7 @@
 import path from "node:path";
 import { globbyStream as globby } from "globby";
 import fs from "fs-extra";
+import matter from 'gray-matter';
 
 const cleanPath = (slug) => slug.replace(/.md|.mdx/g, "");
 
@@ -13,10 +14,15 @@ export const createManifest = async (dir) => {
       .filter((p) => p !== "README");
 
     const key = slugs.join("/") || "/";
-	
+
+	const contents = await fs.readFile(fullPath);
+	const { data: frontmatter, excerpt: title } = matter(contents, { excerpt: true, excerpt_separator: "\n\n" })
+
     manifest[key] = {
       path: fullPath,
       slugs: slugs,
+	  frontmatter,
+	  title: title.replace('\n', ''),
     };
   }
 
