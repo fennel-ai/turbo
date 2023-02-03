@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["BLOG_URL", "DOCS_URL"],
+  "globalEnv": ["BLOG_URL", "DOCS_URL", "GITHUB_TOKEN"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -9,8 +9,8 @@
     "lint": {
       "outputs": []
     },
-    "dev": {
-      "cache": false
-    }
+	"dev": {
+		"cache": false
+	}
   }
 }
