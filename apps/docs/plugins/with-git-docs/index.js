@@ -1,7 +1,7 @@
 import path from 'node:path';
+import { createManifest } from './createManifest.js';
 
 import { fetchContents } from './fetchContents.js';
-import { createManifest } from './createManifest.js';
 
 export const withGitDocs = (opts = {}) => async (nextConfig) => {
 	const { token, dir = '.content/md' } = opts;
