@@ -9,20 +9,24 @@ type Props = {
 
 export default function DocPage({ navigation, page }: Props) {
 	return (
-		<div>
-			<h1>{page.title}</h1>
-			{
-				navigation.map((section) => (
-					<ul key={section.slug}>
-						<li>{section.title}</li>
-						<ul>
-							{section.pages.map(({ title, slug }) => (
-								<li key={slug}><Link aria-label={title} href={`/${section.slug}/${slug}`}>{title}</Link></li>
-							))}
+		<div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2rem' }}>
+			<aside style={{gridColumn: 'span 3'}}>
+				{
+					navigation.map((section) => (
+						<ul key={section.slug}>
+							<li>{section.title}</li>
+							<ul>
+								{section.pages.map(({ title, slug }) => (
+									<li key={slug}><Link aria-label={title} href={`/${section.slug}/${slug}`}>{title}</Link></li>
+								))}
+							</ul>
 						</ul>
-					</ul>
-				))
-			}
+					))
+				}
+			</aside>
+			<main style={{gridColumn: 'span 8'}}>
+				<h1>{page.title}</h1>
+			</main>
 		</div>
 	);
 }
