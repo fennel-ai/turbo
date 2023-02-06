@@ -3,7 +3,8 @@ import Link from "next/link";
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
-import { getNavigation, getPage, listPaths, Navigation } from "../lib/utils";
+import { getNavigation, getPage, listPaths, Navigation } from "lib/utils";
+import { Layout } from 'components/Layout';
 
 type Props = {
 	navigation: Navigation,
@@ -12,25 +13,9 @@ type Props = {
 
 export default function DocPage({ navigation, source }: Props) {
 	return (
-		<div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2rem' }}>
-			<aside style={{gridColumn: 'span 3'}}>
-				{
-					navigation.map((section) => (
-						<ul key={section.slug}>
-							<li>{section.title}</li>
-							<ul>
-								{section.pages.map(({ title, slug }) => (
-									<li key={slug}><Link aria-label={title} href={`/${section.slug}/${slug}`}>{title}</Link></li>
-								))}
-							</ul>
-						</ul>
-					))
-				}
-			</aside>
-			<main style={{gridColumn: 'span 8'}}>
-				<MDXRemote {...source} />
-			</main>
-		</div>
+		<Layout navigation={navigation}>
+			<MDXRemote {...source} />
+		</Layout>
 	);
 }
 

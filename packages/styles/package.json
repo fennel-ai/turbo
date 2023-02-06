@@ -9,6 +9,10 @@
 		"build": "figtok",
 		"lint": "eslint *.ts*"
 	},
+	"peerDependencies": {
+		"@emotion/react": "^11.10.5",
+		"@emotion/styled": "^11.10.5"
+	},
 	"devDependencies": {
 		"eslint": "^7.32.0",
 		"eslint-config-fennel": "workspace:*",

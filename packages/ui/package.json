@@ -7,6 +7,10 @@
   "scripts": {
     "lint": "eslint *.ts*"
   },
+  "peerDependencies": {
+	"@emotion/react": "^11.10.5",
+	"@emotion/styled": "^11.10.5"
+  },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",

@@ -8,7 +8,7 @@ export const withGitbook = (opts = {}) => async (nextConfig) => {
 
 	const CWD = path.join(process.cwd(), dir);
 
-	await fetchContents(token, CWD);
+	// await fetchContents(token, CWD);
 	
 	await createManifest(CWD);
 
