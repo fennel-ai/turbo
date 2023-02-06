@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import type { NavigationTree } from "lib/utils";
 import Link from "next/link";
 
@@ -5,20 +6,48 @@ type Props = {
 	items: NavigationTree
 }
 
+const Nav = styled.nav`
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+`;
+
+const Section = styled.ul`
+	margin: 0;
+	list-style: none;
+	padding-left: 0px;
+`;
+
+const SectionTitle = styled.li`
+	font-size: 1.25rem;
+	line-height: 2.5rem;
+	font-variation-settings: 'wght' 600;
+`;
+
+const InnerPages = styled.ul`
+	list-style: none;
+	padding-left: 2rem;
+	border-left: 1px solid #E2E1EF;
+	height: 0;
+	overflow: hidden;
+`;
+
 const Navigation = ({ items }: Props) => (
 	<aside>
-		{
-			items.map((section) => (
-				<ul key={section.slug}>
-					<li>{section.title}</li>
-					<ul>
-						{section.pages.map(({ title, slug }) => (
-							<li key={slug}><Link aria-label={title} href={`/${section.slug}/${slug}`}>{title}</Link></li>
-						))}
-					</ul>
-				</ul>
-			))
-		}
+		<Nav>
+			{
+				items.map((section) => (
+					<Section key={section.slug}>
+						<SectionTitle>{section.title}</SectionTitle>
+						<InnerPages>
+							{section.pages.map(({ title, slug }) => (
+								<li key={slug}><Link aria-label={title} href={`/${section.slug}/${slug}`}>{title}</Link></li>
+							))}
+						</InnerPages>
+					</Section>
+				))
+			}
+		</Nav>
 	</aside>
 );
 
