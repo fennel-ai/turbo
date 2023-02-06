@@ -37,10 +37,10 @@ type ThemePalette = {
 	success: ThemeAccentPalette
 }
 
-type BreakpointName = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+export type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 export type Theme = {
-	breakpoints: Record<BreakpointName, number>, // Breakpoints are a map of size name to rem value representing the screen width of that breakpoint.
+	breakpoints: Record<Breakpoint, number>, // Breakpoints are a map of size name to rem value representing the screen width of that breakpoint.
 	colors: RefColors,
 	palette: ThemePalette,
 }

@@ -19,6 +19,8 @@ const Root = styled(Container)`
 	padding-bottom: 7.5rem;
 
 	& > aside {
+		display: none;
+		@media (min-width: )
 		grid-column: span 3;
 	}
 

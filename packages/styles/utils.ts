@@ -1,4 +1,4 @@
-import type { Theme } from './index';
+import type { Breakpoint, Theme } from './index';
 
 type StyledProps = {
 	theme: Theme
@@ -27,3 +27,15 @@ export const color =
 	(path: string, fallback: any = null) =>
 		(props: StyledProps) =>
 			_getFromObj(props.theme.colors, path, fallback);
+
+export const breakpoint = 
+	(path: string, fallback: any = null) =>
+		(props: StyledProps) =>
+			_getFromObj(props.theme.breakpoints, path, fallback);
+
+export const media = (bp: Breakpoint, type: 'min' | 'max' = 'min', fallback: any = null) => 
+	(props: StyledProps) => {
+		const value = breakpoint(bp, fallback)(props);
+		
+		return `@media (${type}-width: ${value}rem)`;
+	};
