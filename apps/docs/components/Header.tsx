@@ -13,6 +13,7 @@ const Root = styled(Container)`
 `;
 
 const Wrapper = styled.div`
+	height: 4.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

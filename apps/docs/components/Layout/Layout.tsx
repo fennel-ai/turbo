@@ -15,6 +15,7 @@ const Root = styled(Container)`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	gap: 2rem;
+	padding-top: 3.5rem;
 
 	& > aside {
 		grid-column: span 3;

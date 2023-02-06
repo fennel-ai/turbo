@@ -10,6 +10,9 @@ const Nav = styled.nav`
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
+	position: sticky;
+	top: 8rem;
+	align-self: flex-start;
 `;
 
 const Section = styled.ul`
