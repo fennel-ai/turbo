@@ -16,12 +16,12 @@ export type NavigationSection = {
 	pages: ManifestPage[]
 }
 
-export type Navigation = NavigationSection[];
+export type NavigationTree = NavigationSection[];
 
 /**
  * Returns the navigation JSON to the client-side (created in the WithGitbookDocs plugin)
  */
-export const getNavigation = (): Navigation => {
+export const getNavigation = (): NavigationTree => {
 	return navigation
 }
 

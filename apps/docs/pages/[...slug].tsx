@@ -1,10 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import Link from "next/link";
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { getNavigation, getPage, listPaths, Navigation } from "lib/utils";
-import { Layout } from 'components/Layout';
+import Layout from 'components/Layout';
 
 type Props = {
 	navigation: Navigation,
