@@ -25,6 +25,12 @@ const SectionTitle = styled.li`
 	font-size: 1.25rem;
 	line-height: 2.5rem;
 	font-variation-settings: 'wght' 600;
+	opacity: 0.64;
+	cursor: pointer;
+
+	&:hover {
+		opacity: 1;
+	}
 `;
 
 const InnerPages = styled.ul`
