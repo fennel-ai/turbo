@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import type { NavigationTree } from "lib/utils";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type Props = {
 	items: NavigationTree
@@ -22,6 +23,7 @@ const Section = styled.ul`
 `;
 
 const SectionTitle = styled.li`
+	color: ${({ theme }) => theme.colors.text};
 	font-size: 1.25rem;
 	line-height: 2.5rem;
 	font-variation-settings: 'wght' 600;
@@ -33,31 +35,62 @@ const SectionTitle = styled.li`
 	}
 `;
 
-const InnerPages = styled.ul`
+const InnerPages = styled.ul<{ active: boolean }>`
 	list-style: none;
 	padding-left: 2rem;
-	border-left: 1px solid #E2E1EF;
-	height: 0;
+	border-left: 1px solid ${({ theme }) => theme.colors.border};
+	height: ${({ active }) => !active ? 0 : 'auto'};
 	overflow: hidden;
 `;
 
-const Navigation = ({ items }: Props) => (
-	<aside>
-		<Nav>
-			{
-				items.map((section) => (
-					<Section key={section.slug}>
-						<SectionTitle>{section.title}</SectionTitle>
-						<InnerPages>
-							{section.pages.map(({ title, slug }) => (
-								<li key={slug}><Link aria-label={title} href={`/${section.slug}/${slug}`}>{title}</Link></li>
-							))}
-						</InnerPages>
-					</Section>
-				))
-			}
-		</Nav>
-	</aside>
-);
+// TODO: Inline type here - cleanup.
+const PageItem = styled.li<{active: boolean, fade: boolean}>`
+	font-size: 1.125rem;
+	line-height: 2rem;
+	color: ${({ active, theme }) => active ? theme.colors.primary.accent : theme.colors.text_alt};
+	font-variation-settings: 'wght' 500;
+	opacity: ${({ fade }) => fade ? 0.64 : 1};
+
+	&:hover {
+		color: ${({ theme }) => theme.colors.text};
+	}
+
+	& a {
+		text-decoration: none;
+		color: inherit;
+		width: 100%;
+	}
+`;
+
+const Navigation = ({ items }: Props) => {
+	const router = useRouter();
+
+	console.log(router);
+	return (
+		<aside>
+			<Nav>
+				{
+					items.map((section) => {
+						const sectionActive = section.slug === router.query.slug[0];
+						return (
+							<Section key={section.slug}>
+								<SectionTitle>{section.title}</SectionTitle>
+								<InnerPages active={sectionActive}>
+									{section.pages.map(({ title, slug }) => {
+										const href = `/${section.slug}/${slug}`;
+										const active = router.asPath === href;
+										return (
+											<PageItem active={active} fade={sectionActive && !active} key={slug}><Link aria-label={title} href={href}>{title}</Link></PageItem>
+										)
+									})}
+								</InnerPages>
+							</Section>
+						)
+					})
+				}
+			</Nav>
+		</aside>
+	);
+}
 
 export default Navigation;
