@@ -8,7 +8,7 @@ const nextConfig = {
   basePath: "/docs",
   reactStrictMode: true,
   experimental: {
-    transpilePackages: ["ui"],
+    transpilePackages: ["ui", "styles"],
   },
 };
 

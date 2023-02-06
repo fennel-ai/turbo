@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import type { NavigationTree } from "lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { color, palette } from 'styles/utils';
 
 type Props = {
 	items: NavigationTree
@@ -23,7 +24,7 @@ const Section = styled.ul`
 `;
 
 const SectionTitle = styled.li`
-	color: ${({ theme }) => theme.colors.text};
+	color: ${palette('text')};
 	font-size: 1.25rem;
 	line-height: 2.5rem;
 	font-variation-settings: 'wght' 600;
@@ -38,21 +39,20 @@ const SectionTitle = styled.li`
 const InnerPages = styled.ul<{ active: boolean }>`
 	list-style: none;
 	padding-left: 2rem;
-	border-left: 1px solid ${({ theme }) => theme.colors.border};
+	border-left: 1px solid ${palette('border')};
 	height: ${({ active }) => !active ? 0 : 'auto'};
 	overflow: hidden;
 `;
 
-// TODO: Inline type here - cleanup.
-const PageItem = styled.li<{active: boolean, fade: boolean}>`
+const PageItem = styled.li<{ active: boolean, fade: boolean }>`
 	font-size: 1.125rem;
 	line-height: 2rem;
-	color: ${({ active, theme }) => active ? theme.colors.primary.accent : theme.colors.text_alt};
+	color: ${(props) => props.active ? palette('primary.accent') : palette('on_alt')};
 	font-variation-settings: 'wght' 500;
 	opacity: ${({ fade }) => fade ? 0.64 : 1};
 
 	&:hover {
-		color: ${({ theme }) => theme.colors.text};
+		color: ${props => props.active ? color('purple.300') : palette('on')};
 	}
 
 	& a {
@@ -64,14 +64,12 @@ const PageItem = styled.li<{active: boolean, fade: boolean}>`
 
 const Navigation = ({ items }: Props) => {
 	const router = useRouter();
-
-	console.log(router);
 	return (
 		<aside>
 			<Nav>
 				{
 					items.map((section) => {
-						const sectionActive = section.slug === router.query.slug[0];
+						const sectionActive = section.slug === router.query.slug![0];
 						return (
 							<Section key={section.slug}>
 								<SectionTitle>{section.title}</SectionTitle>
