@@ -56,11 +56,9 @@ const PageList = styled.ul`
 const animation = {
 	variants: {
 		open: {
-			opacity: 1,
 			height: "auto"
 		},
 		collapsed: {
-			opacity: 0,
 			height: 0
 		}
 	},
