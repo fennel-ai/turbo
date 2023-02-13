@@ -25,7 +25,9 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 	const slug = (params!.slug as string[]).join('/');
 
 	const page = await getPage(slug);
-	const source = await serialize(page, { parseFrontmatter: true });
+	const source = await serialize(page, { 
+		parseFrontmatter: true,
+	});
 
 	return {
 		props: {
