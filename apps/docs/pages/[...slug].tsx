@@ -3,8 +3,9 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { getNavigation, getPage, listPaths, NavigationTree } from "lib/utils";
-import Layout from 'components/Layout';
+import Layout, { LayoutContext, useLayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
+import { useMemo } from "react";
 
 type Props = {
 	navigation: NavigationTree,
@@ -12,9 +13,15 @@ type Props = {
 }
 
 export default function DocPage({ navigation, source }: Props) {
+	const ctxValue = useMemo(() => ({
+		frontmatter: source.frontmatter
+	}), [source.frontmatter]);
+	
 	return (
 		<Layout navigation={navigation}>
-			<MDXRemote {...source} components={components} />
+			<LayoutContext.Provider value={ctxValue}>
+				<MDXRemote {...source} components={components} />
+			</LayoutContext.Provider>
 		</Layout>
 	);
 }

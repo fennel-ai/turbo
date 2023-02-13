@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
 import { media, palette } from 'styles/utils';
+import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
 	border-bottom: 1px solid ${palette('border')};
@@ -39,10 +40,11 @@ const Root = styled.div`
 `;
 
 export const TitleBlock = ({ children }: PropsWithChildren) => {
+	const { frontmatter } = useLayoutContext();
 	return (
 		<Root>
 			<h1>{children}</h1>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+			{frontmatter?.description ? <p>{frontmatter.description}</p> : null}
 		</Root>
 	)
 };
