@@ -44,5 +44,13 @@ export const listPaths = () => {
  */
 export const getPage = async (slug: string): Promise<string> => {
 	const m = manifest as Record<string, ManifestPage>;
+
 	return fs.readFile(m[slug].path, 'utf-8');
 }
+
+/**
+ * Given a slug, returns the relevant section metadata from the nav manifest.
+ */
+export const getSection = (slug: string): NavigationSection | undefined => {
+	return navigation.find((section) => section.slug === slug);
+} 
