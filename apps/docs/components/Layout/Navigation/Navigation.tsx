@@ -3,13 +3,22 @@ import styled from "@emotion/styled";
 import type { NavigationTree } from "lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { color, palette } from 'styles/utils';
+import { color, media, palette } from 'styles/utils';
 
 import NavigationSection from "./NavigationSection";
 
 type Props = {
 	items: NavigationTree
 }
+
+const Root = styled.aside`
+	display: none;
+	grid-column: span 3;
+
+	${media('lg')} {
+		display: block;
+	}
+`;
 
 const Nav = styled.nav`
 	display: flex;
@@ -43,7 +52,7 @@ const PageItem = styled.li<{ active: boolean, fade: boolean }>`
 const Navigation = ({ items }: Props) => {
 	const router = useRouter();
 	return (
-		<aside>
+		<Root>
 			<Nav>
 				{
 					items.map((section) => {
@@ -67,7 +76,7 @@ const Navigation = ({ items }: Props) => {
 					})
 				}
 			</Nav>
-		</aside>
+		</Root>
 	);
 }
 

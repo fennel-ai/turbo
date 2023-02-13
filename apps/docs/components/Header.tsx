@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { palette } from 'styles/utils';
 
 import Container from './Container';
 
@@ -17,7 +18,7 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 1px solid #E2E1EF;
+	border-bottom: 1px solid ${palette('border')};
 `;
 
 const Header = () => {

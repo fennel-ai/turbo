@@ -40,12 +40,21 @@ export const listPaths = () => {
 };
 
 /**
+ * Given a slug, return the definition for the relevant page from the manifest.
+ */
+
+export const getPageDefinition = (slug: string): ManifestPage => {
+	const m = manifest as Record<string, ManifestPage>;
+	return m[slug];
+}
+
+/**
  * Given a slug, returns the relevant page from the docs in the manifest.
  */
-export const getPage = async (slug: string): Promise<string> => {
-	const m = manifest as Record<string, ManifestPage>;
+export const getPageContent = async (slug: string): Promise<string> => {
+	const page_def = getPageDefinition(slug);
 
-	return fs.readFile(m[slug].path, 'utf-8');
+	return fs.readFile(page_def.path, 'utf-8');
 }
 
 /**

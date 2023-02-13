@@ -43,8 +43,12 @@ const Description = styled.p`
 
 const SectionTitle = styled.div`
 	height: 2.5rem;
-	display: flex;
+	display: none;
 	align-items: center;
+
+	${media('lg')} {
+		display: flex;
+	}
 
 	& > p {
 		margin: 0;

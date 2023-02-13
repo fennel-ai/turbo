@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
-import { getNavigation, getPage, getSection, listPaths, NavigationTree } from "lib/utils";
+import { getNavigation, getPageContent, getPageDefinition, getSection, listPaths, NavigationTree } from "lib/utils";
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 
@@ -33,16 +33,19 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 	const { params } = ctx;
 	const slug = (params!.slug as string[]).join('/');
 
-	const page = await getPage(slug);
+	const metadata = getPageDefinition(slug);
 	const section = getSection(params!.slug![0]);
+	
+	const page = await getPageContent(slug);
 	const source = await serialize(page, { 
 		parseFrontmatter: true,
 	});
 
 	return {
 		props: {
-			section,
 			navigation,
+			section,
+			metadata,
 			source,
 		}
 	}

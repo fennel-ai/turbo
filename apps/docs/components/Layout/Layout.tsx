@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import styled from '@emotion/styled';
-import { css } from "@emotion/react";
 import { media } from "styles/utils";
 
 import type { NavigationTree } from "lib/utils";
@@ -32,15 +31,6 @@ const Root = styled(Container)`
 	${media('lg')} {
 		padding-top: 3.5rem;
 		padding-bottom: 7.5rem;
-	}
-
-	& > aside {
-		display: none;
-		grid-column: span 3;
-
-		${media('lg')} {
-			display: block;
-		}
 	}
 
 	& > main {
