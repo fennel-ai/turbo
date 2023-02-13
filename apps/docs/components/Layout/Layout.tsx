@@ -16,8 +16,8 @@ const Root = styled(Container)`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
-	padding-top: 3.5rem;
-	padding-bottom: 7.5rem;
+	padding-top: 2rem;
+	padding-bottom: 5rem;
 
 	${media('xs')} {
 		grid-template-columns: repeat(8, 1fr);
@@ -25,6 +25,12 @@ const Root = styled(Container)`
 
 	${media('md')} {
 		grid-template-columns: repeat(12, 1fr);
+		padding-top: 2.5rem;
+	}
+
+	${media('lg')} {
+		padding-top: 3.5rem;
+		padding-bottom: 7.5rem;
 	}
 
 	& > aside {

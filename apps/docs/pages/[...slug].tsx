@@ -4,6 +4,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { getNavigation, getPage, listPaths, NavigationTree } from "lib/utils";
 import Layout from 'components/Layout';
+import * as components from 'components/MDXComponents';
 
 type Props = {
 	navigation: NavigationTree,
@@ -13,7 +14,7 @@ type Props = {
 export default function DocPage({ navigation, source }: Props) {
 	return (
 		<Layout navigation={navigation}>
-			<MDXRemote {...source} />
+			<MDXRemote {...source} components={components} />
 		</Layout>
 	);
 }
