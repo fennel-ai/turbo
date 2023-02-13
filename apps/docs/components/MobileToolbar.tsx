@@ -36,7 +36,6 @@ const Wrapper = styled.div`
 `;
 
 const MobileToolbar = (props) => {
-	console.log(props);
 	return (
 		<Root as="nav">
 			<Wrapper>
