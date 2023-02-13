@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import styled from '@emotion/styled';
+import { media } from "styles/utils";
 
 import type { NavigationTree } from "lib/utils";
 
@@ -13,19 +14,42 @@ type Props = {
 
 const Root = styled(Container)`
 	display: grid;
-	grid-template-columns: repeat(12, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
 	padding-top: 3.5rem;
 	padding-bottom: 7.5rem;
 
+	${media('xs')} {
+		grid-template-columns: repeat(8, 1fr);
+	}
+
+	${media('md')} {
+		grid-template-columns: repeat(12, 1fr);
+	}
+
 	& > aside {
 		display: none;
-		@media (min-width: )
 		grid-column: span 3;
+
+		${media('lg')} {
+			display: block;
+		}
 	}
 
 	& > main {
-		grid-column: span 8;
+		grid-column: span 4;
+		
+		${media('xs')} {
+			grid-column: span 8;
+		}
+
+		${media('md')} {
+			grid-column: span 12;
+		}
+
+		${media('lg')} {
+			grid-column: span 8;
+		}
 	}
 `;
 
