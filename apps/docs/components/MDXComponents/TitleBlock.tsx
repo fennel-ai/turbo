@@ -7,14 +7,16 @@ const Root = styled.div`
 	border-bottom: 1px solid ${palette('border')};
 	padding-bottom: 2rem;
 	margin-bottom: 2rem;
+`;
+
+const Title = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
 	gap: 0.25rem;
-	
+
 	& h1 {
 		margin: 0;
-		font-family: "Addington CF", serif;
 		font-weight: 500;
 		font-size: 2.5rem;
 		line-height: 2.5rem;
@@ -24,27 +26,44 @@ const Root = styled.div`
 			line-height: 3rem;
 		}
 	}
+`;
 
-	& p {
+const Description = styled.p`
+	margin: 0;
+	font-size: 1.125rem;
+	line-height: 2rem;
+	font-variation-settings: "wght" 600;
+	color: ${palette('on_alt')};
+	
+	${media('sm')} {
+		font-size: 1.25rem;
+		line-height: 2.25rem;
+	}
+`;
+
+const SectionTitle = styled.div`
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+
+	& > p {
 		margin: 0;
-		font-size: 1.125rem; 
-		line-height: 2rem;
-		font-variation-settings: "wght" 600;
-		color: ${palette('on_alt')};
-		
-		${media('sm')} {
-			font-size: 1.25rem;
-			line-height: 2.25rem;
-		}
+		font-size: 1rem;
+		line-height: 1.5rem;
+		font-variation-settings: "wght" 700;
+		color: ${palette('primary.accent')}
 	}
 `;
 
 export const TitleBlock = ({ children }: PropsWithChildren) => {
-	const { frontmatter } = useLayoutContext();
+	const { frontmatter, section } = useLayoutContext();
 	return (
 		<Root>
-			<h1>{children}</h1>
-			{frontmatter?.description ? <p>{frontmatter.description}</p> : null}
+			{section?.title ? <SectionTitle><p>{section.title}</p></SectionTitle> : null}
+			<Title>
+				<h1>{children}</h1>
+				{frontmatter?.description ? <Description>{frontmatter.description}</Description> : null}
+			</Title>
 		</Root>
 	)
 };

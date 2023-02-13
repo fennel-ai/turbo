@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import styled from '@emotion/styled';
+import { css } from "@emotion/react";
 import { media } from "styles/utils";
 
 import type { NavigationTree } from "lib/utils";
@@ -43,8 +44,46 @@ const Root = styled(Container)`
 	}
 
 	& > main {
+		/** Content Styles */
+		h1, h2, h3, h4, h5, h6 {
+			font-family: "Addington CF", serif;
+			font-weight: 500;
+		}
+
+		h2, h3 {
+			margin-top: 2rem;
+
+			${media('sm')} {
+				margin-top: 2.5rem;
+			}
+		}
+
+		& > p {
+			margin: 0;
+			font-size: 1.125rem;
+			line-height: 2rem;
+			margin-bottom: 1.5rem;
+			font-variation-settings: "wght" 500;
+
+			${media('sm')} {
+				font-size: 1.25rem;
+				line-height: 2.5rem;
+			}
+		}
+
+		li {
+			font-size: 1.125rem;
+			line-height: 2rem;
+			font-variation-settings: "wght" 500;
+			margin-bottom: 1.5rem;
+		}
+
+		strong {
+			font-variation-settings: "wght" 700;
+		}
+
+		/** Grid style */
 		grid-column: span 4;
-		
 		${media('xs')} {
 			grid-column: span 8;
 		}

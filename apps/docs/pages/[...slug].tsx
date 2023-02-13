@@ -1,22 +1,23 @@
+import { useMemo } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
-import { getNavigation, getPage, listPaths, NavigationTree } from "lib/utils";
-import Layout, { LayoutContext, useLayoutContext } from 'components/Layout';
+import { getNavigation, getPage, getSection, listPaths, NavigationTree } from "lib/utils";
+import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
-import { useMemo } from "react";
 
 type Props = {
 	navigation: NavigationTree,
 	source: MDXRemoteSerializeResult,
 }
 
-export default function DocPage({ navigation, source }: Props) {
+export default function DocPage({ navigation, section, source }: Props) {
 	const ctxValue = useMemo(() => ({
-		frontmatter: source.frontmatter
-	}), [source.frontmatter]);
-	
+		frontmatter: source.frontmatter,
+		section,
+	}), [section, source.frontmatter]);
+
 	return (
 		<Layout navigation={navigation}>
 			<LayoutContext.Provider value={ctxValue}>
@@ -33,12 +34,14 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 	const slug = (params!.slug as string[]).join('/');
 
 	const page = await getPage(slug);
+	const section = getSection(params!.slug![0]);
 	const source = await serialize(page, { 
 		parseFrontmatter: true,
 	});
 
 	return {
 		props: {
+			section,
 			navigation,
 			source,
 		}
