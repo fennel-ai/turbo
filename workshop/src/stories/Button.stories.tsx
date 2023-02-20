@@ -17,14 +17,20 @@ export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
   label: 'Button',
+  color: 'primary',
+  variant: "rounded"
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const PrimaryAlt = Template.bind({});
+PrimaryAlt.args = {
   label: 'Button',
+  color: 'primary-alt',
+  variant: "rounded"
 };
 
 export const Neutral = Template.bind({});
 Neutral.args = {
   label: 'Button',
+  color: "neutral",
+  variant: "rounded"
 };

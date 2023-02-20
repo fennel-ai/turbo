@@ -1,4 +1,4 @@
-import tokens from './build/light.json';
+import tokens from './build/palelight.json';
 
 type ColorScale = {
 	'0'?: string,
@@ -35,6 +35,47 @@ export type Breakpoint = "2xs" | "xs" | "sm" | "md" | "lg" | "xl";
 
 export type Theme = {
 	base: string,
+	button: {
+		default: {
+			neutral: {
+				bg: string,
+				fg: string
+			},
+			primary: {
+				bg: string
+				fg: string
+			},
+			"primary-alt": {
+				bg: string
+				fg: string
+			}
+		},
+		flat: {
+			neutral: {
+				bg: string,
+				fg: string
+			},
+			primary: {
+				bg: string
+				fg: string
+			},
+		},
+		neutral: {
+			shadow: string
+		},
+		pill: {
+			radius: string
+		},
+		primary: {
+			shadow: string
+		},
+		"primary-alt": {
+			shadow: string
+		},
+		rounded: {
+			radius: string
+		}
+	},
 	breakpoints: Record<Breakpoint, number>, // Breakpoints are a map of size name to rem value representing the screen width of that breakpoint.
 	fontFamilies: {
 		code: string,
