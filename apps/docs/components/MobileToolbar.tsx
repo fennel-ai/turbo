@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media, palette } from 'styles/utils';
+import { media, get } from 'styles/utils';
 
 import Container from 'components/Container';
 
@@ -18,9 +18,9 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	color: ${palette('on_alt')};
+	color: ${get('text-alt')};
 	font-variation-settings: "wght" 700;
-	border-bottom: 1px solid ${palette('border')};
+	border-bottom: 1px solid ${get('border')};
 
 	${media('lg')} {
 		display: none;
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 	}
 
 	& p:last-of-type {
-		color: ${palette('on')};
+		color: ${get('text')};
 	}
 `;
 

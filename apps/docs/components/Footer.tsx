@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { palette } from 'styles/utils';
+import { get } from 'styles/utils';
 import Container from './Container';
 
 const Root = styled.footer`
 	height: 6.5rem;
-	border-top: 1px solid ${palette('border')};
+	border-top: 1px solid ${get('border')};
 `;
 
 const Wrapper = styled(Container)`

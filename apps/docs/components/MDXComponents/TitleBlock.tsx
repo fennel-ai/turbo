@@ -1,10 +1,10 @@
 import { PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
-import { media, palette } from 'styles/utils';
+import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
-	border-bottom: 1px solid ${palette('border')};
+	border-bottom: 1px solid ${get('border')};
 	padding-bottom: 2rem;
 	margin-bottom: 2rem;
 `;
@@ -33,7 +33,7 @@ const Description = styled.p`
 	font-size: 1.125rem;
 	line-height: 2rem;
 	font-variation-settings: "wght" 600;
-	color: ${palette('on_alt')};
+	color: ${get('text-alt')};
 	
 	${media('sm')} {
 		font-size: 1.25rem;
@@ -55,7 +55,7 @@ const SectionTitle = styled.div`
 		font-size: 1rem;
 		line-height: 1.5rem;
 		font-variation-settings: "wght" 700;
-		color: ${palette('primary.accent')}
+		color: ${get('primary.accent')}
 	}
 `;
 

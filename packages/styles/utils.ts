@@ -17,17 +17,6 @@ export const get =
 		(props: StyledProps) =>
 			_getFromObj(props.theme, path, fallback);
 
-
-export const palette =
-	(path: string, fallback: any = null) =>
-		(props: StyledProps) =>
-			_getFromObj(props.theme.palette, path, fallback);
-
-export const color =
-	(path: string, fallback: any = null) =>
-		(props: StyledProps) =>
-			_getFromObj(props.theme.colors, path, fallback);
-
 export const breakpoint = 
 	(path: string, fallback: any = null) =>
 		(props: StyledProps) =>

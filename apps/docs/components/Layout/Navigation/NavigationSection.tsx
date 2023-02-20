@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { palette } from 'styles/utils';
+import { get } from 'styles/utils';
 
 type Props = {
 	children: ReactNode;
@@ -19,7 +19,7 @@ const Root = styled(motion.ul)`
 `;
 
 const SectionTitle = styled.li`
-	color: ${palette('text')};
+	color: ${get('text')};
 	font-size: 1.25rem;
 	line-height: 2.5rem;
 	font-variation-settings: 'wght' 600;
@@ -50,7 +50,7 @@ const PageList = styled.ul`
 	gap: 0.5rem;
 	margin: 1rem 0;
 	padding-left: 2rem;
-	border-left: 1px solid ${palette('border')};
+	border-left: 1px solid ${get('border')};
 `;
 
 const animation = {

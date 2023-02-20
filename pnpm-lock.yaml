@@ -158,7 +158,7 @@ importers:
       '@emotion/styled': ^11.10.5
       eslint: ^7.32.0
       eslint-config-fennel: workspace:*
-      figtok: ^0.2.2
+      figtok: ^0.2.3
       react: ^18.2.0
       tsconfig: workspace:*
       typescript: ^4.5.2
@@ -168,7 +168,7 @@ importers:
     devDependencies:
       eslint: 7.32.0
       eslint-config-fennel: link:../eslint-config-fennel
-      figtok: 0.2.2
+      figtok: 0.2.3
       react: 18.2.0
       tsconfig: link:../tsconfig
       typescript: 4.9.4
@@ -7870,8 +7870,8 @@ packages:
     resolution: {integrity: sha512-0btnI/H8f2pavGMN8w40mlSKOfTK2SVJmBfBeVIj3kNw0swwgzyRq0d5TJVOwodFmtvpPeWPN/MCcfuWF0Ezbw==}
     dev: true
 
-  /figtok/0.2.2:
-    resolution: {integrity: sha512-HWUdCgc3UwLOLRgVQsDzzjnJ3sn+68D3rbfMKkLweA/ehqo5uRGucPpp78uqAvo72xp+4MwAWkohreENNDsrXw==}
+  /figtok/0.2.3:
+    resolution: {integrity: sha512-xRe98Et7NX5Dyy1iIdG85Le3H+9+qbH2uBYE81E77yEr0qgBKSDBfjDliknDC3p97xWc2szbhE/PvQPDMlDTPQ==}
     requiresBuild: true
     dev: true
 

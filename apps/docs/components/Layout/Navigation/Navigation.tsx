@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import type { NavigationTree } from "lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { color, media, palette } from 'styles/utils';
+import { media, get } from 'styles/utils';
 
 import NavigationSection from "./NavigationSection";
 
@@ -32,14 +32,14 @@ const Nav = styled.nav`
 const PageItem = styled.li<{ active: boolean, fade: boolean }>`
 	font-size: 1.125rem;
 	line-height: 2rem;
-	color: ${(props) => props.active ? palette('primary.accent') : palette('on_alt')};
+	color: ${(props) => props.active ? get('primary.accent') : get('text-alt')};
 	font-variation-settings: 'wght' 500;
 	opacity: ${({ fade }) => fade ? 0.64 : 1};
 	display: flex;
 	align-items: stretch;
 
 	&:hover {
-		color: ${props => props.active ? palette('primary.accent') : palette('on')};
+		color: ${props => props.active ? get('primary.accent') : get('text')};
 	}
 
 	& > a {
