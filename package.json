@@ -8,8 +8,8 @@
 	"workshop"
   ],
   "scripts": {
-    "build": "turbo run build --filter=!styles",
-    "dev": "turbo run dev --parallel --filter=!styles",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
