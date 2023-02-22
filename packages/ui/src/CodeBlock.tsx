@@ -5,18 +5,27 @@ import { get } from 'styles/utils';
 type Props = {
 	code: string,
 	language: string,
+	filename?: string,
+	toolbar?: boolean
 }
 
-const Root = styled.div`
+const Root = styled.div<{ toolbar?: boolean }>`
+	background-color: ${({ theme }) => theme.syntax.plain.background};
+	color: ${({ theme }) => theme.syntax.plain.foreground};
+	box-shadow: ${({ theme }) => theme['code-block'].shadow};
+	border-radius: ${({ theme }) => theme['code-block'].radius};
+	overflow: hidden;
+	margin: 1rem 0 2rem 0;
+
 	code[class*="language-"],
 	pre {
-		color: ${get('syntax.plain.foreground')};
+		color: ${({ theme }) => theme.syntax.plain.foreground};
 		direction: ltr;
 		text-align: left;
 		white-space: pre;
 		word-spacing: normal;
 		word-break: normal;
-		${props => props.theme['code-block'].snippet.code};
+		${({ theme }) => theme['code-block'].snippet.code};
 
 		-moz-tab-size: 4;
 		-o-tab-size: 4;
@@ -30,20 +39,19 @@ const Root = styled.div`
 
 	/* Code blocks */
 	pre {
+		margin: 0;
 		padding: 1.5rem;
-		margin: 1rem 0 2rem 0;
+		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1.5rem'};
 		overflow: auto;
-		border-radius: ${props => props.theme['code-block'].radius};
 	}
 
 	pre ::selection {
-		background: rgb(${get('ref.grey.300')});
+		background: rgb(${({ theme }) => theme.ref.grey['300']});
 	}
 
 	:not(pre)>code[class*="language-"],
 	pre {
-		background: ${get('syntax.plain.background')};
-		box-shadow: ${props => props.theme['code-block'].shadow};
+		background: ${({ theme }) => theme.syntax.plain.background}
 	}
 
 	/* Inline code */
@@ -66,7 +74,7 @@ const Root = styled.div`
 	}
 
 	.line-numbers .line-numbers-rows {
-		${props => props.theme['code-block'].snippet['line-number']};
+		${({ theme }) => theme['code-block'].snippet['line-number']};
 		position: absolute;
 		pointer-events: none;
 		top: -0.25rem;
@@ -155,13 +163,53 @@ const Root = styled.div`
 	}
 `;
 
+const Toolbar = styled.div`
+	height: 3.5rem;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+`;
+
+const FakeButtons = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	& span {
+		width: 1rem;
+		height: 1rem;
+		border-radius: 50%;
+		background-color: rgba(255, 255, 255, 0.12);
+	}
+`;
+
+const Filename = styled.div`
+	${({ theme }) => theme['code-block'].filename.text};
+	color: ${({ theme }) => theme['code-block'].filename.color};
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+`;
+
 const style_reset = {
 	['pre[class*="language-"]']: {}
 }
 
-export const CodeBlock = ({ code, language }: Props) => {
+export const CodeBlock = ({ code, filename, language, toolbar = true }: Props) => {
 	return (
-		<Root>
+		<Root toolbar={toolbar}>
+			{toolbar ? (
+				<Toolbar>
+					<FakeButtons>
+						<span />
+						<span />
+						<span />
+					</FakeButtons>
+					{filename ? <Filename>{filename}</Filename> : null}
+				</Toolbar>
+			) : null}
 			<SyntaxHighlighter language={language} style={style_reset}>
 				{code}
 			</SyntaxHighlighter>

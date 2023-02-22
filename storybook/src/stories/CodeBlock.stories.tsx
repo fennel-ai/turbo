@@ -2,6 +2,15 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { CodeBlock } from 'ui';
 
+const EXAMPLE_CODE = `# This is a comment
+@dataset
+class User:
+    uid: int = field(key=True)
+    dob: datetime
+    country: string
+    sum_ratings: int
+    update_time: datetime = field(timestamp=True)`;
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'shared/CodeBlock',
@@ -16,13 +25,7 @@ const Template: ComponentStory<typeof CodeBlock> = (args) => <CodeBlock {...args
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-	code: `# This is a comment
-@dataset
-class User:
-    uid: int = field(key=True)
-    dob: datetime
-    country: string
-    sum_ratings: int
-    update_time: datetime = field(timestamp=True)`,
-	language: 'python'
+	code: EXAMPLE_CODE,
+	filename: 'example_dataset.py',
+	language: 'python',
 }
