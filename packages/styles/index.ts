@@ -31,6 +31,49 @@ type TypographyValue = {
 	lineHeight?: string,
 }
 
+type SyntaxTheme = {
+	boolean: string,
+	builtins: string,
+	char: string,
+	'class-name': string,
+	code: {
+		fontFamily: string,
+		fontSize: string,
+		fontWeight: string,
+		letterSpacing: string,
+		lineHeight: string,
+	},
+	comment: string,
+	constant: string,
+	diff: {
+		deleted: string,
+		inserted: string,
+	},
+	function: string,
+	important: string,
+	keyword: string,
+	'line-number': {
+		fontFamily: string,
+		fontSize: string,
+		fontWeight: string,
+		letterSpacing: string,
+		lineHeight: string,
+	},
+	number: string,
+	operator: string,
+	plain: {
+		background: string,
+		foreground: string,
+	},
+	property: string,
+	punctuation: string,
+	regex: string,
+	string: string,
+	symbol: string,
+	url: string,
+	variable: string,
+}
+
 export type Breakpoint = "2xs" | "xs" | "sm" | "md" | "lg" | "xl";
 
 export type Theme = {
@@ -120,6 +163,7 @@ export type Theme = {
 		background: string,
 		foreground: string,
 	},
+	syntax: SyntaxTheme,
 	background: string,
 	surface: string,
 	text: string,
@@ -159,7 +203,7 @@ const theme: Theme = {
 		lg: 75, // 1200
 		xl: 96, // 1304px (1240+ 32 padding on each side)
 	},
-	...tokens
+	...tokens,
 }
 
 export default theme
