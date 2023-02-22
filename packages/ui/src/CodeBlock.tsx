@@ -1,5 +1,7 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import styled from '@emotion/styled';
+import CopyIcon from '../icons/copy.svg';
+
 import { get } from 'styles/utils';
 
 type Props = {
@@ -41,6 +43,7 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	pre {
 		margin: 0;
 		padding: 1.5rem;
+		padding-left: 0;
 		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1.5rem'};
 		overflow: auto;
 	}
@@ -73,32 +76,12 @@ const Root = styled.div<{ toolbar?: boolean }>`
 		white-space: inherit;
 	}
 
-	.line-numbers .line-numbers-rows {
+	.linenumber {
 		${({ theme }) => theme['code-block'].snippet['line-number']};
-		position: absolute;
 		pointer-events: none;
-		top: -0.25rem;
-		left: -3rem;
-		width: 2rem;
-
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-
-	}
-
-	.line-numbers-rows>span {
-		display: block;
-		counter-increment: linenumber;
-	}
-
-	.line-numbers-rows>span:before {
-		content: counter(linenumber);
-		color: ${get('syntax.plain.foreground')};
-		opacity: 56%;
-		display: block;
 		text-align: right;
+		user-select: none;
+		color: ${({ theme }) => theme.syntax.comment};
 	}
 
 	/* Syntax tokens */
@@ -193,8 +176,37 @@ const Filename = styled.div`
 	transform: translateX(-50%);
 `;
 
+const CopyButton = styled.button`
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	background: none;
+	color: ${({ theme }) => theme.syntax.plain.foreground};
+	opacity: 0.5;
+	font-size: 0.875rem;
+	line-height: 1.5rem;
+
+	&:hover {
+		opacity: 1;
+	}
+
+	&:active {
+		opacity: 0.5;
+	}
+`;
+
 const style_reset = {
 	['pre[class*="language-"]']: {}
+}
+
+const line_number_style = {
+	minWidth: 0,
+	paddingLeft: '1.5rem',
+	paddingRight: '1rem'
 }
 
 export const CodeBlock = ({ code, filename, language, toolbar = true }: Props) => {
@@ -208,9 +220,13 @@ export const CodeBlock = ({ code, filename, language, toolbar = true }: Props) =
 						<span />
 					</FakeButtons>
 					{filename ? <Filename>{filename}</Filename> : null}
+					<CopyButton>
+						Copy
+						<CopyIcon />
+					</CopyButton>
 				</Toolbar>
 			) : null}
-			<SyntaxHighlighter language={language} style={style_reset}>
+			<SyntaxHighlighter useInlineStyles={false} lineNumberStyle={line_number_style} language={language} style={style_reset} showLineNumbers>
 				{code}
 			</SyntaxHighlighter>
 		</Root>
