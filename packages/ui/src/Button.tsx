@@ -29,7 +29,7 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 		content: "";
 		position: absolute;
 		inset: 0;
-		background-color: ${({ color }) => get(`button.default.${color}.fg`)};
+		background-color: currentColor;
 		opacity: ${get(`state-layer.default`)};
 		pointer-events: none;
 	}

@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { IconButton } from "ui";
+import SidebarLeftIcon from 'ui/icons/sidebar-left.svg';
 import { media, get } from 'styles/utils';
 
 import Container from 'components/Container';
@@ -46,6 +48,7 @@ const MobileToolbar = (props: Props) => {
 	return (
 		<Root as="nav">
 			<Wrapper>
+				<IconButton icon={SidebarLeftIcon} />
 				<p>{props.section.title}</p>
 				<p>/</p>
 				<p>{props.metadata.title}</p>

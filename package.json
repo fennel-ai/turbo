@@ -5,7 +5,7 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-	"workshop"
+	"storybook"
   ],
   "scripts": {
     "build": "turbo run build",
