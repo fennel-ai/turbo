@@ -1,14 +1,17 @@
 import { useMemo } from "react";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import remarkGfm from "remark-gfm";
 
-import { getNavigation, getPageContent, getPageDefinition, getSection, listPaths, NavigationTree } from "lib/utils";
+import { getNavigation, getPageContent, getPageDefinition, getSection, listPaths, ManifestPage, NavigationTree, NavigationSection } from "lib/utils";
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 
 type Props = {
+	metadata: ManifestPage,
 	navigation: NavigationTree,
+	section: NavigationSection,
 	source: MDXRemoteSerializeResult,
 }
 
@@ -27,7 +30,7 @@ export default function DocPage({ navigation, section, source }: Props) {
 	);
 }
 
-export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const navigation = getNavigation();
 	
 	const { params } = ctx;
@@ -39,6 +42,9 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
 	const page = await getPageContent(slug);
 	const source = await serialize(page, { 
 		parseFrontmatter: true,
+		mdxOptions: {
+			remarkPlugins: [remarkGfm]
+		}
 	});
 
 	return {

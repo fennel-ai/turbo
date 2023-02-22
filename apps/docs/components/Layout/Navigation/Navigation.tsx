@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from "@emotion/styled";
 import type { NavigationTree } from "lib/utils";
 import Link from "next/link";
