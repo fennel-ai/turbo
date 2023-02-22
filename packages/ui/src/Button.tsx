@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { get } from 'styles/utils';
 
 type Props = {
-	color: 'primary' | 'primary-alt' | 'neutral',
+	color?: 'primary' | 'primary-alt' | 'neutral',
 	label: string,
-	variant: 'rounded' | 'pill'
+	variant?: 'rounded' | 'pill'
 };
 
 const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>`
@@ -13,7 +13,6 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	border-radius: 0.5rem;
 	gap: 0.5rem;
 	padding: 0 ${({ variant }) => variant == 'rounded' ? 0.75 : 1}rem;
 	font-size: 0.875rem;
