@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { media, get } from 'styles/utils';
 
 import Container from 'components/Container';
+import { ManifestPage, NavigationSection, NavigationTree } from 'lib/utils';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -35,7 +36,13 @@ const Wrapper = styled.div`
 	}
 `;
 
-const MobileToolbar = (props) => {
+type Props = {
+	metadata: ManifestPage,
+	navigation: NavigationTree,
+	section: NavigationSection
+}
+
+const MobileToolbar = (props: Props) => {
 	return (
 		<Root as="nav">
 			<Wrapper>
