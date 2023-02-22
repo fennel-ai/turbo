@@ -68,6 +68,7 @@ const Root = styled(Container)`
 			}
 		}
 
+		/** Target paragraphs that are direct children of the main element (we don't necessarily want to style paragraphs within e.g. lists in the same way.) */
 		& > p {
 			margin: 0;
 			font-size: 1.125rem;
@@ -79,6 +80,10 @@ const Root = styled(Container)`
 				font-size: 1.25rem;
 				line-height: 2.5rem;
 			}
+		}
+
+		ul, ol {
+			padding-inline-start: 2rem;
 		}
 
 		li {
