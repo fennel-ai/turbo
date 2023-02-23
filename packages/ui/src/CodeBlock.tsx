@@ -5,6 +5,7 @@ import CopyIcon from '../icons/copy.svg';
 import { get } from 'styles/utils';
 
 type Props = {
+	className?: string,
 	code: string,
 	language: string,
 	filename?: string,
@@ -17,7 +18,6 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	box-shadow: ${({ theme }) => theme['code-block'].shadow};
 	border-radius: ${({ theme }) => theme['code-block'].radius};
 	overflow: hidden;
-	margin: 1rem 0 2rem 0;
 
 	code[class*="language-"],
 	pre {
@@ -209,9 +209,9 @@ const line_number_style = {
 	paddingRight: '1rem'
 }
 
-export const CodeBlock = ({ code, filename, language, toolbar = true }: Props) => {
+export const CodeBlock = ({ className, code, filename, language, toolbar = true }: Props) => {
 	return (
-		<Root toolbar={toolbar}>
+		<Root className={className} toolbar={toolbar}>
 			{toolbar ? (
 				<Toolbar>
 					<FakeButtons>
