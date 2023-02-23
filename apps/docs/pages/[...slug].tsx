@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import { getNavigation, getPageContent, getPageDefinition, getSection, listPaths, ManifestPage, NavigationTree, NavigationSection } from "lib/utils";
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
+import { sanitize } from "lib/sanitize-md";
 
 type Props = {
 	metadata: ManifestPage,
@@ -40,7 +41,8 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 	const section = getSection(params!.slug![0]);
 	
 	const page = await getPageContent(slug);
-	const source = await serialize(page, { 
+
+	const source = await serialize(sanitize(page), { 
 		parseFrontmatter: true,
 		mdxOptions: {
 			remarkPlugins: [remarkGfm]
