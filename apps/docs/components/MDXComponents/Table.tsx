@@ -16,6 +16,7 @@ const Root = styled.table`
 				border-bottom: 2px solid ${get("border")};
 				font-size: 1.125rem;
 				line-height: 1.5rem;
+				color: ${({ theme }) => theme["text-alt"] };
 			}
 		}
 	}

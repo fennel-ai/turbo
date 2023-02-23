@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import { get } from 'styles/utils';
+import { get, media } from 'styles/utils';
+import { Button, IconButton } from 'ui';
+import SearchIcon from 'ui/icons/search.svg';
 
 import Container from './Container';
 
@@ -21,12 +23,35 @@ const Wrapper = styled.div`
 	border-bottom: 1px solid ${get('border')};
 `;
 
+const Actions = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+`;
+
+const SearchButton = styled(IconButton)`
+	${media('md')} {
+		display: none;
+	}
+`;
+
+const DemoButton = styled(Button)`
+	display: none;
+
+	${media('sm')} {
+		display: block;
+	}
+`;
+
 const Header = () => {
 	return (
 		<Root>
 			<Wrapper>
 				<p>Documentation</p>
-				<button>Request a demo</button>
+				<Actions>
+					<SearchButton icon={SearchIcon} />
+					<DemoButton label="Request a demo" variant="pill" color="neutral" />
+				</Actions>
 			</Wrapper>
 		</Root>
 	);

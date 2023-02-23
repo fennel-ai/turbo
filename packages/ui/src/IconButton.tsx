@@ -1,4 +1,4 @@
-import { ComponentType, ReactNode } from 'react';
+import { ComponentType } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
@@ -72,13 +72,15 @@ const Root = styled.button<{size: SizeVariant}>`
 `;
 
 type Props = {
+	className?: string,
 	icon: ComponentType,
+	onClick: (e: MouseEvent) => void,
 	size?: SizeVariant
 }
 
-export const IconButton = ({ icon: Icon, size = "medium" }: Props) => {
+export const IconButton = ({ className, icon: Icon, onClick, size = "medium" }: Props) => {
 	return (
-		<Root size={size}>
+		<Root className={className} size={size} onClick={onClick}>
 			<Icon />
 		</Root>
 	);

@@ -5,6 +5,7 @@ import { media, get } from 'styles/utils';
 
 import Container from 'components/Container';
 import { ManifestPage, NavigationSection, NavigationTree } from 'lib/utils';
+import { useShell } from 'context/Shell';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -39,16 +40,19 @@ const Wrapper = styled.div`
 `;
 
 type Props = {
+	onToggleMenu: (e: MouseEvent) => void,
 	metadata: ManifestPage,
 	navigation: NavigationTree,
 	section: NavigationSection
 }
 
 const MobileToolbar = (props: Props) => {
+	const {toggleMobileMenu} = useShell();
+
 	return (
 		<Root as="nav">
 			<Wrapper>
-				<IconButton icon={SidebarLeftIcon} />
+				<IconButton icon={SidebarLeftIcon} onClick={toggleMobileMenu} />
 				<p>{props.section.title}</p>
 				<p>/</p>
 				<p>{props.metadata.title}</p>

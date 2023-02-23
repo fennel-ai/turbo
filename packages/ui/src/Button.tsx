@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { get } from 'styles/utils';
 
 type Props = {
+	className?: string;
 	color?: 'primary' | 'primary-alt' | 'neutral',
 	label: string,
 	variant?: 'rounded' | 'pill'
@@ -44,12 +45,13 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 `;
 
 export const Button = ({
+	className,
 	color = 'neutral',
 	label,
 	variant = 'rounded'
 }: Props) => {
 	return (
-		<Root color={color} variant={variant}>
+		<Root className={className} color={color} variant={variant}>
 			{label}
 		</Root>
 	);

@@ -12,10 +12,10 @@ type Props = {
 
 const Root = styled.aside`
 	display: none;
-	grid-column: span 3;
 
 	${media('lg')} {
 		display: block;
+		grid-column: span 3;
 	}
 `;
 
