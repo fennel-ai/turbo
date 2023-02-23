@@ -74,12 +74,18 @@ const Root = styled(Container)`
 			font-size: 1.125rem;
 			line-height: 2rem;
 			margin-bottom: 1.5rem;
-			font-variation-settings: "wght" 500;
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 
 			${media('sm')} {
 				font-size: 1.25rem;
 				line-height: 2.5rem;
 			}
+		}
+
+		& a {
+			text-decoration: none;
+			color: ${({ theme }) => theme.primary.accent};
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.bold};
 		}
 
 		ul, ol {
@@ -89,8 +95,13 @@ const Root = styled(Container)`
 		li {
 			font-size: 1.125rem;
 			line-height: 2rem;
-			font-variation-settings: "wght" 500;
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			margin-bottom: 1.5rem;
+
+			${media('sm')} {
+				font-size: 1.25rem;
+				line-height: 2.5rem;
+			}
 		}
 
 		strong {
