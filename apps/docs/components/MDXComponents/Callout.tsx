@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 import { get, media } from 'styles/utils';
 
+import AlertCircleIcon from 'ui/icons/alert-circle.svg';
 import InfoCircleIcon from 'ui/icons/info-circle.svg';
 
 const COLOR_MAP = {
@@ -11,10 +12,15 @@ const COLOR_MAP = {
 		border: 'ref.purple.800'
 	},
 	warning: {
-		bg: 'error.background',
-		fg: 'error.on-background',
-		border: 'ref.red.800'
+		bg: 'caution.background',
+		fg: 'caution.on-background',
+		border: 'ref.yellow.800'
 	}, 
+}
+
+const ICON_MAP = {
+	info: InfoCircleIcon,
+	warning: AlertCircleIcon,
 }
 
 type Props = {
@@ -33,8 +39,10 @@ const Root = styled.div<{ type: Props['type'] }>`
 	gap: 1rem;
 
 	& svg {
+		margin-top 0.25rem;
 		width: 2rem;
 		height: 2rem;
+		flex-shrink: 0;
 	}
 
 	& > p {
@@ -51,9 +59,10 @@ const Root = styled.div<{ type: Props['type'] }>`
 `;
 
 export const Callout = ({ children, type }: PropsWithChildren<Props>) => {
+	const Icon = ICON_MAP[type];
 	return (
 		<Root type={type}>
-			<InfoCircleIcon />
+			<Icon />
 			<p>{children} even longer text </p>
 		</Root>
 	)
