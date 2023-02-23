@@ -6,6 +6,9 @@ import type { NavigationTree } from "lib/utils";
 
 import Navigation from "./Navigation";
 import Container from "../Container";
+import MobileMenu from "./Navigation/MobileMenu";
+import { useShell } from "context/Shell";
+import { AnimatePresence } from "framer-motion";
 
 type Props = {
 	children: ReactNode,
@@ -125,9 +128,15 @@ const Root = styled(Container)`
 `;
 
 const Layout = ({ children, navigation }: Props) => {
+	const { showMobileMenu, toggleMobileMenu } = useShell();
 	return (
 		<Root>
 			<Navigation items={navigation} />
+			<AnimatePresence>
+				{showMobileMenu ? (
+					<MobileMenu items={navigation} onClose={toggleMobileMenu} />
+				) : null}
+			</AnimatePresence>
 			<main>
 				{children}
 			</main>

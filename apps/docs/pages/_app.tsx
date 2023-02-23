@@ -8,7 +8,7 @@ import 'styles/index.css';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import MobileToolbar from 'components/MobileToolbar';
-import MobileMenu from 'components/MobileMenu';
+import MobileMenu from 'components/Layout/Navigation/MobileMenu';
 import { ShellContextProvider } from 'context/Shell';
 
 export default function App({ Component, pageProps }: AppProps) {
