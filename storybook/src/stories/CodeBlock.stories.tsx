@@ -26,6 +26,22 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
 	code: EXAMPLE_CODE,
-	filename: 'example_dataset.py',
+	language: 'python',
+}
+
+export const ShowFilename = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+ShowFilename.args = {
+	code: EXAMPLE_CODE,
+	toolbar: true,
+	filename: "user_dataset.py",
+	language: 'python',
+}
+
+export const NoToolbar = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+NoToolbar.args = {
+	code: EXAMPLE_CODE,
+	toolbar: false,
 	language: 'python',
 }
