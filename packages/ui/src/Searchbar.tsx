@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import SearchIcon from '../icons/search.svg';
+import { KeyIndicator } from './KeyIndicator';
 
 const Root = styled.div`
 	position: relative;
@@ -40,6 +41,7 @@ export const Searchbar = () => {
 		<Root>
 			<SearchIcon />
 			<p>Search the Docs</p>
+			<KeyIndicator label="⌘K" />
 		</Root>
 	);
 }
