@@ -52,6 +52,7 @@ const Menu = styled.div`
 	flex-direction: column;
 	align-items: stretch;
 	gap: 0.5rem;
+	padding-bottom: 1rem;
 `;
 
 type Props = {
