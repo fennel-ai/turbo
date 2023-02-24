@@ -9,7 +9,8 @@ type Props = {
 	code: string,
 	language: string,
 	filename?: string,
-	toolbar?: boolean
+	toolbar?: boolean,
+	onCopy?: () => void
 }
 
 const Root = styled.div<{ toolbar?: boolean }>`
@@ -209,7 +210,12 @@ const line_number_style = {
 	paddingRight: '1rem'
 }
 
-export const CodeBlock = ({ className, code, filename, language, toolbar = true }: Props) => {
+export const CodeBlock = ({ className, code, filename, language, onCopy, toolbar = true }: Props) => {
+	const handleCopy = () => {
+		navigator.clipboard.writeText(code);
+		if (onCopy) onCopy();
+	};
+
 	return (
 		<Root className={className} toolbar={toolbar}>
 			{toolbar ? (
@@ -220,7 +226,7 @@ export const CodeBlock = ({ className, code, filename, language, toolbar = true 
 						<span />
 					</FakeButtons>
 					{filename ? <Filename>{filename}</Filename> : null}
-					<CopyButton>
+					<CopyButton onClick={handleCopy}>
 						Copy
 						<CopyIcon />
 					</CopyButton>

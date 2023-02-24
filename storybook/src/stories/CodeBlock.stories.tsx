@@ -26,6 +26,7 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
 	code: EXAMPLE_CODE,
+	onCopy: () => alert('Copied to clipbaord'),
 	language: 'python',
 }
 
@@ -34,6 +35,7 @@ export const ShowFilename = Template.bind({});
 ShowFilename.args = {
 	code: EXAMPLE_CODE,
 	toolbar: true,
+	onCopy: () => alert('Copied to clipbaord'),
 	filename: "user_dataset.py",
 	language: 'python',
 }
