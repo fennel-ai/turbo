@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
 import { get } from 'styles/utils';
+import { IconButton } from 'ui';
+import TwitterIcon from 'ui/icons/twitter.svg';
+import LinkedInIcon from 'ui/icons/linkedin.svg';
+import GitHubIcon from 'ui/icons/github.svg';
+import Logo from 'ui/icons/logo.svg';
 
 import Container from './Container';
 
@@ -15,11 +20,47 @@ const Wrapper = styled(Container)`
 	height: 100%;
 `;
 
+const Brand = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	color: ${({ theme }) => theme['text-alt']};
+
+	& h4 {
+		font-size: 1.25rem;
+		line-height: 1.5rem;
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+	}
+
+	& p {
+		font-size: 0.875rem;
+		line-height: 1.5rem;
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+		letter-spacing: -1px;
+		opacity: 64%;
+	}
+`;
+
+const Socials = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+`;
+
 const Footer = () => {
 	return (
 		<Root>
 			<Wrapper>
-				<p>© 2023</p>
+				<Brand>
+					<Logo width={44} height={24} />
+					<h4>Fennel</h4>
+					<p>© 2023</p>
+				</Brand>
+				<Socials>
+					<IconButton icon={TwitterIcon} size="large" onClick={() => {}} />
+					<IconButton icon={LinkedInIcon} size="large" onClick={() => {}} />
+					<IconButton icon={GitHubIcon} size="large" onClick={() => {}} />
+				</Socials>
 			</Wrapper>
 		</Root>
 	);
