@@ -109,6 +109,19 @@ const Root = styled(Container)`
 				line-height: 2.5rem;
 			}
 		}
+		
+		code:not(pre > code) {
+			font-size: 0.875rem;
+			line-height: 1rem;
+			font-family: ${({ theme }) => theme.fontFamilies.code}, monospace;
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
+			padding: 0.25rem 0.375rem;
+			margin: 0 0.25rem;
+			background-color: ${({ theme }) => theme.primary.background};
+			color: ${({ theme }) => theme.primary["on-background"]};
+			border: 1px solid rgba(${({ theme }) => theme.ref.purple[800]}, 100%);
+			border-radius: 0.375rem;
+		}
 
 		strong {
 			font-variation-settings: "wght" 700;
