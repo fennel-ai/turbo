@@ -1,10 +1,10 @@
-import { PropsWithChildren } from "react";
+import { Children, PropsWithChildren, ReactElement, ReactNode, useMemo } from "react";
 import styled from '@emotion/styled';
 import { get } from "styles/utils";
 
 const Root = styled.table`
 	border-collapse: separate;
-	border-spacing: 1rem 0px;
+	margin: 1rem 0 2rem 0;
 
 	& thead {
 		tr {
@@ -32,8 +32,10 @@ const Root = styled.table`
 	}
 `;
 
-export const Table = ({ children }: PropsWithChildren) => {
+export const Table = (props: PropsWithChildren) => {
 	return (
-		<Root>{children}</Root>
+		<Root>
+			{props.children}
+		</Root>
 	)
 };

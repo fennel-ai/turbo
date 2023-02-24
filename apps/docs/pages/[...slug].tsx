@@ -7,7 +7,6 @@ import remarkGfm from "remark-gfm";
 import { getNavigation, getPageContent, getPageDefinition, getSection, listPaths, ManifestPage, NavigationTree, NavigationSection } from "lib/utils";
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
-import { sanitize } from "lib/sanitize-md";
 
 type Props = {
 	metadata: ManifestPage,
@@ -16,8 +15,9 @@ type Props = {
 	source: MDXRemoteSerializeResult,
 }
 
-export default function DocPage({ navigation, section, source }: Props) {
+export default function DocPage({ metadata, navigation, section, source }: Props) {
 	const ctxValue = useMemo(() => ({
+		metadata,
 		frontmatter: source.frontmatter,
 		section,
 	}), [section, source.frontmatter]);
@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 	
 	const page = await getPageContent(slug);
 
-	const source = await serialize(sanitize(page), { 
+	const source = await serialize(page, { 
 		parseFrontmatter: true,
 		mdxOptions: {
 			remarkPlugins: [remarkGfm]

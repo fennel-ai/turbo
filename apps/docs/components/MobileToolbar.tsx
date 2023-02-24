@@ -49,13 +49,15 @@ type Props = {
 const MobileToolbar = (props: Props) => {
 	const {toggleMobileMenu} = useShell();
 
+	const { metadata, section } = props;
+
 	return (
 		<Root as="nav">
 			<Wrapper>
 				<IconButton icon={SidebarLeftIcon} onClick={toggleMobileMenu} />
-				<p>{props.section.title}</p>
+				<p>{section.title}</p>
 				<p>/</p>
-				<p>{props.metadata.title}</p>
+				<p>{metadata.title}</p>
 			</Wrapper>
 		</Root>
 	);

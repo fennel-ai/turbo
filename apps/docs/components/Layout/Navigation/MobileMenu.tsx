@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from "@emotion/styled";
-import { motion } from 'framer-motion';
+import { motion, usePresence } from 'framer-motion';
 import { IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 
@@ -13,6 +13,7 @@ import { useShell } from 'context/Shell';
 
 import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
+import { media } from 'styles/utils';
 
 const Sheet = styled(motion.div)`
 	position: fixed;
@@ -26,19 +27,35 @@ const Sheet = styled(motion.div)`
 
 const Root = styled(motion.div)`
 	position: fixed;
-	top: 1rem;
-	left: 1rem;
-	width: 25rem;
-	bottom: 1rem;
-	border-radius: 1rem;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	background-color: #fff;
 	z-index: 5;
 	overflow-y: auto;
-	padding: 2rem;
 	display: flex;
 	align-items: stretch;
 	flex-direction: column;
-	gap: 2rem;
+	padding: 0.5rem 1rem;
+	gap: 1.5rem;
+
+	${media('2xs')} {
+		top: 1rem;
+		left: 1rem;
+		right: 1rem;
+		bottom: 1rem;
+		border-radius: 1rem;
+		padding: 1rem 2rem;
+		gap: 2rem;
+	}
+
+	${media('xs')} {
+		top: 1rem;
+		left: 1rem;
+		width: 25rem;
+		bottom: 1rem;
+	}
 `;
 
 const Header = styled.div`
@@ -60,24 +77,47 @@ type Props = {
 	items: NavigationTree
 }
 
+const ANIM = {
+	sheet: {
+		transition: { type: "spring", damping: 15, mass: 0.5, stiffness: 120 },
+		initial: { opacity: 0 },
+		animate: { opacity: 1 },
+		exit: { opacity: 0 },
+	},
+	root: {
+		transition: { type: "spring", damping: 15, mass: 0.2, stiffness: 200 },
+		initial: { x: -240, opacity: 0 },
+		animate: { x: 0, opacity: 1 },
+		exit: { x: 0, scale: 0.97, opacity: 0, borderRadius: 24 },
+	}
+}
+
 const MobileMenu = (props: Props) => {
 	const { items, onClose } = props;
+	const [isPresent, safeToRemove] = usePresence()
 
 	const rootRef = useRef(null);
 	const router = useRouter();
 	const { toggleMobileMenu } = useShell();
 	
 	useEffect(() => {
-		document.body.style.overflow = 'hidden';
+		if (isPresent) {
+			document.body.style.overflow = 'hidden';
+		}
+		
+		if (safeToRemove) {
+			safeToRemove();
+		}
+
 		return () => {
 			document.body.style.overflow = '';
 		};
-	}, [])
+	}, [isPresent])
 
 	return createPortal(
 		<>
-			<Sheet initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
-			<Root ref={rootRef} initial={{ x: -56, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -56, opacity: 0 }}>
+			<Sheet initial={ANIM.sheet.initial} animate={ANIM.sheet.animate} exit={ANIM.sheet.exit} transition={ANIM.sheet.transition} onClick={onClose} />
+			<Root ref={rootRef} initial={ANIM.root.initial} animate={ANIM.root.animate} exit={ANIM.root.exit} transition={ANIM.root.transition}>
 				<Header>
 					<p>Documentation</p>
 					<IconButton icon={CloseIcon} size="large" onClick={onClose} />

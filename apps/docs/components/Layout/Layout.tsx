@@ -37,8 +37,11 @@ const Root = styled(Container)`
 	}
 
 	& > main {
+		color: ${({ theme }) => theme['text-alt']};
+
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
+			color: ${({ theme }) => theme.text};
 			font-family: "Addington CF", serif;
 			font-weight: 500;
 		}
@@ -109,6 +112,7 @@ const Root = styled(Container)`
 
 		strong {
 			font-variation-settings: "wght" 700;
+			color: ${({ theme }) => theme.text};
 		}
 
 		/** Grid style */

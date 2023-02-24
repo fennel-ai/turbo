@@ -18,12 +18,12 @@ const Root = styled(motion.ul)`
 	padding-left: 0;
 `;
 
-const SectionTitle = styled.li`
+const SectionTitle = styled.li<{expand: boolean}>`
 	color: ${get('text')};
 	font-size: 1.25rem;
 	line-height: 2.5rem;
 	font-variation-settings: 'wght' 600;
-	opacity: 0.64;
+	opacity: ${({ expand }) => expand ? 1 : 0.64};
 	cursor: pointer;
 	display: flex;
 	align-items: stretch;
@@ -73,7 +73,7 @@ const animation = {
 const NavigationSection = ({ children, expand, href, title }: Props) => {
 	return (
 		<Root>
-			<SectionTitle>
+			<SectionTitle expand={expand}>
 				<Link href={href}>{title}</Link>
 			</SectionTitle>
 			<AnimatePresence initial={false}>

@@ -2,6 +2,7 @@ import fs from 'fs-extra';
 
 import navigation from '../.content/navigation.json';
 import manifest from '../.content/manifest.json';
+import { sanitize } from './sanitize-md';
 
 export type ManifestPage = {
 	title: string,
@@ -53,8 +54,8 @@ export const getPageDefinition = (slug: string): ManifestPage => {
  */
 export const getPageContent = async (slug: string): Promise<string> => {
 	const page_def = getPageDefinition(slug);
-
-	return fs.readFile(page_def.path, 'utf-8');
+	const page = await fs.readFile(page_def.path, 'utf-8')
+	return sanitize(page);
 }
 
 /**

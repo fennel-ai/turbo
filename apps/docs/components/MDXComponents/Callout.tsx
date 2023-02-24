@@ -31,24 +31,36 @@ const Root = styled.div<{ type: Props['type'] }>`
 	background-color: ${({ type }) => get(COLOR_MAP[type].bg)};
 	color: ${({ type }) => get(COLOR_MAP[type].fg)};
 	box-shadow: 0px 0px 0px 4px rgba(${({ type }) => get(COLOR_MAP[type].border)}, 32%);
-	padding: 2rem;
-	border-radius: 1.25rem;
+	padding: 1rem;
+	border-radius: 0.75rem;
 	margin: 1rem 0 2rem 0;
 	display: flex;
 	align-items: flex-start;
 	gap: 1rem;
 
+	${media('sm')} {
+		padding: 2rem;
+		gap: 1rem;
+		border-radius: 1.25rem;
+	}
+
 	& svg {
-		margin-top 0.25rem;
-		width: 2rem;
-		height: 2rem;
+		margin-top: 0.25rem;
+		width: 1.5rem;
+		height: 1.5rem;
 		flex-shrink: 0;
+
+		${media('sm')} {
+			margin-top: 0;
+			width: 2rem;
+			height: 2rem;
+		}
 	}
 
 	& > p {
 		margin: 0;
-		font-size: 1.125rem;
-		line-height: 2rem;
+		font-size: 1rem;
+		line-height: 1.75rem;
 		font-variation-settings: "wght" ${props => props.theme.fontWeights.semibold};
 
 		${media('sm')} {
