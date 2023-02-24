@@ -8,12 +8,13 @@ import { IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 
 import { NavigationTree } from 'lib/utils';
+import { media } from 'styles/utils';
 
 import { useShell } from 'context/Shell';
 
+import Masthead from 'components/Masthead';
 import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
-import { media } from 'styles/utils';
 
 const Sheet = styled(motion.div)`
 	position: fixed;
@@ -45,7 +46,7 @@ const Root = styled(motion.div)`
 		left: 1rem;
 		right: 1rem;
 		bottom: 1rem;
-		border-radius: 1rem;
+		border-radius: 1.25rem;
 		padding: 1rem 2rem;
 		gap: 2rem;
 	}
@@ -119,7 +120,7 @@ const MobileMenu = (props: Props) => {
 			<Sheet initial={ANIM.sheet.initial} animate={ANIM.sheet.animate} exit={ANIM.sheet.exit} transition={ANIM.sheet.transition} onClick={onClose} />
 			<Root ref={rootRef} initial={ANIM.root.initial} animate={ANIM.root.animate} exit={ANIM.root.exit} transition={ANIM.root.transition}>
 				<Header>
-					<p>Documentation</p>
+					<Masthead />
 					<IconButton icon={CloseIcon} size="large" onClick={onClose} />
 				</Header>
 				<Menu>

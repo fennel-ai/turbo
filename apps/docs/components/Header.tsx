@@ -4,6 +4,7 @@ import { Button, IconButton, Searchbar } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from './Container';
+import Masthead from './Masthead';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -65,7 +66,7 @@ const Header = () => {
 	return (
 		<Root>
 			<Wrapper>
-				<p>Documentation</p>
+				<Masthead />
 				<SearchWrapper>
 					<Searchbar />
 				</SearchWrapper>
