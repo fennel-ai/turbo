@@ -9,7 +9,7 @@ const COLOR_MAP = {
 	info: {
 		bg: 'primary.background',
 		fg: 'primary.on-background',
-		border: 'ref.purple.800'
+		border: 'ref.purple.800',
 	},
 	warning: {
 		bg: 'caution.background',
@@ -68,6 +68,12 @@ const Root = styled.div<{ type: Props['type'] }>`
 			line-height: 2rem;
 		}
 	}
+
+	& p > code:not(pre > code) {
+		background-color: ${({ type }) => get(COLOR_MAP[type].bg)};
+		color: ${({ type }) => get(COLOR_MAP[type].fg)};
+		border-color: rgb(${({ type }) => get(COLOR_MAP[type].border)});
+	}
 `;
 
 export const Callout = ({ children, type }: PropsWithChildren<Props>) => {
@@ -75,7 +81,7 @@ export const Callout = ({ children, type }: PropsWithChildren<Props>) => {
 	return (
 		<Root type={type}>
 			<Icon />
-			<p>{children} even longer text </p>
+			<p>{children}</p>
 		</Root>
 	)
 }
