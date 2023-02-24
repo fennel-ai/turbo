@@ -4,6 +4,7 @@ import slugify from 'slugify';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { toString } from "mdast-util-to-string";
 import { visit } from "unist-util-visit";
+import { sanitize } from './sanitize.js';
 
 const createSlug = (str) => slugify(str.replace(/\//gu, "-"), { lower: true });
 
@@ -46,17 +47,19 @@ export const createManifest = async (dir) => {
 		// Construct the page obj.
 		let page = {
 			title,
-			path: fullPath,
 			slug: createSlug(title),
+			content: sanitize(fs.readFileSync(fullPath, "utf-8")),
 		};
 
-		// Add the page to the manifest with the key set to the combined 
-		// section & page slug for rapid lookup.
+		// Add the page to the manifest with the key set to the combined section and page slug.
 		let key = [section.slug, page.slug].join('/');
 		manifest[key] = page;
 
 		// add the page to the sections obj
-		section.pages.push(page);
+		section.pages.push({
+			title: page.title,
+			slug: page.slug,
+		});
 	});
 	
 	// Add the section to navigation map

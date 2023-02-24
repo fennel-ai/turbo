@@ -4,8 +4,9 @@ import SidebarLeftIcon from 'ui/icons/sidebar-left.svg';
 import { media, get } from 'styles/utils';
 
 import Container from 'components/Container';
-import { ManifestPage, NavigationSection, NavigationTree } from 'lib/utils';
+import { NavigationPage, NavigationSection, NavigationTree } from 'lib/utils';
 import { useShell } from 'context/Shell';
+import { useLayoutContext } from './Layout';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -40,17 +41,17 @@ const Wrapper = styled.div`
 `;
 
 type Props = {
-	onToggleMenu: (e: MouseEvent) => void,
-	metadata: ManifestPage,
-	navigation: NavigationTree,
+	metadata: NavigationPage,
 	section: NavigationSection
 }
 
-const MobileToolbar = (props: Props) => {
+const MobileToolbar = () => {
 	const {toggleMobileMenu} = useShell();
+	const { metadata, section } = useLayoutContext();
 
-	const { metadata, section } = props;
-
+	if (!section) {
+		return null;
+	}
 	return (
 		<Root as="nav">
 			<Wrapper>

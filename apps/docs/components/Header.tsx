@@ -71,7 +71,7 @@ const Header = () => {
 					<Searchbar />
 				</SearchWrapper>
 				<Actions>
-					<SearchButton icon={SearchIcon} />
+					<SearchButton icon={SearchIcon} onClick={() => null} />
 					<DemoButton label="Request a demo" variant="pill" color="neutral" />
 				</Actions>
 			</Wrapper>

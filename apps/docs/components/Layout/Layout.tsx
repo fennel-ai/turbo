@@ -4,6 +4,10 @@ import { media } from "styles/utils";
 
 import type { NavigationTree } from "lib/utils";
 
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import MobileToolbar from 'components/MobileToolbar';
+
 import Navigation from "./Navigation";
 import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
@@ -147,17 +151,22 @@ const Root = styled(Container)`
 const Layout = ({ children, navigation }: Props) => {
 	const { showMobileMenu, toggleMobileMenu } = useShell();
 	return (
-		<Root>
-			<Navigation items={navigation} />
-			<AnimatePresence>
-				{showMobileMenu ? (
-					<MobileMenu items={navigation} onClose={toggleMobileMenu} />
-				) : null}
-			</AnimatePresence>
-			<main>
-				{children}
-			</main>
-		</Root>
+		<>
+			<Header />
+			<MobileToolbar />
+			<Root>
+				<Navigation items={navigation} />
+				<AnimatePresence>
+					{showMobileMenu ? (
+						<MobileMenu items={navigation} onClose={toggleMobileMenu} />
+					) : null}
+				</AnimatePresence>
+				<main>
+					{children}
+				</main>
+			</Root>
+			<Footer />
+		</>
 	)
 };
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { MouseEventHandler, useEffect, useRef } from 'react';
 import { createPortal } from "react-dom";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -74,7 +74,7 @@ const Menu = styled.div`
 `;
 
 type Props = {
-	onClose: (e: MouseEvent) => void,
+	onClose: MouseEventHandler,
 	items: NavigationTree
 }
 

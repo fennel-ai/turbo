@@ -1,9 +1,14 @@
-import { NavigationSection } from "lib/utils";
+import { NavigationPage, NavigationSection } from "lib/utils";
 import { createContext } from "react";
 
 type LayoutContext = {
-	frontmatter?: Record<string, string | undefined>,
-	section?: NavigationSection, 
+	metadata: NavigationPage, 
+	frontmatter?: Record<string, string>,
+	section: NavigationSection, 
 };
 
-export default createContext<LayoutContext>({});
+export default createContext<LayoutContext>({
+	frontmatter: {} as Record<string, string>,
+	metadata: {} as NavigationPage,
+	section: {} as NavigationSection,
+});

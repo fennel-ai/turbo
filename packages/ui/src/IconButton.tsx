@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { ComponentType, MouseEventHandler } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
@@ -74,7 +74,7 @@ const Root = styled.button<{size: SizeVariant}>`
 type Props = {
 	className?: string,
 	icon: ComponentType,
-	onClick: (e: MouseEvent) => void,
+	onClick: MouseEventHandler<HTMLButtonElement>,
 	size?: SizeVariant
 }
 

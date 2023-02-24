@@ -2,11 +2,15 @@ import fs from 'fs-extra';
 
 import navigation from '../.content/navigation.json';
 import manifest from '../.content/manifest.json';
-import { sanitize } from './sanitize-md';
 
 export type ManifestPage = {
 	title: string,
-	path: string,
+	slug: string,
+	content: string,
+}
+
+export type NavigationPage = {
+	title: string,
 	slug: string,
 }
 
@@ -14,7 +18,7 @@ export type NavigationSection = {
 	title: string,
 	slug: string,
 	order: number,
-	pages: ManifestPage[]
+	pages: NavigationPage[]
 }
 
 export type NavigationTree = NavigationSection[];
@@ -52,10 +56,12 @@ export const getPageDefinition = (slug: string): ManifestPage => {
 /**
  * Given a slug, returns the relevant page from the docs in the manifest.
  */
-export const getPageContent = async (slug: string): Promise<string> => {
-	const page_def = getPageDefinition(slug);
-	const page = await fs.readFile(page_def.path, 'utf-8')
-	return sanitize(page);
+export const getPageContent = async (slug: string): Promise<Partial<ManifestPage>> => {
+	const page = getPageDefinition(slug);
+	return {
+		title: page.title,
+		content: page.content,
+	};
 }
 
 /**
