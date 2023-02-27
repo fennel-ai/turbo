@@ -43,7 +43,7 @@ export const DocSearch = forwardRef <DocSearchHandle, DocSearchProps>((props, re
 
 	return (
 		<>
-			<Searchbar ref={searchButtonRef} onClick={onOpen} />
+			<Searchbar placeholder="Search the Docs" ref={searchButtonRef} onClick={onOpen} />
 			{
 				isOpen ? createPortal(
 					<DocSearchModal 

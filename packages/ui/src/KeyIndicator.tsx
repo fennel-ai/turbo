@@ -26,9 +26,9 @@ const Bubble = styled.div`
 	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
 `;
 
-export const KeyIndicator = ({ label }: { label: string }) => {
+export const KeyIndicator = ({ className, label }: { className?: string, label: string }) => {
 	return (
-		<Root>
+		<Root className={className}>
 			<Bubble>
 				{label}
 			</Bubble>

@@ -18,6 +18,15 @@ const Root = styled.button`
 	cursor: pointer;
 	overflow: hidden;
 
+	& > svg, & > p {
+		transition: 120ms opacity ease-in-out;
+		opacity: 0.64;
+	}
+
+	&:hover > svg, &:hover > p {
+		opacity: 1;
+	}
+
 	& svg {
 		width: 1rem;
 		height: 1rem;
@@ -38,17 +47,22 @@ const Root = styled.button`
 	}
 `;
 
+const ShortcutIndicator = styled(KeyIndicator)`
+	opacity: 0.4;
+`;
+
 type Props = {
 	onClick?: (e: MouseEvent) => void;
+	placeholder?: string;
 	ref: React.RefObject<HTMLButtonElement>;
 }
 
-export const Searchbar = forwardRef<HTMLButtonElement, Props>(({ onClick }: Props, ref) => {
+export const Searchbar = forwardRef<HTMLButtonElement, Props>(({ onClick, placeholder = "Search" }: Props, ref) => {
 	return (
 		<Root ref={ref} onClick={onClick}>
 			<SearchIcon />
-			<p>Search the Docs</p>
-			<KeyIndicator label="⌘K" />
+			<p>{placeholder}</p>
+			<ShortcutIndicator label="⌘K" />
 		</Root>
 	);
 });
