@@ -5,7 +5,8 @@ import { Button, IconButton } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from './Container';
-import { DocSearch, DocSearchHandle } from './DocSearch';
+import { DocSearch } from './DocSearch';
+import type { DocSearchHandle } from './DocSearch';
 import Masthead from './Masthead';
 
 const Root = styled(Container)`
