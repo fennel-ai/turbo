@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, MouseEventHandler } from 'react';
 import styled from '@emotion/styled';
 import SearchIcon from '../icons/search.svg';
 import { KeyIndicator } from './KeyIndicator';
@@ -52,7 +52,7 @@ const ShortcutIndicator = styled(KeyIndicator)`
 `;
 
 type Props = {
-	onClick?: (e: MouseEvent) => void;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
 	placeholder?: string;
 	ref: React.RefObject<HTMLButtonElement>;
 }
