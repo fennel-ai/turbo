@@ -3,12 +3,8 @@ import styled from '@emotion/styled';
 import { get } from "styles/utils";
 
 const Root = styled.table`
-	display: flex;
-	flex-direction: column;
 	border-collapse: separate;
 	margin: 1rem 0 2rem 0;
-	width: 100%;
-	overflow-x: auto;
 
 	& thead {
 		tr {
