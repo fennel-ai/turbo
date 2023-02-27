@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
+import { useRef } from 'react';
 import { get, media } from 'styles/utils';
 import { Button, IconButton } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from './Container';
-import { DocSearch } from './DocSearch';
+import { DocSearch, DocSearchHandle } from './DocSearch';
 import Masthead from './Masthead';
 
 const Root = styled(Container)`
@@ -64,19 +65,23 @@ const DemoButton = styled(Button)`
 `;
 
 const Header = () => {
+	const docSearch = useRef<DocSearchHandle>(null);
+	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
+
 	return (
 		<Root>
 			<Wrapper>
 				<Masthead />
 				<SearchWrapper>
 					<DocSearch
+						ref={docSearch}
 						appId="A8SI4XRCKK"
 						indexName="prod_DOCS"
 						apiKey="0e1826fb633372213b2956dab5dc5fc6"
 					/>
 				</SearchWrapper>
 				<Actions>
-					<SearchButton icon={SearchIcon} onClick={() => null} />
+					<SearchButton icon={SearchIcon} onClick={openSearch} />
 					<DemoButton label="Request a demo" variant="pill" color="neutral" />
 				</Actions>
 			</Wrapper>

@@ -1,11 +1,16 @@
-import { useCallback, useRef, useState } from 'react';
+import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import type { DocSearchProps } from '@docsearch/react';
 import { Searchbar } from 'ui';
 
-export function DocSearch(props: DocSearchProps) {
+export type DocSearchHandle = {
+	open: () => void;
+	close: () => void;
+}
+
+export const DocSearch = forwardRef <DocSearchHandle, DocSearchProps>((props, ref) => {
 	const searchButtonRef = useRef<HTMLButtonElement>(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [initialQuery, setInitialQuery] = useState<string | undefined>(props?.initialQuery || undefined);
@@ -31,6 +36,11 @@ export function DocSearch(props: DocSearchProps) {
 		searchButtonRef,
 	});
 
+	useImperativeHandle(ref, () => ({
+		open: onOpen,
+		close: onClose,
+	}));
+
 	return (
 		<>
 			<Searchbar ref={searchButtonRef} onClick={onOpen} />
@@ -48,4 +58,6 @@ export function DocSearch(props: DocSearchProps) {
 			}
 		</>
 	);
-}
+});
+
+DocSearch.displayName = 'DocSearch';
