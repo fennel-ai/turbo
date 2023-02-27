@@ -5,6 +5,8 @@ const Root = styled.div`
 	height: 1.5rem;
 	min-width: 1.5rem;
 	padding: 0.125rem;
+	user-select: none;
+	pointer-events: none;
 `;
 
 const Bubble = styled.div`

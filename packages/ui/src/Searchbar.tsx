@@ -1,9 +1,11 @@
+import { forwardRef } from 'react';
 import styled from '@emotion/styled';
 import SearchIcon from '../icons/search.svg';
 import { KeyIndicator } from './KeyIndicator';
 
-const Root = styled.div`
+const Root = styled.button`
 	position: relative;
+	width: 100%;
 	height: 2.5rem;
 	border-radius: 0.5rem;
 	color: ${({ theme }) => theme['text-alt']};
@@ -36,12 +38,19 @@ const Root = styled.div`
 	}
 `;
 
-export const Searchbar = () => {
+type Props = {
+	onClick?: (e: MouseEvent) => void;
+	ref: React.RefObject<HTMLButtonElement>;
+}
+
+export const Searchbar = forwardRef<HTMLButtonElement, Props>(({ onClick }: Props, ref) => {
 	return (
-		<Root>
+		<Root ref={ref} onClick={onClick}>
 			<SearchIcon />
 			<p>Search the Docs</p>
 			<KeyIndicator label="⌘K" />
 		</Root>
 	);
-}
+});
+
+Searchbar.displayName = 'Searchbar';

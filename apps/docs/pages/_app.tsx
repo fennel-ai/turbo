@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import theme from 'styles';
+import "@docsearch/css";
 import 'styles/index.css';
 
 import { ShellContextProvider } from 'context/Shell';

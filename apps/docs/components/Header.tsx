@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { get, media } from 'styles/utils';
-import { Button, IconButton, Searchbar } from 'ui';
+import { Button, IconButton } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from './Container';
+import { DocSearch } from './DocSearch';
 import Masthead from './Masthead';
 
 const Root = styled(Container)`
@@ -68,7 +69,11 @@ const Header = () => {
 			<Wrapper>
 				<Masthead />
 				<SearchWrapper>
-					<Searchbar />
+					<DocSearch
+						appId="A8SI4XRCKK"
+						indexName="prod_DOCS"
+						apiKey="0e1826fb633372213b2956dab5dc5fc6"
+					/>
 				</SearchWrapper>
 				<Actions>
 					<SearchButton icon={SearchIcon} onClick={() => null} />
