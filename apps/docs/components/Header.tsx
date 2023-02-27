@@ -67,7 +67,6 @@ const DemoButton = styled(Button)`
 const Header = () => {
 	const docSearch = useRef<DocSearchHandle>(null);
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
-
 	return (
 		<Root>
 			<Wrapper>
@@ -75,9 +74,9 @@ const Header = () => {
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}
-						appId="A8SI4XRCKK"
-						indexName="prod_DOCS"
-						apiKey="0e1826fb633372213b2956dab5dc5fc6"
+						appId={process.env.NEXT_PUBLIC_ALGOLIA_ID!}
+						indexName={process.env.NEXT_PUBLIC_ALGOLIA_INDEX!}
+						apiKey={process.env.NEXT_PUBLIC_ALGOLIA_KEY!}
 					/>
 				</SearchWrapper>
 				<Actions>

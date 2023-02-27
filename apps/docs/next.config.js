@@ -7,9 +7,7 @@ const gitbook = withGitbook({
 const nextConfig = {
   basePath: "/docs",
   reactStrictMode: true,
-  experimental: {
-    transpilePackages: ["ui", "styles"],
-  },
+  transpilePackages: ["ui", "styles"],
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

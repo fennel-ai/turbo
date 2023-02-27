@@ -48,7 +48,7 @@ const Root = styled.button`
 `;
 
 const ShortcutIndicator = styled(KeyIndicator)`
-	opacity: 0.4;
+	opacity: 0.64;
 `;
 
 type Props = {
