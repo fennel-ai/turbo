@@ -8,7 +8,8 @@ const Root = styled(motion.div)<{ isPresent: boolean }>`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.64);
+	background-color: rgba(0, 0, 0, 0.48);
+	backdrop-filter: blur(16px);
 	z-index: 5;
 	pointer-events: ${({ isPresent }) => isPresent ? 'all' : 'none'};
 `;
