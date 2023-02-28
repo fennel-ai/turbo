@@ -5,6 +5,7 @@ import path from 'node:path';
 
 import navigation from '../.content/navigation.json';
 import manifest from '../.content/manifest.json';
+import rehypeImageMetadata from "./rehype-image-metadata";
 import { remarkNextImages } from "./remark-next-images";
 
 export type ManifestPage = {
@@ -68,13 +69,7 @@ export const getPageContent = async (slug: string): Promise<{ title: string, cod
 		cwd: path.join(process.cwd(), '.content'),
 		mdxOptions: (options) => {
 			options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkMdxDisableExplicitJsx, remarkGfm, remarkNextImages];
-			options.rehypePlugins = [...(options?.rehypePlugins ?? [])];
-			return options;
-		},
-		esbuildOptions: (options) => {
-			options.loader = {
-				...options.loader,
-			}
+			options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypeImageMetadata];
 			return options;
 		},
 	});
