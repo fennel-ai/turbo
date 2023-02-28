@@ -45,6 +45,10 @@ const Socials = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+	
+	a {
+		color: ${({ theme }) => theme.text};
+	}
 `;
 
 const Footer = () => {
@@ -57,9 +61,15 @@ const Footer = () => {
 					<p>© 2023</p>
 				</Brand>
 				<Socials>
-					<IconButton icon={TwitterIcon} size="large" onClick={() => {}} />
-					<IconButton icon={LinkedInIcon} size="large" onClick={() => {}} />
-					<IconButton icon={GitHubIcon} size="large" onClick={() => {}} />
+					<a href="https://www.twitter.com/fennelai/" aria-label="twitter" target="_blank" rel="noopener">
+						<IconButton icon={TwitterIcon} size="large" />
+					</a>
+					<a href="https://www.linkedin.com/company/fennel-ai/" aria-label="linkedin" target="_blank" rel="noopener">
+						<IconButton icon={LinkedInIcon} size="large" />
+					</a>
+					<a href="https://github.com/fennel-ai" aria-label="github" target="_blank" rel="noopener">
+						<IconButton icon={GitHubIcon} size="large" />
+					</a>
 				</Socials>
 			</Wrapper>
 		</Root>

@@ -74,7 +74,7 @@ const Root = styled.button<{size: SizeVariant}>`
 type Props = {
 	className?: string,
 	icon: ComponentType,
-	onClick: MouseEventHandler<HTMLButtonElement>,
+	onClick?: MouseEventHandler<HTMLButtonElement>,
 	size?: SizeVariant
 }
 
