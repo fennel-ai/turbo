@@ -7,19 +7,19 @@ import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 
 type Props = {
-	metadata: NavigationPage,
+	page: NavigationPage,
 	navigation: NavigationTree,
 	section: NavigationSection,
 	code: string,
 	frontmatter: any,
 }
 
-export default function DocPage({ metadata, navigation, section, code, frontmatter }: Props) {
+export default function DocPage({ page, navigation, section, code, frontmatter }: Props) {
 	const ctxValue = useMemo(() => ({
-		metadata,
+		page,
 		frontmatter,
 		section,
-	}), [metadata, section, frontmatter]);
+	}), [page, section, frontmatter]);
 
 	const MDXComponent = useMemo(() => getMDXComponent(code), [code]);
 
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 		props: {
 			navigation,
 			section,
-			metadata: {
+			page: {
 				title,
 			},
 			code,

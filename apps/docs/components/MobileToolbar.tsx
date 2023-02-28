@@ -4,7 +4,6 @@ import SidebarLeftIcon from 'ui/icons/sidebar-left.svg';
 import { media, get } from 'styles/utils';
 
 import Container from 'components/Container';
-import { NavigationPage, NavigationSection, NavigationTree } from 'lib/utils';
 import { useShell } from 'context/Shell';
 import { useLayoutContext } from './Layout';
 
@@ -40,14 +39,9 @@ const Wrapper = styled.div`
 	}
 `;
 
-type Props = {
-	metadata: NavigationPage,
-	section: NavigationSection
-}
-
 const MobileToolbar = () => {
 	const {toggleMobileMenu} = useShell();
-	const { metadata, section } = useLayoutContext();
+	const { page, section } = useLayoutContext();
 
 	if (!section) {
 		return null;
@@ -58,7 +52,7 @@ const MobileToolbar = () => {
 				<IconButton icon={SidebarLeftIcon} onClick={toggleMobileMenu} />
 				<p>{section.title}</p>
 				<p>/</p>
-				<p>{metadata.title}</p>
+				<p>{page.title}</p>
 			</Wrapper>
 		</Root>
 	);
