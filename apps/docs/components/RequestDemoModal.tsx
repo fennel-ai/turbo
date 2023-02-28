@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
 import { Button, IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
+import Logo from 'ui/icons/logo.svg';
 import { media } from 'styles/utils';
 
 import { useModalPresence } from 'hooks/useModalPresence';
@@ -49,6 +50,7 @@ const LogoWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	border-radius: 1rem;
+	color: ${({ theme }) => theme.primary.accent};
 	box-shadow: 0px 0.4150884747505188px 2.2138051986694336px 0px hsla(260, 6%, 29%, 0.02), 0px 0.9975153207778931px 5.32008171081543px 0px hsla(260, 6%, 29%, 0.03), 0px 1.8782328367233276px 10.017241477966309px 0px hsla(260, 6%, 29%, 0.04), 0px 3.3504464626312256px 17.869047164916992px 0px hsla(260, 6%, 29%, 0.05),  0px 6.266641616821289px 33.422088623046875px 0px hsla(260, 6%, 29%, 0.06), 0px 15px 80px 0px hsla(260, 6%, 29%, 0.08);
 `;
 
@@ -122,7 +124,7 @@ const RequestDemoModal = (props: Props) => {
 					<IconButton icon={CloseIcon} size="large" onClick={onClose} />
 				</Header>
 				<LogoWrapper>
-
+					<Logo width={40} height={24} />
 				</LogoWrapper>
 				<Intro>
 					<h2>Request a demo</h2>
