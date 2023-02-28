@@ -113,7 +113,7 @@ const MobileMenu = (props: Props) => {
 		return () => {
 			document.body.style.overflow = '';
 		};
-	}, [isPresent])
+	}, [isPresent, safeToRemove])
 
 	return createPortal(
 		<>
