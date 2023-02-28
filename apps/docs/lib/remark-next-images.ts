@@ -7,9 +7,9 @@ function reformatSrc(src: string) {
 }
 
 export const remarkNextImages = () => {
-	return (tree) => {
+	return (tree: any) => {
 		visit(tree, 'paragraph', (node) => {
-			const image = node.children.find((child) => child.type === 'image');
+			const image = node.children.find((child: any) => child.type === 'image');
 			if (image) {
 				image.url = reformatSrc(image.url);
 			}
@@ -17,12 +17,12 @@ export const remarkNextImages = () => {
 		
 		visit(tree, 'mdxJsxFlowElement', (node) => {
 			if (node.name === 'img') {
-				const srcAttr = node.attributes.find((attr) => attr.name === 'src');
+				const srcAttr = node.attributes.find((attr: any) => attr.name === 'src');
 				if (srcAttr) {
 					srcAttr.value = reformatSrc(srcAttr.value);
 				}
 			} else {
-				const image = node.children.find((child) => child.type === 'image');
+				const image = node.children.find((child: any) => child.type === 'image');
 				if (image) {
 					image.url = reformatSrc(image.url);
 				}
