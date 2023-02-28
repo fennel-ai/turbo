@@ -55,6 +55,7 @@ const LogoWrapper = styled.div`
 `;
 
 const Intro = styled.div`
+	text-align: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -71,7 +72,6 @@ const Intro = styled.div`
 	}
 
 	& p {
-		text-align: center;
 		margin: 0;
 		font-size: 0.875rem;
 		line-height: 1.25rem;
