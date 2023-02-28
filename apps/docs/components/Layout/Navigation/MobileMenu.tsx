@@ -16,6 +16,7 @@ import Masthead from 'components/Masthead';
 import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
 import { useModalPresence } from 'hooks/useModalPresence';
+import ModalSheet from 'components/ModalSheet';
 
 const Sheet = styled(motion.div)`
 	position: fixed;
@@ -80,23 +81,15 @@ type Props = {
 }
 
 const ANIM = {
-	sheet: {
-		transition: { type: "spring", damping: 15, mass: 0.5, stiffness: 120 },
-		initial: { opacity: 0 },
-		animate: { opacity: 1 },
-		exit: { opacity: 0 },
-	},
-	root: {
-		transition: { type: "spring", damping: 15, mass: 0.2, stiffness: 200 },
-		initial: { x: -240, opacity: 0 },
-		animate: { x: 0, opacity: 1 },
-		exit: { x: 0, scale: 0.97, opacity: 0, borderRadius: 24 },
-	}
+	transition: { type: "spring", damping: 15, mass: 0.2, stiffness: 200 },
+	initial: { x: -240, opacity: 0 },
+	animate: { x: 0, opacity: 1 },
+	exit: { x: 0, scale: 0.97, opacity: 0, borderRadius: 24 },
 }
 
 const MobileMenu = (props: Props) => {
 	const { items, onClose } = props;
-	useModalPresence();
+	const isPresent = useModalPresence();
 
 	const rootRef = useRef(null);
 	const router = useRouter();
@@ -104,8 +97,8 @@ const MobileMenu = (props: Props) => {
 
 	return createPortal(
 		<>
-			<Sheet initial={ANIM.sheet.initial} animate={ANIM.sheet.animate} exit={ANIM.sheet.exit} transition={ANIM.sheet.transition} onClick={onClose} />
-			<Root ref={rootRef} initial={ANIM.root.initial} animate={ANIM.root.animate} exit={ANIM.root.exit} transition={ANIM.root.transition}>
+			<ModalSheet isPresent={isPresent} onClick={onClose} />
+			<Root ref={rootRef} initial={ANIM.initial} animate={ANIM.animate} exit={ANIM.exit} transition={ANIM.transition}>
 				<Header>
 					<Masthead />
 					<IconButton icon={CloseIcon} size="large" onClick={onClose} />
