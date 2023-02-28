@@ -16,6 +16,7 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 	gap: 0.5rem;
 	padding: 0 ${({ variant }) => variant == 'rounded' ? 0.75 : 1}rem;
 	font-size: 0.875rem;
