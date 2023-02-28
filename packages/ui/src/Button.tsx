@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
+import { MouseEventHandler } from 'react';
 import { get } from 'styles/utils';
 
 type Props = {
 	className?: string;
 	color?: 'primary' | 'primary-alt' | 'neutral',
+	onClick?: MouseEventHandler<HTMLButtonElement>;
 	label: string,
 	variant?: 'rounded' | 'pill'
 };
@@ -48,10 +50,11 @@ export const Button = ({
 	className,
 	color = 'neutral',
 	label,
+	onClick,
 	variant = 'rounded'
 }: Props) => {
 	return (
-		<Root className={className} color={color} variant={variant}>
+		<Root className={className} color={color} onClick={onClick} variant={variant}>
 			{label}
 		</Root>
 	);
