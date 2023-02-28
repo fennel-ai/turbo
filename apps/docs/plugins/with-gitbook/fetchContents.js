@@ -1,10 +1,10 @@
-import { Octokit } from "octokit";
-import { Readable } from "node:stream";
-import { emptyDir } from "fs-extra";
-import tar from "tar-fs";
-import gunzip from "gunzip-maybe";
+const { Octokit } = require("octokit");
+const { Readable } = require("node:stream");
+const { emptyDir } = require("fs-extra");
+const tar = require("tar-fs");
+const gunzip = require("gunzip-maybe");
 
-export const fetchContents = (token, dir) =>
+module.exports.fetchContents = (token, dir) =>
   new Promise(async (resolve, reject) => {
     if (!token) {
       reject("Github token not provided to withGitDocs");

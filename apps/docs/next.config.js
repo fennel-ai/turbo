@@ -1,4 +1,4 @@
-import { withGitbook } from './plugins/with-gitbook/index.js';
+const { withGitbook } = require('./plugins/with-gitbook');
 
 const gitbook = withGitbook({
 	token: process.env.GITHUB_TOKEN,
@@ -37,4 +37,4 @@ const nextConfig = {
   },
 };
 
-export default gitbook(nextConfig)
+module.exports = gitbook(nextConfig)

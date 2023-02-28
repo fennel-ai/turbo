@@ -1,4 +1,7 @@
-import fs from 'fs-extra';
+import { bundleMDX } from "mdx-bundler";
+import remarkGfm from "remark-gfm";
+import remarkMdxImages from 'remark-mdx-images';
+import path from 'node:path';
 
 import navigation from '../.content/navigation.json';
 import manifest from '../.content/manifest.json';
@@ -56,11 +59,29 @@ export const getPageDefinition = (slug: string): ManifestPage => {
 /**
  * Given a slug, returns the relevant page from the docs in the manifest.
  */
-export const getPageContent = async (slug: string): Promise<Partial<ManifestPage>> => {
-	const page = getPageDefinition(slug);
+export const getPageContent = async (slug: string): Promise<{ title: string, code: string, frontmatter: any }> => {
+	const { title, content } = getPageDefinition(slug);
+	
+	const { code, frontmatter } = await bundleMDX({
+		source: content,
+		cwd: path.join(process.cwd(), '.content'),
+		mdxOptions(options) {
+			options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm, remarkMdxImages];
+			return options;
+		},
+		esbuildOptions: (options) => {
+			options.loader = {
+				...options.loader,
+				'.png': 'dataurl'
+			}
+			return options;
+		},
+	});
+
 	return {
-		title: page.title,
-		content: page.content,
+		title,
+		code,
+		frontmatter,
 	};
 }
 

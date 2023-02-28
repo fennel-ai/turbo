@@ -1,10 +1,8 @@
 import { useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import remarkGfm from "remark-gfm";
+import { getMDXComponent } from 'mdx-bundler/client';
 
-import { getNavigation, getPageContent, getPageDefinition, getSection, listPaths, NavigationPage, NavigationTree, NavigationSection } from "lib/utils";
+import { getNavigation, getPageContent, getSection, listPaths, NavigationPage, NavigationTree, NavigationSection } from "lib/utils";
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 
@@ -12,21 +10,24 @@ type Props = {
 	metadata: NavigationPage,
 	navigation: NavigationTree,
 	section: NavigationSection,
-	source: MDXRemoteSerializeResult,
+	code: string,
+	frontmatter: any,
 }
 
-export default function DocPage({ metadata, navigation, section, source }: Props) {
+export default function DocPage({ metadata, navigation, section, code, frontmatter }: Props) {
 	const ctxValue = useMemo(() => ({
 		metadata,
-		frontmatter: source.frontmatter,
+		frontmatter,
 		section,
-	}), [metadata, section, source.frontmatter]);
+	}), [metadata, section, frontmatter]);
+
+	const MDXComponent = useMemo(() => getMDXComponent(code), [code]);
 
 	return (
 		<LayoutContext.Provider value={ctxValue}>
 			<Layout navigation={navigation}>
 				{/** @ts-ignore */}
-				<MDXRemote {...source} components={components} />
+				<MDXComponent components={components} />
 			</Layout>
 		</LayoutContext.Provider>
 	);
@@ -40,23 +41,17 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 
 	const section = getSection(params!.slug![0]);
 
-	const page = await getPageContent(slug);
-
-	const source = await serialize(page.content!, { 
-		parseFrontmatter: true,
-		mdxOptions: {
-			remarkPlugins: [remarkGfm]
-		}
-	});
+	const { title, code, frontmatter } = await getPageContent(slug);
 
 	return {
 		props: {
 			navigation,
 			section,
 			metadata: {
-				title: page.title,
+				title,
 			},
-			source,
+			code,
+			frontmatter,
 		}
 	}
 }

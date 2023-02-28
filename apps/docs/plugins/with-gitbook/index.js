@@ -1,9 +1,9 @@
-import path from 'node:path';
-import { createManifest } from './createManifest.js';
+const path = require('node:path');
+const { createManifest } = require('./createManifest.js');
+const { fetchContents } = require('./fetchContents.js');
+const { moveAssets } = require('./moveAssets.js');
 
-import { fetchContents } from './fetchContents.js';
-
-export const withGitbook = (opts = {}) => async (nextConfig) => {
+module.exports.withGitbook = (opts = {}) => async (nextConfig) => {
 	const { token, dir = '.content/md' } = opts;
 
 	const CWD = path.join(process.cwd(), dir);
@@ -11,6 +11,8 @@ export const withGitbook = (opts = {}) => async (nextConfig) => {
 	// await fetchContents(token, CWD);
 	
 	await createManifest(CWD);
+
+	await moveAssets(CWD);
 
 	return nextConfig;
 };

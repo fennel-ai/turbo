@@ -3,7 +3,7 @@ const REGEX = /^{%\s*([\w-]+)\s*((?:\w+(?:\s*=\s*(?:"[^"]*"|'[^']*'|\S+))?\s*)*)
 // This isn't really ideal but will hold us over for now.
 // Gitbook use syntax like {% hint style="info" %} which is not valid markdown.
 // Adding a custom parser didn't work as next-mdx-remote is handling it, and the plugins run after mdx itself, so it trips up before we can add support for the syntax in the chain.
-export function sanitize(page) {
+module.exports.sanitize = (page) => {
   // Search the page for all occurrences of the {% tag %} syntax
   return page.replace(REGEX, (_, tagName, properties, content) => {
     // Split the properties into an array of key-value pairs

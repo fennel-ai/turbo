@@ -1,14 +1,15 @@
-import path from "node:path";
-import fs from "fs-extra";
-import slugify from 'slugify';
-import { fromMarkdown } from 'mdast-util-from-markdown';
-import { toString } from "mdast-util-to-string";
-import { visit } from "unist-util-visit";
-import { sanitize } from './sanitize.js';
+const path = require("path");
+const fs = require("fs-extra");
+const slugify = require("slugify");
+const { sanitize } = require("./sanitize.js");
 
 const createSlug = (str) => slugify(str.replace(/\//gu, "-"), { lower: true });
 
-export const createManifest = async (dir) => {
+module.exports.createManifest = async (dir) => {
+  const {fromMarkdown} = await import('mdast-util-from-markdown');
+  const {toString} = await import('mdast-util-to-string');
+  const {visit} = await import('unist-util-visit');
+
   // Navigation statically stores the parsed sections with pages nested beneath so we can quickly create the navigation tree in getStaticProps
   let navigation = [];
   // Manifest holds all of the pages by slug so we can quickly create the list static paths for next, and easily reference pages regardless of if they're nested within a section.
@@ -48,6 +49,7 @@ export const createManifest = async (dir) => {
 		let page = {
 			title,
 			slug: createSlug(title),
+			path: fullPath,
 			content: sanitize(fs.readFileSync(fullPath, "utf-8")),
 		};
 
