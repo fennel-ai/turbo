@@ -16,7 +16,7 @@ dist/
 
 # docs
 .content
-public/.gitbook
+public/.gitbook/
 
 # storybook
 storybook-static
