@@ -23,6 +23,7 @@ const Root = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+	box-shadow: 0px 45px 85px rgba(44, 45, 58, 0.24), 0px 18.7999px 35.511px rgba(44, 45, 58, 0.172525), 0px 10.0513px 18.9859px rgba(44, 45, 58, 0.143066), 0px 5.6347px 10.6433px rgba(44, 45, 58, 0.12), 0px 2.99255px 5.65259px rgba(44, 45, 58, 0.0969343), 0px 1.24527px 2.35217px rgba(44, 45, 58, 0.0674749);
 
 	${media('2xs')} {
 		top: 50%;
