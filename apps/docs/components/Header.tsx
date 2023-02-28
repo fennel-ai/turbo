@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { get, media } from 'styles/utils';
 import { Button, IconButton } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
@@ -8,6 +8,8 @@ import Container from './Container';
 import { DocSearch } from './DocSearch';
 import type { DocSearchHandle } from './DocSearch';
 import Masthead from './Masthead';
+import { AnimatePresence } from 'framer-motion';
+import RequestDemoModal from './RequestDemoModal';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -66,6 +68,8 @@ const DemoButton = styled(Button)`
 `;
 
 const Header = () => {
+	const [openRequestModal, setOpenRequestModal] = useState(false);
+
 	const docSearch = useRef<DocSearchHandle>(null);
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
 	return (
@@ -82,9 +86,16 @@ const Header = () => {
 				</SearchWrapper>
 				<Actions>
 					<SearchButton icon={SearchIcon} onClick={openSearch} />
-					<DemoButton label="Request a demo" variant="pill" color="neutral" />
+					<DemoButton label="Request a demo" variant="pill" color="neutral" onClick={() => setOpenRequestModal(true)} />
 				</Actions>
 			</Wrapper>
+			<AnimatePresence>
+				{
+					openRequestModal ? (
+						<RequestDemoModal onClose={() => setOpenRequestModal(false)} />
+					) : null
+				}
+			</AnimatePresence>
 		</Root>
 	);
 };

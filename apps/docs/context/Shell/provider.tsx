@@ -7,10 +7,15 @@ export const ShellContextProvider = ({ children }: PropsWithChildren) => {
 	const handleToggleMenu = useCallback(() => {
 		setShowMobileMenu(prev => !prev);
 	}, []);
+	
+	const closeMobileMenu = useCallback(() => {
+		setShowMobileMenu(false);
+	}, []);
 
 	const value = {
 		showMobileMenu,
-		toggleMobileMenu: handleToggleMenu
+		toggleMobileMenu: handleToggleMenu,
+		closeMobileMenu,
 	};
 
 	return (

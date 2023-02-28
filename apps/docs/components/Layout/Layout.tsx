@@ -154,7 +154,7 @@ const Root = styled(Container)`
 `;
 
 const Layout = ({ children, navigation }: Props) => {
-	const { showMobileMenu, toggleMobileMenu } = useShell();
+	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
 			<Header />
@@ -163,7 +163,7 @@ const Layout = ({ children, navigation }: Props) => {
 				<Navigation items={navigation} />
 				<AnimatePresence>
 					{showMobileMenu ? (
-						<MobileMenu items={navigation} onClose={toggleMobileMenu} />
+						<MobileMenu items={navigation} onClose={closeMobileMenu} />
 					) : null}
 				</AnimatePresence>
 				<main>
