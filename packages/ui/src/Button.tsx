@@ -4,10 +4,11 @@ import { get } from 'styles/utils';
 
 type Props = {
 	className?: string;
-	color?: 'primary' | 'primary-alt' | 'neutral',
+	color?: 'primary' | 'primary-alt' | 'neutral';
 	onClick?: MouseEventHandler<HTMLButtonElement>;
-	label: string,
-	variant?: 'rounded' | 'pill'
+	label: string;
+	variant?: 'rounded' | 'pill';
+	type?: 'button' | 'submit';
 };
 
 const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>`
@@ -52,10 +53,11 @@ export const Button = ({
 	color = 'neutral',
 	label,
 	onClick,
-	variant = 'rounded'
+	variant = 'rounded',
+	type = 'button'
 }: Props) => {
 	return (
-		<Root className={className} color={color} onClick={onClick} variant={variant}>
+		<Root className={className} color={color} onClick={onClick} variant={variant} type={type}>
 			{label}
 		</Root>
 	);

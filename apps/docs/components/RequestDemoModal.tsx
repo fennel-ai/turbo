@@ -9,6 +9,7 @@ import { media } from 'styles/utils';
 
 import { useModalPresence } from 'hooks/useModalPresence';
 import ModalSheet from './ModalSheet';
+import RequestDemoForm from './RequestDemoForm';
 
 const Root = styled(motion.div)`
 	position: fixed;
@@ -81,25 +82,10 @@ const Intro = styled.div`
 	}
 `;
 
-const Form = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	gap: 1rem;
+const FormWrapper = styled.div`
 	padding-left: 1rem;
 	padding-right: 1rem;
 	padding-bottom: 1rem;
-	
-	& input {
-		height: 2.5rem;
-		border: 1px solid ${({ theme }) => theme['border']};
-		border-radius: 0.5rem;
-		outline: none;
-	}
-`;
-
-const SubmitButton = styled(Button)`
-	width: 100%;
 `;
 
 type Props = {
@@ -131,12 +117,9 @@ const RequestDemoModal = (props: Props) => {
 					<h2>Request a demo</h2>
 					<p>The team is excited to show you just how much Fennel is capable of; Submit a request today and we&apos;ll be in touch soon.</p>
 				</Intro>
-				<Form>
-					<input />
-					<input />
-					<input />
-					<SubmitButton label="Submit" variant="pill" />
-				</Form>
+				<FormWrapper>
+					<RequestDemoForm />
+				</FormWrapper>
 			</Root>
 		</>,
 		document.body);
