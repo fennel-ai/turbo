@@ -1,9 +1,9 @@
-import { MouseEventHandler, useEffect, useRef } from 'react';
+import { MouseEventHandler, useRef } from 'react';
 import { createPortal } from "react-dom";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from "@emotion/styled";
-import { motion, usePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 
@@ -15,6 +15,7 @@ import { useShell } from 'context/Shell';
 import Masthead from 'components/Masthead';
 import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
+import { useModalPresence } from 'hooks/useModalPresence';
 
 const Sheet = styled(motion.div)`
 	position: fixed;
@@ -95,25 +96,11 @@ const ANIM = {
 
 const MobileMenu = (props: Props) => {
 	const { items, onClose } = props;
-	const [isPresent, safeToRemove] = usePresence()
+	useModalPresence();
 
 	const rootRef = useRef(null);
 	const router = useRouter();
 	const { toggleMobileMenu } = useShell();
-	
-	useEffect(() => {
-		if (isPresent) {
-			document.body.style.overflow = 'hidden';
-		}
-		
-		if (safeToRemove) {
-			safeToRemove();
-		}
-
-		return () => {
-			document.body.style.overflow = '';
-		};
-	}, [isPresent, safeToRemove])
 
 	return createPortal(
 		<>
