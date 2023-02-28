@@ -129,7 +129,7 @@ const RequestDemoModal = (props: Props) => {
 				</LogoWrapper>
 				<Intro>
 					<h2>Request a demo</h2>
-					<p>The team is excited to show you just how much Fennel is capable of; Submit a request today and we'll be in touch soon.</p>
+					<p>The team is excited to show you just how much Fennel is capable of; Submit a request today and we&apos;ll be in touch soon.</p>
 				</Intro>
 				<Form>
 					<input />
