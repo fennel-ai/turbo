@@ -3,7 +3,7 @@ const path = require("node:path");
 
 module.exports.moveAssets = async (cwd) => {
 	const currentDir = path.join(cwd, '.gitbook', 'assets')
-	const targetDir = path.join(process.cwd(), 'public', 'content_assets');
+	const targetDir = path.join(process.cwd(), 'public', '.gitbook', 'assets');
 	
 	// Make sure the directory exists
 	await fs.ensureDir(targetDir);

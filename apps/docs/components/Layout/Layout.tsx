@@ -98,6 +98,11 @@ const Root = styled(Container)`
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.bold};
 		}
 
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
 		ul, ol {
 			padding-inline-start: 2rem;
 		}

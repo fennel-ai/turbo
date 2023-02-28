@@ -1,10 +1,11 @@
 import { bundleMDX } from "mdx-bundler";
 import remarkGfm from "remark-gfm";
-import remarkMdxImages from 'remark-mdx-images';
+import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import path from 'node:path';
 
 import navigation from '../.content/navigation.json';
 import manifest from '../.content/manifest.json';
+import { remarkNextImages } from "./remark-next-images";
 
 export type ManifestPage = {
 	title: string,
@@ -65,14 +66,14 @@ export const getPageContent = async (slug: string): Promise<{ title: string, cod
 	const { code, frontmatter } = await bundleMDX({
 		source: content,
 		cwd: path.join(process.cwd(), '.content'),
-		mdxOptions(options) {
-			options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm, remarkMdxImages];
+		mdxOptions: (options) => {
+			options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkMdxDisableExplicitJsx, remarkGfm, remarkNextImages];
+			options.rehypePlugins = [...(options?.rehypePlugins ?? [])];
 			return options;
 		},
 		esbuildOptions: (options) => {
 			options.loader = {
 				...options.loader,
-				'.png': 'dataurl'
 			}
 			return options;
 		},

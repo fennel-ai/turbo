@@ -71,7 +71,9 @@ importers:
       octokit: ^2.0.14
       react: 18.2.0
       react-dom: 18.2.0
+      rehype-img-size: ^1.0.1
       remark-gfm: ^3.0.1
+      remark-mdx-disable-explicit-jsx: ^0.1.0
       remark-mdx-images: ^2.0.0
       slugify: ^1.6.5
       styles: workspace:*
@@ -98,7 +100,9 @@ importers:
       octokit: 2.0.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      rehype-img-size: 1.0.1
       remark-gfm: 3.0.1
+      remark-mdx-disable-explicit-jsx: 0.1.0
       remark-mdx-images: 2.0.0
       slugify: 1.6.5
       styles: link:../../packages/styles
@@ -9592,6 +9596,14 @@ packages:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
 
+  /image-size/1.0.2:
+    resolution: {integrity: sha512-xfOoWjceHntRb3qFCrh5ZFORYH8XCdYpASltMhZ/Q0KZiOwjdE/Yl2QCiWdwD+lygV5bMCvauzgu5PxBX/Yerg==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      queue: 6.0.2
+    dev: false
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -12774,6 +12786,12 @@ packages:
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  /queue/6.0.2:
+    resolution: {integrity: sha512-iHZWu+q3IdFZFX36ro/lKBkSvfkztY5Y7HMiPlOUjhupPcG2JMfst2KKEpu5XndviX/3UhFbRngUPNKtgvtZiA==}
+    dependencies:
+      inherits: 2.0.4
+    dev: false
+
   /ramda/0.28.0:
     resolution: {integrity: sha512-9QnLuG/kPVgWvMQ4aODhsBUFKOUmnbUnsSXACv+NCQZcHbeb+v8Lodp8OVxtRULN1/xOyYLLaL6npE6dMq5QTA==}
     dev: true
@@ -13143,6 +13161,14 @@ packages:
       jsesc: 0.5.0
     dev: true
 
+  /rehype-img-size/1.0.1:
+    resolution: {integrity: sha512-+rLkxF2H3mQULAg3iA2Z2spJQlBcCpApG8sHC47bc0p33ol+ddz+O3gyUcTgk5xX5jGaj1oQOBs/cBy8nIIhoQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      image-size: 1.0.2
+      unist-util-visit: 4.1.2
+    dev: false
+
   /relateurl/0.2.7:
     resolution: {integrity: sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==}
     engines: {node: '>= 0.10'}
@@ -13180,6 +13206,14 @@ packages:
       unified: 10.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /remark-mdx-disable-explicit-jsx/0.1.0:
+    resolution: {integrity: sha512-NC7NUbu4bExZnsWDTJE3UhBRZujW3gyqMufhTHn2GHhZ5LetWzyieyuZerBPdSniLx4d7QKDbf+d3u/qmMGyaQ==}
+    dependencies:
+      '@types/hast': 2.3.4
+      unified: 10.1.2
+      unist-util-visit: 4.1.2
     dev: false
 
   /remark-mdx-frontmatter/1.1.1:
