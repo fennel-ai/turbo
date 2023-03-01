@@ -26,6 +26,7 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 	cursor: pointer;
 	border-radius: ${({ variant }) => get(`button.${variant}.radius`)};
 	background-color: ${({ color }) => get(`button.default.${color}.bg`)};
+	font-variation-settings: "wght" ${get('fontWeights.medium')};
 	color: ${({ color }) => get(`button.default.${color}.fg`)};
 	box-shadow: ${({ color, variant }) => variant === 'rounded' ? get(`button.${color}.shadow`) : null};
 	overflow: hidden;

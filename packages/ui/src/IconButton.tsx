@@ -38,6 +38,7 @@ const size_variants: Record<SizeVariant, any> = {
 };
 
 const Root = styled.button<{size: SizeVariant}>`
+	border: 0;
 	position: relative;
 	display: flex;
 	align-items: center;
