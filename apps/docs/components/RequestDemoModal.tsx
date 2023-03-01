@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react';
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
-import { Button, IconButton } from 'ui';
+import { IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 import Logo from 'ui/icons/Logo.svg';
 import { media } from 'styles/utils';
