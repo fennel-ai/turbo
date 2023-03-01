@@ -121,7 +121,7 @@ export type Theme = {
 	},
 	breakpoints: Record<Breakpoint, number>, // Breakpoints are a map of size name to rem value representing the screen width of that breakpoint.
 	fontFamilies: {
-		code: string,
+		code: string | LocalFont<any>,
 		text: string,
 		title: string,
 	},

@@ -2,6 +2,7 @@ import { ForwardedRef, forwardRef, PropsWithChildren } from 'react';
 import { useForm, ChangeHandler, SubmitHandler } from 'react-hook-form';
 import styled from '@emotion/styled';
 import { Button } from 'ui';
+import { satoshiVariable } from 'pages/_app';
 
 enum RoleEnum {
 	data_scientist = 'Data Scientist',
@@ -42,7 +43,7 @@ const InputRoot = styled.div`
 		outline: none;
 		padding: 0 0.75rem;
 		appearance: none;
-		font-family: ${({ theme }) => theme.fontFamilies.text};
+		font-family: ${satoshiVariable.style.fontFamily};
 		font-size: 0.875rem;
 		line-height: 1rem;
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};

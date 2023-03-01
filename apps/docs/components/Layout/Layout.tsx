@@ -13,6 +13,7 @@ import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
 import { useShell } from "context/Shell";
 import { AnimatePresence } from "framer-motion";
+import { addingtonCF, jetbrainsMono } from "pages/_app";
 
 type Props = {
 	children: ReactNode,
@@ -46,7 +47,7 @@ const Root = styled(Container)`
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.text};
-			font-family: "Addington CF", serif;
+			font-family: ${addingtonCF.style.fontFamily}, serif;
 			font-weight: 500;
 		}
 
@@ -122,7 +123,7 @@ const Root = styled(Container)`
 		code:not(pre > code) {
 			font-size: 0.875rem;
 			line-height: 1rem;
-			font-family: ${({ theme }) => theme.fontFamilies.code}, monospace;
+			font-family: ${jetbrainsMono.style.fontFamily}, monospace;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem 0.375rem;
 			margin: 0 0.25rem;

@@ -1,8 +1,11 @@
-import { Children, PropsWithChildren, ReactElement, ReactNode } from "react";
+import { Children, ReactElement } from "react";
 import styled from '@emotion/styled';
 import { get } from "styles/utils";
 
 const Root = styled.table`
+	display: block;
+	width: 100%;
+	overflow-x: auto;
 	border-collapse: separate;
 	margin: 1rem 0 2rem 0;
 

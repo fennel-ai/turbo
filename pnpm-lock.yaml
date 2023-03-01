@@ -50,6 +50,7 @@ importers:
       '@emotion/babel-plugin': ^11.10.6
       '@emotion/react': ^11.10.5
       '@emotion/styled': ^11.10.5
+      '@next/font': ^13.2.3
       '@svgr/webpack': ^6.5.1
       '@types/fs-extra': ^11.0.1
       '@types/node': ^17.0.12
@@ -86,6 +87,7 @@ importers:
       '@docsearch/react': 3.3.3_4mvbrmqotwuhfzwlcr6w5cftiu
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
       '@emotion/styled': 11.10.5_jp5djshq6aqfasno3mth3hguci
+      '@next/font': 13.2.3
       esbuild: 0.17.10
       framer-motion: 9.0.1_biqbaboplfbrettd7655fr4n2y
       fs-extra: 11.1.0
@@ -2892,6 +2894,10 @@ packages:
     resolution: {integrity: sha512-z+gnX4Zizatqatc6f4CQrcC9oN8Us3Vrq/OLyc98h7K/eWctrnV91zFZodmJHUjx0cITY8uYM7LXD7IdYkg3kg==}
     dependencies:
       glob: 7.1.7
+    dev: false
+
+  /@next/font/13.2.3:
+    resolution: {integrity: sha512-7EHzk0f7FVYICLUZTpyPk93IfcTUao++Xt1Sgb+Zk5dVOCYHabqLtlF5ywSoXIqyFlo0qlshEBxsrzHAGTWkDw==}
     dev: false
 
   /@next/swc-android-arm-eabi/13.1.1:

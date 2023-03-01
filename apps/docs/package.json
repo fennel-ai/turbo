@@ -12,6 +12,7 @@
     "@docsearch/react": "3",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@next/font": "^13.2.3",
     "esbuild": "^0.17.10",
     "framer-motion": "^9.0.1",
     "fs-extra": "^11.1.0",
