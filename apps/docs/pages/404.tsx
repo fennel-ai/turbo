@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import Footer from "components/Footer";
 import Header from "components/Header";
 import { media } from "styles/utils";
+import { useRouter } from "next/router";
 
 const Main = styled.main`
 	min-height: calc(100vh - 4.5rem - 8rem);
@@ -61,9 +62,11 @@ const BackgroundText = styled.span`
 	color: ${({ theme }) => theme.border};
 	user-select: none;
 	pointer-events: none;
+	z-index: -1;
 `;
 
 export default function NotFoundPage() {
+	const router = useRouter();
 	return (
 		<>
 			<Header />
@@ -71,7 +74,7 @@ export default function NotFoundPage() {
 				<BackgroundText>404</BackgroundText>
 				<h2>We can&apos;t find the page you&apos;re looking for!</h2>
 				<p>The page you&apos;re looking for either doesn&apos;t exist, or was moved.</p>
-				<Button label="Go Back" />
+				<Button label="Go Back" onClick={() => router.back()} />
 			</Main>
 			<Footer />
 		</>
