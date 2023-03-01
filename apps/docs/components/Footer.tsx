@@ -4,7 +4,7 @@ import { IconButton } from 'ui';
 import TwitterIcon from 'ui/icons/twitter.svg';
 import LinkedInIcon from 'ui/icons/linkedin.svg';
 import GitHubIcon from 'ui/icons/github.svg';
-import Logo from 'ui/icons/logo.svg';
+import Logo from 'ui/icons/Logo.svg';
 
 import Container from './Container';
 
