@@ -15,15 +15,8 @@ export const addingtonCF = localFont({
 export const satoshiVariable = localFont({
 	src: [{
 		path: "./fonts/Satoshi-Variable.woff2"
-	}, {
-		path: "./fonts/Satoshi-Variable.woff"
-	}, {
-		path: "./fonts/Satoshi-Variable.eot"
-	}, {
-		path: "./fonts/Satoshi-Variable.ttf"
 	}],
-	preload: true,
-	variable: '--font',
+	preload: true
 });
 
 
