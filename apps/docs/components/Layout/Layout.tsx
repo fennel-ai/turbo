@@ -13,7 +13,7 @@ import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
 import { useShell } from "context/Shell";
 import { AnimatePresence } from "framer-motion";
-import { addingtonCF, jetbrainsMono } from "pages/_app";
+import { addingtonCF } from "pages/_app";
 
 type Props = {
 	children: ReactNode,
@@ -123,7 +123,7 @@ const Root = styled(Container)`
 		code:not(pre > code) {
 			font-size: 0.875rem;
 			line-height: 1rem;
-			font-family: ${jetbrainsMono.style.fontFamily}, monospace;
+			font-family: ${({ theme }) => theme.fontFamilies.code}, monospace;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem 0.375rem;
 			margin: 0 0.25rem;
