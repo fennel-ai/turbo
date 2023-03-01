@@ -15,7 +15,7 @@ build/
 dist/
 
 # docs
-.content
+# .content
 public/.gitbook/
 
 # storybook
