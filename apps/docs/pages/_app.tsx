@@ -2,14 +2,11 @@ import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import theme from 'styles';
 import localFont from '@next/font/local';
-import { JetBrains_Mono } from '@next/font/google';
+import 'styles/index.css';
 import "@docsearch/css";
 
 import { ShellContextProvider } from 'context/Shell';
 
-export const jetbrainsMono = JetBrains_Mono({
-	subsets: ['latin']
-});
 export const addingtonCF = localFont({
 	src: [{
 		path: "./fonts/AddingtonCF-Medium.woff2"
@@ -35,6 +32,8 @@ export default function App({ Component, pageProps }: AppProps) {
 		<ShellContextProvider>
 			<style jsx global>
 				{`
+					@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
+
 					* {
 						box-sizing: border-box;
 					}
