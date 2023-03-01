@@ -12,6 +12,7 @@ coverage
 .next/
 out/
 build/
+!packages/styles/build
 dist/
 
 # docs
