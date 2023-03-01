@@ -19,6 +19,7 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	box-shadow: ${({ theme }) => theme['code-block'].shadow};
 	border-radius: ${({ theme }) => theme['code-block'].radius};
 	overflow: hidden;
+	position: relative;
 
 	code[class*="language-"],
 	pre {
