@@ -71,6 +71,7 @@ const Input = forwardRef((
 		</InputRoot>
 	);
 });
+Input.displayName = 'Input';
 
 const SelectInput = forwardRef((
 	{ children, label, ...props }: PropsWithChildren<{ name: string, label: string, placeholder?: string, onBlur: ChangeHandler, onChange: ChangeHandler }>, 
@@ -85,6 +86,7 @@ const SelectInput = forwardRef((
 		</InputRoot>
 	);
 });
+SelectInput.displayName = 'SelectInput';
 
 const RequestDemoForm = () => {
 	const { register, handleSubmit } = useForm<IFormData>();
