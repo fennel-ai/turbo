@@ -3,7 +3,10 @@ import { PropsWithChildren } from 'react';
 import { get, media } from 'styles/utils';
 
 import AlertCircleIcon from 'ui/icons/alert-circle.svg';
+import CheckCircleIcon from 'ui/icons/check-circle.svg';
 import InfoCircleIcon from 'ui/icons/info-circle.svg';
+import XCircleIcon from 'ui/icons/x-circle.svg';
+import ZapCircleIcon from 'ui/icons/zap-circle.svg';
 
 const COLOR_MAP = {
 	info: {
@@ -11,16 +14,34 @@ const COLOR_MAP = {
 		fg: 'primary.on-background',
 		border: 'ref.purple.800',
 	},
-	warning: {
+	caution: {
 		bg: 'caution.background',
 		fg: 'caution.on-background',
 		border: 'ref.yellow.800'
+	}, 
+	tip: {
+		bg: 'secondary.background',
+		fg: 'secondary.on-background',
+		border: 'ref.blue.800'
+	}, 
+	error: {
+		bg: 'error.background',
+		fg: 'error.on-background',
+		border: 'ref.red.800'
+	}, 
+	success: {
+		bg: 'success.background',
+		fg: 'success.on-background',
+		border: 'ref.success.800'
 	}, 
 }
 
 const ICON_MAP = {
 	info: InfoCircleIcon,
-	warning: AlertCircleIcon,
+	caution: AlertCircleIcon,
+	tip: ZapCircleIcon,
+	error: XCircleIcon,
+	success: CheckCircleIcon,
 }
 
 type Props = {

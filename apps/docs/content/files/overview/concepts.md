@@ -8,7 +8,7 @@ status: 'published'
 
 Fennel has two main concepts -- datasets and featuresets. Let's look at both one by one
 
-### 1. Dataset
+## 1. Dataset
 
 Dataset refers to a "table" of data with typed columns. Duh! Here is how a dataset is defined.&#x20;
 
@@ -89,7 +89,7 @@ Here "found" is a boolean series denoting whether there was any row in the datas
 
 Okay so we can define datasets, source them from external datasets, derive them via pipelines, and do complex temporal lookups on them. What has all this to do with features? How to write a feature in Fennel? Well, this is where we have to talk about the second main concept -- featureset
 
-### 2. Featureset
+## 2. Featureset
 
 A featureset, as the name implies, is just a collection of features, each with some code that knows how to extract it - called an _extractor_. That may sound like a mouthful but isn't that complicated. Let's define a feature that computes user's age using the datasets we defined above.
 
@@ -128,7 +128,7 @@ Here is a diagram of how the concepts fit together:
 
 This provides a relatively simplified bird's eye view of the main concepts. But there is more to both datasets and featuresets and how they come together. You can read in more detail about [datasets here](broken-reference) and about [featuresets here](/featuresets/overview).
 
-### Syncing Datasets and Features with Fennel
+## Syncing Datasets and Features with Fennel
 
 When you work with Fennel, your datasets and featuresets will live in a Python file in your codebase and Fennel servers will not know about them until you inform the servers by issuing a `sync` call. Here is how it will look:
 

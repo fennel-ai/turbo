@@ -8,7 +8,7 @@ export default function remarkAdmonitions() {
         node.type === "leafDirective" ||
         node.type === "containerDirective"
       ) {
-        if (!["info", "warning", "error", "success"].includes(node.name)) return;
+        if (!["info", "tip", "caution", "error", "success"].includes(node.name)) return;
         const type = node.name;
 
         node.type = "mdxJsxFlowElement";

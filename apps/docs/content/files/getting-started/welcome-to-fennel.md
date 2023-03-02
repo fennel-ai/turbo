@@ -9,7 +9,7 @@ status: 'published'
 
 Fennel is a modern realtime feature engineering platform and has been architected from the ground up in service of three design goals.
 
-### Fennel's Three Design Goals
+## Fennel's Three Design Goals
 
 1. **Easy to install, learn & use** - using familiar Python instead of special DSLs, simple but powerful abstractions, zero dependency installation, fully managed with zero ops, same code working for both realtime and non-realtime cases and more to make using Fennel as easy as possible
 2. **Reduce cloud costs** - being significantly lower on cloud costs compared to other alternatives by squeezing as much out of cloud hardware as possible \[See [this](/overview/cost-optimizations) for how Fennel does this]
@@ -17,14 +17,14 @@ Fennel is a modern realtime feature engineering platform and has been architecte
 
 As a result of the architectural philosophy, Fennel ends up unlocking the following benefits:
 
-### Benefits of Fennel
+## Benefits of Fennel
 
 * **Higher development velocity**: more iterations can be done in the same time leading to higher business value&#x20;
 * **Lower total costs of ownership**: Fennel saves costs across the board - cloud spend, bandwidth of engineers that would have gone in ops, and bandwidth of data scientists by making them more productive
 * **Higher business value via realtime features:** unlocking realtime and other sophisticated features leads to better models with higher business gains
 * **Healthier codebase & more reliable features**: engineering best practices like testing, immutability, code ownership etc improve code maintainability leading to more reliable data & feature
 
-### Getting Started With Fennel
+## Getting Started With Fennel
 
 [Start](/getting-started/quickstart) here if you want to directly dive deep into an end-to-end example.&#x20;
 
