@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { get } from 'styles/utils';
+import { get, media } from 'styles/utils';
 import { IconButton } from 'ui';
 import TwitterIcon from 'ui/icons/twitter.svg';
 import LinkedInIcon from 'ui/icons/linkedin.svg';
@@ -9,15 +9,25 @@ import Logo from 'ui/icons/Logo.svg';
 import Container from './Container';
 
 const Root = styled.footer`
-	height: 6.5rem;
 	border-top: 1px solid ${get('border')};
+
+	${media('xs')} {
+		height: 6.5rem;
+	}
 `;
 
 const Wrapper = styled(Container)`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-direction: column;
 	height: 100%;
+	padding-bottom: 2rem;
+
+	${media('xs')} {
+		flex-direction: row;
+		padding-bottom: 0rem;	
+	}
 `;
 
 const Brand = styled.div`
@@ -47,7 +57,7 @@ const Socials = styled.div`
 	gap: 0.5rem;
 	
 	a {
-		color: ${({ theme }) => theme.text};
+		color: ${({ theme }) => theme['text-alt']};
 	}
 `;
 
