@@ -17,7 +17,7 @@ To find the version of the installed library
 pip show fennel-ai
 ```
 
-_To try out the abstraction without a real cluster checkout using a mock client under_ [_Unit Tests_](../testing/unit-tests.md)__
+_To try out the abstraction without a real cluster checkout using a mock client under_ [_Unit Tests_](../testing/unit-tests.md)
 
 
 

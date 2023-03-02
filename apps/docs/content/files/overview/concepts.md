@@ -123,7 +123,7 @@ The main difference is that datasets are updated on the write path -- as the new
 
 Here is a diagram of how the concepts fit together:
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" /><figcaption></figcaption></figure>
+![Diagram](/assets/readwritepath.png)
 
 This provides a relatively simplified bird's eye view of the main concepts. But there is more to both datasets and featuresets and how they come together. You can read in more detail about [datasets here](broken-reference) and about [featuresets here](broken-reference).
 
