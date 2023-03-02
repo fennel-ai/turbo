@@ -5,6 +5,7 @@ import orderBy from 'lodash/orderBy';
 export type NavigationPage = {
 	title: string,
 	slug: string,
+	status: DocPage['status'];
 }
 
 export type NavigationSection = {
@@ -33,7 +34,8 @@ export const getNavigation = (): NavigationTree => {
 			order: section.order,
 			pages: orderBy(pages, 'order').map((page) => ({
 				title: page.title || "Page",
-				slug: page.slug
+				slug: page.slug,
+				status: page.status,
 			})),
 		}
 	});
@@ -41,13 +43,15 @@ export const getNavigation = (): NavigationTree => {
 	return orderBy(navigation, 'order')
 }
 
+/**
+ * Get the page metadata, section data and markdown code for a given page slug.
+ */
 export const getPageData = (pageSlug: string): { code: string, section: Section, page: Partial<DocPage> } => {
 	const {
 		body,
 		description = "",
 		section,
 		title,
-		order,
 		status,
 		slug
 	} = allPages.find((page) => page.slug === pageSlug)!;
@@ -58,7 +62,6 @@ export const getPageData = (pageSlug: string): { code: string, section: Section,
 		page: {
 			description,
 			title,
-			order,
 			status,
 			slug,
 		}

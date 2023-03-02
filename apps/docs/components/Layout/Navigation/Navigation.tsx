@@ -43,10 +43,10 @@ const Navigation = ({ items }: Props) => {
 								title={section.title} 
 								href={section.pages[0].slug}
 							>
-								{section.pages.map(({ title, slug }) => {
+								{section.pages.map(({ title, slug, status }) => {
 									const active = router.asPath === `/${slug}`;
 									return (
-										<NavigationItem active={active} fade={sectionActive && !active} key={slug}><Link aria-label={title} href={slug}>{title}</Link></NavigationItem>
+										<NavigationItem active={active} status={status} fade={sectionActive && !active} key={slug}><Link aria-label={title} href={slug}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>
