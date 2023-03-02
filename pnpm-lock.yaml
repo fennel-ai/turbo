@@ -77,6 +77,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: ^7.43.2
+      rehype-img-size: ^1.0.1
       remark-gfm: ^3.0.1
       remark-mdx-disable-explicit-jsx: ^0.1.0
       slugify: ^1.6.5
@@ -110,6 +111,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.2_react@18.2.0
+      rehype-img-size: 1.0.1
       remark-gfm: 3.0.1
       remark-mdx-disable-explicit-jsx: 0.1.0
       slugify: 1.6.5
@@ -13806,6 +13808,14 @@ packages:
     dependencies:
       jsesc: 0.5.0
     dev: true
+
+  /rehype-img-size/1.0.1:
+    resolution: {integrity: sha512-+rLkxF2H3mQULAg3iA2Z2spJQlBcCpApG8sHC47bc0p33ol+ddz+O3gyUcTgk5xX5jGaj1oQOBs/cBy8nIIhoQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      image-size: 1.0.2
+      unist-util-visit: 4.1.2
+    dev: false
 
   /rehype-stringify/9.0.3:
     resolution: {integrity: sha512-kWiZ1bgyWlgOxpqD5HnxShKAdXtb2IUljn3hQAhySeak6IOQPPt6DeGnsIh4ixm7yKJWzm8TXFuC/lPfcWHJqw==}
