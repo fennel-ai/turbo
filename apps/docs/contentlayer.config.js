@@ -36,10 +36,11 @@ export const DocPage = defineDocumentType(() => ({
       type: "string",
       description: "The page title",
     },
-    published: {
-      type: "boolean",
-      description:
-        "If true the page will be generated for prod and is publicly accessible. If false, the page is only visible in dep.",
+    status: {
+      type: "enum",
+	  options: ['draft', 'wip', 'published'],
+      description: "Draft pages only appear in Development. WIP pages appear in Production but are marked as incomplete. Published pages are generated in Production and are publicly accessible.",
+	  default: 'draft',
     },
     description: {
       type: "string",
