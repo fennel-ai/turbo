@@ -16,7 +16,7 @@ export type NavigationSection = {
 
 export type NavigationTree = NavigationSection[];
 
-export const allPages = process.env.NODE_ENV === 'production' ? allDocPages.filter(page => page.status === 'published') : allDocPages;
+export const allPages = process.env.NODE_ENV === 'production' ? allDocPages.filter(page => page.status !== 'draft') : allDocPages;
 
 /**
  * Returns the navigation JSON to the client-side (created in the WithGitbookDocs plugin)
