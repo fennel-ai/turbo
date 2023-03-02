@@ -1,4 +1,4 @@
-import { Callout } from './Callout';
+export { Callout } from './Callout';
 import { Image } from './Image';
 import { TitleBlock } from './TitleBlock';
 import { Table } from './Table';
@@ -8,4 +8,3 @@ export const h1 = TitleBlock;
 export const table = Table;
 export const pre = CodeSnippet;
 export const img = Image;
-export const Hint = Callout;

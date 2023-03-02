@@ -13,7 +13,7 @@ pip install fennel-ai
 
 To find the version of the installed library
 
-```
+```bash
 pip show fennel-ai
 ```
 
