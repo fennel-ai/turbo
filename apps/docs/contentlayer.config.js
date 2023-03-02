@@ -1,7 +1,9 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import remarkGfm from "remark-gfm";
 import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
+import remarkDirective from 'remark-directive';
 import rehypeImgSize from "rehype-img-size";
+import remarkAdmonitions from "./plugins/remark-admonitions";
 
 const Section = defineDocumentType(() => ({
   name: "Section",
@@ -70,7 +72,12 @@ export default makeSource({
   contentDirPath: "content",
   documentTypes: [DocPage, Section],
   mdx: {
-    remarkPlugins: [remarkMdxDisableExplicitJsx, remarkGfm],
-	rehypePlugins: [[rehypeImgSize, { dir: 'public' }]]
+    remarkPlugins: [
+      remarkMdxDisableExplicitJsx,
+      remarkGfm,
+      remarkDirective,
+      remarkAdmonitions,
+    ],
+    rehypePlugins: [[rehypeImgSize, { dir: "public" }]],
   },
 });

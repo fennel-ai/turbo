@@ -33,6 +33,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.2",
     "rehype-img-size": "^1.0.1",
+    "remark-directive": "^2.0.1",
     "remark-gfm": "^3.0.1",
     "remark-mdx-disable-explicit-jsx": "^0.1.0",
     "slugify": "^1.6.5",

@@ -1,4 +1,4 @@
-export { Callout } from './Callout';
+export { Admonition } from './Admonition';
 import { Image } from './Image';
 import { TitleBlock } from './TitleBlock';
 import { Table } from './Table';

@@ -76,12 +76,12 @@ const Root = styled.div<{ type: Props['type'] }>`
 	}
 `;
 
-export const Callout = ({ children, type }: PropsWithChildren<Props>) => {
+export const Admonition = ({ children, type }: PropsWithChildren<Props>) => {
 	const Icon = ICON_MAP[type];
 	return (
 		<Root type={type}>
 			<Icon />
-			<p>{children}</p>
+			{children}
 		</Root>
 	)
 }
