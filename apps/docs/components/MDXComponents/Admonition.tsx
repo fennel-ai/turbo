@@ -3,97 +3,83 @@ import { PropsWithChildren } from 'react';
 import { get, media } from 'styles/utils';
 
 import AlertCircleIcon from 'ui/icons/alert-circle.svg';
-import CheckCircleIcon from 'ui/icons/check-circle.svg';
 import InfoCircleIcon from 'ui/icons/info-circle.svg';
-import XCircleIcon from 'ui/icons/x-circle.svg';
 import ZapCircleIcon from 'ui/icons/zap-circle.svg';
 
-const COLOR_MAP = {
+const TYPE_MAP = {
 	info: {
-		bg: 'primary.background',
-		fg: 'primary.on-background',
-		border: 'ref.purple.800',
+		title: 'Info',
+		title_color: 'ref.purple.100',
+		text_color: 'ref.purple.200',
 	},
-	caution: {
-		bg: 'caution.background',
-		fg: 'caution.on-background',
-		border: 'ref.yellow.800'
+	warning: {
+		title: 'Warning',
+		title_color: 'ref.red.100',
+		text_color: 'ref.red.200',
 	}, 
 	tip: {
-		bg: 'secondary.background',
-		fg: 'secondary.on-background',
-		border: 'ref.blue.800'
-	}, 
-	error: {
-		bg: 'error.background',
-		fg: 'error.on-background',
-		border: 'ref.red.800'
-	}, 
-	success: {
-		bg: 'success.background',
-		fg: 'success.on-background',
-		border: 'ref.success.800'
-	}, 
+		title: 'Tip',
+		title_color: 'ref.blue.100',
+		text_color: 'ref.blue.200',
+	} 
 }
 
 const ICON_MAP = {
 	info: InfoCircleIcon,
-	caution: AlertCircleIcon,
+	warning: AlertCircleIcon,
 	tip: ZapCircleIcon,
-	error: XCircleIcon,
-	success: CheckCircleIcon,
 }
 
 type Props = {
-	type: keyof typeof COLOR_MAP;
+	type: keyof typeof TYPE_MAP;
 };
 
 const Root = styled.div<{ type: Props['type'] }>`
-	background-color: ${({ type }) => get(COLOR_MAP[type].bg)};
-	color: ${({ type }) => get(COLOR_MAP[type].fg)};
-	box-shadow: 0px 0px 0px 4px rgba(${({ type }) => get(COLOR_MAP[type].border)}, 32%);
-	padding: 1rem;
+	background-color: ${({ theme}) => theme.surface };
+	box-shadow: 0px 0px 0px 3px rgba(${({ theme }) => theme.ref.grey[800]}, 48%);
+	padding: 0.75rem 1.25rem;
 	border-radius: 0.75rem;
 	margin: 1rem 0 2rem 0;
 	display: flex;
+	flex-direction: column;
 	align-items: flex-start;
-	gap: 1rem;
-
-	${media('sm')} {
-		padding: 2rem;
-		gap: 1rem;
-		border-radius: 1.25rem;
-	}
-
-	& svg {
-		margin-top: 0.25rem;
-		width: 1.5rem;
-		height: 1.5rem;
-		flex-shrink: 0;
-
-		${media('sm')} {
-			margin-top: 0;
-			width: 2rem;
-			height: 2rem;
-		}
-	}
+	gap: 0.5rem;
+	width: max-content;
+	max-width: 100%;
 
 	& > p {
 		margin: 0;
+		color: rgba(${({ type }) => get(TYPE_MAP[type].text_color)}, 100%);
 		font-size: 1rem;
 		line-height: 1.75rem;
-		font-variation-settings: "wght" ${props => props.theme.fontWeights.semibold};
+		font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 
 		${media('sm')} {
-			font-size: 1.25rem;
+			font-size: 1.125rem;
 			line-height: 2rem;
 		}
 	}
+`;
 
-	& p > code:not(pre > code) {
-		background-color: ${({ type }) => get(COLOR_MAP[type].bg)};
-		color: ${({ type }) => get(COLOR_MAP[type].fg)};
-		border-color: rgb(${({ type }) => get(COLOR_MAP[type].border)});
+const Title = styled.div<{ type: Props['type'] }>`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+	color: rgba(${({ type }) => get(TYPE_MAP[type].title_color)}, 100%);
+
+	& svg {
+		margin: 0.25rem 0;
+		width: 1.5rem;
+		height: 1.5rem;
+		flex-shrink: 0;
+	}
+
+	& p {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.5rem;
+		font-variation-settings: "wght" ${props => props.theme.fontWeights.bold};
 	}
 `;
 
@@ -101,7 +87,10 @@ export const Admonition = ({ children, type }: PropsWithChildren<Props>) => {
 	const Icon = ICON_MAP[type];
 	return (
 		<Root type={type}>
-			<Icon />
+			<Title type={type}>
+				<Icon />
+				<p>{TYPE_MAP[type].title}</p>
+			</Title>
 			{children}
 		</Root>
 	)

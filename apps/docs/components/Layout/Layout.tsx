@@ -127,9 +127,9 @@ const Root = styled(Container)`
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem 0.375rem;
 			margin: 0 0.25rem;
-			background-color: ${({ theme }) => theme.primary.background};
-			color: ${({ theme }) => theme.primary["on-background"]};
-			border: 1px solid rgba(${({ theme }) => theme.ref.purple[800]}, 100%);
+			background-color: rgba(${({ theme }) => theme.ref.grey[100]}, 4%);
+			color: rgba(${({ theme }) => theme.ref.grey[100]}, 100%);
+			border: 1px solid rgba(${({ theme }) => theme.ref.grey[100]}, 12%);
 			border-radius: 0.375rem;
 		}
 

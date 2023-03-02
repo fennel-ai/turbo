@@ -43,7 +43,7 @@ class User:
 ```
 
 :::warning
-If you see a `Cannot create a PoolableConnectionFactory`error, try setting **`jdbc_params` ** to **** `enabledTLSProtocols=TLSv1.2`&#x20;
+If you see a `Cannot create a PoolableConnectionFactory`error, try setting `jdbc_params` to `enabledTLSProtocols=TLSv1.2`&#x20;
 :::
 
 TODO
