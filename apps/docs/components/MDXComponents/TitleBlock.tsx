@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
 import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
+import type { DocPage } from 'contentlayer/generated';
 
 const Root = styled.div`
 	border-bottom: 1px solid ${get('border')};
@@ -16,6 +17,7 @@ const Title = styled.div`
 	gap: 0.25rem;
 
 	& h1 {
+		position: relative;
 		margin: 0;
 		font-weight: 500;
 		font-size: 2.5rem;
@@ -61,6 +63,7 @@ const SectionTitle = styled.div`
 
 export const TitleBlock = ({ children }: PropsWithChildren) => {
 	const { frontmatter, section } = useLayoutContext();
+
 	return (
 		<Root>
 			{section?.title ? <SectionTitle><p>{section.title}</p></SectionTitle> : null}

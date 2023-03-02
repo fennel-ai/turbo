@@ -3,12 +3,18 @@
 	"include": [
 		"next-env.d.ts",
 		"**/*.ts",
-		"**/*.tsx"
+		"**/*.tsx",
+		".contentlayer/generated"
 	],
 	"exclude": [
 		"node_modules"
 	],
 	"compilerOptions": {
-		"baseUrl": "."
+		"baseUrl": ".",
+		"paths": {
+			"contentlayer/generated": [
+				"./.contentlayer/generated"
+			]
+		}
 	}
 }

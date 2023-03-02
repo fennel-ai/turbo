@@ -1,8 +1,4 @@
-const { withGitbook } = require('./plugins/with-gitbook');
-
-const gitbook = withGitbook({
-	token: process.env.GITHUB_TOKEN,
-});
+const { withContentlayer } = require('next-contentlayer');
 
 const nextConfig = {
   basePath: "/docs",
@@ -37,4 +33,4 @@ const nextConfig = {
   },
 };
 
-module.exports = gitbook(nextConfig)
+module.exports = withContentlayer(nextConfig)

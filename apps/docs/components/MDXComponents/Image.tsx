@@ -13,6 +13,5 @@ export const Image = ({
 	...props
 }: Props) => {
 	const router = useRouter();
-	// return <NextImage {...props} loading="lazy" src={`${router.basePath}${src}`} />
-	return <img {...props} src={`${router.basePath}${src}`} />
+	return <NextImage {...props} loading="lazy" src={`${router.basePath}${src}`} />
 }

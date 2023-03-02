@@ -16,7 +16,7 @@ build/
 dist/
 
 # docs
-# .content
+.contentlayer
 apps/docs/public/.gitbook/
 
 # storybook
