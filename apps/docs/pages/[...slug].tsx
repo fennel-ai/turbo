@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allDocPages, allSections, DocPage, Section } from 'contentlayer/generated';
+import { DocPage, Section } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
-import { getNavigation, NavigationTree } from "lib/utils";
+import { allPages, getNavigation, getPageData, NavigationTree } from "lib/utils";
 
 type Props = {
 	page: Partial<DocPage>,
@@ -35,31 +35,22 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const { params } = ctx;
 	const slug = (params!.slug as string[]).join('/');
-	const { 
-		body, 
-		description = "", 
-		section, 
-		title, 
-		order 
-	} = allDocPages.find((page) => page.slug === slug)!;
+
+	const { code, page, section } = getPageData(slug);
 
 	return {
 		props: {
 			navigation: getNavigation(),
-			section: allSections.find((s) => s.slug === section)!,
-			page: {
-				description,
-				title,
-				order,
-			},
-			code: body.code,
+			section,
+			page,
+			code,
 		}
 	}
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
 	return {
-		paths: allDocPages.map((page) => ({
+		paths: allPages.map((page) => ({
 			params: {
 				slug: page.slug!.split('/'),
 			}
