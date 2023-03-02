@@ -14,7 +14,7 @@ Fennel supports only the following operators, which can be composed in to expres
 5. Aggregate
 6. Explode \[Coming Soon]
 
-Let's dive deep in the concepts behind these. Meanwhile, you can look up detailed API specs for each of these [here](../api-reference/operators-wip.md).
+Let's dive deep in the concepts behind these. Meanwhile, you can look up detailed API specs for each of these [here](/api-reference/operators-wip.md).
 
 ### Filter
 

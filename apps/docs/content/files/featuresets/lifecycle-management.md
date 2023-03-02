@@ -27,7 +27,7 @@ As a result, the only way to delete something (a dataset, a feature, whole featu
 
 ### Metaflags
 
-Similar to dataset metaflags, featuresets, features, and extractors can also be annotated with [metaflags](../governance/metaflags.md) to manage their life cycle. Here is an example:
+Similar to dataset metaflags, featuresets, features, and extractors can also be annotated with [metaflags](/governance/metaflags) to manage their life cycle. Here is an example:
 
 ```python
 @owner('anti-fraud-team@fintech.com')

@@ -22,7 +22,7 @@ class User:
 
 ### Dataset Schema
 
-A dataset has few typed columns (interchangeably referred to as fields) and unique names. Each field must have has a pre-specified datatype. See the [typing](../../api-reference/data-types.md) section to learn the types supported by Fennel.&#x20;
+A dataset has few typed columns (interchangeably referred to as fields) and unique names. Each field must have has a pre-specified datatype. See the [typing](/api-reference/data-types.md) section to learn the types supported by Fennel.&#x20;
 
 ### Field Descriptors
 
@@ -74,7 +74,7 @@ class User:
 
 ### Meta Flags
 
-Datasets can be annotated with useful meta information - either at the dataset level or at the single field level. And the same metaflags that work elsewhere in Fennel also work on datasets. Read more about [metaflags here](../../governance/metaflags.md). Here is an example:
+Datasets can be annotated with useful meta information - either at the dataset level or at the single field level. And the same metaflags that work elsewhere in Fennel also work on datasets. Read more about [metaflags here](/governance/metaflags). Here is an example:
 
 ```python
 @meta(owner='abc-team@fennel.ai', tags=['PII', 'experimental'])
@@ -94,6 +94,6 @@ However, these are omitted in spirit of brevity and clarity in several examples 
 
 Datasets, despite being a very simple and compact abstraction, pack a punch in terms of power. Here are a few topics to read next to learn more about datasets.&#x20;
 
-* [Bringing data into a Dataset from external data sources](../../datasets/sources.md)
-* [Writing pipelines to derive datasets from existing datasets](../../api-reference/datasets/pipelines/)
-* [Reading a Dataset by doing lookups](../../api-reference/datasets/pipelines/)
+* [Bringing data into a Dataset from external data sources](/datasets/sources)
+* [Writing pipelines to derive datasets from existing datasets](/datasets/pipelines/)
+* [Reading a Dataset by doing lookups](/datasets/pipelines/)

@@ -23,7 +23,7 @@ class Movie:
         return durations > 2 * 3600
 ```
 
-Above example defines a featureset called `Movie` with two features - `duration`, `over_2hrs`. Each feature has a [type](../api-reference/data-types.md) and is given a monotonically increasing `id` that is unique within the featureset. This featureset has one extractor - `my_extractor` that when given the `duration` feature, knows how to extract the `over_2hrs` feature. There is no extractor provided for `duration` feature - and that's okay. Every feature in a featureset can have either zero or one extractor.&#x20;
+Above example defines a featureset called `Movie` with two features - `duration`, `over_2hrs`. Each feature has a [type](/api-reference/data-types) and is given a monotonically increasing `id` that is unique within the featureset. This featureset has one extractor - `my_extractor` that when given the `duration` feature, knows how to extract the `over_2hrs` feature. There is no extractor provided for `duration` feature - and that's okay. Every feature in a featureset can have either zero or one extractor.&#x20;
 
 ### Features
 

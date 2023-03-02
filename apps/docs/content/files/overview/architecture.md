@@ -9,7 +9,7 @@ Here are some of the key ideas & principles behind Fennel's architecture that al
 
 ### Read Write Separation
 
-This is arguably the most critical architecture decision that differentiates Fennel from many other similar systems. You can read about this in more detail [here](read-write-separation.md).
+This is arguably the most critical architecture decision that differentiates Fennel from many other similar systems. You can read about this in more detail [here](/overview/read-write-separation).
 
 ### Kappa Architecture
 

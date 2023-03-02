@@ -7,7 +7,7 @@ order: 5
 
 Aggregations are provided to the \`aggregate\` operator and specify how the agggregation should happen. All aggregations take two common arguments:
 
-1. `window`: Window - argument that specifies the length of the duration across which Fennel needs to perform the aggregation. See how [duration](duration.md) is specified in Fennel.
+1. `window`: Window - argument that specifies the length of the duration across which Fennel needs to perform the aggregation. See how [duration](/api-reference/duration) is specified in Fennel.
 2. `into_field`: str - the name of the field in the output dataset that corresponds to this aggregation. This&#x20;
 
 Besides these common arguments, here is the rest of the API reference for all the aggregations:

@@ -108,4 +108,4 @@ Fennel currently does not support CDC though adding CDC for at least Postgres an
 
 ### Full List of Sources
 
-Look at [Sources](../api-reference/sources-wip.md) for a full list of sources supported by Fennel or let us know (over email or slack) if you want to use a data source that is not yet supported.&#x20;
+Look at [Sources](/api-reference/sources) for a full list of sources supported by Fennel or let us know (over email or slack) if you want to use a data source that is not yet supported.&#x20;

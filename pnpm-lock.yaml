@@ -71,6 +71,7 @@ importers:
       react-dom: 18.2.0
       react-hook-form: ^7.43.2
       rehype-img-size: ^1.0.1
+      remark-basepath: ^1.0.1
       remark-directive: ^2.0.1
       remark-gfm: ^3.0.1
       remark-mdx-disable-explicit-jsx: ^0.1.0
@@ -97,6 +98,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.2_react@18.2.0
       rehype-img-size: 1.0.1
+      remark-basepath: 1.0.1
       remark-directive: 2.0.1
       remark-gfm: 3.0.1
       remark-mdx-disable-explicit-jsx: 0.1.0
@@ -13410,6 +13412,12 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
+  /remark-basepath/1.0.1:
+    resolution: {integrity: sha512-qqkefFDtSnL8wZt5VtRk1cMkaM3WYgjToGvN0O98kceEtzAx98FNepM7rxN2N6AXGuyYXL7ThvdBiDiTikVkwg==}
+    dependencies:
+      unist-util-visit-parents: 3.1.0
+    dev: false
+
   /remark-directive/2.0.1:
     resolution: {integrity: sha512-oosbsUAkU/qmUE78anLaJePnPis4ihsE7Agp0T/oqTzvTea8pOiaYEtfInU/+xMOVTS9PN5AhGOiaIVe4GD8gw==}
     dependencies:
@@ -15039,7 +15047,6 @@ packages:
 
   /unist-util-is/4.1.0:
     resolution: {integrity: sha512-ZOQSsnce92GrxSqlnEEseX0gi7GH9zTJZ0p9dtu87WRb/37mMPO2Ilx1s/t9vBHrFhbgweUwb+t7cIn5dxPhZg==}
-    dev: true
 
   /unist-util-is/5.2.0:
     resolution: {integrity: sha512-Glt17jWwZeyqrFqOK0pF1Ded5U3yzJnFr8CG1GMjCWTp9zDo2p+cmD6pWbZU8AgM5WU3IzRv6+rBwhzsGh6hBQ==}
@@ -15090,6 +15097,13 @@ packages:
     resolution: {integrity: sha512-k5GzIBZ/QatR8N5X2y+drfpWG8IDBzdnVj6OInRNWm1oXrzydiaAT2OQiA8DPRRZyAKb9b6I2a6PxYklZD0gKg==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: false
+
+  /unist-util-visit-parents/3.1.0:
+    resolution: {integrity: sha512-0g4wbluTF93npyPrp/ymd3tCDTMnP0yo2akFD2FIBAYXq/Sga3lwaU1D8OYKbtpioaI6CkDcQ6fsMnmtzt7htw==}
+    dependencies:
+      '@types/unist': 2.0.6
+      unist-util-is: 4.1.0
     dev: false
 
   /unist-util-visit-parents/3.1.1:

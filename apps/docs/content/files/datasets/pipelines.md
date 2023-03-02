@@ -108,13 +108,13 @@ In more technical terms, Fennel is built on top of [Kappa architecture](https://
 
 ### Operators
 
-Fennel supports a handful of very general purpose operators which together form the building blocks of any pipeline. You can read about all the operators [here](pipelines.md#operators). Further, transform operator takes free-form Python using which arbitrary computation can be done (including making calls into external services if needed).
+Fennel supports a handful of very general purpose operators which together form the building blocks of any pipeline. You can read about all the operators [here](/datasets/pipelines#operators). Further, transform operator takes free-form Python using which arbitrary computation can be done (including making calls into external services if needed).
 
 The ONLY constraint on the pipeline topology is that `aggregate` has to be the terminal node i.e. it's not allowed to compose any other operator on the output of `aggregate` operator. This very limited constraint allows Fennel to significantly reduce costs/perf of pipelines. And it's possible that even this constraint will be removed in the future.&#x20;
 
 ### Schema Propagation Via Pipelines
 
-Whenever a new pipeline is first synced with the server, Fennel inspects schemas of all the datasets and verifies that they are mutually compatible all the way from input datasets to the destination datasets (with the exception of transform operator body - see [here](pipelines.md#operators) for details). As a result, Fennel is able to catch any schema mismatch errors at sync time itself.
+Whenever a new pipeline is first synced with the server, Fennel inspects schemas of all the datasets and verifies that they are mutually compatible all the way from input datasets to the destination datasets (with the exception of transform operator body - see [here](/datasets/pipelines#operators) for details). As a result, Fennel is able to catch any schema mismatch errors at sync time itself.
 
 ### **Nested Pipelines**
 

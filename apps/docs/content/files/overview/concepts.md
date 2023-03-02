@@ -49,7 +49,7 @@ class Transaction:
     timestamp: datetime
 ```
 
-The first dataset will poll postgres table for new updates every minute and hydrate itself with new data. The second dataset hydrates itself from a kafka topic. Fennel supports connectors with all main sources - check [here](broken-reference) for details.&#x20;
+The first dataset will poll postgres table for new updates every minute and hydrate itself with new data. The second dataset hydrates itself from a kafka topic. Fennel supports connectors with all main sources - check [here](/datasets/sources) for details.&#x20;
 
 Hydrating datasets this way from external sources already looks somewhat cool because it allows you to bring data from multiple places in the same abstraction layer. But what to do with these datasets?
 
@@ -125,7 +125,7 @@ Here is a diagram of how the concepts fit together:
 
 ![Diagram](/assets/readwritepath.png)
 
-This provides a relatively simplified bird's eye view of the main concepts. But there is more to both datasets and featuresets and how they come together. You can read in more detail about [datasets here](broken-reference) and about [featuresets here](broken-reference).
+This provides a relatively simplified bird's eye view of the main concepts. But there is more to both datasets and featuresets and how they come together. You can read in more detail about [datasets here](broken-reference) and about [featuresets here](/featuresets/overview).
 
 ### Syncing Datasets and Features with Fennel
 
@@ -145,5 +145,5 @@ Line 4 here makes a POST request to Fennel and syncs the dataset on the server. 
 
 Overtime, you'd have many more datasets and featuresets - you'd send all of them in a sync call. And with that, the validation can become lot more complex e.g schema compatibility validation across the whole graph of datasets/featuresets
 
-Assuming the call succeeds, any datasets/featuresets that don't yet exist will be created, any datasets/featuresets that exist but are not provided in the sync call are deleted and rest are left unchanged. See the [section on CI/CD](../../testing-and-ci-cd/ci-cd-workflows.md) to learn how the end to end deployment could work in a production environment
+Assuming the call succeeds, any datasets/featuresets that don't yet exist will be created, any datasets/featuresets that exist but are not provided in the sync call are deleted and rest are left unchanged. See the [section on CI/CD](/testing-and-ci-cd/ci-cd-workflows) to learn how the end to end deployment could work in a production environment
 
