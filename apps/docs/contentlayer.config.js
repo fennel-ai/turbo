@@ -3,6 +3,7 @@ import remarkGfm from "remark-gfm";
 import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from 'remark-directive';
 import rehypeImgSize from "rehype-img-size";
+import rehypeSlug from "rehype-slug";
 import remarkAdmonitions from "./plugins/remark-admonitions";
 
 const Section = defineDocumentType(() => ({
@@ -79,6 +80,6 @@ export default makeSource({
       remarkDirective,
       remarkAdmonitions,
     ],
-    rehypePlugins: [[rehypeImgSize, { dir: "public" }]],
+    rehypePlugins: [[rehypeImgSize, { dir: "public" }], rehypeSlug],
   },
 });
