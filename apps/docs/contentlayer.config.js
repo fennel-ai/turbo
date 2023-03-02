@@ -1,19 +1,33 @@
-import { defineDocumentType, defineNestedType, makeSource } from 'contentlayer/source-files';
+import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import remarkGfm from "remark-gfm";
+import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 
-const Section = defineNestedType(() => ({
-	name: "Section",
-	filePathPattern: 'sections/*.md',
-	fields: {
-		name: {
-			type: 'string',
-			required: true,
-		}
-	}
+const Section = defineDocumentType(() => ({
+  name: "Section",
+  filePathPattern: "sections/**/*.mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    order: {
+      type: "number",
+      required: true,
+    },
+  },
+  computedFields: {
+    slug: {
+      type: "string",
+      resolve: (section) =>
+        section._raw.flattenedPath.replace(/sections\/?/, ""),
+    },
+  },
 }));
 
 export const DocPage = defineDocumentType(() => ({
   name: "DocPage",
   filePathPattern: "files/**/*.md",
+  contentType: "mdx",
   fields: {
     title: {
       type: "string",
@@ -33,40 +47,28 @@ export const DocPage = defineDocumentType(() => ({
       description:
         "Optionally provide a string to override the section. By default it uses the parent directory names and tries to match them to a section file.",
     },
-    slug: {
-      type: "string",
-      description:
-        "Optionally provide a string to override the slug. By default it uses the directory structure.",
+    order: {
+      type: "number",
+      description: "The order of the page in the navigation.",
+	  required: true,
     },
-	order: {
-		type: "number",
-		description: "The order of the page in the navigation."
-	}
   },
   computedFields: {
     slug: {
       type: "string",
-      resolve: (post) => {
-		let slug = post.slug || post._raw.flattenedPath.replace(/files\/?/, "");
-
-		if (slug.includes('/index')) slug = slug.replace(/\/index$/, '');
-
-		return slug;
-	  },
+      resolve: (post) => post._raw.flattenedPath.replace(/files\/?/, ""),
     },
     section: {
-      type: "reference",
-      resolve: (post) => {
-		let section = post.section || post._raw.sourceFileDir.replace(/files\/?/, "");
-		return section
-	  },
-      of: Section,
-	  embedDocument: true
+      type: "string",
+      resolve: (post) => post._raw.sourceFileDir.replace(/files\/?/, ""),
     },
   },
 }));
 
 export default makeSource({
-	contentDirPath: 'content', 
-	documentTypes: [DocPage],
-})
+  contentDirPath: "content",
+  documentTypes: [DocPage, Section],
+  mdx: {
+    remarkPlugins: [remarkMdxDisableExplicitJsx, remarkGfm],
+  },
+});

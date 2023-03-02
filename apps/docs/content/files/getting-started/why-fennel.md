@@ -1,4 +1,5 @@
 ---
+title: 'Why Fennel?'
 order: 1
 ---
 
@@ -26,19 +27,19 @@ This is where Fennel comes in. Fennel is a modern feature engineering platform t
 
 * **Authoring** - features & pipeline authoring in Python using Pandas and other familiar libraries, instead of custom DSLs or YAML configs which are "sufficient" until they are not.
 * **Powerful join capabilities** - do powerful joins (even on streaming data!) so you don't need to denormalize/enrich your data every time you add new features
-* **Data Connectors –** pre-built data connectors to ingest data from batch and streaming sources like Postgres, S3, Snowflake, BigQuery, Kafka, and more.
+* **Data Connectors** - pre-built data connectors to ingest data from batch and streaming sources like Postgres, S3, Snowflake, BigQuery, Kafka, and more.
 
 ### Power
 
-* **Realtime –** support real-time features with minimum lag between the time an event is ingested and when feature values are updated as a result.
+* **Realtime** - support real-time features with minimum lag between the time an event is ingested and when feature values are updated as a result.
 * **Blazing Fast** – support high-throughput low-latency reads (p99 of single digit millisecond)
 * **Horizontally scalable** - horizontally scale to billions of events and feature reads per day
 
 ### Quality
 
-* **Best engineering practices** - **** native support for **** unit & integration testing even for complex pipelines and features and CI/CD
+* **Best engineering practices** - native support for unit & integration testing even for complex pipelines and features and CI/CD
 * **Focus on correctness** - all code assets are versioned and/or immutable to prevent accidental changes, everything is strongly typed despite being Python native
-* **Data quality checks \[coming soon]** - **** inbuilt support for specifying/tracking data expectations and drift monitoring
+* **Data quality checks \[coming soon]** - inbuilt support for specifying/tracking data expectations and drift monitoring
 
 ### Operations
 

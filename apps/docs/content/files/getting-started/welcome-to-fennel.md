@@ -1,4 +1,5 @@
 ---
+title: 'Welcome to Fennel'
 description: The modern realtime feature engineering platform
 order: 0
 ---
