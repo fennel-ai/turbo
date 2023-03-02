@@ -1,9 +1,10 @@
 ---
 title: Overview
 order: 0
+status: wip
 ---
 
-# Overview \[WIP]
+# Overview
 
 Featuresets refer to a group of logically related features where each feature is backed by a Python function that knows how to extract it. A featureset is written as a Python class annotated with `@featureset` decorator. A single application will typically have many featuresets.&#x20;
 

@@ -1,9 +1,10 @@
 ---
 title: Operators
 order: 4
+status: wip
 ---
 
-# Operators \[WIP]
+# Operators
 
 ### Join
 

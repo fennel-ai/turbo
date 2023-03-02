@@ -1,9 +1,10 @@
 ---
 title: Sources
 order: 6
+status: wip
 ---
 
-# Sources \[WIP]
+# Sources
 
 Here is the description of all the external sources supported by Fennel and how to use them:
 

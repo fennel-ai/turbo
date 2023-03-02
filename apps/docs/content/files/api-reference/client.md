@@ -1,9 +1,10 @@
 ---
 title: Client
 order: 0
+status: wip
 ---
 
-# Client \[WIP]
+# Client
 
 Fennel Client has the following methods on it:
 
