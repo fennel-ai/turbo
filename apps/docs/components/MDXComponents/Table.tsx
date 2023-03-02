@@ -1,6 +1,6 @@
 import { Children, ReactElement } from "react";
 import styled from '@emotion/styled';
-import { get } from "styles/utils";
+import { get, media } from "styles/utils";
 
 const Root = styled.table`
 	display: block;
@@ -9,10 +9,27 @@ const Root = styled.table`
 	border-collapse: separate;
 	margin: 1rem 0 2rem 0;
 
+	tr {
+		display: flex;
+
+		${media('sm')} {
+			display: table-row;
+		}
+	}
+
+	th, td {
+		min-width: 50%;
+
+		${media('sm')} {
+			min-width: unset;
+		}
+	}
+
 	& thead {
+		box-shadow: 0px 2px 0px ${get("border")};
+		
 		tr {
 			text-align: left;
-			box-shadow: 0px 2px 0px ${get("border")};
 
 			th {
 				padding: 1rem;
