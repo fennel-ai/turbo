@@ -1,20 +1,20 @@
 import { useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allDocPages, allSections } from 'contentlayer/generated';
+import { allDocPages, allSections, DocPage, Section } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
-import { getNavigation } from "lib/utils";
+import { getNavigation, NavigationTree } from "lib/utils";
 
 type Props = {
-	page: any,
-	navigation: any,
-	section: any,
+	page: Partial<DocPage>,
+	navigation: NavigationTree,
+	section: Section,
 	code: string,
 }
 
-export default function Page({ page, navigation, section, code }: Props) {
+export default function DocumentationPage({ page, navigation, section, code }: Props) {
 	const ctxValue = useMemo(() => ({
 		page,
 		section,
@@ -35,7 +35,13 @@ export default function Page({ page, navigation, section, code }: Props) {
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const { params } = ctx;
 	const slug = (params!.slug as string[]).join('/');
-	const { body, description = "", section, title = "", order } = allDocPages.find((page) => page.slug === slug)!;
+	const { 
+		body, 
+		description = "", 
+		section, 
+		title, 
+		order 
+	} = allDocPages.find((page) => page.slug === slug)!;
 
 	return {
 		props: {

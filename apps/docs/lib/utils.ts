@@ -2,12 +2,6 @@ import { allDocPages, allSections, DocPage, Section } from "contentlayer/generat
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 
-export type ManifestPage = {
-	title: string,
-	slug: string,
-	content: string,
-}
-
 export type NavigationPage = {
 	title: string,
 	slug: string,
