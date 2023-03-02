@@ -1,6 +1,7 @@
 ---
 title: Drift Monitoring
 order: 2
+status: 'published'
 ---
 
 # Drift Monitoring

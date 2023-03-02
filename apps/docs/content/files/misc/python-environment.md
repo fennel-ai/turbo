@@ -1,6 +1,7 @@
 ---
 title: Python Environment
 order: 0
+status: 'published'
 ---
 
 # Python Environment

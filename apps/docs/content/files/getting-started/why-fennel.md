@@ -1,6 +1,7 @@
 ---
 title: 'Why Fennel?'
 order: 1
+status: 'published'
 ---
 
 # Why Fennel?

@@ -1,6 +1,7 @@
 ---
 title: CI/CD Workflows
 order: 2
+status: 'published'
 ---
 
 # CI/CD Workflows

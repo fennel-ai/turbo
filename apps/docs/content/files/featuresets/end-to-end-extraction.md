@@ -1,6 +1,7 @@
 ---
 title: End to End Extraction
 order: 1
+status: 'published'
 ---
 
 # End to End Extraction

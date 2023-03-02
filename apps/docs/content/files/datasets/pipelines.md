@@ -1,6 +1,7 @@
 ---
 title: 'Pipelines'
 order: 3
+status: 'published'
 ---
 
 # Pipelines

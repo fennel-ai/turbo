@@ -1,6 +1,7 @@
 ---
 title: 'Concepts'
 order: 0
+status: 'published'
 ---
 
 # Concepts

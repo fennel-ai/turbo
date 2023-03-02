@@ -1,6 +1,7 @@
 ---
 title: Lifecycle Management
 order: 5
+status: 'published'
 ---
 
 # Lifecycle Management

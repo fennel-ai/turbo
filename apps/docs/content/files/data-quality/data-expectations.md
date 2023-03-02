@@ -1,6 +1,7 @@
 ---
 title: Data Expectations
 order: 0
+status: 'published'
 ---
 
 # Data Expectations

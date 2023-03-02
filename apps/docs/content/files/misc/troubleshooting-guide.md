@@ -1,6 +1,7 @@
 ---
 title: Troubleshooting Guide
 order: 1
+status: 'published'
 ---
 
 # Troubleshooting Guide

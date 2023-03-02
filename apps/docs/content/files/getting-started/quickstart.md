@@ -1,6 +1,7 @@
 ---
 title: 'Quickstart'
 order: 3
+status: 'published'
 ---
 # Quickstart
 

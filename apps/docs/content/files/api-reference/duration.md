@@ -1,6 +1,7 @@
 ---
 title: Duration
 order: 2
+status: 'published'
 ---
 
 # Duration

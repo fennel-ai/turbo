@@ -1,6 +1,7 @@
 ---
 title: 'Deployment Model'
 order: 1
+status: 'published'
 ---
 
 # Deployment Model

@@ -1,6 +1,7 @@
 ---
 title: 'Architecture'
 order: 2
+status: 'published'
 ---
 
 # Architecture

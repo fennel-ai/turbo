@@ -1,6 +1,7 @@
 ---
 title: Data Types
 order: 3
+status: 'published'
 ---
 
 # Data Types

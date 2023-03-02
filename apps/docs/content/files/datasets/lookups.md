@@ -2,11 +2,12 @@
 title: 'Lookups'
 order: 2
 description: The bridge between read and write paths
+status: 'published'
 ---
 
 # Lookups
 
-As described in [Concepts Overview](../../../overview/concepts/), Datasets updates are continuously computed and stored on the write path as new rows become available. But for all this data to be useful in feature engineering, feature extractors, which run on the read path, need to be able to read the data. Some sort of bridge is needed between the read path and the write path.&#x20;
+As described in [Concepts Overview](/overview/concepts), Datasets updates are continuously computed and stored on the write path as new rows become available. But for all this data to be useful in feature engineering, feature extractors, which run on the read path, need to be able to read the data. Some sort of bridge is needed between the read path and the write path.&#x20;
 
 That is where dataset lookups come in. The `lookup` function, as the name specifies, is used to lookup a dataset row for the given value of all the key fields. Let's look at an example:
 

@@ -1,6 +1,7 @@
 ---
 title: REST API
 order: 1
+status: 'published'
 ---
 
 # REST API

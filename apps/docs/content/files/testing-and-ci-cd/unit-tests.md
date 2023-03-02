@@ -1,6 +1,7 @@
 ---
 title: Unit Tests
 order: 0
+status: 'published'
 ---
 
 # Unit Tests

@@ -1,6 +1,7 @@
 ---
 title: Lifecycle Monitoring
 order: 1
+status: 'published'
 ---
 
 # Lifecycle Management

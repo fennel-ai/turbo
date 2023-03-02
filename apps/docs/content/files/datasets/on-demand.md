@@ -1,6 +1,7 @@
 ---
 title: 'On Demand'
 order: 5
+status: 'published'
 ---
 
 # On Demand

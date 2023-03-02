@@ -1,6 +1,7 @@
 ---
 title: 'Cost Optimizations'
 order: 4
+status: 'published'
 ---
 
 # Cost Optimizations

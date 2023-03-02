@@ -1,6 +1,7 @@
 ---
 title: Aggregations
 order: 5
+status: 'published'
 ---
 
 # Aggregations

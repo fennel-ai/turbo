@@ -1,6 +1,7 @@
 ---
 title: Composite Features
 order: 4
+status: 'published'
 ---
 
 # Composite Features

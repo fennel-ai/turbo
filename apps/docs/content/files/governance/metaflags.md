@@ -1,6 +1,7 @@
 ---
 title: Metaflags
 order: 1
+status: 'published'
 ---
 
 # Metaflags

@@ -1,6 +1,7 @@
 ---
 title: 'Installation'
 order: 2
+status: 'published'
 ---
 
 # Installation

@@ -1,6 +1,7 @@
 ---
 title: Reading Datasets
 order: 2
+status: 'published'
 ---
 
 # Reading Datasets

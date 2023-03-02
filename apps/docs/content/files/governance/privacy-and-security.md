@@ -1,6 +1,7 @@
 ---
 title: Privacy & Security
 order: 0
+status: 'published'
 ---
 
 # Privacy & Security
