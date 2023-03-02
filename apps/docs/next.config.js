@@ -1,8 +1,4 @@
-import { withContentlayer } from 'next-contentlayer';
-
-// const gitbook = withGitbook({
-// 	token: process.env.GITHUB_TOKEN,
-// });
+const { withContentlayer } = require('next-contentlayer');
 
 const nextConfig = {
   basePath: "/docs",
@@ -37,4 +33,4 @@ const nextConfig = {
   },
 };
 
-export default withContentlayer(nextConfig)
+module.exports = withContentlayer(nextConfig)
