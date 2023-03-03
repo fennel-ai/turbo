@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
 import { IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
-import Logo from 'ui/icons/Logo.svg';
+import Logo from 'ui/icons/logo.svg';
 import { media } from 'styles/utils';
 
 import { useModalPresence } from 'hooks/useModalPresence';
