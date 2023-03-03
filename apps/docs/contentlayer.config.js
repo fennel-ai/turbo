@@ -14,17 +14,13 @@ const ExampleGroup = defineDocumentType(() => ({
   filePathPattern: "examples/**/*.json",
   contentType: "data",
   fields: {
-    id: {
-      type: "json",
-      description: "The id of the example group.",
-    },
     snippets: {
       type: "json",
       description: "key value map of snippet id to snippet content.",
     },
   },
   computedFields: {
-    slug: {
+    id: {
       type: "string",
       resolve: (example) => {
         return example._raw.flattenedPath.replace(/examples\/?/, "");

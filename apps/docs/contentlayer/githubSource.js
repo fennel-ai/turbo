@@ -38,8 +38,8 @@ const githubSource =
 			const str = await fs.readFile(pyfile, 'utf8');
 			const matches = str.matchAll(DOCSNIP_REGEX);
 
+			// we nest snippets here because we add computed fields to this top-level object in the contentlayer config.
 			let data = {
-				id: slug.replace(`${CONTENT_DIR}/`, ""),
 				snippets: {}
 			};
 			for (const [_, id, content] of matches) {
