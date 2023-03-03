@@ -1,9 +1,16 @@
+import fs from 'fs-extra';
+import path from 'node:path';
 import runBashCommand from "./runBashCommand";
 
 // Returns a sync function that pulls content from a GitHub repo, and optionally polls for changes.
 const githubSource = 
 	(REPO_URL, CONTENT_DIR, POLL) => 
 	async () => {
+		if (process.env.MODE === 'EDIT') {
+			await fs.ensureDir(path.join(process.cwd(), CONTENT_DIR));
+			return () => {};
+		};
+
 		let cancelled = false;
 		let syncInterval;
 
