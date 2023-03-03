@@ -1,6 +1,7 @@
-import { spawn } from "node:child_process";
 import { defineDocumentType } from "contentlayer/source-files";
 import { makeSource } from "contentlayer/source-remote-files";
+import githubSource from "./contentlayer/githubSource";
+
 import remarkGfm from "remark-gfm";
 import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from "remark-directive";
@@ -73,60 +74,12 @@ export const DocPage = defineDocumentType(() => ({
   },
 }));
 
-const runBashCommand = (command) =>
-  new Promise((resolve, reject) => {
-    const child = spawn(command, [], { shell: true });
-
-    child.stdout.setEncoding("utf8");
-    child.stdout.on("data", (data) => process.stdout.write(data));
-
-    child.stderr.setEncoding("utf8");
-    child.stderr.on("data", (data) => process.stderr.write(data));
-
-    child.on("close", function (code) {
-      if (code === 0) {
-        resolve(void 0);
-      } else {
-        reject(new Error(`Command failed with exit code ${code}`));
-      }
-    });
-  });
-
 const REPO_URL = "https://github.com/fennel-ai/documentation-content.git";
 const CONTENT_DIR = ".content";
 const POLL = 0; // 1000 * 60
 
-const syncContent = async () => {
-  let cancelled = false;
-  let syncInterval;
-
-  const syncLoop = async () => {
-    console.log(`Pulling content from ${REPO_URL}`);
-
-    await runBashCommand(`
-      if [ -d  "${CONTENT_DIR}" ];
-        then
-          cd "${CONTENT_DIR}"; git pull;
-        else
-          git clone --depth 1 --single-branch ${REPO_URL} ${CONTENT_DIR};
-      fi
-    `);
-
-    if (cancelled || !POLL) return;
-
-    syncInterval = setTimeout(syncLoop, 3000);
-  };
-
-  await syncLoop();
-
-  return () => {
-    cancelled = true;
-    clearTimeout(syncInterval);
-  };
-};
-
 export default makeSource({
-  syncFiles: syncContent,
+  syncFiles: githubSource(REPO_URL, CONTENT_DIR, POLL),
   contentDirPath: CONTENT_DIR,
   documentTypes: [DocPage, Section],
   contentDirExclude: ['examples', '.git'],
