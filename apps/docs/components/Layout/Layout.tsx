@@ -105,6 +105,8 @@ const Root = styled(Container)`
 
 		ul, ol {
 			padding-inline-start: 2rem;
+			margin-top: 0;
+			margin-bottom: 2rem;
 		}
 
 		li {
