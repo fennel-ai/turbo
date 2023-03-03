@@ -75,7 +75,7 @@ export const DocPage = defineDocumentType(() => ({
 }));
 
 const REPO_URL = "https://github.com/fennel-ai/documentation-content.git";
-const CONTENT_DIR = ".content";
+const CONTENT_DIR = "_content";
 const POLL = 0; // 1000 * 60
 
 export default makeSource({
