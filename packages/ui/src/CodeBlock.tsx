@@ -2,7 +2,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import styled from '@emotion/styled';
 import CopyIcon from '../icons/copy.svg';
 
-import { get } from 'styles/utils';
+import { get, media } from 'styles/utils';
 
 type Props = {
 	className?: string,
@@ -16,10 +16,14 @@ type Props = {
 const Root = styled.div<{ toolbar?: boolean }>`
 	background-color: ${({ theme }) => theme.syntax.plain.background};
 	color: ${({ theme }) => theme.syntax.plain.foreground};
-	box-shadow: ${({ theme }) => theme['code-block'].shadow};
-	border-radius: ${({ theme }) => theme['code-block'].radius};
 	overflow: hidden;
 	position: relative;
+	border-radius: 0;
+
+	${media('sm')} {
+		box-shadow: ${({ theme }) => theme['code-block'].shadow};
+		border-radius: ${({ theme }) => theme['code-block'].radius};
+	}
 
 	code[class*="language-"],
 	pre {
@@ -57,12 +61,6 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	:not(pre)>code[class*="language-"],
 	pre {
 		background: ${({ theme }) => theme.syntax.plain.background}
-	}
-
-	/* Inline code */
-	:not(pre)>code[class*="language-"] {
-		padding: .1em;
-		border-radius: .3em;
 	}
 
 

@@ -49,33 +49,32 @@ const Root = styled(Container)`
 			color: ${({ theme }) => theme.text};
 			font-family: ${addingtonCF.style.fontFamily}, serif;
 			font-weight: 500;
-		}
-
-		h2, h3 {
-			margin-top: 2rem;
-
-			${media('sm')} {
-				margin-top: 2.5rem;
-			}
+			margin: 0;
 		}
 
 		h2 {
 			font-size: 2rem;
 			line-height: 2.5rem;
+			margin-top: 2rem;
+			margin-bottom: 1rem;
 
 			${media('sm')} {
 				font-size: 2.25rem;
-				line-height: 2.5rem
+				line-height: 2.5rem;
+				margin-top: 2.5rem;
 			}
 		}
 		
 		h3 {
 			font-size: 1.5rem;
 			line-height: 2rem;
+			margin-top: 1.5rem;
+			margin-bottom: 1rem;
 
 			${media('sm')} {
 				font-size: 1.75rem;
-				line-height: 2.25rem
+				line-height: 2.25rem;
+				margin-top: 2rem;
 			}
 		}
 
@@ -112,7 +111,7 @@ const Root = styled(Container)`
 			font-size: 1.125rem;
 			line-height: 2rem;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
-			margin-bottom: 1.5rem;
+			margin-bottom: 0.75rem;
 
 			${media('sm')} {
 				font-size: 1.25rem;
