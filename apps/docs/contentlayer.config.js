@@ -9,6 +9,30 @@ import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
 import remarkAdmonitions from "./plugins/remark-admonitions";
 
+const ExampleGroup = defineDocumentType(() => ({
+  name: "ExampleGroup",
+  filePathPattern: "examples/**/*.json",
+  contentType: "data",
+  fields: {
+    id: {
+      type: "json",
+      description: "The id of the example group.",
+    },
+    snippets: {
+      type: "json",
+      description: "key value map of snippet id to snippet content.",
+    },
+  },
+  computedFields: {
+    slug: {
+      type: "string",
+      resolve: (example) => {
+        return example._raw.flattenedPath.replace(/examples\/?/, "");
+      },
+    },
+  },
+}));
+
 const Section = defineDocumentType(() => ({
   name: "Section",
   filePathPattern: "sections/**/*.mdx",
@@ -76,13 +100,12 @@ export const DocPage = defineDocumentType(() => ({
 
 const REPO_URL = `https://${process.env.GITHUB_TOKEN}:@github.com/fennel-ai/documentation-content.git`;
 const CONTENT_DIR = "_content";
-const POLL = 0; // 1000 * 60
 
 export default makeSource({
-  syncFiles: githubSource(REPO_URL, CONTENT_DIR, POLL),
+  syncFiles: githubSource(REPO_URL, CONTENT_DIR),
   contentDirPath: CONTENT_DIR,
-  documentTypes: [DocPage, Section],
-  contentDirExclude: ['examples', '.git'],
+  documentTypes: [DocPage, Section, ExampleGroup],
+  contentDirExclude: [".git", ".gitignore", "docker-compose.yml"],
   mdx: {
     remarkPlugins: [
       remarkMdxDisableExplicitJsx,
