@@ -1,57 +1,63 @@
-import fs from 'fs-extra';
-import path from 'node:path';
-import { globby } from 'globby';
+import fs from "fs-extra";
+import path from "node:path";
+import { globby } from "globby";
+import { makeSource } from "contentlayer/source-remote-files";
+
+// Remark/Rehype plugins
+import remarkGfm from "remark-gfm";
+import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
+import remarkDirective from "remark-directive";
+import rehypeImgSize from "rehype-img-size";
+import rehypeSlug from "rehype-slug";
+import remarkAdmonitions from "./plugins/remark-admonitions";
+
+// Content types
+import { DocPage } from "./content_types/DocPage";
+import { Section } from "./content_types/Section";
+import { ExampleGroup } from "./content_types/ExampleGroup";
 
 import runBashCommand from "./runBashCommand";
+import buildExamples from './buildExamples';
 
-// captures text between # docsnip <name> and # /docsnip
-// in the python test files we have in the content repo.
-const DOCSNIP_REGEX = /# docsnip\s+(\w+)\s*\n([\s\S]*?)# \/docsnip/g;
+const REPO_URL = `https://${process.env.GITHUB_TOKEN}:@github.com/fennel-ai/documentation-content.git`;
+const CONTENT_DIR = "_content";
 
-const githubSource = 
-	(REPO_URL, CONTENT_DIR) => 
-	async () => {
-		if (process.env.MODE === 'EDIT') {
-			console.log(`Skipping content pull whilst editing locally...`);
-			await fs.ensureDir(path.join(process.cwd(), CONTENT_DIR));
-		} else {
-			console.log(`Pulling content from ${REPO_URL}`);
-			
-			await runBashCommand(`
-				if [ -d  "${CONTENT_DIR}" ];
-					then
-					cd "${CONTENT_DIR}"; git pull;
-					else
-					git clone --depth 1 --single-branch ${REPO_URL} ${CONTENT_DIR};
-				fi
-				`);
-		}
+const githubSource = async () => {
+  if (process.env.MODE === "EDIT") {
+    console.log(`Skipping content pull whilst editing locally...`);
+    await fs.ensureDir(path.join(process.cwd(), CONTENT_DIR));
+  } else {
+    console.log(`Pulling content from ${REPO_URL}`);
 
-		/// This can definitely be improved, but essentially we glob for all of the .py files in the content directory,
-		/// then iterate over them checking for docsnip comments, and pulling them out into a JSON file so that we 
-		/// can access them through contentlayer in the docs pages.
-		const pyfiles = await globby([`${CONTENT_DIR}/**/*.py`]);
+    await runBashCommand(`
+		if [ -d  "${CONTENT_DIR}" ];
+			then
+			cd "${CONTENT_DIR}"; git pull;
+			else
+			git clone --depth 1 --single-branch ${REPO_URL} ${CONTENT_DIR};
+		fi
+	`);
+  }
 
-		for await (const pyfile of pyfiles) {
-			const slug = pyfile.split(".py")[0];
-			
-			const str = await fs.readFile(pyfile, 'utf8');
-			const matches = str.matchAll(DOCSNIP_REGEX);
+  const exampleFiles = await globby([`${CONTENT_DIR}/examples/**/*.py`]);
+  await buildExamples(exampleFiles);
 
-			// we nest snippets here because we add computed fields to this top-level object in the contentlayer config.
-			let data = {
-				snippets: {}
-			};
-			for (const [_, id, content] of matches) {
-				data.snippets[id] = content;
-			}
+  // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
+  return () => {};
+};
 
-			if (Object.keys(data.snippets).length > 0) {
-				await fs.writeFile(path.join(slug + ".json"), JSON.stringify(data));
-			}
-		}
-		// NOOP We don't need to do anything as we're not subscribing to any data changes right now.
-		return () => {};
-	};
-
-export default githubSource
+export default makeSource({
+  syncFiles: githubSource,
+  contentDirPath: CONTENT_DIR,
+  documentTypes: [DocPage, Section, ExampleGroup],
+  contentDirExclude: [".git", ".gitignore", "docker-compose.yml", "Makefile"],
+  mdx: {
+    remarkPlugins: [
+      remarkMdxDisableExplicitJsx,
+      remarkGfm,
+      remarkDirective,
+      remarkAdmonitions,
+    ],
+    rehypePlugins: [[rehypeImgSize, { dir: "public" }], rehypeSlug],
+  },
+});
