@@ -13,7 +13,7 @@ import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
 import { useShell } from "context/Shell";
 import { AnimatePresence } from "framer-motion";
-import { addingtonCF } from "pages/_app";
+import { satoshiVariable } from "pages/_app";
 
 type Props = {
 	children: ReactNode,
@@ -47,34 +47,49 @@ const Root = styled(Container)`
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.text};
-			font-family: ${addingtonCF.style.fontFamily}, serif;
+			font-family: ${satoshiVariable.style.fontFamily}, serif;
 			font-weight: 500;
 			margin: 0;
+
+			letter-spacing: -0.5px;
+
+			${media('md')} {
+				letter-spacing: -0.75px;
+			}
 		}
 
 		h2 {
-			font-size: 2rem;
-			line-height: 2.5rem;
+			font-size: 1.5rem;
+			line-height: 2rem;
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
 			margin-top: 2rem;
 			margin-bottom: 1rem;
 
-			${media('sm')} {
-				font-size: 2.25rem;
+			${media('md')} {
+				font-size: 2rem;
 				line-height: 2.5rem;
-				margin-top: 2.5rem;
+			}
+
+			&:not(:first-of-type) {
+				margin-top: 2rem;
+
+				${media('md')} {
+					margin-top: 2.5rem;
+				}
 			}
 		}
 		
 		h3 {
-			font-size: 1.5rem;
-			line-height: 2rem;
-			margin-top: 1.5rem;
+			font-size: 1.25rem;
+			line-height: 1.5rem;
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.extrabold};
+			margin-top: 1rem;
 			margin-bottom: 1rem;
 
 			${media('sm')} {
-				font-size: 1.75rem;
-				line-height: 2.25rem;
-				margin-top: 2rem;
+				font-size: 1.5rem;
+				line-height: 2rem;
+				margin-top: 1.5rem;
 			}
 		}
 
@@ -96,6 +111,12 @@ const Root = styled(Container)`
 			text-decoration: none;
 			color: ${({ theme }) => theme.primary.accent};
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.bold};
+		}
+
+		hr {
+			background-color: rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+			border: none;
+			height: 2px;
 		}
 
 		img {

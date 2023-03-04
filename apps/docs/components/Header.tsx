@@ -26,7 +26,10 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 1px solid ${get('border')};
+	
+	${media('lg')} {
+		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	}
 `;
 
 const SearchWrapper = styled.div`

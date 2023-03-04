@@ -5,14 +5,18 @@ import { CodeBlock } from "ui";
 import { allExampleGroups } from 'contentlayer/generated';
 
 const Root = styled(CodeBlock)`
-	margin: 2rem -1.5rem 3rem -1.5rem;
+	margin: 1rem -1rem 3rem -1rem;
+
+	${media('2xs')} {
+		margin: 1rem -1.5rem 3rem -1.5rem;
+	}
 
 	${media('xs')} {
-		margin: 2rem -3rem 3rem -3rem;
+		margin: 1.5rem -3rem 3rem -3rem;
 	}
 	
 	${media('sm')} {
-		margin: 2rem 0 3rem 0;
+		margin: 1.5rem 0 3rem 0;
 	}
 `
 

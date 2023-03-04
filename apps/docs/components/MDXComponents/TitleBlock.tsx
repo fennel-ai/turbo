@@ -4,25 +4,34 @@ import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
-	border-bottom: 1px solid ${get('border')};
-	padding-bottom: 2rem;
-	margin-bottom: 2rem;
+	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	padding-bottom: 1.5rem;
+	margin-bottom: 1.5rem;
+	
+	${media('md')} {
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+	}
 `;
 
 const Title = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	gap: 0.25rem;
+	gap: 0.5rem;
+
+	${media('md')} {
+		gap: 0.25rem;
+	}
 
 	& h1 {
 		position: relative;
 		margin: 0;
-		font-weight: 500;
-		font-size: 2.5rem;
-		line-height: 2.5rem;
-
-		${media('sm')} {
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+		font-size: 2rem;
+		line-height: 2rem;
+		
+		${media('md')} {
 			font-size: 3rem;
 			line-height: 3rem;
 		}
@@ -32,11 +41,11 @@ const Title = styled.div`
 const Description = styled.p`
 	margin: 0;
 	font-size: 1.125rem;
-	line-height: 2rem;
-	font-variation-settings: "wght" 600;
+	line-height: 1.75rem;
+	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
 	color: ${get('text-alt')};
-	
-	${media('sm')} {
+
+	${media('md')} {
 		font-size: 1.25rem;
 		line-height: 2.25rem;
 	}
@@ -53,9 +62,9 @@ const SectionTitle = styled.div`
 
 	& > p {
 		margin: 0;
-		font-size: 1rem;
+		font-size: 1.25rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" 700;
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
 		color: ${get('primary.accent')}
 	}
 `;

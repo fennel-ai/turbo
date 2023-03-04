@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 	gap: 0.5rem;
 	color: ${get('text-alt')};
 	font-variation-settings: "wght" 700;
-	border-bottom: 1px solid ${get('border')};
+	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
 
 	${media('lg')} {
 		display: none;
