@@ -22,7 +22,7 @@ const fetchContent = (token, dir) =>
       "GET /repos/{owner}/{repo}/tarball/{?ref}",
       {
         owner: "fennel-ai",
-        repo: "documentation-content",
+        repo: "documentation",
         ref: "main",
       }
     );
