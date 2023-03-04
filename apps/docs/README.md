@@ -1,30 +1,29 @@
-## Getting Started
+# Fennel Docs
 
-First, run the development server:
+!TODO
 
-```bash
-yarn dev
+## Contributing
+
+## Local Development w/ Symlinked Content
+
+First if you're in VS Code (can maybe do similar with other editors?) I'd recommend opening the turborepo, then going to `File > Add Folder to Workspace` and opening the [`documentation`](https://github.com/fennel-ai/documentation-content) repo from wherever it is locally on your machine.
+
+> You can now do `File > Save Workspace As...` to save the workspace setup as-is so you can come back to it.
+
+**NOTE**: You don't have to do any of this if you just want to edit the content and not work on any code for the UI of the docs. See the [`documentation`](https://github.com/fennel-ai/documentation-content) repo. This can be useful though if, for example, you're working on a new markdown block component and want to test it out with hot-reloading.
+
+Now open your terminal, `cd` to the turborepo and run:
+
+```sh
+# From the root of the turborepo: 
+cd apps/docs && \
+ln -sFf ~/Code/documentation _content
 ```
+> Note:
+> replace `~/Code/documentation` with the path to the documentation repo on your machine
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Make sure you don't already have a `_content` folder first!**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+This will symlink your local copy of the documentation content into the `_content` folder, and any updates made will trigger Next to hot-reload.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Finally, in your `.env` set `MODE=EDIT` so that we skip the network fetch for content.
