@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 
 // captures text between # docsnip <name> and # /docsnip
 // in the python test files we have in the content repo.
-const DOCSNIP_REGEX = /# docsnip\s+(\w+)\s*\n([\s\S]*?)# \/docsnip/g;
+const DOCSNIP_REGEX = /# docsnip\s(.*?)\s*\n([\s\S]*?)# \/docsnip/u;
 
 const buildExamples = async (files) => {
   /// This can definitely be improved, but essentially we glob for all of the .py files in the content directory,
@@ -10,11 +10,9 @@ const buildExamples = async (files) => {
   /// can access them through contentlayer in the docs pages.
 
   for await (const file of files) {
-    const slug = file.split(".py")[0];
-
 	// Read the python file as a string and test with regex for docsnip comments.
     const str = await fs.readFile(file, "utf8");
-    const matches = str.matchAll(DOCSNIP_REGEX);
+    const matches = DOCSNIP_REGEX.exec(str);
 
 	if (matches.length) {
 		// we nest snippets here because we add computed fields to this top-level object in the contentlayer config.
@@ -22,12 +20,14 @@ const buildExamples = async (files) => {
 			snippets: {},
 		};
 
-		for (const [_, id, content] of matches) {
-			data.snippets[id] = content;
-		}
+		const [_, id, content] = matches;
+		data.snippets[id] = content;
 
 		// Output a JSON file with all of the snippets, namespaced by the filename and snippet id
-		await fs.writeFile(path.join(slug + ".json"), JSON.stringify(data));
+		await fs.writeFile(
+			file.replace('.py', '.json'),
+			JSON.stringify(data)
+		);
 	}
   }
 };
