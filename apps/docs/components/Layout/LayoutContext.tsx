@@ -1,16 +1,12 @@
-import type { DocPage, Section } from "contentlayer/generated";
-import { NavigationPage, NavigationSection } from "lib/utils";
 import { createContext } from "react";
+import type { NavigationPage, NavigationSection } from "lib/utils";
 
 type LayoutContext = {
-	page: Partial<DocPage>, 
-	frontmatter?: Record<string, string>,
-	section: Section, 
+	page: NavigationPage, 
+	section: NavigationSection, 
 };
 
 export default createContext<LayoutContext>({
-	frontmatter: {} as Record<string, string>,
-	page: {} as Partial<DocPage>,
-	section: {} as Section
-	,
+	page: {} as NavigationPage,
+	section: {} as NavigationSection
 });

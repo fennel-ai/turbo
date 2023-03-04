@@ -1,78 +1,48 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import fs from "fs-extra";
+import path from "node:path";
+import { globby } from "globby";
+import { makeSource } from "contentlayer/source-remote-files";
+
+// Remark/Rehype plugins
 import remarkGfm from "remark-gfm";
 import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
-import remarkDirective from 'remark-directive';
+import remarkDirective from "remark-directive";
 import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
-import remarkAdmonitions from "./plugins/remark-admonitions";
+import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
-const Section = defineDocumentType(() => ({
-  name: "Section",
-  filePathPattern: "sections/**/*.mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    order: {
-      type: "number",
-      required: true,
-    },
-  },
-  computedFields: {
-    slug: {
-      type: "string",
-      resolve: (section) =>
-        section._raw.flattenedPath.replace(/sections\/?/, ""),
-    },
-  },
-}));
+// Content types
+import { Page } from "./contentlayer/content_types/Page";
+import { ExampleGroup } from "./contentlayer/content_types/ExampleGroup";
 
-export const DocPage = defineDocumentType(() => ({
-  name: "DocPage",
-  filePathPattern: "files/**/*.md",
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      description: "The page title",
-    },
-    status: {
-      type: "enum",
-	  options: ['draft', 'wip', 'published'],
-      description: "Draft pages only appear in Development. WIP pages appear in Production but are marked as incomplete. Published pages are generated in Production and are publicly accessible.",
-	  default: 'draft',
-    },
-    description: {
-      type: "string",
-      description: "The page description",
-    },
-    section: {
-      type: "string",
-      description:
-        "Optionally provide a string to override the section. By default it uses the parent directory names and tries to match them to a section file.",
-    },
-    order: {
-      type: "number",
-      description: "The order of the page in the navigation.",
-	  required: true,
-    },
-  },
-  computedFields: {
-    slug: {
-      type: "string",
-      resolve: (post) => post._raw.flattenedPath.replace(/files\/?/, ""),
-    },
-    section: {
-      type: "string",
-      resolve: (post) => post._raw.sourceFileDir.replace(/files\/?/, ""),
-    },
-  },
-}));
+import buildExamples from "./contentlayer/buildExamples";
+import fetchContent from "./contentlayer/fetchContent";
+import { Config } from "./contentlayer/content_types/Config";
+
+const CONTENT_DIR = "_content";
+
+const githubSource = async () => {
+  	if (process.env.MODE === "EDIT") {
+		console.log(`[Edit Mode]: Content will not be fetched from the content repo`);
+		await fs.ensureDir(path.join(process.cwd(), CONTENT_DIR));
+	} else {
+		console.log(`Pulling content from content repo...`);
+		// replace this with octokit:
+		await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR);
+	}
+
+	const exampleFiles = await globby([`${CONTENT_DIR}/examples/**/*.py`]);
+	await buildExamples(exampleFiles);
+
+  // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
+  return () => {};
+};
 
 export default makeSource({
-  contentDirPath: "content",
-  documentTypes: [DocPage, Section],
+  syncFiles: githubSource,
+  contentDirPath: CONTENT_DIR,
+  documentTypes: [Page, ExampleGroup, Config],
+  contentDirExclude: [".git", ".gitignore", "docker-compose.yml", "Makefile", "./README.md"],
   mdx: {
     remarkPlugins: [
       remarkMdxDisableExplicitJsx,

@@ -2,7 +2,6 @@ import { PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
 import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
-import type { DocPage } from 'contentlayer/generated';
 
 const Root = styled.div`
 	border-bottom: 1px solid ${get('border')};
@@ -62,14 +61,14 @@ const SectionTitle = styled.div`
 `;
 
 export const TitleBlock = ({ children }: PropsWithChildren) => {
-	const { frontmatter, section } = useLayoutContext();
+	const { page, section } = useLayoutContext();
 
 	return (
 		<Root>
-			{section?.title ? <SectionTitle><p>{section.title}</p></SectionTitle> : null}
+			{section.title ? <SectionTitle><p>{section.title}</p></SectionTitle> : null}
 			<Title>
 				<h1>{children}</h1>
-				{frontmatter?.description ? <Description>{frontmatter.description}</Description> : null}
+				{page.description ? <Description>{page.description}</Description> : null}
 			</Title>
 		</Root>
 	)
