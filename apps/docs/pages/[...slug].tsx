@@ -1,16 +1,16 @@
 import { useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { DocPage, Section } from 'contentlayer/generated';
+import { allPages } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
-import { allPages, getNavigation, getPageData, NavigationTree } from "lib/utils";
+import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 
 type Props = {
-	page: Partial<DocPage>,
+	page: NavigationPage,
 	navigation: NavigationTree,
-	section: Section,
+	section: NavigationSection,
 	code: string,
 }
 
@@ -50,11 +50,13 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 
 export const getStaticPaths: GetStaticPaths = () => {
 	return {
-		paths: allPages.map((page) => ({
-			params: {
-				slug: page.slug!.split('/'),
-			}
-		})),
+		paths: allPages
+			.filter(shouldPublish)
+			.map((page) => ({
+				params: {
+					slug: page.slug!.split('/'),
+				}
+			})),
 		fallback: false,
 	}
 }

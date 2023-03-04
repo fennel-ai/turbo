@@ -1,52 +1,47 @@
-import { allDocPages, allSections, DocPage, Section } from "contentlayer/generated";
-import groupBy from 'lodash/groupBy';
-import orderBy from 'lodash/orderBy';
+import { allPages, config, Page } from "contentlayer/generated";
 
 export type NavigationPage = {
-	title: string,
-	slug: string,
-	status: DocPage['status'];
+	description?: string;
+	title: string;
+	slug: string;
+	status: Page['status'];
 }
 
 export type NavigationSection = {
-	title: string,
-	slug: string,
-	order: number,
-	pages: NavigationPage[]
+	title: string;
+	slug: string;
+	pages: NavigationPage[];
 }
 
 export type NavigationTree = NavigationSection[];
 
-export const allPages = process.env.NODE_ENV === 'production' ? allDocPages.filter(page => page.status !== 'draft') : allDocPages;
+export const shouldPublish = (page: Page): boolean => process.env.NODE_ENV !== 'production' || page.status !== 'draft';
 
 /**
- * Returns the navigation JSON to the client-side (created in the WithGitbookDocs plugin)
+ * Returns the navigation tree from the config.yml file in the content directory.
  */
 export const getNavigation = (): NavigationTree => {
-	const pagesBySection: Record<string, DocPage[]> = groupBy(allPages, ({ section }) => section);
+	const { sidebar } = config;
+	return sidebar!.map((section) => ({
+		...section,
+		pages: section.pages.map((slug: string) => {
+			const page = allPages.find((page: Page) => page.slug === slug)!;
+			
+			if (!page) throw new Error(`[config.sidebar]: Could not find page with slug "${slug}" in sidebar config. Make sure that the slug is correct and that the page exists in the "content" directory.`);
 
-	let navigation: NavigationSection[] = Object.entries(pagesBySection).map(([section_slug, pages]) => {
-		const section: Section = allSections.find((s) => s.slug === section_slug)!;
-
-		return {
-			title: section.title,
-			slug: section.slug,
-			order: section.order,
-			pages: orderBy(pages, 'order').map((page) => ({
-				title: page.title || "Page",
+			return {
+				title: page.title,
 				slug: page.slug,
 				status: page.status,
-			})),
-		}
-	});
-
-	return orderBy(navigation, 'order')
+			}
+		}).filter(shouldPublish)
+	}));
 }
 
 /**
  * Get the page metadata, section data and markdown code for a given page slug.
  */
-export const getPageData = (pageSlug: string): { code: string, section: Section, page: Partial<DocPage> } => {
+export const getPageData = (pageSlug: string): { code: string, section: NavigationSection, page: NavigationPage } => {
 	const {
 		body,
 		description = "",
@@ -58,7 +53,7 @@ export const getPageData = (pageSlug: string): { code: string, section: Section,
 	
 	return {
 		code: body.code,
-		section: allSections.find((s) => s.slug === section)!,
+		section: config.sidebar!.find((s) => s.slug === section)!,
 		page: {
 			description,
 			title,

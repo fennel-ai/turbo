@@ -12,22 +12,21 @@ import rehypeSlug from "rehype-slug";
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
 // Content types
-import { DocPage } from "./contentlayer/content_types/DocPage";
-import { Section } from "./contentlayer/content_types/Section";
+import { Page } from "./contentlayer/content_types/Page";
 import { ExampleGroup } from "./contentlayer/content_types/ExampleGroup";
 
 import buildExamples from "./contentlayer/buildExamples";
 import fetchContent from "./contentlayer/fetchContent";
+import { Config } from "./contentlayer/content_types/Config";
 
-const REPO_URL = `https://${process.env.GITHUB_TOKEN}:@github.com/fennel-ai/documentation-content.git`;
 const CONTENT_DIR = "_content";
 
 const githubSource = async () => {
   	if (process.env.MODE === "EDIT") {
-		console.log(`Skipping content pull whilst editing locally...`);
+		console.log(`[Edit Mode]: Content will not be fetched from the content repo`);
 		await fs.ensureDir(path.join(process.cwd(), CONTENT_DIR));
 	} else {
-		console.log(`Pulling content from ${REPO_URL}`);
+		console.log(`Pulling content from content repo...`);
 		// replace this with octokit:
 		await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR);
 	}
@@ -42,8 +41,8 @@ const githubSource = async () => {
 export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
-  documentTypes: [DocPage, Section, ExampleGroup],
-  contentDirExclude: [".git", ".gitignore", "docker-compose.yml", "Makefile"],
+  documentTypes: [Page, ExampleGroup, Config],
+  contentDirExclude: [".git", ".gitignore", "docker-compose.yml", "Makefile", "./README.md"],
   mdx: {
     remarkPlugins: [
       remarkMdxDisableExplicitJsx,

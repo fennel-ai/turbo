@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { get } from 'styles/utils';
-import { DocPage } from 'contentlayer/generated';
+import { Page } from 'contentlayer/generated';
 
-const COLOR_MAP: Record<DocPage['status'], string> = {
+const COLOR_MAP: Record<Page['status'], string> = {
 	draft: 'ref.grey.700',
 	wip: 'ref.yellow.600',
 	published: 'ref.green.400'
 }
 
-const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: DocPage['status'] }>`
+const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page['status'] }>`
 	font-size: 1.125rem;
 	line-height: 2rem;
 	color: ${(props) => props.active ? get('primary.accent') : get('text-alt')};

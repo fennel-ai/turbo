@@ -1,13 +1,14 @@
 import { defineDocumentType } from "contentlayer/source-files";
 
-export const DocPage = defineDocumentType(() => ({
-  name: "DocPage",
+export const Page = defineDocumentType(() => ({
+  name: "Page",
   filePathPattern: "pages/**/*.md",
   contentType: "mdx",
   fields: {
     title: {
       type: "string",
       description: "The page title",
+	  required: true
     },
     status: {
       type: "enum",
