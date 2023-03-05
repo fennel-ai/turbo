@@ -10,6 +10,9 @@
       "outputs": []
     },
 	"test": {},
+	"coverage": {
+		"outputs": ["coverage/**"]
+	},
 	"dev": {
 		"dependsOn": ["^dev"],
 		"cache": false

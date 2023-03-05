@@ -11,10 +11,12 @@
 		"build": "tsup",
 		"dev": "tsup --watch",
 		"lint": "eslint *.ts*",
-		"test": "vitest run"
+		"test": "vitest run",
+		"coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.12",
+		"@vitest/coverage-c8": "^0.29.2",
 		"eslint": "7.32.0",
 		"eslint-config-fennel": "workspace:*",
 		"mdast-util-mdx-jsx": "^2.1.2",
