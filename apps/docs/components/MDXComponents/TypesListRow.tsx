@@ -3,12 +3,19 @@ import styled from "@emotion/styled";
 import { media } from "styles/utils";
 
 const Root = styled.div`
+	min-height: 64px;
 	display: grid;
 	grid-template-columns: 1fr;
 	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
 
 	div {
 		padding: 1rem 0;
+		display: flex;
+	}
+
+	code {
+		margin-top: 2px;
+		align-self: flex-start;
 	}
 	
 	${media('xs')} {
@@ -22,6 +29,7 @@ const Content = styled.div`
 		font-size: 1rem;
 		line-height: 1.75rem;
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
+		color: ${({ theme }) => theme['text-alt']};
 	}
 `;
 
