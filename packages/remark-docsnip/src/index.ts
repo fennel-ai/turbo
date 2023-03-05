@@ -4,16 +4,7 @@ import type { MdxJsxAttribute, MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import type { Transformer } from 'unified';
 import { visit, Visitor } from "unist-util-visit";
 
-const fetchSnippet = (file_content: string, snippet_id: string) => {
-  const regex = /# docsnip\s+(\w+)\n([\s\S]+?)# \/docsnip/g;
-  let match;
-
-  while ((match = regex.exec(file_content)) !== null) {
-    if (match[1] === snippet_id) break;
-  }
-
-  return match?.[2];
-};
+import { searchForSnippet } from './searchForSnippet';
 
 export default function docsnip(): Transformer {
   return function transformer(tree): void {
@@ -27,10 +18,14 @@ export default function docsnip(): Transformer {
 			  if (snippet_attr?.value) {
 				  const [file, snippet_id] = (snippet_attr.value as string).split("#");
 
+				  // Create the filename string that we can pass through to the element as an attribute 
+				  // allowing it to be surfaced in the ui.
 				  const filename = path.join("examples", file + ".py");
+
+				  // Get an absolute path to the python file on disk, and read it into a string.
 				  const file_content = readFileSync(path.join(process.cwd(), "_content", filename), "utf8");
 
-				  let code = fetchSnippet(
+				  let code = searchForSnippet(
 					  file_content,
 					  snippet_id
 				  );
