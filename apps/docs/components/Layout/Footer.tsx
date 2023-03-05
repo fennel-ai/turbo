@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import { get, media } from 'styles/utils';
+import { media } from 'styles/utils';
 import { IconButton } from 'ui';
 import TwitterIcon from 'ui/icons/twitter.svg';
 import LinkedInIcon from 'ui/icons/linkedin.svg';
 import GitHubIcon from 'ui/icons/github.svg';
 import Logo from 'ui/icons/logo.svg';
 
-import Container from './Container';
+import Container from 'components/Container';
 
 const Root = styled.footer`
 	border-top: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);

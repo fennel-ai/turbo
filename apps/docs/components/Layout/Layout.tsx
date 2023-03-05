@@ -4,10 +4,8 @@ import { media } from "styles/utils";
 
 import type { NavigationTree } from "lib/utils";
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import MobileToolbar from 'components/MobileToolbar';
-
+import Header from './Header';
+import Footer from './Footer';
 import Navigation from "./Navigation";
 import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
@@ -50,8 +48,11 @@ const Root = styled(Container)`
 			font-family: ${satoshiVariable.style.fontFamily}, serif;
 			font-weight: 500;
 			margin: 0;
-
 			letter-spacing: -0.5px;
+
+			&:first-of-type {
+				margin-top: 0 !important;
+			}
 
 			${media('md')} {
 				letter-spacing: -0.75px;
@@ -181,7 +182,6 @@ const Layout = ({ children, navigation }: Props) => {
 	return (
 		<>
 			<Header />
-			<MobileToolbar />
 			<Root>
 				<Navigation items={navigation} />
 				<AnimatePresence>

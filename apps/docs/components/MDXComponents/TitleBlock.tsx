@@ -4,13 +4,12 @@ import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
-	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
 	padding-bottom: 1.5rem;
-	margin-bottom: 1.5rem;
-	
+
 	${media('md')} {
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
+		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
 	}
 `;
 

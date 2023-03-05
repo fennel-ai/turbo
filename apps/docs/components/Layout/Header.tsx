@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
-import { get, media } from 'styles/utils';
+import { media } from 'styles/utils';
+import { AnimatePresence } from 'framer-motion';
 import { Button, IconButton } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
-import Container from './Container';
-import { DocSearch } from './DocSearch';
-import type { DocSearchHandle } from './DocSearch';
-import Masthead from './Masthead';
-import { AnimatePresence } from 'framer-motion';
-import RequestDemoModal from './RequestDemoModal';
+import Container from 'components/Container';
+import { DocSearch } from 'components/DocSearch';
+import type { DocSearchHandle } from 'components/DocSearch';
+import Masthead from 'components/Masthead';
+import RequestDemoModal from 'components/RequestDemoModal';
+import MobileToolbar from 'components/MobileToolbar';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -17,7 +18,7 @@ const Root = styled(Container)`
 	top: 0;
 	left: 0;
 	z-index: 1;
-	background-color: rgba(255, 255, 255, 0.85);
+	background-color: rgba(255, 255, 255, 0.89);
 	backdrop-filter: blur(16px);
 `;
 
@@ -92,6 +93,7 @@ const Header = () => {
 					<DemoButton label="Request a demo" variant="pill" color="neutral" onClick={() => setOpenRequestModal(true)} />
 				</Actions>
 			</Wrapper>
+			<MobileToolbar />
 			<AnimatePresence>
 				{
 					openRequestModal ? (
