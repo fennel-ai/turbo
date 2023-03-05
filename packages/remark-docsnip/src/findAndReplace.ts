@@ -2,12 +2,12 @@ import path from 'node:path';
 import { readFile as rf } from 'node:fs';
 import { promisify } from 'node:util';
 
-import { searchForSnippet } from './searchForSnippet';
-import { ExampleFileDef } from '.';
+import { extractSnippet } from './utils';
+import { ExampleFileDef } from './types';
 
 const readFile = promisify(rf);
 
-export const extractSnippet = async ({
+export const findAndReplace = async ({
 	index,
 	file,
 	snippet_id,//@ts-ignore
@@ -19,12 +19,9 @@ export const extractSnippet = async ({
 	// Get an absolute path to the python file on disk, and read it into a string.
 	const file_content = await readFile(path.join(process.cwd(), "_content", filename), "utf8");
 
-	let code = searchForSnippet(
-		file_content,
-		snippet_id
-	);
+	let snippet_str = extractSnippet(file_content, snippet_id);
 
-	if (code) {
+	if (snippet_str) {
 		// @ts-ignore
 		let node = tree.children[index];
 
@@ -49,7 +46,7 @@ export const extractSnippet = async ({
 				children: [
 					{ // @ts-ignore
 						type: "raw",
-						value: code,
+						value: snippet_str,
 					},
 				],
 			},
