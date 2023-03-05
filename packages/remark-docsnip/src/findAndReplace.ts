@@ -38,6 +38,11 @@ export const findAndReplace = async ({
 				name: "filename",
 				value: filename,
 			},
+			{
+				type: 'mdxJsxAttribute',
+				name: 'snippetId',
+				value: snippet_id,
+			}
 		];
 		node.children = [
 			{

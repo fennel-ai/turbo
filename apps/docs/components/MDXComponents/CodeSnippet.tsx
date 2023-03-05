@@ -19,7 +19,8 @@ const Root = styled(CodeBlock)`
 	}
 `
 
-export const CodeSnippet = (props: PropsWithChildren<{ className: string, filename?: string, language?: string, snippet?: string }>) => {
+// Wraps our CodeBlock component to override the code prop, either with the children from the original markdown, or the docsnip snippet referenced from the snippet prop.
+export const CodeSnippet = (props: PropsWithChildren<{ className: string, filename?: string, language?: string, snippet?: string, snippet_id?: string }>) => {
 	const language = useMemo(() => props.language || props.className?.replace("language-", "") || "python", [props.className, props.language]);
 
 	return <Root filename={props.filename} code={props.snippet || (props.children as ReactElement).props.children} language={language} />;
