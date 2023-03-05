@@ -1,6 +1,5 @@
 import fs from "fs-extra";
 import path from "node:path";
-import { globby } from "globby";
 import { makeSource } from "contentlayer/source-remote-files";
 
 // Remark/Rehype plugins
@@ -9,6 +8,7 @@ import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from "remark-directive";
 import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
+import docsnip from 'remark-docsnip';
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
 // Content types
@@ -16,7 +16,6 @@ import { Page } from "./contentlayer/content_types/Page";
 
 import fetchContent from "./contentlayer/fetchContent";
 import { Config } from "./contentlayer/content_types/Config";
-import docsnip from "./contentlayer/plugins/docsnip";
 
 const CONTENT_DIR = "_content";
 
@@ -38,14 +37,20 @@ export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
   documentTypes: [Page, Config],
-  contentDirExclude: [".git", ".gitignore", "docker-compose.yml", "Makefile", "./README.md"],
+  contentDirExclude: [
+    ".git",
+    ".gitignore",
+    "docker-compose.yml",
+    "Makefile",
+    "./README.md",
+  ],
   mdx: {
     remarkPlugins: [
       remarkMdxDisableExplicitJsx,
       remarkGfm,
       remarkDirective,
       remarkAdmonitions,
-	  docsnip
+      docsnip,
     ],
     rehypePlugins: [[rehypeImgSize, { dir: "public" }], rehypeSlug],
   },
