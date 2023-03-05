@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { PropsWithChildren, ReactElement, useMemo } from "react";
 import { media } from "styles/utils";
 import { CodeBlock } from "ui";
-import { allExampleGroups } from 'contentlayer/generated';
 
 const Root = styled(CodeBlock)`
 	margin: 1rem -1rem 3rem -1rem;
@@ -20,17 +19,8 @@ const Root = styled(CodeBlock)`
 	}
 `
 
-export const CodeSnippet = (props: PropsWithChildren<{ className: string, snippet?: string }>) => {
-	const code = useMemo(() => {
-		if (props.snippet) {
-			let [groupId, snippetId] = props.snippet.split('/');
-			return allExampleGroups.find((g) => g.id === groupId)!.snippets[snippetId] as String;
-		}
+export const CodeSnippet = (props: PropsWithChildren<{ className: string, filename?: string, language?: string, snippet?: string }>) => {
+	const language = useMemo(() => props.language || props.className?.replace("language-", "") || "python", [props.className, props.language]);
 
-		return (props.children as ReactElement).props.children;
-	}, [props.children, props.snippet])
-
-	const language = useMemo(() => props.className?.replace("language-", "") || "python", [props.className]);
-
-	return <Root filename={props.snippet ? `${props.snippet}.py` : ''} code={code} language={!!props.snippet ? 'python' : language} />;
+	return <Root filename={props.filename} code={props.snippet || (props.children as ReactElement).props.children} language={language} />;
 }

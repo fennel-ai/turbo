@@ -22,7 +22,7 @@ const SectionTitle = styled.li<{expand: boolean}>`
 	color: ${get('text')};
 	font-size: 1.25rem;
 	line-height: 2.5rem;
-	font-variation-settings: 'wght' 600;
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
 	opacity: ${({ expand }) => expand ? 1 : 0.64};
 	cursor: pointer;
 	display: flex;

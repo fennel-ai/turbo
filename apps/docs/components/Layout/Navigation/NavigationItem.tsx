@@ -12,7 +12,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	font-size: 1.125rem;
 	line-height: 2rem;
 	color: ${(props) => props.active ? get('primary.accent') : get('text-alt')};
-	font-variation-settings: 'wght' 500;
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
 	opacity: ${({ fade }) => fade ? 0.64 : 1};
 	position: relative;
 	display: flex;

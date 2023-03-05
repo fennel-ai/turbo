@@ -13,11 +13,10 @@ import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
 // Content types
 import { Page } from "./contentlayer/content_types/Page";
-import { ExampleGroup } from "./contentlayer/content_types/ExampleGroup";
 
-import buildExamples from "./contentlayer/buildExamples";
 import fetchContent from "./contentlayer/fetchContent";
 import { Config } from "./contentlayer/content_types/Config";
+import docsnip from "./contentlayer/plugins/docsnip";
 
 const CONTENT_DIR = "_content";
 
@@ -31,9 +30,6 @@ const githubSource = async () => {
 		await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR);
 	}
 
-	const exampleFiles = await globby([`${CONTENT_DIR}/examples/**/*.py`]);
-	await buildExamples(exampleFiles);
-
   // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
   return () => {};
 };
@@ -41,7 +37,7 @@ const githubSource = async () => {
 export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
-  documentTypes: [Page, ExampleGroup, Config],
+  documentTypes: [Page, Config],
   contentDirExclude: [".git", ".gitignore", "docker-compose.yml", "Makefile", "./README.md"],
   mdx: {
     remarkPlugins: [
@@ -49,6 +45,7 @@ export default makeSource({
       remarkGfm,
       remarkDirective,
       remarkAdmonitions,
+	  docsnip
     ],
     rehypePlugins: [[rehypeImgSize, { dir: "public" }], rehypeSlug],
   },

@@ -231,7 +231,13 @@ export const CodeBlock = ({ className, code, filename, language, onCopy, toolbar
 					</CopyButton>
 				</Toolbar>
 			) : null}
-			<SyntaxHighlighter useInlineStyles={false} lineNumberStyle={line_number_style} language={language} style={style_reset} showLineNumbers>
+			<SyntaxHighlighter 
+				useInlineStyles={false} 
+				lineNumberStyle={line_number_style} 
+				language={language} 
+				style={style_reset} 
+				showLineNumbers
+			>
 				{code}
 			</SyntaxHighlighter>
 		</Root>
