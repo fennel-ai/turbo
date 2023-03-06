@@ -24,6 +24,10 @@ export const Config = defineDocumentType(() => ({
   isSingleton: true,
   contentType: 'data',
   fields: {
+	version: {
+		type: 'string',
+		description: 'The client version the documentation relates to.'
+	},
     sidebar: {
       type: "list",
 	  of: SidebarSection
