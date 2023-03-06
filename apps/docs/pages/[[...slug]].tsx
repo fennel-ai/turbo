@@ -34,9 +34,8 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const { params } = ctx;
-	const slug = (params!.slug as string[]).join('/');
-
-	const { code, page, section } = getPageData(slug);
+	const slug = (params!.slug as string[])?.join('/');
+	const { code, page, section } = getPageData(slug || '/');
 
 	return {
 		props: {

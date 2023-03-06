@@ -26,6 +26,11 @@ export const Page = defineDocumentType(() => ({
       description:
         "Optionally provide a string to override the section. By default it uses the parent directory names and tries to match them to a section file.",
     },
+    slug: {
+      type: "string",
+      description:
+        "Optionally provide a string to override the generated slug.",
+    },
     order: {
       type: "number",
       description: "The order of the page in the navigation.",
@@ -35,7 +40,7 @@ export const Page = defineDocumentType(() => ({
   computedFields: {
     slug: {
       type: "string",
-      resolve: (post) => post._raw.flattenedPath.replace(/pages\/?/, ""),
+      resolve: (post) => post.slug || post._raw.flattenedPath.replace(/pages\/?/, ""),
     },
     section: {
       type: "string",

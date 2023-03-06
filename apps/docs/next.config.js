@@ -2,6 +2,7 @@ const { withContentlayer } = require('next-contentlayer');
 
 const nextConfig = {
   basePath: "/docs",
+  trailingSlash: true,
   reactStrictMode: true,
   transpilePackages: ["ui", "styles"],
   webpack(config) {

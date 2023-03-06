@@ -2,7 +2,7 @@ import { Button } from "ui";
 import styled from '@emotion/styled';
 
 import Footer from "components/Layout/Footer";
-import Header from "components/Header";
+import Header from "components/Layout/Header";
 import { media } from "styles/utils";
 import { useRouter } from "next/router";
 
