@@ -20,7 +20,7 @@ const SidebarSection = defineNestedType(() => ({
 
 export const Config = defineDocumentType(() => ({
   name: "Config",
-  filePathPattern: "config.yml",
+  filePathPattern: "index.yml",
   isSingleton: true,
   contentType: 'data',
   fields: {
