@@ -58,7 +58,7 @@ export const getPageData = (pageSlug: string): { code: string, section: Navigati
 			description,
 			title,
 			status,
-			slug,
+			slug: slug!, // Slug is computed if not present so although it's optional in the contentlayer schema (i.e. it's not a hard requirement in the frontmatter), it will always be present here
 		}
 	}
 }
