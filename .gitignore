@@ -9,6 +9,7 @@ node_modules
 coverage
 
 # next.js
+.vercel/
 .next/
 out/
 build/
