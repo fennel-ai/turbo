@@ -12,6 +12,7 @@
     "@docsearch/react": "3",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@hookform/resolvers": "^2.9.11",
     "@next/font": "^13.2.3",
     "contentlayer": "^0.3.0",
     "esbuild": "^0.17.10",
@@ -38,7 +39,8 @@
     "styles": "workspace:*",
     "tar-fs": "^2.1.1",
     "ui": "workspace:*",
-    "unist-util-visit": "^4.1.2"
+    "unist-util-visit": "^4.1.2",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
