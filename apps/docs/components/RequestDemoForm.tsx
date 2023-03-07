@@ -1,6 +1,7 @@
 import { ForwardedRef, forwardRef, PropsWithChildren } from 'react';
 import { useForm, ChangeHandler, SubmitHandler } from 'react-hook-form';
 import styled from '@emotion/styled';
+import { toast } from 'react-hot-toast';
 import { Button } from 'ui';
 import { satoshiVariable } from 'pages/_app';
 
@@ -26,6 +27,7 @@ const Form = styled.form`
 	gap: 1rem;
 
 	& button {
+		margin-top: 1rem;
 		width: 100%;
 	}
 `;
@@ -62,13 +64,19 @@ const InputRoot = styled.div`
 `;
 
 const Input = forwardRef((
-	{ label, ...props }: { name: string, label: string, placeholder?: string, onBlur: ChangeHandler, onChange: ChangeHandler }, 
+	{ 
+		label,
+		name,
+		onBlur,
+		onChange,
+		placeholder,
+	}: { name: string, label: string, placeholder?: string, onBlur: ChangeHandler, onChange: ChangeHandler }, 
 	ref: ForwardedRef<HTMLInputElement>
 ) => {
 	return (
 		<InputRoot>
 			<label>{label}</label>
-			<input ref={ref} {...props} />
+			<input ref={ref} name={name} onBlur={onBlur} onChange={onChange} placeholder={placeholder} />
 		</InputRoot>
 	);
 });
@@ -89,13 +97,18 @@ const SelectInput = forwardRef((
 });
 SelectInput.displayName = 'SelectInput';
 
-const RequestDemoForm = () => {
-	const { register, handleSubmit } = useForm<IFormData>();
+const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
+	const { register, handleSubmit, reset } = useForm<IFormData>();
 
-	const onSubmit: SubmitHandler<IFormData> = data => console.log('FORM DATA:', data);
+	const submitForm: SubmitHandler<IFormData> = data => {
+		console.log('FORM DATA:', data);
+		reset();
+		toast.success('Thank you for your interest! We will be in touch shortly.');
+		onSubmit?.();
+	};
 
 	return (
-		<Form onSubmit={handleSubmit(onSubmit)}>
+		<Form onSubmit={handleSubmit(submitForm)}>
 			<Input {...register('name', { required: true })} placeholder="Enter your name" label="Name" />
 			<Input {...register('email', { required: true })} placeholder="Enter your work email" label="Email" />
 			<SelectInput {...register('role', { required: true })} label="What role best describes you?">

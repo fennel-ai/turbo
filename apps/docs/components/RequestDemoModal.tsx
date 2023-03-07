@@ -118,7 +118,7 @@ const RequestDemoModal = (props: Props) => {
 					<p>The team is excited to show you just how much Fennel is capable of; Submit a request today and we&apos;ll be in touch soon.</p>
 				</Intro>
 				<FormWrapper>
-					<RequestDemoForm />
+					<RequestDemoForm onSubmit={(onClose as () => void)} />
 				</FormWrapper>
 			</Root>
 		</>,

@@ -2,6 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import theme from 'styles';
 import localFont from '@next/font/local';
+import { Toaster } from 'react-hot-toast';
 import 'styles/index.css';
 import "@docsearch/css";
 
@@ -19,6 +20,13 @@ export const satoshiVariable = localFont({
 	preload: true
 });
 
+const toastOptions = {
+	className: '',
+	style: {
+		borderRadius: '0.75rem',
+		padding: '1rem',
+	},
+};
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
@@ -50,6 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			</style>
 			<ThemeProvider theme={theme}>
 				<Component {...pageProps} />
+				<Toaster position="bottom-left" toastOptions={toastOptions} />
 			</ThemeProvider>
 		</ShellContextProvider>
 	)
