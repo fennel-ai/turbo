@@ -73,10 +73,10 @@ export const TitleBlock = ({ children }: PropsWithChildren) => {
 
 	return (
 		<Root>
-			{section.title ? <SectionTitle><p>{section.title}</p></SectionTitle> : null}
+			{section.title ? <SectionTitle id="section_title"><p>{section.title}</p></SectionTitle> : null}
 			<Title>
 				<h1>{children}</h1>
-				{page.description ? <Description>{page.description}</Description> : null}
+				{page.description ? <Description id="page_description">{page.description}</Description> : null}
 			</Title>
 		</Root>
 	)
