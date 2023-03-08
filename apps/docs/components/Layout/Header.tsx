@@ -90,7 +90,9 @@ const Header = () => {
 				</SearchWrapper>
 				<Actions>
 					<SearchButton icon={SearchIcon} onClick={openSearch} />
-					<DemoButton label="Request a demo" variant="pill" color="neutral" onClick={() => setOpenRequestModal(true)} />
+					<a href="https://fennel.ai/get-a-demo">
+						<DemoButton label="Request a demo" variant="pill" color="neutral" />
+					</a>
 				</Actions>
 			</Wrapper>
 			<MobileToolbar />
