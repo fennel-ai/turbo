@@ -20,3 +20,7 @@ button {
 	font-family: 'Satoshi Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-variation-settings: 'wght' 600;
 }
+
+a {
+	text-decoration: none;
+}

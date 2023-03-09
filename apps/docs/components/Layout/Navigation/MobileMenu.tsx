@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
-import { IconButton } from 'ui';
+import { Button, IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 
 import { NavigationTree } from 'lib/utils';
@@ -17,6 +17,8 @@ import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
 import { useModalPresence } from 'hooks/useModalPresence';
 import ModalSheet from 'components/ModalSheet';
+import { useLayoutContext } from '../useLayoutContext';
+import { useBreakpoint } from 'hooks/useBreakpoint';
 
 const Root = styled(motion.div)`
 	position: fixed;
@@ -66,6 +68,11 @@ const Menu = styled.div`
 	padding-bottom: 1rem;
 `;
 
+const DemoCta = styled(Button)`
+	margin-bottom: 0.5rem;
+	width: 100%;
+`;
+
 type Props = {
 	onClose: MouseEventHandler,
 	items: NavigationTree
@@ -85,6 +92,8 @@ const MobileMenu = (props: Props) => {
 	const rootRef = useRef(null);
 	const router = useRouter();
 	const { toggleMobileMenu } = useShell();
+	const ctx = useLayoutContext();
+	const showCta = useBreakpoint('sm', 'max');
 
 	return createPortal(
 		<>
@@ -96,8 +105,15 @@ const MobileMenu = (props: Props) => {
 				</Header>
 				<Menu>
 					{
+						showCta ? (
+							<a href="https://fennel.ai/get-a-demo">
+								<DemoCta label='Request a Demo' variant="pill" />
+							</a> 
+						) : null
+					}
+					{
 						items.map((section) => {
-							const sectionActive = section.slug === router.query.slug![0];
+							const sectionActive = ctx.section.slug === section.slug;
 							return (
 								<NavigationSection
 									expand

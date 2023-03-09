@@ -30,6 +30,7 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 	color: ${({ color }) => get(`button.default.${color}.fg`)};
 	box-shadow: ${({ color, variant }) => variant === 'rounded' ? get(`button.${color}.shadow`) : null};
 	overflow: hidden;
+	text-decoration: none;
 
 	&::before {
 		content: "";
