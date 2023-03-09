@@ -69,6 +69,7 @@ importers:
       next: 13.1.1
       next-contentlayer: ^0.3.0
       octokit: ^2.0.14
+      posthog-js: ^1.50.6
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: ^7.43.2
@@ -104,6 +105,7 @@ importers:
       next: 13.1.1_pjwopsidmaokadturxaafygjp4
       next-contentlayer: 0.3.0_gwgsblxwyivhoyjo3jjxsfgjoy
       octokit: 2.0.14
+      posthog-js: 1.50.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.2_react@18.2.0
@@ -9223,6 +9225,10 @@ packages:
     resolution: {integrity: sha512-uJQyMrX5IJZkhoEUBQ3EjxkeiZkppBd5jS/fMTJmfZxLSiaQjv2zD0kTvuvkSH89uFvgSlB6ueGpjD3HWN7Bxw==}
     dev: true
 
+  /fflate/0.4.8:
+    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
+    dev: false
+
   /figgy-pudding/3.5.2:
     resolution: {integrity: sha512-0btnI/H8f2pavGMN8w40mlSKOfTK2SVJmBfBeVIj3kNw0swwgzyRq0d5TJVOwodFmtvpPeWPN/MCcfuWF0Ezbw==}
     dev: true
@@ -13408,6 +13414,13 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /posthog-js/1.50.6:
+    resolution: {integrity: sha512-MOLqEgUb4McXcmp2pNuCe97yQT8BB4z0NdyfA6o0VDNyC/BsOk20Kx5Er9QyU3BYqTrWbyxjpJfGd6WJtb4qEg==}
+    dependencies:
+      fflate: 0.4.8
+      rrweb-snapshot: 1.1.14
+    dev: false
+
   /prebuild-install/7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
     engines: {node: '>=10'}
@@ -14410,6 +14423,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /rrweb-snapshot/1.1.14:
+    resolution: {integrity: sha512-eP5pirNjP5+GewQfcOQY4uBiDnpqxNRc65yKPW0eSoU1XamDfc4M8oqpXGMyUyvLyxFDB0q0+DChuxxiU2FXBQ==}
+    dev: false
 
   /rsvp/4.8.5:
     resolution: {integrity: sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==}
