@@ -1,20 +1,17 @@
+import { useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
+import Script from 'next/script';
 import theme from 'styles';
 import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
-import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react';
 import 'styles/index.css';
 import "@docsearch/css";
 
 import { ShellContextProvider } from 'context/Shell';
+import { useRouter } from 'next/router';
 
-export const addingtonCF = localFont({
-	src: [{
-		path: "./fonts/AddingtonCF-Medium.woff2"
-	}]
-});
 export const satoshiVariable = localFont({
 	src: [{
 		path: "./fonts/Satoshi-Variable.woff2"
@@ -30,17 +27,12 @@ const toastOptions = {
 	},
 };
 
-// Check that PostHog is client-side (used to handle Next.js SSR)
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
-	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-		api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
-	})
-}
-
 export default function App({ Component, pageProps }: AppProps) {
+	const router = useRouter();
 	return (
 		<PostHogProvider>
 			<ShellContextProvider>
+				<Script src={`${router.basePath}/posthog.js`} />
 				<style jsx global>
 					{`
 					@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
