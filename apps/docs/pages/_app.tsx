@@ -29,17 +29,13 @@ const toastOptions = {
 };
 
 if (typeof window !== 'undefined') {
-	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || '', {
 		api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
-		// Disable in development
-		loaded: (posthog) => {
-			if (process.env.NODE_ENV === 'development') posthog.opt_out_capturing()
-		}
 	})
 }
 
 export default function App({ Component, pageProps }: AppProps) {
-	const router = useRouter();
+	const router = useRouter()
 
 	useEffect(() => {
 		// Track page views
@@ -49,10 +45,10 @@ export default function App({ Component, pageProps }: AppProps) {
 		return () => {
 			router.events.off('routeChangeComplete', handleRouteChange)
 		}
-	}, [])
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
-		<PostHogProvider client={posthog} apiKey={process.env.NEXT_PUBLIC_POSTHOG_KEY}>
+		<PostHogProvider client={posthog}>
 			<ShellContextProvider>
 				<style jsx global>
 					{`
