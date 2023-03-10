@@ -73,15 +73,16 @@ const Root = styled.button<{size: SizeVariant}>`
 `;
 
 type Props = {
+	ariaLabel?: string;
 	className?: string,
 	icon: ComponentType,
 	onClick?: MouseEventHandler<HTMLButtonElement>,
 	size?: SizeVariant
 }
 
-export const IconButton = ({ className, icon: Icon, onClick, size = "medium" }: Props) => {
+export const IconButton = ({ ariaLabel, className, icon: Icon, onClick, size = "medium" }: Props) => {
 	return (
-		<Root className={className} size={size} onClick={onClick}>
+		<Root aria-label={ariaLabel} className={className} size={size} onClick={onClick}>
 			<Icon />
 		</Root>
 	);

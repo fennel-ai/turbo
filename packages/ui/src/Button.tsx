@@ -3,6 +3,7 @@ import { MouseEventHandler } from 'react';
 import { get } from 'styles/utils';
 
 type Props = {
+	ariaLabel?: string;
 	className?: string;
 	color?: 'primary' | 'primary-alt' | 'neutral';
 	onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -51,6 +52,7 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 `;
 
 export const Button = ({
+	ariaLabel,
 	className,
 	color = 'neutral',
 	label,
@@ -59,7 +61,7 @@ export const Button = ({
 	type = 'button'
 }: Props) => {
 	return (
-		<Root className={className} color={color} onClick={onClick} variant={variant} type={type}>
+		<Root aria-label={ariaLabel} className={className} color={color} onClick={onClick} variant={variant} type={type}>
 			{label}
 		</Root>
 	);
