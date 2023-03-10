@@ -89,8 +89,8 @@ const Header = () => {
 					/>
 				</SearchWrapper>
 				<Actions>
-					<SearchButton icon={SearchIcon} onClick={openSearch} />
-					<a href="https://fennel.ai/get-a-demo">
+					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
+					<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
 						<DemoButton ariaLabel="Request a demo" label="Request a demo" variant="pill" color="neutral" />
 					</a>
 				</Actions>

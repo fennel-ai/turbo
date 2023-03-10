@@ -37,7 +37,7 @@ const MobileToolbar = () => {
 	}
 	return (
 		<Root>
-			<IconButton icon={SidebarLeftIcon} onClick={toggleMobileMenu} />
+			<IconButton aria-label="Navigation Menu" icon={SidebarLeftIcon} onClick={toggleMobileMenu} />
 			<p>{section.title}</p>
 			<p>/</p>
 			<p>{page.title}</p>
