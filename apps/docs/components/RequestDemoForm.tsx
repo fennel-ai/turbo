@@ -1,7 +1,11 @@
 import { ForwardedRef, forwardRef, PropsWithChildren } from 'react';
-import { useForm, ChangeHandler, SubmitHandler } from 'react-hook-form';
+import { useForm, ChangeHandler, SubmitHandler, FieldError } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import styled from '@emotion/styled';
+import { toast } from 'react-hot-toast';
 import { Button } from 'ui';
+import { satoshiVariable } from 'pages/_app';
 
 enum RoleEnum {
 	data_scientist = 'Data Scientist',
@@ -22,9 +26,9 @@ const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	gap: 1rem;
 
 	& button {
+		margin-top: 1rem;
 		width: 100%;
 	}
 `;
@@ -33,7 +37,7 @@ const InputRoot = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	gap: 0.5rem;
+	gap: 0.25rem;
 
 	& input, & select {
 		height: 2.5rem;
@@ -42,7 +46,7 @@ const InputRoot = styled.div`
 		outline: none;
 		padding: 0 0.75rem;
 		appearance: none;
-		font-family: ${({ theme }) => theme.fontFamilies.text};
+		font-family: ${satoshiVariable.style.fontFamily};
 		font-size: 0.875rem;
 		line-height: 1rem;
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
@@ -60,20 +64,47 @@ const InputRoot = styled.div`
 	}
 `;
 
+const HelperRow = styled.div`
+	min-height: 1.5rem;
+	p {
+		margin: 0;
+		font-size: 0.875rem;
+		line-height: 1rem;
+		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+		color: ${({ theme }) => theme.error.accent};
+	}
+`;
+
 const Input = forwardRef((
-	{ label, ...props }: { name: string, label: string, placeholder?: string, onBlur: ChangeHandler, onChange: ChangeHandler }, 
+	{ 
+		error,
+		label,
+		name,
+		onBlur,
+		onChange,
+		placeholder,
+	}: { 
+		error?: FieldError 
+		label: string, 
+		name: string, 
+		onBlur: ChangeHandler, 
+		onChange: ChangeHandler 
+		placeholder?: string, 
+	}, 
 	ref: ForwardedRef<HTMLInputElement>
 ) => {
 	return (
 		<InputRoot>
 			<label>{label}</label>
-			<input ref={ref} {...props} />
+			<input ref={ref} name={name} onBlur={onBlur} onChange={onChange} placeholder={placeholder} />
+			<HelperRow>{error ? <p>{error.message}</p> : null}</HelperRow>
 		</InputRoot>
 	);
 });
+Input.displayName = 'Input';
 
 const SelectInput = forwardRef((
-	{ children, label, ...props }: PropsWithChildren<{ name: string, label: string, placeholder?: string, onBlur: ChangeHandler, onChange: ChangeHandler }>, 
+	{ children, error, label, ...props }: PropsWithChildren<{ error?: FieldError, name: string, label: string, placeholder?: string, onBlur: ChangeHandler, onChange: ChangeHandler }>, 
 	ref: ForwardedRef<HTMLSelectElement>
 ) => {
 	return (
@@ -82,20 +113,35 @@ const SelectInput = forwardRef((
 			<select ref={ref} {...props}>
 				{children}
 			</select>
+			<HelperRow>{error ? <p>{error.message}</p> : null}</HelperRow>
 		</InputRoot>
 	);
 });
+SelectInput.displayName = 'SelectInput';
 
-const RequestDemoForm = () => {
-	const { register, handleSubmit } = useForm<IFormData>();
+const validation = yup.object({
+	name: yup.string().required('This is required.'),
+	email: yup.string().email().required('This is required.'),
+	role: yup.string().oneOf(Object.keys(RoleEnum)).required('This is required.'),
+}).required();
 
-	const onSubmit: SubmitHandler<IFormData> = data => console.log('FORM DATA:', data);
+const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
+	const { formState: { errors }, register, handleSubmit, reset } = useForm<IFormData>({
+		resolver: yupResolver(validation),
+	});
+
+	const submitForm: SubmitHandler<IFormData> = data => {
+		console.log('FORM DATA:', data);
+		reset();
+		toast.success('Thank you for your interest! We will be in touch shortly.');
+		onSubmit?.();
+	};
 
 	return (
-		<Form onSubmit={handleSubmit(onSubmit)}>
-			<Input {...register('name', { required: true })} placeholder="Enter your name" label="Name" />
-			<Input {...register('email', { required: true })} placeholder="Enter your work email" label="Email" />
-			<SelectInput {...register('role', { required: true })} label="What role best describes you?">
+		<Form onSubmit={handleSubmit(submitForm)}>
+			<Input {...register('name')} error={errors['name']} placeholder="Enter your name" label="Name" />
+			<Input {...register('email')} error={errors['email']} placeholder="Enter your work email" label="Email" />
+			<SelectInput {...register('role')} error={errors['role']} label="What role best describes you?">
 				<option value="data_scientist">Data Scientist</option>
 				<option value="engineer">Engineer</option>
 				<option value="data_analyst">Data Analyst</option>
@@ -103,7 +149,7 @@ const RequestDemoForm = () => {
 				<option value="manager">Manager</option>
 				<option value="other">Other</option>
 			</SelectInput>
-			<Button label="Submit" type="submit" variant='pill' />
+			<Button ariaLabel="Submit the Demo Request" label="Submit" type="submit" variant='pill' />
 		</Form>
 	);
 };

@@ -3,6 +3,7 @@ import { MouseEventHandler } from 'react';
 import { get } from 'styles/utils';
 
 type Props = {
+	ariaLabel?: string;
 	className?: string;
 	color?: 'primary' | 'primary-alt' | 'neutral';
 	onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -26,9 +27,11 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 	cursor: pointer;
 	border-radius: ${({ variant }) => get(`button.${variant}.radius`)};
 	background-color: ${({ color }) => get(`button.default.${color}.bg`)};
+	font-variation-settings: "wght" ${get('fontWeights.semibold')};
 	color: ${({ color }) => get(`button.default.${color}.fg`)};
 	box-shadow: ${({ color, variant }) => variant === 'rounded' ? get(`button.${color}.shadow`) : null};
 	overflow: hidden;
+	text-decoration: none;
 
 	&::before {
 		content: "";
@@ -49,6 +52,7 @@ const Root = styled.button<{ color: Props['color'], variant: Props['variant'] }>
 `;
 
 export const Button = ({
+	ariaLabel,
 	className,
 	color = 'neutral',
 	label,
@@ -57,7 +61,7 @@ export const Button = ({
 	type = 'button'
 }: Props) => {
 	return (
-		<Root className={className} color={color} onClick={onClick} variant={variant} type={type}>
+		<Root aria-label={ariaLabel} className={className} color={color} onClick={onClick} variant={variant} type={type}>
 			{label}
 		</Root>
 	);

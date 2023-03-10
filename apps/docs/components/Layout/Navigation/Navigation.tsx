@@ -6,6 +6,7 @@ import { media } from 'styles/utils';
 
 import NavigationSection from "./NavigationSection";
 import NavigationItem from "./NavigationItem";
+import { useLayoutContext } from "../useLayoutContext";
 
 type Props = {
 	items: NavigationTree
@@ -30,24 +31,25 @@ const Nav = styled.nav`
 
 const Navigation = ({ items }: Props) => {
 	const router = useRouter();
+	const ctx = useLayoutContext();
+
 	return (
 		<Root>
 			<Nav>
 				{
 					items.map((section) => {
-						const sectionActive = section.slug === router.query.slug![0];
+						const sectionActive = ctx.section.slug === section.slug;
 						return (
 							<NavigationSection 
 								expand={sectionActive}
 								key={section.slug}
 								title={section.title} 
-								href={`/${section.slug}/${section.pages[0].slug}`}
+								href={section.pages[0].slug}
 							>
-								{section.pages.map(({ title, slug }) => {
-									const href = `/${section.slug}/${slug}`;
-									const active = router.asPath === href;
+								{section.pages.map(({ title, slug, status }) => {
+									const active = router.asPath === `/${slug === '/' ? '' : slug + '/'}`;
 									return (
-										<NavigationItem active={active} fade={sectionActive && !active} key={slug}><Link aria-label={title} href={href}>{title}</Link></NavigationItem>
+										<NavigationItem active={active} status={status} fade={sectionActive && !active} key={slug}><Link aria-label={title} href={slug}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>

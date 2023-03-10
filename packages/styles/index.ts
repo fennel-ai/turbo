@@ -1,4 +1,4 @@
-import tokens from './build/palelight.json';
+import tokens from './build/light.json';
 
 type ColorScale = {
 	'0'?: string,

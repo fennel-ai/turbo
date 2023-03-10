@@ -1,89 +1,64 @@
-import { bundleMDX } from "mdx-bundler";
-import remarkGfm from "remark-gfm";
-import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
-import path from 'node:path';
-
-import navigation from '../.content/navigation.json';
-import manifest from '../.content/manifest.json';
-import rehypeImageMetadata from "./rehype-image-metadata";
-import { remarkNextImages } from "./remark-next-images";
-
-export type ManifestPage = {
-	title: string,
-	slug: string,
-	content: string,
-}
+import { allPages, config, Page } from "contentlayer/generated";
 
 export type NavigationPage = {
-	title: string,
-	slug: string,
+	description?: string;
+	title: string;
+	slug: string;
+	status: Page['status'];
 }
 
 export type NavigationSection = {
-	title: string,
-	slug: string,
-	order: number,
-	pages: NavigationPage[]
+	title: string;
+	slug: string;
+	pages: NavigationPage[];
 }
 
 export type NavigationTree = NavigationSection[];
 
+export const shouldPublish = (page: Page): boolean => process.env.NODE_ENV !== 'production' || page.status !== 'draft';
+
 /**
- * Returns the navigation JSON to the client-side (created in the WithGitbookDocs plugin)
+ * Returns the navigation tree from the config.yml file in the content directory.
  */
 export const getNavigation = (): NavigationTree => {
-	return navigation
-}
+	const { sidebar } = config;
+	return sidebar!.map((section) => ({
+		...section,
+		pages: section.pages.map((slug: string) => {
+			const page = allPages.find((page: Page) => page.slug === slug)!;
+			
+			if (!page) throw new Error(`[config.sidebar]: Could not find page with slug "${slug}" in sidebar config. Make sure that the slug is correct and that the page exists in the "content" directory.`);
 
-/**
- * Returns the full list of static paths (an array of path params for every possible documentation page)
- * to the client-side.
- */
-export const listPaths = () => {
-	return Object.keys(manifest).map((slug: string) => {
-		return {
-			params: {
-				slug: slug.split('/')
+			return {
+				title: page.title,
+				slug: page.slug,
+				status: page.status,
 			}
-		}
-	})
-};
-
-/**
- * Given a slug, return the definition for the relevant page from the manifest.
- */
-
-export const getPageDefinition = (slug: string): ManifestPage => {
-	const m = manifest as Record<string, ManifestPage>;
-	return m[slug];
+		}).filter(shouldPublish)
+	}));
 }
 
 /**
- * Given a slug, returns the relevant page from the docs in the manifest.
+ * Get the page metadata, section data and markdown code for a given page slug.
  */
-export const getPageContent = async (slug: string): Promise<{ title: string, code: string, frontmatter: any }> => {
-	const { title, content } = getPageDefinition(slug);
-	
-	const { code, frontmatter } = await bundleMDX({
-		source: content,
-		cwd: path.join(process.cwd(), '.content'),
-		mdxOptions: (options) => {
-			options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkMdxDisableExplicitJsx, remarkGfm, remarkNextImages];
-			options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypeImageMetadata];
-			return options;
-		},
-	});
-
-	return {
+export const getPageData = (pageSlug: string): { code: string, section: NavigationSection, page: NavigationPage } => {
+	const {
+		body,
+		description = "",
+		section,
 		title,
-		code,
-		frontmatter,
-	};
+		status,
+		slug
+	} = allPages.find((page) => page.slug === pageSlug)!;
+	
+	return {
+		code: body.code,
+		section: config.sidebar!.find((s) => s.slug === section)!,
+		page: {
+			description,
+			title,
+			status,
+			slug: slug!, // Slug is computed if not present so although it's optional in the contentlayer schema (i.e. it's not a hard requirement in the frontmatter), it will always be present here
+		}
+	}
 }
-
-/**
- * Given a slug, returns the relevant section metadata from the nav manifest.
- */
-export const getSection = (slug: string): NavigationSection | undefined => {
-	return navigation.find((section) => section.slug === slug);
-} 

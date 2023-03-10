@@ -3,28 +3,17 @@ import { IconButton } from "ui";
 import SidebarLeftIcon from 'ui/icons/sidebar-left.svg';
 import { media, get } from 'styles/utils';
 
-import Container from 'components/Container';
 import { useShell } from 'context/Shell';
 import { useLayoutContext } from './Layout';
 
-const Root = styled(Container)`
-	grid-column: span 12;
-	position: sticky;
-	top: 4.5rem;
-	left: 0;
-	z-index: 1;
-	background-color: rgba(255, 255, 255, 0.85);
-	backdrop-filter: blur(16px);
-`;
-
-const Wrapper = styled.div`
+const Root = styled.nav`
 	height: 3rem;
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
 	color: ${get('text-alt')};
 	font-variation-settings: "wght" 700;
-	border-bottom: 1px solid ${get('border')};
+	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
 
 	${media('lg')} {
 		display: none;
@@ -47,13 +36,11 @@ const MobileToolbar = () => {
 		return null;
 	}
 	return (
-		<Root as="nav">
-			<Wrapper>
-				<IconButton icon={SidebarLeftIcon} onClick={toggleMobileMenu} />
-				<p>{section.title}</p>
-				<p>/</p>
-				<p>{page.title}</p>
-			</Wrapper>
+		<Root>
+			<IconButton aria-label="Navigation Menu" icon={SidebarLeftIcon} onClick={toggleMobileMenu} />
+			<p>{section.title}</p>
+			<p>/</p>
+			<p>{page.title}</p>
 		</Root>
 	);
 };

@@ -1,11 +1,12 @@
-const { withGitbook } = require('./plugins/with-gitbook');
+const { withContentlayer } = require('next-contentlayer');
 
-const gitbook = withGitbook({
-	token: process.env.GITHUB_TOKEN,
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
 });
 
 const nextConfig = {
   basePath: "/docs",
+  trailingSlash: true,
   reactStrictMode: true,
   transpilePackages: ["ui", "styles"],
   webpack(config) {
@@ -37,4 +38,4 @@ const nextConfig = {
   },
 };
 
-module.exports = gitbook(nextConfig)
+module.exports = withBundleAnalyzer(withContentlayer(nextConfig))

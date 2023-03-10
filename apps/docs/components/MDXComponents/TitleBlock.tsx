@@ -4,24 +4,33 @@ import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
-	border-bottom: 1px solid ${get('border')};
-	padding-bottom: 2rem;
-	margin-bottom: 2rem;
+	padding-bottom: 1.5rem;
+
+	${media('md')} {
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	}
 `;
 
 const Title = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	gap: 0.25rem;
+	gap: 0.5rem;
+
+	${media('md')} {
+		gap: 0.25rem;
+	}
 
 	& h1 {
+		position: relative;
 		margin: 0;
-		font-weight: 500;
-		font-size: 2.5rem;
-		line-height: 2.5rem;
-
-		${media('sm')} {
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+		font-size: 2rem;
+		line-height: 2rem;
+		
+		${media('md')} {
 			font-size: 3rem;
 			line-height: 3rem;
 		}
@@ -31,11 +40,11 @@ const Title = styled.div`
 const Description = styled.p`
 	margin: 0;
 	font-size: 1.125rem;
-	line-height: 2rem;
-	font-variation-settings: "wght" 600;
+	line-height: 1.75rem;
+	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
 	color: ${get('text-alt')};
-	
-	${media('sm')} {
+
+	${media('md')} {
 		font-size: 1.25rem;
 		line-height: 2.25rem;
 	}
@@ -52,21 +61,22 @@ const SectionTitle = styled.div`
 
 	& > p {
 		margin: 0;
-		font-size: 1rem;
+		font-size: 1.25rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" 700;
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
 		color: ${get('primary.accent')}
 	}
 `;
 
 export const TitleBlock = ({ children }: PropsWithChildren) => {
-	const { frontmatter, section } = useLayoutContext();
+	const { page, section } = useLayoutContext();
+
 	return (
 		<Root>
-			{section?.title ? <SectionTitle><p>{section.title}</p></SectionTitle> : null}
+			{section.title ? <SectionTitle><p id="section_title">{section.title}</p></SectionTitle> : null}
 			<Title>
 				<h1>{children}</h1>
-				{frontmatter?.description ? <Description>{frontmatter.description}</Description> : null}
+				{page.description ? <Description id="page_description">{page.description}</Description> : null}
 			</Title>
 		</Root>
 	)

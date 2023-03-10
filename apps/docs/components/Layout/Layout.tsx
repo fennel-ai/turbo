@@ -4,15 +4,14 @@ import { media } from "styles/utils";
 
 import type { NavigationTree } from "lib/utils";
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import MobileToolbar from 'components/MobileToolbar';
-
+import Header from './Header';
+import Footer from './Footer';
 import Navigation from "./Navigation";
 import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
 import { useShell } from "context/Shell";
 import { AnimatePresence } from "framer-motion";
+import { satoshiVariable } from "pages/_app";
 
 type Props = {
 	children: ReactNode,
@@ -46,35 +45,52 @@ const Root = styled(Container)`
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.text};
-			font-family: "Addington CF", serif;
+			font-family: ${satoshiVariable.style.fontFamily}, serif;
 			font-weight: 500;
-		}
+			margin: 0;
+			letter-spacing: -0.5px;
 
-		h2, h3 {
-			margin-top: 2rem;
+			&:first-of-type {
+				margin-top: 0 !important;
+			}
 
-			${media('sm')} {
-				margin-top: 2.5rem;
+			${media('md')} {
+				letter-spacing: -0.75px;
 			}
 		}
 
 		h2 {
-			font-size: 2rem;
-			line-height: 2.5rem;
+			font-size: 1.5rem;
+			line-height: 2rem;
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+			margin-top: 2rem;
+			margin-bottom: 1rem;
 
-			${media('sm')} {
-				font-size: 2.25rem;
-				line-height: 2.5rem
+			${media('md')} {
+				font-size: 2rem;
+				line-height: 2.5rem;
+			}
+
+			&:not(:first-of-type) {
+				margin-top: 2rem;
+
+				${media('md')} {
+					margin-top: 2.5rem;
+				}
 			}
 		}
 		
 		h3 {
-			font-size: 1.5rem;
-			line-height: 2rem;
+			font-size: 1.25rem;
+			line-height: 1.5rem;
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.extrabold};
+			margin-top: 1rem;
+			margin-bottom: 1rem;
 
 			${media('sm')} {
-				font-size: 1.75rem;
-				line-height: 2.25rem
+				font-size: 1.5rem;
+				line-height: 2rem;
+				margin-top: 1.5rem;
 			}
 		}
 
@@ -98,6 +114,12 @@ const Root = styled(Container)`
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.bold};
 		}
 
+		hr {
+			background-color: rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+			border: none;
+			height: 2px;
+		}
+
 		img {
 			max-width: 100%;
 			height: auto;
@@ -105,13 +127,15 @@ const Root = styled(Container)`
 
 		ul, ol {
 			padding-inline-start: 2rem;
+			margin-top: 0;
+			margin-bottom: 2rem;
 		}
 
 		li {
 			font-size: 1.125rem;
 			line-height: 2rem;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
-			margin-bottom: 1.5rem;
+			margin-bottom: 0.75rem;
 
 			${media('sm')} {
 				font-size: 1.25rem;
@@ -126,9 +150,9 @@ const Root = styled(Container)`
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem 0.375rem;
 			margin: 0 0.25rem;
-			background-color: ${({ theme }) => theme.primary.background};
-			color: ${({ theme }) => theme.primary["on-background"]};
-			border: 1px solid rgba(${({ theme }) => theme.ref.purple[800]}, 100%);
+			background-color: rgba(${({ theme }) => theme.ref.grey[100]}, 4%);
+			color: rgba(${({ theme }) => theme.ref.grey[100]}, 100%);
+			border: 1px solid rgba(${({ theme }) => theme.ref.grey[100]}, 12%);
 			border-radius: 0.375rem;
 		}
 
@@ -158,7 +182,6 @@ const Layout = ({ children, navigation }: Props) => {
 	return (
 		<>
 			<Header />
-			<MobileToolbar />
 			<Root>
 				<Navigation items={navigation} />
 				<AnimatePresence>

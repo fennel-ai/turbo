@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
-import { IconButton } from 'ui';
+import { Button, IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 
 import { NavigationTree } from 'lib/utils';
@@ -17,6 +17,8 @@ import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
 import { useModalPresence } from 'hooks/useModalPresence';
 import ModalSheet from 'components/ModalSheet';
+import { useLayoutContext } from '../useLayoutContext';
+import { useBreakpoint } from 'hooks/useBreakpoint';
 
 const Root = styled(motion.div)`
 	position: fixed;
@@ -33,7 +35,7 @@ const Root = styled(motion.div)`
 	padding: 0.5rem 1rem;
 	gap: 1.5rem;
 	box-shadow: 0px 18px 80px rgba(44, 45, 58, 0.04), 0px 7.51997px 33.4221px rgba(44, 45, 58, 0.0287542), 0px 4.02054px 17.869px rgba(44, 45, 58, 0.0238443), 0px 2.25388px 10.0172px rgba(44, 45, 58, 0.02), 0px 1.19702px 5.32008px rgba(44, 45, 58, 0.0161557), 0px 0.498106px 2.21381px rgba(44, 45, 58, 0.0112458);
-
+	
 	${media('2xs')} {
 		top: 1rem;
 		left: 1rem;
@@ -66,6 +68,11 @@ const Menu = styled.div`
 	padding-bottom: 1rem;
 `;
 
+const DemoCta = styled(Button)`
+	margin-bottom: 0.5rem;
+	width: 100%;
+`;
+
 type Props = {
 	onClose: MouseEventHandler,
 	items: NavigationTree
@@ -85,6 +92,8 @@ const MobileMenu = (props: Props) => {
 	const rootRef = useRef(null);
 	const router = useRouter();
 	const { toggleMobileMenu } = useShell();
+	const ctx = useLayoutContext();
+	const showCta = useBreakpoint('sm', 'max');
 
 	return createPortal(
 		<>
@@ -96,20 +105,34 @@ const MobileMenu = (props: Props) => {
 				</Header>
 				<Menu>
 					{
+						showCta ? (
+							<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
+								<DemoCta ariaLabel="Request a demo" label='Request a demo' variant="pill" />
+							</a> 
+						) : null
+					}
+					{
 						items.map((section) => {
-							const sectionActive = section.slug === router.query.slug![0];
+							const sectionActive = ctx.section.slug === section.slug;
 							return (
 								<NavigationSection
 									expand
 									key={section.slug}
 									title={section.title}
-									href={`/${section.slug}/${section.pages[0].slug}`}
+									href={section.pages[0].slug}
 								>
-									{section.pages.map(({ title, slug }) => {
-										const href = `/${section.slug}/${slug}`;
-										const active = router.asPath === href;
+									{section.pages.map(({ title, slug, status }) => {
+										const active = router.asPath === `/${slug}`;
 										return (
-											<NavigationItem active={active} fade={sectionActive && !active} key={slug} onClick={toggleMobileMenu}><Link aria-label={title} href={href}>{title}</Link></NavigationItem>
+											<NavigationItem 
+												active={active} 
+												status={status} 
+												fade={sectionActive && !active} 
+												key={slug} 
+												onClick={toggleMobileMenu}
+											>
+												<Link aria-label={title} href={slug}>{title}</Link>
+											</NavigationItem>
 										)
 									})}
 								</NavigationSection>

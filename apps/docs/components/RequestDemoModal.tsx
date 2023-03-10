@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react';
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
-import { Button, IconButton } from 'ui';
+import { IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 import Logo from 'ui/icons/logo.svg';
 import { media } from 'styles/utils';
@@ -118,7 +118,7 @@ const RequestDemoModal = (props: Props) => {
 					<p>The team is excited to show you just how much Fennel is capable of; Submit a request today and we&apos;ll be in touch soon.</p>
 				</Intro>
 				<FormWrapper>
-					<RequestDemoForm />
+					<RequestDemoForm onSubmit={(onClose as () => void)} />
 				</FormWrapper>
 			</Root>
 		</>,

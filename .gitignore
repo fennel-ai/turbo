@@ -9,14 +9,17 @@ node_modules
 coverage
 
 # next.js
+.vercel/
 .next/
 out/
 build/
+!packages/styles/build
 dist/
 
 # docs
-.content
-public/.gitbook/
+.contentlayer
+apps/docs/_content
+apps/docs/public/.gitbook/
 
 # storybook
 storybook-static

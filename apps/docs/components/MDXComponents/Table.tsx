@@ -1,15 +1,41 @@
-import { Children, PropsWithChildren, ReactElement, ReactNode } from "react";
+import { Children, ReactElement } from "react";
 import styled from '@emotion/styled';
-import { get } from "styles/utils";
+import { motion } from "framer-motion";
+import { get, media } from "styles/utils";
+import ArrowRightIcon from 'ui/icons/arrow-narrow-right.svg';
+import { useBreakpoint } from "hooks/useBreakpoint";
 
-const Root = styled.table`
-	border-collapse: separate;
+const Wrapper = styled.div`
 	margin: 1rem 0 2rem 0;
+`;
+
+const TableRoot = styled.table`
+	display: block;
+	width: 100%;
+	overflow-x: auto;
+	border-collapse: separate;
+
+	tr {
+		display: flex;
+
+		${media('sm')} {
+			display: table-row;
+		}
+	}
+
+	th, td {
+		min-width: 50%;
+
+		${media('sm')} {
+			min-width: unset;
+		}
+	}
 
 	& thead {
+		box-shadow: 0px 2px 0px ${get("border")};
+		
 		tr {
 			text-align: left;
-			box-shadow: 0px 2px 0px ${get("border")};
 
 			th {
 				padding: 1rem;
@@ -48,53 +74,50 @@ const Root = styled.table`
 	}
 `;
 
-const renderTable = (children: ReactElement) => Children.map(children, (child: ReactElement, i) => {
-	switch (child.type) {
-		case 'thead': {
-			return (
-				<thead key={i}>
-					{renderTable(child.props.children)}
-				</thead>
-			)
-		}
-		case 'tbody': {
-			return (
-				<tbody key={i}>
-					{renderTable(child.props.children)}
-				</tbody>
-			)
-		}
-		case 'tr': {
-			return (
-				<tr key={i}>
-					{renderTable(child.props.children)}
-				</tr>
-			)
-		}
-		case 'td': {
-			return (
-				<td key={i}>
-					{child.props.children}
-				</td>
-			);
-		}
-		case 'th': {
-			return (
-				<th key={i}>
-					{child.props.children}
-				</th>
-			);
-		}
-		default: {
-			return null;
-		}
+const Footer = styled.div`
+	padding-top: 0.5rem;
+	display: flex;
+	justify-content: flex-end;
+`;
+
+const SwipeIndicator = styled(motion.div)`
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-variation-settings: "wght" ${get("fontWeights.medium")};
+	color: ${({ theme }) => theme.primary.accent};
+`;
+
+const SWIPE_ANIM = {
+	x: [0, -8, 0, 0, -4, 0],
+	transition: {
+		duration: 1.5,
+		ease: ["easeOut", "easeOut", "easeOut", "easeOut", "easeOut"],
+		repeatDelay: 1,
+		times: [0, 0.5, 1],
+		repeat: Infinity
 	}
-});
+};
 
 export const Table = (props: { children: ReactElement }) => {
+	const isMobile = useBreakpoint('sm', 'max');
 	return (
-		<Root>
-			{renderTable(props.children)}
-		</Root>
+		<Wrapper>
+			<TableRoot>
+				{props.children}
+			</TableRoot>
+			{
+				isMobile ? (
+					<Footer>
+						<SwipeIndicator
+							animate={SWIPE_ANIM}
+						>
+							Swipe
+							<ArrowRightIcon />
+						</SwipeIndicator>
+					</Footer>
+				) : null
+			}
+		</Wrapper>
 	)
 };
