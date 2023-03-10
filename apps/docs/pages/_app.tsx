@@ -12,6 +12,7 @@ import 'styles/index.css';
 import "@docsearch/css";
 
 import { ShellContextProvider } from 'context/Shell';
+import Head from 'next/head';
 
 export const satoshiVariable = localFont({
 	src: [{
@@ -75,6 +76,12 @@ export default function App({ Component, pageProps }: AppProps) {
 				}
 			`}
 				</style>
+				<Head>
+					<link rel="icon" href="/docs/favicon.ico" sizes="any" />
+					<link rel="icon" href="/docs/favicon.svg" type="image/svg+xml" />
+					<link rel="apple-touch-icon" href="/docs/apple-touch-icon.png" />
+					<meta name="theme-color" content="#5D4CBE" />
+				</Head>
 				<ThemeProvider theme={theme}>
 					<Component {...pageProps} />
 					<Toaster position="bottom-left" toastOptions={toastOptions} />
