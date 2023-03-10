@@ -32,7 +32,7 @@ const githubSource = async () => {
   }
 
   // Move assets to nexts static dir
-  await fs.move(
+  await fs.copy(
     path.join(process.cwd(), CONTENT_DIR, "assets"),
     path.join(process.cwd(), "public", "assets"),
     { overwrite: true }

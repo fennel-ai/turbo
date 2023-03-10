@@ -8,7 +8,7 @@ import gunzip from "gunzip-maybe";
 const fetchContent = (token, dir) =>
   new Promise(async (resolve, reject) => {
     if (!token) {
-      reject("Github token not provided to withGitDocs");
+      reject("No github token provided.");
     }
 
     const octo = new Octokit({
