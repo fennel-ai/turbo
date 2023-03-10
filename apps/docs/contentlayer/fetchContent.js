@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
 import { Readable } from "node:stream";
-import { emptyDir } from "fs-extra";
+import path from 'node:path';
+import fs from "fs-extra";
 import tar from "tar-fs";
 import gunzip from "gunzip-maybe";
 
@@ -15,7 +16,7 @@ const fetchContent = (token, dir) =>
     });
 
     // Clear the content dir, this also created the dir if it doesn't exist.
-    await emptyDir(dir);
+    await fs.emptyDir(dir);
 
     // Fetch the repo as a tarball
     const { data } = await octo.request(
@@ -37,7 +38,7 @@ const fetchContent = (token, dir) =>
     // gunzip it and then extract.
     stream.pipe(gunzip()).pipe(
       tar.extract(dir, {
-        finish: () => resolve(),
+        finish: resolve,
         strip: 1, // Here we strip the first path segment so that the files are placed directly into the content dir instead of `content_dir/repo_name_with_hash/*`
       })
     );

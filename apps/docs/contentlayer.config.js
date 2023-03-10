@@ -20,15 +20,23 @@ import { Config } from "./contentlayer/content_types/Config";
 const CONTENT_DIR = "_content";
 
 const githubSource = async () => {
-  	if (process.env.MODE === "EDIT") {
-		console.log(`[Edit Mode]: Content will not be fetched from the content repo`);
-		await fs.ensureDir(path.join(process.cwd(), CONTENT_DIR));
-	} else {
-		console.log(`Pulling content from content repo...`);
-		// replace this with octokit:
-		await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR);
-	}
+  if (process.env.MODE === "EDIT") {
+    console.log(
+      `[Edit Mode]: Content will not be fetched from the content repo`
+    );
+    await fs.ensureDir(path.join(process.cwd(), CONTENT_DIR));
+  } else {
+    console.log(`Pulling content from content repo...`);
+    // replace this with octokit:
+    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR);
+  }
 
+  // Move assets to nexts static dir
+  await fs.move(
+    path.join(process.cwd(), CONTENT_DIR, "assets"),
+    path.join(process.cwd(), "public", "assets"),
+    { overwrite: true }
+  );
   // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
   return () => {};
 };
