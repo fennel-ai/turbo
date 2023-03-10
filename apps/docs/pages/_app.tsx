@@ -1,14 +1,17 @@
+import { useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
-import Script from 'next/script';
-import theme from 'styles';
+import { useRouter } from 'next/router';
 import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
+import posthog from 'posthog-js';
+import { PostHogProvider } from 'posthog-js/react';
+
+import theme from 'styles';
 import 'styles/index.css';
 import "@docsearch/css";
 
 import { ShellContextProvider } from 'context/Shell';
-import { useRouter } from 'next/router';
 
 export const satoshiVariable = localFont({
 	src: [{
@@ -25,13 +28,34 @@ const toastOptions = {
 	},
 };
 
+if (typeof window !== 'undefined') {
+	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+		api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
+		// Disable in development
+		loaded: (posthog) => {
+			if (process.env.NODE_ENV === 'development') posthog.opt_out_capturing()
+		}
+	})
+}
+
 export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
+
+	useEffect(() => {
+		// Track page views
+		const handleRouteChange = () => posthog.capture('$pageview')
+		router.events.on('routeChangeComplete', handleRouteChange)
+
+		return () => {
+			router.events.off('routeChangeComplete', handleRouteChange)
+		}
+	}, [])
+
 	return (
-		<ShellContextProvider>
-			<Script src={`${router.basePath}/posthog.js`} />
-			<style jsx global>
-				{`
+		<PostHogProvider client={posthog} apiKey={process.env.NEXT_PUBLIC_POSTHOG_KEY}>
+			<ShellContextProvider>
+				<style jsx global>
+					{`
 				@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
 
 				* {
@@ -54,11 +78,12 @@ export default function App({ Component, pageProps }: AppProps) {
 					font-family: ${satoshiVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 				}
 			`}
-			</style>
-			<ThemeProvider theme={theme}>
-				<Component {...pageProps} />
-				<Toaster position="bottom-left" toastOptions={toastOptions} />
-			</ThemeProvider>
-		</ShellContextProvider>
+				</style>
+				<ThemeProvider theme={theme}>
+					<Component {...pageProps} />
+					<Toaster position="bottom-left" toastOptions={toastOptions} />
+				</ThemeProvider>
+			</ShellContextProvider>
+		</PostHogProvider>
 	)
 }
