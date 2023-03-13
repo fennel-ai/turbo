@@ -31,7 +31,6 @@
     "react-hot-toast": "^2.4.0",
     "rehype-img-size": "^1.0.1",
     "rehype-slug": "^5.1.0",
-    "remark-basepath": "^1.0.1",
     "remark-directive": "^2.0.1",
     "remark-docsnip": "workspace:*",
     "remark-gfm": "^3.0.1",

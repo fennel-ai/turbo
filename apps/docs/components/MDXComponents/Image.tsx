@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import NextImage from "next/image";
 
 type Props = {
@@ -12,6 +11,5 @@ export const Image = ({
 	src,
 	...props
 }: Props) => {
-	const router = useRouter();
-	return <NextImage {...props} loading="lazy" src={`${router.basePath}${src}`} />
+	return <NextImage {...props} loading="lazy" src={src} />
 }
