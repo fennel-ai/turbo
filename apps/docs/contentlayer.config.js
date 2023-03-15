@@ -50,7 +50,8 @@ export default makeSource({
     ".gitignore",
     "docker-compose.yml",
     "Makefile",
-    "./README.md",
+    "README.md",
+	"algolia.config.json",
   ],
   mdx: {
     remarkPlugins: [

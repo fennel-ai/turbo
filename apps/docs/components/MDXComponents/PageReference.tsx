@@ -2,12 +2,18 @@ import { PropsWithChildren } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import LinkExternalIcon from 'ui/icons/link-external.svg';
+import Image from 'next/image';
 
 const Root = styled(Link)`
 	border: 1px solid rgba(${({ theme }) => theme.ref.grey[100]}, 8%);
 	display: flex;
 	flex-direction: column;
 	border-radius: 1rem;
+
+	& img {
+		width: 100%;
+		height: auto;
+	}
 `;
 
 const Header = styled.div`
@@ -49,8 +55,11 @@ export const PageReference = ({ children, illustration, href, title }: PropsWith
 				<Title>{title}</Title>
 				<LinkExternalIcon />
 			</Header>
-			{/**\// TODO Figure out a solution for either using next/image or using the svg directly in some way */}
-			<img src={`/docs/${illustration}`} alt={title} /> {/* eslint-disable-line @next/next/no-img-element */}
+			{/**\// TODO Figure out a solution for either using next/image or using the svg directly in some way 
+			 * For now I've hardcoded the width and height so we can use next/image, as all of the illustration SVGs are the same size.
+			 * Will want to circle back and make this more dynamic in the future.
+			*/}
+			<Image src={illustration} width={392} height={168} alt={title} /> {/* eslint-disable-line @next/next/no-img-element */}
 			<Text>
 				{children}
 			</Text>
