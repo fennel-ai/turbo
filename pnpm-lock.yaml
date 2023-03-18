@@ -66,6 +66,8 @@ importers:
       fs-extra: ^11.1.0
       gray-matter: ^4.0.3
       gunzip-maybe: ^1.4.2
+      lodash: ^4.17.21
+      lodash.trimright: ^3.0.4
       mdx-bundler: ^9.2.1
       next: 13.1.1
       next-contentlayer: ^0.3.0
@@ -101,6 +103,8 @@ importers:
       fs-extra: 11.1.0
       gray-matter: 4.0.3
       gunzip-maybe: 1.4.2
+      lodash: 4.17.21
+      lodash.trimright: 3.0.4
       mdx-bundler: 9.2.1_esbuild@0.17.10
       next: 13.1.1_pjwopsidmaokadturxaafygjp4
       next-contentlayer: 0.3.0_gwgsblxwyivhoyjo3jjxsfgjoy
@@ -11388,6 +11392,22 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash._basetostring/3.0.1:
+    resolution: {integrity: sha512-mTzAr1aNAv/i7W43vOR/uD/aJ4ngbtsRaCubp2BfZhlGU/eORUjg/7F6X0orNMdv33JOrdgGybtvMN/po3EWrA==}
+    dev: false
+
+  /lodash._charsrightindex/3.0.0:
+    resolution: {integrity: sha512-T1tEmGpb/tjq55X6xvdHuhcqi+w6g6WLj++u23exjH8mP2QkZfMW5uAzIizyEGumnfUv4nAflkT2DqASTrWlhw==}
+    dev: false
+
+  /lodash._isiterateecall/3.0.9:
+    resolution: {integrity: sha512-De+ZbrMu6eThFti/CSzhRvTKMgQToLxbij58LMfM8JnYDNSOjkjTCIaa8ixglOeGh2nyPlakbt5bJWJ7gvpYlQ==}
+    dev: false
+
+  /lodash._trimmedrightindex/3.0.0:
+    resolution: {integrity: sha512-s2bd9zeFbSPJZquRRx+EWchN8QfNFyOWPyizWJf1aliVX1FAoFfbL4tPs2ufArh1fMbeheSItsPoqdF2MLdlUQ==}
+    dev: false
+
   /lodash.camelcase/4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
     dev: false
@@ -11402,6 +11422,16 @@ packages:
   /lodash.sortby/4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
     dev: true
+
+  /lodash.trimright/3.0.4:
+    resolution: {integrity: sha512-TE/qMnJCWrQeB1xQFI711iHDCWpyrCivGMC+Kq9sIfoqGrBkEMEVhZsHnCNIygie2HApC7h1yU/ZmbApzNe5gA==}
+    deprecated: This package is discontinued. Use lodash.trimend@^4.0.0.
+    dependencies:
+      lodash._basetostring: 3.0.1
+      lodash._charsrightindex: 3.0.0
+      lodash._isiterateecall: 3.0.9
+      lodash._trimmedrightindex: 3.0.0
+    dev: false
 
   /lodash.truncate/4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
