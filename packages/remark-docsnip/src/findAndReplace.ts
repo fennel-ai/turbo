@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { readFile as rf } from 'node:fs';
 import { promisify } from 'node:util';
+import trimEnd from 'lodash/trimEnd';
 
 import { extractSnippet } from './utils';
 import { ExampleFileDef } from './types';
@@ -20,7 +21,6 @@ export const findAndReplace = async ({
 	const file_content = await readFile(path.join(process.cwd(), "_content", filename), "utf8");
 
 	let snippet_str = extractSnippet(file_content, snippet_id);
-
 	if (snippet_str) {
 		// @ts-ignore
 		let node = tree.children[index];
@@ -51,7 +51,7 @@ export const findAndReplace = async ({
 				children: [
 					{ // @ts-ignore
 						type: "raw",
-						value: snippet_str,
+						value: trimEnd(snippet_str, "\n"),
 					},
 				],
 			},
