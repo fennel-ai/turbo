@@ -163,6 +163,7 @@ const Root = styled(Container)`
 
 		/** Grid style */
 		grid-column: span 4;
+
 		${media('xs')} {
 			grid-column: span 8;
 		}
@@ -172,6 +173,10 @@ const Root = styled(Container)`
 		}
 
 		${media('lg')} {
+			grid-column: span 9;
+		}
+		
+		${media('xl')} {
 			grid-column: span 8;
 		}
 	}
