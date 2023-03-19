@@ -29,6 +29,13 @@ const Title = styled.div`
 		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
 		font-size: 2rem;
 		line-height: 2rem;
+
+		& > span  {
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+			font-size: 1.5rem;
+			vertical-align: middle;
+			opacity: 0.64;
+		}
 		
 		${media('md')} {
 			font-size: 3rem;
@@ -75,7 +82,7 @@ export const TitleBlock = ({ children }: PropsWithChildren) => {
 		<Root>
 			{section.title ? <SectionTitle><p id="section_title">{section.title}</p></SectionTitle> : null}
 			<Title>
-				<h1>{children}</h1>
+				<h1>{children} {page.status === 'wip' ? <span>WIP</span> : null}</h1>
 				{page.description ? <Description id="page_description">{page.description}</Description> : null}
 			</Title>
 		</Root>
