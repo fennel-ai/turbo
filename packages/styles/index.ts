@@ -200,7 +200,7 @@ const theme: Theme = {
 		xs: 40, // 640px
 		sm: 48, // 768px
 		md: 62, // 992px
-		lg: 75, // 1200
+		lg: 67.5, // 1200px
 		xl: 96, // 1304px (1240+ 32 padding on each side)
 	},
 	...tokens,
