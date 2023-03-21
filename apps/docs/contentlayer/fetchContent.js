@@ -1,6 +1,5 @@
 import { Octokit } from "octokit";
 import { Readable } from "node:stream";
-import path from 'node:path';
 import fs from "fs-extra";
 import tar from "tar-fs";
 import gunzip from "gunzip-maybe";
@@ -23,7 +22,7 @@ const fetchContent = (token, dir) =>
       "GET /repos/{owner}/{repo}/tarball/{?ref}",
       {
         owner: "fennel-ai",
-        repo: "documentation",
+        repo: "client",
         ref: "main",
       }
     );
@@ -37,8 +36,14 @@ const fetchContent = (token, dir) =>
 
     // gunzip it and then extract.
     stream.pipe(gunzip()).pipe(
-      tar.extract(dir, {
-        finish: resolve,
+      tar.extract('.tmp', {
+        finish: () => {
+			// TODO: THis isn't the most efficient right now, but will need changing either way to support incremental builds
+			// Will circle back when working on support for incremental builds.
+			fs.moveSync('.tmp/docs', dir, { overwrite: true });
+			fs.rmSync('.tmp', { recursive: true });
+			resolve();
+		},
         strip: 1, // Here we strip the first path segment so that the files are placed directly into the content dir instead of `content_dir/repo_name_with_hash/*`
       })
     );
