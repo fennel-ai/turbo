@@ -82,6 +82,7 @@ const Root = styled.div<{ toolbar?: boolean }>`
 		text-align: right;
 		user-select: none;
 		color: ${({ theme }) => theme.syntax.comment};
+		width: 2rem;
 	}
 
 	/* Syntax tokens */
@@ -205,7 +206,7 @@ const style_reset = {
 
 const line_number_style = {
 	minWidth: 0,
-	paddingLeft: '1.5rem',
+	width: '3rem',
 	paddingRight: '1rem'
 }
 
