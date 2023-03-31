@@ -11,6 +11,39 @@ class User:
     sum_ratings: int
     update_time: datetime = field(timestamp=True)`;
 
+const LONG_EXAMPLE_CODE = `@meta(owner="data-eng-oncall@fennel.ai")
+@featureset
+class Request:
+    uid: int = feature(id=1)
+    request_timestamp: datetime = feature(id=2)
+    ip: str = feature(id=3)
+
+
+@meta(owner="data-eng-oncall@fennel.ai")
+@featureset
+class UserLocationFeaturesRefactored:
+    uid: int = feature(id=1)
+    latitude: float = feature(id=2)
+    longitude: float = feature(id=3)
+
+    @extractor(depends_on=[UserInfo])
+    @inputs(Request.uid)
+    @outputs(uid, latitude, longitude)
+    def get_country_geoid(cls, ts: pd.Series, uid: pd.Series):
+        from geopy.geocoders import Nominatim
+
+        df, found = UserInfo.lookup(ts, uid=uid)
+        geolocator = Nominatim(user_agent="adityanambiar@fennel.ai")
+        coordinates = (
+            df["city"]
+            .apply(geolocator.geocode)
+            .apply(lambda x: (x.latitude, x.longitude))
+        )
+        df["uid"] = uid
+        df["latitude"] = coordinates.apply(lambda x: round(x[0], 2))
+        df["longitude"] = coordinates.apply(lambda x: round(x[1], 2))
+        return df[["uid", "latitude", "longitude"]]`;
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'shared/CodeBlock',
@@ -25,7 +58,7 @@ const Template: ComponentStory<typeof CodeBlock> = (args) => <CodeBlock {...args
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-	code: EXAMPLE_CODE,
+	code: LONG_EXAMPLE_CODE,
 	onCopy: () => alert('Copied to clipbaord'),
 	language: 'python',
 }
