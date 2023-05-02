@@ -52,6 +52,7 @@ export default makeSource({
     "Makefile",
     "README.md",
 	"algolia.config.json",
+	"deprecated"
   ],
   mdx: {
     remarkPlugins: [
