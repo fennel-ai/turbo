@@ -77,9 +77,9 @@ export default function App({ Component, pageProps }: AppProps) {
 			`}
 				</style>
 				<Head>
-					<link rel="icon" href="/docs/favicon.ico" sizes="any" />
-					<link rel="icon" href="/docs/favicon.svg" type="image/svg+xml" />
-					<link rel="apple-touch-icon" href="/docs/apple-touch-icon.png" />
+					<link rel="icon" href="/favicon.ico" sizes="any" />
+					<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+					<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 					<meta name="theme-color" content="#5D4CBE" />
 				</Head>
 				<ThemeProvider theme={theme}>
