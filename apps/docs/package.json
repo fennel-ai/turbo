@@ -37,6 +37,7 @@
     "remark-docsnip": "workspace:*",
     "remark-gfm": "^3.0.1",
     "remark-mdx-disable-explicit-jsx": "^0.1.0",
+    "remark-validate-href": "workspace:*",
     "sharp": "^0.31.3",
     "styles": "workspace:*",
     "tar-fs": "^2.1.1",
