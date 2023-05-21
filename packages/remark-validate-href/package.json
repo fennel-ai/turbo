@@ -29,7 +29,6 @@
 		"unist-util-visit": "^4.1.2"
 	},
 	"dependencies": {
-		"@wry/context": "^0.7.3",
 		"fast-glob": "^3.2.12",
 		"gray-matter": "^4.0.3",
 		"js-yaml": "^4.1.0",
