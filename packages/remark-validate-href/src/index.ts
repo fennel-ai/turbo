@@ -9,6 +9,7 @@ import { createContentMap } from './createContentMap';
 
 const contentMap = createContentMap();
 
+// TODO: Validate image src attributes similarly.
 const remarkValidateHref: Plugin = (): Transformer => {
 	return (tree) => {
 		const link_visitor: Visitor<Node> = (node) => {
