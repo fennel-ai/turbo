@@ -11,7 +11,7 @@ const contentMap = createContentMap();
 
 const remarkValidateHref: Plugin = (): Transformer => {
 	return (tree) => {
-		const visitor: Visitor<Node> = (node) => {
+		const link_visitor: Visitor<Node> = (node) => {
 			//@ts-ignore
 			let url = node.url as string;
 
@@ -34,7 +34,7 @@ const remarkValidateHref: Plugin = (): Transformer => {
 			}
 		}
 
-		visit(tree, 'link', visitor)
+		visit(tree, 'link', link_visitor);
 	}
 }
 
