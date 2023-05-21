@@ -85,7 +85,6 @@ importers:
       remark-gfm: ^3.0.1
       remark-mdx-disable-explicit-jsx: ^0.1.0
       remark-validate-href: workspace:*
-      remark-validate-links: ^12.1.1
       sharp: ^0.31.3
       styles: workspace:*
       tar-fs: ^2.1.1
@@ -124,7 +123,6 @@ importers:
       remark-gfm: 3.0.1
       remark-mdx-disable-explicit-jsx: 0.1.0
       remark-validate-href: link:../../packages/remark-validate-href
-      remark-validate-links: 12.1.1
       sharp: 0.31.3
       styles: link:../../packages/styles
       tar-fs: 2.1.1
@@ -10401,13 +10399,6 @@ packages:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
     dev: true
 
-  /hosted-git-info/6.1.1:
-    resolution: {integrity: sha512-r0EI+HBMcXadMrugk0GCQ+6BQV39PiWAZVfq7oIckeGiN7sjRGyQxPdft3nQekFTCQbYxLBH+/axZMeH8UX6+w==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
-    dependencies:
-      lru-cache: 7.18.3
-    dev: false
-
   /html-entities/2.3.3:
     resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
     dev: true
@@ -11468,11 +11459,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /levenshtein-edit-distance/1.0.0:
-    resolution: {integrity: sha512-gpgBvPn7IFIAL32f0o6Nsh2g+5uOvkt4eK9epTfgE4YVxBxwVhJ/p1888lMm/u8mXdu1ETLSi6zeEmkBI+0F3w==}
-    hasBin: true
-    dev: false
-
   /levn/0.3.0:
     resolution: {integrity: sha512-0OO4y2iOHix2W6ujICbKIaEQXvFQHue65vUG3pb5EUomzPI90z9hsA1VsO/dbIIpC53J8gxM9Q4Oho0jrCM/yA==}
     engines: {node: '>= 0.8.0'}
@@ -11693,11 +11679,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-
-  /lru-cache/7.18.3:
-    resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
-    engines: {node: '>=12'}
-    dev: false
 
   /lru-cache/9.1.1:
     resolution: {integrity: sha512-65/Jky17UwSb0BuB9V+MyDpsOtXKmYwzhyl+cOa9XUiI4uV2Ouy/2voFP3+al0BjZbJgMBD8FojMpAf+Z+qn4A==}
@@ -13904,12 +13885,6 @@ packages:
     resolution: {integrity: sha512-kma4U7AFCTwpqq5twzC1YVIDXSqg6qQK6JN0smOw8fgRy1OkMi0CYSzFmsy6dnqSenamAtj0CyXMUJ1Mf6oROg==}
     dev: false
 
-  /propose/0.0.5:
-    resolution: {integrity: sha512-Jary1vb+ap2DIwOGfyiadcK4x1Iu3pzpkDBy8tljFPmQvnc9ES3m1PMZOMiWOG50cfoAyYNtGeBzrp+Rlh4G9A==}
-    dependencies:
-      levenshtein-edit-distance: 1.0.0
-    dev: false
-
   /protobufjs/6.11.3:
     resolution: {integrity: sha512-xL96WDdCZYdU7Slin569tFX712BxsxslWwAfAhCYjQKGTq7dAU91Lomy6nLLhh/dyGhk/YH4TwTSRxTzhuHyZg==}
     hasBin: true
@@ -14648,24 +14623,6 @@ packages:
       mdast-util-to-markdown: 1.5.0
       unified: 10.1.2
     dev: true
-
-  /remark-validate-links/12.1.1:
-    resolution: {integrity: sha512-nk/CkcZ3u8QntoMCqZ+JzUzFub36E+mNFMMbYqqN+yQViUHbRLqirCG1qOI4E38RyKZ8abjFUv0JGB7skKa41A==}
-    dependencies:
-      '@types/mdast': 3.0.10
-      github-slugger: 2.0.0
-      hosted-git-info: 6.1.1
-      mdast-util-to-string: 3.2.0
-      propose: 0.0.5
-      to-vfile: 7.2.4
-      trough: 2.1.0
-      unified: 10.1.2
-      unified-engine: 10.1.0
-      unist-util-visit: 4.1.2
-      vfile: 5.3.7
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /remark/14.0.3:
     resolution: {integrity: sha512-bfmJW1dmR2LvaMJuAnE88pZP9DktIFYXazkTfOIKZzi3Knk9lT0roItIA24ydOucI3bV/g/tXBA6hzqq3FV9Ew==}
