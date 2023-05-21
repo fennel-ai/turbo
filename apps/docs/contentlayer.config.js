@@ -60,7 +60,7 @@ export default makeSource({
       remarkGfm,
       remarkDirective,
       remarkAdmonitions,
-      docsnip,
+      docsnip
     ],
     rehypePlugins: [[rehypeImgSize, { dir: "public" }], rehypeSlug],
   },
