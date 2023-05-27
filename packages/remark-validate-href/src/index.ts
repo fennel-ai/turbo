@@ -18,6 +18,13 @@ const remarkValidateHref: Plugin = (): Transformer => {
 
 			const isExt = url.startsWith('http');
 
+			//! Here we are essentially ignoring the header anchor links for now
+			//! this is a little more complex as we need rehype to run for the heading IDs to be present on each `node`
+			//! Need to work out a way around this when running the validator via remark-cli.
+			if (url.includes('#')) {
+				url = url.split("#")[0];
+			}
+
 			if (!isExt) {
 
 				let full_path = path.join(CONTENT_BASE, `${url}.md`);
