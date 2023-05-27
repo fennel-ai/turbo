@@ -49,6 +49,7 @@ const Root = styled(Container)`
 			font-weight: 500;
 			margin: 0;
 			letter-spacing: -0.5px;
+			scroll-margin-top: 8rem;
 
 			&:first-of-type {
 				margin-top: 0 !important;
