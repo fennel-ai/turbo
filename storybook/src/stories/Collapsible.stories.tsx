@@ -15,8 +15,9 @@ export default {
 const Template: ComponentStory<typeof Collapsible> = (args) => {
 	const [open, setOpen] = useState<boolean>(false);
 	return (
-		<div onClick={() => setOpen(prev => !prev)}>
-			<p>{open ? 'Close' : 'Open'} Me</p>
+		<div>
+			<p>{open ? 'Closed' : 'Open'}</p>
+			<button onClick={() => setOpen(prev => !prev)}>Toggle</button>
 			<Collapsible {...args} open={open} />
 		</div>
 	)

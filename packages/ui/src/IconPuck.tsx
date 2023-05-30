@@ -12,7 +12,7 @@ const Root = styled.div`
 	width: 3rem;
 	height: 3rem;
 
-	& svg {
+	& > svg {
 		filter: drop-shadow(0px 4px 8px rgba(59, 48, 126, 0.24));
 		width: 1.5rem;
 		height: 1.5rem;
