@@ -15,8 +15,8 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof IconPuck> = (args) => <IconPuck {...args} />;
 
-export const Small = Template.bind({});
+export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Small.args = {
+Default.args = {
 	children: <DefaultIcon />,
 };
