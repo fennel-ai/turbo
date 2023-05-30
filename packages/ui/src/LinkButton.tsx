@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
+
 import InternalLinkIcon from '../icons/arrow-narrow-up-right.svg';
 
 const Root = styled.button`

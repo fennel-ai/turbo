@@ -1,5 +1,10 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, StyleHTMLAttributes } from 'react';
 import styled from '@emotion/styled';
+
+type Props = {
+	className?: string;
+	style?: StyleHTMLAttributes<HTMLDivElement>;
+}
 
 const Root = styled.div`
 	background-color: rgba(240, 240, 245, 0.5);
@@ -9,9 +14,9 @@ const Root = styled.div`
 	flex-direction: column;
 `;
 
-export const Card = ({ children }: PropsWithChildren) => {
+export const Card = ({ className, children, style }: PropsWithChildren<Props>) => {
 	return (
-		<Root>
+		<Root className={className} style={style}>
 			{children}
 		</Root>
 	);

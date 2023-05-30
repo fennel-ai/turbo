@@ -5,7 +5,7 @@ type Props = {
 	button?: ReactElement;
 	className?: string;
 	icon?: ReactElement;
-	style: StyleHTMLAttributes<HTMLDivElement>;
+	style?: StyleHTMLAttributes<HTMLDivElement>;
 }
 
 const Root = styled.div`
