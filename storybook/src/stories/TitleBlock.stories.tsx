@@ -13,7 +13,6 @@ const Root = styled.div`
 
 const Wrapper = styled.div`
 	grid-column: 3 / span 8;
-	text-align: center;
 `;
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -36,6 +35,17 @@ const Template: ComponentStory<typeof TitleBlock> = (args) => (
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
+	align: 'left',
+	size: 'default',
+	subtitle: "Redfine your ML & Data Ops",
+	title: "Feature Engineering for Modern Data Scientists",
+	text: "Enterprise-grade ML infrastructure for teams of all sizes. Fennel is a feature engineering platform designed to help you store, serve, discover and scale with ease."
+};
+
+export const Large = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Large.args = {
+	size: 'large',
 	subtitle: "Redfine your ML & Data Ops",
 	title: "Feature Engineering for Modern Data Scientists",
 	text: "Enterprise-grade ML infrastructure for teams of all sizes. Fennel is a feature engineering platform designed to help you store, serve, discover and scale with ease."
