@@ -5,10 +5,10 @@ type Props = {
 	align?: 'left' | 'center';
 	className?: string;
 	size?: 'default' | 'large';
-	style: StyleHTMLAttributes<HTMLDivElement>;
+	style?: StyleHTMLAttributes<HTMLDivElement>;
 	subtitle?: string;
 	text?: string;
-	titleAs: ElementType<any> | undefined;
+	titleAs?: ElementType<any>;
 	title: string;
 }
 
