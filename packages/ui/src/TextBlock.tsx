@@ -1,11 +1,22 @@
-import { PropsWithChildren, ReactElement } from "react";
+import { PropsWithChildren, ReactElement, StyleHTMLAttributes } from "react";
 import styled from '@emotion/styled';
 
 type Props = {
+	button?: ReactElement;
+	className?: string;
 	icon?: ReactElement;
+	style: StyleHTMLAttributes<HTMLDivElement>;
 }
 
-const Root = styled.p`
+const Root = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	align-items: flex-start;
+`;
+
+const Text = styled.p`
+	align-self: stretch;
 	margin: 0;
 	font-size: 1rem 
 	line-height: 1.5rem;
@@ -26,10 +37,13 @@ const Root = styled.p`
 `;
 
 export const TextBlock = (props: PropsWithChildren<Props>) => {
-	const { children, icon } = props;
+	const { button, children, icon } = props;
 	return (
 		<Root>
-			{icon ? icon : null}{children}
-		</Root>	
+			<Text>
+				{icon ? icon : null}{children}
+			</Text>	
+			{button}
+		</Root>
 	);
 };
