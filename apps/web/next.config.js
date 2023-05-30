@@ -2,9 +2,7 @@ const { BLOG_URL, DOCS_URL } = process.env;
 
 module.exports = {
   reactStrictMode: true,
-  experimental: {
-    transpilePackages: ["ui"],
-  },
+  transpilePackages: ["ui", "styles"],
   async rewrites() {
     return [
       {
