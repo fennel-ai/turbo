@@ -21,6 +21,8 @@ const Grid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	gap: 2rem;
+	padding-left: 6.5rem;
+	padding-right: 6.5rem;
 `;
 
 const Cell = styled.div`
@@ -31,6 +33,7 @@ const Cell = styled.div`
 	justify-content: center;
 	gap: 1.5rem;
 	text-align: center;
+	padding: 0 2.5rem;
 `;
 
 const TextGroup = styled.div`
@@ -45,6 +48,9 @@ const TextGroup = styled.div`
 
 	p {
 		margin: 0;
+		opacity: 0.8;
+		font-size: 1.125rem;
+		line-height: 1.75rem;
 	}
 `;
 
