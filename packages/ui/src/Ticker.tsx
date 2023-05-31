@@ -31,7 +31,7 @@ const Item = styled(Card)`
 `;
 
 export const Ticker = (props: PropsWithChildren<Props>) => {
-	const { children, direction = -1, duration = 20, isPlaying, gutter = 64 } = props;
+	const { children, direction = -1, duration = 60, isPlaying, gutter = 64 } = props;
 
 	const tickerRef = useRef<HTMLDivElement>(null);
 	
