@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import { IconPuck, LinkButton, TitleBlock } from 'ui';
+import { Card, TitleBlock } from 'ui';
 import PythonIcon from 'ui/icons/python.svg';
 
 import { Container } from 'components/Container';
+import { AccordionItem } from './AccordionItem';
 
 const Root = styled.div`
 	padding: 5rem 0;
@@ -12,50 +13,52 @@ const Wrapper = styled(Container)`
 	display: flex;
 	flex-direction: column;
 	gap: 4rem;
-`;
-
-const Grid = styled.div`
-	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	gap: 2rem;
 `;
 
-const Cell = styled.div`
+const TitleWrapper = styled.div`
+	grid-column: 4 / span 6;
+`;
+
+const Accordion = styled.div`
 	grid-column: span 4;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 1.5rem;
-	text-align: center;
 `;
 
-const TextGroup = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	h3 {
-		margin: 0;
-	}
-
-	p {
-		margin: 0;
-	}
+const Diagram = styled(Card)`
+	grid-column: 6 / span 7;
+	height: 450px;
 `;
 
 const HowItWorks = () => {
 	return (
 		<Root>
 			<Wrapper>
-				<TitleBlock
-					align="center"
-					subtitle="How it works"
-					title="Read & Write Path Separation"
-					text="The right abstraction for realtime feature engineering"
-				/>
+				<TitleWrapper>
+					<TitleBlock
+						align="center"
+						subtitle="How it works"
+						title="Read & Write Path Separation"
+						text="The right abstraction for realtime feature engineering"
+					/>
+				</TitleWrapper>
+				<Accordion>
+					<AccordionItem icon={<PythonIcon />} title="Bring your Data">
+						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
+					</AccordionItem>
+					<AccordionItem icon={<PythonIcon />} title="Derive Features via Pipelines">
+						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
+					</AccordionItem>
+					<AccordionItem icon={<PythonIcon />} title="Define Features">
+						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
+					</AccordionItem>
+					<AccordionItem icon={<PythonIcon />} title="Query via the REST API">
+						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
+					</AccordionItem>
+				</Accordion>
+				<Diagram>
+
+				</Diagram>
 			</Wrapper>
 		</Root>
 	);
