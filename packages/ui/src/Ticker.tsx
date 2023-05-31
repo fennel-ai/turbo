@@ -42,16 +42,15 @@ export const Ticker = (props: PropsWithChildren<Props>) => {
 	const [scope, animate] = useAnimate();
 	const isInView = useInView(tickerRef);
 
-
 	useEffect(() => {
-		if (tickerRef.current && numDupes) {
-			setContentWidth(tickerRef.current.scrollWidth / numDupes + gutter);
+		if (tickerRef.current) {
+			setContentWidth(tickerRef.current.scrollWidth);
 		}
-	}, [gutter, numDupes]);
+	}, []);
 
 	useEffect(() => {
 		if (tickerRef.current && contentWidth) {
-			setNumDupes(Math.max(Math.ceil((2 * tickerRef.current.clientWidth) / contentWidth), 1));
+			setNumDupes(Math.max(Math.ceil((2 * tickerRef.current.clientWidth) / contentWidth), 2));
 		}
 	}, [contentWidth]);
 
@@ -59,13 +58,16 @@ export const Ticker = (props: PropsWithChildren<Props>) => {
 		if (isInView && !animationControls) {
 			const controls = animate(
 				scope.current,
-				{ x: contentWidth * direction },
+				{ x: (contentWidth + gutter) * direction },
 				{ ease: 'linear', duration, repeat: Infinity }
 			);
-			controls.play();
 			setAnimationControls(controls);
 		}
-	}, [animate, animationControls, contentWidth, direction, duration, isInView, numDupes, scope]);
+
+		return () => {
+			if (animationControls) setAnimationControls(undefined);
+		}
+	}, [animate, animationControls, contentWidth, direction, duration, gutter, isInView, scope]);
 
 	useEffect(() => {
 		if (animationControls) {
@@ -75,7 +77,7 @@ export const Ticker = (props: PropsWithChildren<Props>) => {
 				animationControls.play();
 			}
 		}
-	}, [animationControls, isInView, isPlaying]);
+	}, [isInView, isPlaying, animationControls]);
 
 	const renderChildren = useCallback(() => Children.map(children, (child, index) => (
 		<Item key={index}>

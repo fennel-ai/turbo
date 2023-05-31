@@ -1,17 +1,22 @@
-import { PropsWithChildren, ReactElement } from 'react';
+import { PropsWithChildren, ReactElement, StyleHTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
-import { Section } from './Section';
+import { Container } from './Container';
 
 type Props = {
+	className?: string;
 	direction?: 'forward' | 'reverse';
 	illustration: ReactElement;
+	style?: StyleHTMLAttributes<HTMLDivElement>;
 }
 
-const Root = styled(Section)`
+const Root = styled.div`
+	padding: 5rem 0;
+`;
+
+const Wrapper = styled(Container)`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	padding: 5rem 0;
 `;
 
 const IllustrationWrapper = styled.div<{ direction: Props['direction'] }>`
@@ -28,15 +33,17 @@ const Content = styled.div<{ direction: Props['direction'] }>`
 	grid-column: ${props => props.direction === 'reverse' ? 'span 6' : '7 / span 6' };
 `;
 
-export const SplitSection = ({ children, direction = "forward", illustration }: PropsWithChildren<Props>) => {
+export const SplitSection = ({ className, children, direction = "forward", illustration, style }: PropsWithChildren<Props>) => {
 	return (
-		<Root>
-			<IllustrationWrapper direction={direction}>
-				{illustration}
-			</IllustrationWrapper>
-			<Content direction={direction}>
-				{children}
-			</Content>
+		<Root className={className} style={style}>
+			<Wrapper>
+				<IllustrationWrapper direction={direction}>
+					{illustration}
+				</IllustrationWrapper>
+				<Content direction={direction}>
+					{children}
+				</Content>
+			</Wrapper>
 		</Root>
 	)
 };
