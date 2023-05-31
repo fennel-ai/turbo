@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"esbuild-plugin-svgr": "^1.0.1",
+		"framer-motion": "^10.12.16",
 		"react-syntax-highlighter": "^15.5.0",
 		"styles": "workspace:*"
 	},

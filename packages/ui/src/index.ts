@@ -7,5 +7,6 @@ export * from "./IconPuck";
 export * from "./KeyIndicator";
 export * from "./LinkButton";
 export * from "./TextBlock";
+export * from "./Ticker";
 export * from "./TitleBlock";
 export * from "./Searchbar";
