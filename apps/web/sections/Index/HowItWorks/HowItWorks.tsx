@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
-import { Card, TitleBlock } from 'ui';
+import { TitleBlock } from 'ui';
 import PythonIcon from 'ui/icons/python.svg';
 
 import { Container } from 'components/Container';
 import { AccordionItem } from './AccordionItem';
+import Diagram from './Diagram';
 
 const Root = styled.div`
 	padding: 5rem 0;
@@ -23,11 +24,6 @@ const TitleWrapper = styled.div`
 
 const Accordion = styled.div`
 	grid-column: span 4;
-`;
-
-const Diagram = styled(Card)`
-	grid-column: 6 / span 7;
-	height: 450px;
 `;
 
 const HowItWorks = () => {
@@ -56,9 +52,7 @@ const HowItWorks = () => {
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
 				</Accordion>
-				<Diagram>
-
-				</Diagram>
+				<Diagram />
 			</Wrapper>
 		</Root>
 	);
