@@ -35,12 +35,6 @@ const Root = styled.div`
 const SourceNode = ({ data }: Props) => {
 	return (
 		<>
-			<Handle
-				type="target"
-				position={Position.Left}
-				id="in"
-				style={{ zIndex: -1 }}
-			/>
 			<Root>
 				<p>{data.label}</p>
 			</Root>
