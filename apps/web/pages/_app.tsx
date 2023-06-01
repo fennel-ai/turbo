@@ -8,6 +8,9 @@ import 'styles/index.css';
 
 import Head from 'next/head';
 
+import { Header } from 'components/Header';
+import { Footer } from 'components/Footer';
+
 export const satoshiVariable = localFont({
 	src: [{
 		path: "./fonts/Satoshi-Variable.woff2"
@@ -58,11 +61,9 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta name="theme-color" content="#5D4CBE" />
 			</Head>
 			<ThemeProvider theme={theme}>
-				<header>Header</header>
+				<Header />
 				<Component {...pageProps} />
-				<footer>
-					Footer
-				</footer>
+				<Footer />
 				<Toaster position="bottom-left" toastOptions={toastOptions} />
 			</ThemeProvider>
 		</>

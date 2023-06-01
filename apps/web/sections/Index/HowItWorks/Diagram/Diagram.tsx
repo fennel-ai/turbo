@@ -3,6 +3,10 @@ import styled from "@emotion/styled";
 import { ConnectionLineType, MarkerType, ReactFlow, Background as RFBackground, BackgroundVariant as RFBackgroundVariant, useEdgesState, useNodesState } from 'reactflow';
 import 'reactflow/dist/style.css';
 
+import KafkaIcon from 'ui/icons/kafka.svg';
+import PostgresIcon from 'ui/icons/postgres.svg';
+import SnowflakeIcon from 'ui/icons/snowflake.svg';
+
 import DatasetNode from "./DatasetNode";
 import SourceNode from "./SourceNode";
 import FeatureNode from "./FeatureNode";
@@ -30,7 +34,12 @@ const initialNodes = [
 		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
-		data: { label: "Postgres" },
+		data: { 
+			icon: (
+				<PostgresIcon width={24} height={24} color="#035D85" />
+			),
+			label: "Postgres" 
+		},
 		position: { x: 0, y: 43 },
 	},
 	{
@@ -40,7 +49,12 @@ const initialNodes = [
 		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
-		data: { label: 'Snowflake' },
+		data: { 
+			icon: (
+				<SnowflakeIcon width={24} height={24} color="#29B5E8" />
+			), 
+			label: 'Snowflake' 
+		},
 		position: { x: 0, y: 178 },
 	},
 	{
@@ -50,7 +64,12 @@ const initialNodes = [
 		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
-		data: { label: 'Kafka' },
+		data: { 
+			icon: (
+				<KafkaIcon width={24} height={24} color="#000000" />
+			),
+			label: 'Kafka' 
+		},
 		position: { x: 0, y: 314 },
 	},
 	{
@@ -131,7 +150,7 @@ const initialNodes = [
 		sourcePosition: 'left',
 		targetPosition: 'right',
 		data: { label: 'REST API' },
-		position: { x: 712, y: 160 },
+		position: { x: 712, y: 168 },
 	},
 ];
 
@@ -147,8 +166,9 @@ const initialEdges = [
 		animated: true,
 		markerEnd: {
 			type: MarkerType.Arrow,
-			width: 16,
-			height: 16,
+			width: 12,
+			height: 12,
+			strokeWidth: 1.5
 		}
 	},
 	{
@@ -162,8 +182,9 @@ const initialEdges = [
 		animated: true,
 		markerEnd: {
 			type: MarkerType.Arrow,
-			width: 16,
-			height: 16,
+			width: 12,
+			height: 12,
+			strokeWidth: 1.5
 		}
 	},
 	{
@@ -177,8 +198,9 @@ const initialEdges = [
 		animated: true,
 		markerEnd: {
 			type: MarkerType.Arrow,
-			width: 16,
-			height: 16,
+			width: 12,
+			height: 12,
+			strokeWidth: 1.5
 		}
 	},
 	{

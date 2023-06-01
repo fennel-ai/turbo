@@ -15,20 +15,22 @@ const Root = styled.div`
 	line-height: 1.5rem;
 	font-variation-settings: "wght" 500;
 	padding: 2rem 0;
-
+	user-select: none;
+	cursor: pointer;
+	
 	& p {
 		margin: 0;
 		margin-top: 1rem;
+		color: #181825;
 	}
 `;
 
-const Header = styled.div`
+const Header = styled.div<{ open: boolean }>`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	user-select: none;
-	cursor: pointer;
+	color: ${({ open }) => open ? '#181825' : '#4A4A5E'};
 `;
 
 const Title = styled.div`
@@ -58,8 +60,8 @@ const Progress = styled.div`
 export const AccordionItem = ({ children, icon, open, onToggle, title }: PropsWithChildren<Props>) => {
 	return (
 		<>
-			<Root>
-				<Header onClick={onToggle}>
+			<Root onClick={onToggle}>
+				<Header open={open}>
 					<Title>
 						{icon || null}
 						<h4>{title}</h4>

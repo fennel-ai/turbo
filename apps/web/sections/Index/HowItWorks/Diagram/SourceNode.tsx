@@ -1,7 +1,9 @@
+import { ReactElement } from 'react';
 import { Handle, Position } from 'reactflow';
 import styled from '@emotion/styled';
 
 interface DataProp {
+	icon: ReactElement;
 	label: string;
 }
 
@@ -36,6 +38,7 @@ const SourceNode = ({ data }: Props) => {
 	return (
 		<>
 			<Root>
+				{data.icon ? data.icon : null}
 				<p>{data.label}</p>
 			</Root>
 			<Handle
