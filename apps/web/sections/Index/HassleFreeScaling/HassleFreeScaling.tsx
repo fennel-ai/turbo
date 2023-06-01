@@ -58,11 +58,10 @@ const HassleFreeScaling = () => {
 	return (
 		<Root>
 			<Wrapper>
-				<TitleBlock
-					align="center"
-					subtitle="Enterprise-Grade Performance"
-					title="Hassle-free Scaling"
-				/>
+				<TitleBlock align="center">
+					<h6>Enterprise-Grade Performance</h6>
+					<h2>Hassle-free Scaling</h2>
+				</TitleBlock>
 				<Grid>
 					<Cell>
 						<IconPuck>

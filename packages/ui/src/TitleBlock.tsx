@@ -1,15 +1,11 @@
 import styled from '@emotion/styled';
-import { ElementType, PropsWithChildren, StyleHTMLAttributes } from 'react';
+import { PropsWithChildren, StyleHTMLAttributes } from 'react';
 
 type Props = {
+	actions?: JSX.Element[];
 	align?: 'left' | 'center';
 	className?: string;
-	size?: 'small' | 'default' | 'large';
 	style?: StyleHTMLAttributes<HTMLDivElement>;
-	subtitle?: string;
-	text?: string;
-	titleAs?: ElementType<any>;
-	title: string;
 }
 
 const Root = styled.div<{ align: Props['align'] }>`
@@ -17,51 +13,73 @@ const Root = styled.div<{ align: Props['align'] }>`
 	flex-direction: column;
 	align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
 	gap: 1.5rem;
+
+	/** Large Title **/
+	& h1 {
+		margin: 1rem 0;
+		font-size: 4rem;
+		line-height: 4rem;
+		font-variation-settings: "wght" 900;
+	}
+	
+	/** Standard Title **/
+	& h2 {
+		margin: 0.5rem 0;
+		font-size: 2.5rem;
+		line-height: 3rem;
+		font-variation-settings: "wght" 900;
+	}
+	
+	/** Small Title **/
+	& h3 {
+		margin: 0.5rem 0;
+		font-size: 2rem;
+		line-height: 2.5rem;
+		font-variation-settings: "wght" 900;
+		letter-spacing: -1px;
+	}
+
+	/** Subtitle */
+	& h6 {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1rem;
+		opacity: 50%;
+		font-variation-settings: "wght" 500;
+	}
+
+	& p {
+		margin: 0;
+		font-size: 1.125rem; 
+		line-height: 2rem;
+		font-variation-settings: "wght" 500;
+
+		& b {
+			font-variation-settings: "wght" 800;
+		}
+	}
+
+	& p + p {
+		margin-top: 1rem;
+	}
 `;
 
-const Content = styled.div<{ align: Props['align'], size: Props['size'] }>`
+const Content = styled.div<{ align: Props['align'] }>`
 	display: flex;
 	flex-direction: column;
 	align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
 	text-align: ${props => props.align};
-	gap: ${props => props.size === 'large' ? '1rem' : '0.5rem'};
-`;
-
-const Subtitle = styled.h5<{ size: Props['size'] }>`
-	margin: 0;
-	font-size: 1rem; 
-	line-height: 1rem;
-	opacity: 50%;
-	font-variation-settings: "wght" 500;
-`;
-
-const Title = styled.h2<{ size: Props['size'] }>`
-	margin: 0;
-	font-size: ${props => props.size === 'large' ? '4rem' : props.size === 'small' ? '2rem' : '2.5rem'};
-	line-height: ${props => props.size === 'large' ? '4rem' : props.size === 'small' ? '2.5rem' : '3rem'};
-	font-variation-settings: "wght" 900;
-`;
-
-const Text = styled.p<{ size: Props['size'] }>`
-	margin: 0;
-	font-size: 1.125rem;
-	line-height: 2rem;
-	font-variation-settings: "wght" 500;
 `;
 
 export const TitleBlock = (props: PropsWithChildren<Props>) => {
-	const { align = 'center', children, className, size = 'default', style, subtitle, text, titleAs, title } = props;
+	const { actions, align, children, className, style } = props;
 
 	return (
 		<Root align={align}>
-			<Content align={align} className={className} size={size} style={style}>
-				{subtitle ? <Subtitle size={size}>{subtitle}</Subtitle> : null}
-				<Title as={titleAs} size={size}>
-					{title}
-				</Title>
-				{text ? <Text size={size}>{text}</Text> : null}
+			<Content align={align} className={className} style={style}>
+				{children}
 			</Content>
-			{children}
+			{actions}
 		</Root>
 	);
 };

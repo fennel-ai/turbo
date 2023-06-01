@@ -14,6 +14,7 @@ const StreamingJoins = styled(Card)`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	padding: 1rem;
 `;
 
 const FeatureFreshness = styled(Card)`
@@ -22,6 +23,7 @@ const FeatureFreshness = styled(Card)`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	padding: 1rem;
 `;
 
 const LowLatency = styled(Card)`
@@ -30,31 +32,29 @@ const LowLatency = styled(Card)`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	padding: 1rem;
 `;
 
 const BentoIllustration = () => {
 	return (
 		<Root>
 			<StreamingJoins>
-				<TitleBlock 
-					size="small"
-					subtitle="Realtime Data Operators"
-					title="Streaming Joins"
-				/>
+				<TitleBlock align="center">
+					<h6>Realtime Data Operators</h6>
+					<h3>Streaming Joins</h3>
+				</TitleBlock>
 			</StreamingJoins>
 			<FeatureFreshness>
-				<TitleBlock
-					size="small"
-					subtitle="No more stale data"
-					title="Sub-Second Feature Freshness"
-				/>
+				<TitleBlock align="center">
+					<h6>No more stale data</h6>
+					<h3>Sub-second Feature Freshness</h3>
+				</TitleBlock>
 			</FeatureFreshness>
 			<LowLatency>
-				<TitleBlock
-					size="small"
-					subtitle="Single-digit ms response"
-					title="Ultra-low Latency Serving"
-				/>
+				<TitleBlock align="center">
+					<h6>Single-digit ms response</h6>
+					<h3>Ultra-low Latency Serving</h3>
+				</TitleBlock>
 			</LowLatency>
 		</Root>
 	);

@@ -15,11 +15,10 @@ const Grid = styled.div`
 const ShipFaster = () => {
 	return (
 		<SplitSection illustration={<Illustration />}>
-			<TitleBlock
-				align="left"
-				subtitle="Redefine your ML & Data Ops"
-				title="Ship Features 100x Faster"
-			/>
+			<TitleBlock align="left">
+				<h6>Redefine your ML & Data Ops</h6>
+				<h2>Ship Features 100x Faster</h2>
+			</TitleBlock>
 			<Grid>
 				<TextBlock icon={<PythonIcon />}>
 					<b>Real Python. No DSLs.</b><br />

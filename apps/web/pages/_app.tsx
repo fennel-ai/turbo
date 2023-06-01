@@ -58,7 +58,11 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta name="theme-color" content="#5D4CBE" />
 			</Head>
 			<ThemeProvider theme={theme}>
+				<header>Header</header>
 				<Component {...pageProps} />
+				<footer>
+					Footer
+				</footer>
 				<Toaster position="bottom-left" toastOptions={toastOptions} />
 			</ThemeProvider>
 		</>

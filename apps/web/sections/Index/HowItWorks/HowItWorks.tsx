@@ -31,12 +31,11 @@ const HowItWorks = () => {
 		<Root>
 			<Wrapper>
 				<TitleWrapper>
-					<TitleBlock
-						align="center"
-						subtitle="How it works"
-						title="Read & Write Path Separation"
-						text="The right abstraction for realtime feature engineering"
-					/>
+					<TitleBlock align="center">
+						<h6>How it works</h6>
+						<h2>Read & Write Path Separation</h2>
+						<p>The right abstraction for realtime feature engineering</p>
+					</TitleBlock>
 				</TitleWrapper>
 				<Accordion>
 					<AccordionItem icon={<PythonIcon />} title="Bring your Data">

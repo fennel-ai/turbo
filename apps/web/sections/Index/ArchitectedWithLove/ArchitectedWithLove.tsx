@@ -39,11 +39,10 @@ const ArchitectedWithLove = () => {
 	return (
 		<Root>
 			<Wrapper>
-				<TitleBlock
-					align="center"
-					subtitle="Craftsman-like passion for Developer Experience"
-					title="Architected with Love"
-				/>
+				<TitleBlock align="center">
+					<h6>Craftsman-like passion for Developer Experience</h6>
+					<h2>Architected with Love</h2>
+				</TitleBlock>
 			</Wrapper>
 			<Ticker isPlaying>
 				<Item>

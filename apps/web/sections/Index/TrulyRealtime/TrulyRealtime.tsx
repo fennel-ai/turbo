@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { LinkButton, TitleBlock } from "ui";
 
 import { Container } from 'components/Container';
-import { SplitSection } from "components/SplitSection";
 import BentoIllustration from "./BentoIllustration/BentoIllustration";
 
 const Root = styled.div`
@@ -35,11 +34,12 @@ const TrulyRealtime = () => {
 					<div>
 						<TitleBlock
 							align="left"
-							subtitle="Powerful & Flexible"
-							title={["Truly Realtime.", <br />, "As simple as batch."]}
-						/>
-						<p>Fennel is built around the philosophy that advanced ML should not be reserved for only the most advanced teams.</p>
-						<p>Realtime can be as simple as batch. Fennels data connectors and APIs were crafted so that the exact same code works regardless of wether your data is realtime or batch.</p>
+						>
+							<h6>Powerful & Flexible</h6>
+							<h2>Truly Realtime. <br /> As simple as batch.</h2>
+							<p>Fennel is built around the philosophy that advanced ML should not be reserved for only the most advanced teams.</p>
+							<p>Realtime can be as simple as batch. Fennels data connectors and APIs were crafted so that the <b>exact same code</b> works regardless of wether your data is realtime or batch.</p>
+						</TitleBlock>
 					</div>
 					<LinkButton>
 						Read the Documentation

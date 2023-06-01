@@ -15,11 +15,10 @@ const Grid = styled.div`
 const NoMoreBugs = () => {
 	return (
 		<SplitSection direction="reverse" illustration={<Illustration />}>
-			<TitleBlock
-				align="left"
-				subtitle="Best-in-class data quality tooling"
-				title="No more feature or data bugs"
-			/>
+			<TitleBlock align="left">
+				<h6>Best-in-class data quality tooling</h6>
+				<h2>No more feature or data bugs</h2>
+			</TitleBlock>
 			<Grid>
 				<TextBlock icon={<PythonIcon />}>
 					<b>Strong Typing</b><br />
