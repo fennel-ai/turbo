@@ -17,6 +17,24 @@ const Wrapper = styled(Container)`
 	gap: 4rem;
 `;
 
+const Item = styled.div`
+	width: 376px;
+	height: 352px;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex: 1 1 auto;
+
+	.dummy-icon {
+		width: 6rem;
+		height: 6rem;
+		border-radius: 50%;
+		background-color: rgba(0, 0, 0, 0.24);
+	}
+`;
+
 const ArchitectedWithLove = () => {
 	return (
 		<Root>
@@ -28,13 +46,30 @@ const ArchitectedWithLove = () => {
 				/>
 			</Wrapper>
 			<Ticker isPlaying>
-				<p>a</p>
-				<p>b</p>
-				<p>c</p>
-				<p>d</p>
-				<p>e</p>
-				<p>f</p>
-				<p>g</p>
+				<Item>
+					<div className="dummy-icon" />
+					<p>
+						<b>Rust</b> is the language of choice for our backend, relying heavily on Tokio's async runtime.
+					</p>
+				</Item>
+				<Item>
+					<div className="dummy-icon" />
+					<p>
+						<b>Kafka</b> handles all in-flow data. All streaming jobs are read from, and write to, Kafka.
+					</p>
+				</Item>
+				<Item>
+					<div className="dummy-icon" />
+					<p>
+						<b>RocksDB</b> for all at-rest data data storage, with small parts also offloaded to Redis.
+					</p>
+				</Item>
+				<Item>
+					<div className="dummy-icon" />
+					<p>
+						<b>PostgreSQL</b> as a central metadata store, with the exception of customer data.
+					</p>
+				</Item>
 			</Ticker>
 			<LinkButton>Explore the Architecture</LinkButton>
 		</Root>

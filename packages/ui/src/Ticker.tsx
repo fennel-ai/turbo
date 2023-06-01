@@ -25,9 +25,6 @@ const Track = styled.div<{ gutter: number }>`
 
 const Item = styled(Card)`
 	flex-shrink: 0;
-	width: 376px;
-	height: 352px;
-	padding: 2rem;
 `;
 
 export const Ticker = (props: PropsWithChildren<Props>) => {
