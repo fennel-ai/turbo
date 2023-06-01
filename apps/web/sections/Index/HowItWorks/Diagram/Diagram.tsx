@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import { ReactFlow, Background as RFBackground, BackgroundVariant as RFBackgroundVariant, useNodesState } from 'reactflow';
 import 'reactflow/dist/style.css';
+import DatasetNode from "./DatasetNode";
+import { useMemo } from "react";
 
 const Root = styled.div`
 	grid-column: 6 / span 7;
 	border-radius: 1.5rem;
-	height: 440px;
+	height: 456px;
 	border: 1px solid #f0f0f5;
 	overflow: hidden;
 `;
@@ -36,6 +38,7 @@ const initialNodes = [
 	},
 	{
 		id: 'dA',
+		type: 'dataset',
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: "Dataset A" },
@@ -43,6 +46,7 @@ const initialNodes = [
 	},
 	{
 		id: 'dB',
+		type: 'dataset',
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset B' },
@@ -50,6 +54,7 @@ const initialNodes = [
 	},
 	{
 		id: 'dC',
+		type: 'dataset',
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset C' },
@@ -57,6 +62,7 @@ const initialNodes = [
 	},
 	{
 		id: 'dD',
+		type: 'dataset',
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset D' },
@@ -64,6 +70,7 @@ const initialNodes = [
 	},
 	{
 		id: 'dE',
+		type: 'dataset',
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset E' },
@@ -94,11 +101,16 @@ const initialNodes = [
 
 const Diagram = () => {
 	const [nodes] = useNodesState(initialNodes);
+	const nodeTypes = useMemo(() => ({
+		dataset: DatasetNode,
+	}), []);
+
 	return (
 		<Root>
 			<ReactFlow
 				fitView
 				nodes={nodes}
+				nodeTypes={nodeTypes}
 				nodesDraggable={false}
 				nodesConnectable={false}
 				panOnDrag={false}
