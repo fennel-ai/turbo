@@ -35,18 +35,18 @@ const FeatureNode = ({ data }: Props) => {
 	return (
 		<>
 			<Handle
-				type="target"
+				type="source"
 				position={Position.Left}
-				id="in"
+				id="out"
 				style={{ zIndex: -1 }}
 			/>
 			<Root>
 				<p>{data.label}</p>
 			</Root>
 			<Handle
-				type="source"
+				type="target"
 				position={Position.Right}
-				id="out"
+				id="in"
 				style={{ zIndex: -1 }}
 			/>
 		</>

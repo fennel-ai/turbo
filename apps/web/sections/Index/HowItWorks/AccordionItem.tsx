@@ -4,6 +4,8 @@ import { Collapsible } from 'ui';
 
 type Props = {
 	icon: ReactElement;
+	open: boolean;
+	onToggle: () => void;
 	title: string; 
 }
 
@@ -53,12 +55,11 @@ const Progress = styled.div`
 	background-color: #f0f0f5;
 `;
 
-export const AccordionItem = ({ children, icon, title }: PropsWithChildren<Props>) => {
-	const [open, setOpen] = useState<boolean>(false);
+export const AccordionItem = ({ children, icon, open, onToggle, title }: PropsWithChildren<Props>) => {
 	return (
 		<>
 			<Root>
-				<Header onClick={() => setOpen(prev => !prev)}>
+				<Header onClick={onToggle}>
 					<Title>
 						{icon || null}
 						<h4>{title}</h4>

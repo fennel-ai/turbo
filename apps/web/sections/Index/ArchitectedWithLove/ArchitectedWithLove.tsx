@@ -18,8 +18,8 @@ const Wrapper = styled(Container)`
 `;
 
 const Item = styled.div`
-	width: 376px;
-	height: 352px;
+	width: 23.5rem;
+	height: 20rem;
 	padding: 2rem;
 	display: flex;
 	flex-direction: column;
@@ -32,6 +32,15 @@ const Item = styled.div`
 		height: 6rem;
 		border-radius: 50%;
 		background-color: rgba(0, 0, 0, 0.24);
+	}
+
+	p {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		font-variation-settings: "wght" 500;
+		& b {
+			font-variation-settings: "wght" 800;
+		}
 	}
 `;
 
@@ -67,6 +76,30 @@ const ArchitectedWithLove = () => {
 					<div className="dummy-icon" />
 					<p>
 						<b>PostgreSQL</b> as a central metadata store, with the exception of customer data.
+					</p>
+				</Item>
+				<Item>
+					<div className="dummy-icon" />
+					<p>
+						<b>Pulumi</b> for provisioning infrastructure with code.
+					</p>
+				</Item>
+				<Item>
+					<div className="dummy-icon" />
+					<p>
+						<b>Kubernetes</b> for maintaining the lifecycle of all running services.
+					</p>
+				</Item>
+				<Item>
+					<div className="dummy-icon" />
+					<p>
+						<b>Pandas</b> is used as the dataframe interface between user-written python code and the server.
+					</p>
+				</Item>
+				<Item>
+					<div className="dummy-icon" />
+					<p>
+						<b>GRPC</b> and protocol buffers to write services and the exchange of data.
 					</p>
 				</Item>
 			</Ticker>

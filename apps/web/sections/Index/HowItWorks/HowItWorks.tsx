@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { TitleBlock } from 'ui';
-import PythonIcon from 'ui/icons/python.svg';
+import CodeIcon from 'ui/icons/code.svg';
+import DataIcon from 'ui/icons/data.svg';
+import GlobeIcon from 'ui/icons/globe.svg';
+import PipelineIcon from 'ui/icons/pipeline.svg';
 
 import { Container } from 'components/Container';
 import { AccordionItem } from './AccordionItem';
@@ -27,6 +31,8 @@ const Accordion = styled.div`
 `;
 
 const HowItWorks = () => {
+	const [activeItem, setActiveItem] = useState(0);
+
 	return (
 		<Root>
 			<Wrapper>
@@ -38,16 +44,16 @@ const HowItWorks = () => {
 					</TitleBlock>
 				</TitleWrapper>
 				<Accordion>
-					<AccordionItem icon={<PythonIcon />} title="Bring your Data">
+					<AccordionItem open={activeItem === 0} onToggle={() => setActiveItem(0)} icon={<DataIcon />} title="Bring your Data">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
-					<AccordionItem icon={<PythonIcon />} title="Derive Features via Pipelines">
+					<AccordionItem open={activeItem === 1} onToggle={() => setActiveItem(1)} icon={<PipelineIcon />} title="Derive Features via Pipelines">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
-					<AccordionItem icon={<PythonIcon />} title="Define Features">
+					<AccordionItem open={activeItem === 2} onToggle={() => setActiveItem(2)} icon={<CodeIcon />} title="Define Features">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
-					<AccordionItem icon={<PythonIcon />} title="Query via the REST API">
+					<AccordionItem open={activeItem === 3} onToggle={() => setActiveItem(3)} icon={<GlobeIcon />} title="Query via the REST API">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
 				</Accordion>

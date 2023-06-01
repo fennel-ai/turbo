@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import styled from "@emotion/styled";
-import { ReactFlow, Background as RFBackground, BackgroundVariant as RFBackgroundVariant, useNodesState } from 'reactflow';
+import { ConnectionLineType, MarkerType, ReactFlow, Background as RFBackground, BackgroundVariant as RFBackgroundVariant, useEdgesState, useNodesState } from 'reactflow';
 import 'reactflow/dist/style.css';
 
 import DatasetNode from "./DatasetNode";
@@ -14,6 +14,10 @@ const Root = styled.div`
 	height: 456px;
 	border: 1px solid #f0f0f5;
 	overflow: hidden;
+
+	.react-flow__handle {
+		opacity: 0;
+	}
 `;
 
 const proOptions = { hideAttribution: true };
@@ -27,7 +31,7 @@ const initialNodes = [
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: "Postgres" },
-		position: { x: 0, y: 80 },
+		position: { x: 0, y: 43 },
 	},
 	{
 		id: 's2',
@@ -37,7 +41,7 @@ const initialNodes = [
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Snowflake' },
-		position: { x: 0, y: 160 },
+		position: { x: 0, y: 178 },
 	},
 	{
 		id: 's3',
@@ -47,7 +51,7 @@ const initialNodes = [
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Kafka' },
-		position: { x: 0, y: 240 },
+		position: { x: 0, y: 314 },
 	},
 	{
 		id: 'dA',
@@ -87,7 +91,7 @@ const initialNodes = [
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset D' },
-		position: { x: 360, y: 100 },
+		position: { x: 360, y: 72 },
 	},
 	{
 		id: 'dE',
@@ -97,7 +101,7 @@ const initialNodes = [
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset E' },
-		position: { x: 360, y: 220 },
+		position: { x: 360, y: 232 },
 	},
 	{
 		id: 'f1',
@@ -107,7 +111,7 @@ const initialNodes = [
 		sourcePosition: 'left',
 		targetPosition: 'right',
 		data: { label: 'Feature F1' },
-		position: { x: 616, y: 56 },
+		position: { x: 536, y: 90 },
 	},
 	{
 		id: 'f2',
@@ -117,7 +121,7 @@ const initialNodes = [
 		sourcePosition: 'left',
 		targetPosition: 'right',
 		data: { label: 'Feature F2' },
-		position: { x: 616, y: 264 },
+		position: { x: 536, y: 250 },
 	},
 	{
 		id: 'rA',
@@ -127,12 +131,179 @@ const initialNodes = [
 		sourcePosition: 'left',
 		targetPosition: 'right',
 		data: { label: 'REST API' },
-		position: { x: 760, y: 160 },
+		position: { x: 712, y: 160 },
+	},
+];
+
+const initialEdges = [
+	{
+		id: 'e:s1-dA',
+		source: 's1',
+		target: 'dA',
+		type: ConnectionLineType.Straight,
+		style: {
+			strokeWidth: 2,
+		},
+		animated: true,
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:s2-dB',
+		source: 's2',
+		target: 'dB',
+		type: ConnectionLineType.Straight,
+		style: {
+			strokeWidth: 2,
+		},
+		animated: true,
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:s3-dC',
+		source: 's3',
+		target: 'dC',
+		type: ConnectionLineType.Straight,
+		style: {
+			strokeWidth: 2,
+		},
+		animated: true,
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:dA-dD',
+		source: 'dA',
+		target: 'dD',
+		type: ConnectionLineType.SmoothStep,
+		style: {
+			strokeWidth: 2,
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:dB-dD',
+		source: 'dB',
+		target: 'dD',
+		type: ConnectionLineType.SmoothStep,
+		style: {
+			strokeWidth: 2,
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:dB-dE',
+		source: 'dB',
+		target: 'dE',
+		type: ConnectionLineType.SmoothStep,
+		style: {
+			strokeWidth: 2,
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:dC-dE',
+		source: 'dC',
+		target: 'dE',
+		type: ConnectionLineType.SmoothStep,
+		style: {
+			strokeWidth: 2,
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:rA-f1',
+		source: 'rA',
+		target: 'f1',
+		type: ConnectionLineType.SmoothStep,
+		style: {
+			strokeWidth: 2,
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:rA-f2',
+		source: 'rA',
+		target: 'f2',
+		type: ConnectionLineType.SmoothStep,
+		style: {
+			strokeWidth: 2,
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+		}
+	},
+	{
+		id: 'e:f1-dD',
+		source: 'f1',
+		target: 'dD',
+		targetHandle: 'inB',
+		type: ConnectionLineType.Straight,
+		style: {
+			strokeWidth: 2,
+			stroke: '#0B8957',
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+			color: '#0B8957'
+		}
+	},
+	{
+		id: 'e:f2-dE',
+		source: 'f2',
+		target: 'dE',
+		targetHandle: 'inB',
+		type: ConnectionLineType.Straight,
+		style: {
+			strokeWidth: 2,
+			stroke: '#0B8957',
+		},
+		markerEnd: {
+			type: MarkerType.Arrow,
+			width: 16,
+			height: 16,
+			color: '#0B8957'
+		}
 	},
 ];
 
 const Diagram = () => {
 	const [nodes] = useNodesState(initialNodes);
+	const [edges] = useEdgesState(initialEdges);
 	const nodeTypes = useMemo(() => ({
 		dataset: DatasetNode,
 		feature: FeatureNode,
@@ -145,6 +316,7 @@ const Diagram = () => {
 			<ReactFlow
 				fitView
 				nodes={nodes}
+				edges={edges}
 				nodeTypes={nodeTypes}
 				nodesDraggable={false}
 				nodesConnectable={false}

@@ -32,7 +32,7 @@ const DatasetNode = ({ data }: Props) => {
 			<Handle
 				type="target"
 				position={Position.Left}
-				id="in"
+				id="inA"
 				style={{ zIndex: -1 }}
 			/>
 			<Root>
@@ -48,6 +48,12 @@ const DatasetNode = ({ data }: Props) => {
 				</svg>
 				<p>{data.label}</p>
 			</Root>
+			<Handle
+				type="target"
+				position={Position.Right}
+				id="inB"
+				style={{ zIndex: -1 }}
+			/>
 			<Handle
 				type="source"
 				position={Position.Right}

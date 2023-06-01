@@ -71,6 +71,12 @@ const Content = styled.div<{ align: Props['align'] }>`
 	text-align: ${props => props.align};
 `;
 
+const Actions = styled.div<{ align: Props['align'] }>`
+	display: flex;
+	align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
+	gap: 1rem;
+`;
+
 export const TitleBlock = (props: PropsWithChildren<Props>) => {
 	const { actions, align, children, className, style } = props;
 
@@ -79,7 +85,13 @@ export const TitleBlock = (props: PropsWithChildren<Props>) => {
 			<Content align={align} className={className} style={style}>
 				{children}
 			</Content>
-			{actions}
+			{
+				actions?.length ? (
+					<Actions>
+						{actions}
+					</Actions>
+				) : null
+			}
 		</Root>
 	);
 };

@@ -35,9 +35,9 @@ const APINode = ({ data }: Props) => {
 	return (
 		<>
 			<Handle
-				type="target"
+				type="source"
 				position={Position.Left}
-				id="in"
+				id="out"
 				style={{ zIndex: -1 }}
 			/>
 			<Root>
