@@ -4,7 +4,7 @@ import { ElementType, PropsWithChildren, StyleHTMLAttributes } from 'react';
 type Props = {
 	align?: 'left' | 'center';
 	className?: string;
-	size?: 'default' | 'large';
+	size?: 'small' | 'default' | 'large';
 	style?: StyleHTMLAttributes<HTMLDivElement>;
 	subtitle?: string;
 	text?: string;
@@ -37,8 +37,8 @@ const Subtitle = styled.h5<{ size: Props['size'] }>`
 
 const Title = styled.h2<{ size: Props['size'] }>`
 	margin: 0;
-	font-size: ${props => props.size === 'large' ? '4rem' : '2.5rem'};
-	line-height: ${props => props.size === 'large' ? '4rem' : '3rem'};
+	font-size: ${props => props.size === 'large' ? '4rem' : props.size === 'small' ? '2rem' : '2.5rem'};
+	line-height: ${props => props.size === 'large' ? '4rem' : props.size === 'small' ? '2.5rem' : '3rem'};
 	font-variation-settings: "wght" 900;
 `;
 
