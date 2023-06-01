@@ -1,8 +1,12 @@
+import { useMemo } from "react";
 import styled from "@emotion/styled";
 import { ReactFlow, Background as RFBackground, BackgroundVariant as RFBackgroundVariant, useNodesState } from 'reactflow';
 import 'reactflow/dist/style.css';
+
 import DatasetNode from "./DatasetNode";
-import { useMemo } from "react";
+import SourceNode from "./SourceNode";
+import FeatureNode from "./FeatureNode";
+import APINode from "./APINode";
 
 const Root = styled.div`
 	grid-column: 6 / span 7;
@@ -17,6 +21,9 @@ const proOptions = { hideAttribution: true };
 const initialNodes = [
 	{
 		id: 's1',
+		type: 'source',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: "Postgres" },
@@ -24,6 +31,9 @@ const initialNodes = [
 	},
 	{
 		id: 's2',
+		type: 'source',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Snowflake' },
@@ -31,6 +41,9 @@ const initialNodes = [
 	},
 	{
 		id: 's3',
+		type: 'source',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Kafka' },
@@ -39,63 +52,82 @@ const initialNodes = [
 	{
 		id: 'dA',
 		type: 'dataset',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: "Dataset A" },
-		position: { x: 200, y: 40 },
+		position: { x: 160, y: 24 },
 	},
 	{
 		id: 'dB',
 		type: 'dataset',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset B' },
-		position: { x: 200, y: 160 },
+		position: { x: 160, y: 160 },
 	},
 	{
 		id: 'dC',
 		type: 'dataset',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset C' },
-		position: { x: 200, y: 280 },
+		position: { x: 160, y: 296 },
 	},
 	{
 		id: 'dD',
 		type: 'dataset',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset D' },
-		position: { x: 400, y: 100 },
+		position: { x: 360, y: 100 },
 	},
 	{
 		id: 'dE',
 		type: 'dataset',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'right',
 		targetPosition: 'left',
 		data: { label: 'Dataset E' },
-		position: { x: 400, y: 220 },
+		position: { x: 360, y: 220 },
 	},
 	{
 		id: 'f1',
+		type: 'feature',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'left',
 		targetPosition: 'right',
 		data: { label: 'Feature F1' },
-		position: { x: 680, y: 56 },
+		position: { x: 616, y: 56 },
 	},
 	{
 		id: 'f2',
+		type: 'feature',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'left',
 		targetPosition: 'right',
 		data: { label: 'Feature F2' },
-		position: { x: 680, y: 264 },
+		position: { x: 616, y: 264 },
 	},
 	{
 		id: 'rA',
+		type: 'api',
+		draggable: false,
+		selectable: false,
 		sourcePosition: 'left',
 		targetPosition: 'right',
 		data: { label: 'REST API' },
-		position: { x: 880, y: 160 },
+		position: { x: 760, y: 160 },
 	},
 ];
 
@@ -103,6 +135,9 @@ const Diagram = () => {
 	const [nodes] = useNodesState(initialNodes);
 	const nodeTypes = useMemo(() => ({
 		dataset: DatasetNode,
+		feature: FeatureNode,
+		source: SourceNode,
+		api: APINode
 	}), []);
 
 	return (

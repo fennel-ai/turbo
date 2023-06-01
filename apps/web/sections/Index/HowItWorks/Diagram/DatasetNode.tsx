@@ -21,6 +21,8 @@ const Root = styled.div`
 		text-align: center;
 		font-variation-settings: "wght" 600;
 		color: #4F3FA6;
+		font-size: 0.75rem;
+		line-height: 1rem;
 	}
 `;
 
@@ -34,7 +36,7 @@ const DatasetNode = ({ data }: Props) => {
 				style={{ zIndex: -1 }}
 			/>
 			<Root>
-				<svg width="162" height="108" viewBox="0 0 108 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg width="108" height="72" viewBox="0 0 108 72" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path opacity="0.12" d="M54 24.0005C76.3675 24.0005 94.5 19.9711 94.5 15.0005V57C94.5 61.98 76.5 66 54 66C31.5 66 13.5 61.98 13.5 57V15.0005C13.5 19.9711 31.6325 24.0005 54 24.0005Z" fill="#4F3FA6" />
 					<mask id="path-2-outside-1_594_12407" maskUnits="userSpaceOnUse" x="11.5" y="4" width="85" height="64" fill="black">
 						<rect fill="white" x="11.5" y="4" width="85" height="64" />
