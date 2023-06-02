@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router';
+import Script from 'next/script'
 import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
 import posthog from 'posthog-js';
@@ -92,6 +93,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					<Toaster position="bottom-left" toastOptions={toastOptions} />
 				</ThemeProvider>
 			</ShellContextProvider>
+			<Script src="/linkedin-px.js" />
 		</PostHogProvider>
 	)
 }
