@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { IconPuck, LinkButton, TitleBlock } from 'ui';
-import PythonIcon from 'ui/icons/python.svg';
 import ChartBreakoutIcon from 'ui/icons/chart-breakout-circle.svg';
 import ShieldIcon from 'ui/icons/shield-03.svg';
 import PiggyBankIcon from 'ui/icons/piggy-bank-01.svg';
