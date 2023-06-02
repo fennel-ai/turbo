@@ -1,15 +1,11 @@
 import { ReactElement } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Handle, Position, NodeProps } from 'reactflow';
 import styled from '@emotion/styled';
 
-interface DataProp {
+interface NodeData {
 	icon: ReactElement;
 	label: string;
 }
-
-type Props = {
-	data: DataProp
-};
 
 const Root = styled.div`
 	position: relative;
@@ -34,7 +30,7 @@ const Root = styled.div`
 	}
 `;
 
-const SourceNode = ({ data }: Props) => {
+const SourceNode = ({ data }: NodeProps<NodeData>) => {
 	return (
 		<>
 			<Root>

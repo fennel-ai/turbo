@@ -3,6 +3,7 @@ import { StyleHTMLAttributes } from "react";
 const Background = ({ className, style }: { className?: string, style?: StyleHTMLAttributes<SVGElement> }) => {
 	return (
 		<svg className={className} style={style} viewBox="0 0 1512 798" fill="none" xmlns="http://www.w3.org/2000/svg">
+			{/**@ts-ignore */}
 			<mask id="mask0_562_28891" style={{ 'mask-type':'alpha' }} maskUnits="userSpaceOnUse" x="0" y="0" width="1512" height="798">
 				<rect width="1512" height="798" fill="url(#paint0_radial_562_28891)" />
 			</mask>

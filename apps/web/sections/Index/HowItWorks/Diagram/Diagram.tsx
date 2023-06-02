@@ -11,6 +11,7 @@ import DatasetNode from "./DatasetNode";
 import SourceNode from "./SourceNode";
 import FeatureNode from "./FeatureNode";
 import APINode from "./APINode";
+import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 
 const Root = styled.div`
 	grid-column: 6 / span 7;
@@ -324,6 +325,7 @@ const initialEdges = [
 ];
 
 const Diagram = () => {
+	// @ts-ignore
 	const [nodes] = useNodesState(initialNodes);
 	const [edges] = useEdgesState(initialEdges);
 	const nodeTypes = useMemo(() => ({

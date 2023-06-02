@@ -35,8 +35,8 @@ const Root = styled.div<{ align: Props['align'] }>`
 		margin: 0.5rem 0;
 		font-size: 2rem;
 		line-height: 2.5rem;
-		font-variation-settings: "wght" 900;
-		letter-spacing: -1px;
+		font-variation-settings: "wght" 800;
+		letter-spacing: -1.5px;
 	}
 
 	/** Subtitle */
@@ -87,7 +87,7 @@ export const TitleBlock = (props: PropsWithChildren<Props>) => {
 			</Content>
 			{
 				actions?.length ? (
-					<Actions>
+					<Actions align={align}>
 						{actions}
 					</Actions>
 				) : null
