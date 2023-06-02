@@ -7,8 +7,8 @@ const Root = styled.div`
 	justify-content: center;
 	border-radius: 1rem;
 	background-color: #AEAAE4; /** TODO */
-	box-shadow: 0px 0px 0px 3px #EBEBFA;
-	color: rgba(255, 255, 255, 0.64);
+	box-shadow: 0px 0px 0px 2px #EBEBFA;
+	color: rgba(255, 255, 255, 0.8);
 	width: 3rem;
 	height: 3rem;
 

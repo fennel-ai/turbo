@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { IconPuck, LinkButton, TitleBlock } from 'ui';
 import PythonIcon from 'ui/icons/python.svg';
+import ChartBreakoutIcon from 'ui/icons/chart-breakout-circle.svg';
+import ShieldIcon from 'ui/icons/shield-03.svg';
+import PiggyBankIcon from 'ui/icons/piggy-bank-01.svg';
 
 import { Container } from 'components/Container';
 
@@ -65,7 +68,7 @@ const HassleFreeScaling = () => {
 				<Grid>
 					<Cell>
 						<IconPuck>
-							<PythonIcon />
+							<ChartBreakoutIcon />
 						</IconPuck>
 						<TextGroup>
 							<h3>Scalability & Reliability</h3>
@@ -75,7 +78,7 @@ const HassleFreeScaling = () => {
 					</Cell>
 					<Cell>
 						<IconPuck>
-							<PythonIcon />
+							<ShieldIcon />
 						</IconPuck>
 						<TextGroup>
 							<h3>Enterprise-grade Security</h3>
@@ -85,7 +88,7 @@ const HassleFreeScaling = () => {
 					</Cell>
 					<Cell>
 						<IconPuck>
-							<PythonIcon />
+							<PiggyBankIcon />
 						</IconPuck>
 						<TextGroup>
 							<h3>Cost Efficiency</h3>
