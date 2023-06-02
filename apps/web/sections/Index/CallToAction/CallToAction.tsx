@@ -4,17 +4,47 @@ import { LinkButton, TitleBlock } from "ui";
 import { Container } from 'components/Container';
 
 const Root = styled.div`
-	padding: 5rem 0;
+	padding-top: 5rem;
+	background-color: #140F2E;
+	color: #EBEBFA;
+	overflow: hidden;
+`;
+
+const Wrapper = styled(Container)`
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	row-gap: 7.5rem;
+	margin-bottom: -4.5rem;
+`;
+
+const TitleWrapper = styled.div`
+	grid-column: 3 / span 8;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+`;
+
+const ConsoleImg = styled.div`
+	border-radius: 1.25rem;
+	background-color: #282150;
+	height: 27.5rem;
+	grid-column: 3 / span 8;
 `;
 
 const CallToAction = () => {
 	return (
 		<Root>
-			<TitleBlock
-				align="center"
-			>
-				<h2>Experience the fastest ML workflow</h2>
-			</TitleBlock>
+			<Wrapper>
+				<TitleWrapper>
+					<TitleBlock
+						align="center"
+					>
+						<h2>Experience the fastest ML workflow</h2>
+					</TitleBlock>
+					<LinkButton>Request a Demo</LinkButton>
+				</TitleWrapper>
+				<ConsoleImg />
+			</Wrapper>
 		</Root>
 	);
 };

@@ -4,6 +4,7 @@ import Logo from 'ui/icons/logo.svg';
 import { Container } from 'components/Container';
 
 const Root = styled.footer`
+	background-color: #fff;	
 	border-top: 1px solid #f0f0f5;
 	padding: 5rem 0;
 	display: flex;
