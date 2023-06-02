@@ -9,7 +9,9 @@
 		"lint": "eslint *.ts*"
 	},
 	"dependencies": {
-		"esbuild-plugin-svgr": "^1.0.1",
+		"@emotion/react": "^11.11.0",
+		"@emotion/styled": "^11.11.0",
+		"esbuild-plugin-svgr": "^1.1.0",
 		"framer-motion": "^10.12.16",
 		"react-syntax-highlighter": "^15.5.0",
 		"styles": "workspace:*"
@@ -19,13 +21,13 @@
 		"@emotion/styled": "^11.10.5"
 	},
 	"devDependencies": {
-		"@types/react": "^18.0.17",
-		"@types/react-dom": "^18.0.6",
-		"@types/react-syntax-highlighter": "^15.5.6",
+		"@types/react": "^18.2.8",
+		"@types/react-dom": "^18.2.4",
+		"@types/react-syntax-highlighter": "^15.5.7",
 		"eslint": "^7.32.0",
 		"eslint-config-fennel": "workspace:*",
 		"react": "^18.2.0",
 		"tsconfig": "workspace:*",
-		"typescript": "^4.5.2"
+		"typescript": "^4.9.5"
 	}
 }
