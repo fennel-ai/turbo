@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { LinkButton, TextBlock, TitleBlock } from "ui";
 import PythonIcon from 'ui/icons/python.svg';
+import ClockRefreshIcon from 'ui/icons/clock-refresh.svg';
+import CubeIcon from 'ui/icons/cube-01.svg';
+import SearchIcon from 'ui/icons/search.svg';
 
 import { Illustration } from "components/Illustration";
 import { SplitSection } from "components/SplitSection";
@@ -24,15 +27,15 @@ const ShipFaster = () => {
 					<b>Real Python. No DSLs.</b><br />
 					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
 				</TextBlock>
-				<TextBlock icon={<PythonIcon />}>
+				<TextBlock icon={<ClockRefreshIcon />}>
 					<b>Automatic Backfills</b><br />
 					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
 				</TextBlock>
-				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<PythonIcon />}>
+				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<CubeIcon />}>
 					<b>Fully Managed Infrastructure</b><br />
 					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
 				</TextBlock>
-				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<PythonIcon />}>
+				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<SearchIcon />}>
 					<b>Feature repository for reuse</b><br />
 					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
 				</TextBlock>
