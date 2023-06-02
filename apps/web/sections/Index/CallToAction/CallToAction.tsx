@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { LinkButton, TitleBlock } from "ui";
+import { Button, LinkButton, TitleBlock } from "ui";
 
 import { Container } from 'components/Container';
 
@@ -15,6 +15,10 @@ const Wrapper = styled(Container)`
 	grid-template-columns: repeat(12, 1fr);
 	row-gap: 7.5rem;
 	margin-bottom: -4.5rem;
+
+	& button {
+		align-self: center;
+	}
 `;
 
 const TitleWrapper = styled.div`
@@ -41,7 +45,7 @@ const CallToAction = () => {
 					>
 						<h2>Experience the fastest ML workflow</h2>
 					</TitleBlock>
-					<LinkButton>Request a Demo</LinkButton>
+					<Button color="primary" label="Request a Demo" />
 				</TitleWrapper>
 				<ConsoleImg />
 			</Wrapper>
