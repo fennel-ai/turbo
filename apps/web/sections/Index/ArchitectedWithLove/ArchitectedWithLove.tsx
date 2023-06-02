@@ -74,7 +74,7 @@ const ArchitectedWithLove = () => {
 					</p>
 				</Item>
 				<Item>
-					<RocksdbLogo />
+					<RocksdbLogo height="96px" width="116px" />
 					<p>
 						<b>RocksDB</b> for all at-rest data data storage, with small parts also offloaded to Redis.
 					</p>
@@ -104,9 +104,9 @@ const ArchitectedWithLove = () => {
 					</p>
 				</Item>
 				<Item>
-					<GrpcLogo />
+					<GrpcLogo width="223px" height="96px" />
 					<p>
-						<b>GRPC</b> and protocol buffers to write services and the exchange of data.
+						<b>GRPC</b> and protocol buffers to write services and exchange data.
 					</p>
 				</Item>
 			</Ticker>
