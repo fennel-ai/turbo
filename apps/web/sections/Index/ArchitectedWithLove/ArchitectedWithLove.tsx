@@ -1,6 +1,15 @@
 import styled from '@emotion/styled';
 import { LinkButton, Ticker, TitleBlock } from 'ui';
 
+import GrpcLogo from 'ui/icons/technologies/grpc.svg';
+import KafkaLogo from 'ui/icons/technologies/kafka.svg';
+import KubernetesLogo from 'ui/icons/technologies/kubernetes.svg';
+import PandasLogo from 'ui/icons/technologies/pandas.svg';
+import RocksdbLogo from 'ui/icons/technologies/rocksdb.svg';
+import RustLogo from 'ui/icons/technologies/rust.svg';
+import PostgresLogo from 'ui/icons/technologies/postgresql.svg';
+import PulumiLogo from 'ui/icons/technologies/pulumi.svg';
+
 import { Container } from 'components/Container';
 
 const Root = styled.div`
@@ -27,11 +36,9 @@ const Item = styled.div`
 	justify-content: space-between;
 	flex: 1 1 auto;
 
-	.dummy-icon {
-		width: 6rem;
+	svg {
+		width: auto;
 		height: 6rem;
-		border-radius: 50%;
-		background-color: rgba(0, 0, 0, 0.24);
 	}
 
 	p {
@@ -55,49 +62,49 @@ const ArchitectedWithLove = () => {
 			</Wrapper>
 			<Ticker isPlaying>
 				<Item>
-					<div className="dummy-icon" />
+					<RustLogo />
 					<p>
 						<b>Rust</b> is the language of choice for our backend, relying heavily on Tokio's async runtime.
 					</p>
 				</Item>
 				<Item>
-					<div className="dummy-icon" />
+					<KafkaLogo />
 					<p>
 						<b>Kafka</b> handles all in-flow data. All streaming jobs are read from, and write to, Kafka.
 					</p>
 				</Item>
 				<Item>
-					<div className="dummy-icon" />
+					<RocksdbLogo />
 					<p>
 						<b>RocksDB</b> for all at-rest data data storage, with small parts also offloaded to Redis.
 					</p>
 				</Item>
 				<Item>
-					<div className="dummy-icon" />
+					<PostgresLogo />
 					<p>
 						<b>PostgreSQL</b> as a central metadata store, with the exception of customer data.
 					</p>
 				</Item>
 				<Item>
-					<div className="dummy-icon" />
+					<PulumiLogo />
 					<p>
 						<b>Pulumi</b> for provisioning infrastructure with code.
 					</p>
 				</Item>
 				<Item>
-					<div className="dummy-icon" />
+					<KubernetesLogo />
 					<p>
 						<b>Kubernetes</b> for maintaining the lifecycle of all running services.
 					</p>
 				</Item>
 				<Item>
-					<div className="dummy-icon" />
+					<PandasLogo />
 					<p>
 						<b>Pandas</b> is used as the dataframe interface between user-written python code and the server.
 					</p>
 				</Item>
 				<Item>
-					<div className="dummy-icon" />
+					<GrpcLogo />
 					<p>
 						<b>GRPC</b> and protocol buffers to write services and the exchange of data.
 					</p>
