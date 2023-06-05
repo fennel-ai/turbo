@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { media } from 'styles/utils';
 import { Card, TitleBlock } from 'ui';
 
 import { LowLatency } from './LowLatency';
@@ -7,8 +8,13 @@ import { Freshness } from './Freshness';
 const Root = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 280px 192px;
-	gap: 2rem;
+	grid-template-rows: 280px 192px 192px;
+	gap: 1rem;
+
+	${media('sm')} {
+		gap: 2rem;
+		grid-template-rows: 280px 192px;
+	}
 `;
 
 const StreamingJoins = styled(Card)`

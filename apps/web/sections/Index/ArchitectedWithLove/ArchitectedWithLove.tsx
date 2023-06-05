@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { LinkButton, Ticker, TitleBlock } from 'ui';
+import { Card, LinkButton, Marquee, TitleBlock } from 'ui';
 
 import GrpcLogo from 'ui/icons/technologies/grpc.svg';
 import KafkaLogo from 'ui/icons/technologies/kafka.svg';
@@ -26,9 +26,9 @@ const Wrapper = styled(Container)`
 	gap: 4rem;
 `;
 
-const Item = styled.div`
+const TechCard = styled(Card)`
 	width: 23.5rem;
-	height: 20rem;
+	height: 18rem;
 	padding: 2rem;
 	display: flex;
 	flex-direction: column;
@@ -36,12 +36,13 @@ const Item = styled.div`
 	justify-content: space-between;
 	flex: 1 1 auto;
 
-	svg {
-		width: auto;
+	& svg {
+		width: 6rem;
 		height: 6rem;
 	}
 
 	p {
+		white-space: wrap;
 		font-size: 1rem;
 		line-height: 1.5rem;
 		font-variation-settings: "wght" 500;
@@ -60,56 +61,56 @@ const ArchitectedWithLove = () => {
 					<h2>Architected with Love</h2>
 				</TitleBlock>
 			</Wrapper>
-			<Ticker isPlaying>
-				<Item>
+			<Marquee>
+				<TechCard>
 					<RustLogo />
 					<p>
 						<b>Rust</b> is the language of choice for our backend, relying heavily on Tokio's async runtime.
 					</p>
-				</Item>
-				<Item>
+				</TechCard>
+				<TechCard>
 					<KafkaLogo />
 					<p>
 						<b>Kafka</b> handles all in-flow data. All streaming jobs are read from, and write to, Kafka.
 					</p>
-				</Item>
-				<Item>
+				</TechCard>
+				<TechCard>
 					<RocksdbLogo height="96px" width="116px" />
 					<p>
 						<b>RocksDB</b> for all at-rest data data storage, with small parts also offloaded to Redis.
 					</p>
-				</Item>
-				<Item>
+				</TechCard>
+				<TechCard>
 					<PostgresLogo />
 					<p>
 						<b>PostgreSQL</b> as a central metadata store, with the exception of customer data.
 					</p>
-				</Item>
-				<Item>
+				</TechCard>
+				<TechCard>
 					<PulumiLogo />
 					<p>
 						<b>Pulumi</b> for provisioning infrastructure with code.
 					</p>
-				</Item>
-				<Item>
+				</TechCard>
+				<TechCard>
 					<KubernetesLogo />
 					<p>
 						<b>Kubernetes</b> for maintaining the lifecycle of all running services.
 					</p>
-				</Item>
-				<Item>
+				</TechCard>
+				<TechCard>
 					<PandasLogo />
 					<p>
 						<b>Pandas</b> is used as the dataframe interface between user-written python code and the server.
 					</p>
-				</Item>
-				<Item>
+				</TechCard>
+				<TechCard>
 					<GrpcLogo width="223px" height="96px" />
 					<p>
 						<b>GRPC</b> and protocol buffers to write services and exchange data.
 					</p>
-				</Item>
-			</Ticker>
+				</TechCard>
+			</Marquee>
 			<LinkButton>Explore the Architecture</LinkButton>
 		</Root>
 	);

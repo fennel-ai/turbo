@@ -2,19 +2,28 @@ import styled from '@emotion/styled';
 import Logo from 'ui/icons/logo.svg';
 
 import { Container } from 'components/Container';
+import { media } from 'styles/utils';
 
 const Root = styled.footer`
 	background-color: #fff;	
 	border-top: 1px solid #f0f0f5;
-	padding: 5rem 0;
+	padding: 2.5rem 0;
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
+
+	${media('sm')} {
+		padding: 5rem 0;
+	}
 `;
 
 const Wrapper = styled(Container)`
 	display: flex;
 	align-items: center;
+
+	${media('sm', 'max')} {
+		justify-content: center;
+	}
 `;
 
 const Brand = styled.div`

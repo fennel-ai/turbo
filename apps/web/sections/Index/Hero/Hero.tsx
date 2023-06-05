@@ -4,6 +4,7 @@ import { LinkButton, TitleBlock } from "ui";
 import { Container } from 'components/Container';
 
 import Background from './Background';
+import { media } from 'styles/utils';
 
 const Root = styled.div`
 	position: relative;
@@ -16,11 +17,23 @@ const Wrapper = styled(Container)`
 `;
 
 const Content = styled.div`
-	grid-column: 3 / span 8;
+	grid-column: span 12;
+
+	${media("md")} {
+		grid-column: 3 / span 8;
+	}
 `;
 
 const IntroText = styled.div`
-	padding: 0 6.5rem;
+	padding: 0;
+
+	${media("sm")} {
+		padding: 0 2.5rem;
+	}
+
+	${media("md")} {
+		padding: 0 6.5rem;
+	}
 `;
 
 const BG = styled(Background)`

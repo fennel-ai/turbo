@@ -251,6 +251,8 @@ importers:
     specifiers:
       '@emotion/react': ^11.11.0
       '@emotion/styled': ^11.11.0
+      '@react-hook/window-size': ^3.1.1
+      '@types/normalize-wheel': ^1.0.1
       '@types/react': ^18.2.8
       '@types/react-dom': ^18.2.4
       '@types/react-syntax-highlighter': ^15.5.7
@@ -258,6 +260,7 @@ importers:
       eslint: ^7.32.0
       eslint-config-fennel: workspace:*
       framer-motion: ^10.12.16
+      normalize-wheel: ^1.0.1
       react: ^18.2.0
       react-syntax-highlighter: ^15.5.0
       styles: workspace:*
@@ -266,11 +269,14 @@ importers:
     dependencies:
       '@emotion/react': 11.11.0_i2bxsyfskhzbpjanbovidbfj7u
       '@emotion/styled': 11.11.0_efnsujvwehy5in7hodous2swsa
+      '@react-hook/window-size': 3.1.1_react@18.2.0
       esbuild-plugin-svgr: 1.1.0
       framer-motion: 10.12.16_react@18.2.0
+      normalize-wheel: 1.0.1
       react-syntax-highlighter: 15.5.0_react@18.2.0
       styles: link:../styles
     devDependencies:
+      '@types/normalize-wheel': 1.0.1
       '@types/react': 18.2.8
       '@types/react-dom': 18.2.4
       '@types/react-syntax-highlighter': 15.5.7
@@ -3685,6 +3691,51 @@ packages:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
     dev: false
 
+  /@react-hook/debounce/3.0.0_react@18.2.0:
+    resolution: {integrity: sha512-ir/kPrSfAzY12Gre0sOHkZ2rkEmM4fS5M5zFxCi4BnCeXh2nvx9Ujd+U4IGpKCuPA+EQD0pg1eK2NGLvfWejag==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@react-hook/latest': 1.0.3_react@18.2.0
+      react: 18.2.0
+    dev: false
+
+  /@react-hook/event/1.2.6_react@18.2.0:
+    resolution: {integrity: sha512-JUL5IluaOdn5w5Afpe/puPa1rj8X6udMlQ9dt4hvMuKmTrBS1Ya6sb4sVgvfe2eU4yDuOfAhik8xhbcCekbg9Q==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /@react-hook/latest/1.0.3_react@18.2.0:
+    resolution: {integrity: sha512-dy6duzl+JnAZcDbNTfmaP3xHiKtbXYOaz3G51MGVljh548Y8MWzTr+PHLOfvpypEVW9zwvl+VyKjbWKEVbV1Rg==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /@react-hook/throttle/2.2.0_react@18.2.0:
+    resolution: {integrity: sha512-LJ5eg+yMV8lXtqK3lR+OtOZ2WH/EfWvuiEEu0M3bhR7dZRfTyEJKxH1oK9uyBxiXPtWXiQggWbZirMCXam51tg==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@react-hook/latest': 1.0.3_react@18.2.0
+      react: 18.2.0
+    dev: false
+
+  /@react-hook/window-size/3.1.1_react@18.2.0:
+    resolution: {integrity: sha512-yWnVS5LKnOUIrEsI44oz3bIIUYqflamPL27n+k/PC//PsX/YeWBky09oPeAoc9As6jSH16Wgo8plI+ECZaHk3g==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@react-hook/debounce': 3.0.0_react@18.2.0
+      '@react-hook/event': 1.2.6_react@18.2.0
+      '@react-hook/throttle': 2.2.0_react@18.2.0
+      react: 18.2.0
+    dev: false
+
   /@reactflow/background/11.2.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-gOtae79Zx1zOs9tD4tmKfuiQQOyG0O81BWBCHqlAQgemKlYExElFKOC67lgTDZ4GGFK+4sXrgrWQ5h14hzaFgg==}
     peerDependencies:
@@ -5810,6 +5861,10 @@ packages:
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/normalize-wheel/1.0.1:
+    resolution: {integrity: sha512-3YBVyWfiwIGDcQY+2ZeT3LxyApYnV3PrysjIKeNkQtT9Q9eq2mcPPcqSCYR4v/FhYJ9xtZNhXMKNxCn6ukLsXQ==}
     dev: true
 
   /@types/npmlog/4.1.4:
@@ -12904,6 +12959,10 @@ packages:
     resolution: {integrity: sha512-9UZCFRHQdNrfTpGg8+1INIg93B6zE0aXMVFkw1WFwvO4SlZywU6aLg5Of0Ap/PgcbSw4LNxvMWXMeugwMCX0AA==}
     engines: {node: '>=8'}
     dev: true
+
+  /normalize-wheel/1.0.1:
+    resolution: {integrity: sha512-1OnlAPZ3zgrk8B91HyRj+eVv+kS5u+Z0SCsak6Xil/kmgEia50ga7zfkumayonZrImffAxPU/5WcyGhzetHNPA==}
+    dev: false
 
   /npm-run-path/2.0.2:
     resolution: {integrity: sha512-lJxZYlT4DW/bRUtFh1MQIWqmLwQfAxnqWG4HhEdjMlkrJYnJn0Jrr2u3mgxqaWsdiBc76TYkTG/mhrnYTuzfHw==}

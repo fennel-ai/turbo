@@ -1,29 +1,48 @@
 import styled from '@emotion/styled';
+import { media } from 'styles/utils';
 import { LinkButton, TitleBlock } from "ui";
 
 import { Container } from 'components/Container';
 import BentoIllustration from "./BentoIllustration/BentoIllustration";
 
 const Root = styled.div`
-	padding: 5rem 0;
+	padding: 2rem 0;
+
+	${media('sm')} {
+		padding: 5rem 0;
+	}
 `;
 
 const Wrapper = styled(Container)`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
+	row-gap: 2rem;
+
+	${media('md')} {
+		row-gap: 0;
+	}
 `;
 
 const Content = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 4rem;
+	gap: 1.5rem;
 	align-items: flex-start;
 	justify-content: center;
-	grid-column: span 5;
+	grid-column: span 12;
+
+	${media('sm')} {
+		grid-column: span 5;
+		gap: 4rem;
+	}
 `;
 
 const IllustrationWrapper = styled.div`
-	grid-column: 7 / span 6;
+	grid-column: span 12;
+
+	${media('sm')} {
+		grid-column: 7 / span 6;
+	}
 `;
 
 const TrulyRealtime = () => {

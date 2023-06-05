@@ -6,11 +6,11 @@ export default function Index() {
 		<Hero />
 		<ShipFaster />
 		<NoMoreBugs />
-		{/* <TrulyRealtime />
+		<TrulyRealtime />
 		<HassleFreeScaling />
 		<HowItWorks />
 		<ArchitectedWithLove />
-		<CallToAction /> */}
+		<CallToAction />
     </main>
   );
 }

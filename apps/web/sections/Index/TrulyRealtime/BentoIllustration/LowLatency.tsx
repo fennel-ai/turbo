@@ -1,14 +1,19 @@
 import styled from '@emotion/styled';
+import { media } from 'styles/utils';
 import { Card, TitleBlock } from 'ui';
 
 const Root = styled(Card)`
-	grid-column: span 1;
+	grid-column: span 2;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: 1rem;
 	overflow: hidden;
+
+	${media('sm')} {
+		grid-column: span 1;
+	}
 `;
 
 const Illustration = styled.div`

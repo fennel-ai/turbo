@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren, StyleHTMLAttributes } from 'react';
+import { media } from 'styles/utils';
 
 type Props = {
 	actions?: JSX.Element[];
@@ -17,9 +18,14 @@ const Root = styled.div<{ align: Props['align'] }>`
 	/** Large Title **/
 	& h1 {
 		margin: 1rem 0;
-		font-size: 4rem;
-		line-height: 4rem;
+		font-size: 2.5rem;
+		line-height: 2.5rem;
 		font-variation-settings: "wght" 900;
+
+		${media("sm")} {
+			font-size: 4rem;
+			line-height: 4rem;
+		}
 	}
 	
 	/** Standard Title **/
@@ -50,12 +56,17 @@ const Root = styled.div<{ align: Props['align'] }>`
 
 	& p {
 		margin: 0;
-		font-size: 1.125rem; 
-		line-height: 2rem;
+		font-size: 1rem; 
+		line-height: 1.5rem;
 		font-variation-settings: "wght" 500;
 
 		& b {
 			font-variation-settings: "wght" 800;
+		}
+
+		${media("sm")} {
+			font-size: 1.125rem; 
+			line-height: 2rem;
 		}
 	}
 
