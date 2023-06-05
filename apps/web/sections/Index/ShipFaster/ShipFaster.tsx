@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { media } from 'styles/utils';
 import { LinkButton, TextBlock, TitleBlock } from "ui";
 import PythonIcon from 'ui/icons/python.svg';
 import ClockRefreshIcon from 'ui/icons/clock-refresh.svg';
@@ -10,9 +11,18 @@ import { SplitSection } from "components/SplitSection";
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	row-gap: 3rem;
-	column-gap: 2rem;
+	grid-template-columns: 1fr;
+	row-gap: 1.5rem;
+	column-gap: 1rem;
+
+	${media('2xs')} {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	${media('md')} {
+		row-gap: 3rem;
+		column-gap: 2rem;
+	}
 `;
 
 const ShipFaster = () => {

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { media } from 'styles/utils';
 
 const Root = styled.div`
 	position: fixed;
@@ -19,13 +20,23 @@ const Root = styled.div`
 		max-width: 86.5rem;
 		width: 100%;
 		margin: 0 auto;
-		padding-left: 3rem;
-		padding-right: 3rem;
-
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 4.5rem);
+
+		padding-left: 1rem;
+		padding-right: 1rem;
+
+		${media('2xs')} {
+			padding-left: 1.5rem;
+			padding-right: 1.5rem;
+		}
+
+		${media('md')} {
+			padding-left: 3rem;
+			padding-right: 3rem;
+		}
 	}
 `;
 
@@ -38,8 +49,18 @@ const Border = styled.div`
 	max-width: 86.5rem;
 	width: 100%;
 	margin: 0 auto;
-	padding-left: 3rem;
-	padding-right: 3rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	${media('2xs')} {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+
+	${media('md')} {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
 
 	& > div {
 		width: 100%;
