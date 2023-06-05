@@ -12,6 +12,7 @@ import SourceNode from "./SourceNode";
 import FeatureNode from "./FeatureNode";
 import APINode from "./APINode";
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
+import SeparatorNode from "./SeparatorNode";
 
 const Root = styled.div`
 	grid-column: 6 / span 7;
@@ -122,6 +123,16 @@ const initialNodes = [
 		targetPosition: 'left',
 		data: { label: 'Dataset E' },
 		position: { x: 360, y: 232 },
+	},
+	{
+		id: 'separator',
+		type: 'separator',
+		draggable: false,
+		selectable: false,	
+		position: {
+			x: 480,
+			y: -68,
+		}
 	},
 	{
 		id: 'f1',
@@ -332,6 +343,7 @@ const Diagram = () => {
 		dataset: DatasetNode,
 		feature: FeatureNode,
 		source: SourceNode,
+		separator: SeparatorNode,
 		api: APINode
 	}), []);
 
@@ -339,6 +351,10 @@ const Diagram = () => {
 		<Root>
 			<ReactFlow
 				fitView
+				fitViewOptions={{
+					padding: 0.05,
+					nodes: nodes.filter(({ id }) => id !== 'separator')
+				}}
 				nodes={nodes}
 				edges={edges}
 				nodeTypes={nodeTypes}
