@@ -70,7 +70,6 @@ const MarqueePage = ({ children, speed }: PropsWithChildren<{speed: MotionValue<
 export const Marquee = (props: PropsWithChildren) => {
 	const marquee = useRef<HTMLDivElement>(null);
 	const slowDown = useRef(false);
-	const constraintsRef = useRef(null);
 
 	const x = useRef(0);
 	const [w] = useWindowSize();
@@ -81,7 +80,6 @@ export const Marquee = (props: PropsWithChildren) => {
 		mass: 5
 	});
 
-	const opacity = useTransform(speed, [-w * 0.25, 0, w * 0.25], [1, 0, 1]);
 	const skewX = useTransform(speed, [-w * 0.25, 0, w * 0.25], [-25, 0, 25]);
 
 	const onDragStart = () => {
@@ -127,30 +125,27 @@ export const Marquee = (props: PropsWithChildren) => {
 	useAnimationFrame(loop);
 
 	return (
-		<>
-			<motion.div className="bg" style={{ opacity }} ref={constraintsRef} />
-			<Root
-				ref={marquee}
-				style={{ skewX }}
-				drag="x"
-				dragConstraints={{ left: 0, right: 0 }}
-				onDragStart={onDragStart}
-				onDrag={onDrag}
-				onDragEnd={onDragEnd}
-				onMouseOver={onMouseOver}
-				onMouseLeave={onMouseLeave}
-				dragElastic={0.000001}
-			>
-				<MarqueePage speed={speed}>
-					{props.children}
-				</MarqueePage>
-				<MarqueePage speed={speed}>
-					{props.children}
-				</MarqueePage>
-				<MarqueePage speed={speed}>
-					{props.children}
-				</MarqueePage>
-			</Root>
-		</>
+		<Root
+			ref={marquee}
+			style={{ skewX }}
+			drag="x"
+			dragConstraints={{ left: 0, right: 0 }}
+			onDragStart={onDragStart}
+			onDrag={onDrag}
+			onDragEnd={onDragEnd}
+			onMouseOver={onMouseOver}
+			onMouseLeave={onMouseLeave}
+			dragElastic={0.000001}
+		>
+			<MarqueePage speed={speed}>
+				{props.children}
+			</MarqueePage>
+			<MarqueePage speed={speed}>
+				{props.children}
+			</MarqueePage>
+			<MarqueePage speed={speed}>
+				{props.children}
+			</MarqueePage>
+		</Root>
 	);;
 };
