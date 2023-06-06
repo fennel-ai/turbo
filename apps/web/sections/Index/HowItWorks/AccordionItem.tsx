@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { PropsWithChildren, ReactElement, useState } from 'react';
+import { PropsWithChildren, ReactElement, useCallback, useEffect, useRef, useState } from 'react';
+import { motion, useAnimationFrame, useSpring } from "framer-motion";
 import { Collapsible } from 'ui';
 
 type Props = {
@@ -52,12 +53,37 @@ const Title = styled.div`
 `;
 
 const Progress = styled.div`
+	position: relative;
 	width: 100%;
 	height: 1px;
 	background-color: #f0f0f5;
+
+	& > div {
+		position: absolute;
+		inset: -1px;
+		border-radius: 99px;
+		transform-origin: left;
+		background-color: rgba(${({ theme }) => theme.ref.purple[400]}, 1);
+	}
 `;
 
-export const AccordionItem = ({ children, icon, open, onToggle, title }: PropsWithChildren<Props>) => {
+const variants = {
+	start: {
+		scaleX: 0,
+	},
+	end: {
+		scaleX: 1,
+	},
+	exit: {
+		opacity: 0,
+	}
+};
+
+const transition = {
+	duration: 10
+};
+
+export const AccordionItem = ({ children, icon, open, onComplete, onToggle, title }: PropsWithChildren<Props>) => {
 	return (
 		<>
 			<Root onClick={onToggle}>
@@ -71,7 +97,9 @@ export const AccordionItem = ({ children, icon, open, onToggle, title }: PropsWi
 					{children}
 				</Collapsible>
 			</Root>
-			<Progress />
+			<Progress>
+				{open ? <motion.div initial="start" animate="end" exit="exit" onAnimationComplete={onComplete} variants={variants} transition={transition} /> : null}
+			</Progress>
 		</>
 	);
 };

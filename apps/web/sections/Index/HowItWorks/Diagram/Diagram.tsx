@@ -11,7 +11,6 @@ import DatasetNode from "./DatasetNode";
 import SourceNode from "./SourceNode";
 import FeatureNode from "./FeatureNode";
 import APINode from "./APINode";
-import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 import SeparatorNode from "./SeparatorNode";
 
 const Root = styled.div`
@@ -130,7 +129,7 @@ const initialNodes = [
 		draggable: false,
 		selectable: false,	
 		position: {
-			x: 480,
+			x: 500,
 			y: -68,
 		}
 	},

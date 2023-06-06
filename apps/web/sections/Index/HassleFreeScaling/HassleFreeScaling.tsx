@@ -5,6 +5,7 @@ import ShieldIcon from 'ui/icons/shield-03.svg';
 import PiggyBankIcon from 'ui/icons/piggy-bank-01.svg';
 
 import { Container } from 'components/Container';
+import { media } from 'styles/utils';
 
 const Root = styled.div`
 	padding: 5rem 0;
@@ -28,7 +29,7 @@ const Grid = styled.div`
 `;
 
 const Cell = styled.div`
-	grid-column: span 4;
+	grid-column: span 12;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -36,6 +37,10 @@ const Cell = styled.div`
 	gap: 1.5rem;
 	text-align: center;
 	padding: 0 2.5rem;
+
+	${media('md')} {
+		grid-column: span 4;
+	}
 `;
 
 const TextGroup = styled.div`

@@ -79,7 +79,7 @@ const Backdrop = styled.div`
 	}
 
 	&::before {
-		backdrop-filter: blur(20px);
+		backdrop-filter: blur(20px) saturate(2);
 		-webkit-mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
 		mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
 	}
