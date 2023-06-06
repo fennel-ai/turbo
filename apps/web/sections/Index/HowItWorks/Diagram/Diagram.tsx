@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import styled from "@emotion/styled";
+import { media } from "styles/utils";
 import { ConnectionLineType, MarkerType, ReactFlow, Background as RFBackground, BackgroundVariant as RFBackgroundVariant, useEdgesState, useNodesState } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -15,10 +16,21 @@ import SeparatorNode from "./SeparatorNode";
 
 const Root = styled.div`
 	grid-column: 6 / span 7;
-	border-radius: 1.5rem;
-	height: 456px;
+	border-radius: 1rem;
+	height: 240px;
 	border: 1px solid #f0f0f5;
 	overflow: hidden;
+	order: -1;
+
+	${media("xs")} {
+		height: 320px;
+	}
+
+	${media("sm")} {
+		order: 2;
+		height: 456px;
+		border-radius: 1.5rem;
+	}
 
 	.react-flow__handle {
 		opacity: 0;
@@ -351,7 +363,6 @@ const Diagram = () => {
 			<ReactFlow
 				fitView
 				fitViewOptions={{
-					padding: 0.05,
 					nodes: nodes.filter(({ id }) => id !== 'separator')
 				}}
 				nodes={nodes}

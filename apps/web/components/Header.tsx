@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 import { media } from 'styles/utils';
+import Logo from 'ui/icons/logo.svg';
 
 const Root = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
-	height: 4.5rem;
+	height: 3rem;
 	display: flex;
 	align-items: center;
 	z-index: 100;
@@ -37,6 +38,10 @@ const Root = styled.div`
 			padding-left: 3rem;
 			padding-right: 3rem;
 		}
+	}
+
+	${media('md')} {
+		height: 4.5rem;
 	}
 `;
 
@@ -80,20 +85,45 @@ const Backdrop = styled.div`
 
 	&::before {
 		backdrop-filter: blur(20px) saturate(2);
-		-webkit-mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
-		mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
+		-webkit-mask-image: linear-gradient(to bottom, black 3rem, transparent);
+		mask-image: linear-gradient(to bottom, black 3rem, transparent);
+
+		${media('md')} {
+			-webkit-mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
+			mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
+		}
 	}
 `;
 
 const Brand = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.5rem;
+
+	${media('md')} {
+		gap: 1rem;
+	}
+
+	& svg {
+		color: #6958CA;
+		width: 28px;
+		height: 28px;
+
+		${media('md')} {
+			width: 40px;
+			height: 40px;
+		}
+	}
 
 	& h2 {
-		font-size: 1.25rem;
+		font-size: 1rem;
 		line-height: 1.5rem;
 		letter-spacing: -0.5px;
+
+		${media('md')} {
+			font-size: 1.25rem;
+			line-height: 1.5rem;
+		}
 	}
 `;
 
@@ -103,9 +133,7 @@ export const Header = () => {
 			<Backdrop />
 			<nav>
 				<Brand>
-					<svg width="44" height="24" viewBox="0 0 44 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M9.5989 7.13422L11.2034 4.39126C12.7932 1.67317 15.7227 0.000587695 18.8924 0H42.2592C43.031 0 43.5118 0.8371 43.1231 1.50376L41.5283 4.23846C39.9402 6.96184 37.0072 8.63912 33.8334 8.63912H10.4621C9.68975 8.63912 9.20895 7.80087 9.5989 7.13422ZM0.876918 22.4962L2.47167 19.7615C4.06036 17.0381 6.99341 15.3608 10.1672 15.3608H25.4143C26.1866 15.3608 26.6674 16.1991 26.2775 16.8657L24.673 19.6087C23.0832 22.3268 20.1531 24 16.9834 24H1.74076C0.969031 24 0.488153 23.1629 0.876918 22.4962Z" fill="#6958CA" />
-					</svg>
+					<Logo />
 					<h2>Fennel</h2>
 				</Brand>
 			</nav>

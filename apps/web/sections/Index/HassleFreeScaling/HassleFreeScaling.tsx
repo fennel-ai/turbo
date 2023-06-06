@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { IconPuck, LinkButton, TitleBlock } from 'ui';
+import { media } from 'styles/utils';
 import ChartBreakoutIcon from 'ui/icons/chart-breakout-circle.svg';
 import ShieldIcon from 'ui/icons/shield-03.svg';
 import PiggyBankIcon from 'ui/icons/piggy-bank-01.svg';
 
 import { Container } from 'components/Container';
-import { media } from 'styles/utils';
 
 const Root = styled.div`
 	padding: 5rem 0;
@@ -37,6 +37,10 @@ const Grid = styled.div`
 		overflow: auto;
 		gap: 12px;
 		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 `;
 

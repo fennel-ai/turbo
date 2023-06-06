@@ -42,7 +42,7 @@ const ShipFaster = () => {
 					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
 				</TextBlock>
 				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<CubeIcon />}>
-					<b>Fully Managed Infrastructure</b><br />
+					<b>Fully-Managed Infrastructure</b><br />
 					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
 				</TextBlock>
 				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<SearchIcon />}>

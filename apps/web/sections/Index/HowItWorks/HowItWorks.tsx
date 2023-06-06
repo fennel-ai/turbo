@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
+import { media } from 'styles/utils';
 import { TitleBlock } from 'ui';
 import CodeIcon from 'ui/icons/code.svg';
 import DataIcon from 'ui/icons/data.svg';
@@ -18,12 +19,16 @@ const Wrapper = styled(Container)`
 	display: flex;
 	flex-direction: column;
 	gap: 4rem;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
+
+	${media("sm")} {
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+	}
 `;
 
 const TitleWrapper = styled.div`
 	grid-column: 4 / span 6;
+	order: -2;
 `;
 
 const Accordion = styled.div`
