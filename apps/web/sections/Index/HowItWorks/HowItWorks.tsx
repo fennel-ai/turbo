@@ -32,10 +32,16 @@ const Accordion = styled.div`
 
 const HowItWorks = () => {
 	const [activeItem, setActiveItem] = useState(0);
+	const [animate, toggleAnimate] = useState(true);
 
 	const onComplete = useCallback(() => {
 		setActiveItem(prev => (prev + 1) % 4);
 	}, []);
+
+	const toggleItem = (i: number) => {
+		toggleAnimate(false);
+		setActiveItem(i);
+	};
 
 	return (
 		<Root>
@@ -48,16 +54,16 @@ const HowItWorks = () => {
 					</TitleBlock>
 				</TitleWrapper>
 				<Accordion>
-					<AccordionItem open={activeItem === 0} onToggle={() => setActiveItem(0)} onComplete={onComplete} icon={<DataIcon />} title="Bring your Data">
+					<AccordionItem animate={animate} open={activeItem === 0} onToggle={() => toggleItem(0)} onComplete={onComplete} icon={<DataIcon />} title="Bring your Data">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
-					<AccordionItem open={activeItem === 1} onToggle={() => setActiveItem(1)} onComplete={onComplete} icon={<PipelineIcon />} title="Derive Features via Pipelines">
+					<AccordionItem animate={animate} open={activeItem === 1} onToggle={() => toggleItem(1)} onComplete={onComplete} icon={<PipelineIcon />} title="Derive Features via Pipelines">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
-					<AccordionItem open={activeItem === 2} onToggle={() => setActiveItem(2)} onComplete={onComplete} icon={<CodeIcon />} title="Define Features">
+					<AccordionItem animate={animate} open={activeItem === 2} onToggle={() => toggleItem(2)} onComplete={onComplete} icon={<CodeIcon />} title="Define Features">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
-					<AccordionItem open={activeItem === 3} onToggle={() => setActiveItem(3)} onComplete={onComplete} icon={<GlobeIcon />} title="Query via the REST API">
+					<AccordionItem animate={animate} open={activeItem === 3} onToggle={() => toggleItem(3)} onComplete={onComplete} icon={<GlobeIcon />} title="Query via the REST API">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
 				</Accordion>

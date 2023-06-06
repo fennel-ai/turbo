@@ -8,7 +8,7 @@ export default function Index() {
 		<NoMoreBugs />
 		<TrulyRealtime />
 		<HassleFreeScaling />
-		<HowItWorks />
+		{/* <HowItWorks /> */}
 		<ArchitectedWithLove />
 		<CallToAction />
     </main>

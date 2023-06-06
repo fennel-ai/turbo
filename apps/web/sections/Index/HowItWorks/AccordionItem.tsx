@@ -4,8 +4,10 @@ import { motion, useAnimationFrame, useSpring } from "framer-motion";
 import { Collapsible } from 'ui';
 
 type Props = {
+	animate: boolean;
 	icon: ReactElement;
 	open: boolean;
+	onComplete: () => void;
 	onToggle: () => void;
 	title: string; 
 }
@@ -83,7 +85,7 @@ const transition = {
 	duration: 10
 };
 
-export const AccordionItem = ({ children, icon, open, onComplete, onToggle, title }: PropsWithChildren<Props>) => {
+export const AccordionItem = ({ animate, children, icon, open, onComplete, onToggle, title }: PropsWithChildren<Props>) => {
 	return (
 		<>
 			<Root onClick={onToggle}>
@@ -98,7 +100,7 @@ export const AccordionItem = ({ children, icon, open, onComplete, onToggle, titl
 				</Collapsible>
 			</Root>
 			<Progress>
-				{open ? <motion.div initial="start" animate="end" exit="exit" onAnimationComplete={onComplete} variants={variants} transition={transition} /> : null}
+				{animate && open ? <motion.div initial="start" animate="end" exit="exit" onAnimationComplete={onComplete} variants={variants} transition={transition} /> : null}
 			</Progress>
 		</>
 	);
