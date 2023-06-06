@@ -5,6 +5,7 @@ import { Card, TitleBlock } from 'ui';
 import LightningIcon from 'ui/icons/lightning-01.svg';
 
 const Root = styled(Card)`
+	position: relative;
 	grid-column: span 2;
 	display: flex;
 	flex-direction: column;

@@ -3,6 +3,7 @@ import { media } from 'styles/utils';
 import { Card, TitleBlock } from 'ui';
 
 const Root = styled(Card)`
+	position: relative;
 	grid-column: span 2;
 	display: flex;
 	flex-direction: column;
