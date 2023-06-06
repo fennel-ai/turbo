@@ -13,13 +13,13 @@ import { SplitSection } from "components/SplitSection";
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: repeat(2, 1fr);
 	row-gap: 1.5rem;
 	column-gap: 1rem;
 
-	${media('2xs')} {
-		grid-template-columns: repeat(2, 1fr);
-	}
+	// ${media('2xs')} {
+	// 	grid-template-columns: repeat(2, 1fr);
+	// }
 
 	${media('md')} {
 		row-gap: 3rem;

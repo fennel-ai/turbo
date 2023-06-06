@@ -18,9 +18,14 @@ const Root = styled.div<{ align: Props['align'] }>`
 	/** Large Title **/
 	& h1 {
 		margin: 1rem 0;
-		font-size: 2.5rem;
-		line-height: 2.5rem;
+		font-size: 2rem;
+		line-height: 2rem;
 		font-variation-settings: "wght" 900;
+
+		${media("xs")} {
+			font-size: 2.5rem;
+			line-height: 2.5rem;
+		}
 
 		${media("sm")} {
 			font-size: 4rem;
@@ -31,18 +36,28 @@ const Root = styled.div<{ align: Props['align'] }>`
 	/** Standard Title **/
 	& h2 {
 		margin: 0.5rem 0;
-		font-size: 2.5rem;
-		line-height: 3rem;
+		font-size: 2rem;
+		line-height: 2.5rem;
 		font-variation-settings: "wght" 900;
+
+		${media("sm")} {
+			font-size: 2.5rem;
+			line-height: 3rem;
+		}
 	}
 	
 	/** Small Title **/
 	& h3 {
 		margin: 0.5rem 0;
-		font-size: 2rem;
-		line-height: 2.5rem;
+		font-size: 1.75rem;
+		line-height: 2rem;
 		font-variation-settings: "wght" 800;
 		letter-spacing: -1.5px;
+
+		${media("md")} {
+			font-size: 2rem;
+			line-height: 2.5rem;
+		}
 	}
 
 	/** Subtitle */

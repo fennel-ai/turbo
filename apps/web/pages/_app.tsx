@@ -11,9 +11,9 @@ import Head from 'next/head';
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
 
-export const satoshiVariable = localFont({
+export const haskoyVariable = localFont({
 	src: [{
-		path: "./fonts/Satoshi-Variable.woff2"
+		path: "./fonts/haskoy.woff2"
 	}],
 	preload: true
 });
@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					body {
 						margin: 0;
 						padding: 0;
-						font-family: ${satoshiVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+						font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 						font-synthesis: none;
 						font-feature-settings: "tnum"; /*! Enables the numeric character variants with Satoshi Variable - may want to restrict this to only li:marker elements */
 						text-rendering: optimizeLegibility;
@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					}
 
 					button, input {
-						font-family: ${satoshiVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+						font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 					}
 				`}
 			</style>

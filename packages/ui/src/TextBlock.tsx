@@ -29,16 +29,23 @@ const Text = styled.p`
 	}
 
 	& b {
-		font-variation-settings: "wght" 800;
+		font-variation-settings: "wght" 700;
 	}
 
 	& svg {
+		display: block;
 		flex-shrink: 0;
 		width: 1rem;
 		height: 1rem;
 		position: relative;
 		top: 0.125rem;
-		margin-right: 0.125rem;
+		margin-bottom: 0.25rem;
+
+		${media('md')} {
+			display: inline;
+			margin-bottom: 0;
+			margin-right: 0.25rem;
+		}
 	}
 `;
 

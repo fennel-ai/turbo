@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import styled from '@emotion/styled';
 import { toast } from 'react-hot-toast';
 import { Button } from 'ui';
-import { satoshiVariable } from 'pages/_app';
+import { haskoyVariable } from 'pages/_app';
 
 enum RoleEnum {
 	data_scientist = 'Data Scientist',
@@ -46,7 +46,7 @@ const InputRoot = styled.div`
 		outline: none;
 		padding: 0 0.75rem;
 		appearance: none;
-		font-family: ${satoshiVariable.style.fontFamily};
+		font-family: ${haskoyVariable.style.fontFamily};
 		font-size: 0.875rem;
 		line-height: 1rem;
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
