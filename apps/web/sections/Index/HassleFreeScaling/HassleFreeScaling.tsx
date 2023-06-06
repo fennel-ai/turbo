@@ -23,9 +23,21 @@ const Grid = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	gap: 2rem;
-	padding-left: 6.5rem;
-	padding-right: 6.5rem;
+	gap: 1rem;
+
+	${media('xl')} {
+		gap: 2rem;
+		padding-left: 6.5rem;
+		padding-right: 6.5rem;
+	}
+
+	${media('md', 'max')} {
+		display: flex;
+		align-items: stretch;
+		overflow: auto;
+		gap: 12px;
+		scroll-snap-type: x mandatory;
+	}
 `;
 
 const Cell = styled.div`
@@ -36,10 +48,20 @@ const Cell = styled.div`
 	justify-content: center;
 	gap: 1.5rem;
 	text-align: center;
-	padding: 0 2.5rem;
+	padding: 0 1rem;
+	align-self: flex-start;
 
 	${media('md')} {
 		grid-column: span 4;
+	}
+
+	${media('lg')} {
+		padding: 0 2.5rem;
+	}
+	
+	${media('md', 'max')} {
+		min-width: 100%;
+		scroll-snap-align: center;
 	}
 `;
 
