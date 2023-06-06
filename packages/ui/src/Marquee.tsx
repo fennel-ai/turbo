@@ -1,7 +1,6 @@
 import { Children, PropsWithChildren, WheelEventHandler, useCallback, useEffect, useRef } from "react";
 import styled from '@emotion/styled';
 import { motion, useSpring, useAnimationFrame, useTransform, PanInfo, MotionValue } from "framer-motion";
-import normalizeWheel from "normalize-wheel";
 import { useWindowSize } from "@react-hook/window-size";
 
 const opts = {
