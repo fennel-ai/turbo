@@ -19,11 +19,12 @@ const Root = styled.div`
 const Wrapper = styled(Container)`
 	display: flex;
 	flex-direction: column;
-	gap: 4rem;
+	gap: 2.5rem;
 
 	${media("sm")} {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
+		gap: 4rem;
 	}
 `;
 
