@@ -251,6 +251,7 @@ importers:
     specifiers:
       '@emotion/react': ^11.10.5
       '@emotion/styled': ^11.10.5
+      '@react-hook/window-size': ^3.1.1
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
       '@types/react-syntax-highlighter': ^15.5.6
@@ -267,6 +268,7 @@ importers:
     dependencies:
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
       '@emotion/styled': 11.10.5_jp5djshq6aqfasno3mth3hguci
+      '@react-hook/window-size': 3.1.1_react@18.2.0
       esbuild-plugin-svgr: 1.0.1
       framer-motion: 10.12.16_react@18.2.0
       normalize-wheel: 1.0.1
@@ -6008,10 +6010,6 @@ packages:
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
-    dev: true
-
-  /@types/normalize-wheel/1.0.1:
-    resolution: {integrity: sha512-3YBVyWfiwIGDcQY+2ZeT3LxyApYnV3PrysjIKeNkQtT9Q9eq2mcPPcqSCYR4v/FhYJ9xtZNhXMKNxCn6ukLsXQ==}
     dev: true
 
   /@types/npmlog/4.1.4:
