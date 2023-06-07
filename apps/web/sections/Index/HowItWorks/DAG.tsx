@@ -532,13 +532,13 @@ const DAG = () => {
 					animate={{
 						x1: [265, 310 * 2],
 						x2: [265, 310],
-						y1: [-40, -80],
-						y2: [0, -80]
+						y1: [0, 0],
+						y2: [0, 0]
 					}}
 					transition={{
 						duration: 2,
-						delay: 2,
-						repeatDelay: 2,
+						delay: 2.5,
+						repeatDelay: 2.5,
 						repeat: Infinity
 					}}
 					id="pipelines-pulse-2"
