@@ -10,6 +10,7 @@ import PipelineIcon from 'ui/icons/pipeline.svg';
 import { Container } from 'components/Container';
 import { AccordionItem } from './AccordionItem';
 import Diagram from './Diagram';
+import DAG from './DAG';
 
 const Root = styled.div`
 	padding: 5rem 0;
@@ -33,6 +34,18 @@ const TitleWrapper = styled.div`
 
 const Accordion = styled.div`
 	grid-column: span 4;
+`;
+
+const DiagramWrapper = styled.div`
+	grid-column: 6 / span 7;
+	border-radius: 1rem;
+	overflow: hidden;
+	order: -1;
+
+	${media("sm")} {
+		order: 2;
+		border-radius: 1.5rem;
+	}
 `;
 
 const HowItWorks = () => {
@@ -72,7 +85,9 @@ const HowItWorks = () => {
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
 				</Accordion>
-				<Diagram />
+				<DiagramWrapper>
+					<DAG />
+				</DiagramWrapper>
 			</Wrapper>
 		</Root>
 	);

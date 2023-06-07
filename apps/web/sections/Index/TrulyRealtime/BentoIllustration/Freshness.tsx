@@ -43,8 +43,8 @@ export const Freshness = () => (
 		<Illustration>
 			<LightningIcon color="#f0f0f5" width={265} height={265} />
 		</Illustration>
-		<MiniLightningL color="#FFBC00" width={24} height={24} />
-		<MiniLightningR color="#FFBC00" width={24} height={24} />
+		{/* <MiniLightningL color="#FFBC00" width={24} height={24} /> */}
+		{/* <MiniLightningR color="#FFBC00" width={24} height={24} /> */}
 		<TitleBlock align="center">
 			<h6>No more stale data</h6>
 			<h3>Sub-second Feature Freshness</h3>

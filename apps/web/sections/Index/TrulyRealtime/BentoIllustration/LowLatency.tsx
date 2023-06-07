@@ -27,7 +27,7 @@ export const LowLatency = () => (
 	<Root>
 		<Illustration>
 			<svg width="482" height="482" viewBox="0 0 482 482" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<g opacity="0.64">
+				<g>
 					<rect x="1" y="1" width="480" height="480" rx="240" fill="#6958CA" fill-opacity="0.01" />
 					<rect x="0.693878" y="0.693878" width="480.612" height="480.612" rx="240.306" stroke="#6958CA" stroke-opacity="0.16" stroke-width="0.612245" />
 					<rect x="105.081" y="105.082" width="271.837" height="271.837" rx="135.918" fill="#6958CA" fill-opacity="0.03" />
