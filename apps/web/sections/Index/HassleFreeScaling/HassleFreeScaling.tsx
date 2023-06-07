@@ -9,6 +9,7 @@ import { Container } from 'components/Container';
 
 const Root = styled.div`
 	padding: 5rem 0;
+	background-color: #f9f9fb;
 	border-top: 1px solid #f0f0f5;
 	border-bottom: 1px solid #f0f0f5;
 `;
