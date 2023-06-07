@@ -17,7 +17,7 @@ import SeparatorNode from "./SeparatorNode";
 const Root = styled.div`
 	grid-column: 6 / span 7;
 	border-radius: 1rem;
-	height: 240px;
+	height: 224px;
 	border: 1px solid #f0f0f5;
 	overflow: hidden;
 	order: -1;

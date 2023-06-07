@@ -12,8 +12,14 @@ type Props = {
 const Root = styled.div<{ align: Props['align'] }>`
 	display: flex;
 	flex-direction: column;
-	align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
+	align-items: center;
+	align-self: center;
 	gap: 1.5rem;
+	
+	${media("sm")} {
+		align-self: inherit;
+		align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
+	}
 
 	/** Large Title **/
 	& h1 {
@@ -93,14 +99,23 @@ const Root = styled.div<{ align: Props['align'] }>`
 const Content = styled.div<{ align: Props['align'] }>`
 	display: flex;
 	flex-direction: column;
-	align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
-	text-align: ${props => props.align};
+	align-items: center;
+	text-align: center;
+
+	${media("sm")} {
+		align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
+		text-align: ${props => props.align};
+	}
 `;
 
 const Actions = styled.div<{ align: Props['align'] }>`
 	display: flex;
-	align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
+	align-items: center;
 	gap: 1rem;
+
+	${media("sm")} {
+		align-items: ${props => props.align === 'left' ? 'flex-start' : props.align};
+	}
 `;
 
 export const TitleBlock = (props: PropsWithChildren<Props>) => {

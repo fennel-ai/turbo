@@ -27,6 +27,14 @@ const Grid = styled.div`
 	}
 `;
 
+const CTAButton = styled(LinkButton)`
+	align-self: center;
+
+	${media('sm')} {
+		align-self: flex-start;
+	}
+`;
+
 const NoMoreBugs = () => {
 	return (
 		<SplitSection direction="reverse" illustration={<Illustration />}>
@@ -60,9 +68,9 @@ const NoMoreBugs = () => {
 					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
 				</TextBlock>
 			</Grid>
-			<LinkButton>
-				Learn more about Data Quality with Fennel
-			</LinkButton>
+			<CTAButton>
+				Data Quality with Fennel
+			</CTAButton>
 		</SplitSection>
 	);
 };

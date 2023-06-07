@@ -12,7 +12,7 @@ type Props = {
 }
 
 const Root = styled.div`
-	padding: 2rem 0;
+	padding: 4rem 0;
 
 	${media('sm')} {
 		padding: 5rem 0;
@@ -40,13 +40,14 @@ const IllustrationWrapper = styled.div<{ direction: Props['direction'] }>`
 const Content = styled.div<{ direction: Props['direction'] }>`
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: 2.5rem;
 	align-items: flex-start;
 	justify-content: center;
-	order: ${props => props.direction === 'reverse' ? -1 : 2 };
 	grid-column: span 12;
-
+	order: -1;
+	
 	${media('sm')} {
+		order: ${props => props.direction === 'reverse' ? -1 : 2 };
 		grid-column: ${props => props.direction === 'reverse' ? 'span 6' : '7 / span 6' };
 		gap: 4rem;
 	}

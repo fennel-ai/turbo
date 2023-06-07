@@ -53,6 +53,11 @@ const TrulyRealtime = () => {
 					<div>
 						<TitleBlock
 							align="left"
+							actions={[
+								<LinkButton>
+									Read the Documentation
+								</LinkButton>
+							]}
 						>
 							<h6>Powerful & Flexible</h6>
 							<h2>Truly Realtime. <br /> As simple as batch.</h2>
@@ -60,9 +65,6 @@ const TrulyRealtime = () => {
 							<p>Realtime can be as simple as batch. Fennels data connectors and APIs were crafted so that the <b>exact same code</b> works regardless of wether your data is realtime or batch.</p>
 						</TitleBlock>
 					</div>
-					<LinkButton>
-						Read the Documentation
-					</LinkButton>
 				</Content>
 				<IllustrationWrapper>
 					<BentoIllustration />
