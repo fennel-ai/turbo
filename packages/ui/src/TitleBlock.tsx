@@ -58,7 +58,6 @@ const Root = styled.div<{ align: Props['align'] }>`
 		font-size: 1.75rem;
 		line-height: 2rem;
 		font-variation-settings: "wght" 800;
-		// letter-spacing: -1.5px;
 
 		${media("md")} {
 			font-size: 2rem;
