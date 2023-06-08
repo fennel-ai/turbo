@@ -1,0 +1,19 @@
+@mixin state-layer($initial_alpha: 0) {
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-color: currentColor;
+		opacity: $initial_alpha;
+	}
+
+	&:hover::before {
+		opacity: $initial_alpha + 0.04;
+	}
+
+	&:active::before {
+		opacity: $initial_alpha + 0.08;
+	}
+}

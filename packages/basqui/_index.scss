@@ -1,6 +1,8 @@
 @use "sass:color";
 @use "_config/colors";
+
 @forward "_config/breakpoints";
+@forward "mixins";
 
 $themes: (
 	light: (
