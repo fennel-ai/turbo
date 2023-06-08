@@ -13,6 +13,8 @@ const Root = styled.div`
 	z-index: 100;
 	transition: background 400ms ease 0s;
 
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 4.5rem);
+
 	& nav {
 		z-index: 1;
 		flex: 1;
@@ -24,7 +26,7 @@ const Root = styled.div`
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 4.5rem);
+		// background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 4.5rem);
 
 		padding-left: 1rem;
 		padding-right: 1rem;

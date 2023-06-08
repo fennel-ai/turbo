@@ -1,0 +1,9 @@
+{
+  "name": "basqui",
+  "version": "1.0.0",
+  "description": "Bas-kee",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Fennel <developers@fennel.ai>",
+  "license": "ISC"
+}

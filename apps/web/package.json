@@ -11,6 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+	"basqui": "workspace:*",
+    "clsx": "^1.2.1",
     "framer-motion": "^9.0.1",
     "next": "13.1.1",
     "react": "18.2.0",
