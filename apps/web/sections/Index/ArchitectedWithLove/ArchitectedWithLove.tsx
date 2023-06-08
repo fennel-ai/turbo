@@ -15,55 +15,71 @@ import RocksdbLogo from 'ui/icons/technologies/rocksdb.svg';
 import RustLogo from 'ui/icons/technologies/rust.svg';
 import PostgresLogo from 'ui/icons/technologies/postgresql.svg';
 import PulumiLogo from 'ui/icons/technologies/pulumi.svg';
+import { ReactNode, useMemo } from 'react';
 
-const TECH = [
+type TechnologyDefinition = {
+	logo: ReactNode,
+	name: string,
+	text: string,
+}
+
+const TECH: TechnologyDefinition[] = [
 	{
-		logo: RustLogo,
+		logo: <RustLogo width={32} height={32} />,
 		name: "Rust",
 		text: "The primary language of our backend, relying heavily on Tokio's async runtime"
 	},
 	{
-		logo: KafkaLogo,
+		logo: <KafkaLogo width={32} height={32} />,
 		name: "Kafka",
 		text: "Handles all inflow data. All streaming jobs read and write to Kafka."
 	},
 	{
-		logo: RocksdbLogo,
+		logo: <RocksdbLogo height={38} width={32} />,
 		name: "RocksDB",
 		text: "Handles all at-rest data, with some also offloaded to Redis."
 	},
 	{
-		logo: PandasLogo,
+		logo: <PandasLogo width={32} height={32} />,
 		name: "Pandas",
 		text: "Used as the dataframe interface between user-written code and the server."
 	},
 	{
-		logo: GrpcLogo,
+		logo: <GrpcLogo width={74} height={32} />,
 		name: "gRPC",
 		text: "Used alongside Protobufs to write services and exchange data."
 	},
 	{
-		logo: KubernetesLogo,
+		logo: <KubernetesLogo width={32} height={32} />,
 		name: "Kubernetes",
 		text: "For maintaining the lifecycle of all running services."
 	},
 	{
-		logo: PulumiLogo,
+		logo: <PulumiLogo width={32} height={32} />,
 		name: "Pulumi",
 		text: "Used for provisioning Fennel infrastructure as code."
 	},
 	{
-		logo: PostgresLogo,
+		logo: <PostgresLogo width={32} height={32} />,
 		name: "PostgreSQL",
 		text: "Used as a central metadata store, with the exception of customer data."
 	},
 ]
 
+const renderTechnology = ({ logo, name, text }: TechnologyDefinition) => (
+	<div key={name} className={styles.technology}>
+		{logo}
+		<div>
+			<h6>{name}</h6>
+			<p>{text}</p>
+		</div>
+	</div>
+);
+
 const ArchitectedWithLove = () => {
 	const useThreeColumns = useMatchMedia('(min-width: 34rem)');
 
-	const MARQUEES = chunk(TECH, useThreeColumns ? 3 : 4);
-	console.log(MARQUEES);
+	const MARQUEES = useMemo(() => chunk(TECH, useThreeColumns ? 3 : 4), [useThreeColumns]);
 
 	return (
 		<div className={styles.root}>
@@ -80,28 +96,12 @@ const ArchitectedWithLove = () => {
 							<div className={clsx(styles.marquee, i % 2 ? undefined : styles.reverse)}>
 								<section key={i}>
 									{
-										technologies.map(({ logo: Logo, name, text }, index) => (
-											<div key={name} className={styles.technology}>
-												<Logo />
-												<div>
-													<h6>{name}</h6>
-													<p>{text}</p>
-												</div>
-											</div>
-										))
+										technologies.map(renderTechnology)
 									}
 								</section>
 								<section aria-hidden="true">
 									{
-										technologies.map(({ logo: Logo, name, text }, index) => (
-											<div key={name} className={styles.technology}>
-												<Logo />
-												<div>
-													<h6>{name}</h6>
-													<p>{text}</p>
-												</div>
-											</div>
-										))
+										technologies.map(renderTechnology)
 									}
 								</section>
 							</div>
