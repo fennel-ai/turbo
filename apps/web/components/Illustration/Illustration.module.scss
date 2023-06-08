@@ -1,0 +1,9 @@
+@use "basqui" as theme;
+
+.root {
+	height: 20rem;
+
+	@include theme.media(sm) {
+		height: 40rem;
+	}
+}

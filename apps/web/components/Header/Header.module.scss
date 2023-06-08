@@ -1,20 +1,23 @@
-import styled from '@emotion/styled';
-import { media } from 'styles/utils';
-import Logo from 'ui/icons/logo.svg';
+@use "sass:color";
+@use "basqui" as theme;
 
-const Root = styled.div`
+.root {
+	--height: 3rem;
+	@include theme.media(md) {
+		--height: 4.5rem;
+	}
+
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
-	height: 3rem;
+	height: var(--height);
 	display: flex;
 	align-items: center;
 	z-index: 100;
 	transition: background 400ms ease 0s;
-
-	background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 4.5rem);
-
+	background-color: linear-gradient(to bottom, theme.get(surface), color.adjust(theme.get(surface), $alpha: 0) var(--height));
+	
 	& nav {
 		z-index: 1;
 		flex: 1;
@@ -26,28 +29,22 @@ const Root = styled.div`
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		// background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 4.5rem);
-
 		padding-left: 1rem;
 		padding-right: 1rem;
-
-		${media('2xs')} {
+		
+		@include theme.media(xxs) {
 			padding-left: 1.5rem;
 			padding-right: 1.5rem;
 		}
-
-		${media('md')} {
+		
+		@include theme.media(md) {
 			padding-left: 3rem;
 			padding-right: 3rem;
 		}
-	}
+	}	
+}
 
-	${media('md')} {
-		height: 4.5rem;
-	}
-`;
-
-const Border = styled.div`
+.border {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -59,12 +56,12 @@ const Border = styled.div`
 	padding-left: 1rem;
 	padding-right: 1rem;
 
-	${media('2xs')} {
+	@include theme.media(xxs) {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
 	}
 
-	${media('md')} {
+	@include theme.media(md) {
 		padding-left: 3rem;
 		padding-right: 3rem;
 	}
@@ -74,10 +71,17 @@ const Border = styled.div`
 		height: 100%;
 		background-color: rgba(0, 0, 0, 0.06);
 	}
-`;
+}
 
-const Backdrop = styled.div`
-	&::before, &::after {
+.backdrop {
+	--height: 3rem;
+	
+	@include theme.media(md) {
+		--height: 4.5rem;
+	}
+	
+	&::before,
+	&::after {
 		content: "";
 		position: absolute;
 		inset: -1px 0px -60%;
@@ -87,31 +91,31 @@ const Backdrop = styled.div`
 
 	&::before {
 		backdrop-filter: blur(20px) saturate(2);
-		-webkit-mask-image: linear-gradient(to bottom, black 3rem, transparent);
-		mask-image: linear-gradient(to bottom, black 3rem, transparent);
+		-webkit-mask-image: linear-gradient(to bottom, black var(--height), transparent);
+		mask-image: linear-gradient(to bottom, black var(--height), transparent);
 
-		${media('md')} {
-			-webkit-mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
-			mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
+		@include theme.media(md) {
+			-webkit-mask-image: linear-gradient(to bottom, black var(--height), transparent);
+			mask-image: linear-gradient(to bottom, black var(--height), transparent);
 		}
 	}
-`;
+}
 
-const Brand = styled.div`
+.brand {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
 
-	${media('md')} {
+	@include theme.media(md) {
 		gap: 1rem;
 	}
 
 	& svg {
-		color: #6958CA;
+		color: theme.get(primary);
 		width: 28px;
 		height: 28px;
 
-		${media('md')} {
+		@include theme.media(md) {
 			width: 40px;
 			height: 40px;
 		}
@@ -122,26 +126,9 @@ const Brand = styled.div`
 		line-height: 1.5rem;
 		letter-spacing: -0.5px;
 
-		${media('md')} {
+		@include theme.media(md) {
 			font-size: 1.25rem;
 			line-height: 1.5rem;
 		}
 	}
-`;
-
-export const Header = () => {
-	return (
-		<Root>
-			<Backdrop />
-			<nav>
-				<Brand>
-					<Logo />
-					<h2>Fennel</h2>
-				</Brand>
-			</nav>
-			<Border>
-				<div />
-			</Border>
-		</Root>
-	);
-};
+}
