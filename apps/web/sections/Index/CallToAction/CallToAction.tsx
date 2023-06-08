@@ -6,7 +6,7 @@ import { media } from 'styles/utils';
 
 const Root = styled.div`
 	padding-top: 2.5rem;
-	background-color: #140F2E;
+	background-color: #0C091B;
 	color: #EBEBFA;
 	overflow: hidden;
 
