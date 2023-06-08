@@ -90,7 +90,7 @@
 	}
 
 	&::before {
-		backdrop-filter: blur(20px) saturate(2);
+		backdrop-filter: blur(20px);
 		-webkit-mask-image: linear-gradient(to bottom, black var(--height), transparent);
 		mask-image: linear-gradient(to bottom, black var(--height), transparent);
 

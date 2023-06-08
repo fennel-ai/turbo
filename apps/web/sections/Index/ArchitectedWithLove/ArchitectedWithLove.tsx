@@ -1,6 +1,9 @@
 import { LinkButton, TitleBlock } from 'ui';
 import clsx from 'clsx';
+import chunk from 'lodash/chunk';
 import styles from './ArchitectedWithLove.module.scss';
+
+import { useMatchMedia } from 'ui/hooks';
 
 import { Container } from 'components/Container';
 
@@ -13,61 +16,55 @@ import RustLogo from 'ui/icons/technologies/rust.svg';
 import PostgresLogo from 'ui/icons/technologies/postgresql.svg';
 import PulumiLogo from 'ui/icons/technologies/pulumi.svg';
 
-const MARQUEES = [
-	[
-		{
-			logo: RustLogo,
-			name: "Rust",
-			text: "The primary language of our backend, relying heavily on Tokio's async runtime"
-		},
-		{
-			logo: KafkaLogo,
-			name: "Kafka",
-			text: "Handles all inflow data. All streaming jobs read and write to Kafka."
-		},
-		{
-			logo: RocksdbLogo,
-			name: "RocksDB",
-			text: "Handles all at-rest data, with some also offloaded to Redis."
-		},
-	],
-	[
-		{
-			logo: PandasLogo,
-			name: "Pandas",
-			text: "Used as the dataframe interface between user-written code and the server."
-		},
-		{
-			logo: GrpcLogo,
-			name: "gRPC",
-			text: "Used alongside Protobufs to write services and exchange data."
-		},
-		{
-			logo: KubernetesLogo,
-			name: "Kubernetes",
-			text: "For maintaining the lifecycle of all running services."
-		},
-	],
-	[
-		{
-			logo: PulumiLogo,
-			name: "Pulumi",
-			text: "Used for provisioning Fennel infrastructure as code."
-		},
-		{
-			logo: PostgresLogo,
-			name: "PostgreSQL",
-			text: "Used as a central metadata store, with the exception of customer data."
-		},
-		{
-			logo: RustLogo,
-			name: "Rust",
-			text: "The primary language of our backend, relying heavily on Tokio's async runtime"
-		},
-	]
+const TECH = [
+	{
+		logo: RustLogo,
+		name: "Rust",
+		text: "The primary language of our backend, relying heavily on Tokio's async runtime"
+	},
+	{
+		logo: KafkaLogo,
+		name: "Kafka",
+		text: "Handles all inflow data. All streaming jobs read and write to Kafka."
+	},
+	{
+		logo: RocksdbLogo,
+		name: "RocksDB",
+		text: "Handles all at-rest data, with some also offloaded to Redis."
+	},
+	{
+		logo: PandasLogo,
+		name: "Pandas",
+		text: "Used as the dataframe interface between user-written code and the server."
+	},
+	{
+		logo: GrpcLogo,
+		name: "gRPC",
+		text: "Used alongside Protobufs to write services and exchange data."
+	},
+	{
+		logo: KubernetesLogo,
+		name: "Kubernetes",
+		text: "For maintaining the lifecycle of all running services."
+	},
+	{
+		logo: PulumiLogo,
+		name: "Pulumi",
+		text: "Used for provisioning Fennel infrastructure as code."
+	},
+	{
+		logo: PostgresLogo,
+		name: "PostgreSQL",
+		text: "Used as a central metadata store, with the exception of customer data."
+	},
 ]
 
 const ArchitectedWithLove = () => {
+	const useThreeColumns = useMatchMedia('(min-width: 34rem)');
+
+	const MARQUEES = chunk(TECH, useThreeColumns ? 3 : 4);
+	console.log(MARQUEES);
+
 	return (
 		<div className={styles.root}>
 			<Container className={styles.wrapper}>
@@ -110,44 +107,6 @@ const ArchitectedWithLove = () => {
 							</div>
 						))
 					}
-					{/* <div className={styles.marquee}>
-						<section>
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-						</section>
-						<section aria-hidden="true">
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-						</section>
-					</div>
-					
-					<div className={clsx(styles.marquee, styles.reverse)}>
-						<section>
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-						</section>
-						<section aria-hidden="true">
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-						</section>
-					</div>
-					
-					<div className={styles.marquee}>
-						<section>
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-						</section>
-						<section aria-hidden="true">
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-							<div className={styles.technology} />
-						</section>
-					</div> */}
 				</div>
 			</Container>
 		</div>
