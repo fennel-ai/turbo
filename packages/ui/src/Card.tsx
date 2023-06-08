@@ -1,10 +1,5 @@
-import { ForwardedRef, PropsWithChildren, StyleHTMLAttributes, forwardRef } from 'react';
+import { ForwardedRef, HTMLAttributes, PropsWithChildren, StyleHTMLAttributes, forwardRef } from 'react';
 import styled from '@emotion/styled';
-
-type Props = {
-	className?: string;
-	style?: StyleHTMLAttributes<HTMLDivElement>;
-}
 
 const Root = styled.div`
 	background-color: rgba(240, 240, 245, 0.5);
@@ -14,7 +9,7 @@ const Root = styled.div`
 	flex-direction: column;
 `;
 
-export const Card = forwardRef(({ className, children, style }: PropsWithChildren<Props>, ref: ForwardedRef<HTMLDivElement>) => {
+export const Card = forwardRef(({ className, children, style }: PropsWithChildren<HTMLAttributes<HTMLDivElement>>, ref: ForwardedRef<HTMLDivElement>) => {
 	return (
 		<Root className={className} ref={ref} style={style}>
 			{children}
