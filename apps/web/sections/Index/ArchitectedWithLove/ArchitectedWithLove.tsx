@@ -93,8 +93,8 @@ const ArchitectedWithLove = () => {
 				<div className={styles.marquee_wrapper}>
 					{
 						MARQUEES.map((technologies, i) => (
-							<div className={clsx(styles.marquee, i % 2 ? undefined : styles.reverse)}>
-								<section key={i}>
+							<div key={i} className={clsx(styles.marquee, i % 2 ? undefined : styles.reverse)}>
+								<section>
 									{
 										technologies.map(renderTechnology)
 									}
