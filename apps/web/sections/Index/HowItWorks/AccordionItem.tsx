@@ -71,10 +71,10 @@ const Progress = styled.div`
 
 const variants = {
 	start: {
-		scaleX: 0,
+		width: '0%',
 	},
 	end: {
-		scaleX: 1,
+		width: '100%',
 	},
 	exit: {
 		opacity: 0,
