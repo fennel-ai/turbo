@@ -19,6 +19,7 @@
 	background-color: linear-gradient(to bottom, theme.get(surface), color.adjust(theme.get(surface), $alpha: 0) var(--height));
 
 	& nav {
+		position: relative;
 		z-index: 1;
 		flex: 1;
 		width: 100%;
@@ -42,6 +43,45 @@
 			padding-right: 3rem;
 		}
 	}	
+}
+
+.menu {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+.nav_button {
+	height: 2.5rem;
+	padding: 0 0.75rem;
+	border-radius: 0.5rem;
+	background-color: transparent;
+	overflow: hidden;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-variation-settings: "wght" 600;
+	color: theme.get(text-low);
+	opacity: 0.5;
+	user-select: none;
+	cursor: pointer;
+	
+	@include theme.state-layer;
+	
+	&:hover {
+		opacity: 1;
+		color: theme.get(text);
+	}
+
+	[data-theme="dark"] & {
+		color: theme.get(text-low, dark);
+		&:hover {
+			color: theme.get(text, dark);
+		}
+	}
 }
 
 .border {
@@ -109,6 +149,7 @@
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+	user-select: none;
 
 	@include theme.media(md) {
 		gap: 1rem;

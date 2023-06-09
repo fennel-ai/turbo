@@ -10,6 +10,17 @@ export const Header = () => {
 					<Logo />
 					<h2>Fennel</h2>
 				</div>
+				<div className={styles.menu}>
+					<button className={styles.nav_button}>
+						Company
+					</button>
+					<button className={styles.nav_button}>
+						Blog
+					</button>
+					<button className={styles.nav_button}>
+						Documentation
+					</button>
+				</div>
 			</nav>
 			<div className={styles.border}>
 				<div />
