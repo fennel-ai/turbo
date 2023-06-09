@@ -1,6 +1,9 @@
-import Logo from 'ui/icons/logo.svg';
-import styles from './Header.module.scss';
 import Link from 'next/link';
+import { IconButton } from 'ui';
+
+import Logo from 'ui/icons/logo.svg';
+import MenuIcon from 'ui/icons/menu.svg';
+import styles from './Header.module.scss';
 
 export const Header = () => {
 	return (
@@ -26,6 +29,7 @@ export const Header = () => {
 						Documentation
 					</button>
 				</div>
+				<IconButton className={styles.menu_button} icon={MenuIcon} />
 			</nav>
 			<div className={styles.border}>
 				<div />
