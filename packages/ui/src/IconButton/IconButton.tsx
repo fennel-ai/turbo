@@ -9,7 +9,7 @@ type Props = {
 	onClick?: MouseEventHandler<HTMLButtonElement>,
 }
 
-export const IconButton = ({ ariaLabel, className, icon: Icon, onClick, size = "medium" }: Props) => {
+export const IconButton = ({ ariaLabel, className, icon: Icon, onClick }: Props) => {
 	return (
 		<button aria-label={ariaLabel} className={clsx(styles.root, className)} onClick={onClick}>
 			<Icon />
