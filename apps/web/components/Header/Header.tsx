@@ -1,5 +1,6 @@
 import Logo from 'ui/icons/logo.svg';
 import styles from './Header.module.scss';
+import Link from 'next/link';
 
 export const Header = () => {
 	return (
@@ -11,9 +12,11 @@ export const Header = () => {
 					<h2>Fennel</h2>
 				</div>
 				<div className={styles.menu}>
-					<button className={styles.nav_button}>
-						Company
-					</button>
+					<Link href="/company">
+						<button className={styles.nav_button}>
+							Company
+						</button>
+					</Link>
 					<button className={styles.nav_button}>
 						Blog
 					</button>
