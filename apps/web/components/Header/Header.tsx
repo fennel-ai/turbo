@@ -7,10 +7,12 @@ export const Header = () => {
 		<header data-header className={styles.root}>
 			<div className={styles.backdrop} />
 			<nav>
-				<div className={styles.brand}>
-					<Logo />
-					<h2>Fennel</h2>
-				</div>
+				<Link href="/">
+					<div className={styles.brand}>
+						<Logo />
+						<h2>Fennel</h2>
+					</div>
+				</Link>
 				<div className={styles.menu}>
 					<Link href="/company">
 						<button className={styles.nav_button}>
