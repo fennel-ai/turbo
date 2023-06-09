@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const TitleBlock = (props: PropsWithChildren<Props>) => {
-	const { actions, align, children, className, style } = props;
+	const { actions, align = 'left', children, className, style } = props;
 
 	return (
 		<div className={clsx(styles.root, styles[align])}>
