@@ -55,7 +55,7 @@ const ConsoleImg = styled.div`
 
 const CallToAction = () => {
 	return (
-		<Root>
+		<Root data-section data-theme="dark">
 			<Wrapper>
 				<TitleWrapper>
 					<TitleBlock

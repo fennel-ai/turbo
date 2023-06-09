@@ -15,7 +15,7 @@ type Props = {
 
 export const  SplitSection = ({ className, children, direction = "forward", illustration, style }: PropsWithChildren<Props>) => {
 	return (
-		<div className={clsx(styles.root, className)} style={style}>
+		<div data-section className={clsx(styles.root, className)} style={style}>
 			<Container className={styles.wrapper}>
 				<div className={clsx(styles.illustration, styles[direction])}>
 					{illustration}

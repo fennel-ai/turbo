@@ -63,7 +63,7 @@ const HowItWorks = () => {
 	};
 
 	return (
-		<Root>
+		<Root data-section>
 			<Wrapper>
 				<TitleWrapper>
 					<TitleBlock align="center">

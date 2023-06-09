@@ -17,7 +17,7 @@
 	z-index: 100;
 	transition: background 400ms ease 0s;
 	background-color: linear-gradient(to bottom, theme.get(surface), color.adjust(theme.get(surface), $alpha: 0) var(--height));
-	
+
 	& nav {
 		z-index: 1;
 		flex: 1;
@@ -70,6 +70,10 @@
 		width: 100%;
 		height: 100%;
 		background-color: rgba(0, 0, 0, 0.06);
+		
+		[data-theme="dark"] & {
+			background-color: rgba(255, 255, 255, 0.06);
+		}
 	}
 }
 
@@ -125,10 +129,22 @@
 		font-size: 1rem;
 		line-height: 1.5rem;
 		letter-spacing: -0.5px;
+		color: theme.get(text);
+		margin: 0;
 
 		@include theme.media(md) {
 			font-size: 1.25rem;
 			line-height: 1.5rem;
+		}
+	}
+
+	[data-theme="dark"] & {
+		& svg {
+			color: theme.get(primary, dark);
+		}
+		
+		& h2 {
+			color: theme.get(text, dark);
 		}
 	}
 }

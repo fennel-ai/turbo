@@ -90,7 +90,7 @@ const TextGroup = styled.div`
 
 const HassleFreeScaling = () => {
 	return (
-		<Root>
+		<Root data-section>
 			<Wrapper>
 				<TitleBlock align="center">
 					<h6>Enterprise-Grade Performance</h6>

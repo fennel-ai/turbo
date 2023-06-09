@@ -47,7 +47,7 @@ const IllustrationWrapper = styled.div`
 
 const TrulyRealtime = () => {
 	return (
-		<Root>
+		<Root data-section>
 			<Wrapper>
 				<Content>
 					<div>

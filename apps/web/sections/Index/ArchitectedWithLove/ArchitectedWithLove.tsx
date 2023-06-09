@@ -82,7 +82,7 @@ const ArchitectedWithLove = () => {
 	const MARQUEES = useMemo(() => chunk(TECH, useThreeColumns ? 3 : 4), [useThreeColumns]);
 
 	return (
-		<div className={styles.root}>
+		<div data-section data-theme="dark" className={styles.root}>
 			<Container className={styles.wrapper}>
 				<div className={styles.content}>
 					<TitleBlock align="left" actions={[<LinkButton>Explore the Architecture</LinkButton>]}>
