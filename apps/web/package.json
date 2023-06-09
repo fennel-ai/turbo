@@ -11,8 +11,11 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@react-three/drei": "^9.74.7",
+    "@react-three/fiber": "^8.13.0",
     "basqui": "workspace:*",
     "clsx": "^1.2.1",
+    "ddd": "workspace:*",
     "framer-motion": "^9.0.1",
     "lodash": "^4.17.21",
     "next": "13.1.1",
@@ -21,6 +24,7 @@
     "react-hot-toast": "^2.4.0",
     "reactflow": "^11.7.2",
     "styles": "workspace:*",
+    "three": "^0.153.0",
     "ui": "workspace:*"
   },
   "devDependencies": {

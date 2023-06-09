@@ -19,6 +19,7 @@
 	row-gap: 3rem;
 	margin-bottom: -2.5rem;
 	z-index: 1;
+	perspective: 2000px;
 
 	& button {
 		align-self: center;
@@ -51,6 +52,7 @@
 	height: 14rem;
 	grid-column: span 12;
 	overflow: hidden;
+	transform: rotateX(-25deg);
 	z-index: 3;
 	mask-image: linear-gradient(to bottom,
 				hsl(0 0% 0% / 1),
@@ -108,68 +110,8 @@
 
 .stars {
 	position: absolute;
-	inset: 0;
+	inset: 0 0 40% 0;
 	z-index: -2;
-
-	&>div:nth-of-type(1) {
-		bottom: 2%;
-		left: 5%;
-	}
-
-	&>div:nth-of-type(2) {
-		bottom: 15%;
-		left: 17%;
-	}
-
-	&>div:nth-of-type(3) {
-		bottom: 42%;
-		left: 3%;
-	}
-
-	&>div:nth-of-type(4) {
-		bottom: 62%;
-		left: 10%;
-	}
-
-	&>div:nth-of-type(5) {
-		bottom: 90%;
-		left: 8%;
-	}
-
-	&>div:nth-of-type(6) {
-		bottom: 65%;
-		left: 36%;
-	}
-
-	&>div:nth-of-type(7) {
-		bottom: 60%;
-		left: 72%;
-	}
-
-	&>div:nth-of-type(8) {
-		bottom: 54%;
-		left: 84%;
-	}
-
-	&>div:nth-of-type(9) {
-		bottom: 62%;
-		left: 90%;
-	}
-
-	&>div:nth-of-type(10) {
-		bottom: 76%;
-		left: 94%;
-	}
-
-	&>div:nth-of-type(11) {
-		bottom: 33%;
-		left: 95%;
-	}
-
-	&>div:nth-of-type(12) {
-		bottom: 14%;
-		left: 92%;
-	}
 }
 
 .star {
