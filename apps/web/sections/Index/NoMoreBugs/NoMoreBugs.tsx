@@ -17,10 +17,6 @@ const Grid = styled.div`
 	row-gap: 1.5rem;
 	column-gap: 1rem;
 
-	// ${media('2xs')} {
-	// 	grid-template-columns: repeat(2, 1fr);
-	// }
-
 	${media('md')} {
 		row-gap: 3rem;
 		column-gap: 2rem;

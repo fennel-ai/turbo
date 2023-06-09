@@ -6,6 +6,7 @@
 	align-items: center;
 	align-self: center;
 	gap: 1.5rem;
+	color: theme.get(text);
 
 	@include theme.media(sm) {
 		align-self: inherit;
@@ -63,6 +64,7 @@
 		line-height: 1rem;
 		opacity: 50%;
 		font-variation-settings: "wght" 500;
+		color: theme.get(text-low);
 	}
 
 	p {
@@ -70,6 +72,7 @@
 		font-size: 1rem;
 		line-height: 1.5rem;
 		font-variation-settings: "wght" 500;
+		color: theme.get(text-low);
 		
 		b {
 			font-variation-settings: "wght" 800;
