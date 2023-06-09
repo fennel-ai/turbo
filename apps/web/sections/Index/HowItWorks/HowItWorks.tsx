@@ -93,7 +93,7 @@ const HowItWorks = () => {
 					</AccordionItem>
 				</Accordion>
 				<DiagramWrapper>
-					<Diagram />
+					<Diagram activeItem={`${activeItem}`} />
 				</DiagramWrapper>
 			</Wrapper>
 		</Root>

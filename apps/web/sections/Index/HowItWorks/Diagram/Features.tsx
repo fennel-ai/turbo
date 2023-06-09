@@ -1,6 +1,23 @@
+import { motion } from 'framer-motion';
+
+const VARIANTS = {
+	"0": {
+		opacity: 0.4,
+	},
+	"1": {
+		opacity: 0.4,
+	},
+	"2": {
+		opacity: 1,
+	},
+	"3": {
+		opacity: 1,
+	}
+};
+
 const Features = () => {
 	return (
-		<>
+		<motion.g variants={VARIANTS}>
 			{/** Feature 1 */}
 			<g filter="url(#filter3_b_522_11836)">
 				<rect x="497" y="110" width="96" height="40" rx="12" fill="#E6FFF5" />
@@ -16,7 +33,7 @@ const Features = () => {
 				<rect x="495.5" y="303.5" width="97" height="39" rx="11.5" stroke="#B1FBDE" />
 			</g>
 			{/** END Feature 2 */}
-		</>
+		</motion.g>
 	);
 }
 
