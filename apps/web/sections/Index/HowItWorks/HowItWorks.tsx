@@ -10,7 +10,6 @@ import PipelineIcon from 'ui/icons/pipeline.svg';
 import { Container } from 'components/Container';
 import { AccordionItem } from './AccordionItem';
 import Diagram from './Diagram';
-import DAG from './DAG';
 
 const Root = styled.div`
 	padding: 5rem 0;
@@ -48,6 +47,13 @@ const DiagramWrapper = styled.div`
 		border-radius: 1.5rem;
 	}
 `;
+
+const VARIANT_IDS = [
+	"SOURCE",
+	"PIPELINE",
+	"FEATURE",
+	"QUERY"
+];
 
 const HowItWorks = () => {
 	const [activeItem, setActiveItem] = useState(0);
@@ -87,7 +93,7 @@ const HowItWorks = () => {
 					</AccordionItem>
 				</Accordion>
 				<DiagramWrapper>
-					<DAG />
+					<Diagram />
 				</DiagramWrapper>
 			</Wrapper>
 		</Root>
