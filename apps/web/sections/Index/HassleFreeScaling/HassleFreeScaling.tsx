@@ -18,6 +18,10 @@ const Wrapper = styled(Container)`
 	display: flex;
 	flex-direction: column;
 	gap: 4rem;
+
+	${media('md', 'max')} {
+		padding: 0;
+	}
 `;
 
 const Grid = styled.div`
@@ -37,6 +41,7 @@ const Grid = styled.div`
 		align-items: stretch;
 		overflow: auto;
 		gap: 12px;
+		padding: 0 2rem;
 		scroll-snap-type: x mandatory;
 		scrollbar-width: none;
 		&::-webkit-scrollbar {
@@ -65,8 +70,23 @@ const Cell = styled.div`
 	}
 	
 	${media('md', 'max')} {
+		position: relative;
+		background-color: #f0f0f5;
+		border-radius: 1rem;
+		padding: 1rem;
+		min-height: 280px;
 		min-width: 100%;
 		scroll-snap-align: center;
+		z-index: 0;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 2px;
+			background-color: #f9f9fb;
+			z-index: -1;
+			border-radius: calc(1rem - 2px);
+		}
 	}
 `;
 
