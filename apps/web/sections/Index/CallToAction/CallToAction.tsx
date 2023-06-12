@@ -57,8 +57,6 @@ const CallToAction = () => {
 				<div className={styles.star} />
 				<div className={styles.star} /> */}
 			</div>
-			<Image className={styles.blur_l} src="/images/cta_blur_b.png" aria-hidden alt="gradient blur" width={1076} height={1076} />
-			<Image className={styles.blur_r} src="/images/cta_blur_p.png" aria-hidden alt="gradient blur" width={1171} height={1171} />
 			<Container className={styles.wrapper}>
 				<div className={styles.title_wrapper}>
 					<TitleBlock

@@ -11,6 +11,15 @@
 	@include theme.media(sm) {
 		padding-top: 5rem;
 	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 80% 0 0 0;
+		background: conic-gradient(from 248deg at 51.63% 52.16%, rgba(12, 66, 167, 1) 0deg, rgb(0, 135, 255) 60deg, rgba(34, 25, 88, 1) 200deg, rgba(12, 23, 50, 1) 240deg, rgba(141, 185, 242, 1) 296deg, rgba(91, 68, 222, 1) 360deg);
+		filter: blur(160px);
+		transform: translateZ(0);
+	}
 }
 
 .wrapper {
