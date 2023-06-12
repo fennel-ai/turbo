@@ -59,10 +59,9 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 				{/** Separator */}
 				<line x1="438" y1="2" x2="438" y2="451" stroke="#DBDBE6" stroke-width="2" stroke-linecap="square" stroke-dasharray="2 5" />
 				{/** END Separator */}
-	
+
 				<DerivedDatasets />
 				<PipelineEdges />
-
 				<Datasets />
 
 				{/** Connector Edges */}
