@@ -47,9 +47,9 @@ export const useSectionTheme = () => {
 			const theme = target.dataset.theme;
 
 			if (theme) {
-				header.current?.setAttribute('data-theme', theme);
+				document.body?.setAttribute('data-section-theme', theme);
 			} else {
-				header.current?.removeAttribute('data-theme');
+				document.body?.removeAttribute('data-section-theme');
 			}
 		})
 	}, [setScrollDirection]);

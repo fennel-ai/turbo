@@ -1,11 +1,25 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { AnimatePresence } from 'framer-motion';
 import { IconButton } from 'ui';
+import { useRouter } from 'next/router';
 
 import Logo from 'ui/icons/logo.svg';
 import MenuIcon from 'ui/icons/menu.svg';
+import CloseIcon from 'ui/icons/close.svg';
 import styles from './Header.module.scss';
+import { MobileMenu } from './MobileMenu';
 
 export const Header = () => {
+	const router = useRouter();
+	const [showMobileMenu, toggleMobileMenu] = useState(false);
+
+	useEffect(() => {
+		if (showMobileMenu) {
+			toggleMobileMenu(false)
+		}
+	}, [router.pathname]);
+
 	return (
 		<header data-header className={styles.root}>
 			<div className={styles.backdrop} />
@@ -33,11 +47,20 @@ export const Header = () => {
 						</button>
 					</Link>
 				</div>
-				<IconButton className={styles.menu_button} icon={MenuIcon} />
+				<IconButton 
+					className={styles.menu_button}
+					icon={showMobileMenu ? CloseIcon : MenuIcon}
+					onClick={() => toggleMobileMenu(prev => !prev)}
+				/>
 			</nav>
 			<div className={styles.border}>
 				<div />
 			</div>
+			<AnimatePresence>
+				{
+					showMobileMenu ? <MobileMenu /> : null
+				}
+			</AnimatePresence>
 		</header>
 	);
 };

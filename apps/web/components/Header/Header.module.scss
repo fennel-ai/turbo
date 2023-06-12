@@ -19,7 +19,7 @@
 	background-color: linear-gradient(to bottom, theme.get(surface), color.adjust(theme.get(surface), $alpha: 0) var(--height));
 	color: theme.get(text);
 
-	&[data-theme="dark"] {
+	[data-theme="dark"] &, [data-section-theme="dark"] & {
 		color: theme.get(text, dark);
 	}
 
@@ -86,7 +86,7 @@
 		color: theme.get(text);
 	}
 
-	[data-theme="dark"] & {
+	[data-theme="dark"] &, [data-section-theme="dark"] &  {
 		color: theme.get(text-low, dark);
 		&:hover {
 			color: theme.get(text, dark);
@@ -121,7 +121,7 @@
 		height: 100%;
 		background-color: rgba(0, 0, 0, 0.06);
 		
-		[data-theme="dark"] & {
+		[data-theme="dark"] &, [data-section-theme="dark"] &  {
 			background-color: rgba(255, 255, 255, 0.06);
 		}
 	}
@@ -189,7 +189,7 @@
 		}
 	}
 
-	[data-theme="dark"] & {
+	[data-theme="dark"] &, [data-section-theme="dark"] &  {
 		& svg {
 			color: theme.get(primary, dark);
 		}

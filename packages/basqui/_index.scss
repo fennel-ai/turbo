@@ -10,7 +10,7 @@ $themes: (
 		surface: colors.get(neutral, 100),
 		text: colors.get(purple, 10),
 		text-low: colors.get(purple, 20),
-		border: color.adjust(colors.get(purple, 10), $alpha: 0.08),
+		border: color.adjust(colors.get(purple, 10), $alpha: -0.08),
 		primary: colors.get(purple, 50),
 	),
 	dark: (
