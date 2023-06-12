@@ -33,7 +33,14 @@ function map(val: number, inputMin: number, inputMax: number, outputMin: number,
 	return ((outputMax - outputMin) * ((val - inputMin) / (inputMax - inputMin))) + outputMin;
 }
 
-const Particle = ({ order, alternate, color, opacity, size, radius }) => {
+const Particle = ({ order, alternate, color, opacity, size, radius }: {
+	order: number,
+	alternate: boolean,
+	color: number,
+	opacity: number,
+	size: number,
+	radius: number
+}) => {
 	const mesh = useRef<THREE.Mesh>(null);
 
 	useFrame(({ clock }) => {
