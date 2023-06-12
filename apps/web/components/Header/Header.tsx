@@ -22,12 +22,16 @@ export const Header = () => {
 							Company
 						</button>
 					</Link>
-					<button className={styles.nav_button}>
-						Blog
-					</button>
-					<button className={styles.nav_button}>
-						Documentation
-					</button>
+					<Link href="https://fennel.ai/blog">
+						<button className={styles.nav_button}>
+							Blog
+						</button>
+					</Link>
+					<Link href="https://docs.fennel.ai">
+						<button className={styles.nav_button}>
+							Documentation
+						</button>
+					</Link>
 				</div>
 				<IconButton className={styles.menu_button} icon={MenuIcon} />
 			</nav>
