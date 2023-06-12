@@ -1,0 +1,20 @@
+@use "basqui" as theme;
+
+.root {
+	padding: 5rem 0;
+	background-color: theme.get(surface);
+}
+
+.container {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: 2rem;
+}
+
+.content {
+	grid-column: span 12;
+
+	@include theme.media(md) {
+		grid-column: 3 / span 8;
+	}
+}

@@ -1,6 +1,4 @@
 import { PropsWithChildren, ReactElement, StyleHTMLAttributes } from 'react';
-import { media } from 'styles/utils';
-import styled from '@emotion/styled';
 
 import { Container } from '../Container';
 import clsx from 'clsx';

@@ -2,6 +2,7 @@ export * from "./Button";
 export * from "./Card";
 export * from "./CodeBlock";
 export * from "./Collapsible";
+export * from "./GlassCard";
 export * from "./IconButton";
 export * from "./IconPuck";
 export * from "./KeyIndicator";
