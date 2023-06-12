@@ -4,6 +4,8 @@ import { Card, TitleBlock } from 'ui';
 
 import { LowLatency } from './LowLatency';
 import { Freshness } from './Freshness';
+import { Canvas } from '@react-three/fiber';
+import { Helix } from 'ddd';
 
 const Root = styled.div`
 	display: grid;
@@ -24,12 +26,16 @@ const StreamingJoins = styled(Card)`
 	align-items: center;
 	justify-content: center;
 	padding: 1rem;
+	position: relative;
 `;
 
 const BentoIllustration = () => {
 	return (
 		<Root>
 			<StreamingJoins>
+				<Canvas style={{position: 'absolute', inset: 0, zIndex: -1}}>
+					<Helix />
+				</Canvas>
 				<TitleBlock align="center">
 					<h6>Realtime Data Operators</h6>
 					<h3>Streaming Joins</h3>
