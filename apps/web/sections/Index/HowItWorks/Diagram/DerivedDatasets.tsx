@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const VARIANTS = {
 	"0": {
-		opacity: 0.4,
+		opacity: 0.24,
 	},
 	"1": {
 		opacity: 1,
