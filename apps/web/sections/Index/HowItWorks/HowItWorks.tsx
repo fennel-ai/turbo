@@ -82,7 +82,7 @@ const HowItWorks = () => {
 					<AccordionItem animate={animate} open={activeItem === 0} onToggle={() => toggleItem(0)} onComplete={onComplete} icon={<DataIcon />} title="Bring your Data">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
-					<AccordionItem animate={animate} open={activeItem === 1} onToggle={() => toggleItem(1)} onComplete={onComplete} icon={<PipelineIcon />} title="Derive Features via Pipelines">
+					<AccordionItem animate={animate} open={activeItem === 1} onToggle={() => toggleItem(1)} onComplete={onComplete} icon={<PipelineIcon />} title="Derive Data via Pipelines">
 						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
 					</AccordionItem>
 					<AccordionItem animate={animate} open={activeItem === 2} onToggle={() => toggleItem(2)} onComplete={onComplete} icon={<CodeIcon />} title="Define Features">
