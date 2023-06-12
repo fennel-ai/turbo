@@ -61,7 +61,7 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 				{/** END Separator */}
 	
 				<DerivedDatasets />
-				<PipelineEdges activeItem={activeItem} />
+				<PipelineEdges />
 
 				<Datasets />
 

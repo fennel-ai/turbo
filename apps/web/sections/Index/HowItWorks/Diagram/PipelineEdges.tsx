@@ -15,7 +15,7 @@ const VARIANTS = {
 	}
 };
 
-const PipelineEdges = ({ activeItem }: { activeItem: string }) => {
+const PipelineEdges = () => {
 	return (
 		<g>
 			<motion.path variants={VARIANTS} d="M270.5 355.15L284.163 355.15C288.581 355.15 292.163 351.568 292.163 347.149L292.162 331.001C292.162 326.583 295.744 323.001 300.162 323.001L309.5 323.001" stroke="#A5A5B620" strokeWidth={4} />
