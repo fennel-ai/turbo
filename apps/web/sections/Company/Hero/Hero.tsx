@@ -6,6 +6,7 @@ import { Container } from 'components/Container';
 const Hero = () => {
 	return (
 		<div data-section className={styles.root}>
+			<div className={styles.background} />
 			<Container className={styles.wrapper}>
 				<div className={styles.content}>
 					<TitleBlock 

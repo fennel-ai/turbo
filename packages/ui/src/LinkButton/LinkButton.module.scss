@@ -1,22 +1,58 @@
 @use "basqui" as theme;
 
+@mixin small {
+	padding-left: 0.75rem;
+	padding-right: 0.5rem;
+	height: 2rem;
+}
+
+@mixin large {
+	padding-left: 1rem;
+	padding-right: 0.75rem;
+	height: 2.5rem;
+}
+
 .root {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 0.25rem;
+	font-size: 0.875rem;
+	line-height: 1.5rem;
 	backdrop-filter: blur(0.5rem);
 	background: none;
 	color: theme.get(text);
 	border-radius: 99px;
-	padding-left: 0.75rem;
-	padding-right: 0.5rem;
-	height: 2rem;
-	font-size: 0.875rem;
-	line-height: 1.5rem;
 	cursor: pointer;
 	user-select: none;
 	overflow: hidden;
 
 	@include theme.state-layer(0.04);
+
+	[data-theme="dark"] & {
+		color: theme.get(text, dark);
+		@include theme.state-layer(0.08);
+	}
+}
+
+.small {
+	@include small;
+}
+
+.large {
+	@include small;
+
+	@include theme.media(md) {
+		@include large;
+	}
+}
+
+.invert {
+	color: theme.get(text, dark) !important;
+	@include theme.state-layer(0.88, theme.get(background, dark));
+
+	[data-theme="dark"] & {
+		color: theme.get(text) !important;
+		@include theme.state-layer(0.80, theme.get(background));
+	}
 }

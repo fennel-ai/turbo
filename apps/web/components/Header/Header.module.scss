@@ -14,7 +14,7 @@
 	height: var(--height);
 	display: flex;
 	align-items: center;
-	z-index: 100;
+	z-index: 9;
 	transition: background 400ms ease 0s;
 	background-color: linear-gradient(to bottom, theme.get(surface), color.adjust(theme.get(surface), $alpha: 0) var(--height));
 	color: theme.get(text);

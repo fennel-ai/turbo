@@ -85,7 +85,7 @@ const ArchitectedWithLove = () => {
 		<div data-section data-theme="dark" className={styles.root}>
 			<Container className={styles.wrapper}>
 				<div className={styles.content}>
-					<TitleBlock align="left" actions={[<LinkButton>Explore the Architecture</LinkButton>]}>
+					<TitleBlock align="left" actions={[<LinkButton color="invert">Explore the Architecture</LinkButton>]}>
 						<h6>Craftsman-like passion for Developer Experience</h6>
 						<h2>Architected with Love</h2>
 					</TitleBlock>
@@ -95,14 +95,10 @@ const ArchitectedWithLove = () => {
 						MARQUEES.map((technologies, i) => (
 							<div key={i} className={clsx(styles.marquee, i % 2 ? undefined : styles.reverse)}>
 								<section>
-									{
-										technologies.map(renderTechnology)
-									}
+									{technologies.map(renderTechnology)}
 								</section>
 								<section aria-hidden="true">
-									{
-										technologies.map(renderTechnology)
-									}
+									{technologies.map(renderTechnology)}
 								</section>
 							</div>
 						))

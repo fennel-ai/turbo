@@ -7,6 +7,7 @@
 		inset: 0;
 		background-color: $color;
 		opacity: $initial_alpha;
+		z-index: -1;
 	}
 
 	&:hover::before {

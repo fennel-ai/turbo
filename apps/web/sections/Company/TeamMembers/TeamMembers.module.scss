@@ -8,7 +8,11 @@
 .container {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	gap: 2rem;
+	gap: 0rem;
+
+	@include theme.media(sm) {
+		gap: 2rem;
+	};
 
 	& > div {
 		grid-column: span 12;

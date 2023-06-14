@@ -10,7 +10,7 @@ const Root = styled(motion.div)<{ isPresent: boolean }>`
 	bottom: 0;
 	background-color: rgba(0, 0, 0, 0.48);
 	backdrop-filter: blur(16px);
-	z-index: 5;
+	z-index: 10;
 	pointer-events: ${({ isPresent }) => isPresent ? 'all' : 'none'};
 `;
 

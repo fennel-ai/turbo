@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence } from 'framer-motion';
-import { Button, IconButton } from 'ui';
+import { IconButton, LinkButton } from 'ui';
 import { useRouter } from 'next/router';
 
 import Logo from 'ui/icons/logo.svg';
@@ -54,7 +54,9 @@ export const Header = () => {
 					</Link>
 				</div>
 				<div className={styles.actions}>
-					<Button label="Request a Demo" variant="pill" onClick={() => toggleRequestDemo(prev => !prev)} />
+					<LinkButton size="large" color="invert" onClick={() => toggleRequestDemo(prev => !prev)}>
+						Request a Demo
+					</LinkButton>
 					<IconButton 
 						className={styles.menu_button}
 						icon={showMobileMenu ? CloseIcon : MenuIcon}
