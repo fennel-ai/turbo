@@ -9,7 +9,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export const LinkButton = (props: PropsWithChildren<Props>) => {
-	const { className, children, color, onClick, size = 'small', style } = props;
+	const { className, children, color = "neutral", onClick, size = 'small', style } = props;
 
 	return (
 		<button className={clsx(styles.root, styles[color], styles[size], className)} onClick={onClick} style={style}>
