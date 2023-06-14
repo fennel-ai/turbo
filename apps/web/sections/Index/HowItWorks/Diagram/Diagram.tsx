@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import styles from './Diagram.module.scss';
 
 import Grid from './Grid';
 import Sources from './Sources';
@@ -12,24 +13,12 @@ import APIQueryEdges from './APIQueryEdges';
 import PipelineEdges from './PipelineEdges';
 
 const Root = styled.svg`
-	width: 100%;
-	height: auto;
-
-	@keyframes animated-path {
-		0% {
-			stroke-dashoffset: 8;
-		}
-	}
-
-	.animated-edge {
-		stroke: rgb(163, 173, 184); stroke-width: 1.5;
-		animation: animated-path 1s linear infinite;
-	}
+	
 `;
 
 const DAG = ({ activeItem }: { activeItem: string }) => {
 	return (
-		<Root width="740" height="453" viewBox="0 0 740 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg className={styles.root} width="740" height="453" viewBox="0 0 740 453" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<motion.g animate={`${activeItem}`} clip-path="url(#clip0_522_11836)">
 				<Grid />
 				
@@ -65,11 +54,11 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 				<Datasets />
 
 				{/** Connector Edges */}
-				<path className="animated-edge" d="M137 355.2L185.5 355.2" stroke="#A5A5B6" stroke-dasharray="2 2" />
+				<path className={styles.animated_edge} d="M137 355.2L185.5 355.2" stroke="#A5A5B6" stroke-dasharray="2 2" />
 				<path stroke="url(#sources-pulse)" d="M137 355.2L185.5 355.2" strokeWidth={2} />
-				<path className="animated-edge" d="M137 226.4L185.5 226.4" stroke="#A5A5B6" stroke-dasharray="2 2" />
+				<path className={styles.animated_edge} d="M137 226.4L185.5 226.4" stroke="#A5A5B6" stroke-dasharray="2 2" />
 				<path stroke="url(#sources-pulse)" d="M137 226.4L185.5 226.4" strokeWidth={2} />
-				<path className="animated-edge" d="M137.002 97.6L162.744 97.6001C162.744 97.6001 162.744 97.6001 162.744 97.6001C162.745 97.6001 168.26 97.6 185.5 97.6001" stroke="#A5A5B6" stroke-dasharray="2 2" />
+				<path className={styles.animated_edge} d="M137.002 97.6L162.744 97.6001C162.744 97.6001 162.744 97.6001 162.744 97.6001C162.745 97.6001 168.26 97.6 185.5 97.6001" stroke="#A5A5B6" stroke-dasharray="2 2" />
 				<path stroke="url(#sources-pulse)" d="M137.002 97.6L162.744 97.6001C162.744 97.6001 162.744 97.6001 162.744 97.6001C162.745 97.6001 168.26 97.6 185.5 97.6001" strokeWidth={2} />
 				{/** END Connector Edges */}
 
@@ -192,7 +181,7 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 					<rect x="1" y="1" width="738" height="451" rx="32" fill="white" />
 				</clipPath>
 			</defs>
-		</Root>
+		</svg>
 	)
 }
 
