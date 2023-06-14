@@ -149,7 +149,7 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 				<option value="manager">Manager</option>
 				<option value="other">Other</option>
 			</SelectInput>
-			<Button ariaLabel="Submit the Demo Request" label="Submit" type="submit" variant='pill' />
+			<Button ariaLabel="Submit the Demo Request" label="Submit" type="submit" />
 		</Form>
 	);
 };

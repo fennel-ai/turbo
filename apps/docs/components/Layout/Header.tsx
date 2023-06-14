@@ -91,7 +91,7 @@ const Header = () => {
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
 					<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
-						<DemoButton ariaLabel="Request a demo" label="Request a demo" variant="pill" color="neutral" />
+						<DemoButton ariaLabel="Request a demo" label="Request a demo" color="neutral" />
 					</a>
 				</Actions>
 			</Wrapper>

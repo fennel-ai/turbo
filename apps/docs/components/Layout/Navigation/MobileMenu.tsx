@@ -107,7 +107,7 @@ const MobileMenu = (props: Props) => {
 					{
 						showCta ? (
 							<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
-								<DemoCta ariaLabel="Request a demo" label='Request a demo' variant="pill" />
+								<DemoCta ariaLabel="Request a demo" label='Request a demo' />
 							</a> 
 						) : null
 					}
