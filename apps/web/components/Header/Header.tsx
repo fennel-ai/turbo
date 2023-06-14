@@ -9,14 +9,20 @@ import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
 import styles from './Header.module.scss';
 import { MobileMenu } from './MobileMenu';
+import RequestDemoModal from 'components/RequestDemoModal/RequestDemoModal';
 
 export const Header = () => {
 	const router = useRouter();
 	const [showMobileMenu, toggleMobileMenu] = useState(false);
+	const [showRequestDemo, toggleRequestDemo] = useState(false);
 
 	useEffect(() => {
 		if (showMobileMenu) {
 			toggleMobileMenu(false)
+		}
+		
+		if (showRequestDemo) {
+			toggleRequestDemo(false)
 		}
 	}, [router.pathname]);
 
@@ -48,7 +54,7 @@ export const Header = () => {
 					</Link>
 				</div>
 				<div className={styles.actions}>
-					<Button label="Request a Demo" variant="pill" />
+					<Button label="Request a Demo" variant="pill" onClick={() => toggleRequestDemo(prev => !prev)} />
 					<IconButton 
 						className={styles.menu_button}
 						icon={showMobileMenu ? CloseIcon : MenuIcon}
@@ -62,6 +68,11 @@ export const Header = () => {
 			<AnimatePresence>
 				{
 					showMobileMenu ? <MobileMenu /> : null
+				}
+			</AnimatePresence>
+			<AnimatePresence>
+				{
+					showRequestDemo ? <RequestDemoModal onClose={() => toggleRequestDemo(false)} /> : null
 				}
 			</AnimatePresence>
 		</header>
