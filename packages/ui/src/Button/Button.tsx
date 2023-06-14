@@ -8,7 +8,6 @@ type Props = {
 	color?: 'primary' | 'primary-alt' | 'neutral';
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 	label: string;
-	variant?: 'rounded' | 'pill';
 	type?: 'button' | 'submit';
 };
 
@@ -18,11 +17,10 @@ export const Button = ({
 	color = 'neutral',
 	label,
 	onClick,
-	variant = 'rounded',
 	type = 'button'
 }: Props) => {
 	return (
-		<button className={clsx(styles.root, styles[color], className)} aria-label={ariaLabel} color={color} onClick={onClick} variant={variant} type={type}>
+		<button className={clsx(styles.root, styles[color], className)} aria-label={ariaLabel} color={color} onClick={onClick} type={type}>
 			{label}
 		</button>
 	);
