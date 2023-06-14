@@ -1,0 +1,55 @@
+@use "sass:color";
+@use "basqui" as theme;
+
+.root {
+	border: 0;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0 1rem;
+	font-size: 0.875rem;
+	line-height: 1rem;
+	height: 2.5rem;
+	cursor: pointer;
+	user-select: none;
+	overflow: hidden;
+	text-decoration: none;
+	border-radius: 0.5rem;
+
+	@include theme.state-layer;
+}
+
+.primary {
+	$bg: theme.get(primary);
+	$fg: theme.get(on-primary);
+	background-color: $bg;
+	color: $fg;
+	box-shadow: 0px 1px 2px darken(rgba($bg, 0.16), 40), 0px 0px 0px 1px $bg, 0px 3px 6px darken(rgba($bg, 0.12), 40);
+
+	[data-theme="dark"] & {
+		$bg: theme.get(primary, dark);
+		$fg: theme.get(on-primary, dark);
+		background-color: $bg;
+		color: $fg;
+		box-shadow: 0px 1px 2px darken(rgba($bg, 0.16), 40), 0px 0px 0px 1px $bg, 0px 3px 6px darken(rgba($bg, 0.12), 40);
+	}
+}
+
+.neutral {
+	$bg: theme.get(neutral);
+	$fg: theme.get(on-neutral);
+	background-color: $bg;
+	color: $fg;
+	box-shadow: 0px 1px 2px darken(rgba($bg, 0.16), 20), 0px 0px 0px 1px $bg, 0px 3px 6px darken(rgba($bg, 0.12), 20);
+
+	[data-theme="dark"] & {
+		$bg: theme.get(primary, dark);
+		$fg: theme.get(on-primary, dark);
+		background-color: $bg;
+		color: $fg;
+		box-shadow: 0px 1px 2px darken(rgba($bg, 0.16), 20), 0px 0px 0px 1px $bg, 0px 3px 6px darken(rgba($bg, 0.12), 20);
+	}
+}

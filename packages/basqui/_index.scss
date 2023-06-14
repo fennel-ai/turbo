@@ -6,20 +6,24 @@
 
 $themes: (
 	light: (
-		background: colors.get(neutral, 95),
-		surface: colors.get(neutral, 100),
-		text: colors.get(purple, 10),
+		background: colors.get(purple, 95),
+		surface: colors.get(purple, 100),
+		text: colors.get(purple, 5),
 		text-low: colors.get(purple, 20),
-		border: color.adjust(colors.get(purple, 10), $alpha: -0.92),
+		border: rgba(colors.get(purple, 10), 0.08),
 		primary: colors.get(purple, 50),
+		on-primary: colors.get(purple, 90),
+		neutral: colors.get(neutral, 10),
+		on-neutral: colors.get(neutral, 90)
 	),
 	dark: (
-		background: colors.get(neutral, 5),
-		surface: colors.get(neutral, 10),
+		background: colors.get(purple, 5),
+		surface: colors.get(purple, 10),
 		text: colors.get(purple, 90),
 		text-low: colors.get(purple, 80),
-		border: color.adjust(colors.get(purple, 90), $alpha: 0.08),
+		border: rgba(colors.get(purple, 90), 0.08),
 		primary: colors.get(purple, 60),
+		on-primary: colors.get(purple, 100),
 	)
 );
 

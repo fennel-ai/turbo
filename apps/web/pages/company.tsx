@@ -1,5 +1,5 @@
 import { useSectionTheme } from "hooks/useSectionTheme";
-import { Angels, Hero, Investors, TeamMembers } from "sections/Company";
+import { Angels, Hero, TeamMembers } from "sections/Company";
 import { CallToAction } from "sections/Index";
 
 export default function Company() {
@@ -8,7 +8,6 @@ export default function Company() {
 		<main>
 			<Hero />
 			<TeamMembers />
-			<Investors />
 			<Angels />
 			<CallToAction />
 		</main>

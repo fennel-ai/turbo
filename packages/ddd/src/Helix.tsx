@@ -75,6 +75,8 @@ const Particle = ({ order, alternate, color, opacity, size, radius }: {
 };
 
 const Helix = () => {
+	const group = useRef<THREE.Group>(null);
+
 	const particles = useMemo(() => {
 		let arr = [];
 
@@ -100,12 +102,12 @@ const Helix = () => {
 
 		return arr;
 	}, []);
-
 	return (
-		<group>
-			{particles.map(({ order, alternate, color, opacity, size, radius }) => 
-				<Particle 
-					order={order} 
+		<group ref={group}>
+			{particles.map(({ order, alternate, color, opacity, size, radius }, i) =>
+				<Particle
+					key={i}
+					order={order}
 					alternate={alternate}
 					color={color}
 					opacity={opacity}

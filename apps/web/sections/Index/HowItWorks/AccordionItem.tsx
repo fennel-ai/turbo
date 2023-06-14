@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { PropsWithChildren, ReactElement, useCallback, useEffect, useRef, useState } from 'react';
-import { motion, useAnimationFrame, useSpring } from "framer-motion";
+import { PropsWithChildren, ReactElement } from 'react';
+import { motion } from "framer-motion";
 import { Collapsible } from 'ui';
 
 type Props = {
@@ -82,7 +82,7 @@ const variants = {
 };
 
 const transition = {
-	duration: 10
+	duration: 6
 };
 
 export const AccordionItem = ({ animate, children, icon, open, onComplete, onToggle, title }: PropsWithChildren<Props>) => {

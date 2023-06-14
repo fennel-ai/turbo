@@ -26,24 +26,24 @@ const ShipFaster = () => {
 		<SplitSection illustration={<Illustration />}>
 			<TitleBlock align="left">
 				<h6>Redefine your ML & Data Ops</h6>
-				<h2>Ship Features 100x Faster</h2>
+				<h2>Ship Features 100x Faster. <br /> Yes, 100x!</h2>
 			</TitleBlock>
 			<Grid>
 				<TextBlock icon={<PythonIcon />}>
 					<b>Real Python. No DSLs.</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					No DSL, no Spark or Flink jobs. Plain old Python & Pandas mean zero learning curve for you.
 				</TextBlock>
 				<TextBlock icon={<ClockRefreshIcon />}>
 					<b>Automatic Backfills</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Pipelines backfill automatically on declaration - no more pesky one off scripts.
 				</TextBlock>
 				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<CubeIcon />}>
 					<b>Fully-Managed Infrastructure</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Fennel brings up & manages everything that is needed - zero dependencies on your prod infra.
 				</TextBlock>
 				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<SearchIcon />}>
 					<b>Feature repository for reuse</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Write standardized features once, share & reuse across all your use cases.
 				</TextBlock>
 			</Grid>
 		</SplitSection>

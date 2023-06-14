@@ -29,13 +29,13 @@ const TeamMembers = () => {
 	return (
 		<div data-section ref={el} className={styles.root} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={handleMouseMove}>
 			<Container className={styles.container}>
-				<TeamMember name="Nikhil Garg" role="Co-Founder & CEO" src="/images/Person=Nikhil.png" />
-				<TeamMember name="Abhay Bothra" role="Co-Founder & CTO" src="/images/Person=Abhay.png" />
-				<TeamMember name="Mohit Reddy" role="Founding Engineer" src="/images/Person=Mohit.png" />
-				<TeamMember name="Aditya Nambiar" role="Founding Engineer" src="/images/Person=Aditya.png" />
-				<TeamMember name="Xiao Jiang" role="Founding Engineer" src="/images/Person=Xiao.png" />
-				<TeamMember name="Luke Smetham" role="Design" src="/images/Person=Luke.png" />
-				<TeamMember name="Cree Thompson" role="Sales" src="/images/Person=Nikhil.png" />
+				<TeamMember additional="Ex-Facebook · Ex-Quora" name="Nikhil Garg" role="Co-Founder & CEO" src="/images/Person=Nikhil.png" />
+				<TeamMember additional="Ex-ThoughtSpot · Ex-Facebook" name="Abhay Bothra" role="Co-Founder & CTO" src="/images/Person=Abhay.png" />
+				<TeamMember additional="Ex-Google Brain · Ex-Google Cloud" name="Mohit Reddy" role="Founding Engineer" src="/images/Person=Mohit.png" />
+				<TeamMember additional="Ex-Facebook · Ex-Google Research" name="Aditya Nambiar" role="Founding Engineer" src="/images/Person=Aditya.png" />
+				<TeamMember additional="Ex-Facebook · Ex-Flexport" name="Xiao Jiang" role="Founding Engineer" src="/images/Person=Xiao.png" />
+				<TeamMember additional="Ex-Stream" name="Luke Smetham" role="Design" src="/images/Person=Luke.png" />
+				<TeamMember additional="Ex-Confluent · Ex-MongoDB" name="Cree Thompson" role="Sales" src="/images/Person=Nikhil.png" />
 			</Container>
 		</div>
 	);

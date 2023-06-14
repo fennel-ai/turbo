@@ -1,11 +1,11 @@
-@mixin state-layer($initial_alpha: 0) {
+@mixin state-layer($initial_alpha: 0, $color: currentColor) {
 	position: relative;
 
 	&::before {
 		content: '';
 		position: absolute;
 		inset: 0;
-		background-color: currentColor;
+		background-color: $color;
 		opacity: $initial_alpha;
 	}
 

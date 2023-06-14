@@ -8,7 +8,7 @@ export const LinkButton = (props: PropsWithChildren<HTMLAttributes<HTMLButtonEle
 	const { className, children, style } = props;
 
 	return (
-		<button className={clsx(styles.root, className)} style={style}>
+		<button className={clsx(styles.root, className, styles.dark)} style={style}>
 			{children}
 			<InternalLinkIcon />
 		</button>

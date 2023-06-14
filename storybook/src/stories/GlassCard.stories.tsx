@@ -5,7 +5,7 @@ import { GlassCard } from 'ui';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
- 	title: 'Primitives/GlassCard',
+ 	title: 'Shared/GlassCard',
 	component: GlassCard,
 } as ComponentMeta<typeof GlassCard>;
 

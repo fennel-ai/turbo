@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence } from 'framer-motion';
-import { IconButton } from 'ui';
+import { Button, IconButton } from 'ui';
 import { useRouter } from 'next/router';
 
 import Logo from 'ui/icons/logo.svg';
@@ -47,11 +47,14 @@ export const Header = () => {
 						</button>
 					</Link>
 				</div>
-				<IconButton 
-					className={styles.menu_button}
-					icon={showMobileMenu ? CloseIcon : MenuIcon}
-					onClick={() => toggleMobileMenu(prev => !prev)}
-				/>
+				<div className={styles.actions}>
+					<Button label="Request a Demo" variant="pill" />
+					<IconButton 
+						className={styles.menu_button}
+						icon={showMobileMenu ? CloseIcon : MenuIcon}
+						onClick={() => toggleMobileMenu(prev => !prev)}
+					/>
+				</div>
 			</nav>
 			<div className={styles.border}>
 				<div />
