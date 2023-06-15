@@ -18,9 +18,9 @@
 .content {
 	grid-column: span 12;
 
-	@include theme.media(md) {
-		grid-column: 3 / span 8;
-	}
+	// @include theme.media(md) {
+	// 	grid-column: 2 / span 10;
+	// }
 }
 
 .intro_text {
@@ -32,6 +32,7 @@
 	}
 	
 	@include theme.media(md) {
+		max-width: 60rem;
 		padding: 0 6.5rem;
 	}
 }
