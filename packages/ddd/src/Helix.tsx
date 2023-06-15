@@ -45,7 +45,7 @@ const Particle = ({ order, alternate, color, opacity, size, radius }: {
 
 	useFrame(({ clock }) => {
 		if (!mesh.current) return;
-		let elapsedMs = clock.getElapsedTime() * 750;
+		let elapsedMs = clock.getElapsedTime() * 500;
 		let angle = map(order, 0, 1, -Math.cos(elapsedMs * 0.0015) * (Math.PI * 1.5), Math.sin(elapsedMs * 0.0015) * (Math.PI * 1.5));
 		angle += alternate ? Math.PI : 0;
 
