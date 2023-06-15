@@ -48,8 +48,10 @@ export const useSectionTheme = () => {
 
 			if (theme) {
 				document.body?.setAttribute('data-section-theme', theme);
+				header.current?.setAttribute('data-theme', theme);
 			} else {
 				document.body?.removeAttribute('data-section-theme');
+				header.current?.removeAttribute('data-theme');
 			}
 		})
 	}, [setScrollDirection]);

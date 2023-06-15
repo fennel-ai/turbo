@@ -22,6 +22,10 @@
 
 	@include theme.state-layer;
 
+	[data-theme="dark"] & {
+		color: theme.get(text, dark);
+	}
+
 	@include theme.media(md) {
 		width: 2.5rem;;
 		height: 2.5rem;
