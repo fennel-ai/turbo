@@ -37,8 +37,8 @@ const BentoIllustration = () => {
 					<Helix />
 				</Canvas>
 				<TitleBlock align="center">
-					<h6>Realtime Data Operators</h6>
-					<h3>Streaming Joins</h3>
+					<h6>Unprecedented Power</h6>
+					<h3>Temporally correct streaming joins</h3>
 				</TitleBlock>
 			</StreamingJoins>
 			<Freshness />

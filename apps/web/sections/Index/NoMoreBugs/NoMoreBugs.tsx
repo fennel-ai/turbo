@@ -41,27 +41,27 @@ const NoMoreBugs = () => {
 			<Grid>
 				<TextBlock icon={<ShieldTickIcon />}>
 					<b>Strong Typing</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Catch typing bugs at compile time and at source of data, thanks to strong typing.
 				</TextBlock>
 				<TextBlock icon={<SafeIcon />}>
 					<b>Immutability & Versioning</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Immutable & versioned features to eliminate offline online skew due to definition changes.
 				</TextBlock>
 				<TextBlock icon={<BeakerIcon />}>
 					<b>Unit Testing</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Prevent unforced errors by writing unit tests across batch & realtime pipelines.
 				</TextBlock>
 				<TextBlock icon={<CheckVerifiedIcon />}>
 					<b>Compile Time Validation</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Strict end to end lineage validation at compile time to prevent runtime errors.
 				</TextBlock>
 				<TextBlock icon={<DataIcon />}>
 					<b>Data Expectation</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Specify expected data distributions, get alerted when things go wrong.
 				</TextBlock>
 				<TextBlock icon={<SkewIcon />}>
 					<b>Online / Offline Skew</b><br />
-					tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae.
+					Single definition of feature across both offline and online scenarios.
 				</TextBlock>
 			</Grid>
 			<CTAButton>

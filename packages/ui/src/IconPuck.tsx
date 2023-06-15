@@ -5,7 +5,7 @@ const Root = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 1rem;
+	border-radius: 0.75rem;
 	background-color: #AEAAE4; /** TODO */
 	box-shadow: 0px 0px 0px 2px #EBEBFA;
 	color: rgba(255, 255, 255, 0.8);

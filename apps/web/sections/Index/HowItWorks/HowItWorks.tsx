@@ -80,16 +80,16 @@ const HowItWorks = () => {
 				</TitleWrapper>
 				<Accordion>
 					<AccordionItem animate={animate} open={activeItem === 0} onToggle={() => toggleItem(0)} onComplete={onComplete} icon={<DataIcon />} title="Bring your Data">
-						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
+						<p>Use in-built connectors to effortlessly bring all your data to Fennel.</p>
 					</AccordionItem>
-					<AccordionItem animate={animate} open={activeItem === 1} onToggle={() => toggleItem(1)} onComplete={onComplete} icon={<PipelineIcon />} title="Derive Data via Pipelines">
-						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
+					<AccordionItem animate={animate} open={activeItem === 1} onToggle={() => toggleItem(1)} onComplete={onComplete} icon={<PipelineIcon />} title="Derive Data via Streaming Pipelines">
+						<p>Write declarative Python native pipelines to derive more datasets from existing datasets.</p>
 					</AccordionItem>
 					<AccordionItem animate={animate} open={activeItem === 2} onToggle={() => toggleItem(2)} onComplete={onComplete} icon={<CodeIcon />} title="Define Features">
-						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
+						<p>Define features as stateless extractor functions, organized into featuresets.</p>
 					</AccordionItem>
 					<AccordionItem animate={animate} open={activeItem === 3} onToggle={() => toggleItem(3)} onComplete={onComplete} icon={<GlobeIcon />} title="Query via the REST API">
-						<p>Perspiciatis facilis earum. Qui delectus sed porro rerum tempora voluptates quia quis. Necessitatibus officiis fugiat quaerat consectetur possimus facere.</p>
+						<p>Query live and historical feature values via a REST endpoint</p>
 					</AccordionItem>
 				</Accordion>
 				<DiagramWrapper>

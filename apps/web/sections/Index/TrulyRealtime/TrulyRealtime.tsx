@@ -60,9 +60,9 @@ const TrulyRealtime = () => {
 							]}
 						>
 							<h6>Powerful & Flexible</h6>
-							<h2>Truly Realtime. <br /> As simple as batch.</h2>
-							<p>Fennel is built around the philosophy that advanced ML should <b>not</b> be reserved for only the most advanced teams.</p>
-							<p>Realtime can be as simple as batch. Fennels data connectors and APIs were crafted so that the <b>exact same code</b> works regardless of wether your data is realtime or batch.</p>
+							<h2>Insanely Realtime. <br /> As simple as batch.</h2>
+							<p>Fennel is crafted so that the <b>exact same code</b> works with both realtime and batch data. After all, batch is just a special case of stream processing.</p>
+							<p>Why would you not future proof your ML stack if realtime came for free?</p>
 						</TitleBlock>
 					</div>
 				</Content>

@@ -18,6 +18,14 @@ const Angels = () => {
 					</TitleBlock>
 				</div>
 			</Container>
+			<Container className={styles.grid}>
+				<TeamMember src="/images/Person=Neha Narkhede.png" name="Neha Narkhede" role="Co-Founder & Board Member at Confluent · Creator of Kafka" />
+				<TeamMember src="/images/Person=Adam D'Angelo.png" name="Adam D'Angelo" role="Founder & CEO, Quora · Ex-CTO Facebook" />
+				<TeamMember src="/images/Person=Ajeet Singh.png" name="Ajeet Singh" role="2x Unicorn Founder · Co-Founder & Executive Chairman, ThoughtSpot" />
+				<TeamMember src="/images/Person=John Hegeman.png" name="John Hegeman" role="VP Ads & Business Products, Facebook" />
+				<TeamMember src="/images/Person=Anantha Kancherala.png" name="Anantha Kancherla" role="AI Platform Engineering, Facebook · ex-VP of Engineering, Lyft" />
+				<TeamMember src="/images/Person=Mikhail Parakhin.png" name="Mikhail Parakhin" role="CEO, Advertising & Web Services, Microsoft · Ex-Yandex CTO" />
+			</Container>
 			<Container className={clsx(styles.grid, styles.investors)}>
 				<div>
 					<Image src="/images/foundation.svg" alt="Foundation Capital Logo" width={226} height={72} />
@@ -28,14 +36,6 @@ const Angels = () => {
 				<div>
 					<Image src="/images/essence.svg" alt="Essence Logo" width={264} height={48} />
 				</div>
-			</Container>
-			<Container className={styles.grid}>
-				<TeamMember src="/images/Person=Neha Narkhede.png" name="Neha Narkhede" role="Co-Founder & Board Member at Confluent · Creator of Kafka" />
-				<TeamMember src="/images/Person=Adam D'Angelo.png" name="Adam D'Angelo" role="Founder & CEO, Quora · Ex-CTO Facebook" />
-				<TeamMember src="/images/Person=Ajeet Singh.png" name="Ajeet Singh" role="2x Unicorn Founder · Co-Founder & Executive Chairman, ThoughtSpot" />
-				<TeamMember src="/images/Person=John Hegeman.png" name="John Hegeman" role="VP Ads & Business Products, Facebook" />
-				<TeamMember src="/images/Person=Anantha Kancherala.png" name="Anantha Kancherla" role="AI Platform Engineering, Facebook · ex-VP of Engineering, Lyft" />
-				<TeamMember src="/images/Person=Mikhail Parakhin.png" name="Mikhail Parakhin" role="CEO, Advertising & Web Services, Microsoft · Ex-Yandex CTO" />
 			</Container>
 		</div>
 	);

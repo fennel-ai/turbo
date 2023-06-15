@@ -29,7 +29,7 @@
 
 	@include theme.state-layer(0.04);
 
-	[data-theme="dark"] & {
+	[data-section-theme="dark"] & {
 		color: theme.get(text, dark);
 		@include theme.state-layer(0.08);
 	}
@@ -51,7 +51,7 @@
 	color: theme.get(text, dark) !important;
 	@include theme.state-layer(0.88, theme.get(background, dark));
 
-	[data-theme="dark"] & {
+	[data-section-theme="dark"] & {
 		color: theme.get(text) !important;
 		@include theme.state-layer(0.80, theme.get(background));
 	}

@@ -44,25 +44,13 @@ const CallToAction = () => {
 				<Canvas onCreated={onCreated}>
 					<Space />
 				</Canvas>
-				{/* <div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} />
-				<div className={styles.star} /> */}
 			</div>
 			<Container className={styles.wrapper}>
 				<div className={styles.title_wrapper}>
 					<TitleBlock
 						align="center"
 					>
-						<h2>Experience the fastest ML workflow</h2>
+						<h2>Experience the slickest feature engineering workflow</h2>
 					</TitleBlock>
 					<Button color="primary" label="Request a Demo" />
 				</div>
