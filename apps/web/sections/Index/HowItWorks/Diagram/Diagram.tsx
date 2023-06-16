@@ -1,5 +1,8 @@
-import { motion } from 'framer-motion';
+import { useCallback, useState } from 'react';
+import { CodeBlock, LinkButton } from 'ui';
+import { AnimatePresence, motion } from 'framer-motion';
 import styles from './Diagram.module.scss';
+import useResizeObserver from 'use-resize-observer';
 
 import Grid from './Grid';
 import Sources from './Sources';
@@ -10,13 +13,29 @@ import RestAPI from './RestAPI';
 import LookupEdges from './LookupEdges';
 import APIQueryEdges from './APIQueryEdges';
 import PipelineEdges from './PipelineEdges';
-import { LinkButton } from 'ui';
+
+const SVG_VARIANTS = {
+	shown: {
+		scale: 0.9,
+		opacity: 0.5,
+	},
+	hidden: {
+		scale: 1,
+		opacity: 1,
+	}
+}
 
 const DAG = ({ activeItem }: { activeItem: string }) => {
+	const [showCode, setShowCode] = useState<boolean>(false);
+	const { ref, width, height } = useResizeObserver();
+
+	const onShowCode = useCallback(() => {
+		setShowCode(prev => !prev);
+	}, []);
+
 	return (
 		<div className={styles.root}>
-			<LinkButton className={styles.show_code} color="invert">Show Code</LinkButton>
-			<svg className={styles.diagram} width="740" height="453" viewBox="0 0 740 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<motion.svg animate={showCode ? 'shown' : 'hidden'} variants={SVG_VARIANTS} ref={ref} className={styles.diagram} width="740" height="453" viewBox="0 0 740 453" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<motion.g animate={`${activeItem}`} clip-path="url(#clip0_522_11836)">
 					<Grid />
 
@@ -179,7 +198,23 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 						<rect x="1" y="1" width="738" height="451" rx="32" fill="white" />
 					</clipPath>
 				</defs>
-			</svg>
+			</motion.svg>
+			<AnimatePresence>
+				{
+					showCode ? (
+						<motion.div 
+							className={styles.show_code_window}
+							initial={{ opacity: 0, y: 16 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: 16 }}
+							style={{ width, height }}
+						>
+							<CodeBlock language="bash" code="pip install fennel-ai" />
+						</motion.div>
+					) : null
+				}
+			</AnimatePresence>
+			{/* <LinkButton className={styles.show_code} color="invert" onClick={onShowCode}>{showCode ? 'Hide' : 'Show'} Code</LinkButton> */}
 		</div>
 	)
 }

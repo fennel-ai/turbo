@@ -8,6 +8,7 @@ import SearchIcon from 'ui/icons/search.svg';
 
 import { Illustration } from "components/Illustration";
 import { SplitSection } from "components/SplitSection";
+import Image from 'next/image';
 
 const Grid = styled.div`
 	display: grid;
@@ -21,9 +22,30 @@ const Grid = styled.div`
 	}
 `;
 
+const ConsoleImg = styled(Illustration)`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	overflow: hidden;
+	& img {
+		position: absolute;
+		top: 3rem;
+		left: 2.5rem;
+		flex-shrink: 0;
+		width: 506px;
+		height: 741px;
+	}
+`;
+
 const ShipFaster = () => {
 	return (
-		<SplitSection illustration={<Illustration />}>
+		<SplitSection 
+			illustration={
+				<ConsoleImg>
+					<Image src="/images/dataset-detail.webp" alt="Fenel Console Dashboard" width={2016} height={2954} />
+				</ConsoleImg>
+			}
+		>
 			<TitleBlock align="left">
 				<h6>Incredibly easy to install & use</h6>
 				<h2>Ship Features 100x Faster. <br /> Yes, 100x!</h2>

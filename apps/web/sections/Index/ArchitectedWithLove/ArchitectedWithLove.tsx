@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import chunk from 'lodash/chunk';
 import styles from './ArchitectedWithLove.module.scss';
 
-import { useMatchMedia } from 'ui/hooks';
+import { useMatchMedia } from 'hooks';
 
 import { Container } from 'components/Container';
 

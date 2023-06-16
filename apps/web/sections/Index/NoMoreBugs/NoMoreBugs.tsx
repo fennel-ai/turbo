@@ -10,6 +10,7 @@ import SkewIcon from 'ui/icons/skew.svg';
 
 import { Illustration } from "components/Illustration";
 import { SplitSection } from "components/SplitSection";
+import Image from 'next/image';
 
 const Grid = styled.div`
 	display: grid;
@@ -31,9 +32,37 @@ const CTAButton = styled(LinkButton)`
 	}
 `;
 
+const ExpectationsImg = styled(Illustration)`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	overflow: hidden;
+	& img {
+		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%);
+		position: absolute;
+		left: 2.5rem;
+		bottom: 3rem;
+		flex-shrink: 0;
+		width: 812px;
+		height: 460px;
+		
+		${media('sm')} {
+			width: 1202px;
+			height: 680px;
+		}
+	}
+`;
+
 const NoMoreBugs = () => {
 	return (
-		<SplitSection direction="reverse" illustration={<Illustration />}>
+		<SplitSection 
+			direction="reverse" 
+			illustration={
+				<ExpectationsImg>
+					<Image src="/images/expectations.png" width={3606} height={2040} alt="Data Expectations" />
+				</ExpectationsImg>
+			}
+		>
 			<TitleBlock align="left">
 				<h6>Best-in-class data quality tooling</h6>
 				<h2>No more feature or data bugs</h2>

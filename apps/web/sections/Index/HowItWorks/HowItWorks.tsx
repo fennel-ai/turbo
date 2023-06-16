@@ -38,13 +38,10 @@ const Accordion = styled.div`
 
 const DiagramWrapper = styled.div`
 	grid-column: 6 / span 7;
-	border-radius: 1rem;
-	overflow: hidden;
 	order: -1;
 
 	${media("sm")} {
 		order: 2;
-		border-radius: 1.5rem;
 	}
 `;
 

@@ -60,7 +60,7 @@
 		line-height: 2rem;
 		font-variation-settings: "wght" 800;
 
-		@include theme.media(md) {
+		@include theme.media(xl) {
 			font-size: 2rem;
 			line-height: 2.5rem;
 		}

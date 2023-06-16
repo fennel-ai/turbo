@@ -6,8 +6,8 @@ import { IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 import Logo from 'ui/icons/logo.svg';
 import { media } from 'styles/utils';
+import { useModalPresence } from 'hooks';
 
-import { useModalPresence } from 'ui/hooks';
 import ModalSheet from './ModalSheet';
 import RequestDemoForm from './RequestDemoForm';
 

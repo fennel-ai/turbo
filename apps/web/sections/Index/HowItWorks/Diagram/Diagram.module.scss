@@ -1,3 +1,5 @@
+@use 'basqui' as theme;
+
 @keyframes animated-path {
 	0% {
 		stroke-dashoffset: 8;
@@ -8,6 +10,7 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
 }
 
 .diagram {
@@ -21,7 +24,20 @@
 }
 
 .show_code {
+	align-self: center;
+	
+	@include theme.media(sm) {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+	}
+	
+	@include theme.media(md) {
+		top: 1.5rem;
+		left: 1.5rem;
+	}
+}
+
+.show_code_window {
 	position: absolute;
-	top: 1.5rem;
-	left: 1.5rem;
 }

@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect, forwardRef, useRef, HTMLAttributes } from "react";
-import { useSharedRef } from "../../hooks";
+import { useSharedRef } from "hooks";
 import clsx from 'clsx';
 import styles from './GlassCard.module.scss';
 

@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useModalPresence } from "ui/hooks";
+import { useModalPresence } from "hooks";
 
 import styles from './MobileMenu.module.scss';
 import Link from "next/link";

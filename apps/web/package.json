@@ -18,6 +18,7 @@
     "clsx": "^1.2.1",
     "ddd": "workspace:*",
     "framer-motion": "^9.0.1",
+	"hooks": "workspace:*",
     "lodash": "^4.17.21",
     "next": "13.1.1",
     "react": "18.2.0",
@@ -28,6 +29,8 @@
     "styles": "workspace:*",
     "three": "^0.153.0",
     "ui": "workspace:*",
+    "utils": "workspace:*",
+    "use-resize-observer": "^9.1.0",
     "yup": "^1.0.2"
   },
   "devDependencies": {
