@@ -25,7 +25,7 @@ const ShipFaster = () => {
 	return (
 		<SplitSection illustration={<Illustration />}>
 			<TitleBlock align="left">
-				<h6>Redefine your ML & Data Ops</h6>
+				<h6>Incredibly easy to install & use</h6>
 				<h2>Ship Features 100x Faster. <br /> Yes, 100x!</h2>
 			</TitleBlock>
 			<Grid>

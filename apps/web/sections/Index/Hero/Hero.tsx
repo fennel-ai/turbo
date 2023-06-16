@@ -17,7 +17,7 @@ const Hero = () => {
 					>
 						<h1>Realtime Feature Engineering Platform. Beautifully Built.</h1>
 						<div className={styles.intro_text}>
-							<p>Enterprise-grade ML infrastructure for teams of all sizes. Fennel is a feature engineering platform designed to help you store, serve, discover and scale with ease.</p>
+							<p>Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features.</p>
 						</div>
 					</TitleBlock>
 				</div>
