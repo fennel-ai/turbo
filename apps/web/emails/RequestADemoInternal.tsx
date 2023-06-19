@@ -3,7 +3,6 @@ import { MjmlColumn, MjmlSection, MjmlSpacer, MjmlWrapper } from "@faire/mjml-re
 import BaseLayout from "./components/BaseLayout";
 import Button from "./components/Button";
 import Link from "./components/Link";
-import Footer from "./components/Footer";
 import Heading from "./components/Heading";
 import Header from "./components/Header";
 import Text from "./components/Text";
@@ -69,7 +68,6 @@ const RequestADemoInternal = ({ name, email, role }: RequestADemoInternalProps) 
             </Text>
 			<Text
 				cssClass="item"
-
 				fontSize={fontSize.md}
 			>
 				<span>Email:</span> <Link href={`mailto:${email}`}>{email}</Link>
@@ -84,7 +82,7 @@ const RequestADemoInternal = ({ name, email, role }: RequestADemoInternalProps) 
 
             <Button
               href={`mailto:${email}`}
-              backgroundColor={colors.green300}
+              backgroundColor={colors.purple600}
               align="left"
 			  width={'100%'}
               cssClass="sm-hidden"
@@ -95,7 +93,7 @@ const RequestADemoInternal = ({ name, email, role }: RequestADemoInternalProps) 
             <MjmlSpacer height={spacing.s3} cssClass="lg-hidden" />
             <Button
               href={`mailto:${email}`}
-              backgroundColor={colors.green300}
+              backgroundColor={colors.purple600}
               align="right"
               cssClass="lg-hidden"
             >

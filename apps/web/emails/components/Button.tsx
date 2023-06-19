@@ -23,7 +23,7 @@ export default function Button(props: ButtonProps) {
         align="left"
         backgroundColor={colors.blue}
         color={colors.black}
-        borderRadius={borderRadius.base}
+        borderRadius={borderRadius.sm}
         cssClass={cx("button", props.cssClass)}
         {...props}
       />
