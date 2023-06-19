@@ -77,7 +77,7 @@ const HowItWorks = () => {
 				</TitleWrapper>
 				<Accordion>
 					<AccordionItem animate={animate} open={activeItem === 0} onToggle={() => toggleItem(0)} onComplete={onComplete} icon={<DataIcon />} title="Bring your Data">
-						<p>Use in-built connectors to effortlessly bring all your data to Fennel.</p>
+						<p>Use built-in connectors to effortlessly bring all your data to Fennel.</p>
 					</AccordionItem>
 					<AccordionItem animate={animate} open={activeItem === 1} onToggle={() => toggleItem(1)} onComplete={onComplete} icon={<PipelineIcon />} title="Derive Data via Streaming Pipelines">
 						<p>Write declarative Python native pipelines to derive more datasets from existing datasets.</p>
