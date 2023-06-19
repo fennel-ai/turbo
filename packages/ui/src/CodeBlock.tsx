@@ -1,5 +1,6 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import CopyIcon from '../icons/copy.svg';
 
 import { get, media } from 'styles/utils';
@@ -169,9 +170,10 @@ const FakeButtons = styled.div`
 	}
 `;
 
-const Filename = styled.div`
+const Filename = styled.a`
 	${({ theme }) => theme['code-block'].filename.text};
-	color: ${({ theme }) => theme['code-block'].filename.color};
+	color: ${({ theme }) => theme['code-block'].filename.color} !important;
+	text-decoration: none;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
@@ -225,7 +227,7 @@ export const CodeBlock = ({ className, code, filename, language, onCopy, toolbar
 						<span />
 						<span />
 					</FakeButtons>
-					{filename ? <Filename>{filename}</Filename> : null}
+					{filename ? <Filename target="_blank" rel="noopener noreferrer" href={`https://github.com/fennel-ai/client/blob/main/docs/${filename}`}>{filename}</Filename> : null}
 					<CopyButton onClick={handleCopy}>
 						Copy
 						<CopyIcon />
