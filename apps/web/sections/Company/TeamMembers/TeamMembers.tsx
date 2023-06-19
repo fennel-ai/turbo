@@ -35,7 +35,7 @@ const TeamMembers = () => {
 				<TeamMember additional="Ex-Facebook · Ex-Google Research" name="Aditya Nambiar" role="Founding Engineer" src="/images/Person=Aditya.png" />
 				<TeamMember additional="Ex-Facebook · Ex-Flexport" name="Xiao Jiang" role="Founding Engineer" src="/images/Person=Xiao.png" />
 				<TeamMember additional="Ex-Stream" name="Luke Smetham" role="Design" src="/images/Person=Luke.png" />
-				<TeamMember additional="Ex-Confluent · Ex-MongoDB" name="Cree Thompson" role="Sales" src="/images/Person=Nikhil.png" />
+				<TeamMember additional="Ex-Confluent · Ex-MongoDB" name="Cree Thompson" role="Sales" src="/images/Person=Cree.png" />
 			</Container>
 		</div>
 	);
