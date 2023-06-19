@@ -17,9 +17,7 @@ import DatasetNode from './DatasetNode';
 import PipelineNode from './PipelineNode';
 import styles from './DAG.module.scss';
 
-import { EDGES, NODES } from './constants';
 import { getTreeLayout } from './tree';
-import { useSelectedEntity } from './use-selected-entity';
 
 const elkOptions = {
 	'elk.alignment': 'CENTER',
@@ -37,6 +35,8 @@ const NODE_TYPES = {
 	pipeline: PipelineNode
 };
 
+// Make sure the node/edges props passed here to DAG 
+// are memoized/static values to avoid rendering/perf issues
 export const DAG = ({ nodes: initialNodes, edges: initialEdges }: { nodes: Node<any>[], edges: Edge<any>[] }) => {
 	const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -44,8 +44,8 @@ export const DAG = ({ nodes: initialNodes, edges: initialEdges }: { nodes: Node<
 
 	const onLayout = useCallback(({ direction, useInitialNodes = false }: { direction: LayoutOptions['elk.direction'], useInitialNodes: boolean }) => {
 		const opts = { 'elk.direction': direction, ...elkOptions };
-		const n = useInitialNodes ? NODES : nodes;
-		const e = useInitialNodes ? EDGES : edges;
+		const n = useInitialNodes ? initialNodes : nodes;
+		const e = useInitialNodes ? initialEdges : edges;
 
 		// @ts-ignore TODO
 		getTreeLayout(n, e, opts).then(({ nodes: layoutedNodes, edges: layoutedEdges }) => {
@@ -56,15 +56,13 @@ export const DAG = ({ nodes: initialNodes, edges: initialEdges }: { nodes: Node<
 				nodes
 			}));
 		})
-	}, [nodes, edges, setEdges, setNodes, fitView]);
+	}, [initialNodes, initialEdges, nodes, edges, setEdges, setNodes, fitView]);
 
 	useLayoutEffect(() => {
 		onLayout({ direction: "RIGHT", useInitialNodes: true });
 
 		// (We specifically only want this to run on fresh mount, so skipping lint check for exhaustive hook deps to ensure we don't run again if onLayout is re-memo'd)
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps 
-
-	const selected = useSelectedEntity();
 
 	return (
 		<div className={styles.root}>
