@@ -131,8 +131,17 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 	});
 
 	const submitForm: SubmitHandler<IFormData> = data => {
-		console.log('FORM DATA:', data);
+		// console.log('FORM DATA:', data);
+		fetch('/api/request-a-demo', {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
+
 		reset();
+		
 		toast.success('Thank you for your interest! We will be in touch shortly.');
 		onSubmit?.();
 	};

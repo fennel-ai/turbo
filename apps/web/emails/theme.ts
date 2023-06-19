@@ -54,9 +54,9 @@ export const borderRadius = {
 };
 
 export const fontFamily = {
-  sans: 'neue-haas-unica, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  sans: 'Haskoy, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   serif:
-    'swear-display-cilati, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+    'Haskoy, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
   mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 };
 
