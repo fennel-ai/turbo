@@ -55,7 +55,7 @@ export default function BaseLayout({
           .code {
             font-family: ${fontFamily.mono};
             color: ${colors.green200};
-            background-color: ${colors.zinc800};
+            background-color: ${colors.black};
             font-size: ${fontSize.sm}px;
             border-radius: ${borderRadius.sm}px;
             padding: ${spacing.s1}px ${spacing.s3}px;
