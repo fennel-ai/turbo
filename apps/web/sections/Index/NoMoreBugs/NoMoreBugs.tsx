@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { media } from 'styles/utils';
 import { LinkButton, TextBlock, TitleBlock } from "ui";
+import { useScrollProgress } from 'hooks';
+import { motion, useTransform } from 'framer-motion';
 import BeakerIcon from 'ui/icons/beaker-01.svg';
 import CheckVerifiedIcon from 'ui/icons/check-verified-01.svg';
 import DataIcon from 'ui/icons/data.svg';
@@ -55,12 +57,18 @@ const ExpectationsImg = styled(Illustration)`
 `;
 
 const NoMoreBugs = () => {
+	const [ref, progress] = useScrollProgress();
+	const y = useTransform(progress, [0, 1], [-80, 0])
+
 	return (
 		<SplitSection 
+			ref={ref}
 			direction="reverse" 
 			illustration={
 				<ExpectationsImg>
-					<Image src="/images/expectations.png" width={3606} height={2040} alt="Data Expectations" />
+					<motion.div style={{ y, position: 'absolute', inset: 0 }}>
+						<Image src="/images/expectations.png" width={3606} height={2040} alt="Data Expectations" />
+					</motion.div>
 				</ExpectationsImg>
 			}
 		>

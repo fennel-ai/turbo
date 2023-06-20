@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement, StyleHTMLAttributes } from 'react';
+import { ForwardedRef, PropsWithChildren, ReactElement, StyleHTMLAttributes, forwardRef } from 'react';
 
 import { Container } from '../Container';
 import clsx from 'clsx';
@@ -11,9 +11,9 @@ type Props = {
 	style?: StyleHTMLAttributes<HTMLDivElement>;
 }
 
-export const  SplitSection = ({ className, children, direction = "forward", illustration, style }: PropsWithChildren<Props>) => {
+export const SplitSection = forwardRef(({ className, children, direction = "forward", illustration, style }: PropsWithChildren<Props>, ref: ForwardedRef<HTMLDivElement>) => {
 	return (
-		<div data-section className={clsx(styles.root, className)} style={style}>
+		<div ref={ref} data-section className={clsx(styles.root, className)} style={style}>
 			<Container className={styles.wrapper}>
 				<div className={clsx(styles.illustration, styles[direction])}>
 					{illustration}
@@ -24,4 +24,6 @@ export const  SplitSection = ({ className, children, direction = "forward", illu
 			</Container>
 		</div>
 	)
-};
+});
+
+SplitSection.displayName = 'SplitSection';

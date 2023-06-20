@@ -17,6 +17,7 @@
 		"hooks": "workspace:*",
 		"normalize-wheel": "^1.0.1",
 		"react-syntax-highlighter": "^15.5.0",
+		"react-use-measure": "^2.1.1",
 		"styles": "workspace:*",
 		"utils": "workspace:*"
 	},

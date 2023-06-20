@@ -170,6 +170,7 @@ importers:
       react-dom: 18.2.0
       react-hook-form: ^7.43.2
       react-hot-toast: ^2.4.0
+      react-use-measure: ^2.1.1
       reactflow: ^11.7.2
       styles: workspace:*
       three: ^0.153.0
@@ -198,6 +199,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.43.2_react@18.2.0
       react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
+      react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
       reactflow: 11.7.2_biqbaboplfbrettd7655fr4n2y
       styles: link:../../packages/styles
       three: 0.153.0
@@ -360,6 +362,7 @@ importers:
       normalize-wheel: ^1.0.1
       react: ^18.2.0
       react-syntax-highlighter: ^15.5.0
+      react-use-measure: ^2.1.1
       styles: workspace:*
       tsconfig: workspace:*
       typescript: ^4.5.2
@@ -371,10 +374,11 @@ importers:
       basqui: link:../basqui
       clsx: 1.2.1
       esbuild-plugin-svgr: 1.0.1
-      framer-motion: 10.12.16_react@18.2.0
+      framer-motion: 10.12.16_biqbaboplfbrettd7655fr4n2y
       hooks: link:../hooks
       normalize-wheel: 1.0.1
       react-syntax-highlighter: 15.5.0_react@18.2.0
+      react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
       styles: link:../styles
       utils: link:../utils
     devDependencies:
@@ -12314,7 +12318,7 @@ packages:
       map-cache: 0.2.2
     dev: true
 
-  /framer-motion/10.12.16_react@18.2.0:
+  /framer-motion/10.12.16_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-w/SfWEIWJkYSgRHYBmln7EhcNo31ao8Xexol8lGXf1pR/tlnBtf1HcxoUmEiEh6pacB4/geku5ami53AAQWHMQ==}
     peerDependencies:
       react: ^18.0.0
@@ -12326,6 +12330,7 @@ packages:
         optional: true
     dependencies:
       react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       tslib: 2.4.1
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8

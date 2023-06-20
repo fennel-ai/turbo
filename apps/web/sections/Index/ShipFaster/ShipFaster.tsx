@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import { media } from 'styles/utils';
-import { LinkButton, TextBlock, TitleBlock } from "ui";
+import { useEffect } from 'react';
+import { TextBlock, TitleBlock } from "ui";
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import useMeasure from 'react-use-measure';
 import PythonIcon from 'ui/icons/python.svg';
 import ClockRefreshIcon from 'ui/icons/clock-refresh.svg';
 import CubeIcon from 'ui/icons/cube-01.svg';
@@ -8,7 +12,7 @@ import SearchIcon from 'ui/icons/search.svg';
 
 import { Illustration } from "components/Illustration";
 import { SplitSection } from "components/SplitSection";
-import Image from 'next/image';
+import { useScrollProgress } from 'hooks';
 
 const Grid = styled.div`
 	display: grid;
@@ -40,11 +44,17 @@ const ConsoleImg = styled(Illustration)`
 `;
 
 const ShipFaster = () => {
+	const [ref, progress] = useScrollProgress();
+	const y = useTransform(progress, [0, 1], [64, -24])
+
 	return (
 		<SplitSection 
+			ref={ref}
 			illustration={
 				<ConsoleImg>
-					<Image src="/images/ship_faster.png" alt="Fenel Console Dashboard" width={3894} height={2664} />
+					<motion.div style={{ y, position: 'absolute', inset: 0 }}>
+						<Image src="/images/ship_faster.png" alt="Fenel Console Dashboard" width={3894} height={2664} />
+					</motion.div>
 				</ConsoleImg>
 			}
 		>
