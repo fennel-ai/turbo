@@ -1,5 +1,6 @@
 import { LinkButton, TitleBlock } from 'ui';
 import clsx from 'clsx';
+import Link from 'next/link';
 import chunk from 'lodash/chunk';
 import styles from './ArchitectedWithLove.module.scss';
 
@@ -85,7 +86,7 @@ const ArchitectedWithLove = () => {
 		<div data-section data-theme="dark" className={styles.root}>
 			<Container className={styles.wrapper}>
 				<div className={styles.content}>
-					<TitleBlock align="left" actions={[<LinkButton color="invert">Explore the Architecture</LinkButton>]}>
+					<TitleBlock align="left" actions={[<Link href="https://docs.fennel.ai/architecture/technologies/"><LinkButton color="invert">Explore the Architecture</LinkButton></Link>]}>
 						<h6>Craftsman-like passion for Developer Experience</h6>
 						<h2>Architected with Love</h2>
 					</TitleBlock>

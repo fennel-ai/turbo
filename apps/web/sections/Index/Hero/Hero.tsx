@@ -2,6 +2,7 @@ import { Button, TitleBlock } from "ui";
 import styles from './Hero.module.scss';
 
 import { Container } from 'components/Container';
+import Link from "next/link";
 
 const Hero = () => {
 	return (
@@ -12,7 +13,9 @@ const Hero = () => {
 					<TitleBlock 
 						align="center"
 						actions={[
-							<Button label="Read the Documentation" color="primary" />
+							<Link href="https://docs.fennel.ai/">
+								<Button label="Read the Documentation" color="primary" />
+							</Link>
 						]}
 					>
 						<h1>Realtime Feature Platform. Beautifully Built.</h1>

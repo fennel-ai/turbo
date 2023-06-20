@@ -6,6 +6,7 @@ import PiggyBankIcon from 'ui/icons/piggy-bank-01.svg';
 import styles from './HassleFreeScaling.module.scss';
 
 import { Container } from 'components/Container';
+import Link from 'next/link';
 
 const HassleFreeScaling = () => {
 	return (
@@ -25,7 +26,9 @@ const HassleFreeScaling = () => {
 							<h3>Scalability & Reliability</h3>
 							<p>Scale to billions of feature queries without lifting a finger.</p>
 						</div>
-						<LinkButton>Learn More</LinkButton>
+						<Link href="https://docs.fennel.ai/architecture/overview/">
+							<LinkButton>Learn More</LinkButton>
+						</Link>
 					</div>
 					<div className={styles.cell}>
 						<IconPuck>
@@ -35,7 +38,9 @@ const HassleFreeScaling = () => {
 							<h3>Enterprise-grade Security</h3>
 							<p>SOC2-compliant deployment inside your VPC.</p>
 						</div>
-						<LinkButton>Learn More</LinkButton>
+						<Link href="https://docs.fennel.ai/architecture/privacy-security/">
+							<LinkButton>Learn More</LinkButton>
+						</Link>
 					</div>
 					<div className={styles.cell}>
 						<IconPuck>
@@ -45,7 +50,9 @@ const HassleFreeScaling = () => {
 							<h3>Cloud Cost Efficiency</h3>
 							<p>Lower cloud cost for the same workload & performance.</p>
 						</div>
-						<LinkButton>Learn More</LinkButton>
+						<Link href="https://docs.fennel.ai/architecture/cost-optimizations/">
+							<LinkButton>Learn More</LinkButton>
+						</Link>
 					</div>
 				</div>
 			</Container>

@@ -11,6 +11,7 @@ import SkewIcon from 'ui/icons/skew.svg';
 import { Illustration } from "components/Illustration";
 import { SplitSection } from "components/SplitSection";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Grid = styled.div`
 	display: grid;
@@ -93,9 +94,11 @@ const NoMoreBugs = () => {
 					Single definition of feature across both offline and online scenarios.
 				</TextBlock>
 			</Grid>
-			<CTAButton>
-				Data Quality with Fennel
-			</CTAButton>
+			<Link href="https://docs.fennel.ai/data-quality/approach/">
+				<CTAButton>
+					Data Quality with Fennel
+				</CTAButton>
+			</Link>
 		</SplitSection>
 	);
 };

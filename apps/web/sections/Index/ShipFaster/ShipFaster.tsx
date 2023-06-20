@@ -61,11 +61,11 @@ const ShipFaster = () => {
 					<b>Automatic Backfills</b><br />
 					Pipelines backfill automatically on declaration - no more pesky one off scripts.
 				</TextBlock>
-				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<CubeIcon />}>
+				<TextBlock icon={<CubeIcon />}>
 					<b>Fully-Managed Infrastructure</b><br />
 					Fennel brings up & manages everything that is needed - zero dependencies on your prod infra.
 				</TextBlock>
-				<TextBlock button={<LinkButton>Learn more</LinkButton>} icon={<SearchIcon />}>
+				<TextBlock icon={<SearchIcon />}>
 					<b>Feature repository for reuse</b><br />
 					Write standardized features once, share & reuse across all your use cases.
 				</TextBlock>
