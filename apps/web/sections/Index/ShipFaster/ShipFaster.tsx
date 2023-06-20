@@ -27,13 +27,15 @@ const ConsoleImg = styled(Illustration)`
 	flex-direction: column;
 	justify-content: flex-end;
 	overflow: hidden;
+	
 	& img {
+		mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
 		position: absolute;
 		top: 3rem;
 		left: 2.5rem;
 		flex-shrink: 0;
-		width: 506px;
-		height: 741px;
+		width: 1298px;
+		height: 888px;
 	}
 `;
 
@@ -42,7 +44,7 @@ const ShipFaster = () => {
 		<SplitSection 
 			illustration={
 				<ConsoleImg>
-					<Image src="/images/dataset-detail.webp" alt="Fenel Console Dashboard" width={2016} height={2954} />
+					<Image src="/images/ship_faster.png" alt="Fenel Console Dashboard" width={3894} height={2664} />
 				</ConsoleImg>
 			}
 		>

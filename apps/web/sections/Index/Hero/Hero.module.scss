@@ -18,9 +18,9 @@
 .content {
 	grid-column: span 12;
 
-	// @include theme.media(md) {
-	// 	grid-column: 2 / span 10;
-	// }
+	@include theme.media(md) {
+		grid-column: 2 / span 10;
+	}
 }
 
 .intro_text {
