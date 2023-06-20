@@ -6,7 +6,7 @@ import { range } from 'utils';
 import { generateSparkle } from "./generateSparkle";
 import { SparkleInstance } from './SparkleInstance';
 
-const DEFAULT_COLOR = '#FFC700';
+const DEFAULT_COLOR = '#FFC777';
 
 type Props = {
 	color?: string;
@@ -32,7 +32,7 @@ export const Sparkles = ({ color = DEFAULT_COLOR, children, ...props }: PropsWit
 		nextSparkles.push(sparkle);
 		
 		setSparkles(nextSparkles);
-	}, prefersReducedMotion ? 0 : 50, prefersReducedMotion ? 0 : 850);
+	}, prefersReducedMotion ? 0 : 50, prefersReducedMotion ? 0 : 1500);
 
 	return (
 		<Wrapper {...props}>

@@ -8,7 +8,7 @@ const VARIANTS = {
 		opacity: 1,
 	},
 	"2": {
-		opacity: 1,
+		opacity: 0.24,
 	},
 	"3": {
 		opacity: 1,

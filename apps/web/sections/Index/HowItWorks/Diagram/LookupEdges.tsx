@@ -8,10 +8,13 @@ const VARIANTS = {
 		scaleX: 0,
 	},
 	"2": {
-		scaleX: 1,
+		scaleX: 0,
 	},
 	"3": {
 		scaleX: 1,
+		transition: {
+			delay: 0.5
+		}
 	}
 };
 
