@@ -28,7 +28,7 @@ const ANIMATE = { rotate: -360 };
 const TRANSITION = { 
 	type: "spring", 
 	damping: 20, 
-	stiffness: 250, 
+	stiffness: 150, 
 	repeat: Infinity, 
 	repeatDelay: 3
 };
