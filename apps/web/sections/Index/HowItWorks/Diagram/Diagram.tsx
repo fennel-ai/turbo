@@ -9,6 +9,7 @@ import Sources from './Sources';
 import Datasets from './Datasets';
 import DerivedDatasets from './DerivedDatasets';
 import Features from './Features';
+import SourceConnectors from './SourceConnectors';
 import RestAPI from './RestAPI';
 import LookupEdges from './LookupEdges';
 import APIQueryEdges from './APIQueryEdges';
@@ -71,12 +72,7 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 					<Datasets />
 
 					{/** Connector Edges */}
-					<path className={styles.animated_edge} d="M137 355.2L185.5 355.2" stroke="#A5A5B6" stroke-dasharray="2 2" />
-					<path stroke="url(#sources-pulse)" d="M137 355.2L185.5 355.2" strokeWidth={2} />
-					<path className={styles.animated_edge} d="M137 226.4L185.5 226.4" stroke="#A5A5B6" stroke-dasharray="2 2" />
-					<path stroke="url(#sources-pulse)" d="M137 226.4L185.5 226.4" strokeWidth={2} />
-					<path className={styles.animated_edge} d="M137.002 97.6L162.744 97.6001C162.744 97.6001 162.744 97.6001 162.744 97.6001C162.745 97.6001 168.26 97.6 185.5 97.6001" stroke="#A5A5B6" stroke-dasharray="2 2" />
-					<path stroke="url(#sources-pulse)" d="M137.002 97.6L162.744 97.6001C162.744 97.6001 162.744 97.6001 162.744 97.6001C162.745 97.6001 168.26 97.6 185.5 97.6001" strokeWidth={2} />
+					<SourceConnectors />
 					{/** END Connector Edges */}
 
 					<Sources />
@@ -92,8 +88,8 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 							y2: [0, 0]
 						}}
 						transition={{
-							duration: 2,
-							repeatDelay: 2,
+							duration: 1,
+							repeatDelay: 0.5,
 							repeat: Infinity
 						}}
 						id="sources-pulse"
@@ -112,9 +108,9 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 							y2: [0, 0]
 						}}
 						transition={{
-							duration: 2,
-							delay: 2,
-							repeatDelay: 2,
+							duration: 1.5,
+							delay: 0.5,
+							repeatDelay: 0.5,
 							repeat: Infinity
 						}}
 						id="pipelines-pulse-1"
@@ -133,9 +129,9 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 							y2: [0, 0]
 						}}
 						transition={{
-							duration: 2,
-							delay: 2,
-							repeatDelay: 2,
+							duration: 1.5,
+							delay: 0.5,
+							repeatDelay: 0.5,
 							repeat: Infinity
 						}}
 						id="pipelines-pulse-2"
@@ -199,7 +195,7 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 					</clipPath>
 				</defs>
 			</motion.svg>
-			<AnimatePresence>
+			{/* <AnimatePresence>
 				{
 					showCode ? (
 						<motion.div 
@@ -214,7 +210,7 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 					) : null
 				}
 			</AnimatePresence>
-			{/* <LinkButton className={styles.show_code} color="invert" onClick={onShowCode}>{showCode ? 'Hide' : 'Show'} Code</LinkButton> */}
+			<LinkButton className={styles.show_code} color="invert" onClick={onShowCode}>{showCode ? 'Hide' : 'Show'} Code</LinkButton> */}
 		</div>
 	)
 }

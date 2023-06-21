@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react';
 import { media } from 'styles/utils';
 import { Card, Sparkles, TitleBlock } from 'ui';
 import { motion } from 'framer-motion';
