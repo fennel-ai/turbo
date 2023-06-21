@@ -22,10 +22,14 @@ const Root = styled(Container)`
 `;
 
 const Wrapper = styled.div`
-	height: 4.5rem;
+	height: 3rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	${media('md')} {
+		height: 4.5rem;
+	}
 	
 	${media('lg')} {
 		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
