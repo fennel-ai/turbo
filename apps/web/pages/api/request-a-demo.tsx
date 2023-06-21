@@ -15,7 +15,7 @@ export default async function handler(
 	}
 
 	await sendMail({
-		to: 'luke@fennel.ai',
+		to: 'hello@fennel.ai',
 		subject: `New Demo Request <${body.email}>`,
 		component: <RequestADemoInternal name={body.name} role={body.role} email={body.email} />
 	});
