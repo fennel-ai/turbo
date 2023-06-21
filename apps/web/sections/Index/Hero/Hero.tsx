@@ -13,7 +13,7 @@ const Hero = () => {
 					<TitleBlock 
 						align="center"
 						actions={[
-							<Link href="/docs">
+							<Link href="https://docs.fennel.ai/">
 								<Button label="Read the Documentation" color="primary" />
 							</Link>
 						]}

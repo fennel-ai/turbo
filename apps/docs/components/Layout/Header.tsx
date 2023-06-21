@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { media } from 'styles/utils';
 import { AnimatePresence } from 'framer-motion';
-import { IconButton, LinkButton, Masthead } from 'ui';
+import { IconButton, KeyIndicator, LinkButton, Masthead } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from 'components/Container';
@@ -10,6 +10,7 @@ import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
 import RequestDemoModal from 'components/RequestDemoModal';
 import MobileToolbar from 'components/MobileToolbar';
+import { useKeyPress } from 'hooks';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -89,6 +90,18 @@ const Header = () => {
 
 	const docSearch = useRef<DocSearchHandle>(null);
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
+
+	const onKeyPress = useCallback(({ key }: KeyboardEvent) => {
+		if (key === "r") {
+			setOpenRequestModal(true);
+		}
+
+		if (key === 'Escape') {
+			setOpenRequestModal(false);
+		}
+	}, []);
+	useKeyPress(onKeyPress);
+
 	return (
 		<Root>
 			<Wrapper>
@@ -103,7 +116,12 @@ const Header = () => {
 				</SearchWrapper>
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
-					<DemoButton size="large" color="invert" onClick={() => setOpenRequestModal(true)}>
+					<DemoButton 
+						icon={<KeyIndicator label="R" />}
+						size="large" 
+						color="invert" 
+						onClick={() => setOpenRequestModal(true)}
+					>
 						Request a demo
 					</DemoButton>
 				</Actions>

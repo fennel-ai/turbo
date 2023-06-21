@@ -1,4 +1,5 @@
 export * from './useIntersectionObserver';
+export * from './useKeyPress';
 export * from './useMatchMedia';
 export * from './useModalPresence';
 export * from './usePrefersReducedMotion';

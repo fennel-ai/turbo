@@ -5,7 +5,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const nextConfig = {
-  basePath: "/docs",
+//   basePath: "/docs",
   reactStrictMode: true,
   transpilePackages: ["ui", "styles"],
   webpack(config) {

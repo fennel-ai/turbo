@@ -63,9 +63,8 @@ const TrulyRealtime = () => {
 							]}
 						>
 							<h6>Powerful & Flexible</h6>
-							<h2>Insanely Realtime. <br /> As simple as batch.</h2>
-							<p>Fennel is crafted so that the <b>exact same code</b> works with both realtime and batch data. After all, batch is just a special case of stream processing.</p>
-							<p>Why would you not future proof your ML stack if realtime came for free?</p>
+							<h2>Insanely Realtime. <br /> Exact same code as batch.</h2>
+							<p>After all, batch is just a special case of stream processing. Why not future proof your ML stack if realtime came for free?</p>
 						</TitleBlock>
 					</div>
 				</Content>
