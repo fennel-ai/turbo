@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { AnimatePresence } from 'framer-motion';
 import { IconButton, LinkButton } from 'ui';
 import { useRouter } from 'next/router';
+import { Masthead } from 'ui';
 
-import Logo from 'ui/icons/logo.svg';
 import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
 import styles from './Header.module.scss';
@@ -31,10 +31,7 @@ export const Header = () => {
 			<div className={styles.backdrop} />
 			<nav>
 				<Link href="/">
-					<div className={styles.brand}>
-						<Logo />
-						<h2>Fennel</h2>
-					</div>
+					<Masthead />
 				</Link>
 				<div className={styles.menu}>
 					<Link href="/company">

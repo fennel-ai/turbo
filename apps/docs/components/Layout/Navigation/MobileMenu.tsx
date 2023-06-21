@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
-import { Button, IconButton } from 'ui';
+import { Button, IconButton, Masthead } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 
 import { NavigationTree } from 'lib/utils';
@@ -12,7 +12,6 @@ import { media } from 'styles/utils';
 
 import { useShell } from 'context/Shell';
 
-import Masthead from 'components/Masthead';
 import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
 import { useModalPresence } from 'hooks/useModalPresence';

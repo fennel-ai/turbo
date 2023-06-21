@@ -8,6 +8,7 @@ export * from "./IconPuck";
 export * from "./KeyIndicator";
 export * from "./LinkButton";
 export * from "./Marquee";
+export * from "./Masthead";
 export * from "./Sparkles";
 export * from "./TextBlock";
 export * from "./Ticker";

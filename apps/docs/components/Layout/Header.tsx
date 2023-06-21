@@ -2,13 +2,12 @@ import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { media } from 'styles/utils';
 import { AnimatePresence } from 'framer-motion';
-import { Button, IconButton } from 'ui';
+import { Button, IconButton, Masthead } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from 'components/Container';
 import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
-import Masthead from 'components/Masthead';
 import RequestDemoModal from 'components/RequestDemoModal';
 import MobileToolbar from 'components/MobileToolbar';
 
@@ -79,7 +78,7 @@ const Header = () => {
 	return (
 		<Root>
 			<Wrapper>
-				<Masthead />
+				<Masthead name="Documentation" />
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}
