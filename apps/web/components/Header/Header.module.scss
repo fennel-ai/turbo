@@ -162,37 +162,12 @@
 }
 
 .brand {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	user-select: none;
-
-	@include theme.media(md) {
-		gap: 1rem;
-	}
-
 	& svg {
 		color: theme.get(primary);
-		width: 28px;
-		height: 28px;
-
-		@include theme.media(md) {
-			width: 40px;
-			height: 40px;
-		}
 	}
 
 	& h2 {
-		font-size: 1rem;
-		line-height: 1.5rem;
-		letter-spacing: -0.5px;
 		color: theme.get(text);
-		margin: 0;
-
-		@include theme.media(md) {
-			font-size: 1.25rem;
-			line-height: 1.5rem;
-		}
 	}
 
 	[data-theme="dark"] &  {

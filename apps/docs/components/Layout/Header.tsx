@@ -54,6 +54,16 @@ const SearchWrapper = styled.div`
 	}
 `;
 
+const Brand = styled(Masthead)`
+	& svg {
+		color: ${({ theme }) => theme.primary.accent};
+	}
+
+	& h2 {
+		color: ${({ theme }) => theme.text};
+	}
+`;
+
 const Actions = styled.div`
 	display: flex;
 	align-items: center;
@@ -82,7 +92,7 @@ const Header = () => {
 	return (
 		<Root>
 			<Wrapper>
-				<Masthead name="Documentation" />
+				<Brand name="Documentation" />
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}

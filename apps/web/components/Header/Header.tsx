@@ -4,10 +4,10 @@ import { AnimatePresence } from 'framer-motion';
 import { IconButton, LinkButton } from 'ui';
 import { useRouter } from 'next/router';
 import { Masthead } from 'ui';
+import styles from './Header.module.scss';
 
 import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
-import styles from './Header.module.scss';
 import { MobileMenu } from './MobileMenu';
 import RequestDemoModal from 'components/RequestDemoModal/RequestDemoModal';
 
@@ -31,7 +31,7 @@ export const Header = () => {
 			<div className={styles.backdrop} />
 			<nav>
 				<Link href="/">
-					<Masthead />
+					<Masthead className={styles.brand} />
 				</Link>
 				<div className={styles.menu}>
 					<Link href="/company">

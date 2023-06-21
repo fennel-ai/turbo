@@ -7,7 +7,6 @@ const Root = styled.div`
 	display: flex;
 	align-items: center;
 	user-select: nome;
-	color: ${({ theme }) => theme.primary.accent};
 	gap: 0.5rem;
 
 	${media('md')} {
@@ -15,7 +14,6 @@ const Root = styled.div`
 	}
 
 	& svg {
-		color: theme.get(primary);
 		width: 28px;
 		height: 28px;
 
@@ -30,7 +28,6 @@ const Root = styled.div`
 		line-height: 1.5rem;
 		letter-spacing: -0.5px;
 		margin: 0;
-		color: ${({ theme }) => theme.text};
 		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
 
 		${media('md')} {
@@ -40,9 +37,9 @@ const Root = styled.div`
 	}
 `;
 
-export const Masthead = ({ name = 'Fennel' }: { name?: string }) => {
+export const Masthead = ({ className, name = 'Fennel' }: { className?: string, name?: string }) => {
 	return (
-		<Root>
+		<Root className={className}>
 			<Logo />
 			<h2>{name}</h2>
 		</Root>
