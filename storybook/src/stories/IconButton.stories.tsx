@@ -19,19 +19,16 @@ export const Small = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Small.args = {
 	icon: DefaultIcon,
-	size: 'small',
 };
 
 export const Medium = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Medium.args = {
 	icon: DefaultIcon,
-	size: 'medium',
 };
 
 export const Large = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Large.args = {
 	icon: DefaultIcon,
-	size: 'large',
 };

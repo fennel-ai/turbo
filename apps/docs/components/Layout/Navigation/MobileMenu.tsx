@@ -100,7 +100,7 @@ const MobileMenu = (props: Props) => {
 			<Root ref={rootRef} initial={ANIM.initial} animate={ANIM.animate} exit={ANIM.exit} transition={ANIM.transition}>
 				<Header>
 					<Masthead />
-					<IconButton icon={CloseIcon} size="large" onClick={onClose} />
+					<IconButton icon={CloseIcon} onClick={onClose} />
 				</Header>
 				<Menu>
 					{

@@ -108,7 +108,7 @@ const RequestDemoModal = (props: Props) => {
 			<ModalSheet isPresent={isPresent} onClick={onClose} />
 			<Root initial={ANIM.initial} animate={ANIM.animate} exit={ANIM.exit} transition={ANIM.transition}>
 				<Header>
-					<IconButton icon={CloseIcon} size="large" onClick={onClose} />
+					<IconButton icon={CloseIcon} onClick={onClose} />
 				</Header>
 				<LogoWrapper>
 					<Logo width={40} height={24} />
