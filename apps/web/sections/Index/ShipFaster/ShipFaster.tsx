@@ -27,6 +27,7 @@ const Grid = styled.div`
 `;
 
 const ConsoleImg = styled(Illustration)`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;

@@ -9,7 +9,7 @@ import styles from './Header.module.scss';
 import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
 import { MobileMenu } from './MobileMenu';
-import RequestDemoModal from 'components/RequestDemoModal/RequestDemoModal';
+import RequestDemoModal from 'components/RequestDemoModal';
 
 export const Header = () => {
 	const router = useRouter();

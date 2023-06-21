@@ -8,12 +8,12 @@ import { Button } from 'ui';
 import { haskoyVariable } from 'pages/_app';
 
 enum RoleEnum {
-	data_scientist = 'Data Scientist',
-	engineer = 'Engineer',
-	data_analyst = 'Data Analyst',
-	data_architect = 'Data Architect',
-	manager = 'Manager',
-	other = 'Other',
+	'Data Scientist' = 'Data Scientist',
+	'Engineer' = 'Engineer',
+	'Data Analyst' = 'Data Analyst',
+	'Data Archictect' = 'Data Architect',
+	'Manager' = 'Manager',
+	'Other' = 'Other',
 }
 
 interface IFormData {
@@ -131,8 +131,17 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 	});
 
 	const submitForm: SubmitHandler<IFormData> = data => {
-		console.log('FORM DATA:', data);
+		// console.log('FORM DATA:', data);
+		fetch('/api/request-a-demo', {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
+
 		reset();
+		
 		toast.success('Thank you for your interest! We will be in touch shortly.');
 		onSubmit?.();
 	};
@@ -142,12 +151,12 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 			<Input {...register('name')} error={errors['name']} placeholder="Enter your name" label="Name" />
 			<Input {...register('email')} error={errors['email']} placeholder="Enter your work email" label="Email" />
 			<SelectInput {...register('role')} error={errors['role']} label="What role best describes you?">
-				<option value="data_scientist">Data Scientist</option>
-				<option value="engineer">Engineer</option>
-				<option value="data_analyst">Data Analyst</option>
-				<option value="data_architect">Data Architect</option>
-				<option value="manager">Manager</option>
-				<option value="other">Other</option>
+				<option value="Data Scientist">Data Scientist</option>
+				<option value="Engineer">Engineer</option>
+				<option value="Data Analyst">Data Analyst</option>
+				<option value="Data Architect">Data Architect</option>
+				<option value="Manager">Manager</option>
+				<option value="Other">Other</option>
 			</SelectInput>
 			<Button ariaLabel="Submit the Demo Request" label="Submit" type="submit" />
 		</Form>

@@ -36,6 +36,7 @@ const CTAButton = styled(LinkButton)`
 `;
 
 const ExpectationsImg = styled(Illustration)`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;

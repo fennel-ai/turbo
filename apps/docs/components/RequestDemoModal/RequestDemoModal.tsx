@@ -6,8 +6,8 @@ import { IconButton } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 import Logo from 'ui/icons/logo.svg';
 import { media } from 'styles/utils';
+import { useModalPresence } from 'hooks';
 
-import { useModalPresence } from 'hooks/useModalPresence';
 import ModalSheet from './ModalSheet';
 import RequestDemoForm from './RequestDemoForm';
 
@@ -18,7 +18,7 @@ const Root = styled(motion.div)`
 	right: 0;
 	bottom: 0;
 	background-color: #fff;
-	z-index: 5;
+	z-index: 11;
 	overflow-y: auto;
 	padding: 0.5rem 1rem;
 	display: flex;
@@ -54,6 +54,11 @@ const LogoWrapper = styled.div`
 	border-radius: 1rem;
 	color: ${({ theme }) => theme.primary.accent};
 	box-shadow: 0px 0.4150884747505188px 2.2138051986694336px 0px hsla(260, 6%, 29%, 0.02), 0px 0.9975153207778931px 5.32008171081543px 0px hsla(260, 6%, 29%, 0.03), 0px 1.8782328367233276px 10.017241477966309px 0px hsla(260, 6%, 29%, 0.04), 0px 3.3504464626312256px 17.869047164916992px 0px hsla(260, 6%, 29%, 0.05),  0px 6.266641616821289px 33.422088623046875px 0px hsla(260, 6%, 29%, 0.06), 0px 15px 80px 0px hsla(260, 6%, 29%, 0.08);
+
+	& svg {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
 `;
 
 const Intro = styled.div`
@@ -111,7 +116,7 @@ const RequestDemoModal = (props: Props) => {
 					<IconButton icon={CloseIcon} onClick={onClose} />
 				</Header>
 				<LogoWrapper>
-					<Logo width={40} height={24} />
+					<Logo />
 				</LogoWrapper>
 				<Intro>
 					<h2>Request a demo</h2>

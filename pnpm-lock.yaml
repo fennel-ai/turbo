@@ -68,6 +68,7 @@ importers:
       fs-extra: ^11.1.0
       gray-matter: ^4.0.3
       gunzip-maybe: ^1.4.2
+      hooks: workspace:*
       lodash: ^4.17.21
       lodash.trimright: ^3.0.4
       mdx-bundler: ^9.2.1
@@ -105,6 +106,7 @@ importers:
       fs-extra: 11.1.0
       gray-matter: 4.0.3
       gunzip-maybe: 1.4.2
+      hooks: link:../../packages/hooks
       lodash: 4.17.21
       lodash.trimright: 3.0.4
       mdx-bundler: 9.2.1_esbuild@0.17.10
@@ -14350,7 +14352,7 @@ packages:
     dependencies:
       copy-anything: 2.0.6
       parse-node-version: 1.0.1
-      tslib: 2.4.1
+      tslib: 2.5.3
     optionalDependencies:
       errno: 0.1.8
       graceful-fs: 4.2.10
@@ -19876,7 +19878,6 @@ packages:
 
   /tslib/2.5.3:
     resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
-    dev: true
 
   /tsup/6.6.3_typescript@4.9.4:
     resolution: {integrity: sha512-OLx/jFllYlVeZQ7sCHBuRVEQBBa1tFbouoc/gbYakyipjVQdWy/iQOvmExUA/ewap9iQ7tbJf9pW0PgcEFfJcQ==}

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import { media } from 'styles/utils';
 import { LinkButton, TitleBlock } from "ui";
 
@@ -54,9 +55,11 @@ const TrulyRealtime = () => {
 						<TitleBlock
 							align="left"
 							actions={[
-								<LinkButton>
-									Read the Documentation
-								</LinkButton>
+								<Link href="https://docs.fennel.ai/concepts/pipeline/">
+									<LinkButton>
+										Kappa Pipeline Architecture
+									</LinkButton>
+								</Link>
 							]}
 						>
 							<h6>Powerful & Flexible</h6>
