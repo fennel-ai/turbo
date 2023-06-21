@@ -27,11 +27,10 @@ const Illustration = styled.div`
 const ANIMATE = { rotate: -360 };
 const TRANSITION = { 
 	type: "spring", 
-	mass: 1, 
-	damping: 40, 
-	stiffness: 100,  
+	damping: 20, 
+	stiffness: 250, 
 	repeat: Infinity, 
-	repeatDelay: 3 
+	repeatDelay: 3
 };
 
 export const Freshness = () => (
