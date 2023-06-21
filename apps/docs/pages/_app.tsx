@@ -16,7 +16,7 @@ import Head from 'next/head';
 
 export const haskoyVariable = localFont({
 	src: [{
-		path: "./fonts/Satoshi-Variable.woff2"
+		path: "./fonts/haskoy.woff2"
 	}],
 	preload: true
 });
