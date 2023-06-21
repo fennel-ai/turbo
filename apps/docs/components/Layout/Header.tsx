@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useRef, useState } from 'react';
 import { media } from 'styles/utils';
 import { AnimatePresence } from 'framer-motion';
-import { Button, IconButton, Masthead } from 'ui';
+import { Button, IconButton, LinkButton, Masthead } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from 'components/Container';
@@ -66,11 +66,11 @@ const SearchButton = styled(IconButton)`
 	}
 `;
 
-const DemoButton = styled(Button)`
+const DemoButton = styled(LinkButton)`
 	display: none;
 
 	${media('sm')} {
-		display: block;
+		display: flex;
 	}
 `;
 
@@ -94,7 +94,9 @@ const Header = () => {
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
 					<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
-						<DemoButton ariaLabel="Request a demo" label="Request a demo" color="neutral" />
+						<DemoButton size="large" color="invert">
+							Request a demo
+						</DemoButton>
 					</a>
 				</Actions>
 			</Wrapper>
