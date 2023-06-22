@@ -11,7 +11,7 @@ import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
 import { useShell } from "context/Shell";
 import { AnimatePresence } from "framer-motion";
-import { satoshiVariable } from "pages/_app";
+import { haskoyVariable } from "pages/_app";
 
 type Props = {
 	children: ReactNode,
@@ -45,7 +45,7 @@ const Root = styled(Container)`
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.text};
-			font-family: ${satoshiVariable.style.fontFamily}, serif;
+			font-family: ${haskoyVariable.style.fontFamily}, serif;
 			font-weight: 500;
 			margin: 0;
 			letter-spacing: -0.5px;

@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { media } from 'styles/utils';
 import { AnimatePresence } from 'framer-motion';
-import { Button, IconButton } from 'ui';
+import { IconButton, KeyIndicator, LinkButton, Masthead } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from 'components/Container';
 import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
-import Masthead from 'components/Masthead';
 import RequestDemoModal from 'components/RequestDemoModal';
 import MobileToolbar from 'components/MobileToolbar';
+import { useKeyPress } from 'hooks';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -23,10 +23,14 @@ const Root = styled(Container)`
 `;
 
 const Wrapper = styled.div`
-	height: 4.5rem;
+	height: 3rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	${media('md')} {
+		height: 4.5rem;
+	}
 	
 	${media('lg')} {
 		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
@@ -51,6 +55,16 @@ const SearchWrapper = styled.div`
 	}
 `;
 
+const Brand = styled(Masthead)`
+	& svg {
+		color: ${({ theme }) => theme.primary.accent};
+	}
+
+	& h2 {
+		color: ${({ theme }) => theme.text};
+	}
+`;
+
 const Actions = styled.div`
 	display: flex;
 	align-items: center;
@@ -63,11 +77,11 @@ const SearchButton = styled(IconButton)`
 	}
 `;
 
-const DemoButton = styled(Button)`
+const DemoButton = styled(LinkButton)`
 	display: none;
 
 	${media('sm')} {
-		display: block;
+		display: flex;
 	}
 `;
 
@@ -76,10 +90,22 @@ const Header = () => {
 
 	const docSearch = useRef<DocSearchHandle>(null);
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
+
+	const onKeyPress = useCallback(({ key }: KeyboardEvent) => {
+		if (key === "r") {
+			setOpenRequestModal(true);
+		}
+
+		if (key === 'Escape') {
+			setOpenRequestModal(false);
+		}
+	}, []);
+	useKeyPress(onKeyPress);
+
 	return (
 		<Root>
 			<Wrapper>
-				<Masthead />
+				<Brand name="Documentation" />
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}
@@ -90,9 +116,14 @@ const Header = () => {
 				</SearchWrapper>
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
-					<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
-						<DemoButton ariaLabel="Request a demo" label="Request a demo" variant="pill" color="neutral" />
-					</a>
+					<DemoButton 
+						icon={<KeyIndicator label="R" />}
+						size="large" 
+						color="invert" 
+						onClick={() => setOpenRequestModal(true)}
+					>
+						Request a demo
+					</DemoButton>
 				</Actions>
 			</Wrapper>
 			<MobileToolbar />

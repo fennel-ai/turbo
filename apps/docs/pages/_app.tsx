@@ -15,9 +15,9 @@ import "@docsearch/css";
 import { ShellContextProvider } from 'context/Shell';
 import Head from 'next/head';
 
-export const satoshiVariable = localFont({
+export const haskoyVariable = localFont({
 	src: [{
-		path: "./fonts/Satoshi-Variable.woff2"
+		path: "./fonts/haskoy.woff2"
 	}],
 	preload: true
 });
@@ -68,7 +68,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				body {
 					margin: 0;
 					padding: 0;
-					font-family: ${satoshiVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 					font-synthesis: none;
 					font-feature-settings: "tnum"; /*! Enables the numeric character variants with Satoshi Variable - may want to restrict this to only li:marker elements */
 					text-rendering: optimizeLegibility;
@@ -78,7 +78,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				}
 
 				button, input {
-					font-family: ${satoshiVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 				}
 			`}
 				</style>
@@ -86,7 +86,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					<link rel="icon" href="/favicon.ico" sizes="any" />
 					<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 					<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-					<meta name="theme-color" content="#5D4CBE" />
+					<meta name="theme-color" content="#fff" />
 				</Head>
 				<Script id="linkedin-init">
 					{`

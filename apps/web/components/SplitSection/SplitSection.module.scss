@@ -1,0 +1,57 @@
+@use "basqui" as theme;
+
+.root {
+	padding: 4rem 0;
+
+	@include theme.media(sm) {
+		padding: 5rem 0;
+	}
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	row-gap: 2rem;
+
+	@include theme.media(md) {
+		row-gap: 0;
+	}
+}
+
+.illustration {
+	grid-column: span 12;
+
+	@include theme.media(sm) {
+		&.forward {
+			grid-column: span 5;
+		}
+
+		&.reverse {
+			grid-column: 8 / span 5;
+		}
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+	align-items: flex-start;
+	justify-content: center;
+	grid-column: span 12;
+	order: -1;
+
+	@include theme.media(sm) {
+		gap: 4rem;
+
+		&.forward {
+			order: 2;
+			grid-column: 7 / span 6;
+		}
+
+		&.reverse {
+			order: -1;
+			grid-column: span 6;
+		}
+	}
+}

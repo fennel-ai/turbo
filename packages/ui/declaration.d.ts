@@ -11,3 +11,8 @@ declare module '*.svg' {
 		React.ComponentProps<'svg'> & { title?: string }
 	>
 }
+
+declare module '*.scss' {
+	const styles: Array<CSStyleSheet> | CSStyleSheet;
+	export default styles;
+}

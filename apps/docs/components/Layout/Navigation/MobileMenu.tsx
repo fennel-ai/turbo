@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
-import { Button, IconButton } from 'ui';
+import { Button, IconButton, Masthead } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 
 import { NavigationTree } from 'lib/utils';
@@ -12,7 +12,6 @@ import { media } from 'styles/utils';
 
 import { useShell } from 'context/Shell';
 
-import Masthead from 'components/Masthead';
 import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
 import { useModalPresence } from 'hooks/useModalPresence';
@@ -101,13 +100,13 @@ const MobileMenu = (props: Props) => {
 			<Root ref={rootRef} initial={ANIM.initial} animate={ANIM.animate} exit={ANIM.exit} transition={ANIM.transition}>
 				<Header>
 					<Masthead />
-					<IconButton icon={CloseIcon} size="large" onClick={onClose} />
+					<IconButton icon={CloseIcon} onClick={onClose} />
 				</Header>
 				<Menu>
 					{
 						showCta ? (
 							<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
-								<DemoCta ariaLabel="Request a demo" label='Request a demo' variant="pill" />
+								<DemoCta ariaLabel="Request a demo" label='Request a demo' />
 							</a> 
 						) : null
 					}
