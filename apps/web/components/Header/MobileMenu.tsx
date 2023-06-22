@@ -16,12 +16,12 @@ export const MobileMenu = () => {
 							Company
 						</li>
 					</Link>
-					<Link href="/blog">
+					<Link href="https://fennel.ai/blog">
 						<li>
 							Blog
 						</li>
 					</Link>
-					<Link href="https://fennel.ai/docs">
+					<Link href="/docs">
 						<li>
 							Documentation
 						</li>
