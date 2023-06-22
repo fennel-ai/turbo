@@ -2,6 +2,8 @@ import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
+import posthog from 'posthog-js';
+import { PostHogProvider } from 'posthog-js/react';
 
 import theme from 'styles';
 import 'styles/index.css';
@@ -26,9 +28,20 @@ const toastOptions = {
 	},
 };
 
+// Check that PostHog is client-side (used to handle Next.js SSR)
+if (typeof window !== 'undefined') {
+	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+		api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
+		// Enable debug mode in development
+		loaded: (posthog) => {
+			if (process.env.NODE_ENV === 'development') posthog.debug()
+		}
+	})
+}
+
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<>
+		<PostHogProvider client={posthog}>
 			<style jsx global>
 				{`
 					@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
@@ -66,6 +79,6 @@ export default function App({ Component, pageProps }: AppProps) {
 				<Footer />
 				<Toaster position="bottom-left" toastOptions={toastOptions} />
 			</ThemeProvider>
-		</>
+		</PostHogProvider>
 	)
 }
