@@ -79,6 +79,12 @@ const CopyButton = styled.button`
 	}
 `;
 
+const Code = styled(Syntax)<{ toolbar: boolean }>`
+	& > pre {
+		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1.5rem'};
+	}
+`;
+
 export const CodeBlock = ({ className, code, filename, language, onCopy, toolbar = true }: Props) => {
 	const handleCopy = () => {
 		navigator.clipboard.writeText(code);
@@ -101,7 +107,7 @@ export const CodeBlock = ({ className, code, filename, language, onCopy, toolbar
 					</CopyButton>
 				</Toolbar>
 			) : null}
-			<Syntax language={language} code={code} />
+			<Code toolbar={toolbar} language={language} code={code} />
 		</Root>
 	);
 }

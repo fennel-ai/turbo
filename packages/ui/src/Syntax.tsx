@@ -39,7 +39,6 @@ const Root = styled.div`
 		margin: 0;
 		padding: 1.5rem;
 		padding-left: 0;
-		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1.5rem'};
 		overflow: auto;
 	}
 
