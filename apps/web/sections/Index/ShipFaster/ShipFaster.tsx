@@ -66,7 +66,7 @@ const ShipFaster = () => {
 			<Grid>
 				<TextBlock icon={<PythonIcon />}>
 					<b>Real Python. No DSLs.</b><br />
-					No DSL, no Spark or Flink jobs. Plain old Python & Pandas mean zero learning curve for you.
+					No DSL, no Spark or Flink jobs. Plain old Python & Pandas means zero learning curve for you.
 				</TextBlock>
 				<TextBlock icon={<ClockRefreshIcon />}>
 					<b>Automatic Backfills</b><br />
