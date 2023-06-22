@@ -72,13 +72,13 @@ const Footer = () => {
 				</Brand>
 				<Socials>
 					<a href="https://www.twitter.com/fennelai/" aria-label="twitter" target="_blank" rel="noreferrer">
-						<IconButton ariaLabel="Twitter" icon={TwitterIcon} size="large" />
+						<IconButton ariaLabel="Twitter" icon={TwitterIcon} />
 					</a>
 					<a href="https://www.linkedin.com/company/fennel-ai/" aria-label="linkedin" target="_blank" rel="noreferrer">
-						<IconButton ariaLabel="LinkedIn" icon={LinkedInIcon} size="large" />
+						<IconButton ariaLabel="LinkedIn" icon={LinkedInIcon} />
 					</a>
 					<a href="https://github.com/fennel-ai" aria-label="github" target="_blank" rel="noreferrer">
-						<IconButton ariaLabel="Github" icon={GitHubIcon} size="large" />
+						<IconButton ariaLabel="Github" icon={GitHubIcon} />
 					</a>
 				</Socials>
 			</Wrapper>

@@ -70,7 +70,7 @@ const SectionTitle = styled.div`
 		margin: 0;
 		font-size: 1.25rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
 		color: ${get('primary.accent')}
 	}
 `;

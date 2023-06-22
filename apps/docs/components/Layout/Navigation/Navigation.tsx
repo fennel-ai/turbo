@@ -47,7 +47,7 @@ const Navigation = ({ items }: Props) => {
 								href={section.pages[0].slug}
 							>
 								{section.pages.map(({ title, slug, status }) => {
-									const active = router.asPath === `/${slug === '/' ? '' : slug + '/'}`;
+									const active = router.asPath === `/${slug === '/' ? '' : slug}`;
 									return (
 										<NavigationItem active={active} status={status} fade={sectionActive && !active} key={slug}><Link aria-label={title} href={slug}>{title}</Link></NavigationItem>
 									)

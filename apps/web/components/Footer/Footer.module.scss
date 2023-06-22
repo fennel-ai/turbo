@@ -1,0 +1,51 @@
+@use "basqui" as theme;
+
+.root {
+	background-color: theme.get(surface);
+	border-top: 1px solid theme.get(border);
+	padding: 2.5rem 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+
+	@include theme.media(sm) {
+		padding: 5rem 0;
+	}
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	svg {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
+	& h3 {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
+}
+
+.wrapper {
+	display: flex;
+	align-items: center;
+
+	@include theme.media(sm, max) {
+		justify-content: center;
+	}
+}
+
+.credit {
+	& p {
+		margin: 0;
+		font-size: 0.875rem;
+		line-height: 1rem;
+		opacity: 64%;
+		color: theme.get(text-low);
+		font-variation-settings: "wght" 500;
+	}
+}

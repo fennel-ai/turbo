@@ -1,0 +1,39 @@
+@use "basqui" as theme;
+
+.root {
+	border: 0;
+	background: none;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	color: currentColor; 
+	overflow: hidden;
+	width: 2rem;
+	height: 2rem;
+
+	& svg {
+		flex-shrink: 0;
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	@include theme.state-layer;
+
+	[data-theme="dark"] & {
+		color: theme.get(text, dark);
+	}
+
+	@include theme.media(md) {
+		width: 2.5rem;;
+		height: 2.5rem;
+		border-radius: 0.75rem;
+
+		& svg {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
+}
