@@ -19,25 +19,59 @@
 }
 
 .animated_edge {
-	stroke: rgb(163, 173, 184); stroke-width: 1.5;
+	stroke: rgb(163, 173, 184); 
+	stroke-width: 1.5;
 	animation: animated-path 1s linear infinite;
 }
 
 .show_code {
 	align-self: center;
-	
+
 	@include theme.media(sm) {
 		position: absolute;
+		transition: 200ms all cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+}
+
+.show_code_shown {
+	@include theme.media(sm) {
+			top: 0.5rem;
+			left: 0.5rem;
+		}
+	
+		@include theme.media(md) {
+			top: 1rem;
+			left: 1rem;
+		}
+}
+
+.show_code_hidden {
+	@include theme.media(sm) {
 		top: 1rem;
 		left: 1rem;
 	}
-	
+
 	@include theme.media(md) {
-		top: 1.5rem;
-		left: 1.5rem;
+		top: 2rem;
+		left: 2rem;
 	}
 }
 
 .show_code_window {
 	position: absolute;
+	background-color: theme.get(background, dark);
+	color: theme.get(text-low, dark);
+	border-radius: 1rem;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.code {
+	flex: 1;
+	overflow: scroll;
+	@include theme.media(sm) {
+		padding-top: 2.5rem;
+	}
 }

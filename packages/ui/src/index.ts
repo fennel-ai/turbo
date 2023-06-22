@@ -10,6 +10,7 @@ export * from "./LinkButton";
 export * from "./Marquee";
 export * from "./Masthead";
 export * from "./Sparkles";
+export * from "./Syntax";
 export * from "./TextBlock";
 export * from "./Ticker";
 export * from "./TitleBlock";

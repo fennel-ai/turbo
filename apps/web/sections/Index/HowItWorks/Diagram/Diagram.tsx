@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { CodeBlock, LinkButton } from 'ui';
+import { LinkButton, Syntax } from 'ui';
 import { AnimatePresence, motion } from 'framer-motion';
 import styles from './Diagram.module.scss';
 import useResizeObserver from 'use-resize-observer';
@@ -14,6 +14,7 @@ import RestAPI from './RestAPI';
 import LookupEdges from './LookupEdges';
 import APIQueryEdges from './APIQueryEdges';
 import PipelineEdges from './PipelineEdges';
+import clsx from 'clsx';
 
 const SVG_VARIANTS = {
 	shown: {
@@ -26,7 +27,96 @@ const SVG_VARIANTS = {
 	}
 }
 
-const DAG = ({ activeItem }: { activeItem: string }) => {
+const SNIPPETS = {
+	"0": {
+		language: 'python',
+		code: `postgres = Postgres(host=...<credentials>...)
+kafka = Kafka(...<credentials>...)
+
+
+@dataset
+@source(postgres.table("user_info", cursor="signup_time"), every="1m")
+@meta(owner="data-oncall@fennel.ai", tags=["PII"])
+class User:
+    uid: int = field(key=True)
+    dob: datetime
+    country: str
+    signup_time: datetime = field(timestamp=True)
+
+
+@dataset
+@source(kafka.topic('transactions'))
+@meta(owner="chris@fennel.ai")
+class Transaction:
+    uid: int
+    amount: float
+    payment_country: str
+    merchant_id: int
+    timestamp: datetime`
+	},
+	"1": {
+		language: 'python',
+		code: `meta(owner="ahmed@fennel.ai")
+@dataset
+class UserTransactionsAbroad:
+    uid: int = field(key=True)
+    amount_1d: float
+    amount_1w: float
+    timestamp: datetime
+
+    @pipeline(version=1)
+    @inputs(User, Transaction)
+    def first_pipeline(cls, user: Dataset, transaction: Dataset):
+        joined = transaction.left_join(user, on=["uid"])
+        abroad = joined.filter(lambda df: df["country"] != df["payment_country"])
+        return abroad.groupby("uid").aggregate([
+           Sum(of="amount", window=Window("1d"), into_field="amount_1d"),
+           Sum(of="amount", window=Window("1w"), into_field="amount_1w"),
+        ])`
+	},
+	"2": {
+		language: 'python',
+		code: `@featureset
+class UserFeature:
+    uid: int = feature(id=1)
+    age: float = feature(id=2)
+
+    @extractor
+    @inputs(uid)
+    @outputs(age)
+    def get_age(cls, ts: pd.Series, uids: pd.Series):
+        dobs = User.lookup(ts=ts, uid=uids, fields=["dob"])
+        ages = [dob - datetime.now() for dob in dobs]
+        return pd.Series(ages)`
+	},
+	"3": {
+		language: 'bash',
+		code: `$ fennel=<SOME_URL_INSIDE_YOUR_VPC>
+
+$ curl -X POST "$fennel/api/v1/extract_features" \
+  -H "content-type: application/json" \
+  -H "Authorization: Bearer REDACTED" \
+  -d '{
+    "output_features": ["UserFeature.age", "UserFeature.uid"],
+    "input_features": ["UserFeature.uid"],
+    "data": [
+      {"UserFeature.uid": 1},
+      {"UserFeature.uid": 2},
+      {"UserFeature.uid": 3},
+    ],
+  }'
+
+
+# features are returned as json
+[
+  { "UserFeature.age": 21, "UserFeature.uid": 1},
+  { "UserFeature.age": 23, "UserFeature.uid": 2},
+  { "UserFeature.age": 48, "UserFeature.uid": 3},
+]`
+	},
+}
+
+const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
 	const [showCode, setShowCode] = useState<boolean>(false);
 	const { ref, width, height } = useResizeObserver();
 
@@ -195,7 +285,7 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 					</clipPath>
 				</defs>
 			</motion.svg>
-			{/* <AnimatePresence>
+			<AnimatePresence>
 				{
 					showCode ? (
 						<motion.div 
@@ -205,12 +295,12 @@ const DAG = ({ activeItem }: { activeItem: string }) => {
 							exit={{ opacity: 0, y: 16 }}
 							style={{ width, height }}
 						>
-							<CodeBlock language="bash" code="pip install fennel-ai" />
+							<Syntax className={styles.code} language={SNIPPETS[activeItem].language} code={SNIPPETS[activeItem].code} />
 						</motion.div>
 					) : null
 				}
 			</AnimatePresence>
-			<LinkButton className={styles.show_code} color="invert" onClick={onShowCode}>{showCode ? 'Hide' : 'Show'} Code</LinkButton> */}
+			<LinkButton icon={null} className={clsx(styles.show_code, styles[showCode ? 'show_code_shown' : 'show_code_hidden'])} color="invert" onClick={onShowCode}>{showCode ? 'Hide' : 'Show'} Code</LinkButton>
 		</div>
 	)
 }

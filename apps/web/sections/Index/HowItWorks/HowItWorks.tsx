@@ -45,13 +45,6 @@ const DiagramWrapper = styled.div`
 	}
 `;
 
-const VARIANT_IDS = [
-	"SOURCE",
-	"PIPELINE",
-	"FEATURE",
-	"QUERY"
-];
-
 const HowItWorks = () => {
 	const [activeItem, setActiveItem] = useState(0);
 	const [animate, toggleAnimate] = useState(true);

@@ -5,7 +5,7 @@ import styles from './LinkButton.module.scss';
 import InternalLinkIcon from '../../icons/arrow-narrow-up-right.svg';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
-	icon?: JSX.Element;
+	icon: JSX.Element | null;
 	size?: 'large' | 'small';
 }
 
