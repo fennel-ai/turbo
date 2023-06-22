@@ -131,8 +131,7 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 	});
 
 	const submitForm: SubmitHandler<IFormData> = data => {
-		// console.log('FORM DATA:', data);
-		fetch('/api/request-a-demo', {
+		fetch('https://fennel.ai/api/request-a-demo', {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json'
