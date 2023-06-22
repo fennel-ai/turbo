@@ -26,7 +26,7 @@ const HassleFreeScaling = () => {
 							<h3>Scalability & Reliability</h3>
 							<p>Scale to billions of feature queries without lifting a finger.</p>
 						</div>
-						<Link href="https://docs.fennel.ai/architecture/overview/">
+						<Link href="https://fennel.ai/docs/architecture/overview/">
 							<LinkButton>Learn More</LinkButton>
 						</Link>
 					</div>
@@ -38,7 +38,7 @@ const HassleFreeScaling = () => {
 							<h3>Enterprise-grade Security</h3>
 							<p>SOC2-compliant deployment inside your VPC.</p>
 						</div>
-						<Link href="https://docs.fennel.ai/architecture/privacy-security/">
+						<Link href="https://fennel.ai/docs/architecture/privacy-security/">
 							<LinkButton>Learn More</LinkButton>
 						</Link>
 					</div>
@@ -50,7 +50,7 @@ const HassleFreeScaling = () => {
 							<h3>Cloud Cost Efficiency</h3>
 							<p>Lower cloud cost for the same workload & performance.</p>
 						</div>
-						<Link href="https://docs.fennel.ai/architecture/cost-optimizations/">
+						<Link href="https://fennel.ai/docs/architecture/cost-optimizations/">
 							<LinkButton>Learn More</LinkButton>
 						</Link>
 					</div>

@@ -103,7 +103,7 @@ const NoMoreBugs = () => {
 					Single definition of feature across both offline and online scenarios.
 				</TextBlock>
 			</Grid>
-			<Link href="https://docs.fennel.ai/data-quality/approach/">
+			<Link href="https://fennel.ai/docs/data-quality/approach/">
 				<CTAButton>
 					Data Quality with Fennel
 				</CTAButton>

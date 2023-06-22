@@ -56,7 +56,7 @@ export const Header = () => {
 							Blog
 						</button>
 					</Link>
-					<Link href="https://docs.fennel.ai">
+					<Link href="/docs">
 						<button className={styles.nav_button}>
 							Documentation
 						</button>

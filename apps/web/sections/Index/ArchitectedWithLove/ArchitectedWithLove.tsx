@@ -86,7 +86,7 @@ const ArchitectedWithLove = () => {
 		<div data-section data-theme="dark" className={styles.root}>
 			<Container className={styles.wrapper}>
 				<div className={styles.content}>
-					<TitleBlock align="left" actions={[<Link href="https://docs.fennel.ai/architecture/technologies/"><LinkButton color="invert">Explore the Architecture</LinkButton></Link>]}>
+					<TitleBlock align="left" actions={[<Link href="https://fennel.ai/docs/architecture/technologies/"><LinkButton color="invert">Explore the Architecture</LinkButton></Link>]}>
 						<h6>Craftsman-like passion for Developer Experience</h6>
 						<h2>Architected with Love</h2>
 					</TitleBlock>

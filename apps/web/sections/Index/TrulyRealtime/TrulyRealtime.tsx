@@ -55,7 +55,7 @@ const TrulyRealtime = () => {
 						<TitleBlock
 							align="left"
 							actions={[
-								<Link href="https://docs.fennel.ai/concepts/pipeline/">
+								<Link href="https://fennel.ai/docs/concepts/pipeline/">
 									<LinkButton>
 										Kappa Pipeline Architecture
 									</LinkButton>
