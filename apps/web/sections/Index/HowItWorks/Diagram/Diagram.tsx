@@ -27,7 +27,7 @@ const SVG_VARIANTS = {
 	}
 }
 
-const SNIPPETS = {
+const SNIPPETS: Record<string, { language: string, code: string }> = {
 	"0": {
 		language: 'python',
 		code: `postgres = Postgres(host=...<credentials>...)
