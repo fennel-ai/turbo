@@ -48,6 +48,10 @@ module.exports = {
         source: "/docs",
         destination: `${DOCS_URL}/docs`,
       },
+	  {
+		source: '/docs/',
+		destination: `${DOCS_URL}/docs`
+	  },
       {
         source: "/docs/:path*",
         destination: `${DOCS_URL}/docs/:path*`,
