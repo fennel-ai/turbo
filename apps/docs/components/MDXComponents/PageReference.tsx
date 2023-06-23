@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 import LinkExternalIcon from 'ui/icons/link-external.svg';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Root = styled(Link)`
 	border: 1px solid rgba(${({ theme }) => theme.ref.grey[100]}, 8%);
@@ -49,6 +50,7 @@ const Text = styled.div`
 `;
 
 export const PageReference = ({ children, illustration, href, title }: PropsWithChildren< { href: string, illustration: string, title: string}>) => {
+	const router = useRouter();
 	return (
 		<Root href={href}>
 			<Header>
@@ -59,7 +61,7 @@ export const PageReference = ({ children, illustration, href, title }: PropsWith
 			 * For now I've hardcoded the width and height so we can use next/image, as all of the illustration SVGs are the same size.
 			 * Will want to circle back and make this more dynamic in the future.
 			*/}
-			<Image src={illustration} width={392} height={168} alt={title} /> {/* eslint-disable-line @next/next/no-img-element */}
+			<Image src={router.basePath ? `${router.basePath}/${illustration}` : illustration} width={392} height={168} alt={title} /> {/* eslint-disable-line @next/next/no-img-element */}
 			<Text>
 				{children}
 			</Text>
