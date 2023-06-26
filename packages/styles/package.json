@@ -17,5 +17,8 @@
 		"react": "^18.2.0",
 		"tsconfig": "workspace:*",
 		"typescript": "^4.5.2"
+	},
+	"dependencies": {
+		"tinycolor2": "^1.6.0"
 	}
 }

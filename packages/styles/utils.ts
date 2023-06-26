@@ -1,4 +1,5 @@
 import type { Breakpoint, Theme } from './index';
+import tinycolor from 'tinycolor2';
 
 type StyledProps = {
 	theme: Theme
@@ -28,3 +29,11 @@ export const media = (bp: Breakpoint, type: 'min' | 'max' = 'min', fallback: any
 		
 		return `@media (${type}-width: ${value}rem)`;
 	};
+
+export const rgba = (color: string, alpha: number) => {
+	if (alpha < 0 || alpha > 1) {
+		throw new Error(`Invalid alpha value ${alpha} provided to rgba()`);
+	}
+
+	return tinycolor(color).setAlpha(alpha).toRgbString();
+}

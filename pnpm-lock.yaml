@@ -333,11 +333,13 @@ importers:
       eslint: ^7.32.0
       eslint-config-fennel: workspace:*
       react: ^18.2.0
+      tinycolor2: ^1.6.0
       tsconfig: workspace:*
       typescript: ^4.5.2
     dependencies:
       '@emotion/react': 11.10.5_react@18.2.0
       '@emotion/styled': 11.10.5_hp5f5nkljdiwilp4rgxyefcplu
+      tinycolor2: 1.6.0
     devDependencies:
       eslint: 7.32.0
       eslint-config-fennel: link:../eslint-config-fennel
@@ -19685,6 +19687,10 @@ packages:
   /tinybench/2.4.0:
     resolution: {integrity: sha512-iyziEiyFxX4kyxSp+MtY1oCH/lvjH3PxFN8PGCDeqcZWAJ/i+9y+nL85w99PxVzrIvew/GSkSbDYtiGVa85Afg==}
     dev: true
+
+  /tinycolor2/1.6.0:
+    resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
+    dev: false
 
   /tinypool/0.3.1:
     resolution: {integrity: sha512-zLA1ZXlstbU2rlpA4CIeVaqvWq41MTWqLY3FfsAXgC8+f7Pk7zroaJQxDgxn1xNudKW6Kmj4808rPFShUlIRmQ==}
