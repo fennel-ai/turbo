@@ -26,6 +26,7 @@ const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
+	position: relative;
 
 	& button {
 		margin-top: 1rem;
@@ -40,6 +41,7 @@ const InputRoot = styled.div`
 	gap: 0.25rem;
 
 	& input, & select {
+		background: none;
 		height: 2.5rem;
 		border: 1px solid ${({ theme }) => theme.border};
 		border-radius: 0.5rem;
@@ -130,20 +132,24 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 		resolver: yupResolver(validation),
 	});
 
-	const submitForm: SubmitHandler<IFormData> = data => {
+	const submitForm: SubmitHandler<IFormData> = async data => {
 		// console.log('FORM DATA:', data);
-		fetch('/api/request-a-demo', {
-			method: "POST",
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(data)
-		});
+		try {
+			// fetch('/api/request-a-demo', {
+			// 	method: "POST",
+			// 	headers: {
+			// 		'Content-Type': 'application/json'
+			// 	},
+			// 	body: JSON.stringify(data)
+			// });
 
-		reset();
-		
-		toast.success('Thank you for your interest! We will be in touch shortly.');
-		onSubmit?.();
+			reset();
+
+			toast.success('Thank you for your interest! We will be in touch shortly.');
+			onSubmit?.();
+		} catch (error) {
+			toast.error('Something went wrong! Please try again.')
+		}
 	};
 
 	return (

@@ -1,42 +1,24 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence } from 'framer-motion';
 import { IconButton, LinkButton } from 'ui';
 import { useRouter } from 'next/router';
-import { KeyIndicator, Masthead } from 'ui';
+import { Masthead } from 'ui';
 import styles from './Header.module.scss';
 
 import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
 import { MobileMenu } from './MobileMenu';
-import RequestDemoModal from 'components/RequestDemoModal';
-import { useKeyPress } from 'hooks';
 
 export const Header = () => {
 	const router = useRouter();
 	const [showMobileMenu, toggleMobileMenu] = useState(false);
-	const [showRequestDemo, toggleRequestDemo] = useState(false);
 
 	useEffect(() => {
 		if (showMobileMenu) {
 			toggleMobileMenu(false)
 		}
-		
-		if (showRequestDemo) {
-			toggleRequestDemo(false)
-		}
 	}, [router.pathname]);
-
-	const onKeyPress = useCallback(({ key }: KeyboardEvent) => {
-		if (key === "r") {
-			toggleRequestDemo(true);
-		}
-
-		if (key === 'Escape') {
-			toggleRequestDemo(false);
-		}
-	}, []);
-	useKeyPress(onKeyPress);
 
 	return (
 		<header data-header className={styles.root}>
@@ -63,14 +45,15 @@ export const Header = () => {
 					</Link>
 				</div>
 				<div className={styles.actions}>
-					<LinkButton 
-						icon={<KeyIndicator label="R" />}
-						size="large" 
-						color="invert" 
-						onClick={() => toggleRequestDemo(prev => !prev)}
-					>
-						Request a Demo
-					</LinkButton>
+					<Link href="/get-a-demo">
+						<LinkButton
+							icon={null}
+							size="large"
+							color="invert"
+						>
+							Request a Demo
+						</LinkButton>
+					</Link>
 					<IconButton 
 						className={styles.menu_button}
 						icon={showMobileMenu ? CloseIcon : MenuIcon}
@@ -84,11 +67,6 @@ export const Header = () => {
 			<AnimatePresence>
 				{
 					showMobileMenu ? <MobileMenu /> : null
-				}
-			</AnimatePresence>
-			<AnimatePresence>
-				{
-					showRequestDemo ? <RequestDemoModal onClose={() => toggleRequestDemo(false)} /> : null
 				}
 			</AnimatePresence>
 		</header>

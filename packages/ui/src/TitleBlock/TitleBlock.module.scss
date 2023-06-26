@@ -8,6 +8,10 @@
 	gap: 1.5rem;
 	color: theme.get(text);
 
+	[data-theme="dark"] & {
+		color: theme.get(text, dark);
+	}
+
 	@include theme.media(sm) {
 		align-self: inherit;
 		align-items: flex-start;
@@ -73,6 +77,9 @@
 		opacity: 50%;
 		font-variation-settings: "wght" 500;
 		color: theme.get(text-low);
+		[data-theme="dark"] & {
+			color: theme.get(text-low, dark);
+		}
 	}
 
 	p {
@@ -81,6 +88,10 @@
 		line-height: 1.5rem;
 		font-variation-settings: "wght" 500;
 		color: theme.get(text-low);
+		
+		[data-theme="dark"] & {
+			color: theme.get(text-low, dark);
+		}
 		
 		b {
 			font-variation-settings: "wght" 800;
