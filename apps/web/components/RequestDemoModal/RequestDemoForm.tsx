@@ -135,13 +135,13 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 	const submitForm: SubmitHandler<IFormData> = async data => {
 		// console.log('FORM DATA:', data);
 		try {
-			// fetch('/api/request-a-demo', {
-			// 	method: "POST",
-			// 	headers: {
-			// 		'Content-Type': 'application/json'
-			// 	},
-			// 	body: JSON.stringify(data)
-			// });
+			fetch('/api/request-a-demo', {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			});
 
 			reset();
 
