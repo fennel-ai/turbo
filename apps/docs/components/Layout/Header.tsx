@@ -1,16 +1,14 @@
 import styled from '@emotion/styled';
-import { useCallback, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { media } from 'styles/utils';
-import { AnimatePresence } from 'framer-motion';
-import { IconButton, KeyIndicator, LinkButton, Masthead } from 'ui';
+import { IconButton, LinkButton, Masthead } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from 'components/Container';
 import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
-import RequestDemoModal from 'components/RequestDemoModal';
 import MobileToolbar from 'components/MobileToolbar';
-import { useKeyPress } from 'hooks';
+import { useRouter } from 'next/router';
 
 const Root = styled(Container)`
 	grid-column: span 12;
@@ -86,21 +84,10 @@ const DemoButton = styled(LinkButton)`
 `;
 
 const Header = () => {
-	const [openRequestModal, setOpenRequestModal] = useState(false);
-
 	const docSearch = useRef<DocSearchHandle>(null);
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
 
-	const onKeyPress = useCallback(({ key }: KeyboardEvent) => {
-		if (key === "r") {
-			setOpenRequestModal(true);
-		}
-
-		if (key === 'Escape') {
-			setOpenRequestModal(false);
-		}
-	}, []);
-	useKeyPress(onKeyPress);
+	const router = useRouter();
 
 	return (
 		<Root>
@@ -116,24 +103,17 @@ const Header = () => {
 				</SearchWrapper>
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
-					<DemoButton 
-						icon={<KeyIndicator label="R" />}
-						size="large" 
-						color="invert" 
-						onClick={() => setOpenRequestModal(true)}
+					<DemoButton
+						icon={null}
+						size="large"
+						color="invert"
+						onClick={() => router.push("https://fennel.ai/get-a-demo")}
 					>
 						Request a demo
 					</DemoButton>
 				</Actions>
 			</Wrapper>
 			<MobileToolbar />
-			<AnimatePresence>
-				{
-					openRequestModal ? (
-						<RequestDemoModal onClose={() => setOpenRequestModal(false)} />
-					) : null
-				}
-			</AnimatePresence>
 		</Root>
 	);
 };

@@ -1,2 +1,2 @@
-export { default as DemoForm } from './DemoForm';
+export { default as Calendly } from './Calendly';
 export { default as Hero } from './Hero';

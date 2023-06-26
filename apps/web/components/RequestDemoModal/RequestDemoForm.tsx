@@ -132,20 +132,24 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 		resolver: yupResolver(validation),
 	});
 
-	const submitForm: SubmitHandler<IFormData> = data => {
+	const submitForm: SubmitHandler<IFormData> = async data => {
 		// console.log('FORM DATA:', data);
-		// fetch('/api/request-a-demo', {
-		// 	method: "POST",
-		// 	headers: {
-		// 		'Content-Type': 'application/json'
-		// 	},
-		// 	body: JSON.stringify(data)
-		// });
+		try {
+			// fetch('/api/request-a-demo', {
+			// 	method: "POST",
+			// 	headers: {
+			// 		'Content-Type': 'application/json'
+			// 	},
+			// 	body: JSON.stringify(data)
+			// });
 
-		reset();
-		
-		toast.success('Thank you for your interest! We will be in touch shortly.');
-		onSubmit?.();
+			reset();
+
+			toast.success('Thank you for your interest! We will be in touch shortly.');
+			onSubmit?.();
+		} catch (error) {
+			toast.error('Something went wrong! Please try again.')
+		}
 	};
 
 	return (

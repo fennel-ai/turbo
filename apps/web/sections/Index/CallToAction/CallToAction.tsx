@@ -4,9 +4,9 @@ import styles from './CallToAction.module.scss';
 import {Space} from 'ddd';
 import { Container } from 'components/Container';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
-import { AnimatePresence, motion, useInView } from 'framer-motion';
-import RequestDemoModal from 'components/RequestDemoModal/RequestDemoModal';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 const onCreated = ({ size, camera }: RootState) => {
 	if (size.width < 600) {
@@ -38,7 +38,7 @@ const TRANSITION = {
 const CallToAction = () => {
 	const ref = useRef<HTMLDivElement>(null);
 	const inView = useInView(ref);
-	const [showRequestDemo, toggleRequestDemo] = useState(false);
+	const router =  useRouter();
 
 	return (
 		<div className={styles.root} data-section data-theme="dark">
@@ -54,17 +54,12 @@ const CallToAction = () => {
 					>
 						<h2>Experience the slickest feature engineering workflow</h2>
 					</TitleBlock>
-					<Button color="primary" label="Request a Demo" onClick={() => toggleRequestDemo(true)} />
+					<Button color="primary" label="Request a Demo" onClick={() => router.push('/get-a-demo')} />
 				</div>
 				<motion.div transition={TRANSITION} variants={VARIANTS} animate={inView ? 'normal' : 'skewed'} ref={ref} className={styles.console_img}>
 					<Image src="/images/dataset-detail.webp" alt="Console: Dataset Detail" width={2016} height={2954} />
 				</motion.div>
 			</Container>
-			<AnimatePresence>
-				{
-					showRequestDemo ? <RequestDemoModal onClose={() => toggleRequestDemo(false)} /> : null
-				}
-			</AnimatePresence>
 		</div>
 	);
 };
