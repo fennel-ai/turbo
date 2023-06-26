@@ -12,6 +12,7 @@ import Head from 'next/head';
 
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
+import { useEffect } from 'react';
 
 export const haskoyVariable = localFont({
 	src: [{
@@ -40,6 +41,10 @@ if (typeof window !== 'undefined') {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
+	useEffect(() => {
+		document.body.setAttribute('data-theme', pageProps.dark_mode ? 'dark' : 'light')
+	}, [pageProps.dark_mode]);
+
 	return (
 		<PostHogProvider client={posthog}>
 			<style jsx global>

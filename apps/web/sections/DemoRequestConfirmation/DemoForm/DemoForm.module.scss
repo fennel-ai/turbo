@@ -1,0 +1,103 @@
+@use "basqui" as theme;
+
+.root {
+	position: relative;
+	background-color: theme.get(background, dark);
+	color: theme.get(text, dark);
+	padding: 5rem 0;
+	z-index: 0;
+	overflow: hidden;
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 80% 0 0 0;
+		z-index: 0;
+		background: conic-gradient(from 248deg at 51.63% 52.16%, rgba(12, 66, 167, 1) 0deg, rgb(0, 135, 255) 60deg, rgba(91, 68, 222, 1) 200deg, rgba(12, 23, 50, 1) 240deg, rgba(141, 185, 242, 1) 296deg, rgba(91, 68, 222, 1) 360deg);
+		filter: blur(160px);
+	}
+}
+
+.container {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: 2rem;
+}
+
+.formCard {
+	grid-column: span 5;
+	position: relative;
+	padding: 3rem;
+	border-radius: 1.5rem;
+	background-color: rgba(theme.get(surface, dark), 70%);
+	overflow: hidden;
+	
+	&:before {
+		content: "";
+		position: absolute;
+		inset: 1px;
+		background-color: rgba(theme.get(background, dark), 70%);
+		border-radius: calc(1.5rem - 1px);
+		z-index: 0;
+	}
+
+	h3 {
+		position: relative;
+		text-align: center;
+		font-size: 2rem;
+		line-height: 2rem;
+		color: theme.get(text, dark);
+		margin: 0;
+		margin-bottom: 2rem;
+		z-index: 2;
+	}
+
+	label {
+		color: theme.get(text-low, dark);
+	}
+
+	input, select {
+		border-color: theme.get(border, dark) !important;
+		color: theme.get(text, dark);
+
+		&::placeholder {
+			color: rgba(theme.get(text-low, dark), 0.4);
+		}
+	}
+
+	select {
+		cursor: pointer;
+	}
+}
+
+.logos {
+	grid-column: 7 / span 6;
+	text-align: center;
+	color: theme.get(text-low, dark);
+	padding: 5rem 0;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 2.5rem;
+
+	& p {
+		margin: 0;
+	}
+}
+
+.logo_row {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+
+	& > span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 1 1 auto;
+
+		& img {
+			width: 100%;
+		}
+	}
+}
