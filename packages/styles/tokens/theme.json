@@ -1,35 +1,39 @@
 {
   "background": {
-    "value": "{bg.muted}",
+    "value": "{palette.bg.muted}",
     "type": "color"
   },
   "surface": {
-    "value": "{bg.default}",
+    "value": "{palette.bg.default}",
     "type": "color"
   },
   "text": {
-    "value": "{fg.default}",
+    "value": "{palette.fg.default}",
     "type": "color"
   },
   "text-alt": {
-    "value": "{fg.muted}",
-    "type": "color"
-  },
-  "border": {
-    "value": "{fg.border}",
+    "value": "{palette.fg.muted}",
     "type": "color"
   },
   "shadow": {
-    "value": "{fg.shadow}",
+    "value": "{palette.fg.shadow}",
+    "type": "color"
+  },
+  "border": {
+    "value": "{palette.fg.border}",
+    "type": "color"
+  },
+  "primary": {
+    "value": "{palette.primary.accent}",
     "type": "color"
   },
   "disabled": {
     "background": {
-      "value": "rgba({fg.default}, {opacity.3})",
+      "value": "rgba({palette.fg.default}, {opacity.3})",
       "type": "color"
     },
     "foreground": {
-      "value": "rgba({fg.default}, {opacity.7})",
+      "value": "rgba({palette.fg.default}, {opacity.7})",
       "type": "color"
     }
   },
@@ -63,7 +67,7 @@
     "shadow": {
       "value": [
         {
-          "color": "rgba({fg.shadow}, 3%)",
+          "color": "rgba( {shadow}, 3%)",
           "type": "dropShadow",
           "x": "0",
           "y": "0.6577699184417725",
@@ -71,7 +75,7 @@
           "spread": "0"
         },
         {
-          "color": "rgba({fg.shadow}, 5%)",
+          "color": "rgba({shadow}, 5%)",
           "type": "dropShadow",
           "x": "0",
           "y": "1.4945039749145508",
@@ -79,7 +83,7 @@
           "spread": "0"
         },
         {
-          "color": "rgba({fg.shadow}, 6%)",
+          "color": "rgba({shadow}, 6%)",
           "type": "dropShadow",
           "x": "0",
           "y": "2.6011178493499756",
@@ -87,7 +91,7 @@
           "spread": "0"
         },
         {
-          "color": "rgba({fg.shadow}, 6%)",
+          "color": "rgba({shadow}, 6%)",
           "type": "dropShadow",
           "x": "0",
           "y": "4.1321120262146",
@@ -95,7 +99,7 @@
           "spread": "0"
         },
         {
-          "color": "rgba({fg.shadow}, 7%)",
+          "color": "rgba({shadow}, 7%)",
           "type": "dropShadow",
           "x": "0",
           "y": "6.375542163848877",
@@ -103,7 +107,7 @@
           "spread": "0"
         },
         {
-          "color": "rgba({fg.shadow}, 8%)",
+          "color": "rgba({shadow}, 8%)",
           "type": "dropShadow",
           "x": "0",
           "y": "9.94853401184082",
@@ -111,7 +115,7 @@
           "spread": "0"
         },
         {
-          "color": "rgba({fg.shadow}, 10%)",
+          "color": "rgba({shadow}, 10%)",
           "type": "dropShadow",
           "x": "0",
           "y": "16.51611328125",
@@ -119,7 +123,7 @@
           "spread": "0"
         },
         {
-          "color": "rgba({fg.shadow}, 13%)",
+          "color": "rgba({shadow}, 13%)",
           "type": "dropShadow",
           "x": "0",
           "y": "33",
@@ -150,31 +154,31 @@
     "default": {
       "neutral": {
         "bg": {
-          "value": "{inv.bg.muted}",
+          "value": "{palette.neutral.accent}",
           "type": "color"
         },
         "fg": {
-          "value": "{inv.fg.default}",
+          "value": "{palette.neutral.on-accent}",
           "type": "color"
         }
       },
       "primary": {
         "bg": {
-          "value": "{primary.accent}",
+          "value": "{palette.primary.accent}",
           "type": "color"
         },
         "fg": {
-          "value": "{primary.on-accent}",
+          "value": "{palette.primary.on-accent}",
           "type": "color"
         }
       },
       "primary-alt": {
         "bg": {
-          "value": "{primary.background}",
+          "value": "{palette.primary.background}",
           "type": "color"
         },
         "fg": {
-          "value": "{primary.on-background}",
+          "value": "{palette.primary.on-background}",
           "type": "color"
         }
       }
@@ -297,11 +301,11 @@
       },
       "primary": {
         "bg": {
-          "value": "rgba({primary.accent}, 0%)",
+          "value": "rgba({palette.primary.accent}, 0%)",
           "type": "color"
         },
         "fg": {
-          "value": "{ref.purple.400}",
+          "value": "{palette.primary.accent}",
           "type": "color"
         }
       }
