@@ -4,10 +4,10 @@
     "name": "light",
     "selectedTokenSets": {
       "global": "source",
-      "colors/bright": "enabled",
       "palette/light": "enabled",
       "theme": "enabled",
-      "syntax-theme": "enabled"
+      "syntax-theme": "enabled",
+      "colors": "enabled"
     },
     "$figmaStyleReferences": {
       "primary.accent": "S:4c7026b2e43bebaf69031790cbceae7849bc62ec,",
@@ -166,7 +166,7 @@
       "palette/light": "enabled",
       "theme": "enabled",
       "syntax-theme": "enabled",
-      "colors/pale": "enabled"
+      "colors": "disabled"
     },
     "$figmaStyleReferences": {
       "primary.accent": "S:4c7026b2e43bebaf69031790cbceae7849bc62ec,",
@@ -297,10 +297,10 @@
     "name": "dark",
     "selectedTokenSets": {
       "global": "source",
-      "colors/bright": "enabled",
       "palette/dark": "enabled",
       "theme": "enabled",
-      "syntax-theme": "enabled"
+      "syntax-theme": "enabled",
+      "colors": "enabled"
     },
     "$figmaStyleReferences": {
       "primary.accent": "S:4c7026b2e43bebaf69031790cbceae7849bc62ec,",
@@ -375,7 +375,7 @@
       "palette/dark": "enabled",
       "theme": "enabled",
       "syntax-theme": "enabled",
-      "colors/pale": "enabled"
+      "colors": "disabled"
     },
     "$figmaStyleReferences": {
       "primary.accent": "S:4c7026b2e43bebaf69031790cbceae7849bc62ec,",
