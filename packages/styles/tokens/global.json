@@ -224,5 +224,23 @@
       "value": "2rem",
       "type": "dimension"
     }
+  },
+  "state-layer": {
+    "default": {
+      "value": "{opacity.0}",
+      "type": "opacity"
+    },
+    "hover": {
+      "value": "{opacity.1}",
+      "type": "opacity"
+    },
+    "active": {
+      "value": "{opacity.3}",
+      "type": "opacity"
+    },
+    "selected": {
+      "value": "{opacity.2}",
+      "type": "opacity"
+    }
   }
 }
