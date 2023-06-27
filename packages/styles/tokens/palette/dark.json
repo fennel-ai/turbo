@@ -107,34 +107,30 @@
         "value": "{ref.grey.90}",
         "type": "color"
       }
-    },
-    "bg": {
-      "default": {
-        "value": "{ref.grey.10}",
-        "type": "color"
-      },
-      "muted": {
-        "value": "{ref.grey.5}",
-        "type": "color"
-      }
-    },
-    "fg": {
-      "default": {
-        "value": "{ref.purple.90}",
-        "type": "color"
-      },
-      "muted": {
-        "value": "{ref.purple.80}",
-        "type": "color"
-      },
-      "border": {
-        "value": "rgba({palette.fg.default}, 0.6)",
-        "type": "color"
-      },
-      "shadow": {
-        "value": "{ref.black}",
-        "type": "color"
-      }
     }
+  },
+  "surface": {
+    "value": "{ref.grey.10}",
+    "type": "color"
+  },
+  "background": {
+    "value": "{ref.grey.5}",
+    "type": "color"
+  },
+  "on": {
+    "value": "{ref.purple.90}",
+    "type": "color"
+  },
+  "on_alt": {
+    "value": "{ref.purple.80}",
+    "type": "color"
+  },
+  "border": {
+    "value": "rgba({on}, 0.06)",
+    "type": "color"
+  },
+  "shadow": {
+    "value": "{ref.black}",
+    "type": "color"
   }
 }
