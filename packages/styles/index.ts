@@ -24,6 +24,30 @@ type ThemeAccentPalette = {
 	'on-background': string,
 }
 
+
+type ThemePalette = {
+	bg: {
+		default: string,
+		muted: string,
+	},
+	fg: {
+		border: string,
+		default: string,
+		muted: string,
+		shadow: string,
+	},
+	disabled: {
+		background: string,
+		foreground: string,
+	},
+	primary: ThemeAccentPalette,
+	secondary: ThemeAccentPalette,
+	caution: ThemeAccentPalette,
+	error: ThemeAccentPalette,
+	success: ThemeAccentPalette,
+	neutral: ThemeAccentPalette,
+};
+
 type TypographyValue = {
 	fontFamily?: string,
 	fontSize?: string,
@@ -137,33 +161,8 @@ export type Theme = {
 		backgroundBlur: string,
 		fill: string,
 	},
+	palette: ThemePalette,
 	ref: RefColors,
-	bg: {
-		default: string,
-		muted: string,
-	},
-	fg: {
-		border: string,
-		default: string,
-		muted: string,
-		shadow: string,
-	},
-	inv: {
-		bg: {
-			default: string,
-			muted: string,
-		},
-		fg: {
-			border: string,
-			default: string,
-			muted: string,
-			shadow: string,
-		},
-	}
-	disabled: {
-		background: string,
-		foreground: string,
-	},
 	syntax: SyntaxTheme,
 	background: string,
 	surface: string,
@@ -171,11 +170,6 @@ export type Theme = {
 	'text-alt': string,
 	border: string,
 	shadow: string,
-	primary: ThemeAccentPalette,
-	secondary: ThemeAccentPalette,
-	error: ThemeAccentPalette,
-	caution: ThemeAccentPalette,
-	success: ThemeAccentPalette
 	'icon-button': {
 		radius: string,
 	},
