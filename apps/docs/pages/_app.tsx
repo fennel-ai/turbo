@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
 
-import theme from 'styles';
+import * as themes from 'styles';
 import 'styles/index.css';
 import "@docsearch/css";
 
@@ -110,7 +110,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<noscript>
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>
-				<ThemeProvider theme={theme}>
+				<ThemeProvider theme={themes.light}>
 					<Component {...pageProps} />
 					<Toaster position="bottom-left" toastOptions={toastOptions} />
 				</ThemeProvider>
