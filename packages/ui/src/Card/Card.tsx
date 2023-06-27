@@ -1,12 +1,20 @@
 import { ForwardedRef, HTMLAttributes, PropsWithChildren, StyleHTMLAttributes, forwardRef } from 'react';
-import clsx from 'clsx';
-import styles from './Card.module.scss';
+import styled from '@emotion/styled';
+import { rgba } from 'styles/utils';
+
+export const Root = styled.div`
+	background-color: ${({ theme }) => rgba(theme.surface, 0.85)};
+	backdrop-filter: blur(1rem); 
+	border-radius: 1.5rem;
+	display: flex;
+	flex-direction: column;
+`;
 
 export const Card = forwardRef(({ className, children, style }: PropsWithChildren<HTMLAttributes<HTMLDivElement>>, ref: ForwardedRef<HTMLDivElement>) => {
 	return (
-		<div className={clsx(styles.root, className)} ref={ref} style={style}>
+		<Root className={className} ref={ref} style={style}>
 			{children}
-		</div>
+		</Root>
 	);
 });
 
