@@ -1,4 +1,5 @@
-import tokens from './build/light.json';
+import lightTokens from './build/light.json';
+import darkTokens from './build/dark.json';
 
 type ColorScale = {
 	'0'?: string,
@@ -194,16 +195,21 @@ export type Theme = {
 	},
 }
 
-const theme: Theme = {
-	breakpoints: {
-		'2xs': 25, // 400px
-		xs: 40, // 640px
-		sm: 48, // 768px
-		md: 62, // 992px
-		lg: 67.5, // 1200px
-		xl: 96, // 1304px (1240+ 32 padding on each side)
-	},
-	...tokens,
+const breakpoints = {
+	'2xs': 25, // 400px
+	xs: 40, // 640px
+	sm: 48, // 768px
+	md: 62, // 992px
+	lg: 67.5, // 1200px
+	xl: 96, // 1304px (1240+ 32 padding on each side)
 }
 
-export default theme
+export const light: Theme = {
+	breakpoints,
+	...lightTokens,
+}
+
+export const dark: Theme = {
+	breakpoints,
+	...darkTokens
+}
