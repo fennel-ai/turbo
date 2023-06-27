@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Card, LinkButton, Marquee, TitleBlock } from 'ui';
+import { Card, PillButton, Marquee, TitleBlock } from 'ui';
 
 import GrpcLogo from 'ui/icons/technologies/grpc.svg';
 import KafkaLogo from 'ui/icons/technologies/kafka.svg';
@@ -111,7 +111,7 @@ const ArchitectedWithLove = () => {
 					</p>
 				</TechCard>
 			</Marquee>
-			<LinkButton>Explore the Architecture</LinkButton>
+			<PillButton>Explore the Architecture</PillButton>
 		</Root>
 	);
 };

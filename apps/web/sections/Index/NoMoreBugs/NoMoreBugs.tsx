@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { media } from 'styles/utils';
-import { LinkButton, TextBlock, TitleBlock } from "ui";
+import { PillButton, TextBlock, TitleBlock } from "ui";
 import { useScrollProgress } from 'hooks';
 import { motion, useTransform } from 'framer-motion';
 import BeakerIcon from 'ui/icons/beaker-01.svg';
@@ -27,7 +27,7 @@ const Grid = styled.div`
 	}
 `;
 
-const CTAButton = styled(LinkButton)`
+const CTAButton = styled(PillButton)`
 	align-self: center;
 
 	${media('sm')} {

@@ -1,3 +1,4 @@
+import { FunctionInterpolation, css } from '@emotion/react';
 import type { Breakpoint, Theme } from './index';
 import tinycolor from 'tinycolor2';
 
@@ -45,3 +46,25 @@ export const rgba = (color: string, alpha: number) => {
 export const accessibility = (color: string, on_color: string, size: 'small' | 'large' = 'small') => {
 	return tinycolor.isReadable(color, on_color, { level: "AA", size });
 }
+
+export const stateLayer = (initial_alpha: number = 0, color: string = "currentColor"): FunctionInterpolation<any> => 
+	() => css`
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background-color: ${color};
+			opacity: ${initial_alpha};
+			z-index: -1;
+		}
+
+		&:hover::before {
+			opacity: ${initial_alpha + 0.04};
+		}
+		
+		&:active::before {
+			opacity: ${initial_alpha + 0.08};
+		}
+	`;

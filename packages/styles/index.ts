@@ -2,51 +2,25 @@ import lightTokens from './build/light.json';
 import darkTokens from './build/dark.json';
 
 type ColorScale = {
-	'0'?: string,
-	'100': string,
-	'200': string,
-	'300': string,
-	'400': string,
-	'500': string,
-	'600': string,
-	'700': string,
-	'800': string,
-	'900': string,
-	'1000'?: string,
+	'5': string,
+	'10': string,
+	'20': string,
+	'30': string,
+	'40': string,
+	'50': string,
+	'60': string,
+	'70': string,
+	'80': string,
+	'90': string,
+	'95': string,
 };
 
 type RefColors = Record<string, ColorScale | string>;
 
 type ThemeAccentPalette = {
 	accent: string,
-	'on-accent': string,
-	background: string, 
-	'on-background': string,
+	on: string,
 }
-
-
-type ThemePalette = {
-	bg: {
-		default: string,
-		muted: string,
-	},
-	fg: {
-		border: string,
-		default: string,
-		muted: string,
-		shadow: string,
-	},
-	disabled: {
-		background: string,
-		foreground: string,
-	},
-	primary: ThemeAccentPalette,
-	secondary: ThemeAccentPalette,
-	caution: ThemeAccentPalette,
-	error: ThemeAccentPalette,
-	success: ThemeAccentPalette,
-	neutral: ThemeAccentPalette,
-};
 
 type TypographyValue = {
 	fontFamily?: string,
@@ -103,47 +77,7 @@ export type Breakpoint = "2xs" | "xs" | "sm" | "md" | "lg" | "xl";
 
 export type Theme = {
 	base: string,
-	button: {
-		default: {
-			neutral: {
-				bg: string,
-				fg: string
-			},
-			primary: {
-				bg: string
-				fg: string
-			},
-			"primary-alt": {
-				bg: string
-				fg: string
-			}
-		},
-		flat: {
-			neutral: {
-				bg: string,
-				fg: string
-			},
-			primary: {
-				bg: string
-				fg: string
-			},
-		},
-		neutral: {
-			shadow: string
-		},
-		pill: {
-			radius: string
-		},
-		primary: {
-			shadow: string
-		},
-		"primary-alt": {
-			shadow: string
-		},
-		rounded: {
-			radius: string
-		}
-	},
+	inverted_theme: string,
 	breakpoints: Record<Breakpoint, number>, // Breakpoints are a map of size name to rem value representing the screen width of that breakpoint.
 	fontFamilies: {
 		code: string,
@@ -157,24 +91,31 @@ export type Theme = {
 		bold: string, 
 		extrabold: string,
 	},
-	glass: {
-		backgroundBlur: string,
-		fill: string,
-	},
-	palette: ThemePalette,
-	ref: RefColors,
 	syntax: SyntaxTheme,
-	background: string,
-	surface: string,
-	text: string,
-	'text-alt': string,
-	border: string,
-	shadow: string,
-	'icon-button': {
-		radius: string,
-	},
-	radii: Record<string, string>,
+	ref: RefColors,
+	
+	background: string;
+	surface: string;
+	on: string;
+	on_alt: string;
+	border: string;
+	shadow: string;
+	primary: ThemeAccentPalette,
+	secondary: ThemeAccentPalette,
+	caution: ThemeAccentPalette,
+	error: ThemeAccentPalette,
+	success: ThemeAccentPalette,
+	neutral: ThemeAccentPalette,
+
 	opacity: Record<string, string>,
+	radii: Record<string, string>,
+	typescale: Record<string, string>,
+	'state-layer': {
+		default: string;
+		hover: string;
+		active: string;
+		selected: string;
+	},
 	'code-block': {
 		filename: {
 			color: string,
@@ -200,10 +141,12 @@ const breakpoints = {
 
 export const light: Theme = {
 	breakpoints,
+	inverted_theme: 'dark',
 	...lightTokens,
 }
 
 export const dark: Theme = {
 	breakpoints,
+	inverted_theme: 'light',
 	...darkTokens
 }

@@ -1,4 +1,4 @@
-import { IconPuck, LinkButton, TitleBlock } from 'ui';
+import { IconPuck, PillButton, TitleBlock } from 'ui';
 import ChartBreakoutIcon from 'ui/icons/chart-breakout-circle.svg';
 import ShieldIcon from 'ui/icons/shield-03.svg';
 import PiggyBankIcon from 'ui/icons/piggy-bank-01.svg';
@@ -27,7 +27,7 @@ const HassleFreeScaling = () => {
 							<p>Scale to billions of feature queries without lifting a finger.</p>
 						</div>
 						<Link href="https://fennel.ai/docs/architecture/overview/">
-							<LinkButton>Learn More</LinkButton>
+							<PillButton>Learn More</PillButton>
 						</Link>
 					</div>
 					<div className={styles.cell}>
@@ -39,7 +39,7 @@ const HassleFreeScaling = () => {
 							<p>SOC2-compliant deployment inside your VPC.</p>
 						</div>
 						<Link href="https://fennel.ai/docs/architecture/privacy-security/">
-							<LinkButton>Learn More</LinkButton>
+							<PillButton>Learn More</PillButton>
 						</Link>
 					</div>
 					<div className={styles.cell}>
@@ -51,7 +51,7 @@ const HassleFreeScaling = () => {
 							<p>Lower cloud cost for the same workload & performance.</p>
 						</div>
 						<Link href="https://fennel.ai/docs/architecture/cost-optimizations/">
-							<LinkButton>Learn More</LinkButton>
+							<PillButton>Learn More</PillButton>
 						</Link>
 					</div>
 				</div>

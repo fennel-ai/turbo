@@ -1,6 +1,6 @@
 import React from 'react';
 import type { DecoratorFn } from '@storybook/react';
-import { ThemeProvider } from "@emotion/react";
+import { Global, ThemeProvider, css } from "@emotion/react";
 import * as themes from "styles";
 
 import "styles/index.css";
@@ -29,16 +29,23 @@ export const globalTypes = {
 				{ value: 'dark', icon: 'circle', title: 'dark' },
 			],
 			// Property that specifies if the name of the item will be displayed
-			showName: true,
+			title: "Theme",
 		},
 	}
 };
+
+const globalStyles = (theme) => css`
+	body {
+		background-color: ${theme.background}
+	}
+`;
 
 const withTheme: DecoratorFn = (StoryFn, ctx) => {
 	const { theme } = ctx.globals;
 	return (
 		<ThemeProvider theme={themes[theme]}>
 			<StoryFn />
+			<Global styles={globalStyles} />
 		</ThemeProvider>
 	)
 }

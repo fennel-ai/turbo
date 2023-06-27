@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { LinkButton, Syntax } from 'ui';
+import { PillButton, Syntax } from 'ui';
 import { AnimatePresence, motion } from 'framer-motion';
 import styles from './Diagram.module.scss';
 import useResizeObserver from 'use-resize-observer';
@@ -300,7 +300,7 @@ const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
 					) : null
 				}
 			</AnimatePresence>
-			<LinkButton icon={null} className={clsx(styles.show_code, styles[showCode ? 'show_code_shown' : 'show_code_hidden'])} color="invert" onClick={onShowCode}>{showCode ? 'Hide' : 'Show'} Code</LinkButton>
+			<PillButton icon={null} className={clsx(styles.show_code, styles[showCode ? 'show_code_shown' : 'show_code_hidden'])} color="invert" onClick={onShowCode}>{showCode ? 'Hide' : 'Show'} Code</PillButton>
 		</div>
 	)
 }

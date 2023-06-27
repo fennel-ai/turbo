@@ -22,7 +22,7 @@ const Root = styled.div`
 		white-space: pre;
 		word-spacing: normal;
 		word-break: normal;
-		${({ theme }) => theme['code-block'].snippet.code};
+		${({ theme }) => theme.syntax.code};
 
 		-moz-tab-size: 4;
 		-o-tab-size: 4;
@@ -43,7 +43,7 @@ const Root = styled.div`
 	}
 
 	pre ::selection {
-		background: rgb(${({ theme }) => theme.ref.grey['300']});
+		background: rgb(${({ theme }) => theme.ref.grey['30']});
 	}
 
 	:not(pre)>code[class*="language-"],
@@ -65,7 +65,7 @@ const Root = styled.div`
 	}
 
 	.linenumber {
-		${({ theme }) => theme['code-block'].snippet['line-number']};
+		${({ theme }) => theme.syntax['line-number']};
 		pointer-events: none;
 		text-align: right;
 		user-select: none;

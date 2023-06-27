@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence } from 'framer-motion';
-import { IconButton, LinkButton } from 'ui';
+import { IconButton, PillButton } from 'ui';
 import { useRouter } from 'next/router';
 import { Masthead } from 'ui';
 import styles from './Header.module.scss';
@@ -46,13 +46,13 @@ export const Header = () => {
 				</div>
 				<div className={styles.actions}>
 					<Link href="/get-a-demo">
-						<LinkButton
+						<PillButton
 							icon={null}
+							invert
 							size="large"
-							color="invert"
 						>
 							Request a Demo
-						</LinkButton>
+						</PillButton>
 					</Link>
 					<IconButton 
 						className={styles.menu_button}

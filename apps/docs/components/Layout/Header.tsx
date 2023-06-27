@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useRef } from 'react';
 import { media } from 'styles/utils';
-import { IconButton, LinkButton, Masthead } from 'ui';
+import { IconButton, PillButton, Masthead } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
 import Container from 'components/Container';
@@ -75,7 +75,7 @@ const SearchButton = styled(IconButton)`
 	}
 `;
 
-const DemoButton = styled(LinkButton)`
+const DemoButton = styled(PillButton)`
 	display: none;
 
 	${media('sm')} {
