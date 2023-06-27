@@ -62,7 +62,7 @@ const HowItWorks = () => {
 		<Root data-section>
 			<Wrapper>
 				<TitleWrapper>
-					<TitleBlock align="center">
+					<TitleBlock center>
 						<h6>How it works</h6>
 						<h2>Read & Write Path Separation</h2>
 						<p>The right abstraction for realtime feature engineering</p>

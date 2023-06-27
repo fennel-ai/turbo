@@ -13,7 +13,7 @@ const HassleFreeScaling = () => {
 		<div className={styles.root} data-section>
 			<div className={styles.background} />
 			<Container className={styles.container}>
-				<TitleBlock align="center">
+				<TitleBlock center>
 					<h6>Enterprise-Grade Performance</h6>
 					<h2>Hassle-free Scaling</h2>
 				</TitleBlock>

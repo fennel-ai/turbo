@@ -59,7 +59,7 @@ const ShipFaster = () => {
 				</ConsoleImg>
 			}
 		>
-			<TitleBlock align="left">
+			<TitleBlock>
 				<h6>Incredibly easy to install & use</h6>
 				<h2>Ship Features 100x Faster. <br /> Yes, 100x!</h2>
 			</TitleBlock>

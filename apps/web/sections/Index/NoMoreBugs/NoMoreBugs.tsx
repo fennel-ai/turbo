@@ -73,7 +73,7 @@ const NoMoreBugs = () => {
 				</ExpectationsImg>
 			}
 		>
-			<TitleBlock align="left">
+			<TitleBlock>
 				<h6>Best-in-class data quality tooling</h6>
 				<h2>No more feature or data bugs</h2>
 			</TitleBlock>

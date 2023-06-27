@@ -12,7 +12,7 @@ const Angels = () => {
 			<Container className={styles.container}>
 				<div className={styles.content}>
 					<TitleBlock
-						align="center"
+						center
 					>
 						<h2>Backed by Top VCs & Angels</h2>
 					</TitleBlock>

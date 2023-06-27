@@ -56,7 +56,7 @@ const ArchitectedWithLove = () => {
 	return (
 		<Root>
 			<Wrapper>
-				<TitleBlock align="center">
+				<TitleBlock center>
 					<h6>Craftsman-like passion for Developer Experience</h6>
 					<h2>Architected with Love</h2>
 				</TitleBlock>

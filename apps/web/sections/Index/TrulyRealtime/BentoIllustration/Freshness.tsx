@@ -40,7 +40,7 @@ export const Freshness = () => (
 			</motion.svg>
 		</Illustration>
 		<Sparkles>
-			<TitleBlock align="center">
+			<TitleBlock center>
 				<h6>No more stale data</h6>
 				<h3>Sub-second Feature Freshness</h3>
 			</TitleBlock>

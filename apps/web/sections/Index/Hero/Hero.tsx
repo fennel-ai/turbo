@@ -11,7 +11,7 @@ const Hero = () => {
 			<Container className={styles.wrapper}>
 				<div className={styles.content}>
 					<TitleBlock 
-						align="center"
+						center
 						actions={[
 							<Link href="https://fennel.ai/docs">
 								<Button label="Read the Documentation" color="primary" />

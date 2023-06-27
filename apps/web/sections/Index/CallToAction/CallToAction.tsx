@@ -49,9 +49,7 @@ const CallToAction = () => {
 			</div>
 			<Container className={styles.wrapper}>
 				<div className={styles.title_wrapper}>
-					<TitleBlock
-						align="center"
-					>
+					<TitleBlock center>
 						<h2>Experience the slickest feature engineering workflow</h2>
 					</TitleBlock>
 					<Button color="primary" label="Request a Demo" onClick={() => router.push('/get-a-demo')} />

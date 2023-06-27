@@ -10,7 +10,7 @@ const Hero = () => {
 			<Container className={styles.wrapper}>
 				<div className={styles.content}>
 					<TitleBlock 
-						align="center"
+						center
 					>
 						<h1>Built by the creators of ML Infrastructure at Facebook.</h1>
 						<div className={styles.intro_text}>

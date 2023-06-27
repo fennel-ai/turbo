@@ -53,7 +53,6 @@ const TrulyRealtime = () => {
 				<Content>
 					<div>
 						<TitleBlock
-							align="left"
 							actions={[
 								<Link href="https://fennel.ai/docs/concepts/pipeline/">
 									<PillButton>

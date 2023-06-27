@@ -22,7 +22,7 @@ const Hero = () => {
 			<Container className={styles.wrapper}>
 				<div className={styles.content}>
 					<TitleBlock 
-						align="center"
+						center
 					>
 						<h1>Experience the Fastest ML Workflow</h1>
 						<div className={styles.intro_text}>
