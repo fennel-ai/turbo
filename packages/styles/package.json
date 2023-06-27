@@ -5,8 +5,6 @@
 	"types": "./index.ts",
 	"license": "MIT",
 	"scripts": {
-		"build": "./figtok --format json",
-		"dev": "./figtok --format json",
 		"lint": "eslint *.ts*"
 	},
 	"peerDependencies": {
