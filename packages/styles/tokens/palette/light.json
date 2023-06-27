@@ -51,11 +51,11 @@
   },
   "neutral": {
     "accent": {
-      "value": "{ref.grey.10}",
+      "value": "{ref.purple.5}",
       "type": "color"
     },
-    "on-accent": {
-      "value": "{ref.grey.95}",
+    "on": {
+      "value": "{ref.purple.90}",
       "type": "color"
     }
   },
