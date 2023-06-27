@@ -5,6 +5,7 @@
     "palette/light",
     "palette/dark",
     "theme",
-    "syntax-theme"
+    "syntax-theme",
+    "colors-old"
   ]
 }
