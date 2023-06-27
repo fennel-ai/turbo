@@ -11,8 +11,8 @@ const Root = styled.div`
 // TODO - Update the typescript definition for the theme.
 const Bubble = styled.div`
 	border-radius: 0.375rem;
-	background-color: ${({ theme }) => theme.palette.neutral.accent};
-	color: ${({ theme }) => theme.palette.neutral['on-accent']};
+	background-color: ${({ theme }) => theme.neutral.accent};
+	color: ${({ theme }) => theme.neutral.on};
 	display: flex;
 	align-items: center;
 	justify-content: center;

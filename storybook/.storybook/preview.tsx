@@ -36,7 +36,8 @@ export const globalTypes = {
 
 const globalStyles = (theme) => css`
 	body {
-		background-color: ${theme.background}
+		background-color: ${theme.background};
+		color: ${theme.on};
 	}
 `;
 
