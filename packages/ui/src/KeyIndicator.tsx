@@ -8,11 +8,11 @@ const Root = styled.div`
 	user-select: none;
 	pointer-events: none;
 `;
-
+// TODO - Update the typescript definition for the theme.
 const Bubble = styled.div`
 	border-radius: 0.375rem;
-	background-color: ${({ theme }) => theme.inv.bg.muted};
-	color: ${({ theme }) => theme.inv.fg.default};
+	background-color: ${({ theme }) => theme.palette.neutral.accent};
+	color: ${({ theme }) => theme.palette.neutral['on-accent']};
 	display: flex;
 	align-items: center;
 	justify-content: center;

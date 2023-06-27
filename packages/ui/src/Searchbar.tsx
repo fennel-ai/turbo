@@ -2,6 +2,7 @@ import { forwardRef, MouseEventHandler } from 'react';
 import styled from '@emotion/styled';
 import SearchIcon from '../icons/search.svg';
 import { KeyIndicator } from './KeyIndicator';
+import { rgba } from 'styles/utils';
 
 const Root = styled.button`
 	position: relative;
@@ -13,8 +14,8 @@ const Root = styled.button`
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.75rem;
-	background-color: rgba(${({ theme }) => theme.ref.grey['100']}, 2%);
-	border: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	background-color: ${({ theme }) => rgba(theme.text, 0.04)};
+	box-shadow: 0px 0px 0px 1px ${({ theme }) => rgba(theme.text, 0.06)};
 	cursor: pointer;
 	overflow: hidden;
 
