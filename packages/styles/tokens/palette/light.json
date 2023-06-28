@@ -15,7 +15,7 @@
       "type": "color"
     },
     "on": {
-      "value": "{ref.white}",
+      "value": "{ref.blue.95}",
       "type": "color"
     }
   },
@@ -25,7 +25,7 @@
       "type": "color"
     },
     "on": {
-      "value": "{ref.white}",
+      "value": "{ref.red.95}",
       "type": "color"
     }
   },
@@ -35,7 +35,7 @@
       "type": "color"
     },
     "on": {
-      "value": "{ref.white}",
+      "value": "{ref.yellow.95}",
       "type": "color"
     }
   },
@@ -45,13 +45,13 @@
       "type": "color"
     },
     "on": {
-      "value": "{ref.white}",
+      "value": "{ref.green.95}",
       "type": "color"
     }
   },
   "neutral": {
     "accent": {
-      "value": "{ref.purple.5}",
+      "value": "{ref.grey.5}",
       "type": "color"
     },
     "on": {
@@ -68,11 +68,11 @@
     "type": "color"
   },
   "on": {
-    "value": "{ref.purple.5}",
+    "value": "{neutral.accent}",
     "type": "color"
   },
   "on_alt": {
-    "value": "{ref.purple.10}",
+    "value": "rgba({on}, 0.8)",
     "type": "color"
   },
   "border": {
@@ -80,7 +80,7 @@
     "type": "color"
   },
   "shadow": {
-    "value": "{ref.purple.10}",
+    "value": "{ref.grey.30}",
     "type": "color"
   }
 }
