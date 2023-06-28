@@ -35,19 +35,39 @@ const Template: ComponentStory<typeof TitleBlock> = (args) => (
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-	align: 'left',
-	size: 'default',
-	subtitle: "Redfine your ML & Data Ops",
-	title: "Feature Engineering for Modern Data Scientists",
-	text: "Enterprise-grade ML infrastructure for teams of all sizes. Fennel is a feature engineering platform designed to help you store, serve, discover and scale with ease."
+	center: false,
+	children: (
+		<>
+			<h6>Redefine your ML ops</h6>
+			<h2>Realtime Feature Platform. Beautifully Built.</h2>
+			<p>Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features.</p>
+		</>
+	)
 };
 
 export const Large = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Large.args = {
-	size: 'large',
-	subtitle: "Redfine your ML & Data Ops",
-	title: "Feature Engineering for Modern Data Scientists",
-	text: "Enterprise-grade ML infrastructure for teams of all sizes. Fennel is a feature engineering platform designed to help you store, serve, discover and scale with ease."
+	center: true,
+	children: (
+		<>
+			<h6>Redefine your ML ops</h6>
+			<h1>Realtime Feature Platform. Beautifully Built.</h1>
+			<p>Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features.</p>
+		</>
+	)
+};
+
+export const Small = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Small.args = {
+	center: true,
+	children: (
+		<>
+			<h6>Redefine your ML ops</h6>
+			<h3>Realtime Feature Platform. Beautifully Built.</h3>
+			<p>Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features.</p>
+		</>
+	)
 };
 
