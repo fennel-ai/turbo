@@ -1,7 +1,7 @@
 {
   "primary": {
     "accent": {
-      "value": "{ref.purple.70}",
+      "value": "{ref.purple.60}",
       "type": "color"
     },
     "on": {
@@ -11,7 +11,7 @@
   },
   "secondary": {
     "accent": {
-      "value": "{ref.blue.70}",
+      "value": "{ref.blue.60}",
       "type": "color"
     },
     "on": {
@@ -21,7 +21,7 @@
   },
   "error": {
     "accent": {
-      "value": "{ref.red.70}",
+      "value": "{ref.red.60}",
       "type": "color"
     },
     "on": {
@@ -41,7 +41,7 @@
   },
   "success": {
     "accent": {
-      "value": "{ref.green.70}",
+      "value": "{ref.green.60}",
       "type": "color"
     },
     "on": {
