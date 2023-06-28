@@ -1,14 +1,137 @@
 import { useEffect, useState } from 'react';
+import styled from '@emotion/styled';
 import Link from 'next/link';
-import { AnimatePresence } from 'framer-motion';
-import { IconButton, PillButton } from 'ui';
 import { useRouter } from 'next/router';
-import { Masthead } from 'ui';
+import { AnimatePresence } from 'framer-motion';
+import { Masthead, IconButton, PillButton, Container } from 'ui';
+import { media, rgba } from 'styles/utils';
+
 import styles from './Header.module.scss';
 
 import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
 import { MobileMenu } from './MobileMenu';
+
+const Root = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	z-index: 9;
+	transition: background 400ms ease 0s;
+	background-color: linear-gradient(to bottom, ${({ theme }) => theme.surface}, ${({ theme }) => rgba(theme.surface, 0)} 3rem);
+	color: ${({ theme }) => theme.surface};
+	
+	${media('md')} {
+		height: 4.5rem;
+		background-color: linear-gradient(to bottom, ${({ theme }) => theme.surface}, ${({ theme }) => rgba(theme.surface, 0)} 4.5rem);
+	}
+`;
+
+const Backdrop = styled.div`
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		inset: -1px 0px -60%;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	&::before {
+		backdrop-filter: blur(20px);
+		-webkit-mask-image: linear-gradient(to bottom, black 3rem, transparent);
+		mask-image: linear-gradient(to bottom, black 3rem, transparent);
+
+		${media('md')} {
+			-webkit-mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
+			mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
+		}
+	}
+`;
+
+const Wrapper = styled.nav`
+	position: relative;
+	z-index: 1;
+	flex: 1;
+	width: 100%;
+	height: 100%;
+	max-width: 86.5rem;
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	${media('2xs')} {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+
+	${media('md')} {
+		padding-left: 3rem; 
+		padding-right: 3rem;
+	}
+`;
+
+const Brand = styled(Masthead)`
+	& svg {
+		color: ${({ theme }) => theme.primary.accent};
+	}
+
+	& h2 {
+		color: ${({ theme }) => theme.on};
+	}
+`;
+
+const Actions = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+`;
+
+const Menu = styled.div`
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	align-items: center;
+	gap: 2rem;
+
+	${media('md')} {
+		display: flex;
+	}
+`;
+
+const MenuButton = styled(IconButton)`
+	display: flex;
+	color: ${({ theme }) => theme.on_alt};
+
+	${media('md')} {
+		display: none;
+	}
+`;
+
+const Border = styled(Container)`
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+
+	& > div {
+		width: 100%;
+		height: 100%;
+		background-color: ${({ theme }) => theme.border};
+	}
+`;
 
 export const Header = () => {
 	const router = useRouter();
@@ -21,13 +144,13 @@ export const Header = () => {
 	}, [router.pathname]);
 
 	return (
-		<header data-header className={styles.root}>
-			<div className={styles.backdrop} />
-			<nav>
+		<Root data-header className={styles.root}>
+			<Backdrop />
+			<Wrapper>
 				<Link href="/">
-					<Masthead className={styles.brand} />
+					<Brand />
 				</Link>
-				<div className={styles.menu}>
+				<Menu>
 					<Link href="/company">
 						<button className={styles.nav_button}>
 							Company
@@ -43,8 +166,8 @@ export const Header = () => {
 							Documentation
 						</button>
 					</Link>
-				</div>
-				<div className={styles.actions}>
+				</Menu>
+				<Actions>
 					<Link href="/get-a-demo">
 						<PillButton
 							icon={null}
@@ -54,21 +177,20 @@ export const Header = () => {
 							Request a Demo
 						</PillButton>
 					</Link>
-					<IconButton 
-						className={styles.menu_button}
+					<MenuButton 
 						icon={showMobileMenu ? CloseIcon : MenuIcon}
 						onClick={() => toggleMobileMenu(prev => !prev)}
 					/>
-				</div>
-			</nav>
-			<div className={styles.border}>
+				</Actions>
+			</Wrapper>
+			<Border>
 				<div />
-			</div>
+			</Border>
 			<AnimatePresence>
 				{
 					showMobileMenu ? <MobileMenu /> : null
 				}
 			</AnimatePresence>
-		</header>
+		</Root>
 	);
 };
