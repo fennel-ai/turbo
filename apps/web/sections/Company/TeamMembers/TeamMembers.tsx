@@ -1,34 +1,43 @@
-import { MouseEventHandler, useRef } from 'react';
 import { Container } from "ui";
+import styled from '@emotion/styled';
 import { TeamMember } from './TeamMember';
-import styles from './TeamMembers.module.scss';
+import { media } from 'styles/utils';
 
+const Root = styled.div`
+	padding: 5rem 0;
+	background-color: ${({ theme }) => theme.surface};
+`;
 
-const TeamMembers = () => {
-	const el = useRef<HTMLDivElement>(null);
+const Wrapper = styled(Container)`
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: 0rem;
 
-	const handleMouseMove: MouseEventHandler<HTMLDivElement> = (e) => {
-		if (el.current) {
-			el.current.style.setProperty('--mouse-x', `${e.pageX}`);
-			el.current.style.setProperty('--mouse-y', `${e.pageY}`);
-		}
+	${media('sm')} {
+		gap: 2rem;
 	};
 
-	function handleMouseEnter() {
-		if (el.current) {
-			el.current.style.setProperty('--global-shimmer-alpha', "0.6");
+	& > div {
+		grid-column: span 12;
+		
+		${media('xs')} {
+			grid-column: span 6;
+		}
+
+		${media('sm')} {
+			grid-column: span 4;
+		}
+
+		${media('lg')} {
+			grid-column: span 3;
 		}
 	}
+`;
 
-	function handleMouseLeave() {
-		if (el.current) {
-			el.current.style.setProperty('--global-shimmer-alpha', "0");
-		}
-	}
-
+const TeamMembers = () => {
 	return (
-		<div data-section ref={el} className={styles.root} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={handleMouseMove}>
-			<Container className={styles.container}>
+		<Root data-section>
+			<Wrapper>
 				<TeamMember additional="Ex-Facebook · Ex-Quora" name="Nikhil Garg" role="Co-Founder & CEO" src="/images/Person=Nikhil.png" />
 				<TeamMember additional="Ex-ThoughtSpot · Ex-Facebook" name="Abhay Bothra" role="Co-Founder & CTO" src="/images/Person=Abhay.png" />
 				<TeamMember additional="Ex-Google Brain · Ex-Google Cloud" name="Mohit Reddy" role="Founding Engineer" src="/images/Person=Mohit.png" />
@@ -36,8 +45,8 @@ const TeamMembers = () => {
 				<TeamMember additional="Ex-Facebook · Ex-Flexport" name="Xiao Jiang" role="Founding Engineer" src="/images/Person=Xiao.png" />
 				<TeamMember additional="Ex-Stream" name="Luke Smetham" role="Design" src="/images/Person=Luke.png" />
 				<TeamMember additional="Ex-Confluent · Ex-MongoDB" name="Cree Thompson" role="Sales" src="/images/Person=Cree.png" />
-			</Container>
-		</div>
+			</Wrapper>
+		</Root>
 	);
 };
 
