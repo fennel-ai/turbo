@@ -73,7 +73,7 @@ const GlobalStyles = () => {
 			`} />
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps<{ theme: 'light' | 'dark' }>) {
 	const router = useRouter();
 
 	useEffect(() => {
