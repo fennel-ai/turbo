@@ -1,5 +1,13 @@
 import { useEffect } from 'react';
-import styles from './Calendly.module.scss';
+import styled from '@emotion/styled';
+
+const Root = styled.div`
+	position: relative;
+	color: ${({ theme }) => theme.on};
+	padding: 2rem 0 5rem 0;
+	z-index: 0;
+	overflow: hidden;
+`;
 
 const Calendly = () => {
 	useEffect(() => {
@@ -9,9 +17,9 @@ const Calendly = () => {
 		document.body.appendChild(el);
 	}, []);
 	return (
-		<div className={styles.root}>
-		<div className="calendly-inline-widget" data-url="https://calendly.com/nikhilgarg/45mins-with-fennel?hide_event_type_details=1&primary_color=9d62fa" style={{minWidth: 320, height: 720}} />
-		</div>
+		<Root>
+			<div className="calendly-inline-widget" data-url="https://calendly.com/nikhilgarg/45mins-with-fennel?hide_event_type_details=1&primary_color=9d62fa" style={{minWidth: 320, height: 720}} />
+		</Root>
 	);
 }
 
