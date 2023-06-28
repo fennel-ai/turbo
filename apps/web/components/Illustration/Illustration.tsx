@@ -1,7 +1,14 @@
 import { HTMLAttributes, PropsWithChildren } from 'react';
-import clsx from "clsx";
+import styled from '@emotion/styled';
 import { Card } from 'ui';
-import styles from './Illustration.module.scss';
+import { media } from 'styles/utils';
 
+const Root = styled(Card)`
+	height: 20rem;
 
-export const Illustration = ({ className, ...props }: PropsWithChildren<HTMLAttributes<HTMLDivElement>>) => <Card {...props} className={clsx(styles.root, className)} />
+	${media('sm')} {
+		height: 40rem;
+	}
+`;
+
+export const Illustration = (props: PropsWithChildren<HTMLAttributes<HTMLDivElement>>) => <Root {...props} />
