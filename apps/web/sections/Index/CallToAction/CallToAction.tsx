@@ -38,7 +38,7 @@ const TRANSITION = {
 
 const Root = styled.div`
 	padding-top: 2.5rem;
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.surface};
 	color: ${({ theme }) => theme.on};
 	overflow: hidden;
 	position: relative;

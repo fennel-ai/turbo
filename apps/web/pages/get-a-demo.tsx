@@ -17,7 +17,7 @@ export default function GetADemo() {
 export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
 	return {
 		props: {
-			dark_mode: true
+			theme: 'dark'
 		}
 	};
 }

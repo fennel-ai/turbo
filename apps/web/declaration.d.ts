@@ -4,5 +4,5 @@ declare module '*.scss' {
 }
 
 interface BasePageProps {
-	dark_mode: boolean;
+	theme: 'dark' | 'light';
 }

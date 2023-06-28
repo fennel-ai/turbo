@@ -18,7 +18,7 @@ export default function Company() {
 export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
 	return {
 		props: {
-			dark_mode: false
+			theme: 'light'
 		}
 	};
 }

@@ -13,7 +13,7 @@ export default function DemoRequestConfirmation() {
 export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
 	return {
 		props: {
-			dark_mode: false
+			theme: 'light'
 		}
 	};
 }

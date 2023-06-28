@@ -134,7 +134,7 @@ const Space = () => {
 	const { camera, gl } = useThree();
 
 	useEffect(() => {
-		gl.setClearColor(0x0e0e16);
+		gl.setClearColor(0x181825);
 	}, [camera, gl]);
 
 	return (
