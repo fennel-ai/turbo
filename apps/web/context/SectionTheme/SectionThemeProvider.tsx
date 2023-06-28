@@ -1,8 +1,11 @@
 import { PropsWithChildren, useEffect, useState, useRef, useCallback } from 'react';
 import SectionThemeContext from './SectionThemeContext';
+import { useRouter } from 'next/router';
 
 const SectionThemeProvider = ({ children }: PropsWithChildren) => {
-	const [current, setSectionTheme] = useState<'light' | 'dark' | undefined>(undefined);
+	const router = useRouter();
+
+	const [current, setSectionTheme] = useState<'light' | 'dark' | false>(false);
 
 	const prevY = useRef<number>(0);
 	const direction = useRef<'up' | 'down'>('up');
@@ -52,7 +55,7 @@ const SectionThemeProvider = ({ children }: PropsWithChildren) => {
 			if (theme) {
 				setSectionTheme(theme);
 			} else {
-				setSectionTheme(undefined)
+				setSectionTheme(false)
 			}
 		})
 	}, [setScrollDirection]);
@@ -68,7 +71,7 @@ const SectionThemeProvider = ({ children }: PropsWithChildren) => {
 		sections.forEach(section => observer.observe(section));
 
 		return () => observer.disconnect();
-	}, [onIntersect]);
+	}, [onIntersect, router.pathname]);
 
 	return (
 		<SectionThemeContext.Provider value={current}>

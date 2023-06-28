@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const context = createContext<"light" | "dark" | undefined>(undefined);
+const context = createContext<"light" | "dark" | false>(false);
 
 export default context;
