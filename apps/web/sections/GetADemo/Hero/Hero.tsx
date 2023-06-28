@@ -1,9 +1,7 @@
-import { TitleBlock } from "ui";
+import { Container, TitleBlock } from "ui";
 import { Space } from 'ddd';
 import { Canvas, RootState } from '@react-three/fiber';
 import styles from './Hero.module.scss';
-
-import { Container } from 'components/Container';
 
 const onCreated = ({ size, camera }: RootState) => {
 	if (size.width < 600) {

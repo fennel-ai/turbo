@@ -1,8 +1,7 @@
-import { TitleBlock } from 'ui';
+import { Container, TitleBlock } from 'ui';
 import Image from 'next/image';
 import styles from './Angels.module.scss';
 
-import { Container } from "components/Container";
 import { TeamMember } from '../TeamMembers/TeamMember';
 import clsx from 'clsx';
 

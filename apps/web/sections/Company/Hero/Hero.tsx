@@ -1,7 +1,5 @@
-import { TitleBlock } from "ui";
+import { Container, TitleBlock } from "ui";
 import styles from './Hero.module.scss';
-
-import { Container } from 'components/Container';
 
 const Hero = () => {
 	return (

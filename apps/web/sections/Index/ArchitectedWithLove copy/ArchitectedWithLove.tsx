@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Card, PillButton, Marquee, TitleBlock } from 'ui';
+import { Card, PillButton, Container, TitleBlock } from 'ui';
 
 import GrpcLogo from 'ui/icons/technologies/grpc.svg';
 import KafkaLogo from 'ui/icons/technologies/kafka.svg';
@@ -9,8 +9,6 @@ import RocksdbLogo from 'ui/icons/technologies/rocksdb.svg';
 import RustLogo from 'ui/icons/technologies/rust.svg';
 import PostgresLogo from 'ui/icons/technologies/postgresql.svg';
 import PulumiLogo from 'ui/icons/technologies/pulumi.svg';
-
-import { Container } from 'components/Container';
 
 const Root = styled.div`
 	padding: 5rem 0;

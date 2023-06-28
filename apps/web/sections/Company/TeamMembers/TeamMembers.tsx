@@ -1,8 +1,8 @@
 import { MouseEventHandler, useRef } from 'react';
+import { Container } from "ui";
 import { TeamMember } from './TeamMember';
 import styles from './TeamMembers.module.scss';
 
-import { Container } from "components/Container";
 
 const TeamMembers = () => {
 	const el = useRef<HTMLDivElement>(null);

@@ -1,6 +1,6 @@
 import { ForwardedRef, PropsWithChildren, ReactElement, StyleHTMLAttributes, forwardRef } from 'react';
 
-import { Container } from '../Container';
+import { Container } from 'ui';
 import clsx from 'clsx';
 import styles from './SplitSection.module.scss';
 

@@ -1,12 +1,10 @@
-import { PillButton, TitleBlock } from 'ui';
+import { Container, PillButton, TitleBlock } from 'ui';
 import clsx from 'clsx';
 import Link from 'next/link';
 import chunk from 'lodash/chunk';
 import styles from './ArchitectedWithLove.module.scss';
 
 import { useMatchMedia } from 'hooks';
-
-import { Container } from 'components/Container';
 
 import GrpcLogo from 'ui/icons/technologies/grpc.svg';
 import KafkaLogo from 'ui/icons/technologies/kafka.svg';

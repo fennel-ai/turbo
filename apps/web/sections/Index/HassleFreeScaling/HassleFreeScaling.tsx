@@ -1,11 +1,9 @@
-import { IconPuck, PillButton, TitleBlock } from 'ui';
+import { Container, IconPuck, PillButton, TitleBlock } from 'ui';
 import ChartBreakoutIcon from 'ui/icons/chart-breakout-circle.svg';
 import ShieldIcon from 'ui/icons/shield-03.svg';
 import PiggyBankIcon from 'ui/icons/piggy-bank-01.svg';
 
 import styles from './HassleFreeScaling.module.scss';
-
-import { Container } from 'components/Container';
 import Link from 'next/link';
 
 const HassleFreeScaling = () => {

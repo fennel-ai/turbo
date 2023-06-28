@@ -1,8 +1,7 @@
 import { Canvas, RootState } from '@react-three/fiber';
-import { Button, TitleBlock } from "ui";
+import { Button, Container, TitleBlock } from "ui";
 import styles from './CallToAction.module.scss';
 import {Space} from 'ddd';
-import { Container } from 'components/Container';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';

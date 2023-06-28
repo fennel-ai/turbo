@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { media } from 'styles/utils';
-import { PillButton, TitleBlock } from "ui";
+import { Container, PillButton, TitleBlock } from "ui";
 
-import { Container } from 'components/Container';
 import BentoIllustration from "./BentoIllustration/BentoIllustration";
 
 const Root = styled.div`

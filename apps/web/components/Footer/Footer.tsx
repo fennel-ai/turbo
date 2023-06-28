@@ -1,8 +1,7 @@
 import clsx from 'clsx';
+import { Container } from 'ui';
 import Logo from 'ui/icons/logo.svg';
 import styles from './Footer.module.scss';
-
-import { Container } from 'components/Container';
 
 export const Footer = () => {
 	return (

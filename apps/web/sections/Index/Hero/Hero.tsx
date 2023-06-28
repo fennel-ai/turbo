@@ -1,7 +1,6 @@
-import { Button, TitleBlock } from "ui";
+import { Button, Container, TitleBlock } from "ui";
 import styles from './Hero.module.scss';
 
-import { Container } from 'components/Container';
 import Link from "next/link";
 
 const Hero = () => {

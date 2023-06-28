@@ -1,6 +1,6 @@
 import Image from 'next/image';
+import { Container } from 'ui';
 import { useRouter } from 'next/router';
-import { Container } from 'components/Container';
 import styles from './DemoForm.module.scss';
 import RequestDemoForm from 'components/RequestDemoModal/RequestDemoForm';
 
