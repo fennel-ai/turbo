@@ -51,7 +51,7 @@
   },
   "neutral": {
     "accent": {
-      "value": "{ref.purple.5}",
+      "value": "{ref.grey.5}",
       "type": "color"
     },
     "on": {
@@ -68,11 +68,11 @@
     "type": "color"
   },
   "on": {
-    "value": "{ref.purple.5}",
+    "value": "{neutral.accent}",
     "type": "color"
   },
   "on_alt": {
-    "value": "{ref.purple.10}",
+    "value": "rgba({on}, 0.8)",
     "type": "color"
   },
   "border": {
@@ -80,7 +80,7 @@
     "type": "color"
   },
   "shadow": {
-    "value": "{ref.purple.10}",
+    "value": "{ref.grey.30}",
     "type": "color"
   }
 }

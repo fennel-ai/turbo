@@ -68,11 +68,11 @@
     "type": "color"
   },
   "on": {
-    "value": "{ref.purple.90}",
+    "value": "{neutral.accent}",
     "type": "color"
   },
   "on_alt": {
-    "value": "{ref.purple.80}",
+    "value": "rgba({neutral.accent}, 0.8)",
     "type": "color"
   },
   "border": {
