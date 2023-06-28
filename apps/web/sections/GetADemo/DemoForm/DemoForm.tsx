@@ -3,7 +3,7 @@ import { media, rgba } from 'styles/utils';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from "@emotion/styled";
-import RequestDemoForm from 'components/RequestDemoModal/RequestDemoForm';
+import RequestDemoForm from 'components/RequestDemoForm';
 
 const Root = styled.div`
 	position : relative;
