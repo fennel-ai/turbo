@@ -1,5 +1,7 @@
 import { GetStaticPropsResult } from 'next';
 import { ArchitectedWithLove, CallToAction, HassleFreeScaling, Hero, HowItWorks, NoMoreBugs, ShipFaster, TrulyRealtime } from 'sections/Index';
+import { ThemeProvider } from '@emotion/react';
+import * as themes from 'styles';
 import { useSectionTheme } from 'hooks/useSectionTheme';
 
 export default function Index() {
@@ -13,8 +15,10 @@ export default function Index() {
 			<TrulyRealtime />
 			<HassleFreeScaling />
 			<HowItWorks />
-			<ArchitectedWithLove />
-			<CallToAction />
+			<ThemeProvider theme={themes.dark}>
+				<ArchitectedWithLove />
+				<CallToAction />
+			</ThemeProvider>
 		</main>
 	);
 }
