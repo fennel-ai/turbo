@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 import { media } from 'styles/utils';
-import { useEffect } from 'react';
 import { TextBlock, TitleBlock } from "ui";
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import useMeasure from 'react-use-measure';
+import { motion, useTransform } from 'framer-motion';
 import PythonIcon from 'ui/icons/python.svg';
 import ClockRefreshIcon from 'ui/icons/clock-refresh.svg';
 import CubeIcon from 'ui/icons/cube-01.svg';

@@ -1,7 +1,9 @@
 import { useCallback, useState } from 'react';
 import { PillButton, Syntax } from 'ui';
+import { keyframes, ThemeProvider } from "@emotion/react";
 import { AnimatePresence, motion } from 'framer-motion';
-import styles from './Diagram.module.scss';
+import styled from '@emotion/styled';
+import * as themes from "styles";
 import useResizeObserver from 'use-resize-observer';
 
 import Grid from './Grid';
@@ -14,7 +16,7 @@ import RestAPI from './RestAPI';
 import LookupEdges from './LookupEdges';
 import APIQueryEdges from './APIQueryEdges';
 import PipelineEdges from './PipelineEdges';
-import clsx from 'clsx';
+import { media } from 'styles/utils';
 
 const SVG_VARIANTS = {
 	shown: {
@@ -116,6 +118,66 @@ $ curl -X POST "$fennel/api/v1/extract_features" \
 	},
 }
 
+const Root = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+`;
+
+const animatedPath = keyframes`
+	0% {
+		stroke-dashoffset: 8;
+	}
+`
+
+const Diagram = styled(motion.svg)`
+	width: 100%;
+	height: auto;
+	
+	.animated_edge {
+		stroke: rgb(163, 173, 184); 
+		stroke-width: 1.5;
+		animation: ${animatedPath} 1s linear infinite;
+	}
+`;
+
+const ShowCode = styled(PillButton)<{ shown: boolean }>`
+	align-self: center;
+
+	${media('sm')} {
+		position: absolute;
+		top: ${({ shown }) => shown ? 0.5 : 1}rem;
+		left: ${({ shown }) => shown ? 0.5 : 1}rem;
+		transition: 200ms all cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	${media('md')} {
+		top: ${({ shown }) => shown ? 1 : 2}rem;
+		left: ${({ shown }) => shown ? 1 : 2}rem;
+	}
+`;
+
+const CodeWindow = styled(motion.div)`
+	position: absolute;
+	background-color: ${({ theme }) => theme.background};
+	color: ${({ theme }) => theme.on_alt};
+	border-radius: 1rem;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+`;
+
+const Code = styled(Syntax)`
+	flex: 1;
+	overflow: scroll;
+
+	${media('sm')} {
+		padding-top: 2.5rem;
+	}
+`;
+
 const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
 	const [showCode, setShowCode] = useState<boolean>(false);
 	const { ref, width, height } = useResizeObserver();
@@ -125,8 +187,8 @@ const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
 	}, []);
 
 	return (
-		<div className={styles.root}>
-			<motion.svg animate={showCode ? 'shown' : 'hidden'} variants={SVG_VARIANTS} ref={ref} className={styles.diagram} width="740" height="453" viewBox="0 0 740 453" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<Root>
+			<Diagram animate={showCode ? 'shown' : 'hidden'} variants={SVG_VARIANTS} ref={ref} width="740" height="453" viewBox="0 0 740 453" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<motion.g animate={`${activeItem}`} clip-path="url(#clip0_522_11836)">
 					<Grid />
 
@@ -284,24 +346,25 @@ const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
 						<rect x="1" y="1" width="738" height="451" rx="32" fill="white" />
 					</clipPath>
 				</defs>
-			</motion.svg>
-			<AnimatePresence>
-				{
-					showCode ? (
-						<motion.div 
-							className={styles.show_code_window}
-							initial={{ opacity: 0, y: 16 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: 16 }}
-							style={{ width, height }}
-						>
-							<Syntax className={styles.code} language={SNIPPETS[activeItem].language} code={SNIPPETS[activeItem].code} />
-						</motion.div>
-					) : null
-				}
-			</AnimatePresence>
-			<PillButton icon={null} className={clsx(styles.show_code, styles[showCode ? 'show_code_shown' : 'show_code_hidden'])} color="invert" onClick={onShowCode}>{showCode ? 'Hide' : 'Show'} Code</PillButton>
-		</div>
+			</Diagram>
+			<ThemeProvider theme={themes.dark}>
+				<AnimatePresence>
+					{
+						showCode ? (
+							<CodeWindow
+								initial={{ opacity: 0, y: 16 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: 16 }}
+								style={{ width, height }}
+							>
+								<Code language={SNIPPETS[activeItem].language} code={SNIPPETS[activeItem].code} />
+							</CodeWindow>
+						) : null
+					}
+				</AnimatePresence>
+				<ShowCode icon={null} color="invert" shown={showCode} onClick={onShowCode}>{showCode ? 'Show Diagram' : 'Show Code'}</ShowCode>
+			</ThemeProvider>
+		</Root>
 	)
 }
 
