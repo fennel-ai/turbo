@@ -10,8 +10,9 @@ import { media, rgba } from 'styles/utils';
 const Root = styled.div`
 	position: relative;
 	padding: 5rem 0;
-	border-top: 1px solid ${({ theme }) => theme.border};
-	border-bottom: 1px solid ${({ theme }) => theme.border};
+	background-color: ${({ theme }) => theme.background};
+	// border-top: 1px solid ${({ theme }) => theme.border};
+	// border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
 
 const Background = styled.div`
@@ -20,7 +21,7 @@ const Background = styled.div`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: -1;
+	z-index: 0;
 	opacity: 0.08;
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABNSURBVHgB7c8BDYAADASxB/+eQcZlSeugz7Zvx50OvDtOoCZQE6gJ1ARqAjWBmkBNoCZQE6gJ1ARqAjWBmkBNoCZQE6gJ1ARqArXzgR/6PgJcGGar1gAAAABJRU5ErkJggg==");
 	background-size: 31px;
