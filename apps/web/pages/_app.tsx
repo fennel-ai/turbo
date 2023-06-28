@@ -1,5 +1,8 @@
-import { ThemeProvider } from '@emotion/react';
-import type { AppProps } from 'next/app'
+import { Global, css, ThemeProvider, useTheme } from '@emotion/react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
+import type { AppProps } from 'next/app';
 import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
 import posthog from 'posthog-js';
@@ -14,9 +17,6 @@ import SectionThemeProvider, { SectionTheme } from 'context/SectionTheme';
 
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Script from 'next/script';
 
 export const haskoyVariable = localFont({
 	src: [{
@@ -44,6 +44,35 @@ if (typeof window !== 'undefined') {
 	})
 }
 
+const GlobalStyles = () => {
+	const theme = useTheme();
+
+	return <Global styles={css`
+				@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
+
+				* {
+					box-sizing: border-box;
+				}
+
+				body {
+					background-color: ${theme.surface};
+					margin: 0;
+					padding: 0;
+					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					font-synthesis: none;
+					font-feature-settings: "tnum"; /*! Enables the numeric character variants with Satoshi Variable - may want to restrict this to only li:marker elements */
+					text-rendering: optimizeLegibility;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+					-webkit-text-size-adjust: 100%;
+				}
+
+				button, input {
+					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				}
+			`} />
+}
+
 export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 
@@ -60,31 +89,6 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<SectionThemeProvider>
 			<PostHogProvider client={posthog}>
-				<style jsx global>
-					{`
-						@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
-
-						* {
-							box-sizing: border-box;
-						}
-
-						body {
-							margin: 0;
-							padding: 0;
-							font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-							font-synthesis: none;
-							font-feature-settings: "tnum"; /*! Enables the numeric character variants with Satoshi Variable - may want to restrict this to only li:marker elements */
-							text-rendering: optimizeLegibility;
-							-webkit-font-smoothing: antialiased;
-							-moz-osx-font-smoothing: grayscale;
-							-webkit-text-size-adjust: 100%;
-						}
-
-						button, input {
-							font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-						}
-					`}
-				</style>
 				<Head>
 					<link rel="icon" href="/favicon.ico" sizes="any" />
 					<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -114,6 +118,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>
 				<ThemeProvider theme={themes[pageProps.theme]}>
+					<GlobalStyles />
 					<SectionTheme defaultTheme={pageProps.theme}>
 						<Header />
 					</SectionTheme>
