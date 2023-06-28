@@ -1,16 +1,18 @@
 import { CallToAction } from "sections/Index";
-import { useSectionTheme } from "hooks/useSectionTheme";
 import { GetStaticPropsResult } from "next";
 import { Angels, Hero, TeamMembers } from "sections/Company";
+import { ThemeProvider } from '@emotion/react';
+import * as themes from 'styles';
 
 export default function Company() {
-	useSectionTheme();
 	return (
 		<main>
 			<Hero />
 			<TeamMembers />
 			<Angels />
-			<CallToAction />
+			<ThemeProvider theme={themes.dark}>
+				<CallToAction />
+			</ThemeProvider>
 		</main>
 	);
 }
