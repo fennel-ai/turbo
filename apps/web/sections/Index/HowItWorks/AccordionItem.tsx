@@ -65,7 +65,7 @@ const Progress = styled.div`
 		inset: -1px;
 		border-radius: 99px;
 		transform-origin: left;
-		background-color: rgba(${({ theme }) => theme.ref.purple[400]}, 1);
+		background-color: rgba(${({ theme }) => theme.ref.purple['40']}, 1);
 	}
 `;
 

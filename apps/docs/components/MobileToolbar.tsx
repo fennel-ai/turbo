@@ -13,7 +13,7 @@ const Root = styled.nav`
 	gap: 0.5rem;
 	color: ${get('text-alt')};
 	font-variation-settings: "wght" 700;
-	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
 
 	${media('lg')} {
 		display: none;

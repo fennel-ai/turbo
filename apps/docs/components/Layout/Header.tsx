@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 	}
 	
 	${media('lg')} {
-		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
 	}
 `;
 
