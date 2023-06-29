@@ -1,10 +1,10 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react';
 import type { FunctionInterpolation } from '@emotion/react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import InternalLinkIcon from '../../icons/arrow-narrow-up-right.svg';
 import { media, stateLayer } from 'styles/utils';
-import { css } from '@emotion/react';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
 	icon?: JSX.Element | null;
@@ -51,7 +51,15 @@ const Root = styled.button<{ size: 'small' | 'large', hasIcon: boolean, invert: 
 `;
 
 export const PillButton = (props: PropsWithChildren<Props>) => {
-	const { className, children, icon = DEFAULT_ICON, invert = false, onClick, size = 'small', style } = props;
+	const { 
+		className, 
+		children, 
+		icon = DEFAULT_ICON, 
+		invert = false, 
+		onClick, 
+		size = 'small', 
+		style 
+	} = props;
 
 	return (
 		<Root 

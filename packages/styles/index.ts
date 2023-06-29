@@ -110,24 +110,14 @@ export type Theme = {
 	opacity: Record<string, string>,
 	radii: Record<string, string>,
 	typescale: Record<string, string>,
-	'state-layer': {
-		default: string;
-		hover: string;
-		active: string;
-		selected: string;
-	},
-	'code-block': {
-		filename: {
-			color: string,
-			text: TypographyValue,
-		},
-		radius: string,
-		shadow: string, 
-		snippet: {
-			code: TypographyValue,
-			'line-number': TypographyValue,
-		}
-	},
+	'state_layer': {
+		"0": string;
+		"1": string;
+		"2": string;
+		"3": string;
+		"4": string;
+		"5": string;
+	}
 }
 
 const breakpoints = {

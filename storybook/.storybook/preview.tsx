@@ -43,6 +43,7 @@ const globalStyles = (theme) => css`
 
 const withTheme: DecoratorFn = (StoryFn, ctx) => {
 	const { theme } = ctx.globals;
+	console.log(themes[theme])
 	return (
 		<ThemeProvider theme={themes[theme]}>
 			<StoryFn />

@@ -4,9 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AnimatePresence } from 'framer-motion';
 import { Masthead, IconButton, PillButton, Container } from 'ui';
-import { media, rgba } from 'styles/utils';
-
-import styles from './Header.module.scss';
+import { media, rgba, stateLayer } from 'styles/utils';
 
 import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
@@ -133,6 +131,28 @@ const Border = styled(Container)`
 	}
 `;
 
+const NavButton = styled.button`
+	height: 2.5rem;
+	padding: 0 0.75rem;
+	border-radius: 0.5rem;
+	background-color: transparent;
+	overflow: hidden;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-variation-settings: "wght" 600;
+	color: ${({ theme }) => theme.on_alt};
+	opacity: 0.5;
+	user-select: none;
+	cursor: pointer;
+	
+	${stateLayer()}
+	
+	&:hover {
+		opacity: 1;
+		color: ${({ theme }) => theme.on};
+	}
+`;
+
 export const Header = () => {
 	const router = useRouter();
 	const [showMobileMenu, toggleMobileMenu] = useState(false);
@@ -144,7 +164,7 @@ export const Header = () => {
 	}, [router.pathname]);
 
 	return (
-		<Root data-header className={styles.root}>
+		<Root data-header>
 			<Backdrop />
 			<Wrapper>
 				<Link href="/">
@@ -152,19 +172,19 @@ export const Header = () => {
 				</Link>
 				<Menu>
 					<Link href="/company">
-						<button className={styles.nav_button}>
+						<NavButton>
 							Company
-						</button>
+						</NavButton>
 					</Link>
 					<Link href="https://fennel.ai/blog">
-						<button className={styles.nav_button}>
+						<NavButton>
 							Blog
-						</button>
+						</NavButton>
 					</Link>
 					<Link href="/docs">
-						<button className={styles.nav_button}>
+						<NavButton>
 							Documentation
-						</button>
+						</NavButton>
 					</Link>
 				</Menu>
 				<Actions>
