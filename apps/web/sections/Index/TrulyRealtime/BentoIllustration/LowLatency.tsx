@@ -46,7 +46,7 @@ export const LowLatency = () => (
 		<Illustration>
 			<LightningIcon color="#f0f0f5" width={265} height={265} />
 		</Illustration>
-		<Text align="center">
+		<Text center>
 			<h6>Single-digit ms response</h6>
 			<h3>Ultra-low Latency Serving</h3>
 		</Text>
