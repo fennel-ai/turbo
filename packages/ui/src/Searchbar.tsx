@@ -9,13 +9,13 @@ const Root = styled.button`
 	width: 100%;
 	height: 2.5rem;
 	border-radius: 0.5rem;
-	color: ${({ theme }) => theme['text-alt']};
+	color: ${({ theme }) => theme.on_alt};
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.75rem;
-	background-color: ${({ theme }) => rgba(theme.text, 0.04)};
-	box-shadow: 0px 0px 0px 1px ${({ theme }) => rgba(theme.text, 0.06)};
+	background-color: ${({ theme }) => rgba(theme.on, 0.04)};
+	box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.border};
 	cursor: pointer;
 	overflow: hidden;
 

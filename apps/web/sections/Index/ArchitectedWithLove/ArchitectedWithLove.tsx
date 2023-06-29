@@ -71,7 +71,7 @@ const Root = styled.div`
 	flex-direction: column;
 	align-items: center;
 	gap: 3rem;
-	background-color: ${({ theme }) => theme.surface};
+	background-color: ${({ theme }) => theme.background};
 `;
 
 const Wrapper = styled(Container)`

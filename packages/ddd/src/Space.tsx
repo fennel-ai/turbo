@@ -132,9 +132,9 @@ const Stars = () => {
 
 const Space = () => {
 	const { camera, gl } = useThree();
-
+	
 	useEffect(() => {
-		gl.setClearColor(0x181825);
+		gl.setClearColor(0x0e0e16);
 	}, [camera, gl]);
 
 	return (

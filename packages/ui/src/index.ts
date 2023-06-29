@@ -6,7 +6,6 @@ export * from "./Container";
 export * from "./GlassCard";
 export * from "./IconButton";
 export * from "./IconPuck";
-export * from "./InvertTheme";
 export * from "./KeyIndicator";
 export * from "./PillButton";
 export * from "./Masthead";

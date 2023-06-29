@@ -63,7 +63,7 @@ const Hero = () => {
 					<TitleBlock 
 						center
 					>
-						<h1>Experience the Fastest ML Workflow</h1>
+						<h1>Experience the Slickest Feature Engineering Workflow</h1>
 						<IntroText>
 							<p>The team is excited to show you just how much Fennel is capable of; Submit a request today and we&apos;ll be in touch soon.</p>
 						</IntroText>

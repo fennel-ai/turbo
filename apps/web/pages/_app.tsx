@@ -75,6 +75,7 @@ const GlobalStyles = () => {
 
 export default function App({ Component, pageProps }: AppProps<{ theme: 'light' | 'dark' }>) {
 	const router = useRouter();
+	const currentTheme = pageProps.theme || 'light';
 
 	useEffect(() => {
 		// Track page views
@@ -117,9 +118,9 @@ export default function App({ Component, pageProps }: AppProps<{ theme: 'light' 
 				<noscript>
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>
-				<ThemeProvider theme={themes[pageProps.theme]}>
+				<ThemeProvider theme={themes[currentTheme]}>
 					<GlobalStyles />
-					<SectionTheme defaultTheme={pageProps.theme}>
+					<SectionTheme defaultTheme={currentTheme}>
 						<Header />
 					</SectionTheme>
 					<Component {...pageProps} />

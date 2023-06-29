@@ -38,7 +38,7 @@ const TRANSITION = {
 
 const Root = styled.div`
 	padding-top: 2.5rem;
-	background-color: ${({ theme }) => theme.surface};
+	background-color: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.on};
 	overflow: hidden;
 	position: relative;
@@ -138,7 +138,7 @@ const CallToAction = () => {
 			<Wrapper>
 				<TitleWrapper>
 					<TitleBlock center>
-						<h2>Experience the slickest feature engineering workflow</h2>
+						<h2>Experience the Slickest Feature Engineering Workflow</h2>
 					</TitleBlock>
 					<Button color="primary" label="Request a Demo" onClick={() => router.push('/get-a-demo')} />
 				</TitleWrapper>
