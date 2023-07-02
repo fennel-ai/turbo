@@ -51,7 +51,7 @@
   },
   "neutral": {
     "accent": {
-      "value": "{ref.purple.90}",
+      "value": "{ref.purple.95}",
       "type": "color"
     },
     "on": {
@@ -72,7 +72,7 @@
     "type": "color"
   },
   "on_alt": {
-    "value": "rgba({neutral.accent}, 0.8)",
+    "value": "{ref.purple.80}",
     "type": "color"
   },
   "border": {
