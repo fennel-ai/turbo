@@ -82,5 +82,9 @@
   "shadow": {
     "value": "{ref.grey.30}",
     "type": "color"
+  },
+  "glass": {
+    "value": "rgba({surface}, 50%)",
+    "type": "color"
   }
 }
