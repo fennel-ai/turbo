@@ -222,7 +222,8 @@
       "ref.grey.90": "S:6aa9e34e5453acef0f8c4647aa17a441e32a1678,",
       "ref.grey.95": "S:7729e89cf8be6931f4dbb2cd74e2590ec93dd449,",
       "ref.black": "S:a0522aca0dbd955b0ea4fa16296d4dd890905507,",
-      "ref.white": "S:9737a8ce2c8daeaa0a66083dec84b7d30709e72a,"
+      "ref.white": "S:9737a8ce2c8daeaa0a66083dec84b7d30709e72a,",
+      "glass": "S:c9a1093c8a0fe5ac6a03f3b4a1f7bcae0e41b09f,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2453",
     "$figmaModeId": "1763:0",
@@ -480,7 +481,8 @@
       "ref.black": "S:b49ed3b03cd655e180f816a15c51cea50ee87021,",
       "ref.white": "S:343577b4733e412f89f9a72cac182fc71ff671b8,",
       "syntax.code": "S:a97b71d803ab9c83079412208a493d7fc6c92364,",
-      "syntax.line-number": "S:eddc7e0e46c6c66fff13ccbe96bb5f4e18331e77,"
+      "syntax.line-number": "S:eddc7e0e46c6c66fff13ccbe96bb5f4e18331e77,",
+      "glass": "S:e5f973957b20306ee27de625c0e003c4b6cdd74a,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2562",
     "$figmaModeId": "1763:1",
