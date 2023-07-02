@@ -72,11 +72,11 @@
     "type": "color"
   },
   "on_alt": {
-    "value": "rgba({on}, 0.8)",
+    "value": "{ref.grey.20}",
     "type": "color"
   },
   "border": {
-    "value": "rgba({on}, 0.06)",
+    "value": "{ref.grey.90}",
     "type": "color"
   },
   "shadow": {
