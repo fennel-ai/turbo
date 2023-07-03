@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useRef } from 'react';
-import { media } from 'styles/utils';
+import { media, rgba } from 'styles/utils';
 import { IconButton, PillButton, Masthead } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 	}
 	
 	${media('lg')} {
-		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
+		border-bottom: 1px solid ${({ theme }) => rgba(theme.on, 0.06)};
 	}
 `;
 

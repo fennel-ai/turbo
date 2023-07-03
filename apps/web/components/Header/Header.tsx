@@ -127,7 +127,7 @@ const Border = styled(Container)`
 	& > div {
 		width: 100%;
 		height: 100%;
-		background-color: ${({ theme }) => theme.border};
+		background-color: ${({ theme }) => rgba(theme.on, 0.06)};
 	}
 `;
 

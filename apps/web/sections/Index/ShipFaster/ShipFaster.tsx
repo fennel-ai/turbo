@@ -34,7 +34,7 @@ const ConsoleImg = styled(Illustration)`
 
 const ImageWrapper = styled(motion.div)`
 	border-radius: 1.5rem;	
-	filter: drop-shadow(0px -100px 217px ${({ theme }) => rgba(theme.shadow, 0.05)});
+	filter: drop-shadow(0px -100px 217px ${({ theme }) => rgba(theme.shadow, 0.08)});
 	& img {
 		mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
 		position: absolute;

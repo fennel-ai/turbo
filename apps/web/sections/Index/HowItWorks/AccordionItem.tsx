@@ -24,7 +24,7 @@ const Root = styled.div`
 	& p {
 		margin: 0;
 		margin-top: 1rem;
-		color: #181825;
+		color: ${({ theme }) => theme.on};
 	}
 `;
 
@@ -33,7 +33,7 @@ const Header = styled.div<{ open: boolean }>`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	color: ${({ open }) => open ? '#181825' : '#4A4A5E'};
+	color: ${({ open, theme }) => open ? theme.on : theme.on_alt};
 `;
 
 const Title = styled.div`
@@ -58,14 +58,14 @@ const Progress = styled.div`
 	position: relative;
 	width: 100%;
 	height: 1px;
-	background-color: #f0f0f5;
+	background-color: ${({ theme }) => theme.border};
 
 	& > div {
 		position: absolute;
 		inset: -1px;
 		border-radius: 99px;
 		transform-origin: left;
-		background-color: rgba(${({ theme }) => theme.ref.purple['40']}, 1);
+		background-color: ${({ theme }) => theme.primary.accent};
 	}
 `;
 
