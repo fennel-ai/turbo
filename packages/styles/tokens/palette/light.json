@@ -55,7 +55,7 @@
       "type": "color"
     },
     "on": {
-      "value": "{ref.purple.90}",
+      "value": "{ref.purple.95}",
       "type": "color"
     }
   },
