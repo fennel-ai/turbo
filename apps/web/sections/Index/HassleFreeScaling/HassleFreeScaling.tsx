@@ -11,8 +11,8 @@ const Root = styled.div`
 	position: relative;
 	padding: 5rem 0;
 	background-color: ${({ theme }) => theme.background};
-	border-top: 1px solid ${({ theme }) => theme.border};
-	border-bottom: 1px solid ${({ theme }) => theme.border};
+	border-top: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
+	border-bottom: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
 `;
 
 const Background = styled.div`
@@ -23,9 +23,8 @@ const Background = styled.div`
 	bottom: 0;
 	z-index: 0;
 	opacity: 0.08;
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABNSURBVHgB7c8BDYAADASxB/+eQcZlSeugz7Zvx50OvDtOoCZQE6gJ1ARqAjWBmkBNoCZQE6gJ1ARqAjWBmkBNoCZQE6gJ1ARqArXzgR/6PgJcGGar1gAAAABJRU5ErkJggg==");
-	background-size: 31px;
-	mask-image: radial-gradient(32.06% 66.98% at 50% 22.37%, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%);
+	background: conic-gradient(from 90deg at 1px 1px, #0000 90deg, ${({ theme }) => rgba(theme.on_alt, 0.64)} 0) 0 0/32px 32px;
+	mask-image: radial-gradient(40.06% 90.98% at 50% 40%, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%);
 `;
 
 const Wrapper = styled(Container)`

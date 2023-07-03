@@ -2,7 +2,7 @@ import { Button, Container, TitleBlock } from "ui";
 import styled from '@emotion/styled';
 
 import Link from "next/link";
-import { media } from "styles/utils";
+import { media, rgba } from "styles/utils";
 
 const Root = styled.div`
 	position: relative;
@@ -10,7 +10,7 @@ const Root = styled.div`
 	color: ${({ theme }) => theme.on};
 
 	${media('md')} {
-		padding: 15.5rem 0;
+		padding: 15.5rem 0 8rem 0;
 	}
 `;
 
@@ -22,9 +22,8 @@ const Background = styled.div`
 	bottom: 0;
 	z-index: -1;
 	opacity: 0.15;
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABNSURBVHgB7c8BDYAADASxB/+eQcZlSeugz7Zvx50OvDtOoCZQE6gJ1ARqAjWBmkBNoCZQE6gJ1ARqAjWBmkBNoCZQE6gJ1ARqArXzgR/6PgJcGGar1gAAAABJRU5ErkJggg==");
-	background-size: 31px;
-	mask-image: radial-gradient(29.07% 36% at 50% 50%, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%);
+	background: conic-gradient(from 90deg at 1px 1px, #0000 90deg, ${({ theme }) => rgba(theme.on_alt, 0.64)} 0) 0 0/32px 32px;
+	mask-image: radial-gradient(40.07% 50% at 50% 50%, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%);
 `;
 
 const Wrapper = styled(Container)`

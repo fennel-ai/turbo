@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from 'react';
 import { Container, PillButton, TitleBlock } from 'ui';
-import { media } from 'styles/utils';
+import { media, rgba } from 'styles/utils';
 import styled from "@emotion/styled";
 import { keyframes } from '@emotion/react';
 import Link from 'next/link';
@@ -72,6 +72,8 @@ const Root = styled.div`
 	align-items: center;
 	gap: 3rem;
 	background-color: ${({ theme }) => theme.background};
+	border-top: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
+	border-bottom: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
 `;
 
 const Wrapper = styled(Container)`

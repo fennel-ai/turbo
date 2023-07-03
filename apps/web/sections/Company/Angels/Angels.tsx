@@ -7,7 +7,6 @@ import { TeamMember } from '../TeamMembers/TeamMember';
 
 const Root = styled.div`
 	padding: 5rem 0;
-	background-color: ${({ theme }) => theme.surface};
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;

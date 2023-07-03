@@ -23,7 +23,7 @@ export default function Index() {
 export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
 	return {
 		props: {
-			theme: 'light'
+			theme: 'dark'
 		}
 	};
 }
