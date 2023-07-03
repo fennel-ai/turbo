@@ -325,7 +325,7 @@ const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
 						<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_522_11836" result="shape" />
 					</filter>
 					<filter id="filter5_b_522_11836" x="30" y="75" width="110" height="48" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-						<feFlood flood-opacity="0" result="BackgroundImageFix" />
+						<feFlood floodOpacity="0" result="BackgroundImageFix" />
 						<feGaussianBlur in="BackgroundImageFix" stdDeviation="1.5" />
 						<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_522_11836" />
 						<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_522_11836" result="shape" />

@@ -55,7 +55,7 @@ const GlobalStyles = () => {
 				}
 
 				body {
-					background-color: ${theme.surface};
+					background-color: ${theme.background};
 					margin: 0;
 					padding: 0;
 					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;

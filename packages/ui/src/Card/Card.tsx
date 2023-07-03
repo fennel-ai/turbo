@@ -1,9 +1,8 @@
 import { ForwardedRef, HTMLAttributes, PropsWithChildren, StyleHTMLAttributes, forwardRef } from 'react';
 import styled from '@emotion/styled';
-import { rgba } from 'styles/utils';
 
 export const Root = styled.div`
-	background-color: ${({ theme }) => rgba(theme.background, 0.85)};
+	background-color: ${({ theme }) => theme.background};
 	backdrop-filter: blur(1rem); 
 	border-radius: 1.5rem;
 	display: flex;

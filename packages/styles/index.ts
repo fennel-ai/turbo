@@ -100,6 +100,7 @@ export type Theme = {
 	on_alt: string;
 	border: string;
 	shadow: string;
+	glass: string;
 	primary: ThemeAccentPalette,
 	secondary: ThemeAccentPalette,
 	caution: ThemeAccentPalette,
