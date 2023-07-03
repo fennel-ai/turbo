@@ -6,6 +6,7 @@ const Root = styled.div`
 	position: relative;
 	padding: 8rem 0 0 0;
 	color: ${({ theme }) => theme.on};
+	z-index: 0;
 `;
 
 const Background = styled.div`

@@ -5,7 +5,6 @@ import { media } from 'styles/utils';
 
 const Root = styled.div`
 	padding: 5rem 0;
-	background-color: ${({ theme }) => theme.surface};
 `;
 
 const Wrapper = styled(Container)`

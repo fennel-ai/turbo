@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styled from '@emotion/styled';
+import { rgba } from 'styles/utils';
 
 type Props = {
 	additional?: string;
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
 `;
 
 const Avatar = styled(Image)`
-	background-color: rgba(235, 235, 250, 1);
+	background-color: ${({ theme }) => rgba(theme.primary.accent, 0.08)};
 	width: 100%;
 	height: 224px;
 	object-fit: cover;
