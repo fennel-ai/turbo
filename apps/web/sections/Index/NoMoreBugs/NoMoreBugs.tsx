@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useTheme } from "@emotion/react";
 import { media, rgba } from 'styles/utils';
 import { PillButton, TextBlock, TitleBlock } from "ui";
 import { useScrollProgress } from 'hooks';
@@ -45,7 +46,7 @@ const ExpectationsImg = styled(Illustration)`
 
 const ImageWrapper = styled(motion.div)`
 	border-radius: 1.5rem;	
-	filter: drop-shadow(0px 100px 217px ${({ theme }) => rgba(theme.shadow, 0.08)});
+	filter: drop-shadow(0px 100px 217px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0.32 : 0.08)});
 	& img {
 		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%);
 		position: absolute;
@@ -64,7 +65,9 @@ const ImageWrapper = styled(motion.div)`
 
 const NoMoreBugs = () => {
 	const [ref, progress] = useScrollProgress();
-	const y = useTransform(progress, [0, 1], [-80, 0])
+	const y = useTransform(progress, [0, 1], [-80, 0]);
+
+	const theme = useTheme();
 
 	return (
 		<SplitSection 
@@ -73,7 +76,7 @@ const NoMoreBugs = () => {
 			illustration={
 				<ExpectationsImg>
 					<ImageWrapper style={{ y, position: 'absolute', inset: 0 }}>
-						<Image src="/images/expectations.png" width={3606} height={2040} alt="Data Expectations" />
+						<Image src={theme.type === 'dark' ? "/images/expectations-dark.png" : "/images/expectations.png"} width={3606} height={2040} alt="Data Expectations" />
 					</ImageWrapper>
 				</ExpectationsImg>
 			}

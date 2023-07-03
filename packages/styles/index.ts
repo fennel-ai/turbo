@@ -77,6 +77,7 @@ export type Breakpoint = "2xs" | "xs" | "sm" | "md" | "lg" | "xl";
 
 export type Theme = {
 	base: string,
+	type: 'light' | 'dark';
 	inverted_theme: string,
 	breakpoints: Record<Breakpoint, number>, // Breakpoints are a map of size name to rem value representing the screen width of that breakpoint.
 	fontFamilies: {
@@ -132,12 +133,14 @@ const breakpoints = {
 
 export const light: Theme = {
 	breakpoints,
+	type: 'light',
 	inverted_theme: 'dark',
 	...lightTokens,
 }
 
 export const dark: Theme = {
 	breakpoints,
+	type: 'dark',
 	inverted_theme: 'light',
 	...darkTokens
 }

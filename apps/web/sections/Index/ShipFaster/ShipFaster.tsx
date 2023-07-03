@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useTheme } from "@emotion/react";
 import { media, rgba } from 'styles/utils';
 import { TextBlock, TitleBlock } from "ui";
 import Image from 'next/image';
@@ -34,7 +35,7 @@ const ConsoleImg = styled(Illustration)`
 
 const ImageWrapper = styled(motion.div)`
 	border-radius: 1.5rem;	
-	filter: drop-shadow(0px -100px 217px ${({ theme }) => rgba(theme.shadow, 0.08)});
+	filter: drop-shadow(0px -100px 217px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0.32 : 0.08)});
 	& img {
 		mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
 		position: absolute;
@@ -48,6 +49,7 @@ const ImageWrapper = styled(motion.div)`
 
 const ShipFaster = () => {
 	const [ref, progress] = useScrollProgress();
+	const theme = useTheme();
 	const y = useTransform(progress, [0, 1], [64, -24])
 
 	return (
@@ -56,7 +58,7 @@ const ShipFaster = () => {
 			illustration={
 				<ConsoleImg>
 					<ImageWrapper style={{ y, position: 'absolute', inset: 0 }}>
-						<Image src="/images/ship_faster.png" alt="Fenel Console Dashboard" width={3894} height={2664} />
+						<Image src={theme.type === 'dark' ? "/images/ship_faster_dark.png" : "/images/ship_faster.png"} alt="Fenel Console Dashboard" width={3894} height={2664} />
 					</ImageWrapper>
 				</ConsoleImg>
 			}
