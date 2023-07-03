@@ -16,11 +16,3 @@ export default function Company() {
 		</main>
 	);
 }
-
-export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
-	return {
-		props: {
-			theme: 'light'
-		}
-	};
-}

@@ -19,11 +19,3 @@ export default function Index() {
 		</main>
 	);
 }
-
-export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
-	return {
-		props: {
-			theme: 'light'
-		}
-	};
-}

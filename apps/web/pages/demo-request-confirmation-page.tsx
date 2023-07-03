@@ -9,11 +9,3 @@ export default function DemoRequestConfirmation() {
 		</main>
 	)
 }
-
-export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
-	return {
-		props: {
-			theme: 'light'
-		}
-	};
-}

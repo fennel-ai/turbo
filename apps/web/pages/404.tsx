@@ -75,11 +75,3 @@ export default function NotFoundPage() {
 		</Main>
 	);
 }
-
-export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
-	return {
-		props: {
-			theme: 'light'
-		}
-	};
-}

@@ -17,6 +17,7 @@ import SectionThemeProvider, { SectionTheme } from 'context/SectionTheme';
 
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
+import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({
 	src: [{
@@ -75,8 +76,9 @@ const GlobalStyles = () => {
 
 export default function App({ Component, pageProps }: AppProps<{ theme: 'light' | 'dark' }>) {
 	const router = useRouter();
-	const currentTheme = pageProps.theme || 'light';
-
+	const system_dark_mode = useSystemDarkMode(false);
+	const currentTheme = pageProps.theme || system_dark_mode ? 'dark' : 'light';
+	console.log(system_dark_mode);
 	useEffect(() => {
 		// Track page views
 		const handleRouteChange = () => posthog?.capture('$pageview')
