@@ -11,8 +11,8 @@ const Root = styled.div`
 	position: relative;
 	padding: 5rem 0;
 	background-color: ${({ theme }) => theme.background};
-	// border-top: 1px solid ${({ theme }) => theme.border};
-	// border-bottom: 1px solid ${({ theme }) => theme.border};
+	border-top: 1px solid ${({ theme }) => theme.border};
+	border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
 
 const Background = styled.div`
@@ -85,7 +85,7 @@ const Cell = styled.div`
 		pointer-events: none;
 		position: absolute;
 		inset: 1px;
-		background-color: ${({ theme }) => rgba(theme.surface, 0.7)};
+		background-color: ${({ theme }) => theme.glass};
 		backdrop-filter: blur(1rem);
 		border-radius: calc(1rem - 1px);
 		z-index: -1;
@@ -111,6 +111,7 @@ const TextGroup = styled.div`
 		font-size: 1.125rem;
 		line-height: 2rem;
 		font-variation-settings: "wght" 600;
+		color: ${({ theme }) => theme.on};
 	}
 
 	p {
@@ -118,6 +119,7 @@ const TextGroup = styled.div`
 		font-size: 1rem;
 		line-height: 1.5rem;
 		font-variation-settings: "wght" 400;
+		color: ${({ theme }) => theme.on_alt};
 		opacity: 0.8;
 	}
 `;

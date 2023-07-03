@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
 import styled from '@emotion/styled';
+import { rgba } from 'styles/utils';
 
 const Root = styled.div`
 	display: flex;
@@ -7,8 +8,8 @@ const Root = styled.div`
 	justify-content: center;
 	border-radius: 0.75rem;
 	background-color: rgb(${({ theme }) => theme.ref.purple['70']});
-	box-shadow: 0px 0px 0px 2px rgb(${({ theme }) => theme.ref.purple['90']});
-	color: rgba(255, 255, 255, 0.8);
+	box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.border};
+	color: ${({ theme }) => rgba(theme.primary.on, 0.8)};
 	width: 3rem;
 	height: 3rem;
 
