@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media } from 'styles/utils';
+import { media, rgba } from 'styles/utils';
 import { TextBlock, TitleBlock } from "ui";
 import Image from 'next/image';
 import { motion, useTransform } from 'framer-motion';
@@ -30,7 +30,11 @@ const ConsoleImg = styled(Illustration)`
 	flex-direction: column;
 	justify-content: flex-end;
 	overflow: hidden;
-	
+`;
+
+const ImageWrapper = styled(motion.div)`
+	border-radius: 1.5rem;	
+	filter: drop-shadow(0px -100px 217px ${({ theme }) => rgba(theme.shadow, 0.05)});
 	& img {
 		mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
 		position: absolute;
@@ -51,9 +55,9 @@ const ShipFaster = () => {
 			ref={ref}
 			illustration={
 				<ConsoleImg>
-					<motion.div style={{ y, position: 'absolute', inset: 0 }}>
+					<ImageWrapper style={{ y, position: 'absolute', inset: 0 }}>
 						<Image src="/images/ship_faster.png" alt="Fenel Console Dashboard" width={3894} height={2664} />
-					</motion.div>
+					</ImageWrapper>
 				</ConsoleImg>
 			}
 		>

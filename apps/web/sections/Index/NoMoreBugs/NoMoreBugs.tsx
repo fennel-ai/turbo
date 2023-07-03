@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media } from 'styles/utils';
+import { media, rgba } from 'styles/utils';
 import { PillButton, TextBlock, TitleBlock } from "ui";
 import { useScrollProgress } from 'hooks';
 import { motion, useTransform } from 'framer-motion';
@@ -41,6 +41,11 @@ const ExpectationsImg = styled(Illustration)`
 	flex-direction: column;
 	justify-content: flex-end;
 	overflow: hidden;
+`;
+
+const ImageWrapper = styled(motion.div)`
+	border-radius: 1.5rem;	
+	filter: drop-shadow(0px -100px 217px ${({ theme }) => rgba(theme.shadow, 0.05)});
 	& img {
 		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%);
 		position: absolute;
@@ -49,7 +54,7 @@ const ExpectationsImg = styled(Illustration)`
 		flex-shrink: 0;
 		width: 812px;
 		height: 460px;
-		
+
 		${media('sm')} {
 			width: 1202px;
 			height: 680px;
@@ -67,9 +72,9 @@ const NoMoreBugs = () => {
 			direction="reverse" 
 			illustration={
 				<ExpectationsImg>
-					<motion.div style={{ y, position: 'absolute', inset: 0 }}>
+					<ImageWrapper style={{ y, position: 'absolute', inset: 0 }}>
 						<Image src="/images/expectations.png" width={3606} height={2040} alt="Data Expectations" />
-					</motion.div>
+					</ImageWrapper>
 				</ExpectationsImg>
 			}
 		>
