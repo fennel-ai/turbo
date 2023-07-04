@@ -15,7 +15,7 @@ const Root = styled.button`
 	justify-content: space-between;
 	padding: 0.75rem;
 	background-color: ${({ theme }) => rgba(theme.on, 0.04)};
-	box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.border};
+	border: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
 	cursor: pointer;
 	overflow: hidden;
 

@@ -9,6 +9,7 @@ type Props = {
 	code: string,
 	language: string,
 	filename?: string,
+	filenameHref?: string,
 	toolbar?: boolean,
 	onCopy?: () => void
 }
@@ -20,8 +21,21 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	position: relative;
 	border-radius: 0;
 
+	${media('sm', 'max')} {
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+	}
+
 	${media('sm')} {
-		box-shadow: 0px 33px 22px 0px rgba(47, 47, 65, 0.13), 0px 16.516000747680664px 11.01099967956543px 0px rgba(47, 47, 65, 0.10), 0px 9.949000358581543px 6.631999969482422px 0px rgba(47, 47, 65, 0.08), 0px 6.375999927520752px 4.25px 0px rgba(47, 47, 65, 0.07), 0px 4.131999969482422px 2.755000114440918px 0px rgba(47, 47, 65, 0.06), 0px 2.6010000705718994px 1.7339999675750732px 0px rgba(47, 47, 65, 0.06), 0px 1.4950000047683716px 0.9959999918937683px 0px rgba(47, 47, 65, 0.05), 0px 0.6579999923706055px 0.4390000104904175px 0px rgba(47, 47, 65, 0.03);
+		box-shadow: 0px 4px 16px 0px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0 : 0.32)};
+		border: 0.5px solid ${({ theme }) => theme.border};
 		border-radius: 1.25rem;
 	}
 `;
@@ -31,6 +45,7 @@ const Toolbar = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
+	gap: 0.5rem;
 	justify-content: space-between;
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
@@ -55,9 +70,11 @@ const Filename = styled.a`
 	color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
 	text-decoration: none;
 	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
 	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 40%;
 	user-select: none;
 
 	&:hover {
@@ -94,11 +111,11 @@ const CopyButton = styled.button`
 
 const Code = styled(Syntax)<{ toolbar: boolean }>`
 	& > pre {
-		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1.5rem'};
+		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1rem'};
 	}
 `;
 
-export const CodeBlock = ({ className, code, filename, language, onCopy, toolbar = true }: Props) => {
+export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true }: Props) => {
 	const handleCopy = () => {
 		navigator.clipboard.writeText(code);
 		if (onCopy) onCopy();
@@ -113,7 +130,7 @@ export const CodeBlock = ({ className, code, filename, language, onCopy, toolbar
 						<span />
 						<span />
 					</FakeButtons>
-					{filename ? <Filename target="_blank" rel="noopener noreferrer" href={`https://github.com/fennel-ai/client/blob/main/docs/${filename}`}>{filename}</Filename> : null}
+					{filename ? <Filename target="_blank" rel="noopener noreferrer" href={filenameHref}>{filename}</Filename> : null}
 					<CopyButton onClick={handleCopy}>
 						Copy
 						<CopyIcon />

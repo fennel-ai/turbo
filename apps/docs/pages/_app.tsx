@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ThemeProvider } from '@emotion/react';
+import { Global, css, ThemeProvider, useTheme } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import Script from 'next/script';
 import { useRouter } from 'next/router';
@@ -14,6 +14,7 @@ import "@docsearch/css";
 
 import { ShellContextProvider } from 'context/Shell';
 import Head from 'next/head';
+import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({
 	src: [{
@@ -41,24 +42,10 @@ if (typeof window !== 'undefined') {
 	})
 }
 
-export default function App({ Component, pageProps }: AppProps) {
-	const router = useRouter()
+const GlobalStyles = () => {
+	const theme = useTheme();
 
-	useEffect(() => {
-		// Track page views
-		const handleRouteChange = () => posthog?.capture('$pageview')
-		router.events.on('routeChangeComplete', handleRouteChange)
-
-		return () => {
-			router.events.off('routeChangeComplete', handleRouteChange)
-		}
-	}, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-	return (
-		<PostHogProvider client={posthog}>
-			<ShellContextProvider>
-				<style jsx global>
-					{`
+	return <Global styles={css`
 				@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
 
 				* {
@@ -66,6 +53,8 @@ export default function App({ Component, pageProps }: AppProps) {
 				}
 
 				body {
+					background-color: ${theme.background};
+					color: ${theme.on_alt};
 					margin: 0;
 					padding: 0;
 					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -80,8 +69,28 @@ export default function App({ Component, pageProps }: AppProps) {
 				button, input {
 					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 				}
-			`}
-				</style>
+			`} />
+}
+
+export default function App({ Component, pageProps }: AppProps) {
+	const router = useRouter()
+
+	const system_dark_mode = useSystemDarkMode();
+	const currentTheme = system_dark_mode ? 'dark' : 'light';
+
+	useEffect(() => {
+		// Track page views
+		const handleRouteChange = () => posthog?.capture('$pageview')
+		router.events.on('routeChangeComplete', handleRouteChange)
+
+		return () => {
+			router.events.off('routeChangeComplete', handleRouteChange)
+		}
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+	return (
+		<PostHogProvider client={posthog}>
+			<ShellContextProvider>
 				<Head>
 					<link rel="icon" href="/favicon.ico" sizes="any" />
 					<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -110,7 +119,8 @@ export default function App({ Component, pageProps }: AppProps) {
 				<noscript>
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>
-				<ThemeProvider theme={themes.light}>
+				<ThemeProvider theme={themes['light']}>
+					<GlobalStyles />
 					<Component {...pageProps} />
 					<Toaster position="bottom-left" toastOptions={toastOptions} />
 				</ThemeProvider>

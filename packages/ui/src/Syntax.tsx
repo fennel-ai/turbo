@@ -37,7 +37,7 @@ const Root = styled.div`
 	/* Code blocks */
 	pre {
 		margin: 0;
-		padding: 1.5rem;
+		padding: 1rem;
 		padding-left: 0;
 		overflow: auto;
 	}

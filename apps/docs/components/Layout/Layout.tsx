@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from '@emotion/styled';
-import { media } from "styles/utils";
+import { media, rgba } from "styles/utils";
 
 import type { NavigationTree } from "lib/utils";
 
@@ -22,7 +22,7 @@ const Root = styled(Container)`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
-	padding-top: 2rem;
+	padding-top: calc(6rem + 2rem);
 	padding-bottom: 5rem;
 
 	${media('xs')} {
@@ -31,31 +31,26 @@ const Root = styled(Container)`
 
 	${media('md')} {
 		grid-template-columns: repeat(12, 1fr);
-		padding-top: 2.5rem;
+		padding-top: calc(7.5rem + 2.5rem);
 	}
 
 	${media('lg')} {
-		padding-top: 3.5rem;
+		padding-top: calc(4.5rem + 3.5rem);
 		padding-bottom: 7.5rem;
 	}
 
 	& > main {
-		color: ${({ theme }) => theme['text-alt']};
+		color: ${({ theme }) => theme.on_alt};
 
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
-			color: ${({ theme }) => theme.text};
+			color: ${({ theme }) => theme.on};
 			font-family: ${haskoyVariable.style.fontFamily}, serif;
 			font-weight: 500;
 			margin: 0;
-			letter-spacing: -0.5px;
 
 			&:first-of-type {
 				margin-top: 0 !important;
-			}
-
-			${media('md')} {
-				letter-spacing: -0.75px;
 			}
 		}
 
@@ -109,13 +104,36 @@ const Root = styled(Container)`
 		}
 
 		& a {
+			position: relative;
 			text-decoration: none;
-			color: ${({ theme }) => theme.primary.accent};
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.bold};
+			color: ${({ theme }) => theme.on_alt};
+			opacity: 0.8;
+			transition: 160ms opacity ease-out;
+
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: -1px;
+				left: 0;
+				right: 0;
+				height: 1px;
+				background-color: ${({ theme }) => theme.on};
+				opacity: 0.4;
+				transition: 80ms opacity ease-out;
+				z-index: -1;
+			}
+
+			&:hover {
+				opacity: 1;
+
+				&::after {
+					opacity: 0.64;
+				}
+			}
 		}
 
 		hr {
-			background-color: rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
+			background-color: ${({ theme }) => theme.border};
 			border: none;
 			height: 2px;
 		}
@@ -150,15 +168,15 @@ const Root = styled(Container)`
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem 0.375rem;
 			margin: 0 0.25rem;
-			background-color: rgba(${({ theme }) => theme.ref.grey[10]}, 4%);
-			color: rgba(${({ theme }) => theme.ref.grey[10]}, 100%);
-			border: 1px solid rgba(${({ theme }) => theme.ref.grey[10]}, 12%);
+			background-color: ${({ theme }) => rgba(theme.on_alt, 0.04)};
+			color: ${({ theme }) => theme.primary.accent};
+			border: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.12)};
 			border-radius: 0.375rem;
 		}
 
 		strong {
 			font-variation-settings: "wght" 700;
-			color: ${({ theme }) => theme.text};
+			color: ${({ theme }) => theme.on};
 		}
 
 		/** Grid style */
