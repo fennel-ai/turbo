@@ -46,30 +46,30 @@ const GlobalStyles = () => {
 	const theme = useTheme();
 
 	return <Global styles={css`
-				@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
 
-				* {
-					box-sizing: border-box;
-				}
+		* {
+			box-sizing: border-box;
+		}
 
-				body {
-					background-color: ${theme.background};
-					color: ${theme.on_alt};
-					margin: 0;
-					padding: 0;
-					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-					font-synthesis: none;
-					font-feature-settings: "tnum"; /*! Enables the numeric character variants with Satoshi Variable - may want to restrict this to only li:marker elements */
-					text-rendering: optimizeLegibility;
-					-webkit-font-smoothing: antialiased;
-					-moz-osx-font-smoothing: grayscale;
-					-webkit-text-size-adjust: 100%;
-				}
+		body {
+			background-color: ${theme.background};
+			color: ${theme.on_alt};
+			margin: 0;
+			padding: 0;
+			font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-synthesis: none;
+			font-feature-settings: "tnum"; /*! Enables the numeric character variants with Satoshi Variable - may want to restrict this to only li:marker elements */
+			text-rendering: optimizeLegibility;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-text-size-adjust: 100%;
+		}
 
-				button, input {
-					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-				}
-			`} />
+		button, input {
+			font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		}
+	`} />
 }
 
 export default function App({ Component, pageProps }: AppProps) {

@@ -1,12 +1,5 @@
 import styled from '@emotion/styled';
-import { get } from 'styles/utils';
 import { Page } from 'contentlayer/generated';
-
-const COLOR_MAP: Record<Page['status'], string> = {
-	draft: 'ref.grey.700',
-	wip: 'ref.yellow.600',
-	published: 'ref.green.400'
-}
 
 const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page['status'] }>`
 	font-size: 1.125rem;
@@ -26,7 +19,13 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 		top: calc(50% - 3px);
 		left: calc(-16px - 3px);
 		border-radius: 50%;
-		background-color: rgb(${({ status }) => get(COLOR_MAP[status])});
+		background-color: ${({ status, theme }) => {
+			switch (status) {
+				case 'draft': { return theme.border }
+				case 'wip': { return theme.caution.accent }
+				case 'published': { return theme.success.accent }
+			}
+		}};
 		display: ${process.env.NODE_ENV === 'development' ? 'block' : 'none'};
 	}
 
