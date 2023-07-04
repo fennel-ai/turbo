@@ -29,7 +29,7 @@ const Content = styled.div`
 		font-size: 1rem;
 		line-height: 1.75rem;
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
-		color: ${({ theme }) => theme['text-alt']};
+		color: ${({ theme }) => theme.on_alt};
 	}
 `;
 

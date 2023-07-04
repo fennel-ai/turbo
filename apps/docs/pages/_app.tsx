@@ -119,7 +119,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<noscript>
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>
-				<ThemeProvider theme={themes['light']}>
+				<ThemeProvider theme={themes[currentTheme]}>
 					<GlobalStyles />
 					<Component {...pageProps} />
 					<Toaster position="bottom-left" toastOptions={toastOptions} />

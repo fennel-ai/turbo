@@ -78,7 +78,7 @@ const Root = styled.div`
 	.token.prolog,
 	.token.doctype,
 	.token.cdata {
-		color: ${get('syntax.plain.foreground')};
+		color: ${({ theme }) => theme.syntax.plain.foreground };
 		opacity: 56%;
 	}
 
@@ -88,11 +88,11 @@ const Root = styled.div`
 
 	.token.keyword,
 	.token.builtin {
-		color: ${get('syntax.keyword')};;
+		color: ${({ theme }) => theme.syntax.keyword };
 	}
 
 	.token.class-name {
-		color: ${get('syntax.class-name')};
+		color: ${({ theme }) => theme.syntax['class-name'] };
 	}
 
 	.token.function,
@@ -100,38 +100,38 @@ const Root = styled.div`
 	.token.regex,
 	.token.variable,
 	.token.constant {
-		color: ${get('syntax.constant')};
+		color: ${({ theme }) => theme.syntax.constant };
 	}
 
 	.token.boolean {
-		color: ${get('syntax.boolean')};
+		color: ${({ theme }) => theme.syntax.boolean };
 	}
 
 	.token.number,
 	.token.important {
-		color: ${get('syntax.number')};;
+		color: ${({ theme }) => theme.syntax.number };
 	}
 
 	.token.string,
 	.token.char,
 	.token.url {
-		color: ${get('syntax.string')};;
+		color: ${({ theme }) => theme.syntax.string };
 	}
 
 	.token.operator { 
-		color: ${get('syntax.operator')};;
+		color: ${({ theme }) => theme.syntax.operator };
 	}
 
 	.token.property {
-		color: ${get('syntax.property')};
+		color: ${({ theme }) => theme.syntax.property };
 	}
 
 	.token.punctuation:not(.decorator) {
-		color: ${get('syntax.punctuation')};;
+		color: ${({ theme }) => theme.syntax.punctuation };
 	}
 
 	.token.decorator.annotation.punctuation {
-		color: ${get('syntax.function')}; !important;
+		color: ${({ theme }) => theme.syntax.function} !important;
 	}
 `;
 
