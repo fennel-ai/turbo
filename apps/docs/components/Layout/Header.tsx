@@ -151,14 +151,15 @@ const Header = () => {
 				</SearchWrapper>
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
-					<DemoButton
-						icon={null}
-						size="large"
-						invert
-						onClick={() => router.push("https://fennel.ai/get-a-demo")}
-					>
-						Request a demo
-					</DemoButton>
+					<a href="https://fennel.ai/get-a-demo">
+						<DemoButton
+							icon={null}
+							size="large"
+							invert
+						>
+							Request a demo
+						</DemoButton>
+					</a>
 				</Actions>
 			</Wrapper>
 			<Border>

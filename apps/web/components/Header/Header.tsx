@@ -194,7 +194,7 @@ export const Header = () => {
 							invert
 							size="large"
 						>
-							Request a Demo
+							Request a demo
 						</PillButton>
 					</Link>
 					<MenuButton 
