@@ -1,4 +1,5 @@
-const { withContentlayer } = require('next-contentlayer');
+require("dotenv").config();
+const { withContentlayer } = require("next-contentlayer");
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
@@ -8,6 +9,11 @@ const nextConfig = {
   basePath: "/docs",
   reactStrictMode: true,
   transpilePackages: ["ui", "styles"],
+  experimental: {
+	resolveAlias: {
+		'contentlayer/generated': './contentlayer/generated'
+	}
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -37,4 +43,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withBundleAnalyzer(withContentlayer(nextConfig))
+module.exports = withBundleAnalyzer(withContentlayer(nextConfig));

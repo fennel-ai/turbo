@@ -42,11 +42,6 @@ export const findAndReplace = async ({
 				type: 'mdxJsxAttribute',
 				name: 'snippetId',
 				value: snippet_id,
-			},
-			{
-				type: "mdxJsxAttribute",
-				name: "position",
-				value: node.position
 			}
 		];
 		node.children = [
