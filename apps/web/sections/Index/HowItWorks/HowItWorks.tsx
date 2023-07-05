@@ -1,13 +1,12 @@
 import { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import { media } from 'styles/utils';
-import { TitleBlock } from 'ui';
+import { Container, TitleBlock } from 'ui';
 import CodeIcon from 'ui/icons/code.svg';
 import DataIcon from 'ui/icons/data.svg';
 import GlobeIcon from 'ui/icons/globe.svg';
 import PipelineIcon from 'ui/icons/pipeline.svg';
 
-import { Container } from 'components/Container';
 import { AccordionItem } from './AccordionItem';
 import Diagram from './Diagram';
 
@@ -62,7 +61,7 @@ const HowItWorks = () => {
 		<Root data-section>
 			<Wrapper>
 				<TitleWrapper>
-					<TitleBlock align="center">
+					<TitleBlock center>
 						<h6>How it works</h6>
 						<h2>Read & Write Path Separation</h2>
 						<p>The right abstraction for realtime feature engineering</p>

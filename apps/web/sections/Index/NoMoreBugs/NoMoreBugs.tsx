@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { media } from 'styles/utils';
-import { LinkButton, TextBlock, TitleBlock } from "ui";
+import { useTheme } from "@emotion/react";
+import { media, rgba } from 'styles/utils';
+import { PillButton, TextBlock, TitleBlock } from "ui";
 import { useScrollProgress } from 'hooks';
 import { motion, useTransform } from 'framer-motion';
 import BeakerIcon from 'ui/icons/beaker-01.svg';
@@ -27,7 +28,7 @@ const Grid = styled.div`
 	}
 `;
 
-const CTAButton = styled(LinkButton)`
+const CTAButton = styled(PillButton)`
 	align-self: center;
 
 	${media('sm')} {
@@ -41,6 +42,11 @@ const ExpectationsImg = styled(Illustration)`
 	flex-direction: column;
 	justify-content: flex-end;
 	overflow: hidden;
+`;
+
+const ImageWrapper = styled(motion.div)`
+	border-radius: 1.5rem;	
+	filter: drop-shadow(0px 100px 217px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0.32 : 0.08)});
 	& img {
 		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%);
 		position: absolute;
@@ -49,7 +55,7 @@ const ExpectationsImg = styled(Illustration)`
 		flex-shrink: 0;
 		width: 812px;
 		height: 460px;
-		
+
 		${media('sm')} {
 			width: 1202px;
 			height: 680px;
@@ -59,7 +65,9 @@ const ExpectationsImg = styled(Illustration)`
 
 const NoMoreBugs = () => {
 	const [ref, progress] = useScrollProgress();
-	const y = useTransform(progress, [0, 1], [-80, 0])
+	const y = useTransform(progress, [0, 1], [-80, 0]);
+
+	const theme = useTheme();
 
 	return (
 		<SplitSection 
@@ -67,13 +75,13 @@ const NoMoreBugs = () => {
 			direction="reverse" 
 			illustration={
 				<ExpectationsImg>
-					<motion.div style={{ y, position: 'absolute', inset: 0 }}>
-						<Image src="/images/expectations.png" width={3606} height={2040} alt="Data Expectations" />
-					</motion.div>
+					<ImageWrapper style={{ y, position: 'absolute', inset: 0 }}>
+						<Image src={theme.type === 'dark' ? "/images/expectations-dark.png" : "/images/expectations.png"} width={3606} height={2040} alt="Data Expectations" />
+					</ImageWrapper>
 				</ExpectationsImg>
 			}
 		>
-			<TitleBlock align="left">
+			<TitleBlock>
 				<h6>Best-in-class data quality tooling</h6>
 				<h2>No more feature or data bugs</h2>
 			</TitleBlock>

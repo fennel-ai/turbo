@@ -16,7 +16,7 @@ const gridStyles = {
 	maxWidth: '960px',
 	display: 'grid',
 	gridAutoRows: '282px',
-	gridAutoColumns: '0.25fr'
+	gridAutoColumns: '0.5fr'
 };
 
 // The template here initializes some mouse handlers to show the "Glass Shimmer" effect.

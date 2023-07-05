@@ -6,7 +6,7 @@ const Root = styled.div`
 	min-height: 64px;
 	display: grid;
 	grid-template-columns: 1fr;
-	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
 
 	div {
 		padding: 1rem 0;
@@ -29,7 +29,7 @@ const Content = styled.div`
 		font-size: 1rem;
 		line-height: 1.75rem;
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
-		color: ${({ theme }) => theme['text-alt']};
+		color: ${({ theme }) => theme.on_alt};
 	}
 `;
 

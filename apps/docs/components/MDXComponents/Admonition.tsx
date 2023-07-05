@@ -36,7 +36,7 @@ type Props = {
 
 const Root = styled.div<{ type: Props['type'] }>`
 	background-color: ${({ theme}) => theme.surface };
-	box-shadow: 0px 0px 0px 3px rgba(${({ theme }) => theme.ref.grey[800]}, 48%);
+	box-shadow: 0px 0px 0px 3px rgba(${({ theme }) => theme.ref.grey[80]}, 48%);
 	padding: 0.75rem 1.25rem;
 	border-radius: 0.75rem;
 	margin: 1rem 0 2rem 0;

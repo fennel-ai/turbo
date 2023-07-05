@@ -12,10 +12,14 @@
 		"@emotion/styled": "^11.10.5"
 	},
 	"devDependencies": {
+		"@types/tinycolor2": "^1.4.3",
 		"eslint": "^7.32.0",
 		"eslint-config-fennel": "workspace:*",
 		"react": "^18.2.0",
 		"tsconfig": "workspace:*",
 		"typescript": "^4.5.2"
+	},
+	"dependencies": {
+		"tinycolor2": "^1.6.0"
 	}
 }

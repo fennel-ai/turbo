@@ -1,3 +1,4 @@
+import "dotenv/config";
 import fs from "fs-extra";
 import path from "node:path";
 import { makeSource } from "contentlayer/source-remote-files";
@@ -8,7 +9,7 @@ import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from "remark-directive";
 import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
-import docsnip from 'remark-docsnip';
+import docsnip from "remark-docsnip";
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
 // Content types
@@ -51,8 +52,8 @@ export default makeSource({
     "docker-compose.yml",
     "Makefile",
     "README.md",
-	"algolia.config.json",
-	"deprecated"
+    "algolia.config.json",
+    "deprecated",
   ],
   mdx: {
     remarkPlugins: [

@@ -1,12 +1,12 @@
-import { LinkButton, TitleBlock } from 'ui';
-import clsx from 'clsx';
+import { ReactNode, useMemo } from 'react';
+import { Container, PillButton, TitleBlock } from 'ui';
+import { media, rgba } from 'styles/utils';
+import styled from "@emotion/styled";
+import { keyframes } from '@emotion/react';
 import Link from 'next/link';
 import chunk from 'lodash/chunk';
-import styles from './ArchitectedWithLove.module.scss';
 
 import { useMatchMedia } from 'hooks';
-
-import { Container } from 'components/Container';
 
 import GrpcLogo from 'ui/icons/technologies/grpc.svg';
 import KafkaLogo from 'ui/icons/technologies/kafka.svg';
@@ -16,7 +16,6 @@ import RocksdbLogo from 'ui/icons/technologies/rocksdb.svg';
 import RustLogo from 'ui/icons/technologies/rust.svg';
 import PostgresLogo from 'ui/icons/technologies/postgresql.svg';
 import PulumiLogo from 'ui/icons/technologies/pulumi.svg';
-import { ReactNode, useMemo } from 'react';
 
 type TechnologyDefinition = {
 	logo: ReactNode,
@@ -67,46 +66,176 @@ const TECH: TechnologyDefinition[] = [
 	},
 ]
 
+const Root = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3rem;
+	background-color: ${({ theme }) => theme.background};
+	border-top: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
+	border-bottom: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
+`;
+
+const Wrapper = styled(Container)`
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	row-gap: 2rem;
+`;
+
+const Content = styled.div`
+	padding: 5rem 0;
+	grid-column: span 12;
+	display: flex;
+	align-items: center;
+
+	h6, h2 {
+		color: colors.get(purple, 90) !important;
+	}
+
+	${media('sm', 'max')} {
+		justify-content: center;
+		padding-bottom: 0;
+	}
+
+	${media('sm')} {
+		grid-column: 2 / span 4;
+	}
+`;
+
+const MarqueeWrapper = styled.div`
+	max-height: 28rem;
+	grid-column: span 12;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: 1fr;
+	column-gap: 1rem;
+
+	
+	${media('sm')} {
+		grid-column: 7 / span 6;
+	}
+`;
+
+const marquee_scroll = keyframes`
+	0% {
+		transform: translateY(0%);
+	}
+
+	100% {
+		transform: translateY(calc(-100% - 1rem));
+	}
+`;
+
+const Marquee = styled.div`
+	grid-column: span 3;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	user-select: none;
+	gap: 1rem;
+	mask-image: linear-gradient(to bottom,
+				hsl(0 0% 0% / 0),
+				hsl(0 0% 0% / 1) 30%,
+				hsl(0 0% 0% / 1) 70%,
+				hsl(0 0% 0% / 0));
+
+	@media (min-width: 34rem) {
+		grid-column: span 2;
+	}
+
+	& > section {
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: space-around;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		animation: ${marquee_scroll} 60s linear infinite;
+	}
+
+	&.reverse {
+		& > section {
+			animation-direction: reverse;
+			animation-delay: -3;
+		}
+	}
+`;
+
+const Technology = styled.div`
+	border-radius: 1rem;
+	padding: 1rem;
+	border: 1px solid ${({ theme }) => theme.border};
+	align-self: stretch;
+	height: 172px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	color: ${({ theme }) => theme.on_alt};
+	
+	& > div {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		align-items: stretch;
+
+		& > h6 {
+			margin: 0;
+			color: ${({ theme }) => theme.on};
+			font-size: 0.875rem;
+			line-height: 1rem;
+			font-variation-settings: "wght" 700;
+		}
+	
+		& > p {
+			margin: 0;
+			opacity: 0.8;
+			font-size: 0.75rem;
+			line-height: 1rem;
+			font-variation-settings: "wght" 500;
+		}
+	}
+`;
+
 const renderTechnology = ({ logo, name, text }: TechnologyDefinition) => (
-	<div key={name} className={styles.technology}>
+	<Technology key={name}>
 		{logo}
 		<div>
 			<h6>{name}</h6>
 			<p>{text}</p>
 		</div>
-	</div>
+	</Technology>
 );
 
 const ArchitectedWithLove = () => {
 	const useThreeColumns = useMatchMedia('(min-width: 34rem)');
-
 	const MARQUEES = useMemo(() => chunk(TECH, useThreeColumns ? 3 : 4), [useThreeColumns]);
 
 	return (
-		<div data-section data-theme="dark" className={styles.root}>
-			<Container className={styles.wrapper}>
-				<div className={styles.content}>
-					<TitleBlock align="left" actions={[<Link href="https://fennel.ai/docs/architecture/technologies/"><LinkButton color="invert">Explore the Architecture</LinkButton></Link>]}>
+		<Root data-section data-theme="dark">
+			<Wrapper>
+				<Content>
+					<TitleBlock actions={[<Link href="https://fennel.ai/docs/architecture/technologies/"><PillButton color="invert">Explore the Architecture</PillButton></Link>]}>
 						<h6>Craftsman-like passion for Developer Experience</h6>
 						<h2>Architected with Love</h2>
 					</TitleBlock>
-				</div>
-				<div className={styles.marquee_wrapper}>
+				</Content>
+				<MarqueeWrapper>
 					{
 						MARQUEES.map((technologies, i) => (
-							<div key={i} className={clsx(styles.marquee, i % 2 ? undefined : styles.reverse)}>
+							<Marquee key={i} className={i % 2 ? undefined : 'reverse'}>
 								<section>
 									{technologies.map(renderTechnology)}
 								</section>
 								<section aria-hidden="true">
 									{technologies.map(renderTechnology)}
 								</section>
-							</div>
+							</Marquee>
 						))
 					}
-				</div>
-			</Container>
-		</div>
+				</MarqueeWrapper>
+			</Wrapper>
+		</Root>
 	);
 };
 

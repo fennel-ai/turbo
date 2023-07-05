@@ -1,10 +1,9 @@
 import { GetStaticPropsResult } from 'next';
 import { ArchitectedWithLove, CallToAction, HassleFreeScaling, Hero, HowItWorks, NoMoreBugs, ShipFaster, TrulyRealtime } from 'sections/Index';
-import { useSectionTheme } from 'hooks/useSectionTheme';
+import { ThemeProvider } from '@emotion/react';
+import * as themes from 'styles';
 
 export default function Index() {
-	useSectionTheme();
-
 	return (
 		<main>
 			<Hero />
@@ -13,16 +12,10 @@ export default function Index() {
 			<TrulyRealtime />
 			<HassleFreeScaling />
 			<HowItWorks />
-			<ArchitectedWithLove />
-			<CallToAction />
+			<ThemeProvider theme={themes.dark}>
+				<ArchitectedWithLove />
+				<CallToAction />
+			</ThemeProvider>
 		</main>
 	);
-}
-
-export async function getStaticProps(): Promise<GetStaticPropsResult<BasePageProps>> {
-	return {
-		props: {
-			dark_mode: false
-		}
-	};
 }

@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { media } from 'styles/utils';
-import { LinkButton, TitleBlock } from "ui";
+import { Container, PillButton, TitleBlock } from "ui";
 
-import { Container } from 'components/Container';
 import BentoIllustration from "./BentoIllustration/BentoIllustration";
 
 const Root = styled.div`
@@ -53,12 +52,11 @@ const TrulyRealtime = () => {
 				<Content>
 					<div>
 						<TitleBlock
-							align="left"
 							actions={[
 								<Link href="https://fennel.ai/docs/concepts/pipeline/">
-									<LinkButton>
+									<PillButton>
 										Kappa Pipeline Architecture
-									</LinkButton>
+									</PillButton>
 								</Link>
 							]}
 						>

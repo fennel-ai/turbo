@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import styled from '@emotion/styled';
 
 import TwitterIcon from 'ui/icons/twitter.svg';
-import { LinkButton, TextBlock } from 'ui';
+import { PillButton, TextBlock } from 'ui';
 
 const Root = styled.div`
 	width: 100%;
@@ -45,5 +45,5 @@ export const WithButton = Template.bind({});
 WithButton.args = {
 	icon: <TwitterIcon />,
 	children: [<b>Immutability & Versioning</b>, " tempor sunt. Qui explicabo ut aut eum illum sint ut est a. Dolorem voluptatem eveniet quae."],
-	button: <LinkButton>Learn More</LinkButton>,
+	button: <PillButton>Learn More</PillButton>,
 };
