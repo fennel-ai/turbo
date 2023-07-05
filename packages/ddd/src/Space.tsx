@@ -125,16 +125,16 @@ const Stars = () => {
 					count={COUNT}
 				/>
 			</bufferGeometry>
-			<lineBasicMaterial linecap="round" linewidth={2} color={0xA6A1ED} />
+			<lineBasicMaterial linecap="round" linewidth={2} color={0xBCB8F4} />
 		</lineSegments>
 	);
 }
 
 const Space = () => {
 	const { camera, gl } = useThree();
-
+	
 	useEffect(() => {
-		gl.setClearColor(0x0C091B);
+		gl.setClearColor(0x0d121b);
 	}, [camera, gl]);
 
 	return (

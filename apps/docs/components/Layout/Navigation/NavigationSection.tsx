@@ -19,7 +19,7 @@ const Root = styled(motion.ul)`
 `;
 
 const SectionTitle = styled.li<{expand: boolean}>`
-	color: ${get('text')};
+	color: ${({ theme }) => theme.on};
 	font-size: 1.25rem;
 	line-height: 2.5rem;
 	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
@@ -50,7 +50,7 @@ const PageList = styled.ul`
 	gap: 0.5rem;
 	margin: 1rem 0;
 	padding-left: 2rem;
-	border-left: 1px solid ${get('border')};
+	border-left: 1px solid ${({ theme }) => theme.border};
 `;
 
 const animation = {

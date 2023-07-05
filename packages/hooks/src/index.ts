@@ -5,4 +5,5 @@ export * from './useModalPresence';
 export * from './usePrefersReducedMotion';
 export * from './useScrollProgress';
 export * from './useSharedRef';
+export * from './useSystemDarkMode';
 export * from './useRandomInterval';

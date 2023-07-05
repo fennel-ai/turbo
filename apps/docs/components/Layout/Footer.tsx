@@ -9,7 +9,7 @@ import Logo from 'ui/icons/logo.svg';
 import Container from 'components/Container';
 
 const Root = styled.footer`
-	border-top: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	border-top: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
 
 	${media('xs')} {
 		height: 6.5rem;
@@ -34,7 +34,7 @@ const Brand = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 1rem;
-	color: ${({ theme }) => theme['text-alt']};
+	color: ${({ theme }) => theme.on_alt};
 
 	& h4 {
 		font-size: 1.25rem;
@@ -57,7 +57,7 @@ const Socials = styled.div`
 	gap: 0.5rem;
 	
 	a {
-		color: ${({ theme }) => theme['text-alt']};
+		color: ${({ theme }) => theme.on_alt};
 	}
 `;
 

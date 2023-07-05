@@ -2,19 +2,20 @@ import { forwardRef, MouseEventHandler } from 'react';
 import styled from '@emotion/styled';
 import SearchIcon from '../icons/search.svg';
 import { KeyIndicator } from './KeyIndicator';
+import { rgba } from 'styles/utils';
 
 const Root = styled.button`
 	position: relative;
 	width: 100%;
 	height: 2.5rem;
 	border-radius: 0.5rem;
-	color: ${({ theme }) => theme['text-alt']};
+	color: ${({ theme }) => theme.on_alt};
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.75rem;
-	background-color: rgba(${({ theme }) => theme.ref.grey['100']}, 2%);
-	border: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	background-color: ${({ theme }) => rgba(theme.on, 0.04)};
+	border: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
 	cursor: pointer;
 	overflow: hidden;
 

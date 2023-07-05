@@ -224,5 +224,31 @@
       "value": "2rem",
       "type": "dimension"
     }
+  },
+  "state_layer": {
+    "0": {
+      "value": "{opacity.0}",
+      "type": "opacity"
+    },
+    "1": {
+      "value": "{opacity.1}",
+      "type": "opacity"
+    },
+    "2": {
+      "value": "{opacity.3}",
+      "type": "opacity"
+    },
+    "3": {
+      "value": "{opacity.5}",
+      "type": "opacity"
+    },
+    "4": {
+      "value": "{opacity.6}",
+      "type": "opacity"
+    },
+    "5": {
+      "value": "{opacity.7}",
+      "type": "opacity"
+    }
   }
 }

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 const Root = styled(Link)`
-	border: 1px solid rgba(${({ theme }) => theme.ref.grey[100]}, 8%);
+	border: 1px solid rgba(${({ theme }) => theme.ref.grey[10]}, 8%);
 	display: flex;
 	flex-direction: column;
 	border-radius: 1rem;
@@ -21,7 +21,7 @@ const Header = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	color: ${({ theme }) => theme.text};
+	color: ${({ theme }) => theme.on};
 	padding: 1.5rem;
 	padding-bottom: 0;
 
@@ -44,7 +44,7 @@ const Text = styled.div`
 		margin: 0;
 		font-size: 1.125rem;
 		line-height: 1.5rem;
-		color: ${({ theme }) => theme['text-alt']};
+		color: ${({ theme }) => theme.on_alt};
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
 	}
 `;

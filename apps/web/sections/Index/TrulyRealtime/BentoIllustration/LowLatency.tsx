@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react';
+import { keyframes, useTheme } from '@emotion/react';
 import { media } from 'styles/utils';
 import { Card, TitleBlock } from 'ui';
 
@@ -22,6 +22,8 @@ const Root = styled(Card)`
 	justify-content: center;
 	padding: 1rem;
 	overflow: hidden;
+	background-color: ${({ theme }) => theme.glass};
+	border: 0.5px solid ${({ theme }) => theme.border};
 
 	${media('sm')} {
 		grid-column: span 1;
@@ -41,14 +43,17 @@ const Text = styled(TitleBlock)`
 `;
 
 
-export const LowLatency = () => (
-	<Root>
-		<Illustration>
-			<LightningIcon color="#f0f0f5" width={265} height={265} />
-		</Illustration>
-		<Text align="center">
-			<h6>Single-digit ms response</h6>
-			<h3>Ultra-low Latency Serving</h3>
-		</Text>
-	</Root>
-);
+export const LowLatency = () => {
+	const theme = useTheme();
+	return (
+		<Root>
+			<Illustration>
+				<LightningIcon color={theme.border} width={265} height={265} />
+			</Illustration>
+			<Text center>
+				<h6>Single-digit ms response</h6>
+				<h3>Ultra-low Latency Serving</h3>
+			</Text>
+		</Root>
+	);
+}

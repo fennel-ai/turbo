@@ -8,8 +8,7 @@ const Root = styled.div`
 
 	${media('md')} {
 		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
 	}
 `;
 
@@ -49,7 +48,7 @@ const Description = styled.p`
 	font-size: 1.125rem;
 	line-height: 1.75rem;
 	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
-	color: ${get('text-alt')};
+	color: ${({ theme }) => theme.on_alt};
 
 	${media('md')} {
 		font-size: 1.25rem;
@@ -71,7 +70,7 @@ const SectionTitle = styled.div`
 		font-size: 1.25rem;
 		line-height: 1.5rem;
 		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
-		color: ${get('primary.accent')}
+		color: ${({ theme }) => theme.primary.accent};
 	}
 `;
 

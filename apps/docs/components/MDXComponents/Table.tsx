@@ -32,7 +32,7 @@ const TableRoot = styled.table`
 	}
 
 	& thead {
-		box-shadow: 0px 2px 0px ${get("border")};
+		box-shadow: 0px 2px 0px ${({ theme }) => theme.border};
 		
 		tr {
 			text-align: left;
@@ -42,7 +42,7 @@ const TableRoot = styled.table`
 				border-collapse: separate;
 				font-size: 1.125rem;
 				line-height: 1.5rem;
-				color: ${({ theme }) => theme["text-alt"] };
+				color: ${({ theme }) => theme.on_alt };
 
 				&:first-of-type {
 					padding-left: 0;
@@ -60,7 +60,7 @@ const TableRoot = styled.table`
 			padding: 1rem; 
 			font-size: 1rem;
 			line-height: 1.5rem;
-			font-variation-settings: "wght" ${get("fontWeights.medium")};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
 			vertical-align: top;
 
 			&:first-of-type {
@@ -84,7 +84,7 @@ const SwipeIndicator = styled(motion.div)`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	font-variation-settings: "wght" ${get("fontWeights.medium")};
+	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
 	color: ${({ theme }) => theme.primary.accent};
 `;
 

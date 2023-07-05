@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
-import { media } from 'styles/utils';
-import { useEffect } from 'react';
+import { useTheme } from "@emotion/react";
+import { media, rgba } from 'styles/utils';
 import { TextBlock, TitleBlock } from "ui";
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import useMeasure from 'react-use-measure';
+import { motion, useTransform } from 'framer-motion';
 import PythonIcon from 'ui/icons/python.svg';
 import ClockRefreshIcon from 'ui/icons/clock-refresh.svg';
 import CubeIcon from 'ui/icons/cube-01.svg';
@@ -32,7 +31,11 @@ const ConsoleImg = styled(Illustration)`
 	flex-direction: column;
 	justify-content: flex-end;
 	overflow: hidden;
-	
+`;
+
+const ImageWrapper = styled(motion.div)`
+	border-radius: 1.5rem;	
+	filter: drop-shadow(0px -100px 217px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0.32 : 0.08)});
 	& img {
 		mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
 		position: absolute;
@@ -46,6 +49,7 @@ const ConsoleImg = styled(Illustration)`
 
 const ShipFaster = () => {
 	const [ref, progress] = useScrollProgress();
+	const theme = useTheme();
 	const y = useTransform(progress, [0, 1], [64, -24])
 
 	return (
@@ -53,13 +57,13 @@ const ShipFaster = () => {
 			ref={ref}
 			illustration={
 				<ConsoleImg>
-					<motion.div style={{ y, position: 'absolute', inset: 0 }}>
-						<Image src="/images/ship_faster.png" alt="Fenel Console Dashboard" width={3894} height={2664} />
-					</motion.div>
+					<ImageWrapper style={{ y, position: 'absolute', inset: 0 }}>
+						<Image src={theme.type === 'dark' ? "/images/ship_faster_dark.png" : "/images/ship_faster.png"} alt="Fenel Console Dashboard" width={3894} height={2664} />
+					</ImageWrapper>
 				</ConsoleImg>
 			}
 		>
-			<TitleBlock align="left">
+			<TitleBlock>
 				<h6>Incredibly easy to install & use</h6>
 				<h2>Ship Features 100x Faster. <br /> Yes, 100x!</h2>
 			</TitleBlock>
