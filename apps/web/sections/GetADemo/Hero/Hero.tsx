@@ -3,6 +3,7 @@ import { Container, TitleBlock } from "ui";
 import { Space } from 'ddd';
 import { Canvas, RootState } from '@react-three/fiber';
 import { media } from "styles/utils";
+import { ErrorBoundary } from "react-error-boundary";
 
 const onCreated = ({ size, camera }: RootState) => {
 	if (size.width < 600) {
@@ -53,11 +54,13 @@ const Stars = styled.div`
 const Hero = () => {
 	return (
 		<Root data-section>
-			<Stars>
-				<Canvas onCreated={onCreated}>
-					<Space />
-				</Canvas>
-			</Stars>
+			<ErrorBoundary fallback={null}>
+				<Stars>
+					<Canvas onCreated={onCreated}>
+						<Space />
+					</Canvas>
+				</Stars>
+			</ErrorBoundary>
 			<Wrapper>
 				<Content>
 					<TitleBlock 

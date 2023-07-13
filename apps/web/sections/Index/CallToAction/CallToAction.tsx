@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { motion, useInView } from 'framer-motion';
 
 import { media } from 'styles/utils';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const onCreated = ({ size, camera }: RootState) => {
 	if (size.width < 600) {
@@ -130,11 +131,13 @@ const CallToAction = () => {
 
 	return (
 		<Root data-section data-theme="dark">
-			<Stars>
-				<Canvas onCreated={onCreated}>
-					<Space />
-				</Canvas>
-			</Stars>
+			<ErrorBoundary fallback={null}>
+				<Stars>
+					<Canvas onCreated={onCreated}>
+						<Space />
+					</Canvas>
+				</Stars>
+			</ErrorBoundary>
 			<Wrapper>
 				<TitleWrapper>
 					<TitleBlock center>
