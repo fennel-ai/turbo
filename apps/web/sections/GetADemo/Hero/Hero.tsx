@@ -54,7 +54,7 @@ const Stars = styled.div`
 const Hero = () => {
 	return (
 		<Root data-section>
-			<ErrorBoundary fallback={null}>
+			<ErrorBoundary fallbackRender={() => <Stars />}>
 				<Stars>
 					<Canvas onCreated={onCreated}>
 						<Space />
