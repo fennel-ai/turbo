@@ -8,6 +8,7 @@ function generateSiteMap() {
 	<loc>https://fennel.ai/docs</loc>
 	</url>
 	${allPages
+		.filter(({ status }) => status !== 'draft')
 		.map(({ slug }) => {
 			return `
 	<url>
