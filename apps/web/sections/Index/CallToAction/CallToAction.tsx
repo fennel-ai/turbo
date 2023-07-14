@@ -6,9 +6,9 @@ import {Space} from 'ddd';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { motion, useInView } from 'framer-motion';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { media } from 'styles/utils';
-import { ErrorBoundary } from 'react-error-boundary';
 
 const onCreated = ({ size, camera }: RootState) => {
 	if (size.width < 600) {
@@ -131,7 +131,7 @@ const CallToAction = () => {
 
 	return (
 		<Root data-section data-theme="dark">
-			<ErrorBoundary fallback={null}>
+			<ErrorBoundary fallbackRender={() => <Stars />}>
 				<Stars>
 					<Canvas onCreated={onCreated}>
 						<Space />
