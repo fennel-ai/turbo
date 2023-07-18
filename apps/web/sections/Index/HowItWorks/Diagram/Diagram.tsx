@@ -365,7 +365,7 @@ const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
 					}
 				</AnimatePresence>
 			</ThemeProvider>
-			<ThemeProvider theme={themes[showCode ? 'dark' : 'light']}>
+			<ThemeProvider theme={themes[showCode ? 'dark' : theme.type]}>
 				<ShowCode icon={null} color="invert" shown={showCode} onClick={onShowCode}>{showCode ? 'Show Diagram' : 'Show Code'}</ShowCode>
 			</ThemeProvider>
 		</Root>
