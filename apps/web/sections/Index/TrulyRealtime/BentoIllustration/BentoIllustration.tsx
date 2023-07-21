@@ -76,7 +76,7 @@ const BentoIllustration = () => {
 						<circle cx="160" cy="110" r="8" fill={theme.primary.accent} />
 						<rect x="76" y="234" width="16" height="48" rx="8" fill="url(#paint1_linear_1023_12952)" />
 						<circle cx="84" cy="274" r="8" fill={theme.primary.accent} />
-						<g clip-path="url(#clip0_1023_12952)">
+						<g clipPath="url(#clip0_1023_12952)">
 							<rect x="10.6001" y="139.313" width="16" height="48" rx="8" transform="rotate(-45 10.6001 139.313)" fill="url(#paint2_linear_1023_12952)" />
 							<circle cx="44.5412" cy="161.941" r="8" transform="rotate(-45 44.5412 161.941)" fill={theme.secondary.accent} />
 						</g>
@@ -84,7 +84,7 @@ const BentoIllustration = () => {
 						<circle cx="8" cy="40" r="8" fill={theme.secondary.accent} />
 						<defs>
 							<linearGradient id="paint0_linear_1023_12952" x1="160" y1="70" x2="160" y2="118" gradientUnits="userSpaceOnUse">
-								<stop stopColor={theme.primary.accent} stop-opacity="0.4" />
+								<stop stopColor={theme.primary.accent} stopOpacity="0.4" />
 								<stop offset="1" stopColor={theme.primary.accent} stopOpacity="0" />
 							</linearGradient>
 							<linearGradient id="paint1_linear_1023_12952" x1="84" y1="234" x2="84" y2="282" gradientUnits="userSpaceOnUse">

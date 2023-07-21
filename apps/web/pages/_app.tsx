@@ -78,7 +78,7 @@ export default function App({ Component, pageProps }: AppProps<{ theme: 'light' 
 	const router = useRouter();
 	const system_dark_mode = useSystemDarkMode(false);
 	const currentTheme = pageProps.theme || system_dark_mode ? 'dark' : 'light';
-	console.log(system_dark_mode);
+
 	useEffect(() => {
 		// Track page views
 		const handleRouteChange = () => posthog?.capture('$pageview')
