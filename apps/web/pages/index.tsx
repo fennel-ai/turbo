@@ -12,7 +12,7 @@ export default function Index() {
 				<link rel="canonical" href="https://fennel.ai/" />
 
 				<meta property="og:title" content="Fennel" />
-				<meta property="og:description" content="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features." />
+				<meta property="og:description" content="Realtime ML Feature Platform. Beautifully Built." />
 				<meta property="og:url" content="https://fennel.ai/" />
 				<meta property="og:image" content="https://fennel.ai/images/og/default.jpg" />
 				<meta property="og:type" content="website" />
