@@ -250,5 +250,15 @@
       "value": "{opacity.7}",
       "type": "opacity"
     }
+  },
+  "border-width": {
+    "light": {
+      "value": "0.5px",
+      "type": "dimension"
+    },
+    "heavy": {
+      "value": "1px",
+      "type": "dimension"
+    }
   }
 }

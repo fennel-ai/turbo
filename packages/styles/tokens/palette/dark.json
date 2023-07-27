@@ -75,10 +75,6 @@
     "value": "{ref.purple.80}",
     "type": "color"
   },
-  "border": {
-    "value": "rgba({on}, 0.06)",
-    "type": "color"
-  },
   "shadow": {
     "value": "{ref.black}",
     "type": "color"
@@ -86,5 +82,15 @@
   "glass": {
     "value": "rgba({surface}, 50%)",
     "type": "color"
+  },
+  "border": {
+    "light": {
+      "value": "rgba( {on}, 0.08)",
+      "type": "color"
+    },
+    "heavy": {
+      "value": "rgba( {on}, 0.06)",
+      "type": "color"
+    }
   }
 }
