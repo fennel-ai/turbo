@@ -8,12 +8,12 @@ export default function Company() {
 	return (
 		<>
 			<Head>
-				<title>Company · Fennel</title>
-				<meta name="description" content="Fennel is an ex-Facebook/Google team on a mission to enable companies and teams of any size to harness realtime machine learning to build delightful products for their customers." />
+                <title>Realtime ML Infra for Fraud, Recommendations & More | Fennel</title>
+				<meta name="description" content="Fennel is on a mission to enable companies and teams of any size to harness realtime machine learning to build delightful products for their customers." />
 				<link rel="canonical" href="https://fennel.ai/company" />
 
-				<meta property="og:title" content="Fennel · Company" />
-				<meta property="og:description" content="Fennel is an ex-Facebook/Google team on a mission to enable companies and teams of any size to harness realtime machine learning to build delightful products for their customers." />
+                <meta property="og:title" content="Realtime ML Infra for Fraud, Recommendations & More | Fennel" />
+				<meta property="og:description" content="Fennel is on a mission to enable companies and teams of any size to harness realtime machine learning to build delightful products for their customers." />
 				<meta property="og:url" content="https://fennel.ai/company" />
 				<meta property="og:image" content="https://fennel.ai/images/og/default.jpg" />
 				<meta property="og:type" content="website" />

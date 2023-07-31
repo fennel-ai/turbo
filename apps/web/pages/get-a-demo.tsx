@@ -6,12 +6,12 @@ export default function GetADemo() {
 	return (
 		<>
 			<Head>
-				<title>Get a Demo · Fennel</title>
-				<meta name="description" content="Experience the slickest feature engineering workflow. Get a demo today!" />
-				<link rel="canonical" href="https://fennel.ai/company" />
+                <title>Get a Demo To Build Realtime ML Pipelines | Fennel</title>
+				<meta name="description" content="Experience the slickest realtime feature engineering workflow. Get a demo today!" />
+				<link rel="canonical" href="https://fennel.ai/get-a-demo" />
 
-				<meta property="og:title" content="Fennel · Company" />
-				<meta property="og:description" content="Experience the slickest feature engineering workflow. Get a demo today!" />
+                <meta property="og:title" content="Get a Demo To Build Realtime ML Pipelines | Fennel" />
+				<meta property="og:description" content="Experience the slickest realtime feature engineering workflow. Get a demo today!" />
 				<meta property="og:url" content="https://fennel.ai/get-a-demo" />
 				<meta property="og:image" content="https://fennel.ai/images/og/default.jpg" />
 				<meta property="og:type" content="website" />
