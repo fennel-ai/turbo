@@ -5,7 +5,7 @@ export default function DemoRequestConfirmation() {
 	return (
 		<>
 			<Head>
-				<title>Thanks for your interest! · Fennel</title>
+				<title>Thanks for your interest! | Fennel</title>
 				<meta name="description" content="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features." />
 				<link rel="canonical" href="https://fennel.ai/demo-request-confirmation-page" />
 			</Head>
