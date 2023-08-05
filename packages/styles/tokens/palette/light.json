@@ -68,15 +68,15 @@
     "type": "color"
   },
   "on": {
-    "value": "{neutral.accent}",
+    "value": "{ref.purple.10}",
     "type": "color"
   },
   "on_alt": {
-    "value": "{ref.grey.20}",
+    "value": "rgba({on}, 0.8)",
     "type": "color"
   },
   "shadow": {
-    "value": "{ref.purple.30}",
+    "value": "{ref.purple.20}",
     "type": "color"
   },
   "glass": {
