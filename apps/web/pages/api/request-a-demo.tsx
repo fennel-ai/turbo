@@ -45,7 +45,6 @@ export default async function handler(
                     //     value: 'this is an internal test.'
                     // }
                 ],
-                context: '/request-a-demo'
             })
         };
 
