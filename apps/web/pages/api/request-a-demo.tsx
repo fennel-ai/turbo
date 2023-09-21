@@ -48,7 +48,7 @@ export default async function handler(
             })
         };
 
-        await fetch(`https://api.hsforms.com/submissions/v3/integration/secure/submit/${process.env.HUBSPORT_PORTAL_ID}/${process.env.HUBSPORT_FORM_ID}`, requestInit);
+        await fetch(`https://api.hsforms.com/submissions/v3/integration/secure/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_FORM_ID}`, requestInit);
 
         await sendMail({
             to: 'hello@fennel.ai',
