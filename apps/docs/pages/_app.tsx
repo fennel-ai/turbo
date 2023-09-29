@@ -97,6 +97,10 @@ export default function App({ Component, pageProps }: AppProps) {
 					<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 					<meta name="theme-color" content="#fff" />
 				</Head>
+                {/* Google tag (gtag.js) */}
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-10944900807"></Script>
+                <Script id="gtag_init">{`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-10944900807');`}</Script>
+                {/* Linkedin */}
 				<Script id="linkedin-init">
 					{`
 						_linkedin_partner_id = "3952620";
