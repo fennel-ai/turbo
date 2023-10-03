@@ -123,16 +123,10 @@ export default function App({ Component, pageProps }: AppProps) {
 				<noscript>
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>
-                <Script id="leadmagic">
-                    {`
-                        <!-- LeadMagic analytics code -->
-                        !function(i,s,o,g,r,a,m){i.Ip2cObject=o;i[o]||(i[o]=function(){
-                        (i[o].q=i[o].q||[]).push(arguments)});i[o].l=+new Date;r=s.createElement(g);
-                        a=s.getElementsByTagName(g)[0];r.src='//reveal.ip2c.net/8423496.js';
-                        a.parentNode.insertBefore(r,a)}(window,document,'ip2c','script');
-                                
-                        ip2c('verify', '8423496');
-                    `}
+                <Script id="salespanel">
+                    {
+                        `(function(e, f, g, h, i){$salespanel = window.$salespanel || (window.$salespanel = []);__sp = i;var a=f.createElement(g);a.type="text/javascript";a.async=1;a.src=("https:" == f.location.protocol ? "https://" : "http://") + h;var b = f.getElementsByTagName(g)[0];b.parentNode.insertBefore(a,b);})(window, document, "script", "salespanel.io/src/js/ff9fc453-2b98-4512-87e3-db4acce2b205/sp.js", "ff9fc453-2b98-4512-87e3-db4acce2b205");`
+                    }
                 </Script>
 				<ThemeProvider theme={themes[currentTheme]}>
 					<GlobalStyles />
