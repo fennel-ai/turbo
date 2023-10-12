@@ -32,18 +32,18 @@ export default async function handler(
                         name: 'email',
                         value: body.email
                     }, 
-                    // {
-                    //     name: 'company',
-                    //     value: 'Fennel'
-                    // }, 
+                    {
+                        name: 'company',
+                        value: body.company
+                    }, 
                     {
                         name: 'jobtitle',
                         value: body.role
                     }, 
-                    // {
-                    //     name: 'message',
-                    //     value: 'this is an internal test.'
-                    // }
+                    {
+                        name: 'referred_from',
+                        value: body.referred_from
+                    }
                 ],
             })
         };

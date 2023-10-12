@@ -20,6 +20,8 @@ interface IFormData {
 	name: string;
 	email: string;
 	role: RoleEnum;
+    referred_from: string;
+    company: string;
 }
 
 const Form = styled.form`
@@ -34,7 +36,7 @@ const Form = styled.form`
 	}
 `;
 
-const InputRoot = styled.div`
+const InputRoot = styled.div<{ required?: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -59,10 +61,23 @@ const InputRoot = styled.div`
 	}
 	
 	& label {
+        position: relative;
 		font-size: 0.875rem;
 		line-height: 1.5rem;
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
 		align-self: flex-start;
+
+        &::after {
+            /* content: ${({ required }) => required ? "*" : ''}; */
+            content: "*";
+            font-size: 1rem;
+            line-height: 1rem;
+            position: absolute;
+            right: -0.75rem;
+            top: 50%;
+            display: ${({ required }) => required ? 'block' : 'none' };
+            transform: translateY(-30%);
+        }
 	}
 `;
 
@@ -85,18 +100,20 @@ const Input = forwardRef((
 		onBlur,
 		onChange,
 		placeholder,
+        required,
 	}: { 
 		error?: FieldError 
 		label: string, 
 		name: string, 
 		onBlur: ChangeHandler, 
-		onChange: ChangeHandler 
+		onChange: ChangeHandler,
 		placeholder?: string, 
+        required?: boolean,
 	}, 
 	ref: ForwardedRef<HTMLInputElement>
 ) => {
 	return (
-		<InputRoot>
+		<InputRoot required={required}>
 			<label>{label}</label>
 			<input ref={ref} name={name} onBlur={onBlur} onChange={onChange} placeholder={placeholder} />
 			<HelperRow>{error ? <p>{error.message}</p> : null}</HelperRow>
@@ -106,11 +123,11 @@ const Input = forwardRef((
 Input.displayName = 'Input';
 
 const SelectInput = forwardRef((
-	{ children, error, label, ...props }: PropsWithChildren<{ error?: FieldError, name: string, label: string, placeholder?: string, onBlur: ChangeHandler, onChange: ChangeHandler }>, 
+	{ children, error, label, required, ...props }: PropsWithChildren<{ error?: FieldError, name: string, label: string, placeholder?: string, onBlur: ChangeHandler, onChange: ChangeHandler; required?: boolean; }>, 
 	ref: ForwardedRef<HTMLSelectElement>
 ) => {
 	return (
-		<InputRoot>
+		<InputRoot required={required}>
 			<label>{label}</label>
 			<select ref={ref} {...props}>
 				{children}
@@ -125,6 +142,8 @@ const validation = yup.object({
 	name: yup.string().required('This is required.'),
 	email: yup.string().email().required('This is required.'),
 	role: yup.string().oneOf(Object.keys(RoleEnum)).required('This is required.'),
+	company: yup.string(),
+	referred_from: yup.string(),
 }).required();
 
 const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
@@ -154,9 +173,9 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 
 	return (
 		<Form onSubmit={handleSubmit(submitForm)}>
-			<Input {...register('name')} error={errors['name']} placeholder="Enter your name" label="Name" />
-			<Input {...register('email')} error={errors['email']} placeholder="Enter your work email" label="Email" />
-			<SelectInput {...register('role')} error={errors['role']} label="What role best describes you?">
+			<Input {...register('name')} error={errors['name']} placeholder="Enter your name" label="Name" required />
+			<Input {...register('email')} error={errors['email']} placeholder="Enter your work email" label="Email" required />
+			<SelectInput {...register('role')} error={errors['role']} label="What role best describes you?" required>
 				<option value="Data Scientist">Data Scientist</option>
 				<option value="Engineer">Engineer</option>
 				<option value="Data Analyst">Data Analyst</option>
@@ -164,6 +183,8 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 				<option value="Manager">Manager</option>
 				<option value="Other">Other</option>
 			</SelectInput>
+			<Input {...register('company')} error={errors['company']} placeholder="Enter your company name" label="Company" />
+			<Input {...register('referred_from')} error={errors['referred_from']} placeholder="e.g. a blog post" label="How did you hear about us?" />
 			<Button ariaLabel="Submit the Demo Request" label="Submit" type="submit" />
 		</Form>
 	);
