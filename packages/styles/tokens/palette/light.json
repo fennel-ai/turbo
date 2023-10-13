@@ -68,11 +68,11 @@
     "type": "color"
   },
   "on": {
-    "value": "{ref.purple.10}",
+    "value": "{ref.grey.5}",
     "type": "color"
   },
   "on_alt": {
-    "value": "rgba({on}, 0.8)",
+    "value": "rgba({on}, 0.5)",
     "type": "color"
   },
   "shadow": {
