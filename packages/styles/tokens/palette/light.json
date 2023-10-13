@@ -72,7 +72,7 @@
     "type": "color"
   },
   "on_alt": {
-    "value": "rgba({on}, 0.5)",
+    "value": "rgba({on}, 0.64)",
     "type": "color"
   },
   "shadow": {
