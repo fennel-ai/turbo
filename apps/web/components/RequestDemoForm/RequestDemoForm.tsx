@@ -16,6 +16,10 @@ enum RoleEnum {
 	'Other' = 'Other',
 }
 
+function hubspotCookie() {
+    return document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+}
+
 interface IFormData {
 	name: string;
 	email: string;
@@ -159,7 +163,12 @@ const RequestDemoForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(data)
+				body: JSON.stringify({
+                    ...data,
+                    pageUri: window.location.href,
+                    hutk: hubspotCookie()
+
+                })
 			});
 
 			reset();

@@ -121,6 +121,7 @@ export default function App({ Component, pageProps }: AppProps<{ theme: 'light' 
 							s.parentNode.insertBefore(b, s);})(window.lintrk);
 						`}
 				</Script>
+                <Script defer async src={`//js.hs-scripts.com/22717467.js`} />
 				<noscript>
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>

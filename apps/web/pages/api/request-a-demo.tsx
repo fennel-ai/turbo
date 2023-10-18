@@ -45,6 +45,10 @@ export default async function handler(
                         value: body.referred_from
                     }
                 ],
+                context: {
+                    pageUri: body.pageUri,
+                    hutk: body.hutk,
+                }
             })
         };
 
