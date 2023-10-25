@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { Button, Container } from "ui";
+import { Button, Container, PillButton } from "ui";
+import MailIcon from "ui/icons/mail.svg";
+
 import JobListing from "./JobListing";
 
 const Root = styled.div`
@@ -75,7 +77,9 @@ const JobList = () => {
                     </h5>
                     <p>Eos sit qui placeat et id. Velit quis atque non nam. Similique id officia dolor harum vitae rerum.</p>
                 </CTAContent>
-                <Button color="primary" label="hello@fennel.ai" />
+                <PillButton icon={<MailIcon />} size="large">
+                    hello@fennel.ai
+                </PillButton>
             </ApplyCTA>
         </Wrapper> 
     </Root>
