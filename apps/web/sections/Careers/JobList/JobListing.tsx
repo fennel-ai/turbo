@@ -157,10 +157,6 @@ const JobListing = ({ href, location, modality, name }: JobListingProps) => {
                     <p>{location}</p>
                     <p>·</p>
                     <p>{modality}</p>
-                    <Details variants={VARIANTS.apply}>
-                        <p>·</p>
-                        <p>Apply at <a href="mailto:hello@fennel.ai" onClick={e => e.stopPropagation()}>hello@fennel.ai</a></p>
-                    </Details>
                 </Details>
             </Meta>
             <Indicator>
