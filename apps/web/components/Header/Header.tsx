@@ -176,6 +176,11 @@ export const Header = () => {
 							Company
 						</NavButton>
 					</Link>
+					<Link href="/careers">
+						<NavButton>
+							Careers
+						</NavButton>
+					</Link>
 					<Link href="https://fennel.ai/blog">
 						<NavButton>
 							Blog

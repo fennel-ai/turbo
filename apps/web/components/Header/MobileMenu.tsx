@@ -55,6 +55,11 @@ export const MobileMenu = () => {
 							Company
 						</li>
 					</Link>
+					<Link href="/careers">
+						<li>
+							Careers
+						</li>
+					</Link>
 					<Link href="https://fennel.ai/blog">
 						<li>
 							Blog
