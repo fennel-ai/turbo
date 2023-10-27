@@ -15,14 +15,14 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 const DEFAULT_ICON = <InternalLinkIcon />;
 
 const SIZE: Record<'small' | 'large', FunctionInterpolation<{ size: 'small' | 'large', hasIcon: boolean }>> = {
-	'small': ({ hasIcon }) => css`
+	'small': () => css`
 		padding-left: 0.75rem;
-		padding-right: ${hasIcon ? 0.5 : 0.75}rem;
+		padding-right: 0.75rem;
 		height: 2rem;
 	`, 
-	'large': ({ hasIcon }) => css`
+	'large': () => css`
 		padding-left: 1rem;
-		padding-right: ${hasIcon ? 0.75 : 1}rem;
+		padding-right: 1rem;
 		height: 2.5rem;
 	`,
 }
@@ -41,6 +41,10 @@ const Root = styled.button<{ size: 'small' | 'large', hasIcon: boolean, invert: 
 	cursor: pointer;
 	user-select: none;
 	overflow: hidden;
+
+    & svg {
+        flex-shrink: 0;
+    }
 
 	${({ invert, theme }) => stateLayer(invert ? 0.80 : 0.04, theme.on)};
 	${SIZE.small}
