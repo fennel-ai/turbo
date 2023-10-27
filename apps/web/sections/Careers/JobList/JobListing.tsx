@@ -12,6 +12,7 @@ const Root = styled(motion.div)`
     justify-content: space-between;
     user-select: none;
     cursor: pointer;
+    color: ${({ theme }) => theme.on};
 
     & + & {
         border-top: 1px solid ${({ theme }) => theme.border};
@@ -49,33 +50,33 @@ const Details = styled(motion.div)`
     }
 
     & a {
-			position: relative;
-			text-decoration: none;
-			color: ${({ theme }) => theme.on};
-			opacity: 0.8;
-			transition: 160ms opacity ease-out;
+        position: relative;
+        text-decoration: none;
+        color: ${({ theme }) => theme.on};
+        opacity: 0.8;
+        transition: 160ms opacity ease-out;
 
-			&::after {
-				content: '';
-				position: absolute;
-				bottom: -1px;
-				left: 0;
-				right: 0;
-				height: 1px;
-				background-color: ${({ theme }) => theme.on};
-				opacity: 0.4;
-				transition: 80ms opacity ease-out;
-				z-index: -1;
-			}
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: ${({ theme }) => theme.on};
+            opacity: 0.4;
+            transition: 80ms opacity ease-out;
+            z-index: -1;
+        }
 
-			&:hover {
-				opacity: 1;
+        &:hover {
+            opacity: 1;
 
-				&::after {
-					opacity: 0.64;
-				}
-			}
-		}
+            &::after {
+                opacity: 0.64;
+            }
+        }
+    }
 `;
 
 const Indicator = styled(motion.div)`

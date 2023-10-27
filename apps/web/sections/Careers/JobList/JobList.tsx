@@ -45,6 +45,7 @@ const ApplyCTA = styled.div`
     flex-direction: column;
     gap: 2rem;
     padding: 0 1rem;
+    color: ${({ theme }) => theme.on};
 
     ${media('md')} {
         grid-column: 4 / span 6;

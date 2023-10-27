@@ -44,7 +44,7 @@ const IntroText = styled.div`
 
 const Hero = () => {
 	return (
-		<Root data-section>
+		<Root data-section data-theme="light">
 			<Background />
 			<Wrapper>
 				<Content>
