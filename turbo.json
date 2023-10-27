@@ -10,6 +10,9 @@
       "outputs": []
     },
 	"test": {},
+    "mail": {
+        "cache": false
+    },
 	"coverage": {
 		"outputs": ["coverage/**"]
 	},

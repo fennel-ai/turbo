@@ -10,6 +10,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "mail": "turbo run mail --filter web",
     "lint": "turbo run lint",
     "test": "turbo run test --parallel",
     "coverage": "turbo run coverage --parallel",
