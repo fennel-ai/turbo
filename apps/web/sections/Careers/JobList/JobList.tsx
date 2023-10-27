@@ -3,6 +3,7 @@ import { Button, Container, PillButton } from "ui";
 import MailIcon from "ui/icons/mail.svg";
 
 import JobListing from "./JobListing";
+import { media } from "styles/utils";
 
 const Root = styled.div`
     position: relative;
@@ -16,7 +17,11 @@ const Wrapper = styled(Container)`
 `;
 
 const List = styled.div`
-    grid-column: 4 / span 6;
+    grid-column: span 12;
+
+    ${media('md')} {
+        grid-column: 4 / span 6;
+    }
 `;
 
 const ListTitle = styled.div`
@@ -35,12 +40,18 @@ const ListTitle = styled.div`
 `;
 
 const ApplyCTA = styled.div`
-    grid-column: 4 / span 6;
+    grid-column: span 12;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     gap: 2rem;
     padding: 0 1rem;
+
+    ${media('md')} {
+        grid-column: 4 / span 6;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
 `;
 
 const CTAContent = styled.div`
@@ -76,7 +87,7 @@ const JobList = () => {
                     <h5>
                         Interested but don't see a role for you?
                     </h5>
-                    <p>Send us an email telling us a bit about yourself (Incl. Resume or relevant links,) and how you would like to contribute at Fennel.</p>
+                    <p>Send us an email telling us a bit about yourself, including your resume or relevant links, and how you would like to contribute at Fennel.</p>
                 </CTAContent>
                 <PillButton icon={<MailIcon />} size="large">
                     hello@fennel.ai
