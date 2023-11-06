@@ -9,6 +9,7 @@ export type ButtonProps = {
 	className?: string;
 	color?: 'primary' | 'neutral';
     direction?: 'row' | 'row-reverse';
+    disabled?: boolean;
 	onClick?: MouseEventHandler<HTMLButtonElement>;
     icon?: JSX.Element;
 	label: string;
@@ -21,6 +22,7 @@ export type ButtonProps = {
 const Root = styled.button<{ 
     color: 'primary' | 'neutral', 
     direction: 'row' | 'row-reverse',
+    disabled: boolean;
     hasIcon: boolean,
     size: keyof typeof VARIANTS.SIZE,
     shape: keyof typeof VARIANTS.SHAPE,
@@ -37,13 +39,13 @@ const Root = styled.button<{
 	font-size: 0.875rem;
 	line-height: 1.5rem;
     font-variation-settings: "wght" 500;
-	cursor: pointer;
+	cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
 	user-select: none;
 	overflow: hidden;
 	text-decoration: none;
 	z-index: 0;
 
-    ${props => stateLayer(props.variant === 'glass' ? 0.04 : 0)};
+    ${props => !props.disabled ? stateLayer(props.variant === 'glass' ? 0.04 : 0) : null};
     ${(props) => VARIANTS.STYLE[props.variant]}
     ${(props) => VARIANTS.SHAPE[props.shape]}
     ${(props) => VARIANTS.SIZE[props.size]};
@@ -53,6 +55,7 @@ export const Button = ({
 	ariaLabel,
 	className,
 	color = 'neutral',
+    disabled = false,
     direction = 'row',
     icon,
 	label,
@@ -67,9 +70,10 @@ export const Button = ({
             className={className} 
             aria-label={ariaLabel} 
             color={color} 
+            disabled={disabled}
             direction={direction}
             hasIcon={!!icon}
-            onClick={onClick} 
+            onClick={!disabled ? onClick : undefined} 
             shape={shape} 
             size={size}
             type={type}
