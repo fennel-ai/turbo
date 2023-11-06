@@ -39,7 +39,7 @@ const Root = styled.button<{
 	text-decoration: none;
 	z-index: 0;
 
-    ${props => stateLayer(props.variant === 'ghost' ? 0.04 : 0)};
+    ${props => stateLayer(props.variant === 'glass' ? 0.04 : 0)};
     ${(props) => VARIANTS.STYLE[props.variant]}
     ${(props) => VARIANTS.SHAPE[props.shape]}
     ${(props) => VARIANTS.SIZE[props.size]};
