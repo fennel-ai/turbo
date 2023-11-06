@@ -11,25 +11,25 @@ export const SIZE = {
 }
 
 export const STYLE = {
-    'flat': ({ color, theme }: { color: 'neutral' | 'primary', theme: Theme}) => css`
-        background-color: ${theme[color].accent}; 
-        color: ${theme[color].on};
-        box-shadow: 0px 2px 6px -1px rgba(13, 18, 27, 0.24), 0px 0px 0px 1px ${theme[color].accent};
+    'flat': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme}) => css`
+        background-color: ${disabled ? 'rgba(7, 4, 58, 0.04)' : theme[color].accent};
+        color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : theme[color].on};
+        box-shadow: ${!disabled ? `0px 2px 6px -1px rgba(13, 18, 27, 0.24), 0px 0px 0px 1px ${theme[color].accent}` : 'none'};
     `,
-    'ghost': ({ color, theme }: { color: 'neutral' | 'primary', theme: Theme }) => css`
+    'ghost': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
         background-color: transparent;
-        color: ${theme[color].accent};
+        color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : theme[color].accent};
     `,
-    'outline': ({ color, theme }: { color: 'neutral' | 'primary', theme: Theme }) => css`
+    'outline': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
         background-color: ${theme.glass};
-        color: ${theme[color].accent};
+        color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : theme[color].accent};
         // TODO: New border color here in place of rgba(7, 4, 58, 0.08)
-        box-shadow:  0px 2px 4px -2px rgba(13, 18, 27, 0.16), 0px 0px 0px 0.5px rgba(7, 4, 58, 0.08);
+        box-shadow: ${!disabled ? '0px 2px 4px -2px rgba(13, 18, 27, 0.16), 0px 0px 0px 0.5px rgba(7, 4, 58, 0.08)' : '0px 0px 0px 0.5px rgba(7, 4, 58, 0.08)'};
         backdrop-filter: blur(0.5rem);
     `,
-    'glass': ({ color, theme }: { color: 'neutral' | 'primary', theme: Theme }) => css`
-         background-color: ${theme.glass};
-        color: ${theme[color].accent};
+    'glass': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
+        background-color: ${theme.glass};
+        color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : theme[color].accent};
         backdrop-filter: blur(0.5rem);
     `,
 }
