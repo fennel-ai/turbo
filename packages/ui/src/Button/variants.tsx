@@ -28,7 +28,7 @@ export const STYLE = {
         backdrop-filter: blur(0.5rem);
     `,
     'glass': ({ color, theme }: { color: 'neutral' | 'primary', theme: Theme }) => css`
-        background-color: none;
+         background-color: ${theme.glass};
         color: ${theme[color].accent};
         backdrop-filter: blur(0.5rem);
     `,
@@ -44,7 +44,7 @@ export const SHAPE = {
             padding-right: ${direction === 'row' ? iconPadding : padding}rem;
         `
     },
-    'pill': ({ direction, hasIcon, size }: { direction: 'row' | 'row-reverse'; hasIcon?: boolean; size: 'small' | 'large' }) => {
+    'pill': ({ direction, hasIcon, size, theme }: { direction: 'row' | 'row-reverse'; hasIcon?: boolean; size: 'small' | 'large', theme: Theme }) => {
         let padding = size === 'large' ? 1.0 : 0.75;
         let iconPadding = !hasIcon ? padding : padding - 0.25;
         return css`
