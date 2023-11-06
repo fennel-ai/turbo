@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import styled from '@emotion/styled';
 
-import { Button } from 'ui';
+import { Button, ButtonProps } from 'ui';
 
 import ArrowUpRightIcon from 'ui/icons/arrow-narrow-up-right.svg';
 
@@ -19,6 +19,14 @@ const VariantGrid = styled.div`
     gap: 1rem;
 `;
 
+const VariantSection = styled.div`
+    grid-column: span 3;
+    & h4 {
+        margin: 0;
+        margin-top: 1rem;
+    }
+`;
+
 const VariantItem = styled.div`
     background-color: ${({ theme }) => theme.glass};
     border: 0.5px solid rgba(0, 0, 0, 0.06);
@@ -29,45 +37,96 @@ const VariantItem = styled.div`
     min-height: 10rem;
 `;
 
+const variants: Record<string, Partial<ButtonProps>[]> = {
+    'Rounded / Small': [
+        {
+            shape: 'rounded',
+            size: 'small',
+        },
+        {
+            icon: <ArrowUpRightIcon />,
+            shape: 'rounded',
+            size: 'small',
+        },
+        {
+            direction: 'row-reverse',
+            icon: <ArrowUpRightIcon />,
+            shape: 'rounded',
+            size: 'small',
+        }
+    ],
+    'Rounded / Large': [
+        {
+            shape: 'rounded',
+            size: 'large'
+        },
+        {
+            icon: <ArrowUpRightIcon />,
+            shape: 'rounded',
+            size: 'large'
+        },
+        {
+            direction: 'row-reverse',
+            icon: <ArrowUpRightIcon />,
+            shape: 'rounded',
+            size: 'large'
+        }
+    ],
+    'Pill / Small': [
+        {
+            shape: 'pill',
+            size: 'small',
+        },
+        {
+            icon: <ArrowUpRightIcon />,
+            shape: 'pill',
+            size: 'small',
+        },
+        {
+            direction: 'row-reverse',
+            icon: <ArrowUpRightIcon />,
+            shape: 'pill',
+            size: 'small',
+        }
+    ],
+    'Pill / Large': [
+        {
+            shape: 'pill',
+            size: 'large'
+        },
+        {
+            icon: <ArrowUpRightIcon />,
+            shape: 'pill',
+            size: 'large'
+        },
+        {
+            direction: 'row-reverse',
+            icon: <ArrowUpRightIcon />,
+            shape: 'pill',
+            size: 'large'
+        }
+    ],
+}
+
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Button> = (args) => (
     <VariantGrid>
-        <VariantItem>
-            <Button {...args} shape="rounded" size="small" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} icon={<ArrowUpRightIcon />} shape="rounded" size="small" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} icon={<ArrowUpRightIcon />} direction="row-reverse" shape="rounded" size="small" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} shape="rounded" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} icon={<ArrowUpRightIcon />} shape="rounded" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} icon={<ArrowUpRightIcon />} direction="row-reverse" shape="rounded" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} shape="pill" size="small" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} icon={<ArrowUpRightIcon />} shape="pill" size="small" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} icon={<ArrowUpRightIcon />} direction="row-reverse" shape="pill" size="small" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} shape="pill" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} icon={<ArrowUpRightIcon />} shape="pill" />
-        </VariantItem>
-        <VariantItem>
-            <Button {...args} icon={<ArrowUpRightIcon />} direction="row-reverse" shape="pill" />
-        </VariantItem>
+        {
+            Object.entries(variants).map(([title, components]) => (
+                <>
+                    <VariantSection>
+                        <h4>{title}</h4>
+                    </VariantSection>
+                    {
+                        components.map((props, i) => (
+                            <VariantItem key={i}>
+                                <Button {...args} {...props} />
+                            </VariantItem>
+                        ))
+                    }
+                </>
+            ))
+        }
     </VariantGrid>
 );
 

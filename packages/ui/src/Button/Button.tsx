@@ -4,7 +4,7 @@ import { stateLayer } from 'styles/utils';
 
 import * as VARIANTS from './variants';
 
-type Props = {
+export type ButtonProps = {
 	ariaLabel?: string;
 	className?: string;
 	color?: 'primary' | 'neutral';
@@ -61,7 +61,7 @@ export const Button = ({
     shape = 'rounded',
     variant = 'flat',
 	type = 'button'
-}: Props) => {
+}: ButtonProps) => {
 	return (
         <Root 
             className={className} 
