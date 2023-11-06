@@ -8,17 +8,23 @@ import TwitterIcon from '../../icons/twitter.svg';
 import LinkedInIcon from '../../icons/linkedin.svg';
 import GithubIcon from '../../icons/github.svg';
 import Logo from '../../icons/logo.svg';
+import { media } from 'styles/utils';
 
 const Root = styled.footer`
     background-color: ${({ theme }) => theme.surface};
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     transform: translateZ(0);
 
     & p {
         margin: 0;
         font-size: 0.875rem;
         line-height: 1rem;
+    }
+
+    ${media('sm')} {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
     }
 `;
 
@@ -27,11 +33,15 @@ const Wrapper = styled(Container)`
     flex-direction: column;
     align-items: stretch;
     gap: 2rem;
+
 `;
 
 const Credit = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    border-top: 0.5px solid ${({ theme }) => theme.border};
+    padding-top: 2rem;
 
     & > p {
         text-align: center;
@@ -40,13 +50,24 @@ const Credit = styled.div`
         justify-content: center;
         color: ${({ theme }) => theme.on};
         opacity: 0.5;
+        order: 2;
+    }
+
+    ${media('xs')} {
+        grid-template-columns: repeat(3, 1fr);
+        order: 1;
+        row-gap: 0;
+        padding-top: 0;
+        border: none;
     }
 `;
 
 const Brand = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    order: 0;
 
     & svg {
         width: 1.5rem;
@@ -57,53 +78,92 @@ const Brand = styled.div`
         font-variation-settings: "wght" 700;
         letter-spacing: -0.1;
     }
+
+    ${media('xs')} {
+        justify-content: flex-start;
+    }
 `;
 
 const Actions = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 0.5rem;
+    order: 1;
+
+    ${media('xs')} {
+        order: 2;
+        justify-content: flex-end;
+    }
 `;
 
 const Content = styled.div`
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: 1fr;
+    row-gap: 2.5rem;
 
     h4 {
-        margin: 0;
+        margin-top: 0;
         font-size: 1rem;
         line-height: 1rem;
         font-variation-settings: "wght" 700;
     }
+
+    ${media('2xs')} {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    ${media('sm')} {
+        grid-template-columns: repeat(12, 1fr);
+        row-gap: 0;
+    }
 `;
 
 const SubscribeCta = styled.div`
-    grid-column: span 4;
+    grid-column: span 2;
+
     & > h4 {
         margin-bottom: 0.5rem;
     }
 
     & > p {
-        margin-top: 0.25rem;
+        margin-top: 0.25rem !important;
         font-size: 0.8125rem;
         line-height: 1rem;
         color: ${({ theme }) => theme.on};
         opacity: 0.64;
     }
+
+    ${media('sm')} {
+        grid-column: span 4;
+    }
 `
 
 const Spacer = styled.div`
-    grid-column: span 2;
+    display: none;
+    ${media('sm')} {
+        display: flex;
+        grid-column: span 2;
+    }
 `;
 
 const Menu = styled.div`
-    grid-column: span 3;
+    grid-column: 1 / span 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
-    min-height: 8.5rem;
+    align-items: flex-start;
+    text-align: left;
+
+    ${media('2xs')} {
+        grid-column: span 1;
+    }
+
+    ${media('sm')} {
+        grid-column: span 3;
+        align-items: flex-end;
+        text-align: right;
+        min-height: 8.5rem;
+    }
 
     h4 {
         margin-bottom: 1rem;
@@ -161,7 +221,7 @@ export const Footer = () => {
                                 <Link href="/company">About</Link>
                             </li>
                             <li>
-                                <Link href="/request-a-demo">Request a Demo</Link>
+                                <Link href="/get-a-demo">Request a Demo</Link>
                             </li>
                             <li>
                                 <Link href="/careers">Careers</Link>
