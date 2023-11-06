@@ -35,10 +35,22 @@ export const STYLE = {
 }
 
 export const SHAPE = {
-    'rounded': () => css`
-        border-radius: 0.5rem;
-    `,
-    'pill': () => css`
-        border-radius: 999px;
-    `,
+    'rounded': ({ direction, hasIcon, size }: { direction: 'row' | 'row-reverse'; hasIcon?: boolean; size: 'small' | 'large' }) => {
+        let padding = 0.75;
+        let iconPadding = !hasIcon ? padding : padding - 0.25;
+        return css`
+            border-radius: 0.5rem;
+            padding-left: ${direction === 'row-reverse' ? iconPadding : padding}rem;
+            padding-right: ${direction === 'row' ? iconPadding : padding}rem;
+        `
+    },
+    'pill': ({ direction, hasIcon, size }: { direction: 'row' | 'row-reverse'; hasIcon?: boolean; size: 'small' | 'large' }) => {
+        let padding = size === 'large' ? 1.0 : 0.75;
+        let iconPadding = !hasIcon ? padding : padding - 0.25;
+        return css`
+            border-radius: 999px;
+            padding-left: ${direction === 'row-reverse' ? iconPadding : padding}rem;
+            padding-right: ${direction === 'row' ? iconPadding : padding}rem;
+        `
+    },
 }
