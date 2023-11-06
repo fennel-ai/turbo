@@ -8,7 +8,9 @@ type Props = {
 	ariaLabel?: string;
 	className?: string;
 	color?: 'primary' | 'neutral';
+    direction?: 'row' | 'row-reverse';
 	onClick?: MouseEventHandler<HTMLButtonElement>;
+    icon?: JSX.Element;
 	label: string;
     size?: keyof typeof VARIANTS.SIZE;
     shape?: keyof typeof VARIANTS.SHAPE;
@@ -18,18 +20,20 @@ type Props = {
 
 const Root = styled.button<{ 
     color: 'primary' | 'neutral', 
+    direction: 'row' | 'row-reverse',
+    hasIcon: boolean,
     size: keyof typeof VARIANTS.SIZE,
     shape: keyof typeof VARIANTS.SHAPE,
     variant: keyof typeof VARIANTS.STYLE 
 }>`
 	border: 0;
+    padding: 0;
 	position: relative;
 	display: flex;
-	flex-direction: row;
+	flex-direction: ${props => props.direction};
 	align-items: center;
 	justify-content: center;
-	gap: 0.5rem;
-	padding: 0 0.75rem;
+	gap: 0.25rem;
 	font-size: 0.875rem;
 	line-height: 1.5rem;
     font-variation-settings: "wght" 500;
@@ -49,6 +53,8 @@ export const Button = ({
 	ariaLabel,
 	className,
 	color = 'neutral',
+    direction = 'row',
+    icon,
 	label,
 	onClick,
     size = 'large',
@@ -61,6 +67,8 @@ export const Button = ({
             className={className} 
             aria-label={ariaLabel} 
             color={color} 
+            direction={direction}
+            hasIcon={!!icon}
             onClick={onClick} 
             shape={shape} 
             size={size}
@@ -68,6 +76,7 @@ export const Button = ({
             variant={variant} 
         >
 			{label}
+            {icon || null}
 		</Root>
 	);
 };
