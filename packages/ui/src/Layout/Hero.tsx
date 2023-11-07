@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import { TitleBlock } from '../TitleBlock';
-import { Button } from '../Button';
 
-import ArrowNarrowUpRightIcon from '../../icons/arrow-narrow-up-right.svg';
 import { media } from 'styles/utils';
 
 const Root = styled.div`
@@ -62,20 +60,20 @@ const IntroText = styled.p`
 `;
 
 interface HeroProps {
-    heroHeader: string;
-    heroIntroText: string;
-    heroActions?: JSX.Element[];
+    actions?: JSX.Element[],
+    title: string;
+    text?: string;
 }
 
-export const Hero = ({heroHeader, heroIntroText, heroActions}: HeroProps) => {
+export const Hero = ({ actions, text, title, }: HeroProps) => {
     return <Root>
         <Wrapper>
             <TitleBlock 
-                actions={heroActions} 
+                actions={actions} 
                 center
             >
-                <h1>{heroHeader}</h1>
-                <IntroText>{heroIntroText}</IntroText>
+                <h1>{title}</h1>
+                {text ? <IntroText>{text}</IntroText> : null}
             </TitleBlock>
         </Wrapper>
     </Root>
