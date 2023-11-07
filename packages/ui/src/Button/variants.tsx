@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { Theme } from 'styles';
+import { rgba } from 'styles/utils';
 
 export const SIZE = {
     'small': () => css`
@@ -14,7 +15,7 @@ export const STYLE = {
     'flat': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme}) => css`
         background-color: ${disabled ? 'rgba(7, 4, 58, 0.04)' : theme[color].accent};
         color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : theme[color].on};
-        box-shadow: ${!disabled ? `0px 2px 6px -1px rgba(13, 18, 27, 0.24), 0px 0px 0px 1px ${theme[color].accent}` : 'none'};
+        box-shadow: ${!disabled ? `0px 2px 6px -1px ${rgba(theme.shadow, 0.24)}, 0px 0px 0px 1px ${theme[color].accent}` : 'none'};
     `,
     'ghost': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
         background-color: transparent;
@@ -23,7 +24,7 @@ export const STYLE = {
     'outline': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
         background-color: ${theme.glass};
         color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : theme[color].accent};
-        box-shadow: ${!disabled ? `0px 2px 4px -2px rgba(13, 18, 27, 0.16), 0px 0px 0px 0.5px ${theme.border.light}` : `0px 0px 0px 0.5px ${theme.border.light}`};
+        box-shadow: ${!disabled ? `0px 2px 4px -2px ${rgba(theme.shadow, 0.24)}, 0px 0px 0px 0.5px ${theme.border.light}` : `0px 0px 0px 0.5px ${theme.border.light}`};
         backdrop-filter: blur(0.5rem);
     `,
     'glass': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
