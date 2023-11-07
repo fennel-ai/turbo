@@ -99,7 +99,10 @@ export type Theme = {
 	surface: string;
 	on: string;
 	on_alt: string;
-	border: string;
+	border: {
+        light: string;
+        heavy: string;
+    };
 	shadow: string;
 	glass: string;
 	primary: ThemeAccentPalette,
