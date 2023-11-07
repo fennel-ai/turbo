@@ -1,96 +1,96 @@
 {
-    "primary": {
-        "accent": {
-            "value": "{ref.purple.50}",
-            "type": "color"
-        },
-        "on": {
-            "value": "{ref.purple.95}",
-            "type": "color"
-        }
-    },
-    "secondary": {
-        "accent": {
-            "value": "{ref.blue.50}",
-            "type": "color"
-        },
-        "on": {
-            "value": "{ref.blue.95}",
-            "type": "color"
-        }
-    },
-    "error": {
-        "accent": {
-            "value": "{ref.red.50}",
-            "type": "color"
-        },
-        "on": {
-            "value": "{ref.red.95}",
-            "type": "color"
-        }
-    },
-    "caution": {
-        "accent": {
-            "value": "{ref.yellow.50}",
-            "type": "color"
-        },
-        "on": {
-            "value": "{ref.yellow.95}",
-            "type": "color"
-        }
-    },
-    "success": {
-        "accent": {
-            "value": "{ref.green.50}",
-            "type": "color"
-        },
-        "on": {
-            "value": "{ref.green.95}",
-            "type": "color"
-        }
-    },
-    "neutral": {
-        "accent": {
-            "value": "{ref.grey.5}",
-            "type": "color"
-        },
-        "on": {
-            "value": "{ref.purple.95}",
-            "type": "color"
-        }
-    },
-    "surface": {
-        "value": "{ref.white}",
-        "type": "color"
-    },
-    "background": {
-        "value": "{ref.grey.95}",
-        "type": "color"
+  "primary": {
+    "accent": {
+      "value": "{ref.purple.50}",
+      "type": "color"
     },
     "on": {
-        "value": "{ref.grey.5}",
-        "type": "color"
-    },
-    "on_alt": {
-        "value": "rgba({on}, 0.64)",
-        "type": "color"
-    },
-    "shadow": {
-        "value": "{ref.purple.20}",
-        "type": "color"
-    },
-    "glass": {
-        "value": "rgba({surface}, 80%)",
-        "type": "color"
-    },
-    "border": {
-        "light": {
-            "value": "rgba( {on}, 0.08)",
-            "type": "color"
-        },
-        "heavy": {
-            "value": "rgba( {on}, 0.06)",
-            "type": "color"
-        }
+      "value": "{ref.purple.95}",
+      "type": "color"
     }
+  },
+  "secondary": {
+    "accent": {
+      "value": "{ref.blue.50}",
+      "type": "color"
+    },
+    "on": {
+      "value": "{ref.blue.95}",
+      "type": "color"
+    }
+  },
+  "error": {
+    "accent": {
+      "value": "{ref.red.50}",
+      "type": "color"
+    },
+    "on": {
+      "value": "{ref.red.95}",
+      "type": "color"
+    }
+  },
+  "caution": {
+    "accent": {
+      "value": "{ref.yellow.50}",
+      "type": "color"
+    },
+    "on": {
+      "value": "{ref.yellow.95}",
+      "type": "color"
+    }
+  },
+  "success": {
+    "accent": {
+      "value": "{ref.green.50}",
+      "type": "color"
+    },
+    "on": {
+      "value": "{ref.green.95}",
+      "type": "color"
+    }
+  },
+  "neutral": {
+    "accent": {
+      "value": "{ref.grey.5}",
+      "type": "color"
+    },
+    "on": {
+      "value": "{ref.purple.95}",
+      "type": "color"
+    }
+  },
+  "surface": {
+    "value": "{ref.white}",
+    "type": "color"
+  },
+  "background": {
+    "value": "{ref.grey.95}",
+    "type": "color"
+  },
+  "on": {
+    "value": "{ref.grey.5}",
+    "type": "color"
+  },
+  "on_alt": {
+    "value": "rgba({on}, 0.64)",
+    "type": "color"
+  },
+  "shadow": {
+    "value": "{ref.grey.10}",
+    "type": "color"
+  },
+  "glass": {
+    "value": "rgba({surface}, 80%)",
+    "type": "color"
+  },
+  "border": {
+    "light": {
+      "value": "rgba( {on}, 0.08)",
+      "type": "color"
+    },
+    "heavy": {
+      "value": "rgba( {on}, 0.06)",
+      "type": "color"
+    }
+  }
 }
