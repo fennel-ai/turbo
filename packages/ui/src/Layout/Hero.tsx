@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import { TitleBlock } from '../TitleBlock';
-import { Button } from '../Button';
 
-import ArrowNarrowUpRightIcon from '../../icons/arrow-narrow-up-right.svg';
 import { media } from 'styles/utils';
 
 const Root = styled.div`
@@ -61,15 +59,21 @@ const IntroText = styled.p`
 	}
 `;
 
-export const Hero = () => {
+interface HeroProps {
+    actions?: JSX.Element[],
+    title: string;
+    text?: string;
+}
+
+export const Hero = ({ actions, text, title, }: HeroProps) => {
     return <Root>
         <Wrapper>
             <TitleBlock 
-                actions={[<Button color="primary" shape="pill" label="Read the Documentation" icon={<ArrowNarrowUpRightIcon />} />]} 
+                actions={actions} 
                 center
             >
-                <h1>Realtime Feature Platform. Beautifully Built.</h1>
-                <IntroText>Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features.</IntroText>
+                <h1>{title}</h1>
+                {text ? <IntroText>{text}</IntroText> : null}
             </TitleBlock>
         </Wrapper>
     </Root>
