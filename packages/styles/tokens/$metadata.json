@@ -1,9 +1,9 @@
 {
-    "tokenSetOrder": [
-        "global",
-        "colors",
-        "syntax-theme",
-        "palette/light",
-        "palette/dark"
-    ]
+  "tokenSetOrder": [
+    "global",
+    "colors",
+    "syntax-theme",
+    "palette/light",
+    "palette/dark"
+  ]
 }
