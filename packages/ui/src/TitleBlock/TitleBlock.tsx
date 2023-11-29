@@ -42,13 +42,13 @@ const Root = styled.div<{ center: boolean }>`
 
 	h2 {
 		margin: 0.5rem 0 1rem 0;
-		font-size: 2rem;
-		line-height: 2.5rem;
+		font-size: 2.5rem;
+        line-height: 3rem;
 		font-variation-settings: "wght" 800;
 
 		${media('sm')} {
-			font-size: 2.5rem;
-			line-height: 3rem;
+			font-size: 3.5rem;
+			line-height: 4rem;
 		}
 	}
 
