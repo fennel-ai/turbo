@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Theme } from 'styles';
 import { rgba } from 'styles/utils';
-import { Button, Hero } from 'ui';
+import { Button, Hero, TitleBlock } from 'ui';
 
 import ArrowNarrowUpRightIcon from 'ui/icons/arrow-narrow-up-right.svg';
 
@@ -33,6 +33,8 @@ const Template: ComponentStory<typeof Hero> = () => {
                     height: '35rem',
                     width: '100%',
                     overflow: 'hidden',
+                    mask: 'linear-gradient(180deg, black, black, transparent)',
+                    WebkitMask: 'linear-gradient(180deg, black, black, transparent)',
                 }}>
                 <div
                     style={{
@@ -41,7 +43,6 @@ const Template: ComponentStory<typeof Hero> = () => {
                         marginLeft: 'auto',
                         marginRight: 'auto',
                         padding: '0 0.5rem',
-                        // WebkitMaskImage: 'linear-gradient(180deg, #000 31.14%, rgba(0, 0, 0, 0.28) 51.69%, rgba(0, 0, 0, 0.00) 81.76%)'
                     }}
                 >
                     <div
@@ -56,6 +57,17 @@ const Template: ComponentStory<typeof Hero> = () => {
                         }}
                     />
                 </div>
+            </div>
+            <div style={{
+                width: '100%',
+                maxWidth: '77.5rem',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                padding: '0 0.5rem',
+            }}>
+                <TitleBlock>
+                    <h2>Ship Features 100x Faster. Yes, 100x.</h2>
+                </TitleBlock>
             </div>
         </div>
     )
