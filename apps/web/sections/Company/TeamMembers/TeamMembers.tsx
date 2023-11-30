@@ -46,6 +46,7 @@ const TeamMembers = () => {
                 <TeamMember additional="Ex-NetSpring · Ex-Salesforce" name="Zaki Siddiqui" role="Engineer" src="/images/Person=Zaki.png" />
                 <TeamMember additional="Ex-Sumo Logic" name="Rahul Khanna" role="Engineer" src="/images/Person=Rahul.png" />
 				<TeamMember additional="Ex-Rippling · Ex-Uber" name="Sai Harsha Vellanki" role="Engineer" src="/images/Person=Harsha.png" />
+				<TeamMember additional="Ex-Datadog" name="Peter Ashmore" role="Sales" src="/images/Person=Peter.png" />
 			</Wrapper>
 		</Root>
 	);
