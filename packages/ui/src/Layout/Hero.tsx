@@ -61,15 +61,21 @@ const IntroText = styled.p`
 	}
 `;
 
-export const Hero = () => {
+interface HeroProps {
+    heroHeader: string;
+    heroIntroText: string;
+    heroActions?: JSX.Element[];
+}
+
+export const Hero = ({heroHeader, heroIntroText, heroActions}: HeroProps) => {
     return <Root>
         <Wrapper>
             <TitleBlock 
-                actions={[<Button color="primary" shape="pill" label="Read the Documentation" icon={<ArrowNarrowUpRightIcon />} />]} 
+                actions={heroActions} 
                 center
             >
-                <h1>Realtime Feature Platform. Beautifully Built.</h1>
-                <IntroText>Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features.</IntroText>
+                <h1>{heroHeader}</h1>
+                <IntroText>{heroIntroText}</IntroText>
             </TitleBlock>
         </Wrapper>
     </Root>
