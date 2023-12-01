@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof Video> = () => {
 
     return (
         <div>
-            <Hero heroHeader={"See Fennel in Action"} heroIntroText={"Check out our introductory video below to learn more about what you can achieve with Fennel."} />
+            <Hero title={"See Fennel in Action"} text={"Check out our introductory video below to learn more about what you can achieve with Fennel."} />
             <div
                 style={{
                     position: 'relative',
