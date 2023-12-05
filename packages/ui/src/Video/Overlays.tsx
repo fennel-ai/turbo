@@ -36,7 +36,6 @@ const Overlay = styled.div<{notStarted: boolean}>`
     position: absolute;
     left: 0px;
     top: 0px;
-    font-family: Helvetica;
     color: #FFF;
     background-color: rgba(27, 25, 36, 0.8);
     backdrop-filter: ${({ notStarted }) => notStarted ? 'blur(0px)' : 'blur(16px)'};
@@ -53,20 +52,24 @@ const SubmittableInputSubText = styled.p`
         opacity: 0.64;
 `
 
-const OverlaySectionWrapper = styled.div<{ section?: boolean }>`
-    display:flex;
+const OverlaySectionWrapper = styled.div<{ section?: boolean, isFinished?:boolean }>`
+    display:${({ section, isFinished }) => !!!section && isFinished ? 'none': 'flex'};
     align-items: center;
     justify-content: center;
     height: 100%;
     width: 100%;
-    border-left: ${({ section }) => section ? '1px solid #F0F0FF14' : ''};
     & p {
         max-width: 450px;
         font-size: 14px;
         line-height: 20px;
     }
-`
+    ${media('md')} {
+		border-left: ${({ section }) => section ? '1px solid #F0F0FF14' : ''};
+        display: flex;
+	}
 
+`
+//   display: ${({ isFinished }) => !isFinished ? 'none': 'flex'}
 const OverlayContentWrapper = styled.div`
     display: flex;
     justify-content: space-around;
@@ -75,7 +78,7 @@ const OverlayContentWrapper = styled.div`
 
 const SubscribeForUpdatesOverlay = ({ isFinished, onPlay }: {isFinished: boolean, onPlay: VideoActions["onPlay"]}) => {
     return (
-        <OverlaySectionWrapper>
+        <OverlaySectionWrapper isFinished={isFinished}>
             <TitleBlock center>
                 <h3>Subscribe For Updates</h3>
                 <p>Join 1000+ others and receive product updates and articles by the Fennel team directly to your inbox.</p>
@@ -116,12 +119,10 @@ const OverlayContentPlay = ({ onPlay }: {onPlay: VideoActions["onPlay"]}) => {
 
 const OverlayContentPause = ({ isFinished, onPlay }: {isFinished: boolean, onPlay: VideoActions["onPlay"]}) => {
     return (
-        <>
             <OverlayContentWrapper>
                 <SubscribeForUpdatesOverlay isFinished={isFinished} onPlay={onPlay} />
                 {isFinished && <SalesDemoOverlay />}
             </OverlayContentWrapper>
-        </>
     )
 }
 

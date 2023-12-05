@@ -46,7 +46,7 @@ export const Video = (props: PropsWithChildren<Props>) => {
         <ThemeProvider theme={themes.dark}>
             <Root>
                 {!isPlaying && getOverlay?.({actions, state: videoState})}
-                <ReactPlayer url={url} width="100%" height="100%" playing={isPlaying} {...actions} />
+                <ReactPlayer url={url} width="100%" height="100%" playing={isPlaying} {...actions}/>
             </Root>
         </ThemeProvider>
     );
