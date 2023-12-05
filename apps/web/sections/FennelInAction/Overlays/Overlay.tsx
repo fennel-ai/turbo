@@ -1,12 +1,13 @@
-import PlayButton from '../../icons/play-button.svg';
-import { TitleBlock } from '../TitleBlock';
-import { SubmittableInput } from '../Inputs';
-import { Button } from '../Button';
+import PlayButton from 'ui/icons/play-button.svg';
+import { TitleBlock, Button, SubscribeToNewsletter, PillButton, VIDEO_STATE } from 'ui';
 import Link from 'next/link';
-import { PillButton } from '../PillButton';
 import { media } from 'styles/utils';
 import styled from '@emotion/styled';
-import { VIDEO_STATE, VideoActions, OverlayProps } from './Video.interface';
+import type { VideoActions, OverlayProps } from 'ui';
+import { useRef } from 'react';
+// import { useForm, ChangeHandler, SubmitHandler, FieldError } from 'react-hook-form';
+import * as yup from 'yup';
+import { toast } from 'react-hot-toast';
 
 
 const PlayContentWrapper = styled.div`
@@ -44,14 +45,6 @@ const Overlay = styled.div<{notStarted: boolean}>`
     transition: background-color 2s ease-in 1s;
 `
 
-const SubmittableInputSubText = styled.p`
-        margin-top: 0.25rem !important;
-        font-size: 0.8125rem !important;
-        line-height: 1rem;
-        color: ${({ theme }) => theme.on};
-        opacity: 0.64;
-`
-
 const OverlaySectionWrapper = styled.div<{ section?: boolean, isFinished?:boolean }>`
     display:${({ section, isFinished }) => !!!section && isFinished ? 'none': 'flex'};
     align-items: center;
@@ -83,8 +76,7 @@ const SubscribeForUpdatesOverlay = ({ isFinished, onPlay }: {isFinished: boolean
                 <h3>Subscribe For Updates</h3>
                 <p>Join 1000+ others and receive product updates and articles by the Fennel team directly to your inbox.</p>
                 <SubscribeForUpdatesActions>
-                    <SubmittableInput placeholder={"Enter your email"} />
-                    <SubmittableInputSubText>You can always unsubscribe at any time.</SubmittableInputSubText>
+                    <SubscribeToNewsletter/>
                 </SubscribeForUpdatesActions>
                 {!isFinished &&
                     <Button variant='ghost' label='Skip & Continue' color='neutral' onClick={onPlay} />
@@ -139,7 +131,7 @@ const OverlayContent = ({ state, onPlay }: {state: VIDEO_STATE, onPlay: VideoAct
 
 export const getVideoOverlay = ({ actions, state }: OverlayProps) => {
     return (
-        <Overlay notStarted={state==VIDEO_STATE.NOT_STARTED}>
+        <Overlay notStarted={state==VIDEO_STATE.NOT_STARTED} >
             <OverlayContent state={state} onPlay={actions.onPlay} />
         </Overlay>
     )
