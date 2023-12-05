@@ -2,13 +2,12 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { Container } from "../Container"
 import { IconButton } from '../IconButton';
-import { SubmittableInput } from '../Inputs';
-
 import TwitterIcon from '../../icons/twitter.svg';
 import LinkedInIcon from '../../icons/linkedin.svg';
 import GithubIcon from '../../icons/github.svg';
 import Logo from '../../icons/logo.svg';
 import { media } from 'styles/utils';
+import {SubscribeToNewsletter} from './SubscribeToNewsletter';
 
 const Root = styled.footer`
     background-color: ${({ theme }) => theme.surface};
@@ -199,8 +198,7 @@ export const Footer = () => {
                 <Content>
                     <SubscribeCta>
                         <h4>Subscribe for updates:</h4>
-                        <SubmittableInput placeholder="Enter your email" size="small" />
-                        <p>You can always unsubscribe at any time.</p>
+                        <SubscribeToNewsletter/>
                     </SubscribeCta>
                     <Spacer />
                     <Menu>

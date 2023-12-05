@@ -47,11 +47,8 @@ const Wrapper = styled.div`
 const IntroText = styled.p`
 	padding: 0;
 	color: ${({ theme }) => theme.on_alt};
-
-	${media('sm')} {
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-	}
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 	
 	${media('md')} {
         padding-left: 7.5rem;

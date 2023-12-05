@@ -1,2 +1,2 @@
-export * from "./Video"
-export * from "./Overlays"
+export * from "./Video";
+export * from "./Video.interface";

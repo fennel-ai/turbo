@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, MouseEventHandler, forwardRef } from "react";
 import styled from '@emotion/styled';
 import { Button } from "../Button";
 
@@ -26,13 +26,14 @@ const Root = styled.div<{ size: 'small' | 'large' }>`
 
 interface SubmittableInputProps extends HTMLAttributes<HTMLInputElement> {
     size?: "small" | "large";
+    onButtonClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-export const SubmittableInput = ({ size = 'small', ...props }: SubmittableInputProps) => {
+export const SubmittableInput = forwardRef<HTMLInputElement,SubmittableInputProps>(({ size = 'small', ...props }, ref) => {
     return (
         <Root size={size}>
-            <input {...props} />
-            <Button label="Subscribe" color="primary" variant="ghost" size={size} />
+            <input {...props} ref={ref}/>
+            <Button label="Subscribe" color="primary" variant="ghost" size={size} onClick={props.onButtonClick}/>
         </Root>
     )
-};
+});
