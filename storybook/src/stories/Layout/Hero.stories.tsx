@@ -89,7 +89,6 @@ const Template: ComponentStory<typeof Hero> = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div style={{
