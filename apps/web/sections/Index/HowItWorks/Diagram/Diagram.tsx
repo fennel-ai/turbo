@@ -162,7 +162,7 @@ const CodeWindow = styled(motion.div)`
 	position: absolute;
 	background-color: ${({ theme }) => theme.syntax.plain.background};
 	color: ${({ theme }) => theme.syntax.plain.foreground};
-	border: 0.5px solid ${({ theme }) => theme.border};
+	border: 0.5px solid ${({ theme }) => theme.border.light};
 	border-radius: 1rem;
 	overflow: hidden;
 	display: flex;
