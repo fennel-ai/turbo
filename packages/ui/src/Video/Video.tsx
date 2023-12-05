@@ -1,9 +1,11 @@
 import { PropsWithChildren, useState, useCallback, cloneElement } from 'react';
 import styled from '@emotion/styled';
-import ReactPlayer from 'react-player'
 import * as themes from 'styles';
 import { ThemeProvider } from '@emotion/react';
 import { VideoActions, VIDEO_STATE } from './Video.interface';
+import dynamic from 'next/dynamic'
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+
 
 
 type Props = {
@@ -46,7 +48,7 @@ export const Video = (props: PropsWithChildren<Props>) => {
         <ThemeProvider theme={themes.dark}>
             <Root>
                 {!isPlaying && getOverlay?.({actions, state: videoState})}
-                <ReactPlayer url={url} width="100%" height="100%" playing={isPlaying} {...actions}/>
+                <ReactPlayer url={url} width="100%" height="100%" playing={isPlaying} {...actions} />
             </Root>
         </ThemeProvider>
     );
