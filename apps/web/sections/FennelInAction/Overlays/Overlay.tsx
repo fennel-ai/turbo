@@ -118,7 +118,7 @@ const OverlayContentPause = ({ isFinished, onPlay }: {isFinished: boolean, onPla
     )
 }
 
-const OverlayContent = ({ state, onPlay }: {state: VIDEO_STATE, onPlay: VideoActions["onPlay"]}) => {
+const getOverlayContent = (state: VIDEO_STATE, onPlay: VideoActions["onPlay"]) => {
     switch (state) {
         case VIDEO_STATE.NOT_STARTED:
             return <OverlayContentPlay onPlay={onPlay} />;
@@ -132,7 +132,7 @@ const OverlayContent = ({ state, onPlay }: {state: VIDEO_STATE, onPlay: VideoAct
 export const getVideoOverlay = ({ actions, state }: OverlayProps) => {
     return (
         <Overlay notStarted={state==VIDEO_STATE.NOT_STARTED} >
-            <OverlayContent state={state} onPlay={actions.onPlay} />
+            {getOverlayContent(state, actions.onPlay)}
         </Overlay>
     )
 }
