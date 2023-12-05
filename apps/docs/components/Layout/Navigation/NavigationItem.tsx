@@ -21,7 +21,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 		border-radius: 50%;
 		background-color: ${({ status, theme }) => {
 			switch (status) {
-				case 'draft': { return theme.border }
+				case 'draft': { return theme.border.light }
 				case 'wip': { return theme.caution.accent }
 				case 'published': { return theme.success.accent }
 			}

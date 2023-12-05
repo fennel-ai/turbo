@@ -50,7 +50,7 @@ const PageList = styled.ul`
 	gap: 0.5rem;
 	margin: 1rem 0;
 	padding-left: 2rem;
-	border-left: 1px solid ${({ theme }) => theme.border};
+	border-left: 1px solid ${({ theme }) => theme.border.light};
 `;
 
 const animation = {
