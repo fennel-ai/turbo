@@ -12,7 +12,7 @@ const Grid = styled.div`
 	grid-template-columns: repeat(2, 1fr);
 	row-gap: 1.5rem;
 	column-gap: 1rem;
-    margin: '40px 0';
+    padding: 1rem 0;
 
 	${media('md')} {
         grid-template-columns: repeat(4, 1fr);
@@ -21,19 +21,23 @@ const Grid = styled.div`
 	}
 `;
 
-const Section = styled.div`
-    width: 100%;
-    max-width: 86.75rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 3rem;
-`
+
+const Root = styled.div`
+    padding-bottom: 3rem;
+    ${media('md')} {
+        padding-bottom: 5rem 0;
+	}
+`;
+
+
 
 
 export const ShipFasterV2 = () => {
 	return (
+        <Root>
         <Container>
             <TitleBlock>
+                <h6>Incredibly easy to install and use.</h6>
                 <h2>Ship Features 100x Faster. Yes, 100x.</h2>
             </TitleBlock>
             <Grid>
@@ -55,5 +59,6 @@ export const ShipFasterV2 = () => {
                 </TextBlock>
             </Grid>
         </Container>
+        </Root>
 	);
 };

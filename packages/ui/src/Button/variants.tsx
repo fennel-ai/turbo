@@ -32,14 +32,19 @@ export const STYLE = {
         color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : theme[color].accent};
         backdrop-filter: blur(0.5rem);
     `,
-    'glass-highlight': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
+    'hero': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
         background: rgb(${theme.ref.purple[95]});
         box-shadow: 0px 91px 114px rgba(105, 88, 202, 0.11), 0px 38.0176px 47.6265px rgba(105, 88, 202, 0.079074), 0px 20.326px 25.4634px rgba(105, 88, 202, 0.0655718), 0px 11.3946px 14.2746px rgba(105, 88, 202, 0.055), 0px 6.05159px 7.58112px rgba(105, 88, 202, 0.0444282), 0px 2.5182px 3.15467px rgba(105, 88, 202, 0.030926), 0px 0px 0px 1px #FFFFFF;
         color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : `rgb(${theme.ref.purple[40]})`};
         backdrop-filter: blur(0.5rem);
-        transition: box-shadow 0.3s ease-in-out;
+        transition: box-shadow 0.3s ease-in-out, scale 0.2s ease-in-out;
+        & {
+            height: 3.5rem ;
+        }
+        font-size: 18px;
         &:hover{
-            box-shadow: 0px 91px 114px rgba(105, 88, 202, 0.5), 0px 38.0176px 47.6265px rgba(105, 88, 202, 0.5), 0px 20.326px 25.4634px rgba(105, 88, 202, 0.5), 0px 11.3946px 14.2746px rgba(105, 88, 202,  0.055), 0px 6.05159px 7.58112px rgba(105, 88, 202, 0.0444282), 0px 2.5182px 3.15467px rgba(105, 88, 202, 0.030926), 0px 0px 0px 1px #FFFFFF;
+            box-shadow: 0px 91px 114px rgba(105, 88, 202, 0.2), 0px 38.0176px 47.6265px rgba(105, 88, 202, 0.1), 0px 20.326px 25.4634px rgba(105, 88, 202, 0.12), 0px 11.3946px 14.2746px rgba(105, 88, 202,  0.1), 0px 6.05159px 7.58112px rgba(105, 88, 202, 0.08), 0px 2.5182px 3.15467px rgba(105, 88, 202, 0.06), 0px 0px 0px 1px #FFFFFF;
+            transform: scale(1.02)
         }
     `
 }

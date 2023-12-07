@@ -43,12 +43,12 @@ export const Video = (props: PropsWithChildren<Props>) => {
     }
 
     const isPlaying = videoState == VIDEO_STATE.PLAYING;
-
+    const overlay = getOverlay?.({actions, state: videoState})
     return (
         <ThemeProvider theme={themes.dark}>
             <Root>
-                {!isPlaying && getOverlay?.({actions, state: videoState})}
-                <ReactPlayer url={url} width="100%" height="100%" playing={isPlaying} {...actions} />
+                {!isPlaying && overlay}
+                <ReactPlayer url={url} width="100%" height="100%" playing={isPlaying} {...actions} controls/>
             </Root>
         </ThemeProvider>
     );

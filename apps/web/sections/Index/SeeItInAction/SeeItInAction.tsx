@@ -3,9 +3,8 @@
 
 import { Button, Container } from "ui";
 import styled from '@emotion/styled';
-
 import Link from "next/link";
-import PlayButton from 'ui/icons/play-button.svg';
+import PlayCircle from 'ui/icons/play-circle.svg';
 import { media, rgba } from "styles/utils";
 import { useTheme } from "@emotion/react";
 import Image from "next/image";
@@ -46,12 +45,12 @@ const ButtonContainer = styled.div`
 `
 
 const ImageContainer = styled.div`
+    background: ${({ theme }) => `linear-gradient(180deg, ${theme.background}, ${rgba(theme.background, 0.1)} 10%, ${rgba(theme.background, 0)} 15%)`};
     --webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
     mask:linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
     flex-shrink: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.64;
     border-radius: 1.5rem;
     filter:  ${({ theme }) => `drop-shadow(0px -100px 217px ${rgba(theme.shadow, theme.type === 'dark' ? 0.32 : 0.08)})`};
 `
@@ -64,7 +63,7 @@ const SeeItInAction = () => {
                 <GlassContainer>
                     <ButtonContainer>
                         <Link href="/fennel-in-action">
-                            <Button variant='glass-highlight' icon={<PlayButton />} color='neutral' label='See Fennel in Action' direction='row-reverse' shape='pill' />
+                            <Button variant='hero' icon={<PlayCircle />} color='neutral' label='See Fennel In Action' direction='row-reverse' shape='pill' />
                         </Link>
                     </ButtonContainer>
                     <ImageContainer>
