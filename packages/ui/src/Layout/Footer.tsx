@@ -122,7 +122,7 @@ const SubscribeCta = styled.div`
     grid-column: span 2;
 
     & > h4 {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
 
     & > p {

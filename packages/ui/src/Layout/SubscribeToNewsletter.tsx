@@ -20,7 +20,7 @@ function hubspotCookie() {
     return document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
-export const SubscribeToNewsletter = ({ onSubmit }: { onSubmit?: () => void }) => {
+export const SubscribeToNewsletter = ({ onSubscribe }: { onSubscribe?: () => void }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const onButtonClick = () => {
         const email = inputRef.current ? inputRef.current.value : ''
@@ -41,6 +41,7 @@ export const SubscribeToNewsletter = ({ onSubmit }: { onSubmit?: () => void }) =
                     throw new Error()
                 }
                 toast.success(`Thank you for your interest! You are now subscribed to Fennel AI's newsletter`);
+                onSubscribe?.()
             } catch (error) {
                 toast.error('Something went wrong! Please try again.')
             }
