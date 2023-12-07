@@ -40,7 +40,9 @@ const Root = styled.div`
 export const Masthead = ({ className, name = 'Fennel' }: { className?: string, name?: string }) => {
 	return (
 		<Root className={className}>
-			<Logo />
+			<a href='https://fennel.ai'>
+				<Logo />
+			</a>
 			<h2>{name}</h2>
 		</Root>
 	)
