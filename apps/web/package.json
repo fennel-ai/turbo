@@ -54,6 +54,7 @@
     "@types/node": "^17.0.12",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
+    "@types/react-modal": "^3.16.3",
     "eslint": "7.32.0",
     "eslint-config-fennel": "workspace:*",
     "mailing": "^1.0.1",
