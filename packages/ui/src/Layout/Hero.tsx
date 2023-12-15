@@ -12,9 +12,9 @@ const Root = styled.div`
     background-color: ${({ theme }) => theme.glass};
     border-bottom: 0.5px solid ${({ theme }) => theme.border.light};
     overflow: hidden;
-    min-height: 43rem;
-    padding-top: 10rem;
-    padding-bottom: 15rem;
+    min-height: 35rem;
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
     transform: translateZ(0);
 
     &::before {
@@ -32,6 +32,12 @@ const Root = styled.div`
         user-select: none;
         z-index: -1;
     }
+
+    ${media('sm')} {
+        min-height: 43rem;
+        padding-top: 10rem;
+        padding-bottom: 15rem;
+	}
 `;
 
 const Wrapper = styled.div`

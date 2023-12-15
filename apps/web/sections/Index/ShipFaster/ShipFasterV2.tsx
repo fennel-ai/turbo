@@ -24,8 +24,9 @@ const Grid = styled.div`
 
 const Root = styled.div`
     padding-bottom: 3rem;
+    padding-top: 3rem;
     ${media('md')} {
-        padding-bottom: 5rem 0;
+        padding-bottom: 5rem;
 	}
 `;
 

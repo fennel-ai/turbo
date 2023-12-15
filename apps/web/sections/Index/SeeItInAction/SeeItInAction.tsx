@@ -13,21 +13,28 @@ import { HeroVideo } from "sections/Index/HeroVideo";
 
 const Root = styled.div<{ showMask: boolean }>`
     position: relative;
-    margin-top: -12rem;
+    margin-top: -5rem;
     z-index: 8;
-    height: 22.5rem;
+    height: 14rem;
     width: 100%;
     overflow: hidden;
     mask: ${({ showMask }) => showMask ? `linear-gradient(180deg, black, black, transparent)` : ''};
     --webkit-mask:  ${({ showMask }) => showMask ? `linear-gradient(180deg, black, black, transparent)`: ''};
 
+    ${media('2xs')} {
+        height: 18rem;
+    }
+
     ${media('xs')} {
         height: 30rem;
+        margin-top: -6rem;
     }
 
     ${media('sm')} {
         height: 35rem;
+        margin-top: -12rem;
     }
+
 `;
 
 const GlassContainer = styled.div`
@@ -67,8 +74,8 @@ const ImageContainer = styled.div`
 `
 
 const PlayButtonWrapper = styled.div`
-    height: 96px;
-    width: 96px;
+    height: 3rem;
+    width: 3rem;
     background: ${({ theme }) => `rgb(${theme.ref.purple['50']})`};
     border-radius: 50%;
     display:flex;
@@ -83,10 +90,28 @@ const PlayButtonWrapper = styled.div`
         box-shadow: 0px 91px 114px rgba(105, 88, 202, 0.2), 0px 38.0176px 47.6265px rgba(105, 88, 202, 0.1), 0px 20.326px 25.4634px rgba(105, 88, 202, 0.12), 0px 11.3946px 14.2746px rgba(105, 88, 202,  0.1), 0px 6.05159px 7.58112px rgba(105, 88, 202, 0.08), 0px 2.5182px 3.15467px rgba(105, 88, 202, 0.06);
     }
     & svg {
-        width: 32px;
-        height: 32px;
+        width: 1rem;
+        height: 1rem;
         & path {
             fill: white;
+        }
+    }
+
+    ${media('xs')} {
+        width: 4rem;
+        height: 4rem;
+        & svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+    ${media('sm')} {
+        width: 6rem;
+        height: 6rem;
+        & svg {
+            width: 2rem;
+            height: 2rem;
         }
     }
 `;
@@ -95,8 +120,8 @@ const CustomPaddedContainer = styled.div`
     max-width: 86.5rem;
     width: 100%;
     margin: 0 auto;
-    padding-left: 0rem;
-    padding-right: 0rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
     ${media('sm')} {
         padding-left: 1.5rem;
@@ -107,8 +132,6 @@ const CustomPaddedContainer = styled.div`
         padding-left: 3rem;
         padding-right: 3rem;
     }
-
-
 `
 
 const SeeItInAction = () => {
@@ -124,7 +147,6 @@ const SeeItInAction = () => {
         background: 'rgba(0,0,0,0.8)'
     }, 
     content: {
-        height: '35rem',
         borderRadius: '8px',
         padding: '0px',
         background: theme.glass,
@@ -190,7 +212,7 @@ const SeeItInAction = () => {
                     <PlayButton/>
                 </PlayButtonWrapper>
             </ButtonContainer>
-            <CustomPaddedContainer>
+            <Container>
                 <GlassContainer>
                     <ImageContainer>
                         <Image src={theme.type === 'dark' ? "/images/console_dark.png" : "/images/console_light.png"} alt="Fenel Console Dashboard" width={1286} height={743} />
@@ -213,7 +235,7 @@ const SeeItInAction = () => {
                         }}/>
                     </ReactModal>
                 </GlassContainer>
-            </CustomPaddedContainer>
+            </Container>
         </Root>
     );
 };
