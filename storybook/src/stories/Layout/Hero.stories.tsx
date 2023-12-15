@@ -8,7 +8,7 @@ import PythonIcon from 'ui/icons/python.svg';
 import ClockRefreshIcon from 'ui/icons/clock-refresh.svg';
 import CubeIcon from 'ui/icons/cube-01.svg';
 import SearchIcon from 'ui/icons/search.svg';
-import PlayButton from 'ui/icons/play-button.svg';
+import PlayButton from 'ui/icons/play.svg';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

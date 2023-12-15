@@ -23,12 +23,6 @@ export const HeroV2 = () => {
 		<div data-section>
 			<Background />
                     <Hero
-                        actions={[
-                            <Link href="https://fennel.ai/docs">
-                        <Button color="primary" shape="pill" label="Read the Documentation" icon={<ArrowNarrowUpRightIcon />} />
-                        </Link>
-                        ]}
-                        
                         title="Realtime Feature Platform. Beautifully Built."
                         text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features."
                     />
