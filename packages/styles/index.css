@@ -30,6 +30,7 @@ a {
 }
 
 .seeItInActionContent {
+	height: 60%;
 	max-width: 62.5rem;
 	margin: 6rem auto;
 }
@@ -38,5 +39,6 @@ a {
 	/* For mobile phones: */
 	.seeItInActionContent {
 		margin: 6rem 0;
+		height: 70%;
 	}
   }
