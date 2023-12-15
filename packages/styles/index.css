@@ -24,3 +24,19 @@ button {
 a {
 	text-decoration: none;
 }
+
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
+.seeItInActionContent {
+	max-width: 62.5rem;
+	margin: 6rem auto;
+}
+
+@media only screen and (max-width: 768px) {
+	/* For mobile phones: */
+	.seeItInActionContent {
+		margin: 6rem 0;
+	}
+  }

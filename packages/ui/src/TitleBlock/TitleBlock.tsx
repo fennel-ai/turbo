@@ -23,10 +23,10 @@ const Root = styled.div<{ center: boolean }>`
 	}
 
 	h1 {
-		margin: 1rem 0;
-		font-size: 2rem;
-		line-height: 2rem;
-		font-variation-settings: "wght" 700;
+		margin: 1rem;
+		font-size: 3rem;
+		line-height: 3rem;
+		font-variation-settings: "wght" 800;
         letter-spacing: -2px;
 
 		${media('xs')} {

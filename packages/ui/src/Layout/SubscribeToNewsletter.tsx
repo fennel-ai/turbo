@@ -9,7 +9,8 @@ const validation = yup.object({
 }).required();
 
 const SubmittableInputSubText = styled.p`
-        margin-top: 0.25rem !important;
+        margin-top: 0.5rem !important;
+        margin-left: 0.25rem !important;
         font-size: 0.8125rem !important;
         line-height: 1rem;
         color: ${({ theme }) => theme.on};
@@ -51,10 +52,10 @@ export const SubscribeToNewsletter = ({ onSubscribe }: { onSubscribe?: () => voi
     }
 
 	return (
-    <>
-        <SubmittableInput placeholder={"Enter your email"} ref={inputRef} onButtonClick={onButtonClick}/>
+    <div onClick={(e)=>e.stopPropagation()}>
+        <SubmittableInput variant='flat' size="large" placeholder={"Enter your email"} ref={inputRef} onButtonClick={onButtonClick}/>
         <SubmittableInputSubText>You can always unsubscribe at any time.</SubmittableInputSubText>
-     </>
+     </div>
 	);
 };
 

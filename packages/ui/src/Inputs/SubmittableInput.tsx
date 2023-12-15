@@ -27,13 +27,14 @@ const Root = styled.div<{ size: 'small' | 'large' }>`
 interface SubmittableInputProps extends HTMLAttributes<HTMLInputElement> {
     size?: "small" | "large";
     onButtonClick?: MouseEventHandler<HTMLButtonElement>
+    variant?: 'ghost' | 'flat';
 }
 
-export const SubmittableInput = forwardRef<HTMLInputElement,SubmittableInputProps>(({ size = 'small', ...props }, ref) => {
+export const SubmittableInput = forwardRef<HTMLInputElement,SubmittableInputProps>(({ size = 'small', variant = 'ghost', ...props }, ref) => {
     return (
         <Root size={size}>
             <input {...props} ref={ref}/>
-            <Button label="Subscribe" color="primary" variant="ghost" size={size} onClick={props.onButtonClick}/>
+            <Button label="Subscribe" color="primary" variant={variant} size={size} onClick={props.onButtonClick}/>
         </Root>
     )
 });

@@ -1,23 +1,29 @@
 
 
 
-import { Button, Container } from "ui";
+import { Container } from "ui";
 import styled from '@emotion/styled';
-import Link from "next/link";
-import PlayCircle from 'ui/icons/play-circle.svg';
+import PlayButton from 'ui/icons/play.svg';
 import { media, rgba } from "styles/utils";
 import { useTheme } from "@emotion/react";
 import Image from "next/image";
+import ReactModal from 'react-modal';
+import { useEffect, useRef, useState } from "react";
+import { HeroVideo } from "sections/Index/HeroVideo";
 
-const Root = styled.div`
+const Root = styled.div<{ showMask: boolean }>`
     position: relative;
     margin-top: -12rem;
     z-index: 8;
-    height: 25rem;
+    height: 22.5rem;
     width: 100%;
     overflow: hidden;
-    mask: linear-gradient(180deg, black, black, transparent);
-    --webkit-mask: linear-gradient(180deg, black, black, transparent);
+    mask: ${({ showMask }) => showMask ? `linear-gradient(180deg, black, black, transparent)` : ''};
+    --webkit-mask:  ${({ showMask }) => showMask ? `linear-gradient(180deg, black, black, transparent)`: ''};
+
+    ${media('xs')} {
+        height: 30rem;
+    }
 
     ${media('sm')} {
         height: 35rem;
@@ -26,6 +32,7 @@ const Root = styled.div`
 
 const GlassContainer = styled.div`
     width: 100%;
+    position: relative;
     border-radius: 24px;
     background: ${({ theme }) => rgba(theme.surface, 0.64)};
     border: 0.5px solid ${({ theme }) => theme.border.light};
@@ -39,7 +46,7 @@ const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50%;
+    height: 100%;
     width: 100%;
     z-index: 1;
 `
@@ -52,25 +59,161 @@ const ImageContainer = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 1.5rem;
-    filter:  ${({ theme }) => `drop-shadow(0px -100px 217px ${rgba(theme.shadow, theme.type === 'dark' ? 0.32 : 0.08)})`};
+
+    & img {
+        width: 100%;
+        height: auto;
+    }
+`
+
+const PlayButtonWrapper = styled.div`
+    height: 96px;
+    width: 96px;
+    background: ${({ theme }) => `rgb(${theme.ref.purple['50']})`};
+    border-radius: 50%;
+    display:flex;
+    box-shadow: 0px 38.0176px 47.6265px rgba(105, 88, 202, 0.079074), 0px 20.326px 25.4634px rgba(105, 88, 202, 0.0655718), 0px 11.3946px 14.2746px rgba(105, 88, 202, 0.055), 0px 6.05159px 7.58112px rgba(105, 88, 202, 0.0444282), 0px 2.5182px 3.15467px rgba(105, 88, 202, 0.030926), 0px 0px 0px 2px #5D4CBE;
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content:center;
+    cursor: pointer;
+    transition: box-shadow 0.5s ease-in, transform 0.5s ease-in;
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 91px 114px rgba(105, 88, 202, 0.2), 0px 38.0176px 47.6265px rgba(105, 88, 202, 0.1), 0px 20.326px 25.4634px rgba(105, 88, 202, 0.12), 0px 11.3946px 14.2746px rgba(105, 88, 202,  0.1), 0px 6.05159px 7.58112px rgba(105, 88, 202, 0.08), 0px 2.5182px 3.15467px rgba(105, 88, 202, 0.06);
+    }
+    & svg {
+        width: 32px;
+        height: 32px;
+        & path {
+            fill: white;
+        }
+    }
+`;
+
+const CustomPaddedContainer = styled.div`
+    max-width: 86.5rem;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 0rem;
+    padding-right: 0rem;
+
+    ${media('sm')} {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    ${media('md')} {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+
 `
 
 const SeeItInAction = () => {
     const theme = useTheme();
+    const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+    const [allowExit, setAllowExit] = useState(false)
+    const sectionRef = useRef<HTMLDivElement>(null)
+    const [overlayRefState, setOverlayRefState] = useState<HTMLDivElement | null>(null)
+    const [contentRefState, setContentRefState] = useState<HTMLDivElement | null>(null)
+    const modalStyles = {
+    overlay: {
+        zIndex: 10,
+        background: 'rgba(0,0,0,0.8)'
+    }, 
+    content: {
+        height: '35rem',
+        borderRadius: '8px',
+        padding: '0px',
+        background: theme.glass,
+        borderColor: 'transparent',
+        backdropFilter: 'blur(16px)'
+    }};
+
+    const actions = {
+        onPlay: ()=> {
+            setAllowExit(false)
+        },
+        onPause: ()=> {
+            setAllowExit(true)
+        },
+        onEnded: ()=>{
+            setAllowExit(true)
+        },
+    }
+
+    const getOverlayRef = (ref: HTMLDivElement) => {
+        setOverlayRefState(ref)
+    };
+
+    const getContentRef = (ref: HTMLDivElement) => setContentRefState(ref);
+
+    useEffect(() => {
+        const handleClick = (e: Event) => {
+            if(!contentRefState?.contains(e.target as Node)) {
+
+                if(allowExit) {
+                    setIsVideoModalOpen(false)
+                    setAllowExit(false)
+                } else {
+                    setAllowExit(true)
+                }
+            }
+        }
+        const onPressEsc = (e: KeyboardEvent) => {
+            if (e.key == "Escape") {
+                if(allowExit) {
+                    setIsVideoModalOpen(false)
+                    setAllowExit(false)
+                } else {
+                    setAllowExit(true)
+                }
+            }
+        }
+
+        overlayRefState?.addEventListener('click', handleClick);
+        overlayRefState?.addEventListener("keydown", onPressEsc);
+        return () => {
+            overlayRefState?.removeEventListener('click', handleClick);
+            overlayRefState?.removeEventListener("keydown", onPressEsc);
+        }
+    }, [overlayRefState, contentRefState, allowExit])
+
     return (
-        <Root>
-            <Container>
+        <Root ref={sectionRef} showMask={!isVideoModalOpen}>
+            <ButtonContainer>
+                <PlayButtonWrapper onClick={()=>{
+                    setIsVideoModalOpen(true)
+                }}>
+                    <PlayButton/>
+                </PlayButtonWrapper>
+            </ButtonContainer>
+            <CustomPaddedContainer>
                 <GlassContainer>
-                    <ButtonContainer>
-                        <Link href="/fennel-in-action">
-                            <Button variant='hero' icon={<PlayCircle />} color='neutral' label='See Fennel In Action' direction='row-reverse' shape='pill' />
-                        </Link>
-                    </ButtonContainer>
                     <ImageContainer>
-                        <Image src={theme.type === 'dark' ? "/images/video_hero_dark.png" : "/images/video_hero.png"} alt="Fenel Console Dashboard" width={1286} height={743} />
+                        <Image src={theme.type === 'dark' ? "/images/console_dark.png" : "/images/console_light.png"} alt="Fenel Console Dashboard" width={1286} height={743} />
                     </ImageContainer>
+                    <ReactModal 
+                        style={modalStyles}
+                        isOpen={isVideoModalOpen}
+                        className={'seeItInActionContent'}
+                        contentLabel="Fennel Demo"
+                        onRequestClose={()=>setIsVideoModalOpen(false)}
+                        overlayRef={getOverlayRef}
+                        contentRef={getContentRef}
+                        shouldCloseOnOverlayClick={false}
+                        shouldCloseOnEsc={false}
+                        shouldFocusAfterRender={false}
+                    >
+                        <HeroVideo actions={actions} forcePause={allowExit} onClose={()=>{
+                            setIsVideoModalOpen(false)
+                            setAllowExit(false)
+                        }}/>
+                    </ReactModal>
                 </GlassContainer>
-            </Container>
+            </CustomPaddedContainer>
         </Root>
     );
 };

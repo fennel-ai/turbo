@@ -19,6 +19,7 @@
 		"react-player": "^2.13.0",
 		"react-syntax-highlighter": "^15.5.0",
 		"react-use-measure": "^2.1.1",
+		"screenfull": "^6.0.2",
 		"styles": "workspace:*",
 		"utils": "workspace:*"
 	},
