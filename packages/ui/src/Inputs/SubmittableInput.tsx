@@ -38,7 +38,7 @@ const Root = styled.div<{ size: 'small' | 'large', fill?: boolean }>`
             height: ${size === 'large' ? 3 : 2.5}rem;
         }
         button {
-            margin: 0.25rem 0.5rem;
+            margin: 0.5rem 0;
             width: 100%;
         }
     `}
@@ -47,6 +47,7 @@ const Root = styled.div<{ size: 'small' | 'large', fill?: boolean }>`
         display: flex;
         ${({fill}) => fill && `
             button {
+                margin: 0.25rem 0.5rem;
                 width: auto;
             }
        `
