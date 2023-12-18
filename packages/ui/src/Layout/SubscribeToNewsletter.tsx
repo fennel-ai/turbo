@@ -9,7 +9,7 @@ const validation = yup.object({
 }).required();
 
 const SubmittableInputSubText = styled.p`
-        margin-top: 0.5rem !important;
+        margin-top: 0.25rem !important;
         margin-left: 0.25rem !important;
         font-size: 0.8125rem !important;
         line-height: 1rem;
@@ -21,7 +21,7 @@ function hubspotCookie() {
     return document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
-export const SubscribeToNewsletter = ({ onSubscribe }: { onSubscribe?: () => void }) => {
+export const SubscribeToNewsletter = ({ onSubscribe, fill }: { onSubscribe?: () => void, fill?: boolean }) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const onButtonClick = () => {
         const email = inputRef.current ? inputRef.current.value : ''
@@ -53,8 +53,8 @@ export const SubscribeToNewsletter = ({ onSubscribe }: { onSubscribe?: () => voi
 
 	return (
     <div onClick={(e)=>e.stopPropagation()}>
-        <SubmittableInput variant='flat' size="large" placeholder={"Enter your email"} ref={inputRef} onButtonClick={onButtonClick}/>
-        <SubmittableInputSubText>You can always unsubscribe at any time.</SubmittableInputSubText>
+        <SubmittableInput variant={fill ? 'flat': 'ghost'} size="large" placeholder={"Enter your email"} ref={inputRef} onButtonClick={onButtonClick} fill={fill}/>
+        <SubmittableInputSubText>You can unsubscribe at any time.</SubmittableInputSubText>
      </div>
 	);
 };

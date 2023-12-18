@@ -40,12 +40,16 @@ const Root = styled.div<{ showMask: boolean }>`
 const GlassContainer = styled.div`
     width: 100%;
     position: relative;
-    border-radius: 24px;
+    border-radius: 0.5rem;
     background: ${({ theme }) => rgba(theme.surface, 0.64)};
     border: 0.5px solid ${({ theme }) => theme.border.light};
     height: 46.5rem;
     backdrop-filter: blur(1.5rem);
     box-shadow: ${({ theme }) => `0px 2.26915px 1.54966px 0px ${rgba(theme.shadow, 0.01)}, 0px 5.45308px 3.72406px 0px ${rgba(theme.shadow, 0.01)}, 0px 10.26767px 7.01207px 0px ${rgba(theme.shadow, 0.01)}, 0px 18.31577px 12.50833px 0px ${rgba(theme.shadow, 0.02)}, 0px 34.25764px 23.39546px 0px ${rgba(theme.shadow, 0.02)}, 0px 82px 56px 0px ${rgba(theme.shadow, 0.03)}`};
+    
+    ${media('sm')} {
+        border-radius: 1.5rem;
+    }
 `
 
 const ButtonContainer = styled.div`
@@ -120,12 +124,12 @@ const CustomPaddedContainer = styled.div`
     max-width: 86.5rem;
     width: 100%;
     margin: 0 auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 
-    ${media('sm')} {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+    ${media('2xs')} {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     ${media('md')} {
@@ -147,7 +151,6 @@ const SeeItInAction = () => {
         background: 'rgba(0,0,0,0.8)'
     }, 
     content: {
-        borderRadius: '8px',
         padding: '0px',
         background: theme.glass,
         borderColor: 'transparent',
@@ -212,7 +215,7 @@ const SeeItInAction = () => {
                     <PlayButton/>
                 </PlayButtonWrapper>
             </ButtonContainer>
-            <Container>
+            <CustomPaddedContainer>
                 <GlassContainer>
                     <ImageContainer>
                         <Image src={theme.type === 'dark' ? "/images/console_dark.png" : "/images/console_light.png"} alt="Fenel Console Dashboard" width={1286} height={743} />
@@ -235,7 +238,7 @@ const SeeItInAction = () => {
                         }}/>
                     </ReactModal>
                 </GlassContainer>
-            </Container>
+            </CustomPaddedContainer>
         </Root>
     );
 };

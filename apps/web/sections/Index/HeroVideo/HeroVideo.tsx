@@ -2,11 +2,15 @@ import { Video, VideoActions } from "ui";
 import { getFennelDemoOverlay } from '../Overlays';
 import styled from '@emotion/styled';
 import { useState } from "react";
+import { media } from "styles/utils";
 
 const VideoContainer = styled.div`
     width: 100%;
-    padding: 10px;
+    padding: 0.5rem;
     height: 100%;
+    ${media('xs')} {
+        padding: 1rem;
+    }
 `
 
 
