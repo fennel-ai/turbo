@@ -42,6 +42,7 @@ const Seekbar = styled.input<{percentDone: number}>`
             background: rgba(${({ theme }) => theme.ref.purple[95]},0.24);
             height: 4px;
             background-image: linear-gradient(#fff, #fff);
+            border-radius: 1rem;
             background-size: ${({ percentDone }) => percentDone}% 100%;
             background-repeat: no-repeat;
         }
@@ -50,6 +51,7 @@ const Seekbar = styled.input<{percentDone: number}>`
             background: rgba(${({ theme }) => theme.ref.purple[95]},0.24);
             height: 4px;
             background-image: linear-gradient(#fff, #fff);
+            border-radius: 1rem;
             background-size: ${({ percentDone }) => percentDone}% 100%;
             background-repeat: no-repeat;
         }

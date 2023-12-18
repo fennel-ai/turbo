@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic'
 import { findDOMNode } from 'react-dom';
 import ReactPlayer from 'react-player';
 import screenfull from 'screenfull'
+import { media } from 'styles/utils';
 const ForwardedReactPlayer = dynamic(() => import("./DynamicVideoPlayer"), { ssr: false });
 
 
@@ -27,7 +28,12 @@ const Root = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.29), 0px 2.50666px 8.35552px rgba(0, 0, 0, 0.208468), 0px 1.34018px 4.46726px rgba(0, 0, 0, 0.172871), 0px 0.751293px 2.50431px rgba(0, 0, 0, 0.145), 0px 0.399006px 1.33002px rgba(0, 0, 0, 0.117129), 0px 0.166035px 0.553451px rgba(0, 0, 0, 0.0815322);
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0px 0.166px 0.553px 0px rgba(0, 0, 0, 0.08), 0px 0.399px 1.33px 0px rgba(0, 0, 0, 0.12), 0px 0.751px 2.504px 0px rgba(0, 0, 0, 0.14), 0px 1.34px 4.467px 0px rgba(0, 0, 0, 0.17), 0px 2.507px 8.356px 0px rgba(0, 0, 0, 0.21), 0px 6px 20px 0px rgba(0, 0, 0, 0.29);
+    ${media('xs')} {
+        padding: 0.5rem;
+    }
 `;
 
 

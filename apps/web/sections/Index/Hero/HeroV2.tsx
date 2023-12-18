@@ -14,8 +14,6 @@ const Background = styled.div`
 	bottom: 0;
 	z-index: -1;
 	opacity: 0.15;
-	background: conic-gradient(from 90deg at 1px 1px, #0000 90deg, ${({ theme }) => rgba(theme.on_alt, 0.64)} 0) 0 0/32px 32px;
-	mask-image: radial-gradient(40.07% 50% at 50% 50%, #D9D9D9 0%, rgba(217, 217, 217, 0) 100%);
 `;
 
 export const HeroV2 = () => {

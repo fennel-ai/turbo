@@ -62,7 +62,7 @@ const PlayInstructionWrapper = styled.div`
     color: ${({ theme }) => theme.on_alt};
     position: absolute;
     font-size: 0.875rem;
-    bottom: 1rem;
+    bottom: 2rem;
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -71,8 +71,11 @@ const PlayInstructionWrapper = styled.div`
 
 const CloseVideoInstruction = styled.div`
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: 1.5rem;
+    right: 1rem;
+    ${media('sm')} {
+        right: 1.5rem;
+	}
 `
 
 const PlayIconWrapper = styled.div`
@@ -97,7 +100,7 @@ const SubscribeForUpdatesOverlay = ({ isFinished, onPlay, onSubscribe }: {isFini
             <TitleBlock center>
                 <h3>Get Notified Of<br/>Our Product Updates</h3>
                 <SubscribeForUpdatesActions>
-                    <SubscribeToNewsletter onSubscribe={onSubscribe}/>
+                    <SubscribeToNewsletter onSubscribe={onSubscribe} fill/>
                 </SubscribeForUpdatesActions>
             </TitleBlock>
             {!isFinished && <PlayInstruction/>}
@@ -121,7 +124,7 @@ const OverlayContentPause = ({ isFinished, onPlay, showSubscribeCTA, onSubscribe
     return (
         <Overlay>
             <CloseVideoInstruction>
-                <Button icon={<Close/>} label="Close Video" variant='glass' shape='pill' direction='row-reverse' onClick={onClose}/>
+                <Button icon={<Close/>} label="Close Video" variant='glass' shape='pill' direction='row-reverse' onClick={onClose} size='small'/>
             </CloseVideoInstruction>
             <OverlayContentWrapper>
                 {showSubscribeCTA && <SubscribeForUpdatesOverlay isFinished={isFinished} onPlay={onPlay} onSubscribe={onSubscribe}/>}
