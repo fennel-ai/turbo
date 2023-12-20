@@ -63,13 +63,12 @@ const ButtonContainer = styled.div`
 `
 
 const ImageContainer = styled.div`
-    background: ${({ theme }) => `linear-gradient(180deg, ${theme.background}, ${rgba(theme.background, 0.1)} 10%, ${rgba(theme.background, 0)} 15%)`};
-    --webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
-    mask:linear-gradient(to top, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 1) 100%);
+    mask linear-gradient(to top, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 72%)
     flex-shrink: 0;
     width: 100%;
     height: 100%;
     border-radius: 1.5rem;
+    backdrop-filter: blur(1rem);
 
     & img {
         width: 100%;

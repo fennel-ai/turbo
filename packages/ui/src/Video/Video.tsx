@@ -76,7 +76,7 @@ export const Video = (props: Props) => {
 
     const handleClickFullscreen = (e: Event) => {
         e.stopPropagation();
-        screenfull.request(findDOMNode(videoPlayerRef.current) as Element)
+        screenfull.request(findDOMNode(videoContainerRef.current) as Element)
     }
 
     useEffect(() => {
