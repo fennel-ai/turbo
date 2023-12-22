@@ -224,6 +224,9 @@ export const Footer = () => {
                             <li>
                                 <Link href="/careers">Careers</Link>
                             </li>
+                            <li>
+                                <Link href="/legal/subprocessors">Subprocessors</Link>
+                            </li>
                         </ul>
                     </Menu>
                 </Content>
