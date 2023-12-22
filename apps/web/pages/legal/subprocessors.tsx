@@ -55,6 +55,7 @@ const SUBPROCESSORS: Subprocessor[] = [
 const Wrapper = styled(Container)`
     padding-top: 2.5rem;
     padding-bottom: 5rem;
+    color: ${({ theme }) => theme.on};
 `;
 
 const ListHeader = styled.div`
@@ -186,7 +187,7 @@ export default function Company() {
                     </ListHeader>
                     {
                         SUBPROCESSORS.map((s) => (
-                            <SubprocessorItem>
+                            <SubprocessorItem key={s.name}>
                                 <SubprocessorName>
                                     <p>{s.name}</p>
                                     <a href={`https://${s.url}`}>{s.url}</a>
