@@ -1,6 +1,8 @@
+const { withContentlayer } = require("next-contentlayer");
+
 const { BLOG_URL, DOCS_URL } = process.env;
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["ui", "styles"],
   webpack(config) {
@@ -51,3 +53,5 @@ module.exports = {
     ];
   },
 };
+
+module.exports = withContentlayer(nextConfig);
