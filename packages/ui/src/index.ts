@@ -17,3 +17,4 @@ export * from "./TextBlock";
 export * from "./TitleBlock";
 export * from "./Searchbar";
 export * from "./Video";
+export * from "./Text";
