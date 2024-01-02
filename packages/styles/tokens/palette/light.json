@@ -1,7 +1,7 @@
 {
   "primary": {
     "accent": {
-      "value": "{ref.purple.40}",
+      "value": "{ref.purple.50}",
       "type": "color"
     },
     "on": {
@@ -11,7 +11,7 @@
   },
   "secondary": {
     "accent": {
-      "value": "{ref.blue.40}",
+      "value": "{ref.blue.50}",
       "type": "color"
     },
     "on": {
@@ -21,7 +21,7 @@
   },
   "error": {
     "accent": {
-      "value": "{ref.red.40}",
+      "value": "{ref.red.50}",
       "type": "color"
     },
     "on": {
@@ -31,7 +31,7 @@
   },
   "caution": {
     "accent": {
-      "value": "{ref.yellow.40}",
+      "value": "{ref.yellow.50}",
       "type": "color"
     },
     "on": {
@@ -41,7 +41,7 @@
   },
   "success": {
     "accent": {
-      "value": "{ref.green.40}",
+      "value": "{ref.green.50}",
       "type": "color"
     },
     "on": {
@@ -68,23 +68,29 @@
     "type": "color"
   },
   "on": {
-    "value": "{neutral.accent}",
+    "value": "{ref.grey.5}",
     "type": "color"
   },
   "on_alt": {
-    "value": "{ref.grey.20}",
-    "type": "color"
-  },
-  "border": {
-    "value": "{ref.grey.90}",
+    "value": "rgba({on}, 0.64)",
     "type": "color"
   },
   "shadow": {
-    "value": "{ref.purple.30}",
+    "value": "{ref.grey.5}",
     "type": "color"
   },
   "glass": {
-    "value": "rgba({surface}, 50%)",
+    "value": "rgba({surface}, 80%)",
     "type": "color"
+  },
+  "border": {
+    "light": {
+      "value": "rgba( {on}, 0.08)",
+      "type": "color"
+    },
+    "heavy": {
+      "value": "rgba( {on}, 0.06)",
+      "type": "color"
+    }
   }
 }

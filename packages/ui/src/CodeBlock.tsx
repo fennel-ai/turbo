@@ -35,7 +35,7 @@ const Root = styled.div<{ toolbar?: boolean }>`
 
 	${media('sm')} {
 		box-shadow: 0px 4px 16px 0px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0 : 0.32)};
-		border: 0.5px solid ${({ theme }) => theme.border};
+		border: 0.5px solid ${({ theme }) => theme.border.light};
 		border-radius: 1.25rem;
 	}
 `;
@@ -70,6 +70,9 @@ const Filename = styled.a`
 	color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
 	text-decoration: none;
 	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
 	cursor: pointer;
 	white-space: nowrap;
 	overflow: hidden;

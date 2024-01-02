@@ -49,7 +49,7 @@ const InputRoot = styled.div<{ required?: boolean }>`
 	& input, & select {
 		background: none;
 		height: 2.5rem;
-		border: 1px solid ${({ theme }) => theme.border};
+		border: 1px solid ${({ theme }) => theme.border.light};
 		border-radius: 0.5rem;
 		outline: none;
 		padding: 0 0.75rem;

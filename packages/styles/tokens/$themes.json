@@ -131,7 +131,6 @@
       "background": "S:b8328d1f65b25320a4d19ba6096e02171f085acb,",
       "on": "S:b5e3b932b90a031e3d76a72bf3e9bae00fd08cea,",
       "on_alt": "S:e8e25752798de9130055552027f62e836d475a18,",
-      "border": "S:1c26ea39f61f0f147360d7dcf02408efbd1c0178,",
       "shadow": "S:df255a78408d5722f2c78e4a7cd0476441462885,",
       "syntax.keyword": "S:71982dd573f550e74d3d5124f966e990ffd01cd1,",
       "syntax.builtins": "S:7f3a8b12d76351b8d3912403098b1ec681378912,",
@@ -223,7 +222,9 @@
       "ref.grey.95": "S:7729e89cf8be6931f4dbb2cd74e2590ec93dd449,",
       "ref.black": "S:a0522aca0dbd955b0ea4fa16296d4dd890905507,",
       "ref.white": "S:9737a8ce2c8daeaa0a66083dec84b7d30709e72a,",
-      "glass": "S:c9a1093c8a0fe5ac6a03f3b4a1f7bcae0e41b09f,"
+      "glass": "S:c9a1093c8a0fe5ac6a03f3b4a1f7bcae0e41b09f,",
+      "border.light": "S:bba5fcf714ea059f72d88d49d344d483542ed159,",
+      "border.heavy": "S:963020c6c1a7d9cfe0d9ef512396c55e5a2cb42e,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2453",
     "$figmaModeId": "1763:0",
@@ -244,7 +245,6 @@
       "background": "fe93408fd3ed064959ce6baaea9e5f2042ea23f6",
       "on": "97a6e29a94e103f3caa689bb7f7172da88b233d0",
       "on_alt": "1c8ae242f8aac29a1c203974264b42b08ac799a1",
-      "border": "f3f0b9dc551f230064df20a43c6b2f97cd4cec45",
       "shadow": "2068b2802df7597a8f12188a98d8745bb71e1fa1",
       "syntax.keyword": "9cd4bc5c1a677789268f964d117a4c41892c1b61",
       "syntax.builtins": "60ac7cd2487cbd6bc8a41999ff3a20f5f55f53d9",
@@ -377,7 +377,6 @@
       "background": "S:23230e505415153c530503b7fd23ba51dae75eb3,",
       "surface": "S:536dfce414ef3a9b0bc311bec5b110a75b2d0add,",
       "text-alt": "S:d167292120ab65642e7dd2a8f702d9f28d403f00,",
-      "border": "S:b5f8dc1e892df51c862696e78fbc9b745b1cb578,",
       "shadow": "S:0ad631fe8ff0361137aeb7f034e417f775c0817e,",
       "disabled.background": "S:e979cfe341c5c840cd5d715ff67f9d73b048fb23,",
       "syntax.keyword": "S:7fbc6043a001ab57db1c45e9d602a7a0e2933bf0,",
@@ -482,7 +481,9 @@
       "ref.white": "S:343577b4733e412f89f9a72cac182fc71ff671b8,",
       "syntax.code": "S:a97b71d803ab9c83079412208a493d7fc6c92364,",
       "syntax.line-number": "S:eddc7e0e46c6c66fff13ccbe96bb5f4e18331e77,",
-      "glass": "S:e5f973957b20306ee27de625c0e003c4b6cdd74a,"
+      "glass": "S:e5f973957b20306ee27de625c0e003c4b6cdd74a,",
+      "border.light": "S:d917419c555b377c2f020fc7b622b710beb19e5e,",
+      "border.heavy": "S:69bdaecc2bd1abc6ac4cef7eb8e8ebbdf1a1edef,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2562",
     "$figmaModeId": "1763:1",
@@ -503,7 +504,6 @@
       "background": "c8ce837b0866d252bfc740380e1bbaa70a4976ce",
       "on": "7bed02ba821443fcc410c06d5b2a80130434f427",
       "on_alt": "fd9ec4f20d98ddf32f1f71e6c95c2eb5f8329b99",
-      "border": "52da4f60c09bbf055233a7377b6b349e3ad42d90",
       "shadow": "eb0dc1d33cff21446eafd9ac0f2339b7a327dd7e",
       "syntax.keyword": "f0059af6600f8c6a86cbb68d25a245dc2df28de1",
       "syntax.builtins": "4c17118413f97c82c05a028991b5f5a11dfc4385",

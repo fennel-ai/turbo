@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { ArchitectedWithLove, CallToAction, HassleFreeScaling, Hero, HowItWorks, NoMoreBugs, ShipFaster, TrulyRealtime } from 'sections/Index';
+import { ArchitectedWithLove, CallToAction, HassleFreeScaling, HeroV2, HowItWorks, NoMoreBugs, SeeItInAction, ShipFasterV2, TrulyRealtime } from 'sections/Index';
 import { ThemeProvider } from '@emotion/react';
 import * as themes from 'styles';
 
@@ -24,8 +24,9 @@ export default function Index() {
 				<meta name="twitter:image" content="https://fennel.ai/images/og/default.jpg" />
 			</Head>
 			<main>
-				<Hero />
-				<ShipFaster />
+				<HeroV2 />
+				<SeeItInAction/>
+				<ShipFasterV2 />
 				<NoMoreBugs />
 				<TrulyRealtime />
 				<HassleFreeScaling />

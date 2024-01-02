@@ -14,7 +14,7 @@ const Root = styled.div<{ center: boolean }>`
 	flex-direction: column;
 	align-items: center;
 	align-self: center;
-	gap: 1.5rem;
+	gap: 1rem;
 	color: ${({ theme }) => theme.on};
 
 	${media('sm')} {
@@ -23,10 +23,11 @@ const Root = styled.div<{ center: boolean }>`
 	}
 
 	h1 {
-		margin: 1rem 0;
-		font-size: 2rem;
-		line-height: 2rem;
-		font-variation-settings: "wght" 500;
+		margin: 1rem;
+		font-size: 2.5rem;
+		line-height: 2.5rem;
+		font-variation-settings: "wght" 700;
+        letter-spacing: -2px;
 
 		${media('xs')} {
 			font-size: 2.5rem;
@@ -34,20 +35,20 @@ const Root = styled.div<{ center: boolean }>`
 		}
 		
 		${media('sm')} {
-			font-size: 4rem;
-			line-height: 4rem;
+			font-size: 4.5rem;
+			line-height: 5rem;
 		}
 	}
 
 	h2 {
 		margin: 0.5rem 0 1rem 0;
 		font-size: 2rem;
-		line-height: 2.5rem;
-		font-variation-settings: "wght" 800;
+        line-height: 2rem;
+		font-variation-settings: "wght" 700;
 
 		${media('sm')} {
-			font-size: 2.5rem;
-			line-height: 3rem;
+			font-size: 3.5rem;
+			line-height: 4rem;
 		}
 	}
 

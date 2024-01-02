@@ -58,7 +58,7 @@ const Progress = styled.div`
 	position: relative;
 	width: 100%;
 	height: 1px;
-	background-color: ${({ theme }) => theme.border};
+	background-color: ${({ theme }) => theme.border.light};
 
 	& > div {
 		position: absolute;

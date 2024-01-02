@@ -73,7 +73,7 @@ const Cell = styled.div`
 	text-align: left;
 	padding: 1.5rem;
 	border-radius: 1rem;
-	background-color: ${({ theme }) => theme.border};
+	background-color: ${({ theme }) => theme.border.light};
 	background-image: radial-gradient(25.69% 43.07% at 16.54% 27.23%, rgba(105, 88, 202, 0.2) 21.87%, rgba(105, 88, 202, 0) 100%);
 	position: relative;
 	z-index: 0;
