@@ -7,6 +7,7 @@ import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
+import { Footer } from 'ui';
 
 import * as themes from 'styles';
 import 'styles/index.css';
@@ -16,7 +17,7 @@ import Head from 'next/head';
 import SectionThemeProvider, { SectionTheme } from 'context/SectionTheme';
 
 import { Header } from 'components/Header';
-import { Footer } from 'components/Footer';
+// import { Footer } from 'components/Footer';
 import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({

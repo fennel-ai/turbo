@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import styled from '@emotion/styled';
 import { media, rgba } from "styles/utils";
+import { Footer } from 'ui';
 
 import type { NavigationTree } from "lib/utils";
 
 import Header from './Header';
-import Footer from './Footer';
 import Navigation from "./Navigation";
 import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
@@ -133,7 +133,7 @@ const Root = styled(Container)`
 		}
 
 		hr {
-			background-color: ${({ theme }) => theme.border};
+			background-color: ${({ theme }) => theme.border.light};
 			border: none;
 			height: 2px;
 		}
