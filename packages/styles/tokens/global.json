@@ -116,16 +116,12 @@
     }
   },
   "fontFamilies": {
-    "text": {
-      "value": "Satoshi Variable",
+    "primary": {
+      "value": "Haskoy",
       "type": "fontFamilies"
     },
-    "title": {
-      "value": "Crimson Pro",
-      "type": "fontFamilies"
-    },
-    "code": {
-      "value": "JetBrains Mono",
+    "mono": {
+      "value": "Geist Mono Variable",
       "type": "fontFamilies"
     }
   },

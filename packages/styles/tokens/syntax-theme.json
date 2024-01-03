@@ -2,7 +2,7 @@
   "syntax": {
     "code": {
       "value": {
-        "fontFamily": "{fontFamilies.code}",
+        "fontFamily": "{fontFamilies.mono}",
         "fontWeight": "{fontWeights.semibold}",
         "lineHeight": "{typescale.8}",
         "fontSize": "{typescale.2}",
@@ -12,7 +12,7 @@
     },
     "line-number": {
       "value": {
-        "fontFamily": "{fontFamilies.code}",
+        "fontFamily": "{fontFamilies.mono}",
         "fontWeight": "{fontWeights.semibold}",
         "lineHeight": "{typescale.8}",
         "fontSize": "{typescale.2}",
