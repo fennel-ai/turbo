@@ -180,7 +180,7 @@ const Code = styled(Syntax)`
 `;
 
 const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
-	const [showCode, setShowCode] = useState<boolean>(false);
+	const [showCode, setShowCode] = useState<boolean>(true);
 	const { ref, width, height } = useResizeObserver();
 	const theme = useTheme();
 
