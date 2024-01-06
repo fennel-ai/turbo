@@ -140,56 +140,5 @@
       },
       "type": "typography"
     }
-  },
-  "syntax": {
-    "code": {
-      "small": {
-        "value": {
-          "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.light}",
-          "fontSize": "{typescale.1}",
-          "lineHeight": "{typescale.5}"
-        },
-        "type": "typography"
-      },
-      "default": {
-        "value": {
-          "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.light}",
-          "fontSize": "{typescale.2}",
-          "lineHeight": "{typescale.6}"
-        },
-        "type": "typography"
-      }
-    },
-    "lineNumber": {
-      "small": {
-        "value": {
-          "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.light}",
-          "fontSize": "{typescale.0}",
-          "lineHeight": "{typescale.5}"
-        },
-        "type": "typography"
-      },
-      "default": {
-        "value": {
-          "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.light}",
-          "fontSize": "{typescale.1}",
-          "lineHeight": "{typescale.6}"
-        },
-        "type": "typography"
-      }
-    },
-    "label": {
-      "value": {
-        "fontFamily": "{fontFamilies.mono}",
-        "fontWeight": "{fontWeights.mono.medium}",
-        "fontSize": "{typescale.1}",
-        "lineHeight": "{typescale.2}"
-      },
-      "type": "typography"
-    }
   }
 }

@@ -263,7 +263,9 @@
       "syntax.code.default": "S:60eeda23f92f7f8dcad745c6563cc2a80cc3d6b5,",
       "syntax.lineNumber.small": "S:28b1c3fc9ca4f35639c7b4c0e1bd2f9a1cfb2d1f,",
       "syntax.lineNumber.default": "S:0305e9e0b2e59411de0b587858f0c3b20b57c6ea,",
-      "syntax.label": "S:a424f8392aa4a232a727657ff746c7df1d45712b,"
+      "syntax.label": "S:a424f8392aa4a232a727657ff746c7df1d45712b,",
+      "syntax.label.small": "S:127234087ab88d1818d7ab08c56d45f02ed819f3,",
+      "syntax.label.default": "S:a424f8392aa4a232a727657ff746c7df1d45712b,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2453",
     "$figmaModeId": "1763:0",
@@ -561,7 +563,9 @@
       "syntax.code.default": "S:6879c1b85fbd74a7d35b6e9605346bab178d1e30,",
       "syntax.lineNumber.small": "S:1d80d95f9a11d40f423ad3c21c9c8a14c3d45489,",
       "syntax.lineNumber.default": "S:01ba99c388c20bdde3454393d1930f3471f3610f,",
-      "syntax.label": "S:a0d0f00dfb33bd60c44262db7e72810745da6c4d,"
+      "syntax.label": "S:a0d0f00dfb33bd60c44262db7e72810745da6c4d,",
+      "syntax.label.small": "S:8f100fd47f204668f570e282b88a76f72d18ed41,",
+      "syntax.label.default": "S:a0d0f00dfb33bd60c44262db7e72810745da6c4d,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2562",
     "$figmaModeId": "1763:1",

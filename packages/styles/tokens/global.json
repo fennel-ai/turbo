@@ -97,6 +97,10 @@
         "value": "300",
         "type": "fontWeights"
       },
+      "regular": {
+        "value": "400",
+        "type": "fontWeights"
+      },
       "medium": {
         "value": "500",
         "type": "fontWeights"
