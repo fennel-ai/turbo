@@ -118,7 +118,7 @@
       "small": {
         "value": {
           "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.regular}",
+          "fontWeight": "{fontWeights.mono.light}",
           "fontSize": "{typescale.0}",
           "lineHeight": "{typescale.5}"
         },
@@ -127,7 +127,7 @@
       "default": {
         "value": {
           "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.regular}",
+          "fontWeight": "{fontWeights.mono.light}",
           "fontSize": "{typescale.1}",
           "lineHeight": "{typescale.6}"
         },
