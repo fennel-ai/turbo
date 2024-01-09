@@ -26,7 +26,7 @@
       "description": "Used for a function name when it is defined, as oppose to when it is called."
     },
     "boolean": {
-      "value": "{color.blue.90}",
+      "value": "{color.red.90}",
       "type": "color",
       "description": "True and false, and pairs with similar concepts (e.g. yes and no)."
     },
