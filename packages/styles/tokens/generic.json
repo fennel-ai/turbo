@@ -237,5 +237,15 @@
       },
       "type": "composition"
     }
+  },
+  "borderWidth": {
+    "light": {
+      "value": "0.5",
+      "type": "borderWidth"
+    },
+    "heavy": {
+      "value": "1",
+      "type": "borderWidth"
+    }
   }
 }
