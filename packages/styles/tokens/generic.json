@@ -208,7 +208,7 @@
       "type": "boxShadow"
     }
   },
-  "glass": {
+  "outlined": {
     "raised": {
       "value": [
         {
@@ -229,12 +229,10 @@
         }
       ],
       "type": "boxShadow"
-    }
-  },
-  "outlined": {
-    "raised": {
+    },
+    "glass": {
       "value": {
-        "boxShadow": "{glass.raised}",
+        "boxShadow": "{outlined.raised}",
         "backgroundBlur": "16"
       },
       "type": "composition"
