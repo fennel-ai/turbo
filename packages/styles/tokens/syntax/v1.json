@@ -40,6 +40,14 @@
       "type": "color",
       "description": "Literal text, including numbers and symbols and maybe even more special characters."
     },
+    "double-quote-string": {
+      "value": "{syntax.string}",
+      "type": "color"
+    },
+    "triple-quote-string": {
+      "value": "{syntax.string}",
+      "type": "color"
+    },
     "char": {
       "value": "{syntax.string}",
       "type": "color",
@@ -81,7 +89,7 @@
       "description": "An attribute/characteristic or object/map key."
     },
     "punctuation": {
-      "value": "{syntax.plain.foreground}",
+      "value": "{color.grey.70}",
       "type": "color",
       "description": "Punctuation such as brackets, parentheses, commas, and more."
     },

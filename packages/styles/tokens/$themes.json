@@ -298,7 +298,9 @@
       "outlined.raised": "S:09a6ea20f1ec522633f3774d21f49144ebd4d3de,",
       "border": "S:e0fad3c1525cba50808cfd781d147bd44da3f176,",
       "syntax.function-definition": "S:1a16e97bae9d3f6ee76e825d582da8408efbbd85,",
-      "syntax.function-call": "S:e727f9dcf9953c92dfe23a00fef74b295fcdd1d5,"
+      "syntax.function-call": "S:e727f9dcf9953c92dfe23a00fef74b295fcdd1d5,",
+      "syntax.double-quote-string": "S:6ca806e7f4fd409b831fc72a63cc7a1d806bd5e1,",
+      "syntax.triple-quote-string": "S:3b395eadec61300d1a658a9730b2b234e1f8d579,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2453",
     "$figmaModeId": "1763:0",
@@ -698,7 +700,10 @@
       "neutral.raised": "S:b3fa54143e1b0bd3e2759f0e498a82939f7ce8e3,",
       "surface.raised": "S:3340ee210c0c8bcb0b1d36084a3f5451cf9a9718,",
       "outlined.raised": "S:0b286762ee909628f7db4fcdb3777f7c676c1aa6,",
-      "syntax.function-call": "S:e8a1bd65eed9e0f0e85e138edeba4417be85ec4a,"
+      "syntax.function-call": "S:e8a1bd65eed9e0f0e85e138edeba4417be85ec4a,",
+      "syntax.function-definition": "S:cc7b650c875e83dfd2d24959bb400f7513b579c4,",
+      "syntax.double-quote-string": "S:1833d41fedb28215307f04c8f47aa9904cec54ba,",
+      "syntax.triple-quote-string": "S:a49bab02f2a4fedb0b0975839d9ed01eac70f98b,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2562",
     "$figmaModeId": "1763:1",
