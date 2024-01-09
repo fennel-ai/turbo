@@ -4,10 +4,11 @@
     "name": "light",
     "selectedTokenSets": {
       "global": "source",
-      "palette/light": "enabled",
       "syntax-theme": "enabled",
-      "colors": "enabled",
-      "typography": "enabled"
+      "typography": "enabled",
+      "ref": "source",
+      "theme/light": "enabled",
+      "color/light": "enabled"
     },
     "$figmaStyleReferences": {
       "primary.on-accent": "S:b65632d20382ebf6c85ac5774deb92828dd9865a,",
@@ -384,10 +385,11 @@
     "name": "dark",
     "selectedTokenSets": {
       "global": "source",
-      "palette/dark": "enabled",
       "syntax-theme": "enabled",
-      "colors": "enabled",
-      "typography": "enabled"
+      "typography": "enabled",
+      "ref": "source",
+      "theme/dark": "enabled",
+      "color/dark": "enabled"
     },
     "$figmaStyleReferences": {
       "primary.accent": "S:46ddb21d863e7ae3939e34d13c4f439dca02a456,",

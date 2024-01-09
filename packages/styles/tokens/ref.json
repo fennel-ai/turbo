@@ -285,7 +285,7 @@
       "type": "color"
     }
   },
-  "colors": {
+  "ref": {
     "grey": {
       "5": {
         "value": "#F9F9FA",
