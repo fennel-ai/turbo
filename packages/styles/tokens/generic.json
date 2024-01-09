@@ -224,7 +224,7 @@
           "y": "0",
           "blur": "0",
           "spread": "0.5",
-          "color": "{border.light}",
+          "color": "{border}",
           "type": "dropShadow"
         }
       ],

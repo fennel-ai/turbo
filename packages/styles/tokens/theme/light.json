@@ -23,16 +23,6 @@
     "value": "rgba({surface}, 80%)",
     "type": "color"
   },
-  "border": {
-    "light": {
-      "value": "rgba({on}, 0.08)",
-      "type": "color"
-    },
-    "heavy": {
-      "value": "rgba( {on}, 0.06)",
-      "type": "color"
-    }
-  },
   "syntax": {
     "code": {
       "small": {
@@ -94,5 +84,9 @@
         "type": "typography"
       }
     }
+  },
+  "border": {
+    "value": "{color.grey.10}",
+    "type": "color"
   }
 }
