@@ -275,7 +275,9 @@
         "value": "#FCFCFD",
         "type": "color"
       }
-    },
+    }
+  },
+  "ref": {
     "black": {
       "value": "#000000",
       "type": "color"
@@ -283,9 +285,7 @@
     "white": {
       "value": "#ffffff",
       "type": "color"
-    }
-  },
-  "ref": {
+    },
     "grey": {
       "5": {
         "value": "#F9F9FA",

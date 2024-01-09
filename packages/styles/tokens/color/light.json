@@ -2,7 +2,7 @@
   "color": {
     "grey": {
       "0": {
-        "value": "{_ref.white}",
+        "value": "{ref.white}",
         "type": "color"
       },
       "5": {
