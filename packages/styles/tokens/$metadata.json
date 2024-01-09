@@ -3,11 +3,11 @@
     "global",
     "ref",
     "typography",
-    "syntax-theme",
     "color/light",
     "color/dark",
     "theme/light",
     "theme/dark",
+    "syntax/v1",
     "generic"
   ]
 }

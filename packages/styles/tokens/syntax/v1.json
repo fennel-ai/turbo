@@ -1,0 +1,121 @@
+{
+  "syntax": {
+    "keyword": {
+      "value": "{color.purple.80}",
+      "type": "color",
+      "description": "Pre-defined and reserved words."
+    },
+    "builtins": {
+      "value": "{syntax.keyword}",
+      "type": "color",
+      "description": "Functions/Methods/Classes/Types that are available out of the box."
+    },
+    "class-name": {
+      "value": "{color.blue.120}",
+      "type": "color",
+      "description": "The name of a class, interface, trait, or type."
+    },
+    "function-call": {
+      "value": "{color.green.100}",
+      "type": "color",
+      "description": "The name of a function or method when called"
+    },
+    "function-definition": {
+      "value": "{color.purple.100}",
+      "type": "color",
+      "description": "Used for a function name when it is defined, as oppose to when it is called."
+    },
+    "boolean": {
+      "value": "{color.blue.90}",
+      "type": "color",
+      "description": "True and false, and pairs with similar concepts (e.g. yes and no)."
+    },
+    "number": {
+      "value": "{color.blue.90}",
+      "type": "color",
+      "description": "A numerical value, regardless of base and order, and no matter real or imaginary."
+    },
+    "string": {
+      "value": "{color.purple.110}",
+      "type": "color",
+      "description": "Literal text, including numbers and symbols and maybe even more special characters."
+    },
+    "char": {
+      "value": "{syntax.string}",
+      "type": "color",
+      "description": "A string that can comprise only a single character, enforced by the language."
+    },
+    "symbol": {
+      "value": "{syntax.variable}",
+      "type": "color",
+      "description": "A primitive data type found in some languages, can be thought of as an identifier."
+    },
+    "regex": {
+      "value": "{syntax.variable}",
+      "type": "color",
+      "description": "A regular expression."
+    },
+    "url": {
+      "value": "{syntax.string}",
+      "type": "color",
+      "description": "A link to another page or resource."
+    },
+    "operator": {
+      "value": "{color.blue.90}",
+      "type": "color",
+      "description": "A symbol that represents an action or process, whether it's a mathematical operation, logical operation, and so on."
+    },
+    "variable": {
+      "value": "{color.yellow.110}",
+      "type": "color",
+      "description": "The name of a variable. This token is intended to be used sparingly. It's generally used on special variables (e.g. Less or Bash), not general variables from imperative and procedural programming languages (e.g. C, JavaScript, Python)."
+    },
+    "constant": {
+      "value": "{syntax.variable}",
+      "type": "color",
+      "description": "The name of a constant."
+    },
+    "property": {
+      "value": "{syntax.plain.foreground}",
+      "type": "color",
+      "description": "An attribute/characteristic or object/map key."
+    },
+    "punctuation": {
+      "value": "{syntax.plain.foreground}",
+      "type": "color",
+      "description": "Punctuation such as brackets, parentheses, commas, and more."
+    },
+    "important": {
+      "value": "{color.red.110}",
+      "type": "color",
+      "description": "Anything that is important and needs special highlighting."
+    },
+    "comment": {
+      "value": "{ref.grey.60}",
+      "type": "color",
+      "description": "Code comments.\n"
+    },
+    "diff": {
+      "inserted": {
+        "value": "{color.green.90}",
+        "type": "color"
+      },
+      "deleted": {
+        "value": "{color.red.90}",
+        "type": "color"
+      }
+    },
+    "plain": {
+      "background": {
+        "value": "{surface}",
+        "type": "color",
+        "description": "Background color for code blocks"
+      },
+      "foreground": {
+        "value": "{color.grey.110}",
+        "type": "color",
+        "description": "Foreground color for non-tokenized elements within the syntax"
+      }
+    }
+  }
+}

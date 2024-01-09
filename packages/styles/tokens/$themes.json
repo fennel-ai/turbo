@@ -4,12 +4,12 @@
     "name": "light",
     "selectedTokenSets": {
       "global": "source",
-      "syntax-theme": "enabled",
       "typography": "enabled",
       "ref": "source",
       "theme/light": "enabled",
       "color/light": "enabled",
-      "generic": "enabled"
+      "generic": "enabled",
+      "syntax/v1": "enabled"
     },
     "$figmaStyleReferences": {
       "primary.on-accent": "S:b65632d20382ebf6c85ac5774deb92828dd9865a,",
@@ -138,7 +138,6 @@
       "syntax.keyword": "S:71982dd573f550e74d3d5124f966e990ffd01cd1,",
       "syntax.builtins": "S:7f3a8b12d76351b8d3912403098b1ec681378912,",
       "syntax.class-name": "S:bf0d899de40f6c4c085af35fb7cba13ff4049f2e,",
-      "syntax.function": "S:e727f9dcf9953c92dfe23a00fef74b295fcdd1d5,",
       "syntax.boolean": "S:925554a38952af763893aba1e34368dbe9ff5c4f,",
       "syntax.number": "S:dbac6e8443862c8f39bed013398e7fe2b4f1d2b7,",
       "syntax.string": "S:e7f83ac3224ea23d557ea1cbede2a627a7a858ea,",
@@ -297,7 +296,9 @@
       "neutral.raised": "S:2a725a6b92eac9270d69b758151b9304d8994149,",
       "surface.raised": "S:910167c68d77fe25ab19c1b6e44705f6f1fa00b6,",
       "outlined.raised": "S:09a6ea20f1ec522633f3774d21f49144ebd4d3de,",
-      "border": "S:e0fad3c1525cba50808cfd781d147bd44da3f176,"
+      "border": "S:e0fad3c1525cba50808cfd781d147bd44da3f176,",
+      "syntax.function-definition": "S:1a16e97bae9d3f6ee76e825d582da8408efbbd85,",
+      "syntax.function-call": "S:e727f9dcf9953c92dfe23a00fef74b295fcdd1d5,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2453",
     "$figmaModeId": "1763:0",
@@ -322,7 +323,6 @@
       "syntax.keyword": "9cd4bc5c1a677789268f964d117a4c41892c1b61",
       "syntax.builtins": "60ac7cd2487cbd6bc8a41999ff3a20f5f55f53d9",
       "syntax.class-name": "d2ffed40f09601d24bcbe319ee70a6c5f278afe4",
-      "syntax.function": "d1962bc6ff34bc17e85fc55d134536c5982bae11",
       "syntax.boolean": "2272be092c39269c9837d975766b9b70618f92f2",
       "syntax.number": "c3319c8374e8e2b53144083bb7ca22634ad5dc0b",
       "syntax.string": "9ea940845a8b64245693340f6dcf8360a80333ac",
@@ -408,7 +408,8 @@
       "_ref.grey.90": "739624a4a0596ef1233a7e252475120fb55d6383",
       "_ref.grey.95": "e6d106d7a64af85f95484abd52a455b5afa13ad5",
       "ref.black": "cb3581a2828497d7e70af7c38c65848322930c6e",
-      "ref.white": "6c7c66682fbdc98ef8fb50ad657901851e4a1cc0"
+      "ref.white": "6c7c66682fbdc98ef8fb50ad657901851e4a1cc0",
+      "syntax.function-call": "d1962bc6ff34bc17e85fc55d134536c5982bae11"
     }
   },
   {
@@ -416,12 +417,12 @@
     "name": "dark",
     "selectedTokenSets": {
       "global": "source",
-      "syntax-theme": "enabled",
       "typography": "enabled",
       "ref": "source",
       "theme/dark": "enabled",
       "color/dark": "enabled",
-      "generic": "enabled"
+      "generic": "enabled",
+      "syntax/v1": "enabled"
     },
     "$figmaStyleReferences": {
       "primary.accent": "S:46ddb21d863e7ae3939e34d13c4f439dca02a456,",
@@ -458,7 +459,6 @@
       "syntax.keyword": "S:7fbc6043a001ab57db1c45e9d602a7a0e2933bf0,",
       "syntax.builtins": "S:0c9ba5a69477f8c24a5f83fc0d3fb939913042fc,",
       "syntax.class-name": "S:ff7832c3c8822624d36400c02efe854941ca09b4,",
-      "syntax.function": "S:e8a1bd65eed9e0f0e85e138edeba4417be85ec4a,",
       "syntax.boolean": "S:79f5a2d903bc13542964d824ac2e33b7b6b77946,",
       "syntax.number": "S:1b341babb489e326fd4b73b9c1278cc5a10bfeaf,",
       "syntax.string": "S:99e2993b3558f15740f538fcad890310001b36df,",
@@ -697,7 +697,8 @@
       "success.raised": "S:badf5d07c2fab971cc364e1f00444b603c4a1f31,",
       "neutral.raised": "S:b3fa54143e1b0bd3e2759f0e498a82939f7ce8e3,",
       "surface.raised": "S:3340ee210c0c8bcb0b1d36084a3f5451cf9a9718,",
-      "outlined.raised": "S:0b286762ee909628f7db4fcdb3777f7c676c1aa6,"
+      "outlined.raised": "S:0b286762ee909628f7db4fcdb3777f7c676c1aa6,",
+      "syntax.function-call": "S:e8a1bd65eed9e0f0e85e138edeba4417be85ec4a,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2562",
     "$figmaModeId": "1763:1",
@@ -722,7 +723,6 @@
       "syntax.keyword": "f0059af6600f8c6a86cbb68d25a245dc2df28de1",
       "syntax.builtins": "4c17118413f97c82c05a028991b5f5a11dfc4385",
       "syntax.class-name": "a2d24e2f6689e7914ea1692c30d35465d7152d93",
-      "syntax.function": "d23ea0591902eab306cbe3bb610be4684e709bfc",
       "syntax.boolean": "a0795508e6c9270df6dfc0ab3f4fbcee2b9a69ea",
       "syntax.number": "abe8da32ea4cf00cb37bb9c6dce6956e4e405119",
       "syntax.string": "0bc9f7f0350320c6fc0b6c979ab43ce533749776",
@@ -808,7 +808,8 @@
       "_ref.grey.90": "fbe9e743d93ade8f409cf1401870a16df8e775ec",
       "_ref.grey.95": "ae63e612d4d93442c257ab7e7cee3331c473aeaf",
       "ref.black": "7792e501dffd05a6bcf2e620a0ef16d3b23dba45",
-      "ref.white": "696bc49a26900c40e94d754b9190a47d5a9ba047"
+      "ref.white": "696bc49a26900c40e94d754b9190a47d5a9ba047",
+      "syntax.function-call": "d23ea0591902eab306cbe3bb610be4684e709bfc"
     }
   }
 ]

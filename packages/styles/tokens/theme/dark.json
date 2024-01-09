@@ -15,6 +15,10 @@
     "value": "{color.grey.100}",
     "type": "color"
   },
+  "border": {
+    "value": "{color.grey.20}",
+    "type": "color"
+  },
   "shadow": {
     "value": "{ref.black}",
     "type": "color"
@@ -84,9 +88,5 @@
         "type": "typography"
       }
     }
-  },
-  "border": {
-    "value": "{color.grey.20}",
-    "type": "color"
   }
 }
