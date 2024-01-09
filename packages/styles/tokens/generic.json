@@ -7,6 +7,27 @@
     "on": {
       "value": "{color.purple.5}",
       "type": "color"
+    },
+    "raised": {
+      "value": [
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-2",
+          "color": "rgba({shadow}, 24%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "1",
+          "color": "{primary.accent}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
     }
   },
   "secondary": {
@@ -17,6 +38,27 @@
     "on": {
       "value": "{color.blue.5}",
       "type": "color"
+    },
+    "raised": {
+      "value": [
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-2",
+          "color": "rgba({shadow}, 24%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "1",
+          "color": "{secondary.accent}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
     }
   },
   "error": {
@@ -27,6 +69,27 @@
     "on": {
       "value": "{color.red.5}",
       "type": "color"
+    },
+    "raised": {
+      "value": [
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-2",
+          "color": "rgba({shadow}, 24%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "1",
+          "color": "{error.accent}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
     }
   },
   "caution": {
@@ -37,6 +100,27 @@
     "on": {
       "value": "{color.yellow.5}",
       "type": "color"
+    },
+    "raised": {
+      "value": [
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-2",
+          "color": "rgba({shadow}, 24%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "1",
+          "color": "{caution.accent}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
     }
   },
   "success": {
@@ -47,6 +131,27 @@
     "on": {
       "value": "{color.green.5}",
       "type": "color"
+    },
+    "raised": {
+      "value": [
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-2",
+          "color": "rgba({shadow}, 24%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "1",
+          "color": "{success.accent}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
     }
   },
   "neutral": {
@@ -57,6 +162,82 @@
     "on": {
       "value": "{color.grey.5}",
       "type": "color"
+    },
+    "raised": {
+      "value": [
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-2",
+          "color": "rgba({shadow}, 24%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "1",
+          "color": "{neutral.accent}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
+    }
+  },
+  "surface": {
+    "raised": {
+      "value": [
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-2",
+          "color": "rgba({shadow}, 24%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "1",
+          "color": "{surface}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
+    }
+  },
+  "glass": {
+    "raised": {
+      "value": [
+        {
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-2",
+          "color": "rgba({shadow}, 24%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "0.5",
+          "color": "{border.light}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
+    }
+  },
+  "outlined": {
+    "raised": {
+      "value": {
+        "boxShadow": "{glass.raised}",
+        "backgroundBlur": "16"
+      },
+      "type": "composition"
     }
   }
 }
