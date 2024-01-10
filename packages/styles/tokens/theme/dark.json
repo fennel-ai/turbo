@@ -1,10 +1,10 @@
 {
   "surface": {
-    "value": "{color.grey.5}",
+    "value": "{color.grey.10}",
     "type": "color"
   },
   "background": {
-    "value": "{color.grey.10}",
+    "value": "{color.grey.5}",
     "type": "color"
   },
   "on": {
