@@ -9,7 +9,7 @@
       "theme/light": "enabled",
       "color/light": "enabled",
       "generic": "enabled",
-      "syntax/v1": "enabled"
+      "syntax": "enabled"
     },
     "$figmaStyleReferences": {
       "primary.on-accent": "S:b65632d20382ebf6c85ac5774deb92828dd9865a,",
@@ -424,7 +424,7 @@
       "theme/dark": "enabled",
       "color/dark": "enabled",
       "generic": "enabled",
-      "syntax/v1": "enabled"
+      "syntax": "enabled"
     },
     "$figmaStyleReferences": {
       "primary.accent": "S:46ddb21d863e7ae3939e34d13c4f439dca02a456,",

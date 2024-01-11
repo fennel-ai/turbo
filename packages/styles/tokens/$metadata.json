@@ -7,7 +7,7 @@
     "color/dark",
     "theme/light",
     "theme/dark",
-    "syntax/v1",
+    "syntax",
     "generic"
   ]
 }

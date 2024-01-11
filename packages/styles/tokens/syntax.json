@@ -115,7 +115,7 @@
     },
     "plain": {
       "background": {
-        "value": "{surface}",
+        "value": "{color.grey.5}",
         "type": "color",
         "description": "Background color for code blocks"
       },
