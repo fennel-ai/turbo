@@ -69,7 +69,7 @@
       "description": "A link to another page or resource."
     },
     "operator": {
-      "value": "{color.purple.60}",
+      "value": "{color.purple.110}",
       "type": "color",
       "description": "A symbol that represents an action or process, whether it's a mathematical operation, logical operation, and so on."
     },
