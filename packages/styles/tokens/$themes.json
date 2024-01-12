@@ -4,7 +4,6 @@
     "name": "light",
     "selectedTokenSets": {
       "global": "source",
-      "typography": "enabled",
       "ref": "source",
       "theme/light": "enabled",
       "color/light": "enabled",
@@ -420,7 +419,6 @@
     "name": "dark",
     "selectedTokenSets": {
       "global": "source",
-      "typography": "enabled",
       "ref": "source",
       "theme/dark": "enabled",
       "color/dark": "enabled",
