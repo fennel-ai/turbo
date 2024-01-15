@@ -1,6 +1,6 @@
 {
   "surface": {
-    "value": "{ref.white}",
+    "value": "{color.grey.0}",
     "type": "color"
   },
   "background": {
