@@ -105,11 +105,11 @@
     },
     "diff": {
       "inserted": {
-        "value": "{color.green.90}",
+        "value": "{color.green.20}",
         "type": "color"
       },
       "deleted": {
-        "value": "{color.red.90}",
+        "value": "{color.red.20}",
         "type": "color"
       }
     },
