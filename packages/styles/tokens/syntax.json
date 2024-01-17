@@ -1,7 +1,7 @@
 {
   "syntax": {
     "keyword": {
-      "value": "{color.purple.80}",
+      "value": "{color.purple.90}",
       "type": "color",
       "description": "Pre-defined and reserved words."
     },
@@ -11,27 +11,27 @@
       "description": "Functions/Methods/Classes/Types that are available out of the box."
     },
     "class-name": {
-      "value": "{color.blue.120}",
+      "value": "{color.blue.100}",
       "type": "color",
       "description": "The name of a class, interface, trait, or type."
     },
     "function-call": {
-      "value": "{color.green.100}",
+      "value": "{color.green.80}",
       "type": "color",
       "description": "The name of a function or method when called"
     },
     "function-definition": {
-      "value": "{color.green.100}",
+      "value": "{color.green.80}",
       "type": "color",
       "description": "Used for a function name when it is defined, as oppose to when it is called."
     },
     "boolean": {
-      "value": "{color.yellow.110}",
+      "value": "{color.yellow.100}",
       "type": "color",
       "description": "True and false, and pairs with similar concepts (e.g. yes and no)."
     },
     "number": {
-      "value": "{color.red.100}",
+      "value": "{color.red.80}",
       "type": "color",
       "description": "A numerical value, regardless of base and order, and no matter real or imaginary."
     },
@@ -94,7 +94,7 @@
       "description": "Punctuation such as brackets, parentheses, commas, and more."
     },
     "important": {
-      "value": "{color.red.100}",
+      "value": "{color.red.80}",
       "type": "color",
       "description": "Anything that is important and needs special highlighting."
     },
