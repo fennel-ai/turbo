@@ -5,7 +5,6 @@ import { media, rgba } from "styles/utils";
 import type { NavigationTree } from "lib/utils";
 
 import Header from './Header';
-import Footer from './Footer';
 import Navigation from "./Navigation";
 import Container from "../Container";
 import MobileMenu from "./Navigation/MobileMenu";
@@ -204,7 +203,6 @@ const Layout = ({ children, navigation }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
-			<Header />
 			<Root>
 				<Navigation navigation={navigation} />
 				{/* <AnimatePresence>
@@ -216,7 +214,6 @@ const Layout = ({ children, navigation }: Props) => {
 					{children}
 				</main>
 			</Root>
-			<Footer />
 		</>
 	)
 };

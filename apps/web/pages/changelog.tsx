@@ -124,7 +124,7 @@ export default function ChangelogPages({ pages }: Props) {
             let currentPage = '';
             for(let i =0;i < navDates.length; i++) {
                 const section = document.getElementById(navDates[i] as string);
-                if(section?.offsetTop! < scrollY.get()) {
+                if(section?.offsetTop! < scrollY.get() + 80) {
                     currentPage = navDates[i] || '';
                 }
             }
@@ -199,6 +199,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
     const sortedPages = allPages.toSorted((a,b) => {
         const aDate = new Date(a.date);
         const bDate = new Date(b.date);
+		//@ts-ignore
         return bDate - aDate;
     }).filter(shouldPublish)
 

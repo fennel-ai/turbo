@@ -14,6 +14,7 @@ type Props = {
 const Root = styled.aside`
 	display: none;
 	${media('lg')} {
+		padding-top: 4rem;
 		display: block;
 		grid-column: span 3;
 	}
