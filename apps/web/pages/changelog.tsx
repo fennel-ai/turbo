@@ -15,7 +15,7 @@ import { useScroll } from 'framer-motion';
 const NavItem = styled.div`
     padding-bottom: 4rem;
     padding-top: 4rem;
-    color: white;
+    color: ${({ theme }) => theme.base};
     font-size: 1rem;
     line-height: 2.5rem;
 `
@@ -151,7 +151,7 @@ export default function ChangelogPages({ pages }: Props) {
                 {
                     pages.map((_page: any) => {
                         return <NavItem id={_page.date} key={_page.date}>
-                            <h1>{_page.title}</h1>
+                            <h2>{_page.title}</h2>
                             Published on {_page.date}
                             <ChangelogPage page={_page} />
                         </NavItem>
