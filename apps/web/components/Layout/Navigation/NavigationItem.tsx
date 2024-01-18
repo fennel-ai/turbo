@@ -2,15 +2,14 @@ import styled from '@emotion/styled';
 import { Page } from 'contentlayer/generated';
 
 const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page['status'] }>`
-	font-size: 1.125rem;
-	line-height: 2rem;
-	color: ${({ active, theme }) => active ? theme.primary.accent : theme.on_alt};
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
-	opacity: ${({ fade }) => fade ? 0.64 : 1};
+	font-size: ${({ active }) => active ? "1rem" : "0.875rem"};
+	line-height: 1rem;
+	color: ${({ active, theme }) => active ? theme.on : theme.on_alt};
+	font-variation-settings: 'wght' ${({ active, theme }) => active ? theme.fontWeights.semibold : theme.fontWeights.medium};
 	position: relative;
 	display: flex;
 	align-items: stretch;
-
+	padding: ${({ active }) => active ? "1.5rem" : "0"} 0;
 	&::before {
 		content: '';
 		width: 6px;

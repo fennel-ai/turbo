@@ -1,11 +1,11 @@
 ---
-title: Announcing RBAC
+title: Announcing Fennel
 order: 1
 status: 'published'
-date: '7/20/2023'
+date: '1/11/2022'
 ---
 
-# Announcing RBAC
+# Fennel AI Changelog
 
 Fuga quia expedita sed aut officia. Ea sit numquam sit rerum impedit sed ipsam veniam. Quo est ipsum sed est pariatur maiores totam. Deleniti est et libero nisi. Odio molestiae accusamus consequuntur aspernatur suscipit culpa sed.
 

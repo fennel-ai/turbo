@@ -29,9 +29,11 @@ const Nav = styled.nav`
 	align-self: flex-start;
 `;
 
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 const getFormattedDate = (date: string) => {
 	const dateFormat = new Date(date);
-	return dateFormat.toDateString();
+	return `${months[dateFormat.getMonth()]} ${dateFormat.getDate()}, ${dateFormat.getFullYear()}`
 }
 
 const Navigation = ({ navigation }: Props) => {
