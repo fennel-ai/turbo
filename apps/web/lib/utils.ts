@@ -24,7 +24,7 @@ export const shouldPublish = (page: Page): boolean => process.env.NODE_ENV !== '
 /**
  * Returns the navigation tree from the config.yml file in the content directory.
  */
-export const getNavigation = (): NavigationTree => {
+export const getNavigation = () => {
 	const { sidebar } = config;
 	return sidebar!.map((section) => ({
 		...section,

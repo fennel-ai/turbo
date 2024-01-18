@@ -103,34 +103,6 @@ const MobileMenu = (props: Props) => {
 				</Header>
 				<Menu>
 					{
-						items.map((section) => {
-							const sectionActive = ctx.section.slug === section.slug;
-							return (
-								<NavigationSection
-									expand
-									key={section.slug}
-									title={section.title}
-									href={section.pages[0].slug}
-								>
-									{section.pages.map(({ title, slug, status }) => {
-										const active = router.asPath === `/${slug}`;
-										return (
-											<NavigationItem 
-												active={active} 
-												status={status} 
-												fade={sectionActive && !active} 
-												key={slug} 
-												onClick={toggleMobileMenu}
-											>
-												<Link aria-label={title} href={slug}>{title}</Link>
-											</NavigationItem>
-										)
-									})}
-								</NavigationSection>
-							)
-						})
-					}
-					{
 						showCta ? (
 							<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
 								<DemoCta ariaLabel="Request a demo" label='Request a demo' />

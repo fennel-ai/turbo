@@ -196,7 +196,7 @@ export default function ChangelogPages({ pages }: Props) {
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	// const { params } = ctx;
     // console.log()
-    const sortedPages = allPages.toSorted((a,b) => {
+    const sortedPages = (allPages as any).toSorted((a: any,b: any) => {
         const aDate = new Date(a.date);
         const bDate = new Date(b.date);
 		//@ts-ignore
