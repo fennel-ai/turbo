@@ -134,5 +134,22 @@
         "type": "color"
       }
     }
+  },
+  "line-number-container": {
+    "default": {
+      "value": {
+        "fill": "rgba( {glass} , 0%)"
+      },
+      "type": "composition"
+    },
+    "scrolled": {
+      "value": {
+        "fill": "{glass}",
+        "backgroundBlur": "4px",
+        "borderWidthRight": "0.5px",
+        "borderColor": "{syntax.plain.border}"
+      },
+      "type": "composition"
+    }
   }
 }

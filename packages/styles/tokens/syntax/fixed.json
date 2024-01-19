@@ -16,12 +16,12 @@
       "description": "The name of a class, interface, trait, or type."
     },
     "function-call": {
-      "value": "{ref.green.50}",
+      "value": "{ref.green.60}",
       "type": "color",
       "description": "The name of a function or method when called"
     },
     "function-definition": {
-      "value": "{ref.green.50}",
+      "value": "{ref.green.60}",
       "type": "color",
       "description": "Used for a function name when it is defined, as oppose to when it is called."
     },
@@ -134,6 +134,23 @@
         "type": "color",
         "description": "Foreground color for non-tokenized elements within the syntax"
       }
+    }
+  },
+  "line-number-container": {
+    "default": {
+      "value": {
+        "fill": "rgba( {ref.grey.140} , 0%)"
+      },
+      "type": "composition"
+    },
+    "scrolled": {
+      "value": {
+        "fill": "rgba( {ref.grey.140} , 80%)",
+        "backgroundBlur": "4px",
+        "borderWidthRight": "0.5px",
+        "borderColor": "{syntax.plain.border}"
+      },
+      "type": "composition"
     }
   }
 }
