@@ -6,7 +6,8 @@
     "color/dark",
     "theme/light",
     "theme/dark",
-    "syntax",
+    "syntax/adapative",
+    "syntax/fixed",
     "generic"
   ]
 }
