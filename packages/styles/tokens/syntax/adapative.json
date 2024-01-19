@@ -128,6 +128,10 @@
         "value": "rgba({color.grey.120}, 50%)",
         "type": "color",
         "description": "Foreground color for non-tokenized elements within the syntax"
+      },
+      "border": {
+        "value": "{border}",
+        "type": "color"
       }
     }
   }

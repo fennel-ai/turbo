@@ -105,11 +105,11 @@
     },
     "diff": {
       "inserted": {
-        "value": "{color.green.20}",
+        "value": "{ref.green.130}",
         "type": "color"
       },
       "deleted": {
-        "value": "{color.red.20}",
+        "value": "{ref.red.130}",
         "type": "color"
       }
     },
@@ -126,6 +126,11 @@
       },
       "line-number": {
         "value": "rgba({syntax.plain.foreground}, 50%)",
+        "type": "color",
+        "description": "Foreground color for non-tokenized elements within the syntax"
+      },
+      "border": {
+        "value": "{ref.grey.120}",
         "type": "color",
         "description": "Foreground color for non-tokenized elements within the syntax"
       }
