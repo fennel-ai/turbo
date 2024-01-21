@@ -24,7 +24,7 @@
     "type": "color"
   },
   "glass": {
-    "value": "rgba({surface}, 80%)",
+    "value": "rgba({surface}, 90%)",
     "type": "color"
   },
   "body": {
