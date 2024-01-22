@@ -39,8 +39,8 @@ const TeamMembers = () => {
 			<Wrapper>
 				<TeamMember additional="Ex-Facebook · Ex-Quora" name="Nikhil Garg" role="Co-Founder & CEO" src="/images/Person=Nikhil.png" />
 				<TeamMember additional="Ex-ThoughtSpot · Ex-Facebook" name="Abhay Bothra" role="Co-Founder & CTO" src="/images/Person=Abhay.png" />
-				<TeamMember additional="Ex-Google Brain · Ex-Google Cloud" name="Mohit Reddy" role="Founding Engineer" src="/images/Person=Mohit.png" />
-				<TeamMember additional="Ex-Facebook · Ex-Google Research" name="Aditya Nambiar" role="Founding Engineer" src="/images/Person=Aditya.png" />
+				<TeamMember additional="Ex-Google Brain · Ex-Google Cloud" name="Mohit Reddy" role="Co-Founder & Engineer" src="/images/Person=Mohit.png" />
+				<TeamMember additional="Ex-Facebook · Ex-Google Research" name="Aditya Nambiar" role="Co-Founder & Engineer" src="/images/Person=Aditya.png" />
 				<TeamMember additional="Ex-Stream" name="Luke Smetham" role="Design" src="/images/Person=Luke.png" />
 				<TeamMember additional="Ex-Confluent · Ex-MongoDB" name="Cree Thompson" role="Sales" src="/images/Person=Cree.png" />
 				<TeamMember additional="Ex-Datadog" name="Peter Ashmore" role="Sales" src="/images/Person=Peter.png" />
