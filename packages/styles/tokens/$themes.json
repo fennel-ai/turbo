@@ -301,7 +301,16 @@
       "shadowss.raised.success.default": "S:49ba2cea1d0bfbb836cee0fbfc19d8527734e4a4,",
       "shadowss.raised.neutral.default": "S:2a725a6b92eac9270d69b758151b9304d8994149,",
       "shadows.raised.surface.default": "S:910167c68d77fe25ab19c1b6e44705f6f1fa00b6,",
-      "shadows.outlined.surface.default": "S:09a6ea20f1ec522633f3774d21f49144ebd4d3de,"
+      "shadows.outlined.surface.default": "S:09a6ea20f1ec522633f3774d21f49144ebd4d3de,",
+      "shadows.raised.primary.default": "S:71ddb38a42b28e3edf43455381a70908fd7d49a7,",
+      "shadows.raised.secondary.default": "S:e3fc4e15da5dedf0c10b80ad478100140f95b3cc,",
+      "shadows.raised.error.default": "S:fd1024a33848bb1d7edec362d96fb99bf50954a0,",
+      "shadows.raised.caution.default": "S:77adf941c98b2857b7bf47284219f8cf5076bbd9,",
+      "shadows.raised.success.default": "S:49ba2cea1d0bfbb836cee0fbfc19d8527734e4a4,",
+      "shadows.raised.neutral.default": "S:2a725a6b92eac9270d69b758151b9304d8994149,",
+      "shadows.outlined.surface.hover": "S:884a51a9eea07130e935ab420ce8b20f55cbdaac,",
+      "shadows.outlined.surface.active": "S:e715832860b934838ae4c04bbb19eb33c2adf837,",
+      "shadows.outlined.surface.disabled": "S:9c2d4efca890239159cd83ec9567d0e03dc25381,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2453",
     "$figmaModeId": "1763:0",
