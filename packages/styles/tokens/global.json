@@ -227,15 +227,15 @@
       "type": "opacity"
     },
     "3": {
-      "value": "{opacity.3}",
+      "value": "{opacity.2}",
       "type": "opacity"
     },
     "4": {
-      "value": "{opacity.5}",
+      "value": "{opacity.3}",
       "type": "opacity"
     },
     "5": {
-      "value": "{opacity.6}",
+      "value": "{opacity.4}",
       "type": "opacity"
     }
   },
