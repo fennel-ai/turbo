@@ -22,6 +22,7 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 	}), [page, section]);
 
 	const MDXContent = useMDXComponent(code);
+	console.log("GTTGTG:", allPages)
 
 	return (
 		<LayoutContext.Provider value={ctxValue}>

@@ -9,6 +9,7 @@ import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
 import MobileToolbar from 'components/MobileToolbar';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Root = styled.div`
 	grid-column: span 12;
@@ -67,15 +68,7 @@ const SearchWrapper = styled.div`
 	
 	${media('md')} {
 		display: block;
-		width: 31.5rem;
-	}
-	
-	${media('lg')} {
-		width: 36rem;
-	}
-	
-	${media('xl')} {
-		width: 39.75rem;
+		width: 30rem;
 	}
 `;
 
@@ -140,7 +133,11 @@ const Header = () => {
 		<Root>
 			<Backdrop />
 			<Wrapper>
-				<Brand name="Documentation" />
+				<Brand/>
+				<div>
+					<Link href="/concepts/getting-started/quickstart">Concepts</Link>
+					<Link href="/api-reference/api-reference/client">API Ref</Link>
+				</div>
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}
@@ -151,6 +148,15 @@ const Header = () => {
 				</SearchWrapper>
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
+					<a href="https://fennel.ai/get-a-demo">
+						<DemoButton
+							icon={null}
+							size="large"
+							invert
+						>
+							Github
+						</DemoButton>
+					</a>
 					<a href="https://fennel.ai/get-a-demo">
 						<DemoButton
 							icon={null}

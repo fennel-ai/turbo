@@ -1,0 +1,69 @@
+version: '0.0.0'
+sidebar:
+  - slug: "getting-started"
+    title: "Getting Started"
+    pages:
+      - "/"
+      - "getting-started/installation"
+      - "getting-started/quickstart"
+      - "getting-started/examples"
+
+  - slug: "concepts"
+    title: "Concepts"
+    pages:
+      - "concepts/introduction"
+      - "concepts/source"
+      - "concepts/dataset"
+      - "concepts/pipeline"
+      - "concepts/featureset"
+
+  - slug: "architecture"
+    title: "Architecture"
+    pages:
+      - "architecture/overview"
+      - "architecture/technologies"
+      - "architecture/read-write-separation"
+      - "architecture/deployment-model"
+      - "architecture/cost-optimizations"
+      - "architecture/privacy-security"
+
+  - slug: "data-quality"
+    title: "Data Quality"
+    pages:
+      - "data-quality/approach"
+      - "data-quality/strong-typing"
+      - "data-quality/immutability-versioning"
+      - "data-quality/lineage-validation"
+      - "data-quality/metaflags"
+      - "data-quality/data-expectations"
+      - "data-quality/feature-drift"
+
+
+  - slug: "development"
+    title: "Development Workflow"
+    pages:
+      - "development/unit-testing"
+      - "development/ci-cd-workflows"
+      - "development/console"
+
+  - slug: "monitoring"
+    title: "Monitoring"
+    pages:
+      - "monitoring/prometheus"
+      - "monitoring/grafana"
+      - "monitoring/newrelic"
+      - "monitoring/alerting"
+
+  - slug: "guides"
+    title: "Guides"
+    pages: 
+      - "guides/request-based-features"
+      - "guides/composite-features"
+      - "guides/out-of-order-data"
+  - 
+    slug: "misc"
+    title: "Misc."
+    pages:
+      - "misc/python-environment"
+      - "misc/troubleshooting-guide"
+      - "misc/performance-tuning"

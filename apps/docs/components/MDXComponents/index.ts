@@ -6,6 +6,7 @@ import { CodeSnippet } from './CodeSnippet';
 
 export { Admonition } from './Admonition';
 export { Grid } from './Grid';
+export { APIGrid, CodeBlock, InfoBlock} from './APIGrid';
 export { PageReference } from './PageReference';
 export { TypesList } from './TypesList';
 export { TypesListRow } from './TypesListRow';

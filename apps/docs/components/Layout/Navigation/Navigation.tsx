@@ -16,7 +16,7 @@ const Root = styled.aside`
 	display: none;
 	${media('lg')} {
 		display: block;
-		grid-column: span 3;
+		grid-column: span 1;
 	}
 `;
 
@@ -38,10 +38,9 @@ const Navigation = ({ items }: Props) => {
 			<Nav>
 				{
 					items.map((section) => {
-						const sectionActive = ctx.section.slug === section.slug;
 						return (
 							<NavigationSection 
-								expand={sectionActive}
+								expand={true}
 								key={section.slug}
 								title={section.title} 
 								href={section.pages[0].slug}
@@ -49,7 +48,7 @@ const Navigation = ({ items }: Props) => {
 								{section.pages.map(({ title, slug, status }) => {
 									const active = router.asPath === `/${slug === '/' ? '' : slug}`;
 									return (
-										<NavigationItem active={active} status={status} fade={sectionActive && !active} key={slug}><Link aria-label={title} href={slug}>{title}</Link></NavigationItem>
+										<NavigationItem active={active} status={status} fade={!active} key={slug}><Link aria-label={title} href={slug}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>

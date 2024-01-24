@@ -17,6 +17,7 @@ import { Page } from "./contentlayer/content_types/Page";
 
 import fetchContent from "./contentlayer/fetchContent";
 import { Config } from "./contentlayer/content_types/Config";
+import { APIConfig  } from "./contentlayer/content_types/APIRefConfig";
 
 const CONTENT_DIR = "_content";
 
@@ -45,7 +46,7 @@ const githubSource = async () => {
 export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
-  documentTypes: [Page, Config],
+  documentTypes: [Page, Config, APIConfig],
   contentDirExclude: [
     ".git",
     ".gitignore",

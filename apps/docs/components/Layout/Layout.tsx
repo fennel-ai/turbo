@@ -30,7 +30,7 @@ const Root = styled(Container)`
 	}
 
 	${media('md')} {
-		grid-template-columns: repeat(12, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 		padding-top: calc(7.5rem + 2.5rem);
 	}
 
@@ -92,14 +92,14 @@ const Root = styled(Container)`
 		/** Target paragraphs that are direct children of the main element (we don't necessarily want to style paragraphs within e.g. lists in the same way.) */
 		& > p {
 			margin: 0;
-			font-size: 1.125rem;
-			line-height: 2rem;
+			font-size: 1rem;
+			line-height: 1.75rem;
 			margin-bottom: 1.5rem;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 
 			${media('sm')} {
-				font-size: 1.25rem;
-				line-height: 2.5rem;
+				font-size: 1rem;
+				line-height: 1.75rem;
 			}
 		}
 
@@ -156,8 +156,8 @@ const Root = styled(Container)`
 			margin-bottom: 0.75rem;
 
 			${media('sm')} {
-				font-size: 1.25rem;
-				line-height: 2.5rem;
+				font-size: 1rem;
+				line-height: 1.75rem;
 			}
 		}
 		
@@ -191,11 +191,11 @@ const Root = styled(Container)`
 		}
 
 		${media('lg')} {
-			grid-column: span 9;
+			grid-column: span 4;
 		}
 		
 		${media('xl')} {
-			grid-column: span 8;
+			grid-column: span 4;
 		}
 	}
 `;

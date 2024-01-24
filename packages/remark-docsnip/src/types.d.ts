@@ -3,3 +3,5 @@ export type ExampleFileDef = {
 	file: string; // The file name of the example
 	snippet_id: string; // The id of the snippet
 }
+
+export type ExampleNestedNodeDef = {node: MdxJsxFlowElement, file: string, snippet_id: string}

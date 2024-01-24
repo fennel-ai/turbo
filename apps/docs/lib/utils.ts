@@ -1,4 +1,4 @@
-import { allPages, config, Page } from "contentlayer/generated";
+import { allPages, aPIConfig, config, Page } from "contentlayer/generated";
 
 export type NavigationPage = {
 	description?: string;
@@ -17,11 +17,16 @@ export type NavigationTree = NavigationSection[];
 
 export const shouldPublish = (page: Page): boolean => process.env.NODE_ENV !== 'production' || page.status !== 'draft';
 
+
+export const getAPINavigation = (): NavigationTree => {
+	return getNavigation(true);
+}
 /**
  * Returns the navigation tree from the config.yml file in the content directory.
  */
-export const getNavigation = (): NavigationTree => {
-	const { sidebar } = config;
+export const getNavigation = (api?: boolean): NavigationTree => {
+	debugger;
+	const { sidebar } = api ? aPIConfig : config;
 	return sidebar!.map((section) => ({
 		...section,
 		pages: section.pages.map((slug: string) => {
@@ -41,7 +46,7 @@ export const getNavigation = (): NavigationTree => {
 /**
  * Get the page metadata, section data and markdown code for a given page slug.
  */
-export const getPageData = (pageSlug: string): { code: string, section: NavigationSection, page: NavigationPage } => {
+export const getPageData = (pageSlug: string, api?: boolean): { code: string, section: NavigationSection, page: NavigationPage } => {
 	const {
 		body,
 		description = "",
@@ -53,7 +58,7 @@ export const getPageData = (pageSlug: string): { code: string, section: Navigati
 	
 	return {
 		code: body.code,
-		section: config.sidebar!.find((s) => s.slug === section)!,
+		section: (api ? aPIConfig : config).sidebar!.find((s) => s.slug === section)!,
 		page: {
 			description,
 			title,
