@@ -82,6 +82,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 	return {
 		paths: allPages
 			.filter(shouldPublish)
+            .filter(page => page.slug?.includes('api-reference'))
 			.map((page) => ({
 				params: {
 					slug: page.slug!.split('/'),
