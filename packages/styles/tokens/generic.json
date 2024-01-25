@@ -754,10 +754,42 @@
       "value": [
         {
           "x": "0",
+          "y": "57",
+          "blur": "16",
+          "spread": "0",
+          "color": "rgba({shadow}, 0%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "37",
+          "blur": "15",
+          "spread": "0",
+          "color": "rgba({shadow}, 1%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "21",
+          "blur": "12",
+          "spread": "0",
+          "color": "rgba({shadow}, 4%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "9",
+          "blur": "9",
+          "spread": "0",
+          "color": "rgba({shadow}, 7%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
           "y": "2",
-          "blur": "4",
-          "spread": "-2",
-          "color": "rgba( {shadow}, 24%)",
+          "blur": "5",
+          "spread": "0",
+          "color": "rgba({shadow}, 8%)",
           "type": "dropShadow"
         },
         {
