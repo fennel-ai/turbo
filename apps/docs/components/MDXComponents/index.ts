@@ -14,3 +14,4 @@ export const a = Link;
 export const table = Table;
 export const pre = CodeSnippet;
 export const img = Image;
+export {Expandable} from './Expandable';
