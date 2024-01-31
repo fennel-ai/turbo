@@ -45,7 +45,7 @@ export const getNavigation = (type?: string): NavigationTree => {
 /**
  * Get the page metadata, section data and markdown code for a given page slug.
  */
-export const getPageData = (pageSlug: string, api?: boolean): { code: string, section: NavigationSection, page: NavigationPage } => {
+export const getPageData = (pageSlug: string, api?: boolean): { code: string, section: NavigationSection, page: Partial<NavigationPage> } => {
 	const {
 		body,
 		description = "",

@@ -19,41 +19,16 @@ type Props = {
 
 
 const PageWrapper = styled.div`
-    position: relative;
+    width: 100%;
 `
 
-
-  const TwoColumnLayout = ({ children }: any) => {
-    const preElements: any = [];
-    const otherElements: any = [];
-  
-    React.Children.forEach(children, child => {
-        console.log(child)
-      if (React.isValidElement(child) && child.type === 'pre') {
-        preElements.push(child);
-      } else {
-        otherElements.push(child);
-      }
-    });
-  
-    return (
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div style={{ flex: 1 }}>
-          {otherElements}
-        </div>
-        <div style={{ flex: 1 }}>
-          {preElements}
-        </div>
-      </div>
-    );
-  }
   
 const APIReferencePage = ({page}: {page: NavigationPage}) => {
     const {body} = page;
     const MDXContent = useMDXComponent(body.code);
 
     {/** @ts-ignore */}
-    return <TwoColumnLayout><MDXContent components={components}/></TwoColumnLayout>
+    return <MDXContent components={components}/>
 }
 
 
