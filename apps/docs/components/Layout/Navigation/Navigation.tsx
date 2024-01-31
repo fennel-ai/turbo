@@ -50,7 +50,7 @@ const Navigation = ({ items, isAPI, active }: Props) => {
 									const activePath = active ? active : `/${slug === '/' ? '' : slug}`;
 									const activeItem = router.asPath === activePath
 									return (
-										<NavigationItem active={activeItem} status={status} fade={!active} key={slug}><Link aria-label={title} href={'#'+slug}>{title}</Link></NavigationItem>
+										<NavigationItem active={activeItem} status={status} fade={!active} key={slug}><Link aria-label={title} href={isAPI ? '#'+slug : slug}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>
