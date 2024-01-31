@@ -15,10 +15,12 @@ import { haskoyVariable } from "pages/_app";
 
 type Props = {
 	children: ReactNode,
-	navigation: NavigationTree
+	navigation: NavigationTree,
+	isAPI?: boolean,
+	active?: string,
 }
 
-const Root = styled(Container)`
+const Root = styled(Container)<{isAPI?: boolean}>`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
@@ -30,7 +32,7 @@ const Root = styled(Container)`
 	}
 
 	${media('md')} {
-		grid-template-columns: repeat(12, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 		padding-top: calc(7.5rem + 2.5rem);
 	}
 
@@ -76,7 +78,7 @@ const Root = styled(Container)`
 		}
 		
 		h3 {
-			font-size: 1.25rem;
+			font-size: 1.5rem;
 			line-height: 1.5rem;
 			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.extrabold};
 			margin-top: 1rem;
@@ -89,18 +91,28 @@ const Root = styled(Container)`
 			}
 		}
 
+		h4 {
+			font-size: 1.25rem;
+			line-height: 1.5rem;
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+			margin-top: 1rem;
+			padding-bottom: 0.5rem;
+			margin-bottom: 0.5rem;
+			border-bottom: 1px solid ${({ theme }) => theme.border.light};
+
+			${media('sm')} {
+				margin-top: 1.5rem;
+			}
+		}
+
+
 		/** Target paragraphs that are direct children of the main element (we don't necessarily want to style paragraphs within e.g. lists in the same way.) */
 		& > p {
 			margin: 0;
-			font-size: 1.125rem;
-			line-height: 2rem;
+			font-size: 1rem;
+			line-height: 1.75rem;
 			margin-bottom: 1.5rem;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
-
-			${media('sm')} {
-				font-size: 1.25rem;
-				line-height: 2.5rem;
-			}
 		}
 
 		& a {
@@ -150,15 +162,9 @@ const Root = styled(Container)`
 		}
 
 		li {
-			font-size: 1.125rem;
-			line-height: 2rem;
+			font-size: 1rem;
+			line-height: 1.75rem;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
-			margin-bottom: 0.75rem;
-
-			${media('sm')} {
-				font-size: 1.25rem;
-				line-height: 2.5rem;
-			}
 		}
 		
 		code:not(pre > code) {
@@ -168,9 +174,9 @@ const Root = styled(Container)`
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem 0.375rem;
 			margin: 0 0.25rem;
-			background-color: ${({ theme }) => rgba(theme.on_alt, 0.04)};
+			background-color: ${({ theme }) => rgba(theme.primary.accent, 0.04)};
 			color: ${({ theme }) => theme.primary.accent};
-			border: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.12)};
+			border: 0.5px solid ${({ theme }) => rgba(theme.primary.accent, 0.12)};
 			border-radius: 0.375rem;
 		}
 
@@ -180,7 +186,7 @@ const Root = styled(Container)`
 		}
 
 		/** Grid style */
-		grid-column: span 4;
+		grid-column: span 3;
 
 		${media('xs')} {
 			grid-column: span 8;
@@ -191,22 +197,22 @@ const Root = styled(Container)`
 		}
 
 		${media('lg')} {
-			grid-column: span 9;
+			grid-column: span 3;
 		}
 		
 		${media('xl')} {
-			grid-column: span 8;
+			grid-column: span 3;
 		}
 	}
 `;
 
-const Layout = ({ children, navigation }: Props) => {
+const Layout = ({ children, navigation, isAPI, active }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
 			<Header />
-			<Root>
-				<Navigation items={navigation} />
+			<Root isAPI={isAPI}>
+				<Navigation items={navigation} isAPI={isAPI} active={active}/>
 				<AnimatePresence>
 					{showMobileMenu ? (
 						<MobileMenu items={navigation} onClose={closeMobileMenu} />

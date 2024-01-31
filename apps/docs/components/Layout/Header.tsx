@@ -9,6 +9,7 @@ import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
 import MobileToolbar from 'components/MobileToolbar';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Root = styled.div`
 	grid-column: span 12;
@@ -140,7 +141,11 @@ const Header = () => {
 		<Root>
 			<Backdrop />
 			<Wrapper>
-				<Brand name="Documentation" />
+				<Brand/>
+				<div>
+					<Link href='/'>Concepts</Link>
+					<Link href='/api-reference'>API Ref</Link>
+				</div>
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}

@@ -122,7 +122,7 @@
     },
     "plain": {
       "background": {
-        "value": "{ref.grey.5}",
+        "value": "#fff",
         "type": "color",
         "description": "Background color for code blocks"
       },

@@ -15,7 +15,7 @@ type Props = {
 }
 
 const Root = styled.div<{ toolbar?: boolean }>`
-	background-color: ${({ theme }) => theme.syntax.plain.background};
+	background-color: ${({ theme }) => theme.type === "dark" ? "#1F2229" : "#131519"};
 	color: ${({ theme }) => theme.syntax.plain.foreground};
 	overflow: hidden;
 	position: relative;

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPages } from 'contentlayer/generated';
+import { allPages, aPIConfig } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
@@ -21,6 +21,8 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 		section,
 	}), [page, section]);
 
+	console.log('hi:', allPages, aPIConfig.sidebar);
+	const isAPIPage = section.slug.includes('api-reference');
 	const MDXContent = useMDXComponent(code);
 
 	return (
@@ -54,8 +56,8 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 					<meta name="apple-mobile-web-app-title" content="Fennel" />
 					<meta name="application-name" content="Fennel" />
 				</Head>
-				{/** @ts-ignore */}
-				<MDXContent components={components} />
+				{/* @ts-ignore */}
+				<MDXContent components={components} /> :
 			</Layout>
 		</LayoutContext.Provider>
 	);
@@ -80,6 +82,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 	return {
 		paths: allPages
 			.filter(shouldPublish)
+			.filter((p) => !!!p.slug?.includes('api-reference'))
 			.map((page) => ({
 				params: {
 					slug: page.slug!.split('/'),

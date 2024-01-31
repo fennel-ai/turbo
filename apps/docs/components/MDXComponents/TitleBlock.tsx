@@ -5,7 +5,7 @@ import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
 	padding-bottom: 1.5rem;
-
+	margin-bottom: 1rem;
 	${media('md')} {
 		padding-bottom: 2rem;
 		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);

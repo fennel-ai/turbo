@@ -3,13 +3,12 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { get } from 'styles/utils';
-
 type Props = {
 	children: ReactNode;
 	expand: boolean;
 	href: string;
 	title: string;
+	isAPI?: boolean
 }
 
 const Root = styled(motion.ul)`
@@ -70,11 +69,11 @@ const animation = {
 	}
 }
 
-const NavigationSection = ({ children, expand, href, title }: Props) => {
+const NavigationSection = ({ children, expand, href, title, isAPI }: Props) => {
 	return (
 		<Root>
 			<SectionTitle expand={expand}>
-				<Link href={href}>{title}</Link>
+				{isAPI ? <>{title}</> : <Link href={href}>{title}</Link>}
 			</SectionTitle>
 			<AnimatePresence initial={false}>
 				{expand ? (

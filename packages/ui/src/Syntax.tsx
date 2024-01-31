@@ -48,7 +48,7 @@ const Root = styled.div`
 
 	:not(pre)>code[class*="language-"],
 	pre {
-		background: ${({ theme }) => theme.syntax.plain.background}
+		background: ${({ theme }) => theme.type === "dark" ? "#1F2229" : "#131519"};
 	}
 
 
