@@ -1,22 +1,23 @@
 import styled from '@emotion/styled';
 import { Page } from 'contentlayer/generated';
+import { rgba } from "styles/utils";
 
 const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page['status'] }>`
-	font-size: 1rem;
+	font-size: 0.875rem;
 	height: 2rem;
-	color: ${({ active, theme }) => active ? theme.primary.accent : theme.on_alt};
+	color: ${({ active, theme }) => active ? theme.on : theme.on_alt};
 	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
 	position: relative;
 	display: flex;
-	align-items: stretch;
+	align-items: center;
+	padding-left: 1rem;
+	border-left:  1px solid ${({ theme, active }) => active ? theme.primary.accent : theme.border.light};
 
-	&::before {
+	&::after {
 		content: '';
 		width: 6px;
 		height: 6px;
-		position: absolute;
-		top: calc(50% - 3px);
-		left: calc(-16px - 3px);
+		margin-right: 50px;
 		border-radius: 50%;
 		background-color: ${({ status, theme }) => {
 			switch (status) {
@@ -29,7 +30,8 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	}
 
 	&:hover {
-		color: ${({ active, theme }) => active ? theme.primary.accent : theme.on};
+		background-color: ${({ theme }) => rgba(theme.border.light, 0.04)};
+		border-radius: 0 5px 5px 0;
 	}
 
 	& > a {

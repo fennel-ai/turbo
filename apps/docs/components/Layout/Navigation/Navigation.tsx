@@ -18,8 +18,11 @@ const Root = styled.aside`
 	${media('lg')} {
 		display: block;
 		grid-column: span 1;
-		max-height: 90vh;
+		max-height: calc(100vh - 8rem);
 		overflow-y: auto;
+		overflow-x: hidden;
+		position: sticky;
+		top: 8rem;
 	}
 `;
 
@@ -48,7 +51,7 @@ const Navigation = ({ items, isAPI, active }: Props) => {
 							>
 								{section.pages.map(({ title, slug, status }) => {
 									const activePath = active ? active : `/${slug === '/' ? '' : slug}`;
-									const activeItem = router.asPath === activePath
+									const activeItem = isAPI ? slug === activePath : router.asPath === activePath;
 									return (
 										<NavigationItem active={activeItem} status={status} fade={!active} key={slug}><Link aria-label={title} href={isAPI ? '#'+slug : slug}>{title}</Link></NavigationItem>
 									)

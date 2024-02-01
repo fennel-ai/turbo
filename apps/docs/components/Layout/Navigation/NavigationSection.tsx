@@ -19,8 +19,8 @@ const Root = styled(motion.ul)`
 
 const SectionTitle = styled.li<{expand: boolean}>`
 	color: ${({ theme }) => theme.on};
-	font-size: 1.25rem;
-	line-height: 2.5rem;
+	font-size: 1rem;
+	line-height: 1rem;
 	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
 	opacity: ${({ expand }) => expand ? 1 : 0.64};
 	cursor: pointer;
@@ -46,10 +46,8 @@ const PageList = styled.ul`
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
 	margin: 1rem 0;
-	padding-left: 2rem;
-	border-left: 1px solid ${({ theme }) => theme.border.light};
+	padding-left: 0rem;
 `;
 
 const animation = {

@@ -50,23 +50,14 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-family: ${haskoyVariable.style.fontFamily}, serif;
 			font-weight: 500;
 			margin: 0;
-
-			&:first-of-type {
-				margin-top: 0 !important;
-			}
 		}
 
 		h2 {
-			font-size: 1.5rem;
+			font-size: 1.75rem;
 			line-height: 2rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
-			margin-top: 2rem;
-			margin-bottom: 1rem;
-
-			${media('md')} {
-				font-size: 2rem;
-				line-height: 2.5rem;
-			}
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+			margin-top: 3rem;
+			margin-bottom: 0.5rem;
 
 			&:not(:first-of-type) {
 				margin-top: 2rem;
@@ -80,15 +71,9 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		h3 {
 			font-size: 1.5rem;
 			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.extrabold};
-			margin-top: 1rem;
-			margin-bottom: 1rem;
-
-			${media('sm')} {
-				font-size: 1.5rem;
-				line-height: 2rem;
-				margin-top: 1.5rem;
-			}
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+			margin-top: 0.75rem;
+			margin-bottom: 0.75rem;
 		}
 
 		h4 {
@@ -111,7 +96,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			margin: 0;
 			font-size: 1rem;
 			line-height: 1.75rem;
-			margin-bottom: 1.5rem;
+			margin-bottom: 1rem;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 		}
 
@@ -157,8 +142,8 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 
 		ul, ol {
 			padding-inline-start: 2rem;
-			margin-top: 0;
-			margin-bottom: 2rem;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
 		}
 
 		li {
@@ -186,22 +171,22 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 
 		/** Grid style */
-		grid-column: span 3;
+		grid-column: span 4;
 
 		${media('xs')} {
-			grid-column: span 8;
+			grid-column: span 4;
 		}
 
 		${media('md')} {
-			grid-column: span 12;
+			grid-column: span 4;
 		}
 
 		${media('lg')} {
-			grid-column: span 3;
+			grid-column: ${({ isAPI }) => isAPI ? "span 4" : "span 3"};
 		}
 		
 		${media('xl')} {
-			grid-column: span 3;
+			grid-column: ${({ isAPI }) => isAPI ? "span 4" : "span 3" };
 		}
 	}
 `;

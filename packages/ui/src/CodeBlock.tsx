@@ -11,7 +11,9 @@ type Props = {
 	filename?: string,
 	filenameHref?: string,
 	toolbar?: boolean,
-	onCopy?: () => void
+	onCopy?: () => void,
+	message?: string;
+	status?: string;
 }
 
 const Root = styled.div<{ toolbar?: boolean }>`
@@ -118,7 +120,13 @@ const Code = styled(Syntax)<{ toolbar: boolean }>`
 	}
 `;
 
-export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true }: Props) => {
+const InfoBar=styled.div`
+	display: flex;
+	margin: 1rem 0;
+	padding-left: 1.5rem;
+`
+
+export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true, message, status }: Props) => {
 	const handleCopy = () => {
 		navigator.clipboard.writeText(code);
 		if (onCopy) onCopy();
@@ -141,6 +149,9 @@ export const CodeBlock = ({ className, code, filename, filenameHref, language, o
 				</Toolbar>
 			) : null}
 			<Code toolbar={toolbar} language={language} code={code} />
+			{(status || message) && <InfoBar>
+				{status}:{message}
+			</InfoBar>}
 		</Root>
 	);
 }

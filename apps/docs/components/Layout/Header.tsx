@@ -68,15 +68,7 @@ const SearchWrapper = styled.div`
 	
 	${media('md')} {
 		display: block;
-		width: 31.5rem;
-	}
-	
-	${media('lg')} {
-		width: 36rem;
-	}
-	
-	${media('xl')} {
-		width: 39.75rem;
+		width: 30rem;
 	}
 `;
 
@@ -131,21 +123,45 @@ const Border = styled(Container)`
 	}
 `;
 
+const LinkWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+`
+
+const NavWrapper = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 1rem;
+`
+
+const NavLink = styled(Link)<{active?: boolean}>`
+	cursor: pointer;
+	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on_alt };
+	&:hover {
+		color: ${({ theme }) => theme.on };
+	}
+`
+
 const Header = () => {
 	const docSearch = useRef<DocSearchHandle>(null);
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
 
 	const router = useRouter();
+	const isAPI = router.pathname === "/api-reference";
 
 	return (
 		<Root>
 			<Backdrop />
 			<Wrapper>
+			<LinkWrapper>
 				<Brand/>
-				<div>
-					<Link href='/'>Concepts</Link>
-					<Link href='/api-reference'>API Ref</Link>
-				</div>
+				<NavWrapper>
+					<NavLink href='/' active={!isAPI}>Concepts</NavLink>
+					<NavLink href='/api-reference' active={isAPI}>API Ref</NavLink>
+				</NavWrapper>
+				</LinkWrapper>
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}

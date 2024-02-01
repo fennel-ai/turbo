@@ -15,3 +15,4 @@ export const table = Table;
 export const pre = CodeSnippet;
 export const img = Image;
 export {Expandable} from './Expandable';
+export {Divider, LeftSection, RightSection} from './Divider';

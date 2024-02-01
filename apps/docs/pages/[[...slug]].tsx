@@ -57,7 +57,7 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 					<meta name="application-name" content="Fennel" />
 				</Head>
 				{/* @ts-ignore */}
-				<MDXContent components={components} /> :
+				<MDXContent components={components} />
 			</Layout>
 		</LayoutContext.Provider>
 	);

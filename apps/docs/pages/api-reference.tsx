@@ -9,6 +9,7 @@ import { getNavigation, getPageData, NavigationPage, NavigationSection, Navigati
 import Head from "next/head";
 import { useScroll } from "framer-motion";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 type Props = {
 	pages: NavigationPage[],
@@ -20,6 +21,7 @@ type Props = {
 
 const PageWrapper = styled.div`
     width: 100%;
+    padding: 3rem 0;
 `
 
   
@@ -36,6 +38,7 @@ export default function DocumentationPage({ pages, navigation }: Props) {
 
     const [currentActive, setCurrentActive] = useState(pages[0].slug)
     const containerRef = useRef(null);
+    const {asPath} = useRouter();
     const {scrollY} = useScroll({
         target: containerRef.current as any
     });
@@ -46,7 +49,7 @@ export default function DocumentationPage({ pages, navigation }: Props) {
             let currentPage = '';
             for(let i =0;i < pages.length; i++) {
                 const section = document.getElementById(pages[i].slug as string);
-                if(section?.offsetTop! < scrollY.get() + 80) {
+                if(section?.offsetTop! < scrollY.get() + 500) {
                     currentPage = pages[i].slug || '';
                 }
             }
@@ -54,18 +57,22 @@ export default function DocumentationPage({ pages, navigation }: Props) {
         }
 
         document.addEventListener('scroll', scrollCallback);
-        document.addEventListener('hashchange', () => console.log('fire'));
         return () => {
             document.removeEventListener('scroll', scrollCallback);
-            // document.removeEventListener('hashchange', scrollCallback);
         }
     }, [])
 
-    console.log('navigation:', navigation, pages)
+    useEffect(() => {
+        const hash = asPath.split('#')[1];
+        if(hash) {
+            setCurrentActive(hash);
+        }
+    }, [asPath])
+
 
 	return (
         <div ref={containerRef}>
-			<Layout navigation={navigation} isAPI >
+			<Layout navigation={navigation} isAPI active={currentActive} >
 				<Head>
 					<title>{"API Reference"}</title>
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
