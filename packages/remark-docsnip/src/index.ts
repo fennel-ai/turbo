@@ -2,13 +2,13 @@ import type { MdxJsxAttribute, MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import type { Transformer } from 'unified';
 import { visit, Visitor } from "unist-util-visit";
 
-import { findAndReplace, replaceNodeInplace } from './findAndReplace';
-import { ExampleFileDef, ExampleNestedNodeDef } from "./types";
+import { findAndReplace } from './findAndReplace';
+import { ExampleFileDef } from "./types";
 
 export default function docsnip(): Transformer {
 	return async function transformer(tree): Promise<void> {
 		let matches: ExampleFileDef[] = [];
-		let nestedNodes: ExampleNestedNodeDef[] = []
+		let nestedNodes: ExampleFileDef[] = []
 
 		/// Iterate over the tree of nodes and find all the pre elements that have a snippet attribute.
 		const visitor: Visitor<MdxJsxFlowElement> = (node, index, parent) => {
@@ -42,6 +42,6 @@ export default function docsnip(): Transformer {
 		visit(tree, 'mdxJsxFlowElement', visitor);
 
 		await Promise.all(matches.map(async (match) => findAndReplace(match, tree)));
-		await Promise.all(nestedNodes.map(async (node) => replaceNodeInplace(node)));
+		await Promise.all(nestedNodes.map(async (node) => findAndReplace(node, tree)));
 	};
 }

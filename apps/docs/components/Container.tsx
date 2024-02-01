@@ -14,8 +14,8 @@ const Container = styled.div`
 	}
 
 	${media('md')} {
-		padding-left: 3.5rem;
-		padding-right: 3.5rem;
+		padding-left: 3rem;
+		padding-right: 3rem;
 	}
 `;
 

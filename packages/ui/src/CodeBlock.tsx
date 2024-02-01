@@ -3,6 +3,9 @@ import CopyIcon from '../icons/copy.svg';
 
 import { media, rgba } from 'styles/utils';
 import { Syntax } from './Syntax';
+import GithubIcon from '../icons/github.svg'
+import XIcon from '../icons/x-circle.svg'
+import CheckIcon from '../icons/check-circle.svg'
 
 type Props = {
 	className?: string,
@@ -14,6 +17,7 @@ type Props = {
 	onCopy?: () => void,
 	message?: string;
 	status?: string;
+	title?: string;
 }
 
 const Root = styled.div<{ toolbar?: boolean }>`
@@ -36,21 +40,20 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	}
 
 	${media('sm')} {
-		box-shadow: 0px 4px 16px 0px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0 : 0.32)};
 		border: 0.5px solid ${({ theme }) => theme.border.light};
-		border-radius: 1.25rem;
+		border-radius: 0.5rem;
 	}
 `;
 
 const Toolbar = styled.div`
-	height: 3.5rem;
+	height: 2.5rem;
 	position: relative;
-	display: flex;
 	align-items: center;
 	gap: 0.5rem;
 	justify-content: space-between;
-	padding-left: 1.5rem;
-	padding-right: 1.5rem;
+	align-self: stretch;
+	display: flex;
+	padding: 0.25rem 1rem;
 `;
 
 const FakeButtons = styled.div`
@@ -66,28 +69,12 @@ const FakeButtons = styled.div`
 `;
 
 const Filename = styled.a`
-	font-size: 0.875rem;
-	line-height: 1.5rem;
-	font-family: 'Jetbrains Mono', monospace;
 	color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
-	text-decoration: none;
-	position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
 	cursor: pointer;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 40%;
-	user-select: none;
+	display: flex;
 
 	&:hover {
 		color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 1)} !important;
-	}
-	
-	&:active {
-		color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
 	}
 `;
 
@@ -120,13 +107,42 @@ const Code = styled(Syntax)<{ toolbar: boolean }>`
 	}
 `;
 
-const InfoBar=styled.div`
+const InfoBar=styled.div<{ status?: string}>`
 	display: flex;
-	margin: 1rem 0;
+	height: 2.5rem;
 	padding-left: 1.5rem;
+	align-items: center;
+	gap: 0.5rem;
+	border-top: 0.5px solid ${({ theme }) => theme.border.light};
+	color:  ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on}
+
+`
+const Title = styled.div`
+	text-transform: uppercase;
 `
 
-export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true, message, status }: Props) => {
+const Actions = styled.div`
+text-transform: capitalize;
+display: flex;
+height: 2rem;
+justify-content: flex-end;
+align-items: center;
+gap: 1rem;
+font-size: 0.875rem;
+`
+
+const getStatusIcon = (status?: string) => {
+	switch(status) {
+		case 'error':
+			return <XIcon/>
+		case 'success':
+			return <CheckIcon/>
+		default:
+			return ''
+	}
+}
+
+export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true, message, status, title }: Props) => {
 	const handleCopy = () => {
 		navigator.clipboard.writeText(code);
 		if (onCopy) onCopy();
@@ -136,22 +152,23 @@ export const CodeBlock = ({ className, code, filename, filenameHref, language, o
 		<Root className={className} toolbar={toolbar}>
 			{toolbar ? (
 				<Toolbar>
-					<FakeButtons>
-						<span />
-						<span />
-						<span />
-					</FakeButtons>
-					{filename ? <Filename target="_blank" rel="noopener noreferrer" href={filenameHref}>{filename}</Filename> : null}
+					<Title>
+						{title?.length ? title : 'Example'}
+					</Title>
+					<Actions>
+					{language}
+					{filename && <Filename target="_blank" rel="noopener noreferrer" href={filenameHref}><GithubIcon/></Filename>}
 					<CopyButton onClick={handleCopy}>
-						Copy
 						<CopyIcon />
 					</CopyButton>
+					</Actions>
 				</Toolbar>
 			) : null}
 			<Code toolbar={toolbar} language={language} code={code} />
-			{(status || message) && <InfoBar>
-				{status}:{message}
-			</InfoBar>}
+			{(status?.length || message?.length) && (
+			<InfoBar status={status}>
+				{getStatusIcon(status)}<div>{message}</div>
+			</InfoBar>)}
 		</Root>
 	);
 }

@@ -159,7 +159,7 @@ const Header = () => {
 				<Brand/>
 				<NavWrapper>
 					<NavLink href='/' active={!isAPI}>Concepts</NavLink>
-					<NavLink href='/api-reference' active={isAPI}>API Ref</NavLink>
+					<NavLink href='/api-reference' active={isAPI}>API Reference</NavLink>
 				</NavWrapper>
 				</LinkWrapper>
 				<SearchWrapper>

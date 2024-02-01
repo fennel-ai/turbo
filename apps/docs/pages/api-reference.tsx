@@ -14,14 +14,15 @@ import { useRouter } from "next/router";
 type Props = {
 	pages: NavigationPage[],
 	navigation: NavigationTree,
+    navigationOrder: any,
 	// section: NavigationSection,
 	// code: string,
 }
 
 
-const PageWrapper = styled.div`
+const PageWrapper = styled.div<{index: number}>`
     width: 100%;
-    padding: 3rem 0;
+    padding: ${({index}) => index===0 ? 0 : 4}rem 0;
 `
 
   
@@ -34,8 +35,7 @@ const APIReferencePage = ({page}: {page: NavigationPage}) => {
 }
 
 
-export default function DocumentationPage({ pages, navigation }: Props) {
-
+export default function DocumentationPage({ pages, navigation, navigationOrder }: Props) {
     const [currentActive, setCurrentActive] = useState(pages[0].slug)
     const containerRef = useRef(null);
     const {asPath} = useRouter();
@@ -43,6 +43,7 @@ export default function DocumentationPage({ pages, navigation }: Props) {
         target: containerRef.current as any
     });
 
+    console.log('lalaL:', navigationOrder);
 
     useEffect(() => {
         const scrollCallback = () => {
@@ -95,8 +96,8 @@ export default function DocumentationPage({ pages, navigation }: Props) {
 					<meta name="application-name" content="Fennel" />
 				</Head>
                 {/* @ts-ignore */}
-                {pages.map((page) => 
-                <PageWrapper id={page.slug} key={page.slug}>
+                {pages.map((page, index) => 
+                <PageWrapper id={page.slug} key={page.slug} index={index}>
                     <APIReferencePage page={page}/>
                 </PageWrapper>
                 )}
@@ -122,6 +123,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 			.filter((p) => p.slug?.includes('api-reference'))
             .sort((a,b) => ordering[a.title] - ordering[b.title]),
             navigation,
+            navigationOrder
 	    }
     }
 }

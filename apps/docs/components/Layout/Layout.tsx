@@ -71,7 +71,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		h3 {
 			font-size: 1.5rem;
 			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
 			margin-top: 0.75rem;
 			margin-bottom: 0.75rem;
 		}
@@ -79,7 +79,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		h4 {
 			font-size: 1.25rem;
 			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
 			margin-top: 1rem;
 			padding-bottom: 0.5rem;
 			margin-bottom: 0.5rem;
@@ -174,11 +174,11 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		grid-column: span 4;
 
 		${media('xs')} {
-			grid-column: span 4;
+			grid-column: span 8;
 		}
 
 		${media('md')} {
-			grid-column: span 4;
+			grid-column: span 12;
 		}
 
 		${media('lg')} {
