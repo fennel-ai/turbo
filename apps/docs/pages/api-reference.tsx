@@ -44,8 +44,6 @@ export default function DocumentationPage({ pages, navigation, navigationOrder }
         target: containerRef.current as any
     });
 
-    console.log('lalaL:', navigationOrder);
-
     useEffect(() => {
         const scrollCallback = () => {
             let currentPage = '';
@@ -58,7 +56,7 @@ export default function DocumentationPage({ pages, navigation, navigationOrder }
             setCurrentActive(currentPage);
         }
 
-        document.addEventListener('scroll', scrollCallback);
+        document.addEventListener('scroll', scrollCallback,  { passive: true });
         return () => {
             document.removeEventListener('scroll', scrollCallback);
         }

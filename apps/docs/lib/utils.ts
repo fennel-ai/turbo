@@ -11,6 +11,10 @@ export type NavigationPage = {
 	};
 }
 
+export type Outline = {
+	level: number, title: string
+}[]
+
 export type NavigationSection = {
 	title: string;
 	slug: string;
@@ -45,19 +49,21 @@ export const getNavigation = (type?: string): NavigationTree => {
 /**
  * Get the page metadata, section data and markdown code for a given page slug.
  */
-export const getPageData = (pageSlug: string, api?: boolean): { code: string, section: NavigationSection, page: Partial<NavigationPage> } => {
+export const getPageData = (pageSlug: string, api?: boolean): { code: string, section: NavigationSection, page: Partial<NavigationPage>, headings: Outline } => {
 	const {
 		body,
 		description = "",
 		section,
 		title,
 		status,
-		slug
+		slug,
+		headings,
 	} = allPages.find((page) => page.slug === pageSlug)!;
 
 	return {
 		code: body.code,
 		section: (api ? aPIConfig : config).sidebar!.find((s) => s.slug === section)!,
+		headings,
 		page: {
 			description,
 			title,

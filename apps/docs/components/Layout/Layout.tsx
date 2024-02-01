@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { media, rgba } from "styles/utils";
 import { Footer } from 'ui';
 
-import type { NavigationTree } from "lib/utils";
+import type { NavigationTree, Outline } from "lib/utils";
 
 import Header from './Header';
 import Navigation from "./Navigation";
@@ -12,12 +12,14 @@ import MobileMenu from "./Navigation/MobileMenu";
 import { useShell } from "context/Shell";
 import { AnimatePresence } from "framer-motion";
 import { haskoyVariable } from "pages/_app";
+import { PageNavigation } from "./PageNavigation";
 
 type Props = {
 	children: ReactNode,
 	navigation: NavigationTree,
 	isAPI?: boolean,
 	active?: string,
+	outline?: Outline,
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -191,7 +193,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, active }: Props) => {
+const Layout = ({ children, navigation, isAPI, active, outline }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
@@ -206,6 +208,7 @@ const Layout = ({ children, navigation, isAPI, active }: Props) => {
 				<main>
 					{children}
 				</main>
+				{outline && <PageNavigation headings={outline}/>}
 			</Root>
 			<Footer />
 		</>

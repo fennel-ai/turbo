@@ -13,21 +13,20 @@ type Props = {
 	navigation: NavigationTree,
 	section: NavigationSection,
 	code: string,
+	headings: {level: number, title: string}[]
 }
 
-export default function DocumentationPage({ page, navigation, section, code }: Props) {
+export default function DocumentationPage({ page, navigation, section, code, headings }: Props) {
 	const ctxValue = useMemo(() => ({
 		page,
 		section,
 	}), [page, section]);
 
-	console.log('hi:', allPages, aPIConfig.sidebar);
-	const isAPIPage = section.slug.includes('api-reference');
 	const MDXContent = useMDXComponent(code);
 
 	return (
 		<LayoutContext.Provider value={ctxValue}>
-			<Layout navigation={navigation}>
+			<Layout navigation={navigation} outline={headings}>
 				<Head>
 					<title>{page.title}</title>
 					{page.description ? <meta name="description" content={page.description} /> : null}
@@ -66,7 +65,7 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const { params } = ctx;
 	const slug = (params!.slug as string[])?.join('/');
-	const { code, page, section } = getPageData(slug || '/');
+	const { code, page, section, headings } = getPageData(slug || '/');
 
 	return {
 		props: {
@@ -74,6 +73,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 			section,
 			page,
 			code,
+			headings,
 		}
 	}
 }
