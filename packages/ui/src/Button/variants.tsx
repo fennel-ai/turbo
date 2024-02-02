@@ -24,7 +24,7 @@ export const STYLE = {
     'outline': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
         background-color: ${theme.glass};
         color: ${disabled ? 'rgba(7, 4, 58, 0.32)' : theme[color].accent};
-        box-shadow: ${!disabled ? `0px 2px 4px -2px ${rgba(theme.shadow, 0.24)}, 0px 0px 0px 0.5px ${theme.border.light}` : `0px 0px 0px 0.5px ${theme.border.light}`};
+        box-shadow: ${!disabled ? `0px 2px 4px -2px ${rgba(theme.shadow, 0.24)}, 0px 0px 0px 0.5px ${theme.border}` : `0px 0px 0px 0.5px ${theme.border}`};
         backdrop-filter: blur(0.5rem);
     `,
     'glass': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`

@@ -32,7 +32,7 @@ const TableRoot = styled.table`
 	}
 
 	& thead {
-		box-shadow: 0px 2px 0px ${({ theme }) => theme.border.light};
+		box-shadow: 0px 2px 0px ${({ theme }) => theme.border};
 		
 		tr {
 			text-align: left;

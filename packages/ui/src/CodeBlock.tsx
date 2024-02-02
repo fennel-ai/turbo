@@ -35,7 +35,7 @@ const Root = styled.div<{ toolbar?: boolean }>`
 
 	${media('sm')} {
 		box-shadow: 0px 4px 16px 0px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0 : 0.32)};
-		border: 0.5px solid ${({ theme }) => theme.border.light};
+		border: 0.5px solid ${({ theme }) => theme.border};
 		border-radius: 1.25rem;
 	}
 `;

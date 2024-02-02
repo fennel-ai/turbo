@@ -162,7 +162,7 @@ const CodeWindow = styled(motion.div)`
 	position: absolute;
 	background-color: ${({ theme }) => theme.syntax.plain.background};
 	color: ${({ theme }) => theme.syntax.plain.foreground};
-	border: 0.5px solid ${({ theme }) => theme.border.light};
+	border: 0.5px solid ${({ theme }) => theme.border};
 	border-radius: 1rem;
 	overflow: hidden;
 	display: flex;
@@ -231,7 +231,7 @@ const DAG = ({ activeItem = "0" }: { activeItem: string }) => {
 
 					<Sources />
 				</motion.g>
-				<rect x="1" y="1" width="738" height="451" rx="16" stroke={theme.border.light} strokeWidth="1" />
+				<rect x="1" y="1" width="738" height="451" rx="16" stroke={theme.border} strokeWidth="1" />
 
 				<defs>
 					<motion.linearGradient

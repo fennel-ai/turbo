@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 const Root = styled(Link)`
-	border: 1px solid rgba(${({ theme }) => theme.ref.grey[10]}, 8%);
+	border: 1px solid ${({ theme }) => theme.border};
 	display: flex;
 	flex-direction: column;
 	border-radius: 1rem;

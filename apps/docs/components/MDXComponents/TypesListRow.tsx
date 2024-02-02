@@ -6,7 +6,7 @@ const Root = styled.div`
 	min-height: 64px;
 	display: grid;
 	grid-template-columns: 1fr;
-	border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
+	border-bottom: 1px solid ${({ theme }) => theme.border};
 
 	div {
 		padding: 1rem 0;

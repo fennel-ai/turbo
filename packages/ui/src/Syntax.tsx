@@ -22,7 +22,7 @@ const Root = styled.div`
 		white-space: pre;
 		word-spacing: normal;
 		word-break: normal;
-		${({ theme }) => theme.syntax.code};
+		${({ theme }) => theme.syntax.code.small};
 
 		-moz-tab-size: 4;
 		-o-tab-size: 4;
@@ -65,7 +65,7 @@ const Root = styled.div`
 	}
 
 	.linenumber {
-		${({ theme }) => theme.syntax['line-number']};
+		${({ theme }) => theme.syntax['lineNumber'].small};
 		pointer-events: none;
 		text-align: right;
 		user-select: none;
@@ -131,7 +131,7 @@ const Root = styled.div`
 	}
 
 	.token.decorator.annotation.punctuation {
-		color: ${({ theme }) => theme.syntax.function} !important;
+		color: ${({ theme }) => theme.syntax['function-call']} !important;
 	}
 `;
 

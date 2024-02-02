@@ -133,7 +133,7 @@ const Root = styled(Container)`
 		}
 
 		hr {
-			background-color: ${({ theme }) => theme.border.light};
+			background-color: ${({ theme }) => theme.border};
 			border: none;
 			height: 2px;
 		}

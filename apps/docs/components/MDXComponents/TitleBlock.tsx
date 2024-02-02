@@ -8,7 +8,7 @@ const Root = styled.div`
 
 	${media('md')} {
 		padding-bottom: 2rem;
-		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
+		border-bottom: 1px solid ${({ theme }) => theme.border};
 	}
 `;
 

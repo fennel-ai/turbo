@@ -39,7 +39,7 @@ const Credit = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 1rem;
-    border-top: 0.5px solid ${({ theme }) => theme.border.light};
+    border-top: 0.5px solid ${({ theme }) => theme.border};
     padding-top: 2rem;
 
     & > p {

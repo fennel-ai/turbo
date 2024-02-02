@@ -10,7 +10,7 @@ const Root = styled.div`
     justify-content: center;
     position: relative;
     background-color: ${({ theme }) => theme.glass};
-    border-bottom: 0.5px solid ${({ theme }) => theme.border.light};
+    border-bottom: 0.5px solid ${({ theme }) => theme.border};
     overflow: hidden;
     min-height: 35rem;
     padding-top: 7.5rem;

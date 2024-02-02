@@ -9,7 +9,7 @@ import Logo from 'ui/icons/logo.svg';
 import Container from 'components/Container';
 
 const Root = styled.footer`
-	border-top: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
+	border-top: 1px solid ${({ theme }) => theme.border};
 
 	${media('xs')} {
 		height: 6.5rem;
