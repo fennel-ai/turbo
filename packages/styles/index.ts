@@ -12,7 +12,12 @@ type ColorScale = {
 	'70': string,
 	'80': string,
 	'90': string,
-	'95': string,
+	'100': string,
+	'110': string,
+	'120': string,
+	'130': string,
+	'140': string,
+	'150': string,
 };
 
 type RefColors = Record<string, ColorScale | string>;
@@ -20,6 +25,44 @@ type RefColors = Record<string, ColorScale | string>;
 type ThemeAccentPalette = {
 	accent: string,
 	on: string,
+}
+
+type Typescale = {
+    "0": string,
+    "1": string,
+    "2": string,
+    "3": string,
+    "4": string,
+    "5": string,
+    "6": string,
+    "7": string,
+    "8": string,
+    "9": string,
+    "10": string,
+    "11": string,
+    "12": string,
+    "13": string,
+    "14": string,
+    "15": string,
+}
+
+type OpacityScale = {
+    "0": string,
+    "1": string,
+    "2": string,
+    "3": string,
+    "4": string,
+    "5": string,
+    "6": string,
+    "7": string,
+    "8": string,
+    "9": string,
+    "10": string,
+    "11": string,
+    "12": string,
+    "13": string,
+    "14": string,
+    "15": string,
 }
 
 type TypographyValue = {
@@ -30,47 +73,62 @@ type TypographyValue = {
 	lineHeight?: string,
 }
 
+type TypographySet = {
+    small?: TypographyValue,
+    default: TypographyValue,
+    large?: TypographyValue,
+}
+
 type SyntaxTheme = {
 	boolean: string,
 	builtins: string,
 	char: string,
 	'class-name': string,
 	code: {
-		fontFamily: string,
-		fontSize: string,
-		fontWeight: string,
-		letterSpacing: string,
-		lineHeight: string,
-	},
+        default: TypographyValue,
+        small: TypographyValue,
+    },
 	comment: string,
 	constant: string,
 	diff: {
 		deleted: string,
 		inserted: string,
 	},
-	function: string,
+    'double-quote-string': string,
+	'function-call': string,
+	'function-definition': string,
 	important: string,
 	keyword: string,
-	'line-number': {
-		fontFamily: string,
-		fontSize: string,
-		fontWeight: string,
-		letterSpacing: string,
-		lineHeight: string,
-	},
+    label: {
+        default: TypographyValue,
+        small: TypographyValue
+    }
+    'lineNumber': {
+        default: TypographyValue,
+        small: TypographyValue
+    },
 	number: string,
 	operator: string,
 	plain: {
 		background: string,
+        border: string,
 		foreground: string,
+        'line-number': string
 	},
 	property: string,
 	punctuation: string,
 	regex: string,
 	string: string,
 	symbol: string,
+    'triple-quote-string': string,
 	url: string,
 	variable: string,
+}
+
+type ButtonShadowTokens = {
+    default: string,
+    hover: string,
+    active: string
 }
 
 export type Breakpoint = "2xs" | "xs" | "sm" | "md" | "lg" | "xl";
@@ -81,48 +139,103 @@ export type Theme = {
 	inverted_theme: string,
 	breakpoints: Record<Breakpoint, number>, // Breakpoints are a map of size name to rem value representing the screen width of that breakpoint.
 	fontFamilies: {
-		code: string,
-		text: string,
-		title: string,
+		mono: string,
+		primary: string,
 	},
 	fontWeights: {
-		regular: string,
-		medium: string,
-		semibold: string,
-		bold: string, 
-		extrabold: string,
-	},
+        mono: {
+            light: string,
+            medium: string,
+            regular: string
+        },
+        primary: {
+            regular: string,
+            medium: string,
+            semibold: string,
+            bold: string,
+            extrabold: string,
+        }
+    },
+
+    // Code
 	syntax: SyntaxTheme,
+    'line-number-container': {
+        default: {
+            fill: string
+        },
+        scrolled: {
+            backgroundBlur: string,
+            borderColor: string,
+            borderWidthRight: string,
+            fill: string,
+        }
+    },
+
+    // Scales
 	ref: RefColors,
+    typescale: Typescale,
+    opacity: OpacityScale,
+    radii: {
+        xs: string,
+        sm: string,
+        md: string,
+        lg: string,
+        xl: string,
+        '2xl': string,
+        '3xl': string,
+    },
+    letterSpacing: {
+        small: string,
+        medium: string,
+        large: string,
+    },
+    'state_layer': {
+        "0": string;
+        "1": string;
+        "2": string;
+        "3": string;
+        "4": string;
+        "5": string;
+    }
+
+    // Typography
+    title: TypographySet,
+    subtitle: TypographySet,
+    label: TypographySet,
+    body: TypographySet,
+    display: TypographySet
+
+    // Shadows
+    shadows: {
+        button: {
+            caution: ButtonShadowTokens,
+            error: ButtonShadowTokens,
+            neutral: ButtonShadowTokens,
+            outlined: ButtonShadowTokens,
+            primary: ButtonShadowTokens,
+            secondary: ButtonShadowTokens,
+            success: ButtonShadowTokens,
+            surface: ButtonShadowTokens,
+        },
+        sheet: string,
+    }
 	
+    // Colors (Generics)
 	background: string;
 	surface: string;
 	on: string;
 	on_alt: string;
-	border: {
-        light: string;
-        heavy: string;
-    };
+	border: string;
 	shadow: string;
 	glass: string;
+
+    // Colors (Accents)
 	primary: ThemeAccentPalette,
 	secondary: ThemeAccentPalette,
 	caution: ThemeAccentPalette,
 	error: ThemeAccentPalette,
 	success: ThemeAccentPalette,
 	neutral: ThemeAccentPalette,
-
-	opacity: Record<string, string>,
-	radii: Record<string, string>,
-	typescale: Record<string, string>,
-	'state_layer': {
-		"0": string;
-		"1": string;
-		"2": string;
-		"3": string;
-		"4": string;
-		"5": string;
-	}
 }
 
 const breakpoints = {
