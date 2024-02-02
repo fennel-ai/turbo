@@ -74,7 +74,8 @@ const DemoCta = styled(Button)`
 
 type Props = {
 	onClose: MouseEventHandler,
-	items: NavigationTree
+	items: NavigationTree,
+	isAPI?: boolean,
 }
 
 const ANIM = {
@@ -123,7 +124,7 @@ const MobileMenu = (props: Props) => {
 												key={slug} 
 												onClick={toggleMobileMenu}
 											>
-												<Link aria-label={title} href={slug}>{title}</Link>
+												<Link aria-label={title} href={props.isAPI ? '#' + slug : slug}>{title}</Link>
 											</NavigationItem>
 										)
 									})}

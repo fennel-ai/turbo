@@ -165,10 +165,10 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			line-height: 1rem;
 			font-family: ${({ theme }) => theme.fontFamilies.code}, monospace;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
-			padding: 0.25rem 0.375rem;
+			padding: 0.25rem;
 			margin: 0 0.25rem;
-			background-color: ${({ theme }) => theme.type === "dark" ? "#1F2229" : "#131519"};
-			color: ${({ theme }) => theme.on};
+			background-color: ${({ theme }) => theme.type==="dark" ? "#1F2229" : "#F9F9FA"};
+			color: ${({ theme }) => theme.primary.accent};
 			border: 0.5px solid ${({ theme }) => rgba(theme.primary.accent, 0.12)};
 			border-radius: 0.375rem;
 		}
@@ -204,7 +204,7 @@ const Layout = ({ children, navigation, isAPI, active, headings }: Props) => {
 				<Navigation items={navigation} isAPI={isAPI} active={active}/>
 				<AnimatePresence>
 					{showMobileMenu ? (
-						<MobileMenu items={navigation} onClose={closeMobileMenu} />
+						<MobileMenu items={navigation} onClose={closeMobileMenu} isAPI={isAPI}/>
 					) : null}
 				</AnimatePresence>
 				<main>

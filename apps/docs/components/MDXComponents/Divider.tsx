@@ -15,17 +15,23 @@ const DividerRoot = styled.div`
 `;
 
 const RightSectionWrapper = styled.div`
-	grid-column: span 7;
-	position: sticky;
-    top: 8rem;
-    align-self: start;
+	grid-column: span 12;
+    ${media('md')} {
+        grid-column: span 7;
+		position: sticky;
+        top: 8rem;
+        align-self: start;
+	}
 `
 
 const LeftSectionWrapper = styled.div`
-	grid-column: span 5;
-    position: sticky;
-    top: 8rem;
-    align-self: start;
+	grid-column: span 12;
+    ${media('md')} {
+        grid-column: span 5;
+		position: sticky;
+        top: 8rem;
+        align-self: start;
+	}
 `
 
 

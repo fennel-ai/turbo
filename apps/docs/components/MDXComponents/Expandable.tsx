@@ -1,12 +1,12 @@
 import { PropsWithChildren, useState } from "react";
 import styled from "@emotion/styled";
-import { media } from "styles/utils";
+import { media, rgba } from "styles/utils";
 import ChevronRightSmallIcon from 'ui/icons/chevron-right-small.svg';
 import ChevronDownSmallIcon from 'ui/icons/chevron-down-small.svg';
 
 const Root = styled.div`
-    font-size: inherit;
-    line-height: inherit;
+    font-size: 0.875rem;
+    line-height: 1rem;
 `;
 
 
@@ -15,7 +15,7 @@ const Title = styled.span<{optional?: boolean}>`
     font-family: "JetBrains Mono",monospace;
     &:after {
         content: "${({ optional }) => !!optional ? ":?" : ":" }";
-        color: #B42934;
+        color: ${({ theme }) => rgba(theme.on, 0.5)};
     }
 `
 
@@ -25,7 +25,7 @@ const TitleContainer = styled.div`
 display: flex;
 padding: 0.5rem;
 align-items: center;
-gap: 0.5rem;
+gap: 0.25rem;
 align-self: stretch;
 cursor: pointer;
 `
@@ -44,7 +44,7 @@ const Type = styled.span<{isEnum?: boolean}>`
 `
 
 const DefaultValue = styled.span`
-    color: rgba(${({ theme }) => theme.on}, 0.5);
+    color: ${({ theme }) => rgba(theme.on, 0.5)};
 `
 const Child = styled.div`
 display: flex;
@@ -88,7 +88,7 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
             </TitleContainer>
             {isExpanded && 
             <Child>
-                {optional && <div>Optional</div>}
+                {optional && <DefaultValue>Optional</DefaultValue>}
                 {children}
             </Child>
 			}

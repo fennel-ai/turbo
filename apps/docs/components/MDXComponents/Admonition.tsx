@@ -10,17 +10,20 @@ const TYPE_MAP = {
 	info: {
 		title: 'Info',
 		icon_color: 'primary.accent',
-		text_color: 'syntax.char',
+		text_color: 'primary.accent',
+		dark_text_color: 'syntax.char'
 	},
 	warning: {
 		title: 'Warning',
 		icon_color: 'caution.accent',
 		text_color: 'caution.accent',
+		dark_text_color: 'caution.accent'
 	}, 
 	tip: {
 		title: 'Tip',
 		icon_color: 'on',
 		text_color: 'on',
+		dark_text_color: 'on'
 	}
 }
 
@@ -45,7 +48,7 @@ const Root = styled.div<{ type: Props['type'] }>`
 	max-width: 100%;
 	border-left: 1px solid ${({ type,theme }) => rgba(get(TYPE_MAP[type].icon_color)({theme}), 1)};
 	& > p {
-		color: ${({ type,theme }) => rgba(get(TYPE_MAP[type].text_color)({theme}), 1)};
+		color: ${({ type,theme }) => rgba(get(TYPE_MAP[type][(theme.type === "dark" ? 'dark_text_color' : 'text_color')])({theme}), 1)};
 		margin: 0;
 		font-size: 0.875rem;
 		line-height: 1.5rem;

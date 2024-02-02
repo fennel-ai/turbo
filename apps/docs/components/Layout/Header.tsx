@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { useRef } from 'react';
 import { media, rgba } from 'styles/utils';
-import { IconButton, PillButton, Masthead } from 'ui';
+import { IconButton, PillButton, Masthead, Button } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
-
+import GitHubIcon from 'ui/icons/github.svg';
 import Container from 'components/Container';
 import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
@@ -54,7 +54,6 @@ const Wrapper = styled(Container)`
 	height: 3rem;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	z-index: 1;
 
 	${media('md')} {
@@ -66,8 +65,10 @@ const SearchWrapper = styled.div`
 	padding: 0 2rem; 
 	display: none;
 	
+	
 	${media('md')} {
-		display: block;
+		display: flex;
+		flex: 1;
 		width: 30rem;
 	}
 `;
@@ -87,16 +88,19 @@ const Brand = styled(Masthead)`
 const Actions = styled.div`
 	display: flex;
 	align-items: center;
+	flex: 1;
 	gap: 1.5rem;
+	justify-content: flex-end;
 `;
 
 const SearchButton = styled(IconButton)`
 	${media('md')} {
+		margin-left: auto;
 		display: none;
 	}
 `;
 
-const DemoButton = styled(PillButton)`
+const DemoButton = styled(Button)`
 	display: none;
 
 	${media('sm')} {
@@ -126,6 +130,7 @@ const Border = styled(Container)`
 const LinkWrapper = styled.div`
 	display: flex;
 	align-items: center;
+	flex: 1;
 	gap: 2rem;
 `
 
@@ -138,10 +143,20 @@ const NavWrapper = styled.div`
 
 const NavLink = styled(Link)<{active?: boolean}>`
 	cursor: pointer;
+	font-weight: 500;
 	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on_alt };
 	&:hover {
 		color: ${({ theme }) => theme.on };
 	}
+`
+
+const DemoButtons = styled.div`
+	display: flex;
+	gap: 0.5rem;
+	${media('md')} {
+		margin-left: auto;
+	}
+
 `
 
 const Header = () => {
@@ -159,7 +174,7 @@ const Header = () => {
 				<Brand/>
 				<NavWrapper>
 					<NavLink href='/' active={!isAPI}>Docs</NavLink>
-					<NavLink href='/api-reference' active={isAPI}>API Reference</NavLink>
+					<NavLink href='/api-reference' active={isAPI}>API</NavLink>
 				</NavWrapper>
 				</LinkWrapper>
 				<SearchWrapper>
@@ -172,15 +187,25 @@ const Header = () => {
 				</SearchWrapper>
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
-					<a href="https://fennel.ai/get-a-demo">
+					<DemoButtons>
+					<a href="https://github.com/fennel-ai/client/tree/main/docs">
 						<DemoButton
-							icon={null}
-							size="large"
-							invert
+							size="small"
+							label="Github"
+							variant="outline"
+							icon={<GitHubIcon/>}
 						>
-							Request a demo
 						</DemoButton>
 					</a>
+					<a href="https://fennel.ai/get-a-demo">
+						<DemoButton
+							size="small"
+							label="Request a demo"
+							variant="outline"
+						>
+						</DemoButton>
+					</a>
+					</DemoButtons>
 				</Actions>
 			</Wrapper>
 			<Border>
