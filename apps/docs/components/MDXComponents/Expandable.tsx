@@ -5,12 +5,14 @@ import ChevronRightSmallIcon from 'ui/icons/chevron-right-small.svg';
 import ChevronDownSmallIcon from 'ui/icons/chevron-down-small.svg';
 
 const Root = styled.div`
-    font-size: 0.875rem;
-    line-height: 1rem;
+font-size: inherit;
+line-height: inherit
 `;
 
 
 const Title = styled.span<{optional?: boolean}>`
+    font-size: 0.875rem;
+    line-height: 1rem;
     color: ${({ theme }) => theme.on};
     font-family: "JetBrains Mono",monospace;
     &:after {
@@ -40,6 +42,8 @@ const ExpandedIcon = styled.span`
 
 const Type = styled.span<{isEnum?: boolean}>`
     font-family: "JetBrains Mono",monospace;
+    font-size: 0.75rem;
+    line-height: 1rem;
     color: ${({ theme, isEnum }) => isEnum ? theme.success.accent : theme.primary.accent};
 `
 
