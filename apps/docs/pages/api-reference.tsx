@@ -12,9 +12,6 @@ import styled from "@emotion/styled";
 type Props = {
 	pages: NavigationPage[],
 	navigation: NavigationTree,
-    navigationOrder: any,
-	// section: NavigationSection,
-	// code: string,
 }
 
 
@@ -22,7 +19,7 @@ const PageWrapper = styled.div<{index: number}>`
     width: 100%;
     padding-top: ${({index}) => index===0 ? 0 : 4}rem;
     padding-bottom: 4rem;
-    border-bottom: 1px solid ${({theme}) => theme.border.light};
+    border-bottom: 1px solid ${({theme}) => theme.border};
     scroll-margin-top: 6.3125rem; 
 `
 
@@ -36,7 +33,7 @@ const APIReferencePage = ({page}: {page: NavigationPage}) => {
 }
 
 
-export default function DocumentationPage({ pages, navigation, navigationOrder }: Props) {
+export default function DocumentationPage({ pages, navigation }: Props) {
     const [currentActive, setCurrentActive] = useState(pages[0].slug)
     const containerRef = useRef(null);
 
@@ -111,7 +108,6 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 			.filter((p) => p.slug?.includes('api-reference'))
             .sort((a,b) => ordering[a.title] - ordering[b.title]),
             navigation,
-            navigationOrder
 	    }
     }
 }

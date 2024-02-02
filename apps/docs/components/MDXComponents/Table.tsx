@@ -15,12 +15,12 @@ const TableRoot = styled.table`
 	border-collapse: collapse; 
 	font-size: 0.875rem;
 	line-height: 1.5rem;
-	border: 0.5px solid ${({ theme }) => theme.border.light };
+	border: 0.5px solid ${({ theme }) => theme.border };
 	border-radius: 0.5rem;
 
 	tr {
 		display: flex;
-		border-bottom: 0.5px solid ${({ theme }) => theme.border.light };
+		border-bottom: 0.5px solid ${({ theme }) => theme.border };
 		${media('sm')} {
 			display: table-row;
 		}
@@ -46,7 +46,7 @@ const TableRoot = styled.table`
 				text-transform: uppercase;
 				padding: 1rem;
 				line-height: 1rem;
-				font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+				font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 				color: ${({ theme }) => theme.on_alt };
 			}
 		}
@@ -55,7 +55,7 @@ const TableRoot = styled.table`
 	& tbody {
 		tr td {
 			padding: 1rem; 
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 			vertical-align: top;
 		}
 	}
@@ -71,7 +71,7 @@ const SwipeIndicator = styled(motion.div)`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 	color: ${({ theme }) => theme.primary.accent};
 `;
 

@@ -40,7 +40,7 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	}
 
 	${media('sm')} {
-		border: 0.5px solid ${({ theme }) => theme.border.light};
+		border: 0.5px solid ${({ theme }) => theme.border};
 		border-radius: 0.5rem;
 	}
 `;
@@ -54,7 +54,7 @@ const Toolbar = styled.div`
 	align-self: stretch;
 	display: flex;
 	padding: 0.25rem 1rem;
-	border-bottom: 0.5px solid ${({ theme }) => theme.border.light};
+	border-bottom: 0.5px solid ${({ theme }) => theme.border};
 `;
 
 const FakeButtons = styled.div`
@@ -114,7 +114,7 @@ const InfoBar=styled.div<{ status?: string}>`
 	padding-left: 1.5rem;
 	align-items: center;
 	gap: 0.5rem;
-	border-top: 0.5px solid ${({ theme }) => theme.border.light};
+	border-top: 0.5px solid ${({ theme }) => theme.border};
 	color:  ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on}
 
 `

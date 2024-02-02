@@ -21,7 +21,7 @@ const SectionTitle = styled.li<{expand: boolean}>`
 	color: ${({ theme }) => theme.on};
 	font-size: 1rem;
 	line-height: 1rem;
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 	opacity: ${({ expand }) => expand ? 1 : 0.64};
 	cursor: pointer;
 	display: flex;

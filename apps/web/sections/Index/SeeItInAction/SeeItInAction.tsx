@@ -42,7 +42,7 @@ const GlassContainer = styled.div`
     position: relative;
     border-radius: 0.5rem;
     background: ${({ theme }) => rgba(theme.surface, 0.64)};
-    border: 0.5px solid ${({ theme }) => theme.border.light};
+    border: 0.5px solid ${({ theme }) => theme.border};
     height: 46.5rem;
     backdrop-filter: blur(1.5rem);
     box-shadow: ${({ theme }) => `0px 2.26915px 1.54966px 0px ${rgba(theme.shadow, 0.01)}, 0px 5.45308px 3.72406px 0px ${rgba(theme.shadow, 0.01)}, 0px 10.26767px 7.01207px 0px ${rgba(theme.shadow, 0.01)}, 0px 18.31577px 12.50833px 0px ${rgba(theme.shadow, 0.02)}, 0px 34.25764px 23.39546px 0px ${rgba(theme.shadow, 0.02)}, 0px 82px 56px 0px ${rgba(theme.shadow, 0.03)}`};
@@ -63,7 +63,7 @@ const ButtonContainer = styled.div`
 `
 
 const ImageContainer = styled.div`
-    mask linear-gradient(to top, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 72%)
+    mask: linear-gradient(to top, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 1) 72%)
     flex-shrink: 0;
     width: 100%;
     height: 100%;
@@ -79,7 +79,7 @@ const ImageContainer = styled.div`
 const PlayButtonWrapper = styled.div`
     height: 3rem;
     width: 3rem;
-    background: ${({ theme }) => `rgb(${theme.ref.purple['50']})`};
+    background: ${({ theme }) => `rgb(${theme.ref.purple['90']})`};
     border-radius: 50%;
     display:flex;
     box-shadow: 0px 38.0176px 47.6265px rgba(105, 88, 202, 0.079074), 0px 20.326px 25.4634px rgba(105, 88, 202, 0.0655718), 0px 11.3946px 14.2746px rgba(105, 88, 202, 0.055), 0px 6.05159px 7.58112px rgba(105, 88, 202, 0.0444282), 0px 2.5182px 3.15467px rgba(105, 88, 202, 0.030926), 0px 0px 0px 2px #5D4CBE;

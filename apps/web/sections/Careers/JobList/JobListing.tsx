@@ -15,7 +15,7 @@ const Root = styled(motion.div)`
     color: ${({ theme }) => theme.on};
 
     & + & {
-        border-top: 1px solid ${({ theme }) => theme.border.light};
+        border-top: 1px solid ${({ theme }) => theme.border};
     }
 `;
 

@@ -26,7 +26,7 @@ const Title = styled.div`
 	& h1 {
 		position: relative;
 		margin: 0;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
 		font-size: 2.5rem;
 		line-height: 3rem;
 		
@@ -37,7 +37,7 @@ const Title = styled.div`
 	}
 
 	& > span  {
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 		font-size: 1.5rem;
 		line-height: 2rem;
 		vertical-align: middle;
@@ -49,7 +49,7 @@ const Description = styled.p`
 	margin: 0;
 	font-size: 1.125rem;
 	line-height: 1.75rem;
-	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 	color: ${({ theme }) => theme.on_alt};
 
 	${media('md')} {
@@ -69,7 +69,7 @@ const SectionTitle = styled.div`
 	& > p {
 		margin: 0;
 		font-size: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 		color: ${({ theme }) => theme.primary.accent};
 	}
 `;

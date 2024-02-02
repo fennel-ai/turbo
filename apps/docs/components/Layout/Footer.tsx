@@ -9,7 +9,7 @@ import Logo from 'ui/icons/logo.svg';
 import Container from 'components/Container';
 
 const Root = styled.footer`
-	border-top: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
+	border-top: 1px solid ${({ theme }) => theme.border};
 
 	${media('xs')} {
 		height: 6.5rem;
@@ -39,13 +39,13 @@ const Brand = styled.div`
 	& h4 {
 		font-size: 1.25rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
 	}
 
 	& p {
 		font-size: 0.875rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 		letter-spacing: -1px;
 		opacity: 64%;
 	}

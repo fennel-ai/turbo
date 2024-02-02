@@ -59,7 +59,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		h2 {
 			font-size: 1.75rem;
 			line-height: 2rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
 			margin-top: 3rem;
 			margin-bottom: 0.5rem;
 
@@ -75,7 +75,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		h3 {
 			font-size: 1.5rem;
 			line-height: 1.75rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 			margin-top: 0.75rem;
 			margin-bottom: 0.75rem;
 		}
@@ -83,11 +83,11 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		h4 {
 			font-size: 1.25rem;
 			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 			margin-top: 1rem;
 			padding-bottom: 0.5rem;
 			margin-bottom: 0.5rem;
-			border-bottom: 1px solid ${({ theme }) => theme.border.light};
+			border-bottom: 1px solid ${({ theme }) => theme.border};
 
 			${media('sm')} {
 				margin-top: 1.5rem;
@@ -101,7 +101,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-size: 1rem;
 			line-height: 1.75rem;
 			margin-bottom: 1rem;
-			font-variation-settings: "wght" ${props => props.theme.type == "dark" ? props.theme.fontWeights.regular : props.theme.fontWeights.medium};
+			font-variation-settings: "wght" ${props => props.theme.type == "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
 		}
 
 
@@ -135,7 +135,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 
 		hr {
-			background-color: ${({ theme }) => theme.border.light};
+			background-color: ${({ theme }) => theme.border};
 			border: none;
 			height: 2px;
 		}
@@ -155,8 +155,8 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		li {
 			font-size: 1rem;
 			line-height: 1.75rem;
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.medium};
 			margin-bottom: 0.75rem;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			&:last-child {
 				margin-bottom: 0rem;
 			}
@@ -165,9 +165,9 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		code:not(pre > code) {
 			font-size: 0.875rem;
 			line-height: 1rem;
-			font-family: ${({ theme }) => theme.fontFamilies.code}, monospace;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem;
+			font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.medium};
 			margin: 0 0.25rem;
 			${stateLayer(0.04)}
 			color: ${({ theme }) => theme.on_alt};

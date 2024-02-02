@@ -154,9 +154,7 @@ export const Header = () => {
 	return (
 		<Root data-header>
 			<Wrapper>
-				<Link href="/">
-					<Brand />
-				</Link>
+                <Brand />
 				<Menu>
 					<Link href="/company">
 						<NavButton>

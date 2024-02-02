@@ -5,11 +5,11 @@ import { rgba } from "styles/utils";
 const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page['status'] }>`
 	font-size: 0.875rem;
 	color: ${({ active, theme }) => active ? theme.on : theme.on_alt};
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.medium};
 	position: relative;
 	display: flex;
 	align-items: center;
-	border-left:  1px solid ${({ theme, active }) => active ? theme.primary.accent : theme.border.light};
+	border-left:  1px solid ${({ theme, active }) => active ? theme.primary.accent : theme.border};
 	&::after {
 		content: '';
 		width: 6px;
@@ -20,7 +20,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 		border-radius: 50%;
 		background-color: ${({ status, theme }) => {
 			switch (status) {
-				case 'draft': { return theme.border.light }
+				case 'draft': { return theme.border }
 				case 'wip': { return theme.caution.accent }
 				case 'published': { return theme.success.accent }
 			}
@@ -29,7 +29,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	}
 
 	&:hover {
-		background-color: ${({ theme }) => rgba(theme.border.light, 0.04)};
+		background-color: ${({ theme }) => rgba(theme.border, 0.04)};
 		border-radius: 0 5px 5px 0;
 	}
 

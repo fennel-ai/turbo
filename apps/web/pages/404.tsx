@@ -37,7 +37,7 @@ const Main = styled.main`
 		margin: 0;
 		color: ${({ theme }) => theme.on_alt};
 		font-size: 1rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 		${media('xs')} {
 			font-size: 1.5rem;
 		}
@@ -58,7 +58,7 @@ const BackgroundText = styled.span`
 	font-variation-settings: "wght" 900;
 	letter-spacing: -56px;
 	opacity: 0.24;
-	color: ${({ theme }) => theme.border.light};
+	color: ${({ theme }) => theme.border};
 	user-select: none;
 	pointer-events: none;
 	z-index: -1;
