@@ -66,7 +66,7 @@ const FakeButtons = styled.div`
 const Filename = styled.a`
 	font-size: 0.875rem;
 	line-height: 1.5rem;
-	font-family: 'Jetbrains Mono', monospace;
+	font-family: 'IBM Plex Mono', monospace;
 	color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
 	text-decoration: none;
 	position: absolute;
