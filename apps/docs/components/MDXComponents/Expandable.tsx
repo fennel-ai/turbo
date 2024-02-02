@@ -48,10 +48,10 @@ const DefaultValue = styled.span`
 `
 const Child = styled.div`
 display: flex;
-padding: 0rem 0.5rem;
 flex-direction: column;
 align-items: flex-start;
 align-self: stretch;
+margin-bottom: 1.5rem;
 `
 
 interface Props {

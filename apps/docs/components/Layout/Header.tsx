@@ -18,35 +18,9 @@ const Root = styled.div`
 	left: 0;
 	right: 0;
 	z-index: 1;
-	background-color: ${({ theme }) => rgba(theme.background, 0.72)};
-`;
-
-const Backdrop = styled.div`
-	z-index: -1;
-	&::before,
-	&::after {
-		content: "";
-		position: absolute;
-		inset: -1px 0px -60%;
-		pointer-events: none;
-		user-select: none;
-	}
-
-	&::before {
-		backdrop-filter: blur(20px) saturate(1.4);
-		-webkit-mask-image: linear-gradient(to bottom, black 6rem, transparent);
-		mask-image: linear-gradient(to bottom, black 6rem, transparent);
-
-		${media('md')} {
-			-webkit-mask-image: linear-gradient(to bottom, black 7,5rem, transparent);
-			mask-image: linear-gradient(to bottom, black 7,5rem, transparent);
-		}
-		
-		${media('lg')} {
-			-webkit-mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
-			mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
-		}
-	}
+	background-color: ${({ theme }) => rgba(theme.glass, 0.72)};
+	border-bottom: 1px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
+	backdrop-filter: blur(20px) saturate(1.4);
 `;
 
 const Wrapper = styled(Container)`
@@ -108,25 +82,6 @@ const DemoButton = styled(Button)`
 	}
 `;
 
-const Border = styled(Container)`
-	display: none;	
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 1px;
-
-	& > div {
-		width: 100%;
-		height: 100%;
-		background-color: ${({ theme }) => rgba(theme.on_alt, 0.06)};
-	}
-
-	${media('lg')} {
-		display: block;
-	}
-`;
-
 const LinkWrapper = styled.div`
 	display: flex;
 	align-items: center;
@@ -144,7 +99,7 @@ const NavWrapper = styled.div`
 const NavLink = styled(Link)<{active?: boolean}>`
 	cursor: pointer;
 	font-weight: 500;
-	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on_alt };
+	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on };
 	&:hover {
 		color: ${({ theme }) => theme.on };
 	}
@@ -168,7 +123,6 @@ const Header = () => {
 
 	return (
 		<Root>
-			<Backdrop />
 			<Wrapper>
 			<LinkWrapper>
 				<Brand/>
@@ -208,9 +162,6 @@ const Header = () => {
 					</DemoButtons>
 				</Actions>
 			</Wrapper>
-			<Border>
-				<div />
-			</Border>
 			<MobileToolbar />
 		</Root>
 	);

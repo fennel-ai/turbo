@@ -54,6 +54,7 @@ const Toolbar = styled.div`
 	align-self: stretch;
 	display: flex;
 	padding: 0.25rem 1rem;
+	border-bottom: 0.5px solid ${({ theme }) => theme.border.light};
 `;
 
 const FakeButtons = styled.div`

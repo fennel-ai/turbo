@@ -26,8 +26,6 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
-	padding-top: calc(6rem + 2rem);
-	padding-bottom: 5rem;
 	scroll-behavior: smooth;
 
 	${media('xs')} {
@@ -36,15 +34,12 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 
 	${media('md')} {
 		grid-template-columns: repeat(5, 1fr);
-		padding-top: calc(7.5rem + 2.5rem);
 	}
 
-	${media('lg')} {
-		padding-top: calc(4.5rem + 3.5rem);
-		padding-bottom: 7.5rem;
-	}
 
 	& > main {
+		padding-top: calc(6rem + 2rem);
+		padding-bottom: 5rem;
 		color: ${({ theme }) => theme.on_alt};
 
 		/** Content Styles */
@@ -78,7 +73,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		
 		h3 {
 			font-size: 1.5rem;
-			line-height: 1.5rem;
+			line-height: 1.75rem;
 			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
 			margin-top: 0.75rem;
 			margin-bottom: 0.75rem;
@@ -152,12 +147,17 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			padding-inline-start: 2rem;
 			margin-top: 0.5rem;
 			margin-bottom: 0.5rem;
+
 		}
 
 		li {
 			font-size: 1rem;
 			line-height: 1.75rem;
+			margin-bottom: 0.75rem;
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
+			&:last-child {
+				margin-bottom: 0rem;
+			}
 		}
 		
 		code:not(pre > code) {
@@ -187,10 +187,14 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 
 		${media('md')} {
 			grid-column: span 12;
+			padding-top: calc(7.5rem + 2.5rem);
 		}
 
 		${media('lg')} {
 			grid-column: ${({ isAPI }) => isAPI ? "span 4" : "span 3" };
+			padding-top: calc(4.5rem + 3.5rem);
+			padding-bottom: 7.5rem;
+			
 		}
 	}
 `;

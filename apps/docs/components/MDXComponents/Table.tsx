@@ -10,7 +10,6 @@ const Wrapper = styled.div`
 `;
 
 const TableRoot = styled.table`
-	display: block;
 	width: 100%;
 	overflow-x: auto;
 	border-collapse: collapse; 
