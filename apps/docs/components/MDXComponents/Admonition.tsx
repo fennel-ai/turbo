@@ -39,7 +39,7 @@ type Props = {
 
 const Root = styled.div<{ type: Props['type'] }>`
 	padding: 0rem 1rem;
-	margin: 0.5rem 0
+	margin: 0.5rem 0;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;

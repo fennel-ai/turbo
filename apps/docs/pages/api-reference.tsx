@@ -34,32 +34,9 @@ const APIReferencePage = ({page}: {page: NavigationPage}) => {
 
 
 export default function DocumentationPage({ pages, navigation }: Props) {
-    const [currentActive, setCurrentActive] = useState(pages[0].slug)
-    const containerRef = useRef(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-          let current = ''
-          for (const page of pages) {
-            const slug = page.slug as string;
-            const element = document.getElementById(slug)
-            if (element && element.getBoundingClientRect().top < 200) {
-                current = slug
-            }
-          }
-          setCurrentActive(current)
-        }
-        handleScroll()
-        window.addEventListener('scroll', handleScroll, { passive: true })
-        return () => {
-          window.removeEventListener('scroll', handleScroll)
-        }
-      }, [])
-
-
 	return (
-        <div ref={containerRef}>
-			<Layout navigation={navigation} isAPI active={currentActive} >
+        <div>
+			<Layout navigation={navigation} isAPI>
 				<Head>
 					<title>{"API Reference"}</title>
 					<meta name="viewport" content="width=device-width, initial-scale=1" />

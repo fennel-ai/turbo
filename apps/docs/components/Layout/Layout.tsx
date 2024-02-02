@@ -18,7 +18,6 @@ type Props = {
 	children: ReactNode,
 	navigation: NavigationTree,
 	isAPI?: boolean,
-	active?: string,
 	headings?: Outline,
 }
 
@@ -76,8 +75,17 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-size: 1.5rem;
 			line-height: 1.75rem;
 			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
-			margin-top: 0.75rem;
-			margin-bottom: 0.75rem;
+			padding-top: 0.75rem;
+			padding-bottom: 0.75rem;
+
+			${media('md')} {
+			${({isAPI, theme}) => isAPI && `
+				position: sticky;
+				top: 4.5rem;
+				background: ${theme.background};
+				z-index: 2;
+			`}
+			}
 		}
 
 		h4 {
@@ -163,16 +171,17 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 		
 		code:not(pre > code) {
-			font-size: 0.875rem;
+			height: 1.25rem;
+			font-size: 0.75rem;
 			line-height: 1rem;
-			padding: 0.25rem;
+			padding: 0 0.25rem;
 			font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.medium};
-			margin: 0 0.25rem;
+			font-weight: ${props => props.theme.fontWeights.primary.medium};
+			background: ${({ theme }) => theme.border};
 			${stateLayer(0.04)}
-			color: ${({ theme }) => theme.on_alt};
-			border: 0.5px solid ${({ theme }) => rgba(theme.primary.accent, 0.12)};
-			border-radius: 0.375rem;
+			color: ${({ theme }) => theme.on};
+			border: 0.5px solid ${({ theme }) => theme.border};
+			border-radius: 0.25rem;
 		}
 
 		strong {
@@ -201,13 +210,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, active, headings }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
 			<Header />
 			<Root isAPI={isAPI}>
-				<Navigation items={navigation} isAPI={isAPI} active={active}/>
+				<Navigation items={navigation} isAPI={isAPI}/>
 				<AnimatePresence>
 					{showMobileMenu ? (
 						<MobileMenu items={navigation} onClose={closeMobileMenu} isAPI={isAPI}/>

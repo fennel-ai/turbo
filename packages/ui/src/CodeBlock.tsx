@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import CopyIcon from '../icons/copy.svg';
 
-import { media, rgba } from 'styles/utils';
+import { media, rgba, stateLayer } from 'styles/utils';
 import { Syntax } from './Syntax';
 import GithubIcon from '../icons/github.svg'
 import XIcon from '../icons/x-circle.svg'
@@ -21,7 +21,8 @@ type Props = {
 }
 
 const Root = styled.div<{ toolbar?: boolean }>`
-	background-color: ${({ theme }) => theme.type === "dark" ? "#1F2229" : "#131519"};
+	background-color: ${({ theme }) => theme.syntax.plain.background};
+	${props => stateLayer(0.04, props.theme.on_alt)}
 	color: ${({ theme }) => theme.syntax.plain.foreground};
 	overflow: hidden;
 	position: relative;
@@ -54,7 +55,8 @@ const Toolbar = styled.div`
 	align-self: stretch;
 	display: flex;
 	padding: 0.25rem 1rem;
-	border-bottom: 0.5px solid ${({ theme }) => theme.border};
+	color:${({ theme }) => theme.on_alt};
+	border-bottom: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
 `;
 
 const FakeButtons = styled.div`
@@ -114,7 +116,7 @@ const InfoBar=styled.div<{ status?: string}>`
 	padding-left: 1.5rem;
 	align-items: center;
 	gap: 0.5rem;
-	border-top: 0.5px solid ${({ theme }) => theme.border};
+	border-top: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
 	color:  ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on}
 
 `

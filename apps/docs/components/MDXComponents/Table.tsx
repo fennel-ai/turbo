@@ -35,8 +35,7 @@ const TableRoot = styled.table`
 	}
 
 	& thead {
-		background: ${({theme}) => theme.type==="dark" ? "#1F2229" : "#F9F9FA"};
-		${({  theme }) => stateLayer(0.04,theme.type==="dark" ? "#1F2229" : "#F9F9FA" )};
+		${({  theme }) => stateLayer(0.04, theme.on_alt)};
 		
 		tr {
 			text-align: left;

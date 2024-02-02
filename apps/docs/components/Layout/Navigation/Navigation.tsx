@@ -6,11 +6,11 @@ import { media } from 'styles/utils';
 
 import NavigationSection from "./NavigationSection";
 import NavigationItem from "./NavigationItem";
+import { useEffect, useState } from "react";
 
 type Props = {
 	items: NavigationTree
 	isAPI?: boolean;
-	active?: string;
 }
 
 const Root = styled.aside`
@@ -18,12 +18,13 @@ const Root = styled.aside`
 	${media('lg')} {
 		display: block;
 		grid-column: span 1;
-		max-height: calc(100vh - 8rem);
+		max-height: calc(100vh - 1rem);
 		overflow-y: auto;
 		overflow-x: hidden;
 		position: sticky;
-		top: 8rem;
-		padding-bottom: 2rem;
+		top: 0rem;
+		padding-top: 7.5rem;
+		padding-bottom: 4rem;
 	}
 `;
 
@@ -35,8 +36,35 @@ const Nav = styled.nav`
 	align-self: flex-start;
 `;
 
-const Navigation = ({ items, isAPI, active }: Props) => {
+const Navigation = ({ items, isAPI }: Props) => {
 	const router = useRouter();
+
+	const [currentActive, setCurrentActive] = useState('')
+
+    useEffect(() => {
+        const handleScroll = () => {
+          let current = ''
+          for (const section of items) {
+			for (const page of section.pages) { 
+            	const slug = page.slug as string;
+            	const element = document.getElementById(slug)
+				if (element && element.getBoundingClientRect().top < 200) {
+					current = slug
+				}
+			}
+          }
+          setCurrentActive(current)
+        }
+		if(isAPI){
+        	handleScroll()
+        	window.addEventListener('scroll', handleScroll, { passive: true })
+		}	
+        return () => {
+			if(isAPI){
+          		window.removeEventListener('scroll', handleScroll)
+			}
+        }
+      }, [])
 	return (
 		<Root>
 			<Nav>
@@ -51,10 +79,10 @@ const Navigation = ({ items, isAPI, active }: Props) => {
 								isAPI={isAPI}
 							>
 								{section.pages.map(({ title, slug, status }) => {
-									const activePath = active ? active : `/${slug === '/' ? '' : slug}`;
+									const activePath = currentActive ? currentActive : `/${slug === '/' ? '' : slug}`;
 									const activeItem = isAPI ? slug === activePath : router.asPath === activePath;
 									return (
-										<NavigationItem active={activeItem} status={status} fade={!active} key={slug}><Link aria-label={title} href={isAPI ? '#'+slug : slug}>{title}</Link></NavigationItem>
+										<NavigationItem active={activeItem} status={status} fade={!activeItem} key={slug}><Link aria-label={title} href={isAPI ? '#'+slug : slug}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>

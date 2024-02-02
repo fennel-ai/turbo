@@ -14,11 +14,12 @@ const Title = styled.span<{optional?: boolean}>`
     font-size: 0.875rem;
     line-height: 1rem;
     color: ${({ theme }) => theme.on};
-    font-family: "JetBrains Mono",monospace;
+    font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
     &:after {
         content: "${({ optional }) => !!optional ? ":?" : ":" }";
-        color: ${({ theme }) => rgba(theme.on, 0.5)};
+        color: ${({ theme }) => theme.on_alt};
     }
+
 `
 
 
@@ -30,18 +31,23 @@ align-items: center;
 gap: 0.25rem;
 align-self: stretch;
 cursor: pointer;
+position: relative;
+font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
 `
 
 const ExpandedIcon = styled.span`
-    margin-left: -1.25rem;
-    margin-top: 0.5rem;
+    position: absolute;
+    left: -1.25rem;
+    top: 30%;
+    height: 1rem;
+    width: 1rem;
     & path {
         fill: ${({ theme }) => theme.on_alt};
     }
 `
 
 const Type = styled.span<{isEnum?: boolean}>`
-    font-family: "JetBrains Mono",monospace;
+    font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
     font-size: 0.75rem;
     line-height: 1rem;
     color: ${({ theme, isEnum }) => isEnum ? theme.success.accent : theme.primary.accent};
@@ -49,12 +55,13 @@ const Type = styled.span<{isEnum?: boolean}>`
 
 const DefaultValue = styled.span`
     font-size: 0.75rem;
-    color: ${({ theme }) => rgba(theme.on, 0.5)};
+    color: ${({ theme }) => theme.on_alt};
 `
 const Child = styled.div`
 display: flex;
 flex-direction: column;
 align-items: flex-start;
+margin-left: 0.5rem;
 align-self: stretch;
 margin-bottom: 1.5rem;
 & p:first-of-type{
@@ -64,6 +71,7 @@ margin-bottom: 1.5rem;
 & > p {
     font-size: 0.875rem !important;
     line-height: 1.5rem !important;
+    font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
 }
 `
 
