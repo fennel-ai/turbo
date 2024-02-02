@@ -23,6 +23,7 @@ const Root = styled.aside`
 		overflow-x: hidden;
 		position: sticky;
 		top: 8rem;
+		padding-bottom: 2rem;
 	}
 `;
 

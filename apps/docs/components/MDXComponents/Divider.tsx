@@ -21,6 +21,9 @@ const RightSectionWrapper = styled.div`
 		position: sticky;
         top: 8rem;
         align-self: start;
+        & div:first-of-type {
+            margin-top: 0px !important;
+        }
 	}
 `
 

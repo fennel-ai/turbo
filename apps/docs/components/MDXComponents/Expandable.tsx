@@ -52,6 +52,9 @@ flex-direction: column;
 align-items: flex-start;
 align-self: stretch;
 margin-bottom: 1.5rem;
+& p:first-of-type{
+    margin-top: 0px;
+}
 `
 
 interface Props {
@@ -88,7 +91,7 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
             </TitleContainer>
             {isExpanded && 
             <Child>
-                {optional && <DefaultValue>Optional</DefaultValue>}
+                {optional && <DefaultValue><p>Optional</p></DefaultValue>}
                 {children}
             </Child>
 			}
