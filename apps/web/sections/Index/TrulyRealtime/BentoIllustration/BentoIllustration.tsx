@@ -20,7 +20,7 @@ const Root = styled.div`
 
 const StreamingJoins = styled(Card)`
 	background-color: ${({ theme }) => theme.glass};
-	border: 0.5px solid ${({ theme }) => theme.border.light};
+	border: 0.5px solid ${({ theme }) => theme.border};
 	grid-column: span 2; 
 	display: flex;
 	flex-direction: column;
@@ -71,7 +71,7 @@ const BentoIllustration = () => {
 			<StreamingJoins>
 				<Illustration>
 					<svg width="168" height="314" viewBox="0 0 168 314" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path fillRule="evenodd" clipRule="evenodd" d="M0 34V105.769C0 120.754 6.00594 135.114 16.6745 145.637L64.0896 192.406C71.71 199.923 76 210.18 76 220.884V314H92V220.884C92 210.18 96.29 199.923 103.91 192.406L151.325 145.637C161.994 135.114 168 120.754 168 105.769V34H152V105.769C152 116.472 147.71 126.73 140.09 134.246L92.6746 181.015C89.3033 184.341 86.3977 188.049 84 192.039C81.6023 188.049 78.6967 184.341 75.3254 181.015L27.9104 134.246C20.29 126.73 16 116.472 16 105.769V34H0Z" fill={theme.border.light} />
+						<path fillRule="evenodd" clipRule="evenodd" d="M0 34V105.769C0 120.754 6.00594 135.114 16.6745 145.637L64.0896 192.406C71.71 199.923 76 210.18 76 220.884V314H92V220.884C92 210.18 96.29 199.923 103.91 192.406L151.325 145.637C161.994 135.114 168 120.754 168 105.769V34H152V105.769C152 116.472 147.71 126.73 140.09 134.246L92.6746 181.015C89.3033 184.341 86.3977 188.049 84 192.039C81.6023 188.049 78.6967 184.341 75.3254 181.015L27.9104 134.246C20.29 126.73 16 116.472 16 105.769V34H0Z" fill={theme.border} />
 						<rect x="152" y="70" width="16" height="48" rx="8" fill="url(#paint0_linear_1023_12952)" />
 						<circle cx="160" cy="110" r="8" fill={theme.primary.accent} />
 						<rect x="76" y="234" width="16" height="48" rx="8" fill="url(#paint1_linear_1023_12952)" />

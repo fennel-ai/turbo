@@ -35,7 +35,7 @@ const Root = styled.div<{ toolbar?: boolean }>`
 
 	${media('sm')} {
 		box-shadow: 0px 4px 16px 0px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0 : 0.32)};
-		border: 0.5px solid ${({ theme }) => theme.border.light};
+		border: 0.5px solid ${({ theme }) => theme.border};
 		border-radius: 1.25rem;
 	}
 `;
@@ -66,7 +66,7 @@ const FakeButtons = styled.div`
 const Filename = styled.a`
 	font-size: 0.875rem;
 	line-height: 1.5rem;
-	font-family: 'Jetbrains Mono', monospace;
+	font-family: 'IBM Plex Mono', monospace;
 	color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
 	text-decoration: none;
 	position: absolute;

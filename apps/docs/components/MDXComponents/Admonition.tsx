@@ -36,7 +36,6 @@ type Props = {
 
 const Root = styled.div<{ type: Props['type'] }>`
 	background-color: ${({ theme}) => theme.surface };
-	box-shadow: 0px 0px 0px 3px rgba(${({ theme }) => theme.ref.grey[80]}, 48%);
 	padding: 0.75rem 1.25rem;
 	border-radius: 0.75rem;
 	margin: 1rem 0 2rem 0;
@@ -52,7 +51,7 @@ const Root = styled.div<{ type: Props['type'] }>`
 		color: rgba(${({ type }) => get(TYPE_MAP[type].text_color)}, 100%);
 		font-size: 1rem;
 		line-height: 1.75rem;
-		font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
+		font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.medium};
 
 		${media('sm')} {
 			font-size: 1.125rem;
@@ -79,7 +78,7 @@ const Title = styled.div<{ type: Props['type'] }>`
 		margin: 0;
 		font-size: 1rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" ${props => props.theme.fontWeights.bold};
+		font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.bold};
 	}
 `;
 

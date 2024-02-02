@@ -23,7 +23,7 @@ const Root = styled(Card)`
 	padding: 1rem;
 	overflow: hidden;
 	background-color: ${({ theme }) => theme.glass};
-	border: 0.5px solid ${({ theme }) => theme.border.light};
+	border: 0.5px solid ${({ theme }) => theme.border};
 
 	${media('sm')} {
 		grid-column: span 1;
@@ -48,7 +48,7 @@ export const LowLatency = () => {
 	return (
 		<Root>
 			<Illustration>
-				<LightningIcon color={theme.border.light} width={265} height={265} />
+				<LightningIcon color={theme.border} width={265} height={265} />
 			</Illustration>
 			<Text center>
 				<h6>Single-digit ms response</h6>

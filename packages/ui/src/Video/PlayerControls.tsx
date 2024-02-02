@@ -39,7 +39,7 @@ const Seekbar = styled.input<{percentDone: number}>`
         cursor: pointer;
 
         &::-webkit-slider-runnable-track {
-            background: rgba(${({ theme }) => theme.ref.purple[95]},0.24);
+            background: rgba(${({ theme }) => theme.ref.purple['5']},0.24);
             height: 4px;
             background-image: linear-gradient(#fff, #fff);
             border-radius: 1rem;
@@ -48,7 +48,7 @@ const Seekbar = styled.input<{percentDone: number}>`
         }
 
         &::-moz-range-track {
-            background: rgba(${({ theme }) => theme.ref.purple[95]},0.24);
+            background: rgba(${({ theme }) => theme.ref.purple['5']},0.24);
             height: 4px;
             background-image: linear-gradient(#fff, #fff);
             border-radius: 1rem;
@@ -94,11 +94,11 @@ const PauseIcon = styled.div`
 const Duration = styled.div`
     font-weight: 500;
     font-size: 1rem;
-    color: rgba(${({ theme }) => theme.ref.purple[95]},0.8);
+    color: rgba(${({ theme }) => theme.ref.purple['5']},0.8);
 `
 
 const DurationBold = styled.span`
-    color: rgba(${({ theme }) => theme.ref.purple[95]},1);
+    color: rgba(${({ theme }) => theme.ref.purple['5']},1);
 `
 
 

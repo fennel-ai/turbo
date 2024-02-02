@@ -26,7 +26,7 @@ const List = styled.div`
 
 const ListTitle = styled.div`
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid ${({ theme }) => theme.border.light};
+    border-bottom: 1px solid ${({ theme }) => theme.border};
 
     & h4 {
         color: ${({ theme }) => theme.on_alt};

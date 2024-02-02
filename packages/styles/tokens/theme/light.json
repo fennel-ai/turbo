@@ -1,4 +1,32 @@
 {
+  "surface": {
+    "value": "{color.grey.0}",
+    "type": "color"
+  },
+  "background": {
+    "value": "{color.grey.5}",
+    "type": "color"
+  },
+  "on": {
+    "value": "{color.grey.130}",
+    "type": "color"
+  },
+  "on_alt": {
+    "value": "{color.grey.100}",
+    "type": "color"
+  },
+  "border": {
+    "value": "{color.grey.10}",
+    "type": "color"
+  },
+  "shadow": {
+    "value": "{color.grey.120}",
+    "type": "color"
+  },
+  "glass": {
+    "value": "rgba({surface}, 90%)",
+    "type": "color"
+  },
   "body": {
     "small": {
       "value": {
@@ -139,6 +167,68 @@
         "letterSpacing": "{letterSpacing.large}"
       },
       "type": "typography"
+    }
+  },
+  "syntax": {
+    "code": {
+      "small": {
+        "value": {
+          "fontFamily": "{fontFamilies.mono}",
+          "fontWeight": "{fontWeights.mono.regular}",
+          "fontSize": "{typescale.1}",
+          "lineHeight": "{typescale.5}"
+        },
+        "type": "typography"
+      },
+      "default": {
+        "value": {
+          "fontFamily": "{fontFamilies.mono}",
+          "fontWeight": "{fontWeights.mono.regular}",
+          "fontSize": "{typescale.2}",
+          "lineHeight": "{typescale.6}"
+        },
+        "type": "typography"
+      }
+    },
+    "lineNumber": {
+      "small": {
+        "value": {
+          "fontFamily": "{fontFamilies.mono}",
+          "fontWeight": "{fontWeights.mono.light}",
+          "fontSize": "{typescale.0}",
+          "lineHeight": "{typescale.5}"
+        },
+        "type": "typography"
+      },
+      "default": {
+        "value": {
+          "fontFamily": "{fontFamilies.mono}",
+          "fontWeight": "{fontWeights.mono.light}",
+          "fontSize": "{typescale.1}",
+          "lineHeight": "{typescale.6}"
+        },
+        "type": "typography"
+      }
+    },
+    "label": {
+      "small": {
+        "value": {
+          "fontFamily": "{fontFamilies.mono}",
+          "fontWeight": "{fontWeights.mono.medium}",
+          "fontSize": "{typescale.0}",
+          "lineHeight": "{typescale.2}"
+        },
+        "type": "typography"
+      },
+      "default": {
+        "value": {
+          "fontFamily": "{fontFamilies.mono}",
+          "fontWeight": "{fontWeights.mono.medium}",
+          "fontSize": "{typescale.1}",
+          "lineHeight": "{typescale.2}"
+        },
+        "type": "typography"
+      }
     }
   }
 }

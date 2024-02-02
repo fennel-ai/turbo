@@ -8,7 +8,7 @@ const Root = styled.div`
 	justify-content: center;
 	border-radius: 0.75rem;
 	background-color: rgb(${({ theme }) => theme.ref.purple['70']});
-	box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.border.light};
+	box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.border};
 	color: ${({ theme }) => rgba(theme.primary.on, 0.8)};
 	width: 3rem;
 	height: 3rem;

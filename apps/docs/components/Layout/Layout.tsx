@@ -57,7 +57,7 @@ const Root = styled(Container)`
 		h2 {
 			font-size: 1.5rem;
 			line-height: 2rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 			margin-top: 2rem;
 			margin-bottom: 1rem;
 
@@ -78,7 +78,7 @@ const Root = styled(Container)`
 		h3 {
 			font-size: 1.25rem;
 			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.extrabold};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.extrabold};
 			margin-top: 1rem;
 			margin-bottom: 1rem;
 
@@ -95,7 +95,7 @@ const Root = styled(Container)`
 			font-size: 1.125rem;
 			line-height: 2rem;
 			margin-bottom: 1.5rem;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.medium};
 
 			${media('sm')} {
 				font-size: 1.25rem;
@@ -133,7 +133,7 @@ const Root = styled(Container)`
 		}
 
 		hr {
-			background-color: ${({ theme }) => theme.border.light};
+			background-color: ${({ theme }) => theme.border};
 			border: none;
 			height: 2px;
 		}
@@ -152,7 +152,7 @@ const Root = styled(Container)`
 		li {
 			font-size: 1.125rem;
 			line-height: 2rem;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.medium};
 			margin-bottom: 0.75rem;
 
 			${media('sm')} {
@@ -164,8 +164,8 @@ const Root = styled(Container)`
 		code:not(pre > code) {
 			font-size: 0.875rem;
 			line-height: 1rem;
-			font-family: ${({ theme }) => theme.fontFamilies.code}, monospace;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
+			font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.medium};
 			padding: 0.25rem 0.375rem;
 			margin: 0 0.25rem;
 			background-color: ${({ theme }) => rgba(theme.on_alt, 0.04)};

@@ -22,7 +22,7 @@ const SectionTitle = styled.li<{expand: boolean}>`
 	color: ${({ theme }) => theme.on};
 	font-size: 1.25rem;
 	line-height: 2.5rem;
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 	opacity: ${({ expand }) => expand ? 1 : 0.64};
 	cursor: pointer;
 	display: flex;
@@ -50,7 +50,7 @@ const PageList = styled.ul`
 	gap: 0.5rem;
 	margin: 1rem 0;
 	padding-left: 2rem;
-	border-left: 1px solid ${({ theme }) => theme.border.light};
+	border-left: 1px solid ${({ theme }) => theme.border};
 `;
 
 const animation = {

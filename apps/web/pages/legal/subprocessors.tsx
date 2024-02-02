@@ -61,7 +61,7 @@ const Wrapper = styled(Container)`
 const ListHeader = styled.div`
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    border-bottom: 1px solid ${({ theme }) => theme.border.light};
+    border-bottom: 1px solid ${({ theme }) => theme.border};
     font-size: 0.8125rem;
     line-height: 1rem;
     font-variation-settings: "wght" 600;
@@ -83,7 +83,7 @@ const SubprocessorItem = styled.div`
         background-color: ${({ theme }) => theme.glass};
         gap: 0.5rem;
         padding: 1rem;
-        border: 1px solid ${({ theme }) => theme.border.light};
+        border: 1px solid ${({ theme }) => theme.border};
         border-radius: 0.5rem;
 
         & + & {
@@ -104,7 +104,7 @@ const SubprocessorItem = styled.div`
         align-items: center;
 
         & + & {
-            border-top: 1px solid ${({ theme }) => theme.border.light};
+            border-top: 1px solid ${({ theme }) => theme.border};
         }
     }
 `;

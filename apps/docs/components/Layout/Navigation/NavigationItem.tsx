@@ -5,7 +5,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	font-size: 1.125rem;
 	line-height: 2rem;
 	color: ${({ active, theme }) => active ? theme.primary.accent : theme.on_alt};
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.medium};
 	opacity: ${({ fade }) => fade ? 0.64 : 1};
 	position: relative;
 	display: flex;
@@ -21,7 +21,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 		border-radius: 50%;
 		background-color: ${({ status, theme }) => {
 			switch (status) {
-				case 'draft': { return theme.border.light }
+				case 'draft': { return theme.border }
 				case 'wip': { return theme.caution.accent }
 				case 'published': { return theme.success.accent }
 			}

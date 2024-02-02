@@ -28,7 +28,7 @@ const Root = styled.div`
 		line-height: 1.5rem;
 		letter-spacing: -0.5px;
 		margin: 0;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
 
 		${media('md')} {
 			font-size: 1.25rem;

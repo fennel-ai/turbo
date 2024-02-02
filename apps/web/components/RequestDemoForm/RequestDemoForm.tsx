@@ -49,7 +49,7 @@ const InputRoot = styled.div<{ required?: boolean }>`
 	& input, & select {
 		background: none;
 		height: 2.5rem;
-		border: 1px solid ${({ theme }) => theme.border.light};
+		border: 1px solid ${({ theme }) => theme.border};
 		border-radius: 0.5rem;
 		outline: none;
 		padding: 0 0.75rem;
@@ -57,7 +57,7 @@ const InputRoot = styled.div<{ required?: boolean }>`
 		font-family: ${haskoyVariable.style.fontFamily};
 		font-size: 0.875rem;
 		line-height: 1rem;
-		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 	}
 
 	& select:invalid {
@@ -68,7 +68,7 @@ const InputRoot = styled.div<{ required?: boolean }>`
         position: relative;
 		font-size: 0.875rem;
 		line-height: 1.5rem;
-		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 		align-self: flex-start;
 
         &::after {
@@ -91,7 +91,7 @@ const HelperRow = styled.div`
 		margin: 0;
 		font-size: 0.875rem;
 		line-height: 1rem;
-		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 		color: ${({ theme }) => theme.error.accent};
 	}
 `;

@@ -5,7 +5,7 @@ import { media } from 'styles/utils';
 
 const Root = styled.footer`
 	background-color: ${({ theme }) => theme.surface};
-	border-top: 1px solid ${({ theme }) => theme.border.light};
+	border-top: 1px solid ${({ theme }) => theme.border};
 	padding: 2.5rem 0;
 	display: flex;
 	flex-direction: column;
