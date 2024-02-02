@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from '@emotion/styled';
-import { media, rgba } from "styles/utils";
+import { media, rgba, stateLayer } from "styles/utils";
 import { Footer } from 'ui';
 
 import type { NavigationTree, Outline } from "lib/utils";
@@ -40,7 +40,8 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	& > main {
 		padding-top: calc(6rem + 2rem);
 		padding-bottom: 5rem;
-		color: ${({ theme }) => theme.on_alt};
+		color: ${({ theme }) => theme.on};
+		
 
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
@@ -95,13 +96,14 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 
 
 		/** Target paragraphs that are direct children of the main element (we don't necessarily want to style paragraphs within e.g. lists in the same way.) */
-		& > p {
+		& > p, & > div > p, & > div > div > p, & > div > div > div > p {
 			margin: 0;
 			font-size: 1rem;
 			line-height: 1.75rem;
 			margin-bottom: 1rem;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
+			font-variation-settings: "wght" ${props => props.theme.type == "dark" ? props.theme.fontWeights.regular : props.theme.fontWeights.medium};
 		}
+
 
 		& a {
 			position: relative;
@@ -167,8 +169,8 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem;
 			margin: 0 0.25rem;
-			background-color: ${({ theme }) => theme.type==="dark" ? "#1F2229" : "#F9F9FA"};
-			color: ${({ theme }) => theme.primary.accent};
+			${stateLayer(0.04)}
+			color: ${({ theme }) => theme.on_alt};
 			border: 0.5px solid ${({ theme }) => rgba(theme.primary.accent, 0.12)};
 			border-radius: 0.375rem;
 		}

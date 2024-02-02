@@ -7,9 +7,7 @@ import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
-import { useScroll } from "framer-motion";
 import styled from "@emotion/styled";
-import { useRouter } from "next/router";
 
 type Props = {
 	pages: NavigationPage[],
@@ -24,6 +22,7 @@ const PageWrapper = styled.div<{index: number}>`
     width: 100%;
     padding-top: ${({index}) => index===0 ? 0 : 4}rem;
     padding-bottom: 4rem;
+    border-bottom: 1px solid ${({theme}) => theme.border.light};
     scroll-margin-top: 6.3125rem; 
 `
 
@@ -98,7 +97,6 @@ export default function DocumentationPage({ pages, navigation, navigationOrder }
 }
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-	// const { params } = ctx;
     const navigation = getNavigation('api');
     const navigationOrder = navigation.map((nav) => nav.pages).flat();
     const ordering: {[key:string]: number} = {};

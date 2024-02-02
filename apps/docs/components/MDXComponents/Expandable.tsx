@@ -48,6 +48,7 @@ const Type = styled.span<{isEnum?: boolean}>`
 `
 
 const DefaultValue = styled.span`
+    font-size: 0.75rem;
     color: ${({ theme }) => rgba(theme.on, 0.5)};
 `
 const Child = styled.div`
@@ -58,6 +59,11 @@ align-self: stretch;
 margin-bottom: 1.5rem;
 & p:first-of-type{
     margin-top: 0px;
+}
+
+& > p {
+    font-size: 0.875rem !important;
+    line-height: 1.5rem !important;
 }
 `
 

@@ -1,7 +1,7 @@
 import { Children, ReactElement } from "react";
 import styled from '@emotion/styled';
 import { motion } from "framer-motion";
-import { get, media } from "styles/utils";
+import { get, media, stateLayer } from "styles/utils";
 import ArrowRightIcon from 'ui/icons/arrow-narrow-right.svg';
 import { useBreakpoint } from "hooks/useBreakpoint";
 
@@ -10,10 +10,11 @@ const Wrapper = styled.div`
 `;
 
 const TableRoot = styled.table`
-	width: 100%;
+	display: inline-block;
 	overflow-x: auto;
 	border-collapse: collapse; 
 	font-size: 0.875rem;
+	line-height: 1.5rem;
 	border: 0.5px solid ${({ theme }) => theme.border.light };
 	border-radius: 0.5rem;
 
@@ -35,6 +36,7 @@ const TableRoot = styled.table`
 
 	& thead {
 		background: ${({theme}) => theme.type==="dark" ? "#1F2229" : "#F9F9FA"};
+		${({  theme }) => stateLayer(0.04,theme.type==="dark" ? "#1F2229" : "#F9F9FA" )};
 		
 		tr {
 			text-align: left;
@@ -53,9 +55,7 @@ const TableRoot = styled.table`
 	& tbody {
 		tr td {
 			padding: 1rem; 
-			font-size: 1rem;
-			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.regular};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
 			vertical-align: top;
 		}
 	}
