@@ -24,6 +24,7 @@ const PageWrapper = styled.div<{index: number}>`
     width: 100%;
     padding-top: ${({index}) => index===0 ? 0 : 4}rem;
     padding-bottom: 4rem;
+    scroll-margin-top: 6.3125rem; 
 `
 
   
@@ -39,35 +40,25 @@ const APIReferencePage = ({page}: {page: NavigationPage}) => {
 export default function DocumentationPage({ pages, navigation, navigationOrder }: Props) {
     const [currentActive, setCurrentActive] = useState(pages[0].slug)
     const containerRef = useRef(null);
-    const {asPath} = useRouter();
-    const {scrollY} = useScroll({
-        target: containerRef.current as any
-    });
 
     useEffect(() => {
-        const scrollCallback = () => {
-            let currentPage = '';
-            for(let i =0;i < pages.length; i++) {
-                const section = document.getElementById(pages[i].slug as string);
-                if(section?.offsetTop! < scrollY.get() + 500) {
-                    currentPage = pages[i].slug || '';
-                }
+        const handleScroll = () => {
+          let current = ''
+          for (const page of pages) {
+            const slug = page.slug as string;
+            const element = document.getElementById(slug)
+            if (element && element.getBoundingClientRect().top < 200) {
+                current = slug
             }
-            setCurrentActive(currentPage);
+          }
+          setCurrentActive(current)
         }
-
-        document.addEventListener('scroll', scrollCallback,  { passive: true });
+        handleScroll()
+        window.addEventListener('scroll', handleScroll, { passive: true })
         return () => {
-            document.removeEventListener('scroll', scrollCallback);
+          window.removeEventListener('scroll', handleScroll)
         }
-    }, [])
-
-    useEffect(() => {
-        const hash = asPath.split('#')[1];
-        if(hash) {
-            setCurrentActive(hash);
-        }
-    }, [asPath])
+      }, [])
 
 
 	return (

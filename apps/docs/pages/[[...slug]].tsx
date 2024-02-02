@@ -1,12 +1,14 @@
 import { useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPages, aPIConfig } from 'contentlayer/generated';
+import { allPages } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
+import { PageNavigation } from "components/Layout/PageNavigation";
+import styled from "@emotion/styled";
 
 type Props = {
 	page: NavigationPage,
@@ -15,6 +17,18 @@ type Props = {
 	code: string,
 	headings: {level: number, title: string}[]
 }
+
+const Wrapper = styled.div`
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+`
+const MDXWrapper = styled.div`
+	grid-column: span 8;
+`
+
+const MarginWrapper = styled.div`
+	grid-column: span 1;
+`
 
 export default function DocumentationPage({ page, navigation, section, code, headings }: Props) {
 	const ctxValue = useMemo(() => ({
@@ -26,7 +40,7 @@ export default function DocumentationPage({ page, navigation, section, code, hea
 
 	return (
 		<LayoutContext.Provider value={ctxValue}>
-			<Layout navigation={navigation} outline={headings}>
+			<Layout navigation={navigation} headings={headings}>
 				<Head>
 					<title>{page.title}</title>
 					{page.description ? <meta name="description" content={page.description} /> : null}
@@ -55,8 +69,13 @@ export default function DocumentationPage({ page, navigation, section, code, hea
 					<meta name="apple-mobile-web-app-title" content="Fennel" />
 					<meta name="application-name" content="Fennel" />
 				</Head>
-				{/* @ts-ignore */}
-				<MDXContent components={components} />
+				<Wrapper>
+					<MDXWrapper>
+					{/* @ts-ignore */}
+						<MDXContent components={components} />
+					</MDXWrapper>
+					<MarginWrapper/>
+				</Wrapper>
 			</Layout>
 		</LayoutContext.Provider>
 	);

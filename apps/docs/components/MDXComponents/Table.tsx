@@ -13,11 +13,14 @@ const TableRoot = styled.table`
 	display: block;
 	width: 100%;
 	overflow-x: auto;
-	border-collapse: separate;
+	border-collapse: collapse; 
+	font-size: 0.875rem;
+	border: 0.5px solid ${({ theme }) => theme.border.light };
+	border-radius: 0.5rem;
 
 	tr {
 		display: flex;
-
+		border-bottom: 0.5px solid ${({ theme }) => theme.border.light };
 		${media('sm')} {
 			display: table-row;
 		}
@@ -32,25 +35,18 @@ const TableRoot = styled.table`
 	}
 
 	& thead {
-		box-shadow: 0px 2px 0px ${({ theme }) => theme.border.light};
+		background: ${({theme}) => theme.type==="dark" ? "#1F2229" : "#F9F9FA"};
 		
 		tr {
 			text-align: left;
 
 			th {
+				border: none;
+				text-transform: uppercase;
 				padding: 1rem;
-				border-collapse: separate;
-				font-size: 1.125rem;
-				line-height: 1.5rem;
+				line-height: 1rem;
+				font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
 				color: ${({ theme }) => theme.on_alt };
-
-				&:first-of-type {
-					padding-left: 0;
-				}
-
-				&:last-of-type {
-					padding-right: 0;
-				}
 			}
 		}
 	}
@@ -60,16 +56,8 @@ const TableRoot = styled.table`
 			padding: 1rem; 
 			font-size: 1rem;
 			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.regular};
 			vertical-align: top;
-
-			&:first-of-type {
-				padding-left: 0;
-			}
-
-			&:last-of-type {
-				padding-right: 0;
-			}
 		}
 	}
 `;

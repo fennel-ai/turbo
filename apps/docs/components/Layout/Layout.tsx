@@ -19,7 +19,7 @@ type Props = {
 	navigation: NavigationTree,
 	isAPI?: boolean,
 	active?: string,
-	outline?: Outline,
+	headings?: Outline,
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -28,6 +28,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	gap: 2rem;
 	padding-top: calc(6rem + 2rem);
 	padding-bottom: 5rem;
+	scroll-behavior: smooth;
 
 	${media('xs')} {
 		grid-template-columns: repeat(8, 1fr);
@@ -52,6 +53,11 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-family: ${haskoyVariable.style.fontFamily}, serif;
 			font-weight: 500;
 			margin: 0;
+			scroll-margin-top: 8rem;
+
+			${media('md')} {
+				scroll-margin-top: 6.3125rem; 
+			}
 		}
 
 		h2 {
@@ -161,8 +167,8 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
 			padding: 0.25rem 0.375rem;
 			margin: 0 0.25rem;
-			background-color: ${({ theme }) => rgba(theme.primary.accent, 0.04)};
-			color: ${({ theme }) => theme.primary.accent};
+			background-color: ${({ theme }) => theme.type === "dark" ? "#1F2229" : "#131519"};
+			color: ${({ theme }) => theme.on};
 			border: 0.5px solid ${({ theme }) => rgba(theme.primary.accent, 0.12)};
 			border-radius: 0.375rem;
 		}
@@ -184,16 +190,12 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 
 		${media('lg')} {
-			grid-column: ${({ isAPI }) => isAPI ? "span 4" : "span 3"};
-		}
-		
-		${media('xl')} {
 			grid-column: ${({ isAPI }) => isAPI ? "span 4" : "span 3" };
 		}
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, active, outline }: Props) => {
+const Layout = ({ children, navigation, isAPI, active, headings }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
@@ -208,7 +210,7 @@ const Layout = ({ children, navigation, isAPI, active, outline }: Props) => {
 				<main>
 					{children}
 				</main>
-				{outline && <PageNavigation headings={outline}/>}
+				{headings && <PageNavigation headings={headings}/>}
 			</Root>
 			<Footer />
 		</>

@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import { media } from 'styles/utils';
 import { motion } from 'framer-motion';
 
-const Root = styled.aside`
+const Root = styled.div`
 	display: none;
 	${media('lg')} {
 		display: block;
@@ -35,14 +35,16 @@ flex-direction: column;
 align-items: flex-start;
 gap: 1rem;
 font-size: 0.875rem;
+padding-inline-start: 0rem;
 `;
 
-const NavItem = styled.a<{active?: boolean}>`
-    color: ${({theme, active}) => active? theme.primary.accent : theme.on_alt};
+const NavItem = styled.a<{level:number , active?: boolean}>`
+    color: ${({theme, active}) => active? theme.primary.accent : theme.on_alt};   
+    margin-left: ${({level }) => (level - 2)}rem
 `
 
 const sluggifyTitle = (title: string) => {
-    const _title = title.replace(/[^a-zA-Z0-9 ]/g, "");
+    const _title = title.replace(/[^a-zA-Z0-9- ]/g, "");
     return _title.toLowerCase().split(' ').join('-');
 }
 
@@ -55,7 +57,7 @@ export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
       for (const heading of headings) {
         const slug = sluggifyTitle(heading.title);
         const element = document.getElementById(slug)
-        if (element && element.getBoundingClientRect().top < 300) {
+        if (element && element.getBoundingClientRect().top < 200) {
             current = slug
         }
       }
@@ -68,7 +70,8 @@ export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
     }
   }, [headings])
 
-  const headingsToRender = headings.filter((_) => _.level == 2)
+
+  const headingsToRender = headings.filter((_) => _.level > 1)
 
   if ((headingsToRender ?? []).length === 0) return null
 
@@ -79,10 +82,15 @@ export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
         {headingsToRender.map(({ title, level }, index) => (
           <li key={index}>
             <NavItem
-              href={`#${sluggifyTitle(title)}`}
-              active={sluggifyTitle(title) == activeHeading}
+            href={`#${sluggifyTitle(title)}`}
+              active={sluggifyTitle(title) === activeHeading}
+              level={level}
             >
-                {title}
+                <span
+                dangerouslySetInnerHTML={{
+                  __html: title.replace('`', '<code style="font-size: 0.75rem;">').replace('`', '</code>'),
+                }}
+              />
             </NavItem>
           </li>
         ))}

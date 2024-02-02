@@ -4,19 +4,18 @@ import { rgba } from "styles/utils";
 
 const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page['status'] }>`
 	font-size: 0.875rem;
-	height: 2rem;
 	color: ${({ active, theme }) => active ? theme.on : theme.on_alt};
 	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
 	position: relative;
 	display: flex;
 	align-items: center;
-	padding-left: 1rem;
 	border-left:  1px solid ${({ theme, active }) => active ? theme.primary.accent : theme.border.light};
-
 	&::after {
 		content: '';
 		width: 6px;
 		height: 6px;
+		position: absolute;
+		left: 90%;
 		margin-right: 50px;
 		border-radius: 50%;
 		background-color: ${({ status, theme }) => {
@@ -35,6 +34,10 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	}
 
 	& > a {
+		display: flex;
+		align-items: center;
+		padding-left: 1rem;
+		height: 2rem;
 		text-decoration: none;
 		color: inherit;
 		flex: 1;

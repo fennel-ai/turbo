@@ -158,7 +158,7 @@ const Header = () => {
 			<LinkWrapper>
 				<Brand/>
 				<NavWrapper>
-					<NavLink href='/' active={!isAPI}>Concepts</NavLink>
+					<NavLink href='/' active={!isAPI}>Docs</NavLink>
 					<NavLink href='/api-reference' active={isAPI}>API Reference</NavLink>
 				</NavWrapper>
 				</LinkWrapper>
