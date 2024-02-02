@@ -44,7 +44,7 @@ const Root = styled.button`
 		pointer-events: none;
 		font-size: 0.875rem;
 		line-height: 1rem;
-		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold}};
+		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 	}
 `;
 

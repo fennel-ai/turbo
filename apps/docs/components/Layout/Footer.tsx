@@ -39,13 +39,13 @@ const Brand = styled.div`
 	& h4 {
 		font-size: 1.25rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
 	}
 
 	& p {
 		font-size: 0.875rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 		letter-spacing: -1px;
 		opacity: 64%;
 	}

@@ -60,7 +60,7 @@ const TableRoot = styled.table`
 			padding: 1rem; 
 			font-size: 1rem;
 			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 			vertical-align: top;
 
 			&:first-of-type {
@@ -84,7 +84,7 @@ const SwipeIndicator = styled(motion.div)`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 	color: ${({ theme }) => theme.primary.accent};
 `;
 

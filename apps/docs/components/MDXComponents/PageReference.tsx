@@ -34,7 +34,7 @@ const Header = styled.div`
 const Title = styled.h6`
 	font-size: 1.25rem;
 	line-height: 1.5rem;
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.extrabold};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.extrabold};
 `;
 
 const Text = styled.div`
@@ -45,7 +45,7 @@ const Text = styled.div`
 		font-size: 1.125rem;
 		line-height: 1.5rem;
 		color: ${({ theme }) => theme.on_alt};
-		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
+		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.medium};
 	}
 `;
 

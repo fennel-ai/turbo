@@ -28,7 +28,7 @@ const Content = styled.div`
 		margin: 0;
 		font-size: 1rem;
 		line-height: 1.75rem;
-		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
+		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.medium};
 		color: ${({ theme }) => theme.on_alt};
 	}
 `;
