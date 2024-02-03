@@ -65,10 +65,10 @@ const Root = styled.button<{
 
 export type IconButtonProps = {
     ariaLabel?: string;
-    className?: string,
-    icon: ComponentType,
-    onClick?: MouseEventHandler<HTMLButtonElement>,
-    size: keyof typeof SIZE,
+    className?: string;
+    icon: ComponentType;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    size?: keyof typeof SIZE;
 }
 
 export const IconButton = ({ ariaLabel, className, icon: Icon, onClick, size = 'default' }: IconButtonProps) => {
