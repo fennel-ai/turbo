@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import { Theme } from 'styles';
-import { rgba } from 'styles/utils';
 
 export const SIZE = {
     'small': () => css`
