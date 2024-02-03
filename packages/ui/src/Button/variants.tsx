@@ -11,20 +11,24 @@ export const SIZE = {
 }
 
 export const STYLE = {
-    'flat': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme}) => css`
-        background-color: ${disabled ? 'rgba(7, 4, 58, 0.04)' : theme[color].accent};
-        color: ${theme[color].on};
-        opacity: ${!disabled ? 1.0 : 0.24};
-        box-shadow: ${theme.shadows.button[color][!disabled ? 'default' : 'disabled']};
+    'flat': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme}) => {
+        let resolvedColor = !disabled ? color : 'neutral';
 
-        &:hover {
-            box-shadow: ${theme.shadows.button[color][!disabled ? 'hover' : 'disabled']};
-        }
-        
-        &:active {
-            box-shadow: ${theme.shadows.button[color][!disabled ? 'active' : 'disabled']};
-        }
-    `,
+        return css`
+            background-color: ${disabled ? 'rgba(7, 4, 58, 0.04)' : theme[color].accent};
+            color: ${theme[resolvedColor].on};
+            opacity: ${!disabled ? 1.0 : 0.24};
+            box-shadow: ${theme.shadows.button[resolvedColor][!disabled ? 'default' : 'disabled']};
+
+            &:hover {
+                box-shadow: ${theme.shadows.button[resolvedColor][!disabled ? 'hover' : 'disabled']};
+            }
+            
+            &:active {
+                box-shadow: ${theme.shadows.button[resolvedColor][!disabled ? 'active' : 'disabled']};
+            }
+        `
+    },
     'ghost': ({ color, disabled, theme }: { color: 'neutral' | 'primary', disabled: boolean, theme: Theme }) => css`
         background-color: transparent;
         color: ${theme[color].accent};
