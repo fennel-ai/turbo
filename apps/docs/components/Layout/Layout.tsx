@@ -82,7 +82,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			${({isAPI, theme}) => isAPI && `
 				position: sticky;
 				top: 4.5rem;
-				background: ${theme.background};
+				background: ${theme.surface};
 				z-index: 2;
 			`}
 			}
