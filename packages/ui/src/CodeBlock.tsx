@@ -22,7 +22,7 @@ type Props = {
 
 const Root = styled.div<{ toolbar?: boolean }>`
 	background-color: ${({ theme }) => theme.syntax.plain.background};
-	${props => stateLayer(0.04, props.theme.on_alt)}
+	${props => stateLayer({ initial: 0.04, color: props.theme.on_alt, interact: false })}
 	color: ${({ theme }) => theme.syntax.plain.foreground};
 	overflow: hidden;
 	position: relative;
@@ -57,18 +57,6 @@ const Toolbar = styled.div`
 	padding: 0.25rem 1rem;
 	color:${({ theme }) => theme.on_alt};
 	border-bottom: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
-`;
-
-const FakeButtons = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-	& span {
-		width: 1rem;
-		height: 1rem;
-		border-radius: 50%;
-		background-color: rgba(255, 255, 255, 0.12);
-	}
 `;
 
 const Filename = styled.a`
@@ -107,18 +95,18 @@ const CopyButton = styled.button`
 const Code = styled(Syntax)<{ toolbar: boolean }>`
 	& > pre {
 		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1rem'};
+        background: transparent;
 	}
 `;
 
-const InfoBar=styled.div<{ status?: string}>`
+const InfoBar = styled.div<{ status?: string }>`
 	display: flex;
 	height: 2.5rem;
 	padding-left: 1.5rem;
 	align-items: center;
 	gap: 0.5rem;
 	border-top: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
-	color:  ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on}
-
+	color: ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on};
 `
 const Title = styled.div`
 	text-transform: uppercase;
