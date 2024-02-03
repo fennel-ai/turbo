@@ -1,6 +1,6 @@
 import { ComponentType, MouseEventHandler } from 'react';
 import styled from '@emotion/styled';
-import { media, stateLayer } from 'styles/utils';
+import { stateLayer } from 'styles/utils';
 import { css } from '@emotion/react';
 
 export const SIZE = {
@@ -63,7 +63,7 @@ const Root = styled.button<{
 	${stateLayer()};
 `;
 
-type Props = {
+export type IconButtonProps = {
     ariaLabel?: string;
     className?: string,
     icon: ComponentType,
@@ -71,7 +71,7 @@ type Props = {
     size: keyof typeof SIZE,
 }
 
-export const IconButton = ({ ariaLabel, className, icon: Icon, onClick, size = 'default' }: Props) => {
+export const IconButton = ({ ariaLabel, className, icon: Icon, onClick, size = 'default' }: IconButtonProps) => {
 	return (
 		<Root aria-label={ariaLabel} className={className} onClick={onClick} size={size}>
 			<Icon />
