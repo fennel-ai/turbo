@@ -134,27 +134,26 @@ export const FlatButton = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 FlatButton.args = {
   label: 'Button',
-  color: 'neutral',
+  color: 'primary',
   variant: 'flat',
 };
 
 export const OutlineButton = Template.bind({});
 OutlineButton.args = {
   label: 'Button',
-  color: 'neutral',
   variant: 'outline',
 };
 
 export const GhostButton = Template.bind({});
 GhostButton.args = {
   label: 'Button',
-  color: 'neutral',
+  color: 'primary',
   variant: 'ghost',
 };
 
 export const GlassButton = Template.bind({});
 GlassButton.args = {
   label: 'Button',
-  color: 'neutral',
+  color: 'primary',
   variant: 'glass',
 };
