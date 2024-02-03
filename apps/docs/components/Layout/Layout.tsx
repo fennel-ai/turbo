@@ -178,7 +178,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
 			font-weight: ${props => props.theme.fontWeights.primary.medium};
 			background: ${({ theme }) => theme.border};
-			${stateLayer(0.04)}
+			${stateLayer({ initial: 0.04 })}
 			color: ${({ theme }) => theme.on};
 			border: 0.5px solid ${({ theme }) => theme.border};
 			border-radius: 0.25rem;
