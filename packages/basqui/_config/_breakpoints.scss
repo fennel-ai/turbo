@@ -1,0 +1,15 @@
+// Assumes 1rem === 16px
+$breakpoints: (
+	xxs: 25rem, // 400px
+	xs: 40rem, // 640px
+	sm: 48rem, // 768px
+	md: 62rem, // 992px
+	lg: 67.5rem, // 1200px
+	xl: 96rem, // 1536px
+);
+
+@mixin media($breakpoint, $minmax: 'min',) {
+	@media (#{$minmax}-width: #{map-get($breakpoints, $breakpoint)}) {
+		@content;
+	}
+}

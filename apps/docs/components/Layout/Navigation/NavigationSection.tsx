@@ -3,13 +3,12 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { get } from 'styles/utils';
-
 type Props = {
 	children: ReactNode;
 	expand: boolean;
 	href: string;
 	title: string;
+	isAPI?: boolean
 }
 
 const Root = styled(motion.ul)`
@@ -19,10 +18,10 @@ const Root = styled(motion.ul)`
 `;
 
 const SectionTitle = styled.li<{expand: boolean}>`
-	color: ${get('text')};
-	font-size: 1.25rem;
-	line-height: 2.5rem;
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+	color: ${({ theme }) => theme.on};
+	font-size: 1rem;
+	line-height: 1rem;
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 	opacity: ${({ expand }) => expand ? 1 : 0.64};
 	cursor: pointer;
 	display: flex;
@@ -47,10 +46,8 @@ const PageList = styled.ul`
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
 	margin: 1rem 0;
-	padding-left: 2rem;
-	border-left: 1px solid ${get('border')};
+	padding-left: 0rem;
 `;
 
 const animation = {
@@ -70,11 +67,11 @@ const animation = {
 	}
 }
 
-const NavigationSection = ({ children, expand, href, title }: Props) => {
+const NavigationSection = ({ children, expand, href, title, isAPI }: Props) => {
 	return (
 		<Root>
 			<SectionTitle expand={expand}>
-				<Link href={href}>{title}</Link>
+				{isAPI ? <>{title}</> : <Link href={href}>{title}</Link>}
 			</SectionTitle>
 			<AnimatePresence initial={false}>
 				{expand ? (

@@ -3,9 +3,10 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 import LinkExternalIcon from 'ui/icons/link-external.svg';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Root = styled(Link)`
-	border: 1px solid rgba(${({ theme }) => theme.ref.grey[100]}, 8%);
+	border: 1px solid ${({ theme }) => theme.border};
 	display: flex;
 	flex-direction: column;
 	border-radius: 1rem;
@@ -20,7 +21,7 @@ const Header = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	color: ${({ theme }) => theme.text};
+	color: ${({ theme }) => theme.on};
 	padding: 1.5rem;
 	padding-bottom: 0;
 
@@ -33,7 +34,7 @@ const Header = styled.div`
 const Title = styled.h6`
 	font-size: 1.25rem;
 	line-height: 1.5rem;
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.extrabold};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.extrabold};
 `;
 
 const Text = styled.div`
@@ -43,12 +44,13 @@ const Text = styled.div`
 		margin: 0;
 		font-size: 1.125rem;
 		line-height: 1.5rem;
-		color: ${({ theme }) => theme['text-alt']};
-		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
+		color: ${({ theme }) => theme.on_alt};
+		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.medium};
 	}
 `;
 
 export const PageReference = ({ children, illustration, href, title }: PropsWithChildren< { href: string, illustration: string, title: string}>) => {
+	const router = useRouter();
 	return (
 		<Root href={href}>
 			<Header>
@@ -59,7 +61,7 @@ export const PageReference = ({ children, illustration, href, title }: PropsWith
 			 * For now I've hardcoded the width and height so we can use next/image, as all of the illustration SVGs are the same size.
 			 * Will want to circle back and make this more dynamic in the future.
 			*/}
-			<Image src={illustration} width={392} height={168} alt={title} /> {/* eslint-disable-line @next/next/no-img-element */}
+			<Image src={router.basePath ? `${router.basePath}/${illustration}` : illustration} width={392} height={168} alt={title} /> {/* eslint-disable-line @next/next/no-img-element */}
 			<Text>
 				{children}
 			</Text>

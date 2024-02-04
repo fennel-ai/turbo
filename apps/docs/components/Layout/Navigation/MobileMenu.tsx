@@ -4,15 +4,14 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from "@emotion/styled";
 import { motion } from 'framer-motion';
-import { Button, IconButton } from 'ui';
+import { Button, IconButton, Masthead } from 'ui';
 import CloseIcon from 'ui/icons/close.svg';
 
 import { NavigationTree } from 'lib/utils';
-import { media } from 'styles/utils';
+import { media, rgba } from 'styles/utils';
 
 import { useShell } from 'context/Shell';
 
-import Masthead from 'components/Masthead';
 import NavigationItem from "./NavigationItem";
 import NavigationSection from './NavigationSection';
 import { useModalPresence } from 'hooks/useModalPresence';
@@ -26,7 +25,7 @@ const Root = styled(motion.div)`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #fff;
+	background-color: ${({ theme }) => theme.surface};
 	z-index: 5;
 	overflow-y: auto;
 	display: flex;
@@ -34,8 +33,8 @@ const Root = styled(motion.div)`
 	flex-direction: column;
 	padding: 0.5rem 1rem;
 	gap: 1.5rem;
-	box-shadow: 0px 18px 80px rgba(44, 45, 58, 0.04), 0px 7.51997px 33.4221px rgba(44, 45, 58, 0.0287542), 0px 4.02054px 17.869px rgba(44, 45, 58, 0.0238443), 0px 2.25388px 10.0172px rgba(44, 45, 58, 0.02), 0px 1.19702px 5.32008px rgba(44, 45, 58, 0.0161557), 0px 0.498106px 2.21381px rgba(44, 45, 58, 0.0112458);
-	
+	box-shadow: 0px 18px 80px ${({ theme }) => rgba(theme.shadow, 0.04)}, 0px 7.51997px 33.4221px ${({ theme }) => rgba(theme.shadow, 0.0287542)}, 0px 4.02054px 17.869px ${({ theme }) => rgba(theme.shadow, 0.0238443)}, 0px 2.25388px 10.0172px ${({ theme }) => rgba(theme.shadow, 0.02)}, 0px 1.19702px 5.32008px ${({ theme }) => rgba(theme.shadow, 0.0161557)}, 0px 0.498106px 2.21381px ${({ theme }) => rgba(theme.shadow, 0.0112458)};
+
 	${media('2xs')} {
 		top: 1rem;
 		left: 1rem;
@@ -75,7 +74,8 @@ const DemoCta = styled(Button)`
 
 type Props = {
 	onClose: MouseEventHandler,
-	items: NavigationTree
+	items: NavigationTree,
+	isAPI?: boolean,
 }
 
 const ANIM = {
@@ -101,16 +101,9 @@ const MobileMenu = (props: Props) => {
 			<Root ref={rootRef} initial={ANIM.initial} animate={ANIM.animate} exit={ANIM.exit} transition={ANIM.transition}>
 				<Header>
 					<Masthead />
-					<IconButton icon={CloseIcon} size="large" onClick={onClose} />
+					<IconButton icon={CloseIcon} onClick={onClose} />
 				</Header>
 				<Menu>
-					{
-						showCta ? (
-							<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
-								<DemoCta ariaLabel="Request a demo" label='Request a demo' variant="pill" />
-							</a> 
-						) : null
-					}
 					{
 						items.map((section) => {
 							const sectionActive = ctx.section.slug === section.slug;
@@ -131,13 +124,20 @@ const MobileMenu = (props: Props) => {
 												key={slug} 
 												onClick={toggleMobileMenu}
 											>
-												<Link aria-label={title} href={slug}>{title}</Link>
+												<Link aria-label={title} href={props.isAPI ? '#' + slug : slug}>{title}</Link>
 											</NavigationItem>
 										)
 									})}
 								</NavigationSection>
 							)
 						})
+					}
+					{
+						showCta ? (
+							<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
+								<DemoCta ariaLabel="Request a demo" label='Request a demo' />
+							</a>
+						) : null
 					}
 				</Menu>
 			</Root>

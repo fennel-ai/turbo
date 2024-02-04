@@ -1,3 +1,4 @@
+import "dotenv/config";
 import fs from "fs-extra";
 import path from "node:path";
 import { makeSource } from "contentlayer/source-remote-files";
@@ -8,14 +9,14 @@ import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from "remark-directive";
 import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
-import docsnip from 'remark-docsnip';
+import docsnip from "remark-docsnip";
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
 // Content types
 import { Page } from "./contentlayer/content_types/Page";
 
 import fetchContent from "./contentlayer/fetchContent";
-import { Config } from "./contentlayer/content_types/Config";
+import { Config, APIConfig } from "./contentlayer/content_types/Config";
 
 const CONTENT_DIR = "_content";
 
@@ -44,15 +45,15 @@ const githubSource = async () => {
 export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
-  documentTypes: [Page, Config],
+  documentTypes: [Page, Config, APIConfig],
   contentDirExclude: [
     ".git",
     ".gitignore",
     "docker-compose.yml",
     "Makefile",
     "README.md",
-	"algolia.config.json",
-	"deprecated"
+    "algolia.config.json",
+    "deprecated",
   ],
   mdx: {
     remarkPlugins: [

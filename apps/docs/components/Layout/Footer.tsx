@@ -9,7 +9,7 @@ import Logo from 'ui/icons/logo.svg';
 import Container from 'components/Container';
 
 const Root = styled.footer`
-	border-top: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
+	border-top: 1px solid ${({ theme }) => theme.border};
 
 	${media('xs')} {
 		height: 6.5rem;
@@ -34,18 +34,18 @@ const Brand = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 1rem;
-	color: ${({ theme }) => theme['text-alt']};
+	color: ${({ theme }) => theme.on_alt};
 
 	& h4 {
 		font-size: 1.25rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
 	}
 
 	& p {
 		font-size: 0.875rem;
 		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 		letter-spacing: -1px;
 		opacity: 64%;
 	}
@@ -57,7 +57,7 @@ const Socials = styled.div`
 	gap: 0.5rem;
 	
 	a {
-		color: ${({ theme }) => theme['text-alt']};
+		color: ${({ theme }) => theme.on_alt};
 	}
 `;
 
@@ -72,13 +72,13 @@ const Footer = () => {
 				</Brand>
 				<Socials>
 					<a href="https://www.twitter.com/fennelai/" aria-label="twitter" target="_blank" rel="noreferrer">
-						<IconButton ariaLabel="Twitter" icon={TwitterIcon} size="large" />
+						<IconButton ariaLabel="Twitter" icon={TwitterIcon} />
 					</a>
 					<a href="https://www.linkedin.com/company/fennel-ai/" aria-label="linkedin" target="_blank" rel="noreferrer">
-						<IconButton ariaLabel="LinkedIn" icon={LinkedInIcon} size="large" />
+						<IconButton ariaLabel="LinkedIn" icon={LinkedInIcon} />
 					</a>
 					<a href="https://github.com/fennel-ai" aria-label="github" target="_blank" rel="noreferrer">
-						<IconButton ariaLabel="Github" icon={GitHubIcon} size="large" />
+						<IconButton ariaLabel="Github" icon={GitHubIcon} />
 					</a>
 				</Socials>
 			</Wrapper>

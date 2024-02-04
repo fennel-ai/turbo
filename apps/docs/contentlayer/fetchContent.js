@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import tar from "tar-fs";
 import gunzip from "gunzip-maybe";
 
-const fetchContent = (token, dir) =>
+const fetchContent = async (token, dir) =>
   new Promise(async (resolve, reject) => {
     if (!token) {
       reject("No github token provided.");

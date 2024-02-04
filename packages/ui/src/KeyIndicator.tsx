@@ -8,11 +8,11 @@ const Root = styled.div`
 	user-select: none;
 	pointer-events: none;
 `;
-
+// TODO - Update the typescript definition for the theme.
 const Bubble = styled.div`
 	border-radius: 0.375rem;
-	background-color: ${({ theme }) => theme.inv.bg.muted};
-	color: ${({ theme }) => theme.inv.fg.default};
+	background-color: ${({ theme }) => theme.neutral.accent};
+	color: ${({ theme }) => theme.neutral.on};
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -23,7 +23,7 @@ const Bubble = styled.div`
 	padding-left: 0.25rem;
 	padding-right: 0.25rem;
 	flex: 1;
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 `;
 
 export const KeyIndicator = ({ className, label }: { className?: string, label: string }) => {

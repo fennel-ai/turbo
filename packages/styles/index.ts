@@ -1,26 +1,68 @@
-import tokens from './build/light.json';
+import lightTokens from './build/light.json';
+import darkTokens from './build/dark.json';
 
 type ColorScale = {
-	'0'?: string,
+	'5': string,
+	'10': string,
+	'20': string,
+	'30': string,
+	'40': string,
+	'50': string,
+	'60': string,
+	'70': string,
+	'80': string,
+	'90': string,
 	'100': string,
-	'200': string,
-	'300': string,
-	'400': string,
-	'500': string,
-	'600': string,
-	'700': string,
-	'800': string,
-	'900': string,
-	'1000'?: string,
+	'110': string,
+	'120': string,
+	'130': string,
+	'140': string,
+	'150': string,
 };
 
 type RefColors = Record<string, ColorScale | string>;
 
 type ThemeAccentPalette = {
 	accent: string,
-	'on-accent': string,
-	background: string, 
-	'on-background': string,
+	on: string,
+}
+
+type Typescale = {
+    "0": string,
+    "1": string,
+    "2": string,
+    "3": string,
+    "4": string,
+    "5": string,
+    "6": string,
+    "7": string,
+    "8": string,
+    "9": string,
+    "10": string,
+    "11": string,
+    "12": string,
+    "13": string,
+    "14": string,
+    "15": string,
+}
+
+type OpacityScale = {
+    "0": string,
+    "1": string,
+    "2": string,
+    "3": string,
+    "4": string,
+    "5": string,
+    "6": string,
+    "7": string,
+    "8": string,
+    "9": string,
+    "10": string,
+    "11": string,
+    "12": string,
+    "13": string,
+    "14": string,
+    "15": string,
 }
 
 type TypographyValue = {
@@ -31,179 +73,190 @@ type TypographyValue = {
 	lineHeight?: string,
 }
 
+type TypographySet = {
+    small?: TypographyValue,
+    default: TypographyValue,
+    large?: TypographyValue,
+}
+
 type SyntaxTheme = {
 	boolean: string,
 	builtins: string,
 	char: string,
 	'class-name': string,
 	code: {
-		fontFamily: string,
-		fontSize: string,
-		fontWeight: string,
-		letterSpacing: string,
-		lineHeight: string,
-	},
+        default: TypographyValue,
+        small: TypographyValue,
+    },
 	comment: string,
 	constant: string,
 	diff: {
 		deleted: string,
 		inserted: string,
 	},
-	function: string,
+    'double-quote-string': string,
+	'function-call': string,
+	'function-definition': string,
 	important: string,
 	keyword: string,
-	'line-number': {
-		fontFamily: string,
-		fontSize: string,
-		fontWeight: string,
-		letterSpacing: string,
-		lineHeight: string,
-	},
+    label: {
+        default: TypographyValue,
+        small: TypographyValue
+    }
+    'lineNumber': {
+        default: TypographyValue,
+        small: TypographyValue
+    },
 	number: string,
 	operator: string,
 	plain: {
 		background: string,
+        border: string,
 		foreground: string,
+        'line-number': string
 	},
 	property: string,
 	punctuation: string,
 	regex: string,
 	string: string,
 	symbol: string,
+    'triple-quote-string': string,
 	url: string,
 	variable: string,
+}
+
+type ButtonShadowTokens = {
+    default: string,
+    hover: string,
+    active: string
 }
 
 export type Breakpoint = "2xs" | "xs" | "sm" | "md" | "lg" | "xl";
 
 export type Theme = {
 	base: string,
-	button: {
-		default: {
-			neutral: {
-				bg: string,
-				fg: string
-			},
-			primary: {
-				bg: string
-				fg: string
-			},
-			"primary-alt": {
-				bg: string
-				fg: string
-			}
-		},
-		flat: {
-			neutral: {
-				bg: string,
-				fg: string
-			},
-			primary: {
-				bg: string
-				fg: string
-			},
-		},
-		neutral: {
-			shadow: string
-		},
-		pill: {
-			radius: string
-		},
-		primary: {
-			shadow: string
-		},
-		"primary-alt": {
-			shadow: string
-		},
-		rounded: {
-			radius: string
-		}
-	},
+	type: 'light' | 'dark';
+	inverted_theme: string,
 	breakpoints: Record<Breakpoint, number>, // Breakpoints are a map of size name to rem value representing the screen width of that breakpoint.
 	fontFamilies: {
-		code: string,
-		text: string,
-		title: string,
+		mono: string,
+		primary: string,
 	},
 	fontWeights: {
-		regular: string,
-		medium: string,
-		semibold: string,
-		bold: string, 
-		extrabold: string,
-	},
-	glass: {
-		backgroundBlur: string,
-		fill: string,
-	},
-	ref: RefColors,
-	bg: {
-		default: string,
-		muted: string,
-	},
-	fg: {
-		border: string,
-		default: string,
-		muted: string,
-		shadow: string,
-	},
-	inv: {
-		bg: {
-			default: string,
-			muted: string,
-		},
-		fg: {
-			border: string,
-			default: string,
-			muted: string,
-			shadow: string,
-		},
-	}
-	disabled: {
-		background: string,
-		foreground: string,
-	},
+        mono: {
+            light: string,
+            medium: string,
+            regular: string
+        },
+        primary: {
+            regular: string,
+            medium: string,
+            semibold: string,
+            bold: string,
+            extrabold: string,
+        }
+    },
+
+    // Code
 	syntax: SyntaxTheme,
-	background: string,
-	surface: string,
-	text: string,
-	'text-alt': string,
-	border: string,
-	shadow: string,
+    'line-number-container': {
+        default: {
+            fill: string
+        },
+        scrolled: {
+            backgroundBlur: string,
+            borderColor: string,
+            borderWidthRight: string,
+            fill: string,
+        }
+    },
+
+    // Scales
+	ref: RefColors,
+    typescale: Typescale,
+    opacity: OpacityScale,
+    radii: {
+        xs: string,
+        sm: string,
+        md: string,
+        lg: string,
+        xl: string,
+        '2xl': string,
+        '3xl': string,
+    },
+    letterSpacing: {
+        small: string,
+        medium: string,
+        large: string,
+    },
+    'state_layer': {
+        "0": string;
+        "1": string;
+        "2": string;
+        "3": string;
+        "4": string;
+        "5": string;
+    }
+
+    // Typography
+    title: TypographySet,
+    subtitle: TypographySet,
+    label: TypographySet,
+    body: TypographySet,
+    display: TypographySet
+
+    // Shadows
+    shadows: {
+        button: {
+            caution: ButtonShadowTokens,
+            error: ButtonShadowTokens,
+            neutral: ButtonShadowTokens,
+            outlined: ButtonShadowTokens,
+            primary: ButtonShadowTokens,
+            secondary: ButtonShadowTokens,
+            success: ButtonShadowTokens,
+            surface: ButtonShadowTokens,
+        },
+        sheet: string,
+    }
+	
+    // Colors (Generics)
+	background: string;
+	surface: string;
+	on: string;
+	on_alt: string;
+	border: string;
+	shadow: string;
+	glass: string;
+
+    // Colors (Accents)
 	primary: ThemeAccentPalette,
 	secondary: ThemeAccentPalette,
-	error: ThemeAccentPalette,
 	caution: ThemeAccentPalette,
-	success: ThemeAccentPalette
-	'icon-button': {
-		radius: string,
-	},
-	radii: Record<string, string>,
-	opacity: Record<string, string>,
-	'code-block': {
-		filename: {
-			color: string,
-			text: TypographyValue,
-		},
-		radius: string,
-		shadow: string, 
-		snippet: {
-			code: TypographyValue,
-			'line-number': TypographyValue,
-		}
-	},
+	error: ThemeAccentPalette,
+	success: ThemeAccentPalette,
+	neutral: ThemeAccentPalette,
 }
 
-const theme: Theme = {
-	breakpoints: {
-		'2xs': 25, // 400px
-		xs: 40, // 640px
-		sm: 48, // 768px
-		md: 62, // 992px
-		lg: 67.5, // 1200px
-		xl: 96, // 1304px (1240+ 32 padding on each side)
-	},
-	...tokens,
+const breakpoints = {
+	'2xs': 25, // 400px
+	xs: 40, // 640px
+	sm: 48, // 768px
+	md: 62, // 992px
+	lg: 67.5, // 1200px
+	xl: 96, // 1304px (1240+ 32 padding on each side)
 }
 
-export default theme
+export const light: Theme = {
+	breakpoints,
+	type: 'light',
+	inverted_theme: 'dark',
+	...lightTokens,
+}
+
+export const dark: Theme = {
+	breakpoints,
+	type: 'dark',
+	inverted_theme: 'light',
+	...darkTokens
+}

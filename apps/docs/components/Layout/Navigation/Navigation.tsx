@@ -6,50 +6,83 @@ import { media } from 'styles/utils';
 
 import NavigationSection from "./NavigationSection";
 import NavigationItem from "./NavigationItem";
-import { useLayoutContext } from "../useLayoutContext";
+import { useEffect, useState } from "react";
 
 type Props = {
 	items: NavigationTree
+	isAPI?: boolean;
 }
 
 const Root = styled.aside`
 	display: none;
 	${media('lg')} {
 		display: block;
-		grid-column: span 3;
+		grid-column: span 1;
+		max-height: calc(100vh - 1rem);
+		overflow-y: auto;
+		overflow-x: hidden;
+		position: sticky;
+		top: 0rem;
+		padding-top: 7.5rem;
+		padding-bottom: 4rem;
 	}
 `;
 
 const Nav = styled.nav`
 	position: sticky;
-	top: 8rem;
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
 	align-self: flex-start;
 `;
 
-const Navigation = ({ items }: Props) => {
+const Navigation = ({ items, isAPI }: Props) => {
 	const router = useRouter();
-	const ctx = useLayoutContext();
 
+	const [currentActive, setCurrentActive] = useState('')
+
+    useEffect(() => {
+        const handleScroll = () => {
+          let current = ''
+          for (const section of items) {
+			for (const page of section.pages) { 
+            	const slug = page.slug as string;
+            	const element = document.getElementById(slug)
+				if (element && element.getBoundingClientRect().top < 200) {
+					current = slug
+				}
+			}
+          }
+          setCurrentActive(current)
+        }
+		if(isAPI){
+        	handleScroll()
+        	window.addEventListener('scroll', handleScroll, { passive: true })
+		}	
+        return () => {
+			if(isAPI){
+          		window.removeEventListener('scroll', handleScroll)
+			}
+        }
+      }, [])
 	return (
 		<Root>
 			<Nav>
 				{
 					items.map((section) => {
-						const sectionActive = ctx.section.slug === section.slug;
 						return (
 							<NavigationSection 
-								expand={sectionActive}
+								expand
 								key={section.slug}
 								title={section.title} 
 								href={section.pages[0].slug}
+								isAPI={isAPI}
 							>
 								{section.pages.map(({ title, slug, status }) => {
-									const active = router.asPath === `/${slug === '/' ? '' : slug + '/'}`;
+									const activePath = currentActive ? currentActive : `/${slug === '/' ? '' : slug}`;
+									const activeItem = isAPI ? slug === activePath : router.asPath === activePath;
 									return (
-										<NavigationItem active={active} status={status} fade={sectionActive && !active} key={slug}><Link aria-label={title} href={slug}>{title}</Link></NavigationItem>
+										<NavigationItem active={activeItem} status={status} fade={!activeItem} key={slug}><Link aria-label={title} href={isAPI ? '#'+slug : slug}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>

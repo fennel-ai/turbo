@@ -4,16 +4,10 @@ import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
-	padding-bottom: 1.5rem;
-
-	${media('md')} {
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['100']}, 8%);
-	}
+	margin: 0.25rem 0;
 `;
 
-const Title = styled.div`
+const TitleWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -22,25 +16,32 @@ const Title = styled.div`
 	${media('md')} {
 		gap: 0.25rem;
 	}
+`;
+
+const Title = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 
 	& h1 {
 		position: relative;
 		margin: 0;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
-		font-size: 2rem;
-		line-height: 2rem;
-
-		& > span  {
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
-			font-size: 1.5rem;
-			vertical-align: middle;
-			opacity: 0.64;
-		}
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
+		font-size: 2.5rem;
+		line-height: 3rem;
 		
 		${media('md')} {
-			font-size: 3rem;
+			font-size: 2.5rem;
 			line-height: 3rem;
 		}
+	}
+
+	& > span  {
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
+		font-size: 1.5rem;
+		line-height: 2rem;
+		vertical-align: middle;
+		opacity: 0.64;
 	}
 `;
 
@@ -48,8 +49,8 @@ const Description = styled.p`
 	margin: 0;
 	font-size: 1.125rem;
 	line-height: 1.75rem;
-	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
-	color: ${get('text-alt')};
+	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
+	color: ${({ theme }) => theme.on_alt};
 
 	${media('md')} {
 		font-size: 1.25rem;
@@ -58,7 +59,6 @@ const Description = styled.p`
 `;
 
 const SectionTitle = styled.div`
-	height: 2.5rem;
 	display: none;
 	align-items: center;
 
@@ -68,10 +68,9 @@ const SectionTitle = styled.div`
 
 	& > p {
 		margin: 0;
-		font-size: 1.25rem;
-		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
-		color: ${get('primary.accent')}
+		font-size: 1.5rem;
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
+		color: ${({ theme }) => theme.primary.accent};
 	}
 `;
 
@@ -81,10 +80,10 @@ export const TitleBlock = ({ children }: PropsWithChildren) => {
 	return (
 		<Root>
 			{section.title ? <SectionTitle><p id="section_title">{section.title}</p></SectionTitle> : null}
-			<Title>
-				<h1>{children} {page.status === 'wip' ? <span>WIP</span> : null}</h1>
+			<TitleWrapper>
+				<Title><h1>{children}</h1>{page.status === 'wip' ? <span>WIP</span> : null}</Title>
 				{page.description ? <Description id="page_description">{page.description}</Description> : null}
-			</Title>
+			</TitleWrapper>
 		</Root>
 	)
 };

@@ -1,0 +1,53 @@
+@use "sass:color";
+
+$colors: (
+	neutral: (
+		0: #000000,
+		5: #0E0E16,
+		10: #181825,
+		20: #2F2F41,
+		30: #4A4A5E,
+		40: #676779,
+		50: #838395,
+		60: #A5A5B6,
+		70: #BFBFCF,
+		80: #DBDBE6,
+		90: #F0F0F5,
+		95: #F9F9FB,
+		100: #ffffff,
+	),
+	purple: (
+		0: #000000,
+		5: #0C091B,
+		10: #140F2E,
+		20: #150958,
+		30: #261584,
+		40: #3C2BA1,
+		50: #5D4CBE,
+		60: #8474DC,
+		70: #A89BED,
+		80: #CBC3F8,
+		90: #F3F0FE,
+		95: #F7F7FD,
+		100: #ffffff,
+	),
+	blue: (
+		0: #000000,
+		5: #080E1C,
+		10: #0C1732,
+		20: #0E2C71,
+		30: #0C42A7,
+		40: #0F55D7,
+		50: #2D6DEB,
+		60: #5491ED,
+		70: #8DB9F2,
+		80: #B7D4F5,
+		90: #E5EFFB,
+		95: #F6FAFE,
+		100: #ffffff,
+	),
+);
+
+@function get($color, $stop) {
+	@return map-get(map-get($colors, $color), $stop);
+};

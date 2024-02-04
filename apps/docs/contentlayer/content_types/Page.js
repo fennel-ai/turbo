@@ -1,5 +1,8 @@
 import { defineDocumentType } from "contentlayer/source-files";
 
+import { bundleMDX } from 'mdx-bundler'
+import { toMarkdown } from 'mdast-util-to-markdown'
+import { mdxToMarkdown } from 'mdast-util-mdx'
 export const Page = defineDocumentType(() => ({
   name: "Page",
   filePathPattern: "pages/**/*.md",
@@ -46,5 +49,57 @@ export const Page = defineDocumentType(() => ({
       type: "string",
       resolve: (post) => post._raw.sourceFileDir.replace(/pages\/?/, ""),
     },
+    headings: {
+      type: 'json',
+      resolve: async (doc) => {
+        const headings = []
+
+        await bundleMDX({
+          source: doc.body.raw,
+          mdxOptions: (opts) => {
+            opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
+            return opts
+          },
+        })
+
+        return [{ level: 1, title: doc.title }, ...headings]
+      },
+    }
   },
 }));
+
+
+const tocPlugin =
+  (headings) =>
+  () => {
+    return (node) => {
+      for (const element of node.children.filter((_) => _.type === 'heading' || _.name === 'OptionsTable')) {
+        if (element.type === 'heading') {
+          const title = toMarkdown({ type: 'paragraph', children: element.children }, { extensions: [mdxToMarkdown()] })
+            .trim()
+            .replace(/<.*$/g, '')
+            .replace(/\\/g, '')
+            .trim()
+          headings.push({ level: element.depth, title })
+        } else if (element.name === 'OptionsTable') {
+          element.children
+            .filter((_) => _.name === 'OptionTitle')
+            .forEach((optionTitle) => {
+              optionTitle.children
+                .filter((_) => _.type === 'heading')
+                .forEach((heading) => {
+                  const title = toMarkdown(
+                    { type: 'paragraph', children: heading.children },
+                    { extensions: [mdxToMarkdown()] },
+                  )
+                    .trim()
+                    .replace(/<.*$/g, '')
+                    .replace(/\\/g, '')
+                    .trim()
+                  headings.push({ level: heading.depth, title })
+                })
+            })
+        }
+      }
+    }
+  }

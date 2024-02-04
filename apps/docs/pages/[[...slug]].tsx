@@ -7,15 +7,30 @@ import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
+import { PageNavigation } from "components/Layout/PageNavigation";
+import styled from "@emotion/styled";
 
 type Props = {
 	page: NavigationPage,
 	navigation: NavigationTree,
 	section: NavigationSection,
 	code: string,
+	headings: {level: number, title: string}[]
 }
 
-export default function DocumentationPage({ page, navigation, section, code }: Props) {
+const Wrapper = styled.div`
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+`
+const MDXWrapper = styled.div`
+	grid-column: span 8;
+`
+
+const MarginWrapper = styled.div`
+	grid-column: span 1;
+`
+
+export default function DocumentationPage({ page, navigation, section, code, headings }: Props) {
 	const ctxValue = useMemo(() => ({
 		page,
 		section,
@@ -25,7 +40,7 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 
 	return (
 		<LayoutContext.Provider value={ctxValue}>
-			<Layout navigation={navigation}>
+			<Layout navigation={navigation} headings={headings}>
 				<Head>
 					<title>{page.title}</title>
 					{page.description ? <meta name="description" content={page.description} /> : null}
@@ -54,8 +69,13 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 					<meta name="apple-mobile-web-app-title" content="Fennel" />
 					<meta name="application-name" content="Fennel" />
 				</Head>
-				{/** @ts-ignore */}
-				<MDXContent components={components} />
+				<Wrapper>
+					<MDXWrapper>
+					{/* @ts-ignore */}
+						<MDXContent components={components} />
+					</MDXWrapper>
+					<MarginWrapper/>
+				</Wrapper>
 			</Layout>
 		</LayoutContext.Provider>
 	);
@@ -64,7 +84,7 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const { params } = ctx;
 	const slug = (params!.slug as string[])?.join('/');
-	const { code, page, section } = getPageData(slug || '/');
+	const { code, page, section, headings } = getPageData(slug || '/');
 
 	return {
 		props: {
@@ -72,6 +92,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 			section,
 			page,
 			code,
+			headings,
 		}
 	}
 }
@@ -80,6 +101,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 	return {
 		paths: allPages
 			.filter(shouldPublish)
+			.filter((p) => !!!p.slug?.includes('api-reference'))
 			.map((page) => ({
 				params: {
 					slug: page.slug!.split('/'),
