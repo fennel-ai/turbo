@@ -9,7 +9,8 @@ import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from "remark-directive";
 import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
-import docsnip from "remark-docsnip";
+import docsnip from 'remark-docsnip';
+import remarkValidateHref from 'remark-validate-href';
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
 // Content types
@@ -57,11 +58,12 @@ export default makeSource({
   ],
   mdx: {
     remarkPlugins: [
+        remarkValidateHref,
       remarkMdxDisableExplicitJsx,
       remarkGfm,
       remarkDirective,
       remarkAdmonitions,
-      docsnip
+      docsnip,
     ],
     rehypePlugins: [[rehypeImgSize, { dir: "public" }], rehypeSlug],
   },

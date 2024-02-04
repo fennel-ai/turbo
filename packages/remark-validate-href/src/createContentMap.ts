@@ -29,6 +29,10 @@ export const createContentMap = (): Record<string, string> => {
 		if (data.slug) {
 			slug = data.slug;
 		};
+		
+		if (!slug.startsWith('/')) {
+			slug = `/${slug}`;
+		}
 
 		obj[slug] = full_path;
 	}
