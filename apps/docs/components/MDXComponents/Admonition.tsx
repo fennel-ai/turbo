@@ -46,24 +46,25 @@ const Root = styled.div<{ type: Props['type'] }>`
 	width: max-content;
 	max-width: 100%;
 	font-size: 0.875rem;
+	font-weight: ${props => props.theme.fontWeights.primary.bold};
 	border-left: 1px solid ${({ type,theme }) => rgba(get(TYPE_MAP[type].icon_color)({theme}), 1)};
 	& > p {
 		color: ${({theme }) => theme.on_alt};
-		margin: 0;
-		font-size: 0.875rem !important;
-		line-height: 1.5rem !important;
+		margin-bottom: 0 !important;
+		font-size: 1rem !important;
+		line-height: 1.75rem !important;
 	}
 `;
 
-const Title = styled.div`
-	color: ${props => props.theme.primary.accent};
+const Title = styled.div<{type: Props['type']}>`
+	color: ${({ type,theme }) => rgba(get(TYPE_MAP[type].text_color)({theme}), 1)}};
 	line-height: 1rem;
 `;
 
 export const Admonition = ({ children, type }: PropsWithChildren<Props>) => {
 	return (
 		<Root type={type}>
-			<Title>
+			<Title type={type}>
 				{TYPE_MAP[type].title}
 			</Title>
 			{children}

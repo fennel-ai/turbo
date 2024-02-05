@@ -17,7 +17,7 @@ const Root = styled.div`
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 3;
 	background-color: ${({ theme }) => rgba(theme.glass, 0.72)};
 	border-bottom: 1px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
 	backdrop-filter: blur(20px) saturate(1.4);
@@ -28,7 +28,7 @@ const Wrapper = styled(Container)`
 	height: 3rem;
 	display: flex;
 	align-items: center;
-	z-index: 1;
+	z-index: 3;
 
 	${media('md')} {
 		height: 4.5rem;
@@ -114,12 +114,23 @@ const DemoButtons = styled.div`
 
 `
 
+const NavButton = styled(Button)<{active: boolean}>`
+	font-weight: 500;
+	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on };
+`
+
+
 const Header = () => {
 	const docSearch = useRef<DocSearchHandle>(null);
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
 
 	const router = useRouter();
-	const isAPI = router.pathname === "/api-reference";
+	const isAPI = router.pathname.includes("/api-reference");
+
+	const navigateTo = (route: string) => {
+		router.push(route)
+	}
+	
 
 	return (
 		<Root>
@@ -127,8 +138,8 @@ const Header = () => {
 			<LinkWrapper>
 				<Brand/>
 				<NavWrapper>
-					<NavLink href='/' active={!isAPI}>Docs</NavLink>
-					<NavLink href='/api-reference' active={isAPI}>API</NavLink>
+					<NavButton variant='ghost' label="Docs" active={!isAPI} onClick={()=>navigateTo('/')}/>
+					<NavButton variant='ghost' label="API" active={isAPI} onClick={()=>navigateTo('/api-reference')}/>
 				</NavWrapper>
 				</LinkWrapper>
 				<SearchWrapper>
