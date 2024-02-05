@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
-import CopyIcon from '../icons/copy.svg';
+import { ThemeProvider } from '@emotion/react';
 
 import { media, rgba, stateLayer } from 'styles/utils';
 import { Syntax } from './Syntax';
+import CopyIcon from '../icons/copy.svg';
 import GithubIcon from '../icons/github.svg'
 import XIcon from '../icons/x-circle.svg'
 import CheckIcon from '../icons/check-circle.svg'
+import { dark as darkTheme } from 'styles';
 
 type Props = {
 	className?: string,
@@ -29,15 +31,8 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	border-radius: 0;
 
 	${media('sm', 'max')} {
-		&::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-color: rgba(0, 0, 0, 0.1);
-		}
+		margin-left: -1rem;
+		margin-right: -1rem;
 	}
 
 	${media('sm')} {
@@ -140,26 +135,28 @@ export const CodeBlock = ({ className, code, filename, filenameHref, language, o
 	};
 
 	return (
-		<Root className={className} toolbar={toolbar}>
-			{toolbar ? (
-				<Toolbar>
-					<Title>
-						{title?.length ? title : 'Example'}
-					</Title>
-					<Actions>
-					{language}
-					{filename && <Filename target="_blank" rel="noopener noreferrer" href={filenameHref}><GithubIcon/></Filename>}
-					<CopyButton onClick={handleCopy}>
-						<CopyIcon />
-					</CopyButton>
-					</Actions>
-				</Toolbar>
-			) : null}
-			<Code toolbar={toolbar} language={language} code={code} />
-			{(status?.length || message?.length) && (
-			<InfoBar status={status}>
-				{getStatusIcon(status)}<div>{message}</div>
-			</InfoBar>)}
-		</Root>
+		<ThemeProvider theme={darkTheme}>
+            <Root className={className} toolbar={toolbar}>
+                {toolbar ? (
+                    <Toolbar>
+                        <Title>
+                            {title?.length ? title : 'Example'}
+                        </Title>
+                        <Actions>
+                            {language}
+                            {filename && <Filename target="_blank" rel="noopener noreferrer" href={filenameHref}><GithubIcon /></Filename>}
+                            <CopyButton onClick={handleCopy}>
+                                <CopyIcon />
+                            </CopyButton>
+                        </Actions>
+                    </Toolbar>
+                ) : null}
+                <Code toolbar={toolbar} language={language} code={code} />
+                {(status?.length || message?.length) && (
+                    <InfoBar status={status}>
+                        {getStatusIcon(status)}<div>{message}</div>
+                    </InfoBar>)}
+            </Root>
+        </ThemeProvider>
 	);
 }
