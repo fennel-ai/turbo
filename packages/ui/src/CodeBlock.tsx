@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
-import CopyIcon from '../icons/copy.svg';
+import { ThemeProvider } from '@emotion/react';
 
 import { media, rgba, stateLayer } from 'styles/utils';
 import { Syntax } from './Syntax';
+import CopyIcon from '../icons/copy.svg';
 import GithubIcon from '../icons/github.svg'
 import XIcon from '../icons/x-circle.svg'
 import CheckIcon from '../icons/check-circle.svg'
+import { dark as darkTheme } from 'styles';
 import { IconButton } from './IconButton';
-
 
 type Props = {
 	className?: string,
@@ -31,15 +32,8 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	border-radius: 0;
 
 	${media('sm', 'max')} {
-		&::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-color: rgba(0, 0, 0, 0.1);
-		}
+		margin-left: -1rem;
+		margin-right: -1rem;
 	}
 
 	${media('sm')} {
@@ -138,24 +132,24 @@ export const CodeBlock = ({ className, code, filename, filenameHref, language, o
 	};
 
 	return (
-		<Root className={className} toolbar={toolbar}>
-			<Code toolbar={toolbar} language={language} code={code} />
-			{toolbar ? (
-				<Toolbar>
-					<Title status={status}>
-						{(status?.length || message?.length) ? <>
-							{getStatusIcon(status)}<div>{message}</div>
-						</> : ''}
-					</Title>
-					<Actions>
-					{language}
-					{filename && <IconButton icon={GithubIcon} size='small' onClick={()=>window.open(filenameHref, "_blank")}/>}
-					<IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
-					</Actions>
-				</Toolbar>
-			) : null}
-
-
-		</Root>
+		<ThemeProvider theme={darkTheme}>
+            <Root className={className} toolbar={toolbar}>
+                <Code toolbar={toolbar} language={language} code={code} />
+                {toolbar ? (
+                    <Toolbar>
+                        <Title status={status}>
+                            {(status?.length || message?.length) ? <>
+                                {getStatusIcon(status)}<div>{message}</div>
+                            </> : ''}
+                        </Title>
+                        <Actions>
+                            {language}
+                            {filename && <IconButton icon={GithubIcon} size='small' onClick={() => window.open(filenameHref, "_blank")} />}
+                            <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
+                        </Actions>
+                    </Toolbar>
+                ) : null}
+            </Root>
+        </ThemeProvider>
 	);
 }

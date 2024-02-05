@@ -9,8 +9,8 @@ const style_reset = {
 
 const line_number_style = {
 	minWidth: 0,
-	width: '3rem',
-	paddingRight: '1rem'
+	width: '2.5rem',
+	paddingRight: '0.75rem'
 }
 
 const Root = styled.div`
@@ -69,7 +69,7 @@ const Root = styled.div`
 		pointer-events: none;
 		text-align: right;
 		user-select: none;
-		color: ${({ theme }) => theme.syntax.comment};
+		color: ${({ theme }) => theme.syntax.plain['line-number']};
 		width: 2rem;
 	}
 
