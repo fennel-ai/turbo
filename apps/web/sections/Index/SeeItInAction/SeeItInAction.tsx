@@ -95,6 +95,7 @@ const PlayButtonWrapper = styled.div`
     & svg {
         width: 1rem;
         height: 1rem;
+        margin-left: 5px;
         & path {
             fill: white;
         }
