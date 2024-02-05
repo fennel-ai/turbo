@@ -82,7 +82,7 @@ const Navigation = ({ items, isAPI }: Props) => {
 									const activePath = currentActive ? currentActive : `/${slug === '/' ? '' : slug}`;
 									const activeItem = isAPI ? slug === activePath : router.asPath === activePath;
 									return (
-										<NavigationItem active={activeItem} status={status} fade={!activeItem} key={slug}><Link aria-label={title} href={isAPI ? '#'+slug : slug}>{title}</Link></NavigationItem>
+										<NavigationItem active={activeItem} status={status} fade={!activeItem} key={slug}><Link shallow={isAPI} aria-label={title} href={slug.replace('api-reference/', '')}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>
