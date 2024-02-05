@@ -53,7 +53,7 @@ const GlobalStyles = () => {
 		}
 
 		body {
-			background-color: ${theme.background};
+			background-color: ${theme.surface};
 			color: ${theme.on_alt};
 			margin: 0;
 			padding: 0;

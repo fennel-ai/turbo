@@ -47,24 +47,46 @@ export const accessibility = (color: string, on_color: string, size: 'small' | '
 	return tinycolor.isReadable(color, on_color, { level: "AA", size });
 }
 
-export const stateLayer = (initial_alpha: number = 0, color: string = "currentColor"): FunctionInterpolation<any> => 
+type StateLayerOpts = {
+    /**
+     * Sets the initial opacity value that the state layer renders at
+     * Default: 0
+     */
+    initial?: number;
+    /**
+     * Sets the color of the state layer (Almost always inherits foreground via currentColor)
+     * Default: currentColor
+     */
+    color?: string;
+    /**
+     * Toggles the interaction styles for :hover and :active
+     */
+    interact?: boolean;
+}
+
+export const stateLayer = ({
+    initial = 0, 
+    color = "currentColor",
+    interact = true
+}: StateLayerOpts = {}): FunctionInterpolation<any> => 
 	() => css`
 		position: relative;
+        transform: translateZ(0);
 
 		&::before {
 			content: "";
 			position: absolute;
 			inset: 0;
 			background-color: ${color};
-			opacity: ${initial_alpha};
+			opacity: ${initial};
 			z-index: -1;
 		}
 
 		&:hover::before {
-			opacity: ${initial_alpha + 0.04};
+			opacity: ${interact ? initial + 0.04 : initial};
 		}
 		
 		&:active::before {
-			opacity: ${initial_alpha + 0.08};
+			opacity: ${interact ? initial + 0.08 : initial};
 		}
 	`;

@@ -82,7 +82,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			${({isAPI, theme}) => isAPI && `
 				position: sticky;
 				top: 4.5rem;
-				background: ${theme.background};
+				background: ${theme.surface};
 				z-index: 2;
 			`}
 			}
@@ -178,7 +178,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
 			font-weight: ${props => props.theme.fontWeights.primary.medium};
 			background: ${({ theme }) => theme.border};
-			${stateLayer(0.04)}
+			${stateLayer({ initial: 0.04 })}
 			color: ${({ theme }) => theme.on};
 			border: 0.5px solid ${({ theme }) => theme.border};
 			border-radius: 0.25rem;
