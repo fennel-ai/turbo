@@ -36,19 +36,12 @@ const APIReferencePage = ({ page }: { page: NavigationPage }) => {
 
 
 export default function DocumentationPage({ pages, navigation, requestedSlug }: Props) {
-    const router = useRouter();
-
-    const actualSlug = useMemo(() => (router.query.slug as string[])?.join('/'), [router.query]);
 
     useEffect(() => {
-        document.getElementById(actualSlug)?.scrollIntoView({ behavior: 'instant' });
-    }, [actualSlug]);
-
-    // useEffect(() => {
-    //     if (requestedSlug) {
-    //         document.getElementById(requestedSlug)?.scrollIntoView({ behavior: 'instant' });
-    //     }
-    // }, [requestedSlug]);
+        if (requestedSlug) {
+            document.getElementById(requestedSlug)?.scrollIntoView({ behavior: 'instant' });
+        }
+    }, [requestedSlug]);
 
     return (
         <div>
@@ -123,16 +116,3 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
         }
     }
 }
-
-// export const getStaticPaths: GetStaticPaths = () => {
-//     return {
-//         paths: [
-//             {
-//                 params: {
-//                     slug: ['']
-//                 }
-//             }
-//         ],
-//         fallback: false,
-//     }
-// }

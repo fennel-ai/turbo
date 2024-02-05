@@ -19,6 +19,7 @@ type Props = {
 	navigation: NavigationTree,
 	isAPI?: boolean,
 	headings?: Outline,
+	slug? :string
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -210,7 +211,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, headings }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings, slug }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
@@ -225,7 +226,7 @@ const Layout = ({ children, navigation, isAPI, headings }: Props) => {
 				<main>
 					{children}
 				</main>
-				{headings && <PageNavigation headings={headings}/>}
+				{!isAPI && <PageNavigation headings={headings!} slug={slug || ''} />}
 			</Root>
 			<Footer />
 		</>

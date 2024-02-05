@@ -40,7 +40,7 @@ export default function DocumentationPage({ page, navigation, section, code, hea
 
 	return (
 		<LayoutContext.Provider value={ctxValue}>
-			<Layout navigation={navigation} headings={headings}>
+			<Layout navigation={navigation} headings={headings} slug={page.slug}>
 				<Head>
 					<title>{page.title}</title>
 					{page.description ? <meta name="description" content={page.description} /> : null}

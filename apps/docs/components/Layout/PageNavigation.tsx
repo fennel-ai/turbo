@@ -5,6 +5,9 @@ import { FC, useState, useEffect } from 'react'
 import styled from "@emotion/styled";
 import { media } from 'styles/utils';
 import { motion } from 'framer-motion';
+import { Outline } from 'lib/utils';
+import Link from 'next/link';
+import GitHubIcon from 'ui/icons/github.svg';
 
 const Root = styled.div`
 	display: none;
@@ -16,6 +19,7 @@ const Root = styled.div`
 		overflow-x: hidden;
 		position: sticky;
 		top: 8rem;
+        padding-top: 4rem;
 	}
 `;
 
@@ -38,6 +42,19 @@ font-size: 0.875rem;
 padding-inline-start: 0rem;
 `;
 
+const EditOnGithub = styled(Link)`
+    padding: 3rem 0;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: ${props => props.theme.on_alt};
+    &:hover{
+        color: ${props => props.theme.on};
+    }
+`
+
 const NavItem = styled.a<{level:number , active?: boolean}>`
     color: ${({theme, active}) => active? theme.primary.accent : theme.on_alt};   
     margin-left: ${({level }) => (level - 2)}rem
@@ -48,7 +65,7 @@ const sluggifyTitle = (title: string) => {
     return _title.toLowerCase().split(' ').join('-');
 }
 
-export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
+export const PageNavigation: FC<{ slug: string, headings: Outline }> = ({ slug, headings }) => {
   const [activeHeading, setActiveHeading] = useState('')
 
   useEffect(() => {
@@ -73,11 +90,10 @@ export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
 
   const headingsToRender = headings.filter((_) => _.level > 1)
 
-  if ((headingsToRender ?? []).length === 0) return null
-
   return (
     <Root>
-      <Header>In this Section</Header>
+    {(headingsToRender ?? []).length !== 0 && <>
+      <Header>On this page</Header>
       <H2List>
         {headingsToRender.map(({ title, level }, index) => (
           <li key={index}>
@@ -95,6 +111,13 @@ export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
           </li>
         ))}
       </H2List>
+      </>}
+      {slug!=='/' &&
+      <EditOnGithub href={'https://github.com/fennel-ai/client/blob/main/docs/pages/'+ slug + '.md'} >
+        <GitHubIcon/>
+        <div> Edit on Github</div>
+      </EditOnGithub>
+      }
     </Root>
   )
 }

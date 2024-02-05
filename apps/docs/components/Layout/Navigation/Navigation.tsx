@@ -46,10 +46,11 @@ const Navigation = ({ items, isAPI }: Props) => {
           let current = ''
           for (const section of items) {
 			for (const page of section.pages) { 
-            	const slug = page.slug as string;
+            	const slug = page.slug.replace('api-reference/', '') as string;
             	const element = document.getElementById(slug)
 				if (element && element.getBoundingClientRect().top < 200) {
 					current = slug
+					router.push('/api-reference/'+slug, undefined, { shallow: true })
 				}
 			}
           }
@@ -65,6 +66,14 @@ const Navigation = ({ items, isAPI }: Props) => {
 			}
         }
       }, [])
+
+	const onAPIRefClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, slug: string) => {
+		if(isAPI){
+			e.preventDefault();
+			document.getElementById(slug)?.scrollIntoView({behavior: 'instant'})
+			router.push('/api-reference/'+slug, undefined, { shallow: true })
+		}
+	}
 	return (
 		<Root>
 			<Nav>
@@ -79,10 +88,11 @@ const Navigation = ({ items, isAPI }: Props) => {
 								isAPI={isAPI}
 							>
 								{section.pages.map(({ title, slug, status }) => {
+									const formattedSlug  = isAPI ? slug.replace('api-reference/', '') : slug
 									const activePath = currentActive ? currentActive : `/${slug === '/' ? '' : slug}`;
-									const activeItem = isAPI ? slug === activePath : router.asPath === activePath;
+									const activeItem = isAPI ? formattedSlug === activePath : router.asPath === activePath;
 									return (
-										<NavigationItem active={activeItem} status={status} fade={!activeItem} key={slug}><Link shallow={isAPI} aria-label={title} href={slug.replace('api-reference/', '')}>{title}</Link></NavigationItem>
+										<NavigationItem active={activeItem} status={status} fade={!activeItem} key={slug}><Link shallow={isAPI} aria-label={title} href={isAPI ?  '#' : formattedSlug} onClick={(e) => onAPIRefClick(e, formattedSlug)}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>

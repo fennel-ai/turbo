@@ -6,6 +6,8 @@ import { Syntax } from './Syntax';
 import GithubIcon from '../icons/github.svg'
 import XIcon from '../icons/x-circle.svg'
 import CheckIcon from '../icons/check-circle.svg'
+import { IconButton } from './IconButton';
+
 
 type Props = {
 	className?: string,
@@ -56,7 +58,7 @@ const Toolbar = styled.div`
 	display: flex;
 	padding: 0.25rem 1rem;
 	color:${({ theme }) => theme.on_alt};
-	border-bottom: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
+	border-top: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
 `;
 
 const Filename = styled.a`
@@ -94,22 +96,18 @@ const CopyButton = styled.button`
 
 const Code = styled(Syntax)<{ toolbar: boolean }>`
 	& > pre {
-		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1rem'};
+		padding-top: 0.75rem;
         background: transparent;
+		padding-bottom: 0.75rem;
 	}
 `;
 
-const InfoBar = styled.div<{ status?: string }>`
+const Title = styled.div<{ status?: string }>`
+	color: ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on};
 	display: flex;
-	height: 2.5rem;
 	padding-left: 1.5rem;
 	align-items: center;
 	gap: 0.5rem;
-	border-top: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
-	color: ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on};
-`
-const Title = styled.div`
-	text-transform: uppercase;
 `
 
 const Actions = styled.div`
@@ -141,25 +139,23 @@ export const CodeBlock = ({ className, code, filename, filenameHref, language, o
 
 	return (
 		<Root className={className} toolbar={toolbar}>
+			<Code toolbar={toolbar} language={language} code={code} />
 			{toolbar ? (
 				<Toolbar>
-					<Title>
-						{title?.length ? title : 'Example'}
+					<Title status={status}>
+						{(status?.length || message?.length) ? <>
+							{getStatusIcon(status)}<div>{message}</div>
+						</> : ''}
 					</Title>
 					<Actions>
 					{language}
-					{filename && <Filename target="_blank" rel="noopener noreferrer" href={filenameHref}><GithubIcon/></Filename>}
-					<CopyButton onClick={handleCopy}>
-						<CopyIcon />
-					</CopyButton>
+					{filename && <IconButton icon={GithubIcon} size='small' onClick={()=>window.open(filenameHref, "_blank")}/>}
+					<IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
 					</Actions>
 				</Toolbar>
 			) : null}
-			<Code toolbar={toolbar} language={language} code={code} />
-			{(status?.length || message?.length) && (
-			<InfoBar status={status}>
-				{getStatusIcon(status)}<div>{message}</div>
-			</InfoBar>)}
+
+
 		</Root>
 	);
 }
