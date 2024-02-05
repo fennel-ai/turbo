@@ -19,7 +19,7 @@ type Props = {
 	navigation: NavigationTree,
 	isAPI?: boolean,
 	headings?: Outline,
-	slug? :string
+	path? :string
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -49,10 +49,10 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-family: ${haskoyVariable.style.fontFamily}, serif;
 			font-weight: 500;
 			margin: 0;
-			scroll-margin-top: 8rem;
+			scroll-margin-top: 4rem;
 
 			${media('md')} {
-				scroll-margin-top: 6.3125rem; 
+				scroll-margin-top: 5rem; 
 			}
 		}
 
@@ -82,7 +82,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			${media('md')} {
 			${({isAPI, theme}) => isAPI && `
 				position: sticky;
-				top: 4.5rem;
+				top: calc(4.5rem + 1px);
 				background: ${theme.surface};
 				z-index: 2;
 			`}
@@ -211,7 +211,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, headings, slug }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings, path }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
@@ -226,7 +226,7 @@ const Layout = ({ children, navigation, isAPI, headings, slug }: Props) => {
 				<main>
 					{children}
 				</main>
-				{!isAPI && <PageNavigation headings={headings!} slug={slug || ''} />}
+				{!isAPI && <PageNavigation headings={headings!} path={path || ''} />}
 			</Root>
 			<Footer />
 		</>

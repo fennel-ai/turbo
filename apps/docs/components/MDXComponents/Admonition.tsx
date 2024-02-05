@@ -24,6 +24,12 @@ const TYPE_MAP = {
 		icon_color: 'on',
 		text_color: 'on',
 		dark_text_color: 'on'
+	},
+	error:{
+		title: 'Error',
+		icon_color: 'error.accent',
+		text_color: 'error.accent',
+		dark_text_color: 'error.accent'
 	}
 }
 
@@ -51,8 +57,7 @@ const Root = styled.div<{ type: Props['type'] }>`
 	& > p {
 		color: ${({theme }) => theme.on_alt};
 		margin-bottom: 0 !important;
-		font-size: 1rem !important;
-		line-height: 1.75rem !important;
+		font-weight: ${props => props.theme.fontWeights.primary.regular} !important;
 	}
 `;
 

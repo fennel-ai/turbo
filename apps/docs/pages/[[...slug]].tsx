@@ -7,7 +7,6 @@ import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
-import { PageNavigation } from "components/Layout/PageNavigation";
 import styled from "@emotion/styled";
 
 type Props = {
@@ -40,7 +39,7 @@ export default function DocumentationPage({ page, navigation, section, code, hea
 
 	return (
 		<LayoutContext.Provider value={ctxValue}>
-			<Layout navigation={navigation} headings={headings} slug={page.slug}>
+			<Layout navigation={navigation} headings={headings} path={page._id}>
 				<Head>
 					<title>{page.title}</title>
 					{page.description ? <meta name="description" content={page.description} /> : null}

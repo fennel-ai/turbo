@@ -8,12 +8,11 @@ import * as components from 'components/MDXComponents';
 import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
 import styled from "@emotion/styled";
-import { useRouter } from "next/router";
 
 type Props = {
     pages: NavigationPage[],
     navigation: NavigationTree,
-    requestedSlug: string | null
+    requestedSlug: string | null,
 }
 
 
@@ -22,7 +21,7 @@ const PageWrapper = styled.div<{ index: number }>`
     padding-top: ${({ index }) => index === 0 ? 0 : 4}rem;
     padding-bottom: 4rem;
     border-bottom: 1px solid ${({ theme }) => theme.border};
-    scroll-margin-top: 6.3125rem; 
+    scroll-margin-top: 5rem; 
 `
 
 
@@ -104,13 +103,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
     const navigationOrder = navigation.map((nav) => nav.pages).flat();
     const ordering: { [key: string]: number } = {};
     for (let i = 0; i < navigationOrder.length; i++) {
-        ordering[navigationOrder[i].title] = i;
+        ordering[navigationOrder[i].slug.replace('api-reference/', '')] = i;
     }
+    const navigationOrderSlugs = navigationOrder.map((nav) => nav.slug.replace('api-reference/', ''))
 
     return {
         props: {
-            pages: allApiReferencePages
-                .sort((a, b) => ordering[a.title] - ordering[b.title]),
+            pages: allApiReferencePages.filter((p) => navigationOrderSlugs.includes(p.slug as string))
+                .sort((a, b) => ordering[a.slug || ''] - ordering[b.slug || '']),
             navigation,
             requestedSlug: requestedSlug || null
         }

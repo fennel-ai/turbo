@@ -10,15 +10,17 @@ line-height: inherit
 `;
 
 
-const Title = styled.span<{optional?: boolean}>`
+const Title = styled.span<{optional?: boolean, present? :boolean}>`
     font-size: 0.875rem;
     line-height: 1rem;
     color: ${({ theme }) => theme.on};
     font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
+    ${props => props.present && `
     &:after {
-        content: "${({ optional }) => !!optional ? ":?" : ":" }";
-        color: ${({ theme }) => theme.on_alt};
+        content: "${props.optional ? ":?" : ":" }";
+        color: ${props.theme.on_alt};
     }
+    `}
 
 `
 
@@ -69,8 +71,8 @@ margin-bottom: 1.5rem;
 }
 
 & > p {
-    font-size: 0.875rem !important;
-    line-height: 1.5rem !important;
+    font-size: 1rem !important;
+    line-height: 1.75rem !important;
     font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
 }
 `
@@ -92,7 +94,7 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
                 <ExpandedIcon>
                     {isExpanded ? <ChevronDownSmallIcon/> : <ChevronRightSmallIcon/>}
                 </ExpandedIcon>
-            <Title optional={optional}>
+            <Title optional={optional} present={title?.length > 0 && type?.length > 0}>
                 {title}
             </Title>
 

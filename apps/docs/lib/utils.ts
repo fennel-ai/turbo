@@ -9,6 +9,7 @@ export type NavigationPage = {
 		code: string;
 		_raw: string;
 	};
+	_id: string;
 }
 
 export type Outline = {
@@ -58,6 +59,7 @@ export const getPageData = (pageSlug: string, api?: boolean): { code: string, se
 		status,
 		slug,
 		headings,
+		_id,
 	} = allPages.find((page) => page.slug === pageSlug)!;
 
 	return {
@@ -69,6 +71,7 @@ export const getPageData = (pageSlug: string, api?: boolean): { code: string, se
 			title,
 			status,
 			slug: slug!, // Slug is computed if not present so although it's optional in the contentlayer schema (i.e. it's not a hard requirement in the frontmatter), it will always be present here
+			_id,
 		}
 	}
 }

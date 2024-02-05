@@ -9,6 +9,7 @@ import XIcon from '../icons/x-circle.svg'
 import CheckIcon from '../icons/check-circle.svg'
 import { dark as darkTheme } from 'styles';
 import { IconButton } from './IconButton';
+import {toast} from "react-hot-toast"
 
 type Props = {
 	className?: string,
@@ -21,6 +22,7 @@ type Props = {
 	message?: string;
 	status?: string;
 	title?: string;
+	highlight?: string;
 }
 
 const Root = styled.div<{ toolbar?: boolean }>`
@@ -99,9 +101,9 @@ const Code = styled(Syntax)<{ toolbar: boolean }>`
 const Title = styled.div<{ status?: string }>`
 	color: ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on};
 	display: flex;
-	padding-left: 1.5rem;
 	align-items: center;
 	gap: 0.5rem;
+	font-size: 0.875rem;
 `
 
 const Actions = styled.div`
@@ -112,6 +114,12 @@ justify-content: flex-end;
 align-items: center;
 gap: 1rem;
 font-size: 0.875rem;
+`
+
+const ActionButtons = styled.div`
+display: flex;
+align-items: center;
+gap: 0.5rem;
 `
 
 const getStatusIcon = (status?: string) => {
@@ -125,16 +133,17 @@ const getStatusIcon = (status?: string) => {
 	}
 }
 
-export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true, message, status, title }: Props) => {
+export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true, message, status, highlight }: Props) => {
 	const handleCopy = () => {
 		navigator.clipboard.writeText(code);
 		if (onCopy) onCopy();
+		toast.success(`Copied snippet`);
 	};
 
 	return (
 		<ThemeProvider theme={darkTheme}>
             <Root className={className} toolbar={toolbar}>
-                <Code toolbar={toolbar} language={language} code={code} />
+                <Code toolbar={toolbar} language={language} code={code.trimEnd()} highlight={highlight}/>
                 {toolbar ? (
                     <Toolbar>
                         <Title status={status}>
@@ -144,8 +153,10 @@ export const CodeBlock = ({ className, code, filename, filenameHref, language, o
                         </Title>
                         <Actions>
                             {language}
+							<ActionButtons>
                             {filename && <IconButton icon={GithubIcon} size='small' onClick={() => window.open(filenameHref, "_blank")} />}
                             <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
+							</ActionButtons>
                         </Actions>
                     </Toolbar>
                 ) : null}

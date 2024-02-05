@@ -24,9 +24,15 @@ const Root = styled(CodeBlock)`
 `
 
 // Wraps our CodeBlock component to override the code prop, either with the children from the original markdown, or the docsnip snippet referenced from the snippet prop.
-export const CodeSnippet = (props: PropsWithChildren<{ className: string, filename?: string, language?: string, snippet?: string, snippet_id?: string, status?: string, message?: string, title?: string }>) => {
-	const language = useMemo(() => props.language || props.className?.replace("language-", "") || "python", [props.className, props.language]);
+export const CodeSnippet = (props: PropsWithChildren<{ className: string, filename?: string, language?: string, snippet?: string, snippet_id?: string, status?: string, message?: string, highlight?: string }>) => {
+	const language = useMemo(() => {
+		if(!props.filename){ //has to be code blcok
+			const language = (props.children as ReactElement).props.className?.replace("language-","")
+			return language;
+		}
+		return props.language || props.className?.replace("language-", "") || "python"
+	}, [props.className, props.language]);
 	const short_filename = useMemo(() => props.filename?.split('/').pop(), [props.filename]);
 
-	return <Root filename={short_filename} filenameHref={`https://github.com/fennel-ai/client/blob/main/docs/${props.filename}`} code={props.snippet || (props.children as ReactElement).props.children} language={language} status={props.status} message={props.message} title={props.title}/>;
+	return <Root filename={short_filename} filenameHref={`https://github.com/fennel-ai/client/blob/main/docs/${props.filename}`} code={props.snippet || (props.children as ReactElement).props.children} language={language} status={props.status} message={props.message} highlight={props.highlight}/>;
 }

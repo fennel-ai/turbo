@@ -32,8 +32,11 @@ export const findAndReplace = async ({
 		const messageAttr = node.attributes.find(
 			(attr: MdxJsxAttribute) => attr.name === "message"
 		);
-		const titleAttr = node.attributes.find(
-			(attr: MdxJsxAttribute) => attr.name === "title"
+		const langAttr = node.attributes.find(
+			(attr: MdxJsxAttribute) => attr.name === "language"
+		);
+		const highlightAttr = node.attributes.find(
+			(attr: MdxJsxAttribute) => attr.name === "highlight"
 		);
 		node.type = "mdxJsxFlowElement";
 		node.name = "pre";
@@ -41,7 +44,7 @@ export const findAndReplace = async ({
 			{
 				type: "mdxJsxAttribute",
 				name: "language",
-				value: "python",
+				value: langAttr?.value || "python",
 			},
 			{
 				type: "mdxJsxAttribute",
@@ -56,18 +59,18 @@ export const findAndReplace = async ({
 			{
 				type: 'mdxJsxAttribute',
 				name: 'status',
-				value: statusAttr?.value
+				value: statusAttr?.value || ''
 			},
 			{
 				type: 'mdxJsxAttribute',
 				name: 'message',
-				value: messageAttr?.value
+				value: messageAttr?.value || ''
 			},
 			{
 				type: 'mdxJsxAttribute',
-				name: 'title',
-				value: titleAttr?.value
-			}
+				name: 'highlight',
+				value: highlightAttr?.value || ''
+			},
 		];
 		node.children = [
 			{

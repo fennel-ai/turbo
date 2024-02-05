@@ -6,7 +6,8 @@ import { media } from 'styles/utils';
 
 import NavigationSection from "./NavigationSection";
 import NavigationItem from "./NavigationItem";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { debounce } from "lodash";
 
 type Props = {
 	items: NavigationTree
@@ -40,6 +41,9 @@ const Navigation = ({ items, isAPI }: Props) => {
 	const router = useRouter();
 
 	const [currentActive, setCurrentActive] = useState('')
+	const containerRef = useRef<HTMLElement>(null);
+	const activeRef = useRef<HTMLLIElement>(null);
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -56,16 +60,24 @@ const Navigation = ({ items, isAPI }: Props) => {
           }
           setCurrentActive(current)
         }
+
 		if(isAPI){
         	handleScroll()
         	window.addEventListener('scroll', handleScroll, { passive: true })
-		}	
+		}
         return () => {
 			if(isAPI){
           		window.removeEventListener('scroll', handleScroll)
 			}
         }
       }, [])
+
+	  useEffect(() => {
+		if(containerRef?.current && activeRef?.current){
+			const topScroll = activeRef.current.offsetTop;
+			containerRef.current.scrollTop = topScroll;
+		}
+	  }, [activeRef.current])
 
 	const onAPIRefClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, slug: string) => {
 		if(isAPI){
@@ -75,13 +87,12 @@ const Navigation = ({ items, isAPI }: Props) => {
 		}
 	}
 	return (
-		<Root>
+		<Root ref={containerRef}>
 			<Nav>
 				{
 					items.map((section) => {
 						return (
 							<NavigationSection 
-								expand
 								key={section.slug}
 								title={section.title} 
 								href={section.pages[0].slug}
@@ -92,7 +103,7 @@ const Navigation = ({ items, isAPI }: Props) => {
 									const activePath = currentActive ? currentActive : `/${slug === '/' ? '' : slug}`;
 									const activeItem = isAPI ? formattedSlug === activePath : router.asPath === activePath;
 									return (
-										<NavigationItem active={activeItem} status={status} fade={!activeItem} key={slug}><Link shallow={isAPI} aria-label={title} href={isAPI ?  '#' : formattedSlug} onClick={(e) => onAPIRefClick(e, formattedSlug)}>{title}</Link></NavigationItem>
+										<NavigationItem active={activeItem} ref={activeItem ? activeRef : null} status={status} fade={!activeItem} key={slug}><Link shallow={isAPI} aria-label={title} href={isAPI ?  '#' : formattedSlug} onClick={(e) => onAPIRefClick(e, formattedSlug)}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>

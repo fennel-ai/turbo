@@ -1,15 +1,18 @@
 import styled from '@emotion/styled';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { media, rgba } from 'styles/utils';
 import { IconButton, PillButton, Masthead, Button } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 import GitHubIcon from 'ui/icons/github.svg';
+import SunIcon from 'ui/icons/sun.svg';
+import MoonIcon from 'ui/icons/moon.svg';
 import Container from 'components/Container';
 import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
 import MobileToolbar from 'components/MobileToolbar';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { DarkThemeContext } from 'context/CustomTheme/provider';
 
 const Root = styled.div`
 	grid-column: span 12;
@@ -96,20 +99,16 @@ const NavWrapper = styled.div`
 	gap: 1rem;
 `
 
-const NavLink = styled(Link)<{active?: boolean}>`
-	cursor: pointer;
-	font-weight: 500;
-	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on };
-	&:hover {
-		color: ${({ theme }) => theme.on };
-	}
-`
-
 const DemoButtons = styled.div`
 	display: flex;
+	align-items: center;
 	gap: 0.5rem;
 	${media('md')} {
 		margin-left: auto;
+	}
+
+	& path {
+		fill: ${props => props.theme.on_alt};
 	}
 
 `
@@ -117,6 +116,9 @@ const DemoButtons = styled.div`
 const NavButton = styled(Button)<{active: boolean}>`
 	font-weight: 500;
 	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on };
+	height: 4.5rem;
+	border-radius: 0;
+	border-bottom: ${props => props.active && `1px solid ${props.theme.primary.accent}`}
 `
 
 
@@ -130,6 +132,9 @@ const Header = () => {
 	const navigateTo = (route: string) => {
 		router.push(route)
 	}
+
+	const {isDarkTheme, setTheme} = useContext(DarkThemeContext);
+	
 	
 
 	return (
@@ -153,7 +158,8 @@ const Header = () => {
 				<Actions>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
 					<DemoButtons>
-					<a href="https://github.com/fennel-ai/client/tree/main/docs">
+						<IconButton size="small" icon={isDarkTheme ? SunIcon : MoonIcon} onClick={() => {setTheme(!isDarkTheme)}}/>
+					<a href="https://github.com/fennel-ai/client/">
 						<DemoButton
 							size="small"
 							label="Github"

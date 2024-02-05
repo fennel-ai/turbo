@@ -14,7 +14,7 @@ const Root = styled.div`
 	${media('lg')} {
 		display: block;
 		grid-column: span 1;
-		max-height: calc(100vh - 8rem);
+		max-height: calc(100vh - 12rem);
 		overflow-y: auto;
 		overflow-x: hidden;
 		position: sticky;
@@ -65,7 +65,7 @@ const sluggifyTitle = (title: string) => {
     return _title.toLowerCase().split(' ').join('-');
 }
 
-export const PageNavigation: FC<{ slug: string, headings: Outline }> = ({ slug, headings }) => {
+export const PageNavigation: FC<{ path: string, headings: Outline }> = ({ path, headings }) => {
   const [activeHeading, setActiveHeading] = useState('')
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export const PageNavigation: FC<{ slug: string, headings: Outline }> = ({ slug, 
   return (
     <Root>
     {(headingsToRender ?? []).length !== 0 && <>
-      <Header>On this page</Header>
+      <Header>On This Page</Header>
       <H2List>
         {headingsToRender.map(({ title, level }, index) => (
           <li key={index}>
@@ -112,8 +112,8 @@ export const PageNavigation: FC<{ slug: string, headings: Outline }> = ({ slug, 
         ))}
       </H2List>
       </>}
-      {slug!=='/' &&
-      <EditOnGithub href={'https://github.com/fennel-ai/client/blob/main/docs/pages/'+ slug + '.md'} >
+      {path!=='/' &&
+      <EditOnGithub href={'https://github.com/fennel-ai/client/blob/main/docs/'+ path} >
         <GitHubIcon/>
         <div> Edit on Github</div>
       </EditOnGithub>

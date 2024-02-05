@@ -1,11 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type Props = {
 	children: ReactNode;
-	expand: boolean;
 	href: string;
 	title: string;
 	isAPI?: boolean
@@ -15,6 +14,7 @@ const Root = styled(motion.ul)`
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	margin-bottom: 1rem;
 `;
 
 const SectionTitle = styled.li<{expand: boolean}>`
@@ -46,7 +46,7 @@ const PageList = styled.ul`
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	margin: 1rem 0;
+	margin-top: 1rem;
 	padding-left: 0rem;
 `;
 
@@ -67,11 +67,13 @@ const animation = {
 	}
 }
 
-const NavigationSection = ({ children, expand, href, title, isAPI }: Props) => {
+const NavigationSection = ({ children, href, title, isAPI }: Props) => {
+	const [expand, setExpand] = useState(true);
+	const toggleExpand = () => setExpand(!expand);
 	return (
 		<Root>
-			<SectionTitle expand={expand}>
-				{isAPI ? <>{title}</> : <Link href={href}>{title}</Link>}
+			<SectionTitle expand={expand} onClick={toggleExpand}>
+				{title}
 			</SectionTitle>
 			<AnimatePresence initial={false}>
 				{expand ? (
