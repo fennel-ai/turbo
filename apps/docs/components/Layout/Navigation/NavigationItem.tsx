@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Page } from 'contentlayer/generated';
-import { rgba } from "styles/utils";
+import { rgba, stateLayer } from "styles/utils";
 
 const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page['status'] }>`
 	font-size: 0.875rem;
@@ -29,11 +29,12 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	}
 
 	&:hover {
-		background-color: ${({ theme }) => rgba(theme.border,1)};
+		background-color: ${({ theme }) => rgba(theme.on,0.04)};
 		border-radius: 0 5px 5px 0;
 	}
 
 	& > a {
+		
 		display: flex;
 		align-items: center;
 		padding-left: 1rem;

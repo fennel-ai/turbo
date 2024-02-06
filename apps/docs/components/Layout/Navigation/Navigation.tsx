@@ -7,7 +7,7 @@ import { media } from 'styles/utils';
 import NavigationSection from "./NavigationSection";
 import NavigationItem from "./NavigationItem";
 import { useEffect, useRef, useState } from "react";
-import { debounce } from "lodash";
+import { debounce, throttle } from "lodash";
 
 type Props = {
 	items: NavigationTree
@@ -38,12 +38,17 @@ const Nav = styled.nav`
 	align-self: flex-start;
 `;
 
+const updateURL = (newUrl: string) => {
+    window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl)
+};
+
 const Navigation = ({ items, isAPI }: Props) => {
 	const router = useRouter();
 
 	const [currentActive, setCurrentActive] = useState('')
 	const containerRef = useRef<HTMLElement>(null);
-	const activeRef = useRef<HTMLLIElement>(null);
+
+	const throttledUpdateUrl = throttle(updateURL, 100);
 
     useEffect(() => {
         const handleScroll = (e?:Event) => {
@@ -59,7 +64,7 @@ const Navigation = ({ items, isAPI }: Props) => {
           }
           	setCurrentActive(current)
 			const newUrl = '/docs/api-reference/'+current;
-			window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl)
+			throttledUpdateUrl(newUrl);
         }
 
 		if(isAPI){
@@ -73,11 +78,14 @@ const Navigation = ({ items, isAPI }: Props) => {
       }, [])
 
 	  useEffect(() => {
-		if(containerRef?.current && activeRef?.current){
-			const topScroll = activeRef.current.offsetTop;
-			containerRef.current.scrollTop = topScroll/2;
+		if(containerRef?.current){
+			const activeElement = document.getElementById("active");
+			if(activeElement) {
+				const topScroll = activeElement.offsetTop;
+				containerRef.current.scrollTop = topScroll/1.5;
+			}
 		}
-	  }, [activeRef?.current])
+	  }, [containerRef, currentActive])
 
 	const onAPIRefClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, slug: string) => {
 		if(isAPI){
@@ -102,7 +110,7 @@ const Navigation = ({ items, isAPI }: Props) => {
 									const activePath = currentActive ? currentActive : `/${slug === '/' ? '' : slug}`;
 									const activeItem = isAPI ? formattedSlug === activePath : router.asPath === activePath;
 									return (
-										<NavigationItem active={activeItem} ref={activeItem ? activeRef : null} status={status} fade={!activeItem} key={slug}><Link shallow={isAPI} aria-label={title} href={isAPI ?  '#' : formattedSlug} onClick={(e) => onAPIRefClick(e, formattedSlug)}>{title}</Link></NavigationItem>
+										<NavigationItem id={activeItem ? "active" : ""} active={activeItem} status={status} fade={!activeItem} key={slug}><Link shallow={isAPI} aria-label={title} href={isAPI ?  '#' : formattedSlug} onClick={(e) => onAPIRefClick(e, formattedSlug)}>{title}</Link></NavigationItem>
 									)
 								})}
 							</NavigationSection>
