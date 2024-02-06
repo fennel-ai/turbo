@@ -88,7 +88,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 	if(isSlugSection) {
 		return {
 			redirect: {
-				destination: isSlugSection.pages[0].slug,
+				destination: "/" + isSlugSection.pages[0].slug,
 			}
 		}
 	}
