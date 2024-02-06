@@ -20,11 +20,12 @@ const Root = styled.div`
 	align-items: center;
 	z-index: 9;
 	transition: background 400ms ease 0s;
+	background-color: linear-gradient(to bottom, ${({ theme }) => theme.surface}, ${({ theme }) => rgba(theme.surface, 0)} 3rem);
 	color: ${({ theme }) => theme.surface};
-	border-bottom: 1px solid ${({ theme }) => rgba(theme.on, 0.06)};
 	
 	${media('md')} {
 		height: 4.5rem;
+		background-color: linear-gradient(to bottom, ${({ theme }) => theme.surface}, ${({ theme }) => rgba(theme.surface, 0)} 4.5rem);
 	}
 `;
 
@@ -36,6 +37,17 @@ const Backdrop = styled.div`
 		inset: -1px 0px -60%;
 		pointer-events: none;
 		user-select: none;
+	}
+
+	&::before {
+		backdrop-filter: blur(20px);
+		-webkit-mask-image: linear-gradient(to bottom, black 3rem, transparent);
+		mask-image: linear-gradient(to bottom, black 3rem, transparent);
+
+		${media('md')} {
+			-webkit-mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
+			mask-image: linear-gradient(to bottom, black 4.5rem, transparent);
+		}
 	}
 `;
 
@@ -67,10 +79,6 @@ const Wrapper = styled.nav`
 `;
 
 const Brand = styled(Masthead)`
-	& svg {
-		color: ${({ theme }) => theme.primary.accent};
-	}
-
 	& h2 {
 		color: ${({ theme }) => theme.on};
 	}
@@ -153,8 +161,9 @@ export const Header = () => {
 
 	return (
 		<Root data-header>
+			<Backdrop />
 			<Wrapper>
-                <Brand />
+				<Brand />
 				<Menu>
 					<Link href="/company">
 						<NavButton>
@@ -193,6 +202,9 @@ export const Header = () => {
 					/>
 				</Actions>
 			</Wrapper>
+			<Border>
+				<div />
+			</Border>
 			<AnimatePresence>
 				{
 					showMobileMenu ? <MobileMenu /> : null

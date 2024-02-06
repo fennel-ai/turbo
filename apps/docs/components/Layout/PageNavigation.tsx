@@ -15,13 +15,15 @@ const Root = styled.div`
 		display: block;
 		grid-column: span 1;
 		max-height: calc(100vh - 12rem);
-		overflow-y: auto;
-		overflow-x: hidden;
-		position: sticky;
-		top: 8rem;
-        padding-top: 4rem;
+    position: sticky;
+		top: 11rem;
 	}
 `;
+
+const Wrapper = styled.div`
+    overflow-y: auto;
+		overflow-x: hidden;
+`
 
 const Header = styled.h4`
     font-size: 1rem
@@ -92,6 +94,7 @@ export const PageNavigation: FC<{ path: string, headings: Outline }> = ({ path, 
 
   return (
     <Root>
+      <Wrapper>
     {(headingsToRender ?? []).length !== 0 && <>
       <Header>On This Page</Header>
       <H2List>
@@ -115,9 +118,10 @@ export const PageNavigation: FC<{ path: string, headings: Outline }> = ({ path, 
       {path!=='/' &&
       <EditOnGithub href={'https://github.com/fennel-ai/client/blob/main/docs/'+ path} >
         <GitHubIcon/>
-        <div> Edit on Github</div>
+        <div> Edit this Page on Github</div>
       </EditOnGithub>
       }
+      </Wrapper>
     </Root>
   )
 }

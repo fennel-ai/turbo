@@ -12,6 +12,7 @@ import { debounce } from "lodash";
 type Props = {
 	items: NavigationTree
 	isAPI?: boolean;
+	allowScroll?: boolean;
 }
 
 const Root = styled.aside`
@@ -44,9 +45,8 @@ const Navigation = ({ items, isAPI }: Props) => {
 	const containerRef = useRef<HTMLElement>(null);
 	const activeRef = useRef<HTMLLIElement>(null);
 
-
     useEffect(() => {
-        const handleScroll = () => {
+        const handleScroll = (e?:Event) => {
           let current = ''
           for (const section of items) {
 			for (const page of section.pages) { 
@@ -54,16 +54,15 @@ const Navigation = ({ items, isAPI }: Props) => {
             	const element = document.getElementById(slug)
 				if (element && element.getBoundingClientRect().top < 200) {
 					current = slug
-					router.push('/api-reference/'+slug, undefined, { shallow: true })
 				}
 			}
           }
           setCurrentActive(current)
+		  router.replace('/api-reference/'+current, undefined, { shallow: true })
         }
 
 		if(isAPI){
-        	handleScroll()
-        	window.addEventListener('scroll', handleScroll, { passive: true })
+        	window.addEventListener('scroll', handleScroll)
 		}
         return () => {
 			if(isAPI){
@@ -75,15 +74,14 @@ const Navigation = ({ items, isAPI }: Props) => {
 	  useEffect(() => {
 		if(containerRef?.current && activeRef?.current){
 			const topScroll = activeRef.current.offsetTop;
-			containerRef.current.scrollTop = topScroll;
+			containerRef.current.scrollTop = topScroll/2;
 		}
-	  }, [activeRef.current])
+	  }, [activeRef?.current])
 
 	const onAPIRefClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, slug: string) => {
 		if(isAPI){
 			e.preventDefault();
-			document.getElementById(slug)?.scrollIntoView({behavior: 'instant'})
-			router.push('/api-reference/'+slug, undefined, { shallow: true })
+			router.push('/api-reference/'+slug)
 		}
 	}
 	return (

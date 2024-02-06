@@ -109,7 +109,6 @@ const MobileMenu = (props: Props) => {
 							const sectionActive = ctx.section.slug === section.slug;
 							return (
 								<NavigationSection
-									expand
 									key={section.slug}
 									title={section.title}
 									href={section.pages[0].slug}
@@ -124,7 +123,7 @@ const MobileMenu = (props: Props) => {
 												key={slug} 
 												onClick={toggleMobileMenu}
 											>
-												<Link aria-label={title} href={props.isAPI ? '#' + slug : slug}>{title}</Link>
+												<Link aria-label={title} href={props.isAPI ? slug.replace('api-reference/','') : slug}>{title}</Link>
 											</NavigationItem>
 										)
 									})}

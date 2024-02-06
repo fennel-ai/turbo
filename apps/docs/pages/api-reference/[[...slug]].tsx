@@ -8,11 +8,13 @@ import * as components from 'components/MDXComponents';
 import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 type Props = {
     pages: NavigationPage[],
     navigation: NavigationTree,
     requestedSlug: string | null,
+    lol: any;
 }
 
 
@@ -34,7 +36,30 @@ const APIReferencePage = ({ page }: { page: NavigationPage }) => {
 }
 
 
-export default function DocumentationPage({ pages, navigation, requestedSlug }: Props) {
+export default function DocumentationPage({ pages, navigation, requestedSlug, lol }: Props) {
+    
+    const router = useRouter();
+
+    useEffect(() => {
+        router.beforePopState(({ as }: {as: string}) => {
+            const _as = as.replace('docs/', "")
+            if (_as !== router.asPath) {
+				router.push(_as);
+				// isScrollingIntoView = true;
+				// const slug = _as.replace('/api-reference/','');
+				// setCurrentActive(slug);
+				// document.getElementById(slug)?.scrollIntoView({behavior: 'instant'})
+				// setTimeout(() => {
+				// 	isScrollingIntoView  = false;
+				// }, 100)
+            }
+            return true;
+        });
+    
+        return () => {
+            router.beforePopState(() => true);
+        };
+    }, [router.asPath, router.beforePopState]);
 
     useEffect(() => {
         if (requestedSlug) {
@@ -81,38 +106,55 @@ export default function DocumentationPage({ pages, navigation, requestedSlug }: 
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    const requestedSlug = (ctx.params?.slug as string[])?.join('/');
-    const allApiReferencePages = allPages
-        .filter(shouldPublish)
-        .filter((p) => p.slug?.includes('api-reference'))
-        .map(({ slug, ...rest }) => ({ ...rest, slug: slug?.replace('api-reference/', '') }));
-
-    // Only ever falsy if the user has requested /api-reference/ directly (i.e. with no specific page slug)
-    // in which case just show them the page
-    if (requestedSlug !== undefined) {
-        // const allSlugs = allApiReferencePages.map(({ slug }) => slug); // <- probably unnecessary, can just do find index
-
-        if (!allApiReferencePages.find(({ slug }) => slug === requestedSlug)) {
-            return {
-                notFound: true
-            }
-        }
-    }
-
+    let requestedSlug = (ctx.params?.slug as string[])?.join('/');
     const navigation = getNavigation('api');
     const navigationOrder = navigation.map((nav) => nav.pages).flat();
+
     const ordering: { [key: string]: number } = {};
     for (let i = 0; i < navigationOrder.length; i++) {
         ordering[navigationOrder[i].slug.replace('api-reference/', '')] = i;
     }
     const navigationOrderSlugs = navigationOrder.map((nav) => nav.slug.replace('api-reference/', ''))
 
+
+    const allApiReferencePages = allPages
+        .filter(shouldPublish)
+        .filter((p) => p.slug?.includes('api-reference'))
+        .map(({ slug, ...rest }) => ({ ...rest, slug: slug?.replace('api-reference/', '') }))
+        .filter((p) => navigationOrderSlugs.includes(p.slug as string))
+        .sort((a, b) => ordering[a.slug || ''] - ordering[b.slug || '']);
+
+    // Only ever falsy if the user has requested /api-reference/ directly (i.e. with no specific page slug)
+    // in which case just show them the page
+    if (requestedSlug !== undefined) {
+
+        const isSection = navigation.find(({slug}) => slug.replace('api-reference/', '') === requestedSlug) 
+        const isPage = allApiReferencePages.find(({ slug }) => slug === requestedSlug)
+
+        if(isSection) {
+            requestedSlug = isSection.pages[0].slug.replace('api-reference/', '');
+        }
+        // const allSlugs = allApiReferencePages.map(({ slug }) => slug); // <- probably unnecessary, can just do find index
+
+        if (!isSection && !isPage) {
+            return {
+                notFound: true
+            }
+        }
+    }
+
+    
+    
+
     return {
         props: {
-            pages: allApiReferencePages.filter((p) => navigationOrderSlugs.includes(p.slug as string))
-                .sort((a, b) => ordering[a.slug || ''] - ordering[b.slug || '']),
+            pages: allApiReferencePages,
             navigation,
-            requestedSlug: requestedSlug || null
+            requestedSlug: requestedSlug || null,
+            lol: {
+                isSection: navigation.find(({slug}) => slug === requestedSlug) || null,
+                isPage: allApiReferencePages.find(({ slug }) => slug === requestedSlug) || null,
+            }
         }
     }
 }

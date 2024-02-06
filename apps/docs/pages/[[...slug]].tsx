@@ -80,14 +80,23 @@ export default function DocumentationPage({ page, navigation, section, code, hea
 	);
 }
 
-export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 	const { params } = ctx;
 	const slug = (params!.slug as string[])?.join('/');
+	const navigation = getNavigation();
+	const isSlugSection = navigation.find(({slug: secSlug}) => secSlug === slug)
+	if(isSlugSection) {
+		return {
+			redirect: {
+				destination: isSlugSection.pages[0].slug,
+			}
+		}
+	}
 	const { code, page, section, headings } = getPageData(slug || '/');
 
 	return {
 		props: {
-			navigation: getNavigation(),
+			navigation,
 			section,
 			page,
 			code,
@@ -97,15 +106,22 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
+
+	const pagePaths = allPages
+	.filter(shouldPublish)
+	.filter((p) => !!!p.slug?.includes('api-reference'))
+	.map((page) => ({
+		params: {
+			slug: page.slug!.split('/'),
+		}
+	}))
+	const navPaths = getNavigation().map((nav) => ({
+		params: {
+			slug: nav.slug.split('/')
+		}
+	}))
 	return {
-		paths: allPages
-			.filter(shouldPublish)
-			.filter((p) => !!!p.slug?.includes('api-reference'))
-			.map((page) => ({
-				params: {
-					slug: page.slug!.split('/'),
-				}
-			})),
+		paths: pagePaths.concat(navPaths),
 		fallback: false,
 	}
 }

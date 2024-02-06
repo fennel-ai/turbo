@@ -29,7 +29,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	}
 
 	&:hover {
-		background-color: ${({ theme }) => rgba(theme.border, 0.04)};
+		background-color: ${({ theme }) => rgba(theme.border,1)};
 		border-radius: 0 5px 5px 0;
 	}
 

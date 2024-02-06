@@ -27,6 +27,7 @@ const Root = styled.div`
 `;
 
 const Wrapper = styled(Container)`
+	max-width: 100%;
 	position: relative;
 	height: 3rem;
 	display: flex;
@@ -34,7 +35,7 @@ const Wrapper = styled(Container)`
 	z-index: 3;
 
 	${media('md')} {
-		height: 4.5rem;
+		height: 3.5rem;
 	}
 `;
 
@@ -102,7 +103,7 @@ const NavWrapper = styled.div`
 const DemoButtons = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 1rem;
 	${media('md')} {
 		margin-left: auto;
 	}
@@ -114,11 +115,16 @@ const DemoButtons = styled.div`
 `
 
 const NavButton = styled(Button)<{active: boolean}>`
+	display: ${props => props.active ? 'flex' : 'none'};
 	font-weight: 500;
 	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on };
-	height: 4.5rem;
+	height: 3.5rem;
 	border-radius: 0;
-	border-bottom: ${props => props.active && `1px solid ${props.theme.primary.accent}`}
+	border-bottom: ${props => props.active && `2px solid ${props.theme.primary.accent}`};
+	${media('md')} {
+		display: flex;
+	}
+
 `
 
 
@@ -127,7 +133,7 @@ const Header = () => {
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
 
 	const router = useRouter();
-	const isAPI = router.pathname.includes("/api-reference");
+	const isAPI = router.pathname.includes("/api-reference/");
 
 	const navigateTo = (route: string) => {
 		router.push(route)
@@ -143,8 +149,8 @@ const Header = () => {
 			<LinkWrapper>
 				<Brand/>
 				<NavWrapper>
-					<NavButton variant='ghost' label="Docs" active={!isAPI} onClick={()=>navigateTo('/')}/>
-					<NavButton variant='ghost' label="API" active={isAPI} onClick={()=>navigateTo('/api-reference')}/>
+					<NavButton variant='ghost' label="Documentation" active={!isAPI} onClick={()=>navigateTo('/')}/>
+					<NavButton variant='ghost' label="API Reference" active={isAPI} onClick={()=>navigateTo('/api-reference')}/>
 				</NavWrapper>
 				</LinkWrapper>
 				<SearchWrapper>

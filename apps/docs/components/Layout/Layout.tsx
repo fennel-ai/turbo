@@ -20,6 +20,7 @@ type Props = {
 	isAPI?: boolean,
 	headings?: Outline,
 	path? :string
+	allowScroll?: boolean;
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -82,7 +83,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			${media('md')} {
 			${({isAPI, theme}) => isAPI && `
 				position: sticky;
-				top: calc(4.5rem + 1px);
+				top: calc(3.5rem + 1px);
 				background: ${theme.surface};
 				z-index: 2;
 			`}
@@ -152,12 +153,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		img {
 			max-width: 100%;
 			height: auto;
+			margin-bottom: 1rem;
 		}
 
 		ul, ol {
 			padding-inline-start: 2rem;
 			margin-top: 0.5rem;
-			margin-bottom: 0.5rem;
+			margin-bottom: 1rem;
 
 		}
 
@@ -172,14 +174,11 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 		
 		code:not(pre > code) {
+			display:inline-block;
 			height: 1.25rem;
-			font-size: 0.75rem;
-			line-height: 1rem;
 			padding: 0 0.25rem;
-			font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
-			font-weight: ${props => props.theme.fontWeights.primary.medium};
-			background: ${({ theme }) => theme.border};
-			${stateLayer({ initial: 0.04 })}
+			${props => props.theme.syntax.label.small}
+			${stateLayer({ initial: 0.04 , interact: false})}
 			color: ${({ theme }) => theme.on};
 			border: 0.5px solid ${({ theme }) => theme.border};
 			border-radius: 0.25rem;
@@ -211,13 +210,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, headings, path }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings, path, allowScroll }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
 			<Header />
 			<Root isAPI={isAPI}>
-				<Navigation items={navigation} isAPI={isAPI}/>
+				<Navigation items={navigation} isAPI={isAPI} allowScroll={allowScroll}/>
 				<AnimatePresence>
 					{showMobileMenu ? (
 						<MobileMenu items={navigation} onClose={closeMobileMenu} isAPI={isAPI}/>
