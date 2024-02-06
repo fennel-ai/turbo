@@ -7,7 +7,7 @@ const Root = styled.div`
 	padding-bottom: 0.5rem;
 
 	${media('md')} {
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.border};
 	}
 `;

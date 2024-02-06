@@ -100,7 +100,7 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
 
             {!isTypeEnum ? <Type>{type}</Type> : <>
                 {type.map((val, index) => {
-                    return <><Type isEnum>{val}</Type> {index!==type.length-1 && " | "}</>
+                    return <><Type isEnum key={val}>{val}</Type> {index!==type.length-1 && " | "}</>
                 })}
             </>
             }

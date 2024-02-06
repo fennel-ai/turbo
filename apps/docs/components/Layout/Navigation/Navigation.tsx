@@ -57,8 +57,9 @@ const Navigation = ({ items, isAPI }: Props) => {
 				}
 			}
           }
-          setCurrentActive(current)
-		  router.replace('/api-reference/'+current, undefined, { shallow: true })
+          	setCurrentActive(current)
+			const newUrl = '/api-reference/'+current;
+			window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl)
         }
 
 		if(isAPI){

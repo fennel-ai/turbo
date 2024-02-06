@@ -14,7 +14,6 @@ type Props = {
     pages: NavigationPage[],
     navigation: NavigationTree,
     requestedSlug: string | null,
-    lol: any;
 }
 
 
@@ -36,30 +35,7 @@ const APIReferencePage = ({ page }: { page: NavigationPage }) => {
 }
 
 
-export default function DocumentationPage({ pages, navigation, requestedSlug, lol }: Props) {
-    
-    const router = useRouter();
-
-    useEffect(() => {
-        router.beforePopState(({ as }: {as: string}) => {
-            const _as = as.replace('docs/', "")
-            if (_as !== router.asPath) {
-				router.push(_as);
-				// isScrollingIntoView = true;
-				// const slug = _as.replace('/api-reference/','');
-				// setCurrentActive(slug);
-				// document.getElementById(slug)?.scrollIntoView({behavior: 'instant'})
-				// setTimeout(() => {
-				// 	isScrollingIntoView  = false;
-				// }, 100)
-            }
-            return true;
-        });
-    
-        return () => {
-            router.beforePopState(() => true);
-        };
-    }, [router.asPath, router.beforePopState]);
+export default function DocumentationPage({ pages, navigation, requestedSlug }: Props) {
 
     useEffect(() => {
         if (requestedSlug) {
@@ -143,18 +119,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
         }
     }
 
-    
-    
 
     return {
         props: {
             pages: allApiReferencePages,
             navigation,
             requestedSlug: requestedSlug || null,
-            lol: {
-                isSection: navigation.find(({slug}) => slug === requestedSlug) || null,
-                isPage: allApiReferencePages.find(({ slug }) => slug === requestedSlug) || null,
-            }
         }
     }
 }
