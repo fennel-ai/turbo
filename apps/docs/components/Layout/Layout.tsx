@@ -84,7 +84,8 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			${({isAPI, theme}) => isAPI && `
 				position: sticky;
 				top: calc(3.5rem + 1px);
-				background: ${theme.surface};
+				background: ${theme.glass};
+				backdrop-filter: blur(20px) saturate(1.4);
 				z-index: 2;
 			`}
 			}
@@ -96,7 +97,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 			margin-top: 1rem;
 			padding-bottom: 0.5rem;
-			margin-bottom: 0.5rem;
+			margin-bottom: 1rem;
 			border-bottom: 1px solid ${({ theme }) => theme.border};
 
 			${media('sm')} {

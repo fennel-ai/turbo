@@ -82,7 +82,7 @@ const Navigation = ({ items, isAPI }: Props) => {
 			const activeElement = document.getElementById("active");
 			if(activeElement) {
 				const topScroll = activeElement.offsetTop;
-				containerRef.current.scrollTop = topScroll/1.5;
+				containerRef.current.scrollTop = topScroll - containerRef.current.clientHeight + 120 + 72;
 			}
 		}
 	  }, [containerRef, currentActive])

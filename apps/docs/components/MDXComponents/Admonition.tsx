@@ -45,19 +45,21 @@ type Props = {
 
 const Root = styled.div<{ type: Props['type'] }>`
 	padding: 0rem 1rem;
-	margin: 1rem 0;
+	margin: 1.5rem 0;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	width: max-content;
 	max-width: 100%;
-	font-size: 0.875rem;
+	font-size: 1rem;
 	font-weight: ${props => props.theme.fontWeights.primary.bold};
 	border-left: 1px solid ${({ type,theme }) => rgba(get(TYPE_MAP[type].icon_color)({theme}), 1)};
 	& > p {
 		color: ${({theme }) => theme.on_alt};
-		margin-bottom: 0 !important;
+		margin: 0 !important;
 		font-weight: ${props => props.theme.fontWeights.primary.regular} !important;
+		font-size: 1rem;
+		line-height: 1.75rem;
 	}
 `;
 

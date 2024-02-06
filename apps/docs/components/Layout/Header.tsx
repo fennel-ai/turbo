@@ -21,7 +21,7 @@ const Root = styled.div`
 	left: 0;
 	right: 0;
 	z-index: 3;
-	background-color: ${({ theme }) => rgba(theme.glass, 0.72)};
+	background-color: ${({ theme }) => theme.glass};
 	border-bottom: 1px solid ${({ theme }) => rgba(theme.on_alt, 0.06)};
 	backdrop-filter: blur(20px) saturate(1.4);
 `;
