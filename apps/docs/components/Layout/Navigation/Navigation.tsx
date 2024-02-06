@@ -58,7 +58,7 @@ const Navigation = ({ items, isAPI }: Props) => {
 			}
           }
           	setCurrentActive(current)
-			const newUrl = '/api-reference/'+current;
+			const newUrl = '/docs/api-reference/'+current;
 			window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl)
         }
 
