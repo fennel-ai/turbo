@@ -12,7 +12,7 @@ import { debounce, throttle } from "lodash";
 type Props = {
 	items: NavigationTree
 	isAPI?: boolean;
-	allowScroll?: boolean;
+	navRoute?: string;
 }
 
 const Root = styled.aside`
@@ -42,16 +42,46 @@ const updateURL = (newUrl: string) => {
     window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl)
 };
 
+let allowScroll = true;
+
 const Navigation = ({ items, isAPI }: Props) => {
 	const router = useRouter();
 
 	const [currentActive, setCurrentActive] = useState('')
 	const containerRef = useRef<HTMLElement>(null);
-
 	const throttledUpdateUrl = throttle(updateURL, 100);
+
+	useEffect(() => {
+		router.beforePopState(({ as }) => {
+			if (isAPI && (as.replace("/docs", "") !== router.asPath)) {
+				const apiSlug = as.replace("/docs/api-reference/", "");
+				const element = document.getElementById(apiSlug)
+				if(element) {
+					throttledUpdateUrl('/docs/api-reference/'+apiSlug);
+					setCurrentActive(apiSlug)
+					allowScroll = false;
+					//This is a hack for an unknown race condition that is making the page scroll up
+					setTimeout(()=> {
+						element.scrollIntoView();
+						allowScroll = true;
+					},100)
+					
+					return false;
+				}
+			}
+			return true;
+		});
+	
+		return () => {
+			router.beforePopState(() => true);
+		};
+	}, [router.beforePopState, router.asPath]);
 
     useEffect(() => {
         const handleScroll = (e?:Event) => {
+			if(!allowScroll) {
+				return;
+			}
           let current = ''
           for (const section of items) {
 			for (const page of section.pages) { 
@@ -90,8 +120,13 @@ const Navigation = ({ items, isAPI }: Props) => {
 	const onAPIRefClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, slug: string) => {
 		if(isAPI){
 			e.preventDefault();
-			router.push('/api-reference/'+slug, undefined, {shallow: true})
+			allowScroll = false;
+			setCurrentActive(slug);
+			router.push('/api-reference/'+slug, undefined, {shallow: true, scroll: false})
 			document.getElementById(slug)?.scrollIntoView();
+			setTimeout(()=> {
+				allowScroll = true;
+			},100)
 		}
 	}
 	return (

@@ -1,13 +1,14 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPages, config } from 'contentlayer/generated';
+import { allPages } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 type Props = {
 	page: NavigationPage,
@@ -15,6 +16,7 @@ type Props = {
 	section: NavigationSection,
 	code: string,
 	headings: {level: number, title: string}[]
+	redirect?: string;
 }
 
 const Wrapper = styled.div`
@@ -29,7 +31,16 @@ const MarginWrapper = styled.div`
 	grid-column: span 1;
 `
 
-export default function DocumentationPage({ page, navigation, section, code, headings }: Props) {
+export default function DocumentationPage({ page, navigation, section, code, headings, redirect }: Props) {
+
+	const router = useRouter();
+
+	useEffect((() => {
+		if (redirect) {
+			router.push(redirect);
+		}
+	}), [redirect])
+
 	const ctxValue = useMemo(() => ({
 		page,
 		section,
@@ -37,7 +48,7 @@ export default function DocumentationPage({ page, navigation, section, code, hea
 
 	const MDXContent = useMDXComponent(code);
 
-	return (
+	return !redirect ? (
 		<LayoutContext.Provider value={ctxValue}>
 			<Layout navigation={navigation} headings={headings} path={page._id}>
 				<Head>
@@ -77,36 +88,50 @@ export default function DocumentationPage({ page, navigation, section, code, hea
 				</Wrapper>
 			</Layout>
 		</LayoutContext.Provider>
-	);
+	) : null;
 }
 
-export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-    const { params } = ctx;
-    const slug = (params!.slug as string[])?.join('/');
-    const { code, page, section, headings } = getPageData(slug || '/');
+export const getStaticProps = async (ctx: GetStaticPropsContext) => {
+	const { params } = ctx;
+	let slug = (params!.slug as string[])?.join('/');
+	const navigation = getNavigation();
+	const isSlugSection = navigation.find(({slug: secSlug}) => secSlug === slug)
+	let redirect = '';
+	if(isSlugSection) {
+		redirect = isSlugSection.pages[0].slug;
+		slug = redirect;
+	}
+	const { code, page, section, headings } = getPageData(slug || '/');
 
-    return {
-        props: {
-            navigation: getNavigation(),
-            section,
-            page,
-            code,
-            headings,
-        }
-    }
+	return {
+		props: {
+			navigation,
+			section,
+			page,
+			code,
+			headings,
+			redirect
+		}
+	}
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
-    return {
-        paths: allPages
-            .filter(shouldPublish)
-            .filter(({ section }) => !!config.sidebar!.find((s) => s.slug === section)) // HOTFIX
-            .filter((p) => !!!p.slug?.includes('api-reference'))
-            .map((page) => ({
-                params: {
-                    slug: page.slug!.split('/'),
-                }
-            })),
-        fallback: false,
-    }
+
+	const pagePaths = allPages
+	.filter(shouldPublish)
+	.filter((p) => !!!p.slug?.includes('api-reference'))
+	.map((page) => ({
+		params: {
+			slug: page.slug!.split('/'),
+		}
+	}))
+	const navPaths = getNavigation().map((nav) => ({
+		params: {
+			slug: nav.slug.split('/')
+		}
+	}))
+	return {
+		paths: pagePaths.concat(navPaths),
+		fallback: false,
+	}
 }
