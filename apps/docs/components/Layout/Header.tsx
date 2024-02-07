@@ -171,16 +171,14 @@ const Header = () => {
 							label="Github"
 							variant="outline"
 							icon={<GitHubIcon/>}
-						>
-						</DemoButton>
+						/>
 					</a>
 					<a href="https://fennel.ai/get-a-demo">
 						<DemoButton
 							size="small"
 							label="Request a demo"
 							variant="outline"
-						>
-						</DemoButton>
+						/>
 					</a>
 					</DemoButtons>
 				</Actions>
