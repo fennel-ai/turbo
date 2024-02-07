@@ -39,7 +39,7 @@ export default function DocumentationPage({ pages, navigation, requestedSlug }: 
 
     useEffect(() => {
         if (requestedSlug) {
-            document.getElementById(requestedSlug)?.scrollIntoView({ behavior: 'instant' });
+            document.getElementById(requestedSlug)?.scrollIntoView();
         }
     }, [requestedSlug]);
 
