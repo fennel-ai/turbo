@@ -91,7 +91,7 @@ const Navigation = ({ items, isAPI }: Props) => {
 		if(isAPI){
 			e.preventDefault();
 			router.push('/api-reference/'+slug, undefined, {shallow: true})
-			document.getElementById(slug)?.scrollIntoView({behavior: 'instant'});
+			document.getElementById(slug)?.scrollIntoView();
 		}
 	}
 	return (
