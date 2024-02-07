@@ -53,7 +53,7 @@ const Root = styled.div<{ type: Props['type'] }>`
 	max-width: 100%;
 	font-size: 1rem;
 	font-weight: ${props => props.theme.fontWeights.primary.bold};
-	border-left: 1px solid ${({ type,theme }) => rgba(get(TYPE_MAP[type].icon_color)({theme}), 1)};
+	border-left: 2px solid ${({ type,theme }) => rgba(get(TYPE_MAP[type].icon_color)({theme}), 1)};
 	& > p {
 		color: ${({theme }) => theme.on_alt};
 		margin: 0 !important;

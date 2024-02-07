@@ -39,6 +39,7 @@ export default function DocumentationPage({ pages, navigation, requestedSlug }: 
 
     useEffect(() => {
         if (requestedSlug) {
+            console.log('meow');
             document.getElementById(requestedSlug)?.scrollIntoView();
         }
     }, [requestedSlug]);
