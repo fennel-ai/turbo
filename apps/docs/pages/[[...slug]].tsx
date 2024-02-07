@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPages } from 'contentlayer/generated';
+import { allPages, config } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
@@ -119,6 +119,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 	const pagePaths = allPages
 	.filter(shouldPublish)
+	.filter(({ section }) => !!config.sidebar!.find((s) => s.slug === section)) // HOTFIX
 	.filter((p) => !!!p.slug?.includes('api-reference'))
 	.map((page) => ({
 		params: {
