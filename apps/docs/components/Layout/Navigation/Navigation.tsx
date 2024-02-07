@@ -90,7 +90,8 @@ const Navigation = ({ items, isAPI }: Props) => {
 	const onAPIRefClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, slug: string) => {
 		if(isAPI){
 			e.preventDefault();
-			router.push('/api-reference/'+slug)
+			router.push('/api-reference/'+slug, undefined, {shallow: true})
+			document.getElementById(slug)?.scrollIntoView({behavior: 'instant'});
 		}
 	}
 	return (
