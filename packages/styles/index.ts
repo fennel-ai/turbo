@@ -128,7 +128,8 @@ type SyntaxTheme = {
 type ButtonShadowTokens = {
     default: string,
     hover: string,
-    active: string
+    active: string,
+    disabled?: string
 }
 
 export type Breakpoint = "2xs" | "xs" | "sm" | "md" | "lg" | "xl";

@@ -7,7 +7,7 @@ import { media } from "styles/utils";
 import { useRouter } from "next/router";
 
 const Main = styled.main`
-	min-height: calc(100vh - 4.5rem - 8rem);
+	min-height: calc(100vh - 3.5rem - 8rem);
 	display: flex;
 	align-items: center;
 	justify-content: center;

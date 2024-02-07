@@ -5,11 +5,13 @@ import trimEnd from 'lodash/trimEnd';
 
 import { extractSnippet } from './utils';
 import { ExampleFileDef } from './types';
+import { MdxJsxAttribute } from 'mdast-util-mdx-jsx/lib';
 
 const readFile = promisify(rf);
 
 export const findAndReplace = async ({
 	index,
+	node: _node,
 	file,
 	snippet_id,//@ts-ignore
 }: ExampleFileDef, tree) => {
@@ -23,15 +25,26 @@ export const findAndReplace = async ({
 	let snippet_str = extractSnippet(file_content, snippet_id);
 	if (snippet_str) {
 		// @ts-ignore
-		let node = tree.children[index];
-
+		let node = _node || tree.children[index];
+		const statusAttr = node.attributes.find(
+			(attr:MdxJsxAttribute) => attr.name === "status"
+		);
+		const messageAttr = node.attributes.find(
+			(attr: MdxJsxAttribute) => attr.name === "message"
+		);
+		const langAttr = node.attributes.find(
+			(attr: MdxJsxAttribute) => attr.name === "language"
+		);
+		const highlightAttr = node.attributes.find(
+			(attr: MdxJsxAttribute) => attr.name === "highlight"
+		);
 		node.type = "mdxJsxFlowElement";
 		node.name = "pre";
 		node.attributes = [
 			{
 				type: "mdxJsxAttribute",
 				name: "language",
-				value: "python",
+				value: langAttr?.value || "python",
 			},
 			{
 				type: "mdxJsxAttribute",
@@ -42,7 +55,22 @@ export const findAndReplace = async ({
 				type: 'mdxJsxAttribute',
 				name: 'snippetId',
 				value: snippet_id,
-			}
+			},
+			{
+				type: 'mdxJsxAttribute',
+				name: 'status',
+				value: statusAttr?.value || ''
+			},
+			{
+				type: 'mdxJsxAttribute',
+				name: 'message',
+				value: messageAttr?.value || ''
+			},
+			{
+				type: 'mdxJsxAttribute',
+				name: 'highlight',
+				value: highlightAttr?.value || ''
+			},
 		];
 		node.children = [
 			{
@@ -60,3 +88,4 @@ export const findAndReplace = async ({
 		throw new Error(`Snippet ${snippet_id} not found in ${filename}`);
 	}
 }
+

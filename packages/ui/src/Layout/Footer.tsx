@@ -14,6 +14,7 @@ const Root = styled.footer`
     padding-top: 3rem;
     padding-bottom: 3rem;
     transform: translateZ(0);
+    border-top: 1px solid ${({ theme }) => theme.border};
 
     & p {
         margin: 0;

@@ -1,27 +1,26 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { get } from 'styles/utils';
-
 type Props = {
 	children: ReactNode;
-	expand: boolean;
 	href: string;
 	title: string;
+	isAPI?: boolean
 }
 
 const Root = styled(motion.ul)`
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	margin-bottom: 1rem;
 `;
 
 const SectionTitle = styled.li<{expand: boolean}>`
 	color: ${({ theme }) => theme.on};
-	font-size: 1.25rem;
-	line-height: 2.5rem;
+	font-size: 1rem;
+	line-height: 1rem;
 	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 	opacity: ${({ expand }) => expand ? 1 : 0.64};
 	cursor: pointer;
@@ -47,10 +46,8 @@ const PageList = styled.ul`
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
-	margin: 1rem 0;
-	padding-left: 2rem;
-	border-left: 1px solid ${({ theme }) => theme.border};
+	margin-top: 1rem;
+	padding-left: 0rem;
 `;
 
 const animation = {
@@ -70,11 +67,13 @@ const animation = {
 	}
 }
 
-const NavigationSection = ({ children, expand, href, title }: Props) => {
+const NavigationSection = ({ children, href, title, isAPI }: Props) => {
+	const [expand, setExpand] = useState(true);
+	const toggleExpand = () => setExpand(!expand);
 	return (
 		<Root>
-			<SectionTitle expand={expand}>
-				<Link href={href}>{title}</Link>
+			<SectionTitle expand={expand} onClick={toggleExpand}>
+				{title}
 			</SectionTitle>
 			<AnimatePresence initial={false}>
 				{expand ? (

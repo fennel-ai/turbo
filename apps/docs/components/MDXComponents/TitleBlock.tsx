@@ -4,10 +4,10 @@ import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
-	padding-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
 
 	${media('md')} {
-		padding-bottom: 2rem;
+		margin-bottom: 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.border};
 	}
 `;
@@ -32,13 +32,8 @@ const Title = styled.div`
 		position: relative;
 		margin: 0;
 		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
-		font-size: 2rem;
-		line-height: 2rem;
-		
-		${media('md')} {
-			font-size: 3rem;
-			line-height: 3rem;
-		}
+		font-size: 2.5rem;
+		line-height: 3rem;
 	}
 
 	& > span  {
@@ -64,18 +59,17 @@ const Description = styled.p`
 `;
 
 const SectionTitle = styled.div`
-	height: 2.5rem;
 	display: none;
 	align-items: center;
 
-	${media('lg')} {
+	${media('md')} {
 		display: flex;
 	}
 
 	& > p {
 		margin: 0;
-		font-size: 1.25rem;
-		line-height: 1.5rem;
+		font-size: 1rem;
+		line-height: 1rem;
 		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 		color: ${({ theme }) => theme.primary.accent};
 	}

@@ -175,8 +175,9 @@
         "value": {
           "fontFamily": "{fontFamilies.mono}",
           "fontWeight": "{fontWeights.mono.light}",
-          "fontSize": "{typescale.1}",
-          "lineHeight": "{typescale.5}"
+          "fontSize": "{typescale.0}",
+          "lineHeight": "{typescale.5}",
+          "letterSpacing": "-0.25px"
         },
         "type": "typography"
       },

@@ -79,10 +79,6 @@ const Wrapper = styled.nav`
 `;
 
 const Brand = styled(Masthead)`
-	& svg {
-		color: ${({ theme }) => theme.primary.accent};
-	}
-
 	& h2 {
 		color: ${({ theme }) => theme.on};
 	}
@@ -167,7 +163,7 @@ export const Header = () => {
 		<Root data-header>
 			<Backdrop />
 			<Wrapper>
-                <Brand />
+				<Brand />
 				<Menu>
 					<Link href="/company">
 						<NavButton>

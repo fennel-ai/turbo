@@ -1,7 +1,7 @@
 import { Children, ReactElement } from "react";
 import styled from '@emotion/styled';
 import { motion } from "framer-motion";
-import { get, media } from "styles/utils";
+import { get, media, stateLayer } from "styles/utils";
 import ArrowRightIcon from 'ui/icons/arrow-narrow-right.svg';
 import { useBreakpoint } from "hooks/useBreakpoint";
 
@@ -10,14 +10,17 @@ const Wrapper = styled.div`
 `;
 
 const TableRoot = styled.table`
-	display: block;
-	width: 100%;
+	display: inline-block;
 	overflow-x: auto;
-	border-collapse: separate;
+	border-collapse: collapse; 
+	font-size: 0.875rem;
+	line-height: 1.5rem;
+	border: 0.5px solid ${({ theme }) => theme.border };
+	border-radius: 0.5rem;
 
 	tr {
 		display: flex;
-
+		border-bottom: 0.5px solid ${({ theme }) => theme.border };
 		${media('sm')} {
 			display: table-row;
 		}
@@ -32,25 +35,18 @@ const TableRoot = styled.table`
 	}
 
 	& thead {
-		box-shadow: 0px 2px 0px ${({ theme }) => theme.border};
+		${({ theme }) => stateLayer({ initial: 0.04, color: theme.on_alt })};
 		
 		tr {
 			text-align: left;
 
 			th {
+				border: none;
+				text-transform: uppercase;
 				padding: 1rem;
-				border-collapse: separate;
-				font-size: 1.125rem;
-				line-height: 1.5rem;
+				line-height: 1rem;
+				font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 				color: ${({ theme }) => theme.on_alt };
-
-				&:first-of-type {
-					padding-left: 0;
-				}
-
-				&:last-of-type {
-					padding-right: 0;
-				}
 			}
 		}
 	}
@@ -58,18 +54,8 @@ const TableRoot = styled.table`
 	& tbody {
 		tr td {
 			padding: 1rem; 
-			font-size: 1rem;
-			line-height: 1.5rem;
 			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 			vertical-align: top;
-
-			&:first-of-type {
-				padding-left: 0;
-			}
-
-			&:last-of-type {
-				padding-right: 0;
-			}
 		}
 	}
 `;
