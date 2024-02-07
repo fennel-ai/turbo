@@ -115,16 +115,11 @@ const DemoButtons = styled.div`
 `
 
 const NavButton = styled(Button)<{active: boolean}>`
-	display: ${props => props.active ? 'flex' : 'none'};
 	font-weight: 500;
 	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on };
 	height: 3.5rem;
 	border-radius: 0;
 	border-bottom: ${props => props.active && `2px solid ${props.theme.primary.accent}`};
-	${media('md')} {
-		display: flex;
-	}
-
 `
 
 
