@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import styled from '@emotion/styled';
+import { VariantGrid, VariantItem, VariantSection } from './shared/VariantPresentation';
 
 import { Button, ButtonProps } from 'ui';
 
@@ -12,30 +12,6 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
 } as ComponentMeta<typeof Button>;
-
-const VariantGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-`;
-
-const VariantSection = styled.div`
-    grid-column: span 3;
-    & h4 {
-        margin: 0;
-        margin-top: 1rem;
-    }
-`;
-
-const VariantItem = styled.div`
-    background-color: ${({ theme }) => theme.glass};
-    border: 0.5px solid rgba(0, 0, 0, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.5rem;
-    min-height: 10rem;
-`;
 
 const variants: Record<string, Partial<ButtonProps>[]> = {
     'Rounded / Small': [
@@ -134,27 +110,26 @@ export const FlatButton = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 FlatButton.args = {
   label: 'Button',
-  color: 'neutral',
+  color: 'primary',
   variant: 'flat',
 };
 
 export const OutlineButton = Template.bind({});
 OutlineButton.args = {
   label: 'Button',
-  color: 'neutral',
   variant: 'outline',
 };
 
 export const GhostButton = Template.bind({});
 GhostButton.args = {
   label: 'Button',
-  color: 'neutral',
+  color: 'primary',
   variant: 'ghost',
 };
 
 export const GlassButton = Template.bind({});
 GlassButton.args = {
   label: 'Button',
-  color: 'neutral',
+  color: 'primary',
   variant: 'glass',
 };

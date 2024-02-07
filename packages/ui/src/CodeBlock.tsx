@@ -1,8 +1,15 @@
 import styled from '@emotion/styled';
-import CopyIcon from '../icons/copy.svg';
+import { ThemeProvider } from '@emotion/react';
 
-import { media, rgba } from 'styles/utils';
+import { media, rgba, stateLayer } from 'styles/utils';
 import { Syntax } from './Syntax';
+import CopyIcon from '../icons/copy.svg';
+import GithubIcon from '../icons/github.svg'
+import XIcon from '../icons/x-circle.svg'
+import CheckIcon from '../icons/check-circle.svg'
+import { dark as darkTheme } from 'styles';
+import { IconButton } from './IconButton';
+import {toast} from "react-hot-toast"
 
 type Props = {
 	className?: string,
@@ -11,81 +18,52 @@ type Props = {
 	filename?: string,
 	filenameHref?: string,
 	toolbar?: boolean,
-	onCopy?: () => void
+	onCopy?: () => void,
+	message?: string;
+	status?: string;
+	title?: string;
+	highlight?: string;
 }
 
 const Root = styled.div<{ toolbar?: boolean }>`
 	background-color: ${({ theme }) => theme.syntax.plain.background};
+	${props => stateLayer({ initial: 0.04, color: props.theme.on_alt, interact: false })}
 	color: ${({ theme }) => theme.syntax.plain.foreground};
 	overflow: hidden;
 	position: relative;
 	border-radius: 0;
 
 	${media('sm', 'max')} {
-		&::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-color: rgba(0, 0, 0, 0.1);
-		}
+		margin-left: -1rem;
+		margin-right: -1rem;
 	}
 
 	${media('sm')} {
-		box-shadow: 0px 4px 16px 0px ${({ theme }) => rgba(theme.shadow, theme.type === 'dark' ? 0 : 0.32)};
-		border: 0.5px solid ${({ theme }) => theme.border.light};
-		border-radius: 1.25rem;
+		border: 0.5px solid ${({ theme }) => theme.border};
+		border-radius: 0.5rem;
 	}
 `;
 
 const Toolbar = styled.div`
-	height: 3.5rem;
+	height: 2.5rem;
 	position: relative;
-	display: flex;
 	align-items: center;
 	gap: 0.5rem;
 	justify-content: space-between;
-	padding-left: 1.5rem;
-	padding-right: 1.5rem;
-`;
-
-const FakeButtons = styled.div`
+	align-self: stretch;
 	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-	& span {
-		width: 1rem;
-		height: 1rem;
-		border-radius: 50%;
-		background-color: rgba(255, 255, 255, 0.12);
-	}
+	padding: 0.25rem 1rem;
+	color:${({ theme }) => theme.on_alt};
+	border-top: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
 `;
 
 const Filename = styled.a`
-	font-size: 0.875rem;
-	line-height: 1.5rem;
-	font-family: 'Jetbrains Mono', monospace;
 	color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
-	text-decoration: none;
-	position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
 	cursor: pointer;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 40%;
-	user-select: none;
+	display: flex;
 
 	&:hover {
 		color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 1)} !important;
-	}
-	
-	&:active {
-		color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
 	}
 `;
 
@@ -114,33 +92,75 @@ const CopyButton = styled.button`
 
 const Code = styled(Syntax)<{ toolbar: boolean }>`
 	& > pre {
-		padding-top: ${({ toolbar }) => toolbar ? '0.5rem' : '1rem'};
+		padding-top: 0.75rem;
+        background: transparent;
+		padding-bottom: 0.75rem;
 	}
 `;
 
-export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true }: Props) => {
+const Title = styled.div<{ status?: string }>`
+	color: ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on};
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.875rem;
+`
+
+const Actions = styled.div`
+text-transform: capitalize;
+display: flex;
+height: 2rem;
+justify-content: flex-end;
+align-items: center;
+gap: 1rem;
+font-size: 0.875rem;
+`
+
+const ActionButtons = styled.div`
+display: flex;
+align-items: center;
+gap: 0.5rem;
+`
+
+const getStatusIcon = (status?: string) => {
+	switch(status) {
+		case 'error':
+			return <XIcon/>
+		case 'success':
+			return <CheckIcon/>
+		default:
+			return ''
+	}
+}
+
+export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true, message, status, highlight }: Props) => {
 	const handleCopy = () => {
 		navigator.clipboard.writeText(code);
 		if (onCopy) onCopy();
+		toast.success(`Copied snippet`);
 	};
 
 	return (
-		<Root className={className} toolbar={toolbar}>
-			{toolbar ? (
-				<Toolbar>
-					<FakeButtons>
-						<span />
-						<span />
-						<span />
-					</FakeButtons>
-					{filename ? <Filename target="_blank" rel="noopener noreferrer" href={filenameHref}>{filename}</Filename> : null}
-					<CopyButton onClick={handleCopy}>
-						Copy
-						<CopyIcon />
-					</CopyButton>
-				</Toolbar>
-			) : null}
-			<Code toolbar={toolbar} language={language} code={code} />
-		</Root>
+		<ThemeProvider theme={darkTheme}>
+            <Root className={className} toolbar={toolbar}>
+                <Code toolbar={toolbar} language={language} code={code.trimEnd()} highlight={highlight}/>
+                {toolbar ? (
+                    <Toolbar>
+                        <Title status={status}>
+                            {(status?.length || message?.length) ? <>
+                                {getStatusIcon(status)}<div>{message}</div>
+                            </> : ''}
+                        </Title>
+                        <Actions>
+                            {language}
+							<ActionButtons>
+                            {filename && <IconButton icon={GithubIcon} size='small' onClick={() => window.open(filenameHref, "_blank")} />}
+                            <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
+							</ActionButtons>
+                        </Actions>
+                    </Toolbar>
+                ) : null}
+            </Root>
+        </ThemeProvider>
 	);
 }

@@ -1,11 +1,20 @@
-import { allPages, config, Page } from "contentlayer/generated";
+import { allPages, aPIConfig, config, Page } from "contentlayer/generated";
 
 export type NavigationPage = {
 	description?: string;
 	title: string;
 	slug: string;
 	status: Page['status'];
+	body: {
+		code: string;
+		_raw: string;
+	};
+	_id: string;
 }
+
+export type Outline = {
+	level: number, title: string
+}[]
 
 export type NavigationSection = {
 	title: string;
@@ -20,8 +29,8 @@ export const shouldPublish = (page: Page): boolean => process.env.NODE_ENV !== '
 /**
  * Returns the navigation tree from the config.yml file in the content directory.
  */
-export const getNavigation = (): NavigationTree => {
-	const { sidebar } = config;
+export const getNavigation = (type?: string): NavigationTree => {
+	const { sidebar } = type === "api" ? aPIConfig : config;
 	return sidebar!.map((section) => ({
 		...section,
 		pages: section.pages.map((slug: string) => {
@@ -41,24 +50,28 @@ export const getNavigation = (): NavigationTree => {
 /**
  * Get the page metadata, section data and markdown code for a given page slug.
  */
-export const getPageData = (pageSlug: string): { code: string, section: NavigationSection, page: NavigationPage } => {
+export const getPageData = (pageSlug: string, api?: boolean): { code: string, section: NavigationSection, page: Partial<NavigationPage>, headings: Outline } => {
 	const {
 		body,
 		description = "",
 		section,
 		title,
 		status,
-		slug
+		slug,
+		headings,
+		_id,
 	} = allPages.find((page) => page.slug === pageSlug)!;
-	
+
 	return {
 		code: body.code,
-		section: config.sidebar!.find((s) => s.slug === section)!,
+		section: (api ? aPIConfig : config).sidebar!.find((s) => s.slug === section)!,
+		headings,
 		page: {
 			description,
 			title,
 			status,
 			slug: slug!, // Slug is computed if not present so although it's optional in the contentlayer schema (i.e. it's not a hard requirement in the frontmatter), it will always be present here
+			_id,
 		}
 	}
 }

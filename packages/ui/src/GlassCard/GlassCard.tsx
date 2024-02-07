@@ -9,7 +9,7 @@ const Root = styled(Card)`
 	--x: calc((var(--mouse-x) - var(--pos-x)) * 1px);
 	--y: calc((var(--mouse-y) - var(--pos-y)) * 1px);
 
-	background-color: ${({ theme }) => theme.border.light};
+	background-color: ${({ theme }) => theme.border};
 	user-select: none;
 	contain: strict;
 	transition: box-shadow 200ms ease-out, transform 200ms ease;

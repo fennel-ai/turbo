@@ -1,21 +1,35 @@
 import { useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPages } from 'contentlayer/generated';
+import { allPages, config } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
 import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
+import styled from "@emotion/styled";
 
 type Props = {
 	page: NavigationPage,
 	navigation: NavigationTree,
 	section: NavigationSection,
 	code: string,
+	headings: {level: number, title: string}[]
 }
 
-export default function DocumentationPage({ page, navigation, section, code }: Props) {
+const Wrapper = styled.div`
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+`
+const MDXWrapper = styled.div`
+	grid-column: span 8;
+`
+
+const MarginWrapper = styled.div`
+	grid-column: span 1;
+`
+
+export default function DocumentationPage({ page, navigation, section, code, headings }: Props) {
 	const ctxValue = useMemo(() => ({
 		page,
 		section,
@@ -25,7 +39,7 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 
 	return (
 		<LayoutContext.Provider value={ctxValue}>
-			<Layout navigation={navigation}>
+			<Layout navigation={navigation} headings={headings} path={page._id}>
 				<Head>
 					<title>{page.title}</title>
 					{page.description ? <meta name="description" content={page.description} /> : null}
@@ -54,37 +68,45 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 					<meta name="apple-mobile-web-app-title" content="Fennel" />
 					<meta name="application-name" content="Fennel" />
 				</Head>
-				{/** @ts-ignore */}
-				<MDXContent components={components} />
+				<Wrapper>
+					<MDXWrapper>
+					{/* @ts-ignore */}
+						<MDXContent components={components} />
+					</MDXWrapper>
+					<MarginWrapper/>
+				</Wrapper>
 			</Layout>
 		</LayoutContext.Provider>
 	);
 }
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-	const { params } = ctx;
-	const slug = (params!.slug as string[])?.join('/');
-	const { code, page, section } = getPageData(slug || '/');
+    const { params } = ctx;
+    const slug = (params!.slug as string[])?.join('/');
+    const { code, page, section, headings } = getPageData(slug || '/');
 
-	return {
-		props: {
-			navigation: getNavigation(),
-			section,
-			page,
-			code,
-		}
-	}
+    return {
+        props: {
+            navigation: getNavigation(),
+            section,
+            page,
+            code,
+            headings,
+        }
+    }
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
-	return {
-		paths: allPages
-			.filter(shouldPublish)
-			.map((page) => ({
-				params: {
-					slug: page.slug!.split('/'),
-				}
-			})),
-		fallback: false,
-	}
+    return {
+        paths: allPages
+            .filter(shouldPublish)
+            .filter(({ section }) => !!config.sidebar!.find((s) => s.slug === section)) // HOTFIX
+            .filter((p) => !!!p.slug?.includes('api-reference'))
+            .map((page) => ({
+                params: {
+                    slug: page.slug!.split('/'),
+                }
+            })),
+        fallback: false,
+    }
 }

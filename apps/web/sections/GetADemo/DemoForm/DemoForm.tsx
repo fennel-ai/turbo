@@ -72,7 +72,7 @@ const FormCard = styled.div`
 	}
 
 	input, select {
-		border-color: ${({ theme }) => theme.border.light} !important;
+		border-color: ${({ theme }) => theme.border} !important;
 		color: ${({ theme }) => theme.on};
 
 		&::placeholder {

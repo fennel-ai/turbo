@@ -14,6 +14,7 @@ const Root = styled.footer`
     padding-top: 3rem;
     padding-bottom: 3rem;
     transform: translateZ(0);
+    border-top: 1px solid ${({ theme }) => theme.border};
 
     & p {
         margin: 0;
@@ -39,7 +40,7 @@ const Credit = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 1rem;
-    border-top: 0.5px solid ${({ theme }) => theme.border.light};
+    border-top: 0.5px solid ${({ theme }) => theme.border};
     padding-top: 2rem;
 
     & > p {
