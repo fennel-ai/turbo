@@ -10,11 +10,10 @@ import { MdxJsxAttribute } from 'mdast-util-mdx-jsx/lib';
 const readFile = promisify(rf);
 
 export const findAndReplace = async ({
-	index,
-	node: _node,
+	node,
 	file,
-	snippet_id,//@ts-ignore
-}: ExampleFileDef, tree) => {
+	snippet_id,
+}: ExampleFileDef) => {
 	// Create the filename string that we can pass through to the element as an attribute 
 	// allowing it to be surfaced in the ui.
 	const filename = path.join("examples", file + ".py");
@@ -24,8 +23,6 @@ export const findAndReplace = async ({
 
 	let snippet_str = extractSnippet(file_content, snippet_id);
 	if (snippet_str) {
-		// @ts-ignore
-		let node = _node || tree.children[index];
 		const statusAttr = node.attributes.find(
 			(attr:MdxJsxAttribute) => attr.name === "status"
 		);
