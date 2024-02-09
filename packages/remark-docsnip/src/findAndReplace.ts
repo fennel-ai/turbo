@@ -25,21 +25,27 @@ export const findAndReplace = async ({
         const file_content = await readFile(path.join(process.cwd(), "_content", filename), "utf8");
 
         let snippet_str = extractSnippet(file_content, snippet_id);
+
         if (snippet_str) {
             const statusAttr = node.attributes.find(
                 (attr: MdxJsxAttribute) => attr.name === "status"
             );
+
             const messageAttr = node.attributes.find(
                 (attr: MdxJsxAttribute) => attr.name === "message"
             );
+
             const langAttr = node.attributes.find(
                 (attr: MdxJsxAttribute) => attr.name === "language"
             );
+
             const highlightAttr = node.attributes.find(
                 (attr: MdxJsxAttribute) => attr.name === "highlight"
             );
+
             node.type = "mdxJsxFlowElement";
             node.name = "pre";
+
             node.attributes = [
                 {
                     type: "mdxJsxAttribute",
