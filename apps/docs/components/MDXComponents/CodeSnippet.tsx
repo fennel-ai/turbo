@@ -27,7 +27,6 @@ type CodeSnippetProps = {
     className?: string,
     filename?: string,
     language?: string,
-    snippet?: string,
     snippetId?: string,
     status?: string,
     message?: string,
