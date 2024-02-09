@@ -24,11 +24,11 @@ const Root = styled(CodeBlock)`
 `
 
 type CodeSnippetProps = {
-    className: string,
+    className?: string,
     filename?: string,
     language?: string,
     snippet?: string,
-    snippet_id?: string,
+    snippetId?: string,
     status?: string,
     message?: string,
     highlight?: string
@@ -36,18 +36,20 @@ type CodeSnippetProps = {
 
 // Wraps our CodeBlock component to override the code prop, either with the children from the original markdown, or the docsnip snippet referenced from the snippet prop.
 export const CodeSnippet = (props: PropsWithChildren<CodeSnippetProps>) => {
-    const isDocsnip = !!props.snippet_id;
+    const isDocsnip = !!props.snippetId;
     const children = props.children as ReactElement;
 
     const className = isDocsnip ? props.className : children.props.className;
+    const githubUrl = isDocsnip ? `https://github.com/fennel-ai/client/blob/main/docs/${props.filename}` : undefined;
 
+    // NOTE: If no language is explicitly provided we just assume it's python
 	const language = useMemo(() => {
         return props.language || className?.replace("language-", "") || "python"
 	}, [className, props.language]);
 
 	return <Root 
-        githubUrl={`https://github.com/fennel-ai/client/blob/main/docs/${props.filename}`} 
-        code={isDocsnip ? props.snippet : children.props.children} 
+        githubUrl={githubUrl} 
+        code={children.props.children} 
         language={language} 
         status={props.status} 
         message={props.message} 

@@ -130,7 +130,7 @@ export const CodeBlock = ({
                         <Actions>
                             {language}
 							<ActionButtons>
-                                {githubUrl && <IconButton icon={GithubIcon} size='small' onClick={() => window.open(githubUrl, "_blank")} />}
+                                {githubUrl ? <IconButton icon={GithubIcon} size='small' onClick={() => window.open(githubUrl, "_blank")} /> : null}
                                 <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
 							</ActionButtons>
                         </Actions>
