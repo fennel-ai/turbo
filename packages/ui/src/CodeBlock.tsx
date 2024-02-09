@@ -24,7 +24,7 @@ type Props = {
 	highlight?: string;
 }
 
-const Root = styled.div<{ toolbar?: boolean }>`
+const Root = styled.div`
 	background-color: ${({ theme }) => theme.syntax.plain.background};
 	${props => stateLayer({ initial: 0.04, color: props.theme.on_alt, interact: false })}
 	color: ${({ theme }) => theme.syntax.plain.foreground};
@@ -56,7 +56,7 @@ const Toolbar = styled.div`
 	border-top: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
 `;
 
-const Code = styled(Syntax)<{ toolbar: boolean }>`
+const Code = styled(Syntax)`
 	& > pre {
 		padding-top: 0.75rem;
         background: transparent;
@@ -118,8 +118,8 @@ export const CodeBlock = ({
 
 	return (
 		<ThemeProvider theme={darkTheme}>
-            <Root className={className} toolbar={toolbar}>
-                <Code toolbar={toolbar} language={language} code={code.trimEnd()} highlight={highlight}/>
+            <Root className={className}>
+                <Code language={language} code={code.trimEnd()} highlight={highlight}/>
                 {toolbar ? (
                     <Toolbar>
                         <Title status={status}>
