@@ -46,12 +46,14 @@ export const CodeSnippet = (props: PropsWithChildren<CodeSnippetProps>) => {
         return props.language || className?.replace("language-", "") || "python"
 	}, [className, props.language]);
 
-	return <Root 
-        githubUrl={githubUrl} 
-        code={children.props.children} 
-        language={language} 
-        status={props.status} 
-        message={props.message} 
-        highlight={props.highlight}
-    />;
+	return (
+        <Root
+            githubUrl={githubUrl}
+            code={children.props.children}
+            language={language}
+            status={props.status}
+            message={props.message}
+            highlight={props.highlight}
+        />
+    );
 }
