@@ -1,11 +1,7 @@
 import { PropsWithChildren, useState } from "react";
 import styled from "@emotion/styled";
 import ChevronDownSmallIcon from 'ui/icons/chevron-down-small.svg';
-
-const Root = styled.div`
-    font-size: inherit;
-    line-height: inherit;
-`;
+import { stateLayer } from "styles/utils";
 
 const TitleContainer = styled.div`
     display: flex;
@@ -14,6 +10,11 @@ const TitleContainer = styled.div`
     align-self: stretch;
     cursor: pointer;
     position: relative;
+    ${stateLayer()};
+
+    ::before {
+        border-radius: ${({ theme }) => theme.radii.sm};
+    }
 `;
 
 const Title = styled.span`
@@ -89,8 +90,9 @@ interface Props {
 export const Expandable = ({ title, optional, defaultVal, type, collapsed, children }: PropsWithChildren<Props>) => {
     const [isExpanded, toggleExpanded] = useState(!!!collapsed);
     const isTypeEnum = Array.isArray(type);
+
 	return (
-		<Root>
+		<div>
             <TitleContainer onClick={()=>toggleExpanded(!isExpanded)}>
                 <ExpandedIcon expanded={isExpanded} />
                 {title ? (
@@ -128,6 +130,6 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
                 : null  
 			}
             
-		</Root>
+		</div>
 	);
 };
