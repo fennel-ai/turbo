@@ -1,6 +1,5 @@
 import { PropsWithChildren, useState } from "react";
 import styled from "@emotion/styled";
-import ChevronRightSmallIcon from 'ui/icons/chevron-right-small.svg';
 import ChevronDownSmallIcon from 'ui/icons/chevron-down-small.svg';
 
 const Root = styled.div`
@@ -8,15 +7,18 @@ const Root = styled.div`
     line-height: inherit;
 `;
 
-const Title = styled.span<{ optional?: boolean, present?: boolean }>`
+const TitleContainer = styled.div`
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    align-self: stretch;
+    cursor: pointer;
+    position: relative;
+`;
+
+const Title = styled.span`
     color: ${({ theme }) => theme.on};
     ${({ theme }) => theme.syntax.label.default};
-    ${props => props.present && `
-        &:after {
-            content: "${props.optional ? ":?" : ":" }";
-            color: ${props.theme.on_alt};
-        }
-    `}
 `;
 
 const Separator = styled.span<{ show?: boolean }>`
@@ -24,53 +26,58 @@ const Separator = styled.span<{ show?: boolean }>`
     color: ${({ theme }) => theme.color.grey['60']};
 `;
 
-const TitleContainer = styled.div`
-    display: flex;
-    padding: 0.5rem;
-    align-items: center;
-    gap: 0.25rem;
-    align-self: stretch;
-    cursor: pointer;
-    position: relative;
-`;
-
-const ExpandedIcon = styled.span`
-    position: absolute;
-    left: -1.25rem;
-    top: 30%;
-    height: 1rem;
-    width: 1rem;
-    & path {
-        fill: ${({ theme }) => theme.on_alt};
-    }
-`;
-
-const Type = styled.span<{isEnum?: boolean; noTitle?: boolean; }>`
+const Type = styled.span<{ isEnum?: boolean; noTitle?: boolean; }>`
     ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small']};
     color: ${({ noTitle, theme, isEnum }) => noTitle ? theme.on : theme[isEnum ? 'success' : 'primary'].accent};
 `;
 
-const DefaultValue = styled.span`
-    font-size: 0.75rem;
-    color: ${({ theme }) => theme.on_alt};
+const ExpandedIcon = styled(ChevronDownSmallIcon)`
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: ${({ expanded }) => `translateY(-50%) rotateZ(${expanded ? 0 : -90}deg)`};
+    transform-origin: center center;
+    transition: 160ms transform ease-out;
+    
+    & path {
+        fill:  ${({ theme }) => theme.on_alt};
+    }
 `;
 
 const Child = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 0.5rem;
     align-self: stretch;
-    margin-bottom: 1.5rem;
-    & p:first-of-type{
-        margin-top: 0px;
-    }
+    gap: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 1.5rem;
+`;
 
-    & > p {
+const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & p {
+        margin: 0;
         ${({ theme }) => theme.body.default};
     }
 `;
 
+const Meta = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    & > p {
+        margin: 0;
+        ${({ theme }) => theme.body.small};
+        color: ${({ theme }) => theme.on_alt};
+    }
+`;
 interface Props {
     title: string;
     type: string | string[];
@@ -85,9 +92,7 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
 	return (
 		<Root>
             <TitleContainer onClick={()=>toggleExpanded(!isExpanded)}>
-                <ExpandedIcon>
-                    {isExpanded ? <ChevronDownSmallIcon/> : <ChevronRightSmallIcon/>}
-                </ExpandedIcon>
+                <ExpandedIcon expanded={isExpanded} />
                 {title ? (
                     <Title>
                         {title}
@@ -104,19 +109,21 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
                         </>
                     )
                 }
-                {
-                    defaultVal ? (
-                        <DefaultValue>
-                            {`default: ${defaultVal}`}
-                        </DefaultValue>
-                    ) : null
-                }
             </TitleContainer>
             {
                 isExpanded ? 
                     <Child>
-                        {optional && <DefaultValue><p>Optional</p></DefaultValue>}
-                        {children}
+                        {
+                            defaultVal || optional ? (
+                                <Meta>
+                                    {optional ? <p>Optional</p> : null}
+                                    {defaultVal ? <p>{`Default Value: ${defaultVal}`}</p> : null}
+                                </Meta>
+                            ) : null
+                        }
+                        <Content>
+                            {children}
+                        </Content>
                     </Child>
                 : null  
 			}
