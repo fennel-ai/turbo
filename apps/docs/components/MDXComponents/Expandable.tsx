@@ -6,7 +6,6 @@ import { stateLayer } from "styles/utils";
 const TitleContainer = styled.div`
     display: flex;
     padding: 0.5rem;
-    align-items: center;
     align-self: stretch;
     cursor: pointer;
     position: relative;
@@ -36,8 +35,8 @@ const Type = styled.span<{ isEnum?: boolean; noTitle?: boolean; }>`
 const ExpandedIcon = styled(ChevronDownSmallIcon)`
     position: absolute;
     right: 100%;
-    top: 50%;
-    transform: ${({ expanded }) => `translateY(-50%) rotateZ(${expanded ? 0 : -90}deg)`};
+    top: 0.5rem;
+    transform: ${({ expanded }) => `rotateZ(${expanded ? 0 : -90}deg)`};
     transform-origin: center center;
     transition: 160ms transform ease-out;
     
