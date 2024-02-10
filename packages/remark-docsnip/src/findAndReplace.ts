@@ -11,87 +11,95 @@ const readFile = promisify(rf);
 
 export const findAndReplace = async ({
 	node,
-	snippets,
+	file,
+    snippet_id
 }: ExampleFileDef) => {
     // Clear the children of the node and set it to an empty array.
     node.children = [];
 
-    for await (const { file, snippet_id } of snippets) {
-        // Create the filename string that we can pass through to the element as an attribute 
-        // allowing it to be surfaced in the ui.
-        const filename = path.join("examples", file + ".py");
+    // Create the filename string that we can pass through to the element as an attribute 
+    // allowing it to be surfaced in the ui.
+    const filename = path.join("examples", file + ".py");
 
-        // Get an absolute path to the python file on disk, and read it into a string.
-        const file_content = await readFile(path.join(process.cwd(), "_content", filename), "utf8");
+    // Get an absolute path to the python file on disk, and read it into a string.
+    const file_content = await readFile(path.join(process.cwd(), "_content", filename), "utf8");
 
-        let snippet_str = extractSnippet(file_content, snippet_id);
+    let snippet_str = extractSnippet(file_content, snippet_id);
 
-        if (snippet_str) {
-            const statusAttr = node.attributes.find(
-                (attr: MdxJsxAttribute) => attr.name === "status"
-            );
+    if (snippet_str) {
+        const statusAttr = node.attributes.find(
+            (attr: MdxJsxAttribute) => attr.name === "status"
+        );
 
-            const messageAttr = node.attributes.find(
-                (attr: MdxJsxAttribute) => attr.name === "message"
-            );
+        const messageAttr = node.attributes.find(
+            (attr: MdxJsxAttribute) => attr.name === "message"
+        );
 
-            const langAttr = node.attributes.find(
-                (attr: MdxJsxAttribute) => attr.name === "language"
-            );
+        const langAttr = node.attributes.find(
+            (attr: MdxJsxAttribute) => attr.name === "language"
+        );
 
-            const highlightAttr = node.attributes.find(
-                (attr: MdxJsxAttribute) => attr.name === "highlight"
-            );
+        const highlightAttr = node.attributes.find(
+            (attr: MdxJsxAttribute) => attr.name === "highlight"
+        );
 
-            node.type = "mdxJsxFlowElement";
-            node.name = "pre";
+        const nameAttr = node.attributes.find(
+            (attr: MdxJsxAttribute) => attr.name === "name"
+        );
 
-            node.attributes = [
-                {
-                    type: "mdxJsxAttribute",
-                    name: "language",
-                    value: langAttr?.value || "python",
+        node.type = "mdxJsxFlowElement";
+        node.name = "pre";
+
+        node.attributes = [
+            {
+                type: "mdxJsxAttribute",
+                name: "language",
+                value: langAttr?.value || "python",
+            },
+            {
+                type: "mdxJsxAttribute",
+                name: "filename",
+                value: filename,
+            },
+            {
+                type: 'mdxJsxAttribute',
+                name: 'snippetId',
+                value: snippet_id,
+            },
+            {
+                type: 'mdxJsxAttribute',
+                name: 'name',
+                value: nameAttr?.value || '',
+            },
+            {
+                type: 'mdxJsxAttribute',
+                name: 'status',
+                value: statusAttr?.value || ''
+            },
+            {
+                type: 'mdxJsxAttribute',
+                name: 'message',
+                value: messageAttr?.value || ''
+            },
+            {
+                type: 'mdxJsxAttribute',
+                name: 'highlight',
+                value: highlightAttr?.value || ''
+            },
+        ];
+
+        node.children.push({
+            type: "mdxJsxFlowElement",
+            name: "code",
+            children: [
+                { // @ts-ignore
+                    type: "raw",
+                    value: trimEnd(snippet_str, "\n"),
                 },
-                {
-                    type: "mdxJsxAttribute",
-                    name: "filename",
-                    value: filename,
-                },
-                {
-                    type: 'mdxJsxAttribute',
-                    name: 'snippetId',
-                    value: snippet_id,
-                },
-                {
-                    type: 'mdxJsxAttribute',
-                    name: 'status',
-                    value: statusAttr?.value || ''
-                },
-                {
-                    type: 'mdxJsxAttribute',
-                    name: 'message',
-                    value: messageAttr?.value || ''
-                },
-                {
-                    type: 'mdxJsxAttribute',
-                    name: 'highlight',
-                    value: highlightAttr?.value || ''
-                },
-            ];
-
-            node.children.push({
-                type: "mdxJsxFlowElement",
-                name: "code",
-                children: [
-                    { // @ts-ignore
-                        type: "raw",
-                        value: trimEnd(snippet_str, "\n"),
-                    },
-                ],
-            });
-        } else {
-            throw new Error(`Snippet ${snippet_id} not found in ${filename}`);
-        }
+            ],
+        });
+    } else {
+        throw new Error(`Snippet ${snippet_id} not found in ${filename}`);
     }
 }
 
