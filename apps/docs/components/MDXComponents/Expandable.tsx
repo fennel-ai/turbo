@@ -1,14 +1,12 @@
 import { PropsWithChildren, useState } from "react";
 import styled from "@emotion/styled";
-import { media, rgba } from "styles/utils";
 import ChevronRightSmallIcon from 'ui/icons/chevron-right-small.svg';
 import ChevronDownSmallIcon from 'ui/icons/chevron-down-small.svg';
 
 const Root = styled.div`
-font-size: inherit;
-line-height: inherit
+    font-size: inherit;
+    line-height: inherit;
 `;
-
 
 const Title = styled.span<{optional?: boolean, present? :boolean}>`
     font-size: 0.875rem;
@@ -21,21 +19,18 @@ const Title = styled.span<{optional?: boolean, present? :boolean}>`
         color: ${props.theme.on_alt};
     }
     `}
-
-`
-
-
+`;
 
 const TitleContainer = styled.div`
-display: flex;
-padding: 0.5rem;
-align-items: center;
-gap: 0.25rem;
-align-self: stretch;
-cursor: pointer;
-position: relative;
-font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
-`
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.25rem;
+    align-self: stretch;
+    cursor: pointer;
+    position: relative;
+    font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
+`;
 
 const ExpandedIcon = styled.span`
     position: absolute;
@@ -46,36 +41,37 @@ const ExpandedIcon = styled.span`
     & path {
         fill: ${({ theme }) => theme.on_alt};
     }
-`
+`;
 
 const Type = styled.span<{isEnum?: boolean}>`
     font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
     font-size: 0.75rem;
     line-height: 1rem;
     color: ${({ theme, isEnum }) => isEnum ? theme.success.accent : theme.primary.accent};
-`
+`;
 
 const DefaultValue = styled.span`
     font-size: 0.75rem;
     color: ${({ theme }) => theme.on_alt};
-`
-const Child = styled.div`
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-margin-left: 0.5rem;
-align-self: stretch;
-margin-bottom: 1.5rem;
-& p:first-of-type{
-    margin-top: 0px;
-}
+`;
 
-& > p {
-    font-size: 1rem !important;
-    line-height: 1.75rem !important;
-    font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
-}
-`
+const Child = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0.5rem;
+    align-self: stretch;
+    margin-bottom: 1.5rem;
+    & p:first-of-type{
+        margin-top: 0px;
+    }
+
+    & > p {
+        font-size: 1rem !important;
+        line-height: 1.75rem !important;
+        font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
+    }
+`;
 
 interface Props {
     title: string;
