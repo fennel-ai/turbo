@@ -27,14 +27,19 @@ const Tabs = styled.div`
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: 1rem;
+    gap: 1.25rem;
     border-bottom: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
     width: 100%;
     height: 2.5rem;
     padding: 0 1rem;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const Tab = styled.div<{ active?: boolean }>`
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
