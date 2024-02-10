@@ -11,7 +11,7 @@ export const Page = defineDocumentType(() => ({
     title: {
       type: "string",
       description: "The page title",
-	  required: true
+      required: true,
     },
     status: {
       type: "enum",
@@ -41,30 +41,43 @@ export const Page = defineDocumentType(() => ({
     },
   },
   computedFields: {
+    // Ensures that the status field is lowercased, will fallback to above definition if not present (and therefore default to `draft`)
+    status: {
+      type: "enum",
+      options: ["draft", "wip", "published"],
+      description:
+        "Draft pages only appear in Development. WIP pages appear in Production but are marked as incomplete. Published pages are generated in Production and are publicly accessible.",
+      default: "draft",
+      resolve: (post) => post.status?.toLowerCase?.()
+    },
     slug: {
       type: "string",
-      resolve: (post) => post.slug || post._raw.flattenedPath.replace(/pages\/?/, ""),
+      resolve: (post) =>
+        post.slug || post._raw.flattenedPath.replace(/pages\/?/, ""),
     },
     section: {
       type: "string",
       resolve: (post) => post._raw.sourceFileDir.replace(/pages\/?/, ""),
     },
     headings: {
-      type: 'json',
+      type: "json",
       resolve: async (doc) => {
-        const headings = []
+        const headings = [];
 
         await bundleMDX({
           source: doc.body.raw,
           mdxOptions: (opts) => {
-            opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
-            return opts
+            opts.remarkPlugins = [
+              ...(opts.remarkPlugins ?? []),
+              tocPlugin(headings),
+            ];
+            return opts;
           },
-        })
+        });
 
-        return [{ level: 1, title: doc.title }, ...headings]
+        return [{ level: 1, title: doc.title }, ...headings];
       },
-    }
+    },
   },
 }));
 
