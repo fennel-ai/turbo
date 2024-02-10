@@ -8,17 +8,20 @@ const Root = styled.div`
     line-height: inherit;
 `;
 
-const Title = styled.span<{optional?: boolean, present? :boolean}>`
-    font-size: 0.875rem;
-    line-height: 1rem;
+const Title = styled.span<{ optional?: boolean, present?: boolean }>`
     color: ${({ theme }) => theme.on};
-    font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
+    ${({ theme }) => theme.syntax.label.default};
     ${props => props.present && `
-    &:after {
-        content: "${props.optional ? ":?" : ":" }";
-        color: ${props.theme.on_alt};
-    }
+        &:after {
+            content: "${props.optional ? ":?" : ":" }";
+            color: ${props.theme.on_alt};
+        }
     `}
+`;
+
+const Separator = styled.span<{ show?: boolean }>`
+    display: ${({ show }) => show ? 'inline' : 'none'};
+    color: ${({ theme }) => theme.color.grey['60']};
 `;
 
 const TitleContainer = styled.div`
@@ -29,7 +32,6 @@ const TitleContainer = styled.div`
     align-self: stretch;
     cursor: pointer;
     position: relative;
-    font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
 `;
 
 const ExpandedIcon = styled.span`
@@ -43,11 +45,9 @@ const ExpandedIcon = styled.span`
     }
 `;
 
-const Type = styled.span<{isEnum?: boolean}>`
-    font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: ${({ theme, isEnum }) => isEnum ? theme.success.accent : theme.primary.accent};
+const Type = styled.span<{isEnum?: boolean; noTitle?: boolean; }>`
+    ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small']};
+    color: ${({ noTitle, theme, isEnum }) => noTitle ? theme.on : theme[isEnum ? 'success' : 'primary'].accent};
 `;
 
 const DefaultValue = styled.span`
@@ -67,9 +67,7 @@ const Child = styled.div`
     }
 
     & > p {
-        font-size: 1rem !important;
-        line-height: 1.75rem !important;
-        font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
+        ${({ theme }) => theme.body.default};
     }
 `;
 
@@ -90,26 +88,35 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
                 <ExpandedIcon>
                     {isExpanded ? <ChevronDownSmallIcon/> : <ChevronRightSmallIcon/>}
                 </ExpandedIcon>
-            <Title optional={optional} present={title?.length > 0 && type?.length > 0}>
-                {title}
-            </Title>
-
-            {!isTypeEnum ? <Type>{type}</Type> : <>
-                {type.map((val, index) => {
-                    return <><Type isEnum key={val}>{val}</Type> {index!==type.length-1 && " | "}</>
-                })}
-            </>
-            }
-            {defaultVal && <DefaultValue>
-                {`default: ${defaultVal}`}
-            </DefaultValue>
-            }
+                <Title>
+                    {title}
+                    <Separator show={!!title && !!type}>:</Separator>
+                </Title>
+                {
+                    !isTypeEnum ? <Type noTitle={!title}>{type}</Type> 
+                    : (
+                        <>
+                            {type.map((val, index) => {
+                                return <><Type isEnum key={val}>{val}</Type> {index !== type.length - 1 && " | "}</>
+                            })}
+                        </>
+                    )
+                }
+                {
+                    defaultVal ? (
+                        <DefaultValue>
+                            {`default: ${defaultVal}`}
+                        </DefaultValue>
+                    ) : null
+                }
             </TitleContainer>
-            {isExpanded && 
-            <Child>
-                {optional && <DefaultValue><p>Optional</p></DefaultValue>}
-                {children}
-            </Child>
+            {
+                isExpanded ? 
+                    <Child>
+                        {optional && <DefaultValue><p>Optional</p></DefaultValue>}
+                        {children}
+                    </Child>
+                : null  
 			}
             
 		</Root>
