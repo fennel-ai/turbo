@@ -11,19 +11,6 @@ import XIcon from '../icons/x-circle.svg'
 import CheckIcon from '../icons/check-circle.svg'
 import { IconButton } from './IconButton';
 
-type Props = {
-	className?: string;
-	code: string;
-	language: string;
-    githubUrl?: string;
-	toolbar?: boolean;
-	onCopy?: () => void;
-	message?: string;
-	status?: string;
-	title?: string;
-	highlight?: string;
-}
-
 const Root = styled.div`
 	background-color: ${({ theme }) => theme.syntax.plain.background};
 	${props => stateLayer({ initial: 0.04, color: props.theme.on_alt, interact: false })}
@@ -99,10 +86,25 @@ const getStatusIcon = (status?: string) => {
 	}
 }
 
+type Props = {
+    className?: string;
+    code: string;
+    language: string;
+    githubUrl?: string;
+    header?: JSX.Element;
+    toolbar?: boolean;
+    onCopy?: () => void;
+    message?: string;
+    status?: string;
+    title?: string;
+    highlight?: string;
+}
+
 export const CodeBlock = ({ 
     className, 
     code, 
     githubUrl, 
+    header,
     language, 
     onCopy, 
     toolbar = true, 
@@ -119,7 +121,12 @@ export const CodeBlock = ({
 	return (
 		<ThemeProvider theme={darkTheme}>
             <Root className={className}>
-                <Code language={language} code={code.trimEnd()} highlight={highlight}/>
+                {header || null}
+                <Code 
+                    language={language} 
+                    code={code.trimEnd()} 
+                    highlight={highlight} 
+                />
                 {toolbar ? (
                     <Toolbar>
                         <Title status={status}>
