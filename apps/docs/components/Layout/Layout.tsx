@@ -58,41 +58,20 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 
 		h2 {
-			font-size: 1.75rem;
-			line-height: 2rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
-			margin-top: 3rem;
+			${({ theme }) => theme.subtitle.large};
 			margin-bottom: 0.5rem;
-
-			&:not(:first-of-type) {
-				margin-top: 2rem;
-
-				${media('md')} {
-					margin-top: 2.5rem;
-				}
-			}
 		}
 		
 		h3 {
-			font-size: 1.5rem;
-			line-height: 1.75rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
-			padding-top: 0.75rem;
-			padding-bottom: 0.75rem;
+            ${({ theme }) => theme.subtitle.default};
+            margin-bottom: 0.75rem;
 		}
 
 		h4 {
-			font-size: 1.25rem;
-			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
-			margin-top: 1rem;
+            ${({ theme }) => theme.subtitle.small};
 			padding-bottom: 0.5rem;
 			margin-bottom: 1rem;
 			border-bottom: 1px solid ${({ theme }) => theme.border};
-
-			${media('sm')} {
-				margin-top: 1.5rem;
-			}
 		}
 
 
