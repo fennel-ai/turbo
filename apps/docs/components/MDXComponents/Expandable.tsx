@@ -88,10 +88,12 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
                 <ExpandedIcon>
                     {isExpanded ? <ChevronDownSmallIcon/> : <ChevronRightSmallIcon/>}
                 </ExpandedIcon>
-                <Title>
-                    {title}
-                    <Separator show={!!title && !!type}>:</Separator>
-                </Title>
+                {title ? (
+                    <Title>
+                        {title}
+                        <Separator show={!!title && !!type}>:</Separator>
+                    </Title>
+                ) : null}
                 {
                     !isTypeEnum ? <Type noTitle={!title}>{type}</Type> 
                     : (
