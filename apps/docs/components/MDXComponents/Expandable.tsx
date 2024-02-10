@@ -25,6 +25,7 @@ const Title = styled.span`
 const Separator = styled.span<{ show?: boolean }>`
     display: ${({ show }) => show ? 'inline' : 'none'};
     color: ${({ theme }) => theme.color.grey['60']};
+    margin-right: 0.25rem;
 `;
 
 const Type = styled.span<{ isEnum?: boolean; noTitle?: boolean; }>`
