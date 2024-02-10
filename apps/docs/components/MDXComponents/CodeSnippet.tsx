@@ -1,6 +1,6 @@
 import { Children, ReactElement, ReactNode, useMemo, useState } from "react";
 import styled from '@emotion/styled';
-import { media } from "styles/utils";
+import { media, stateLayer } from "styles/utils";
 import { CodeBlock } from "ui";
 
 const Root = styled(CodeBlock)`
@@ -41,6 +41,13 @@ const Tab = styled.div<{ active?: boolean }>`
     user-select: none;
     height: 100%;
     cursor: pointer;
+
+    ${stateLayer()}
+
+    &::before {
+        inset: 0.25rem -0.5rem;
+        border-radius: 0.5rem;
+    }
     
     & p {
         display: flex;
