@@ -1,14 +1,15 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { GetStaticPropsContext, GetStaticPaths, GetStaticProps, GetServerSideProps, GetServerSidePropsContext } from "next";
-import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPages, aPIConfig } from 'contentlayer/generated';
-
-import Layout, { LayoutContext } from 'components/Layout';
-import * as components from 'components/MDXComponents';
-import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
+import { Children, type ReactNode, useEffect, useMemo } from "react";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
 import styled from "@emotion/styled";
-import { useRouter } from "next/router";
+import { useMDXComponent } from 'next-contentlayer/hooks';
+import { allPages } from 'contentlayer/generated';
+import { media } from "styles/utils";
+
+import Layout from 'components/Layout';
+import * as components from 'components/MDXComponents';
+import { getNavigation, NavigationPage, NavigationTree, shouldPublish } from "lib/utils";
+import SplitLayoutProvider from "context/SplitLayoutContext/SplitLayoutProvider";
 
 type Props = {
     pages: NavigationPage[],
@@ -23,15 +24,29 @@ const PageWrapper = styled.div<{ index: number }>`
     padding-bottom: 4rem;
     border-bottom: 1px solid ${({ theme }) => theme.border};
     scroll-margin-top: 5rem; 
-`
+`;
 
+const Wrapper = ({ children }: { children: ReactNode | undefined }) => {
+    return (
+        <SplitLayoutProvider>
+            {children}
+        </SplitLayoutProvider>
+    );
+};
+
+// Each inner "page" that we render as one big continuous page is wrapped with
+// COMPONENTS.wrapper
+const COMPONENTS = {
+    ...components,
+    wrapper: Wrapper
+}
 
 const APIReferencePage = ({ page }: { page: NavigationPage }) => {
     const { body } = page;
     const MDXContent = useMDXComponent(body.code);
 
     {/** @ts-ignore */ }
-    return <MDXContent components={components} />
+    return <MDXContent components={COMPONENTS} />
 }
 
 

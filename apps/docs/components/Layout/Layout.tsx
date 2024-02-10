@@ -79,16 +79,6 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 			padding-top: 0.75rem;
 			padding-bottom: 0.75rem;
-
-			${media('md')} {
-			${({isAPI, theme}) => isAPI && `
-				position: sticky;
-				top: calc(3.5rem + 1px);
-				background: ${theme.glass};
-				backdrop-filter: blur(20px) saturate(1.4);
-				z-index: 2;
-			`}
-			}
 		}
 
 		h4 {
