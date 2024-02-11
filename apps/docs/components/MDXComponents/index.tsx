@@ -36,3 +36,7 @@ export const CodeTabs = (props: { children: ReactNode }) =>  {
         </Sticky>
     );
 }
+
+export const ContentBlock = (props: { children: ReactNode }) => {
+    return <div style={{paddingTop: 120}}>{props.children}</div>
+}

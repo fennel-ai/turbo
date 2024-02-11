@@ -9,10 +9,12 @@ import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from "remark-directive";
 import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
-import codeTabs from "remark-code-tabs";
-import docsnip from "remark-docsnip";
 import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
+
+import codeTabs from "remark-code-tabs";
+import docsnip from "remark-docsnip";
+import contentSpec from "remark-content-spec";
 
 // Content types
 import { Page } from "./contentlayer/content_types/Page";
@@ -65,6 +67,7 @@ export default makeSource({
       remarkAdmonitions,
       docsnip,
       codeTabs, //! <- NOTE: After docsnip
+      contentSpec
     ],
     rehypePlugins: [
       [rehypeImgSize, { dir: "public" }],
