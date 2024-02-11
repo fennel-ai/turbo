@@ -17,6 +17,11 @@ const SplitLayout = styled.div`
 
 const Right = styled.div`
 	grid-column: span 12;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+
     ${media('md')} {
         grid-column: span 7;
 		position: sticky;
@@ -30,6 +35,11 @@ const Right = styled.div`
 
 const Left = styled.div`
 	grid-column: span 12;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: stretch;
+
     ${media('md')} {
         grid-column: span 5;
 		position: sticky;

@@ -5,6 +5,7 @@ import { TitleBlock } from './TitleBlock';
 import { Table } from './Table';
 import { CodeSnippet, type CodeSnippetProps } from './CodeSnippet';
 import { Sticky } from './Sticky';
+import { Paragraph } from './Paragraph';
 
 export { Admonition } from './Admonition';
 export { Grid } from './Grid';
@@ -14,9 +15,11 @@ export { TypesListRow } from './TypesListRow';
 export { Expandable } from './Expandable';
 export { Sticky } from './Sticky';
 export { Divider, LeftSection, RightSection } from './Divider';
+export { ContentBlock } from './ContentBlock';
 
 export const h1 = TitleBlock;
 export const a = Link;
+export const p = Paragraph;
 export const table = Table;
 export const img = Image;
 export const pre = (props: CodeSnippetProps) => {
@@ -35,8 +38,4 @@ export const CodeTabs = (props: { children: ReactNode }) =>  {
             <CodeSnippet>{props.children}</CodeSnippet>
         </Sticky>
     );
-}
-
-export const ContentBlock = (props: { children: ReactNode }) => {
-    return <div style={{paddingTop: 120}}>{props.children}</div>
 }

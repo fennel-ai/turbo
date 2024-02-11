@@ -25,6 +25,10 @@ const Wrapper = styled.div`
 `
 const MDXWrapper = styled.div`
 	grid-column: span 8;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3rem;
 `
 
 const MarginWrapper = styled.div`

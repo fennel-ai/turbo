@@ -73,20 +73,10 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			border-bottom: 1px solid ${({ theme }) => theme.border};
 		}
 
-
-		/** Target paragraphs that are direct children of the main element (we don't necessarily want to style paragraphs within e.g. lists in the same way.) */
-		& > p, & > div > p, & > div > div > p, & > div > div > div > p {
-			margin: 0;
-			font-size: 1rem;
-			line-height: 1.75rem;
-			margin-bottom: 1rem;
-			font-variation-settings: "wght" ${props => props.theme.type == "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
-		}
-
-
 		& a {
 			position: relative;
 			text-decoration: none;
+            cursor: pointer;
 			color: ${({ theme }) => theme.on_alt};
 			opacity: 0.8;
 			transition: 160ms opacity ease-out;
