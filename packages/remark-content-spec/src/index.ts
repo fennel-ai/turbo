@@ -9,28 +9,29 @@ const BREAKOUT_TYPES = ['code', 'image', 'pre'];
 export default function contentSpec(): Transformer {
     return function transformer(tree) {
         const groups: Node[][] = [[]];
+        let current: Node[] = [];
 
-        const guardAddGroup = (index: number | null) => {
-            if (!!groups[groups.length - 1].length && index !== (tree as Parent).children.length -1) {
-                groups.push([]);
+        const createGroup = () => {
+            if (!!current.length) {
+                groups.push(current);
+                current = [];
             }
         };
 
         visit(tree, (node, index, parent) => {
-            if (node.type === 'root') return CONTINUE;
-            if (node.type === 'mdxjsEsm' || node.type === 'yaml') return SKIP;
+            if (node.type === 'root' || node.type === 'mdxjsEsm' || node.type === 'yaml') {
+                return;
+            }
 
             const nodeType = node.type === 'mdxJsxFlowElement' ? (node as MdxJsxFlowElement).name as string : node.type;
 
+            if ((BREAKOUT_TYPES.includes(nodeType) || nodeType === 'heading') && !!current.length) {
+                createGroup()
+            } 
+            current.push(node);
+
             if (BREAKOUT_TYPES.includes(nodeType)) {
-                guardAddGroup(index);
-                groups[groups.length - 1].push(node);
-                guardAddGroup(index);
-            } else {
-                if (node.type === 'heading') {
-                    guardAddGroup(index);
-                }
-                groups[groups.length - 1].push(node);
+                createGroup();
             }
             
             return SKIP;
