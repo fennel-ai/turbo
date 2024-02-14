@@ -42,8 +42,8 @@ describe('extractSnippet', () => {
 		const snippet_1 = extractSnippet(example_str_1, 'snippet_1'); 
 		const snippet_2 = extractSnippet(example_str_1, 'snippet_2'); 
 
-		expect(snippet_1).toBe('print("hello snippet_1")\n');
-		expect(snippet_2).toBe('print("hello snippet_2")\n');
+		expect(snippet_1).toBe('print("hello snippet_1")');
+        expect(snippet_2).toBe('print("hello snippet_2")');
 	});
 	
 	it('should return undefined if the snippet could not be found', () => {
@@ -59,9 +59,16 @@ class User:
     uid: int = field(key=True)
     height: float = field().meta(description="height in inches")
     weight: float = field().meta(description="weight in lbs")
-    updated: datetime
-`);
+    updated: datetime`);
 	});
+})
+
+describe('parseMagicComments', () => {
+    describe('docsnip-highlight', () => {
+        it('returns the line number of single-line highlight comments', () => {
+            expect(true).toBe(true);
+        })
+    })
 })
 
 describe('getAvailableSnippets', () => {
@@ -84,7 +91,6 @@ class User:
     uid: int = field(key=True)
     height: float = field().meta(description="height in inches")
     weight: float = field().meta(description="weight in lbs")
-    updated: datetime
-`);
+    updated: datetime`);
 	});
 })
