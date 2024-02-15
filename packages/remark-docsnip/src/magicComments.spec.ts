@@ -20,6 +20,9 @@ def test_valid_user_dataset():
             uid: int
             country: str
             update_time: datetime
+
+            def func():
+                return True
         # /docsnip
 
         # docsnip metaflags_dataset
@@ -51,14 +54,18 @@ describe('parseMagicComments', () => {
 class User:
     uid: int
     country: str
-    update_time: datetime`);
+    update_time: datetime
+
+    def func():
+        return True`);
 
             expect(response?.props[MagicCommentType.HIGHLIGHT]?.length).toBe(2)
             expect(response?.props[MagicCommentType.HIGHLIGHT]).toEqual([0, 2])
-            
-            snippet = extractSnippet(example_str_1, 'metaflags_dataset');
-            response = parseMagicComments(snippet);
-            
+        });
+
+        it('should handle ranges of highlighted lines using the start and end modifiers', () => {
+            const response = parseMagicComments(extractSnippet(example_str_1, 'metaflags_dataset'));
+
             expect(response?.snippet).toBe(`@meta(owner="abc-team@fennel.ai", tags=["PII", "experimental"])
 @dataset
 class User:
@@ -69,6 +76,6 @@ class User:
 
             expect(response?.props[MagicCommentType.HIGHLIGHT]?.length).toBe(6)
             expect(response?.props[MagicCommentType.HIGHLIGHT]).toEqual([0, 1, 2, 3, 4, 5])
-        });
+        })
     });
 })
