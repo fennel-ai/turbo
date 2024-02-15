@@ -2,13 +2,14 @@ export enum MagicCommentType {
     HIGHLIGHT = 'highlight'
 }
 
-export type MagicCommentProps = {
-    [MagicCommentType.HIGHLIGHT]: string;
+export type MagicCommentAttribute = {
+    name: string; 
+    value: string | string[];
 }
 
 export type ParseMagicCommentResponse = {
     snippet: string;
-    props: MagicCommentProps;
+    attributes: MagicCommentAttribute[];
 }
 
 type ProcessedLine = {
@@ -84,7 +85,7 @@ export const parseMagicComments = (snippet: string | undefined, magic: MagicComm
     if (!snippet) return undefined;
 
     let processedSnippet = snippet;
-    let props = {} as MagicCommentProps;
+    let attributes = [] as MagicCommentAttribute[];
 
     for (const type of magic) {
         switch (type) {
@@ -102,7 +103,11 @@ export const parseMagicComments = (snippet: string | undefined, magic: MagicComm
                 }
 
                 processedSnippet = lines.join('\n');
-                props[type] = highlighted.join(', ');
+
+                attributes.push({
+                    name: type,
+                    value: highlighted.join(', ')
+                });
             }
             default: {
                 continue
@@ -112,6 +117,6 @@ export const parseMagicComments = (snippet: string | undefined, magic: MagicComm
 
     return {
         snippet: processedSnippet,
-        props,
+        attributes,
     };
 }

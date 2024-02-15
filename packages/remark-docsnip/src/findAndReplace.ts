@@ -40,9 +40,9 @@ export const findAndReplace = async ({
             (attr: MdxJsxAttribute) => attr.name === "language"
         );
 
-        const highlightAttr = node.attributes.find(
-            (attr: MdxJsxAttribute) => attr.name === "highlight"
-        );
+        const highlightAttr = parsed.attributes.find(attr => attr.name === 'highlight') || node.attributes.find(
+                (attr: MdxJsxAttribute) => attr.name === "highlight"
+            );
 
         const nameAttr = node.attributes.find(
             (attr: MdxJsxAttribute) => attr.name === "name"
@@ -85,7 +85,7 @@ export const findAndReplace = async ({
             {
                 type: 'mdxJsxAttribute',
                 name: 'highlight',
-                value: parsed?.props.highlight || highlightAttr?.value || ''
+                value: highlightAttr?.value || ''
             },
         ];
 

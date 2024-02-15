@@ -83,13 +83,13 @@ describe('parseMagicComments', () => {
             let snippet = extractSnippet(example_str, 'connectors');
             let response = parseMagicComments(snippet);
 
-            expect(response?.props[MagicCommentType.HIGHLIGHT]).toEqual("1, 4")
+            expect(response?.attributes[0].value).toEqual("1, 4")
         });
 
         it('should handle ranges of highlighted lines using the start and end modifiers', () => {
             const response = parseMagicComments(extractSnippet(example_str, 'imports'));
 
-            expect(response?.props[MagicCommentType.HIGHLIGHT]).toEqual("4, 7, 8, 9, 10, 11, 12, 13, 16")
+            expect(response?.attributes[0].value).toEqual("4, 7, 8, 9, 10, 11, 12, 13, 16")
         })
     });
 })
