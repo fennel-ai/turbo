@@ -6,6 +6,7 @@ import trimEnd from 'lodash/trimEnd';
 import { extractSnippet } from './utils';
 import { ExampleFileDef } from './types';
 import { MdxJsxAttribute } from 'mdast-util-mdx-jsx/lib';
+import { parseMagicComments } from './magicComments';
 
 const readFile = promisify(rf);
 
@@ -24,9 +25,9 @@ export const findAndReplace = async ({
     // Get an absolute path to the python file on disk, and read it into a string.
     const file_content = await readFile(path.join(process.cwd(), "_content", filename), "utf8");
 
-    let snippet_str = extractSnippet(file_content, snippet_id);
-
-    if (snippet_str) {
+    let parsed = parseMagicComments(extractSnippet(file_content, snippet_id));
+    
+    if (parsed) {
         const statusAttr = node.attributes.find(
             (attr: MdxJsxAttribute) => attr.name === "status"
         );
@@ -84,7 +85,7 @@ export const findAndReplace = async ({
             {
                 type: 'mdxJsxAttribute',
                 name: 'highlight',
-                value: highlightAttr?.value || ''
+                value: parsed?.props.highlight || highlightAttr?.value || ''
             },
         ];
 
@@ -94,7 +95,7 @@ export const findAndReplace = async ({
             children: [
                 { // @ts-ignore
                     type: "raw",
-                    value: trimEnd(snippet_str, "\n"),
+                    value: trimEnd(parsed.snippet, "\n"),
                 },
             ],
         });

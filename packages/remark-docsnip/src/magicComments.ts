@@ -3,7 +3,7 @@ export enum MagicCommentType {
 }
 
 export type MagicCommentProps = {
-    [MagicCommentType.HIGHLIGHT]: number[]
+    [MagicCommentType.HIGHLIGHT]: string;
 }
 
 export type ParseMagicCommentResponse = {
@@ -22,7 +22,7 @@ function cleanLine(line: string, magicComment: string): string {
 }
 
 function* processSnippet(type: MagicCommentType, snippet: string): Generator<ProcessedLine> {
-    const regex = new RegExp(`# docsnip-${type}(?:[ \t])?([a-z-A-Z0-9]*)?`, 'g');
+    const regex = new RegExp(`# docsnip-${type}(?:[ \t])?([a-z-A-Z0-9]*)?`);
     const lines = snippet.split('\n');
 
     let inRange: boolean = false;
@@ -35,19 +35,21 @@ function* processSnippet(type: MagicCommentType, snippet: string): Generator<Pro
         let modifier = '';
 
         if (match) {
+            console.log(text, '||', match[0], '===', cleanLine(text, match[0]));
             text = cleanLine(text, match[0]);
             modifier = match[1]?.trim() || '';
-            shouldHighlight = modifier !== 'end';
+
             inRange = modifier === 'start' ? true : modifier === 'end' ? false : inRange;
+            shouldHighlight = shouldHighlight || !modifier;
        
             // If there was a comment, but with the comment stripped is no more text on this line 
             // then we can skip it an increment the removed line count to offset future line numbers.
             if (!text.trim()) {
                 removed++;
+                shouldHighlight = modifier === 'next-line';
                 continue;
             }
         }
-
 
         yield {
             index: index - removed,
@@ -55,7 +57,7 @@ function* processSnippet(type: MagicCommentType, snippet: string): Generator<Pro
             highlight: shouldHighlight || inRange
         };
 
-        shouldHighlight = inRange || modifier === 'next-line';
+        shouldHighlight = modifier === 'next-line';
     }
 }
 
@@ -70,20 +72,20 @@ export const parseMagicComments = (snippet: string | undefined, magic: MagicComm
     for (const type of magic) {
         switch (type) {
             case MagicCommentType.HIGHLIGHT: {
-                props[type] = [];
-
                 let lines = [];
-                let highlighted = props[type];
+                let highlighted = [];
 
                 for (const line of processSnippet(type, processedSnippet)) {
                     lines.push(line.text)
 
                     if (line.highlight) {
-                        highlighted.push(line.index);
+                        // Highlighted lines don't work off of indices and instead start at 1.
+                        highlighted.push(line.index + 1);
                     }
                 }
 
                 processedSnippet = lines.join('\n');
+                props[type] = highlighted.join(', ');
             }
             default: {
                 continue
