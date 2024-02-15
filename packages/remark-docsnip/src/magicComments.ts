@@ -17,12 +17,22 @@ type ProcessedLine = {
     highlight: boolean;
 }
 
+const regexCache = new Map<MagicCommentType, RegExp>();
+
+function getRegexForType(type: MagicCommentType): RegExp {
+    if (!regexCache.has(type)) {
+        const regex = new RegExp(`# docsnip-${type}(?:[ \t])?([a-zA-Z0-9-]*)?`, 'm');
+        regexCache.set(type, regex);
+    }
+    return regexCache.get(type)!;
+}
+
 function cleanLine(line: string, magicComment: string): string {
     return line.replace(magicComment, '').trimEnd()
 }
 
 function* processSnippet(type: MagicCommentType, snippet: string): Generator<ProcessedLine> {
-    const regex = new RegExp(`# docsnip-${type}(?:[ \t])?([a-z-A-Z0-9]*)?`);
+    const regex = getRegexForType(type);
     const lines = snippet.split('\n');
 
     let inRange: boolean = false;
@@ -31,22 +41,29 @@ function* processSnippet(type: MagicCommentType, snippet: string): Generator<Pro
 
     for (let index = 0; index < lines.length; index++) {
         let text = lines[index];
+        regex.lastIndex = 0; // Good practice, but not strictly required here with going line-by-line
+        
         const match = regex.exec(text);
-        let modifier = '';
+        const modifier: string | undefined = match?.[1]?.trim();
+        
+        let highlightNextLine: boolean = false;
 
         if (match) {
-            console.log(text, '||', match[0], '===', cleanLine(text, match[0]));
             text = cleanLine(text, match[0]);
-            modifier = match[1]?.trim() || '';
 
+            highlightNextLine = modifier === 'next-line';
             inRange = modifier === 'start' ? true : modifier === 'end' ? false : inRange;
-            shouldHighlight = shouldHighlight || !modifier;
+
+            // If there IS a match but NO modifier, then highlight the current line
+            if (!modifier) {
+                shouldHighlight = true;
+            }
        
-            // If there was a comment, but with the comment stripped is no more text on this line 
+            // If there was a match, but with the comment stripped there's no more text on this line 
             // then we can skip it an increment the removed line count to offset future line numbers.
             if (!text.trim()) {
                 removed++;
-                shouldHighlight = modifier === 'next-line';
+                shouldHighlight = highlightNextLine;
                 continue;
             }
         }
@@ -54,10 +71,10 @@ function* processSnippet(type: MagicCommentType, snippet: string): Generator<Pro
         yield {
             index: index - removed,
             text,
-            highlight: shouldHighlight || inRange
+            highlight: inRange || shouldHighlight
         };
 
-        shouldHighlight = modifier === 'next-line';
+        shouldHighlight = highlightNextLine;
     }
 }
 
