@@ -63,14 +63,6 @@ class User:
 	});
 })
 
-describe('parseMagicComments', () => {
-    describe('docsnip-highlight', () => {
-        it('returns the line number of single-line highlight comments', () => {
-            expect(true).toBe(true);
-        })
-    })
-})
-
 describe('getAvailableSnippets', () => {
 	it('returns the name of all snippets in the given file.', () => {
 		let snippets = getAvailableSnippets(example_str_1);
