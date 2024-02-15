@@ -17,6 +17,10 @@ type ProcessedLine = {
     highlight: boolean;
 }
 
+function cleanLine(line: string, magicComment: string): string {
+    return line.replace(magicComment, '').trimEnd()
+}
+
 function* processSnippet(type: MagicCommentType, snippet: string): Generator<ProcessedLine> {
     const regex = new RegExp(`# docsnip-${type}(?:[ \t])?([a-z-A-Z0-9]*)?`, 'g');
     const lines = snippet.split('\n');
@@ -31,17 +35,19 @@ function* processSnippet(type: MagicCommentType, snippet: string): Generator<Pro
         let modifier = '';
 
         if (match) {
-            text = text.replace(match[0], '').trimEnd();
+            text = cleanLine(text, match[0]);
             modifier = match[1]?.trim() || '';
             shouldHighlight = modifier !== 'end';
             inRange = modifier === 'start' ? true : modifier === 'end' ? false : inRange;
+       
+            // If there was a comment, but with the comment stripped is no more text on this line 
+            // then we can skip it an increment the removed line count to offset future line numbers.
+            if (!text.trim()) {
+                removed++;
+                continue;
+            }
         }
 
-        // If there is no more text on this line 
-        if (!text.trim()) {
-            removed++;
-            continue;
-        }
 
         yield {
             index: index - removed,
