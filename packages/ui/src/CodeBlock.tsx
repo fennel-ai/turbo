@@ -30,7 +30,7 @@ const Root = styled.div`
 	}
 `;
 
-const Toolbar = styled.div`
+const Toolbar = styled.div<{ status?: string }>`
 	height: 2.5rem;
 	position: relative;
 	align-items: center;
@@ -39,8 +39,9 @@ const Toolbar = styled.div`
 	align-self: stretch;
 	display: flex;
 	padding: 0.25rem 1rem;
-	color:${({ theme }) => theme.on_alt};
+	color: ${({ theme, status }) => status === "success" ? theme.color.green['90'] : status === "error" ? theme.color.red['90'] : theme.on};
 	border-top: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
+    ${stateLayer({ initial: 0.04, interact: false })};
 `;
 
 const Code = styled(Syntax)`
@@ -51,22 +52,26 @@ const Code = styled(Syntax)`
 	}
 `;
 
-const Title = styled.div<{ status?: string }>`
-	color: ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on};
+const Message = styled.div`
+	color: currentColor;
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	font-size: 0.875rem;
+	${({ theme }) => theme.label.small};
 `
 
 const Actions = styled.div`
     text-transform: capitalize;
-    display: flex;
     height: 2rem;
+    display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 1rem;
-    font-size: 0.875rem;
+    color: ${({ theme }) => theme.on_alt};
+    & > p {
+        margin: 0;
+        ${({ theme }) => theme.label.small};
+    }
 `
 
 const ActionButtons = styled.div`
@@ -128,14 +133,14 @@ export const CodeBlock = ({
                     highlight={highlight} 
                 />
                 {toolbar ? (
-                    <Toolbar>
-                        <Title status={status}>
+                    <Toolbar status={status}>
+                        <Message>
                             {(status?.length || message?.length) ? <>
                                 {getStatusIcon(status)}<div>{message}</div>
                             </> : ''}
-                        </Title>
+                        </Message>
                         <Actions>
-                            {language}
+                            <p>{language}</p>
 							<ActionButtons>
                                 {githubUrl ? <IconButton icon={GithubIcon} size='small' onClick={() => window.open(githubUrl, "_blank")} /> : null}
                                 <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />

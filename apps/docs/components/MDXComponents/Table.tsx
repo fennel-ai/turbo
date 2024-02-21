@@ -10,13 +10,13 @@ const Wrapper = styled.div`
 `;
 
 const TableRoot = styled.table`
-	display: inline-block;
+    width: 100%;
 	overflow-x: auto;
-	border-collapse: collapse; 
+	border-spacing: 0;
 	font-size: 0.875rem;
 	line-height: 1.5rem;
-	border: 0.5px solid ${({ theme }) => theme.border };
-	border-radius: 0.5rem;
+	border-radius: ${({ theme }) => theme.radii.sm};
+	border: 0.5px solid ${({ theme }) => theme.border};
 
 	tr {
 		display: flex;
@@ -35,8 +35,12 @@ const TableRoot = styled.table`
 	}
 
 	& thead {
-		${({ theme }) => stateLayer({ initial: 0.04, color: theme.on_alt })};
-		
+		${({ theme }) => stateLayer({ initial: 0.04, color: theme.on_alt, interact: false })};
+        ::before {
+            border-top-left-radius: ${({ theme }) => theme.radii.sm};
+            border-top-right-radius: ${({ theme }) => theme.radii.sm};
+        }
+
 		tr {
 			text-align: left;
 
@@ -44,10 +48,9 @@ const TableRoot = styled.table`
 				border: none;
 				text-transform: uppercase;
 				padding: 1rem;
-				line-height: 1rem;
-				font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
+				${({ theme }) => theme.label.small};
 				color: ${({ theme }) => theme.on_alt };
-			}
+            }
 		}
 	}
 
