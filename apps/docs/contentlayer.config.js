@@ -18,7 +18,11 @@ import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 import { Page } from "./contentlayer/content_types/Page";
 
 import fetchContent from "./contentlayer/fetchContent";
-import { Config, APIConfig } from "./contentlayer/content_types/Config";
+import {
+  Config,
+  APIConfig,
+  VersionsManifest,
+} from "./contentlayer/content_types/Config";
 
 const CONTENT_DIR = "_content";
 
@@ -47,7 +51,7 @@ const githubSource = async () => {
 export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
-  documentTypes: [Page, Config, APIConfig],
+  documentTypes: [Page, Config, APIConfig, VersionsManifest],
   contentDirExclude: [
     ".git",
     ".gitignore",
