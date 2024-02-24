@@ -1,17 +1,18 @@
-import styled from '@emotion/styled';
 import { useContext, useRef } from 'react';
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 import { media, rgba } from 'styles/utils';
-import { IconButton, PillButton, Masthead, Button } from 'ui';
+import { version } from 'contentlayer/generated';
+import { IconButton, Masthead, Button } from 'ui';
 import SearchIcon from 'ui/icons/search.svg';
 import GitHubIcon from 'ui/icons/github.svg';
 import SunIcon from 'ui/icons/sun.svg';
 import MoonIcon from 'ui/icons/moon.svg';
+
 import Container from 'components/Container';
 import { DocSearch } from 'components/DocSearch';
 import type { DocSearchHandle } from 'components/DocSearch';
 import MobileToolbar from 'components/MobileToolbar';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { DarkThemeContext } from 'context/CustomTheme/provider';
 
 const Root = styled.div`
@@ -135,8 +136,6 @@ const Header = () => {
 	}
 
 	const {isDarkTheme, setTheme} = useContext(DarkThemeContext);
-	
-	
 
 	return (
 		<Root>
@@ -157,6 +156,14 @@ const Header = () => {
 					/>
 				</SearchWrapper>
 				<Actions>
+                    <select>
+                        <option value="">Latest</option>
+                        {
+                            version.versions!.map(({ name }) => {
+                                return <option value={name}>{name}</option>
+                            })
+                        }
+                    </select>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
 					<DemoButtons>
 						<IconButton size="small" icon={isDarkTheme ? SunIcon : MoonIcon} onClick={() => {setTheme(!isDarkTheme)}}/>
