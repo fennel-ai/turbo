@@ -35,7 +35,7 @@ const Version = defineNestedType(() => ({
 
 export const VersionsManifest = defineDocumentType(() => ({
   name: "Versions",
-  filePathPattern: "versions.yml",
+  filePathPattern: "main/versions.yml",
   isSingleton: true,
   contentType: "data",
   fields: {
@@ -50,28 +50,40 @@ export const VersionsManifest = defineDocumentType(() => ({
 
 export const Config = defineDocumentType(() => ({
   name: "Config",
-  filePathPattern: "index.yml",
-  isSingleton: true,
-  contentType: 'data',
+  filePathPattern: "**/index.yml",
+  contentType: "data",
   fields: {
     sidebar: {
       type: "list",
-	  of: SidebarSection
-    }
-  }
+      of: SidebarSection,
+    },
+  },
+  computedFields: {
+    version: {
+      type: "string",
+      description:
+        "The version of the documentation that this config pertains to.",
+      resolve: (post) => post._raw.sourceFileDir.split("/")[0],
+    },
+  },
 }));
 
-
-
 export const APIConfig = defineDocumentType(() => ({
-	name: "APIConfig",
-	filePathPattern: "api.yml",
-	isSingleton: true,
-	contentType: 'data',
-	fields: {
-	  sidebar: {
-		type: "list",
-		of: SidebarSection
-	  }
-	}
+  name: "APIConfig",
+  filePathPattern: "**/api.yml",
+  contentType: "data",
+  fields: {
+    sidebar: {
+      type: "list",
+      of: SidebarSection,
+    },
+  },
+  computedFields: {
+    version: {
+      type: "string",
+      description:
+        "The version of the documentation that this config pertains to.",
+      resolve: (post) => post._raw.sourceFileDir.split("/")[0],
+    },
+  },
 }));
