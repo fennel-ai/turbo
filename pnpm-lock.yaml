@@ -96,6 +96,7 @@ importers:
       typescript: ^4.5.3
       ui: workspace:*
       unist-util-visit: ^4.1.2
+      yaml: ^2.3.4
       yup: ^1.0.2
     dependencies:
       '@docsearch/react': 3.5.1_wk2cyk6wa3q3sfxxpmokqqgr5a
@@ -134,6 +135,7 @@ importers:
       tar-fs: 2.1.1
       ui: link:../../packages/ui
       unist-util-visit: 4.1.2
+      yaml: 2.3.4
       yup: 1.2.0
     devDependencies:
       '@babel/core': 7.22.5
@@ -2439,7 +2441,7 @@ packages:
       micromatch: 4.0.5
       ts-pattern: 4.3.0
       unified: 10.1.2
-      yaml: 2.3.1
+      yaml: 2.3.4
       zod: 3.21.4
     transitivePeerDependencies:
       - '@effect-ts/otel-node'
@@ -21532,6 +21534,12 @@ packages:
   /yaml/2.3.1:
     resolution: {integrity: sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==}
     engines: {node: '>= 14'}
+    dev: true
+
+  /yaml/2.3.4:
+    resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
+    engines: {node: '>= 14'}
+    dev: false
 
   /yargs-parser/20.2.9:
     resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
