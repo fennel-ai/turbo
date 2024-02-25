@@ -1,1 +1,4 @@
 .vercel
+
+# populated by next/contentlayer from the client repo during build
+public/assets
