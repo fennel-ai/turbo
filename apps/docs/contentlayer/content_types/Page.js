@@ -1,11 +1,12 @@
 import { defineDocumentType } from "contentlayer/source-files";
+import path from 'node:path';
 
 import { bundleMDX } from 'mdx-bundler'
 import { toMarkdown } from 'mdast-util-to-markdown'
 import { mdxToMarkdown } from 'mdast-util-mdx'
 export const Page = defineDocumentType(() => ({
   name: "Page",
-  filePathPattern: "pages/**/*.md",
+  filePathPattern: "**/pages/**/*.md",
   contentType: "mdx",
   fields: {
     title: {
@@ -41,6 +42,11 @@ export const Page = defineDocumentType(() => ({
     },
   },
   computedFields: {
+    api: {
+      type: "boolean",
+      description: "Is this page an API reference page",
+      resolve: (post) => post._raw.sourceFileDir.includes("api-reference"),
+    },
     // Ensures that the status field is lowercased, will fallback to above definition if not present (and therefore default to `draft`)
     status: {
       type: "enum",
@@ -48,16 +54,40 @@ export const Page = defineDocumentType(() => ({
       description:
         "Draft pages only appear in Development. WIP pages appear in Production but are marked as incomplete. Published pages are generated in Production and are publicly accessible.",
       default: "draft",
-      resolve: (post) => post.status?.toLowerCase?.()
+      resolve: (post) => post.status?.toLowerCase?.(),
     },
     slug: {
       type: "string",
-      resolve: (post) =>
-        post.slug || post._raw.flattenedPath.replace(/pages\/?/, ""),
+      resolve: (post) => {
+        const version = post._raw.sourceFileDir.split("/")[0];
+        let slug =
+          post.slug ||
+          post._raw.flattenedPath
+            .replace(/pages\/?/, "")
+            .replace(/main\/?/, ""); // slugs for `main` pages should not include the version slug (i.e. docs/welcome-to-fennel/quickstart vs docs/0.1.0/welcome-to-fennel/quickstart)
+
+        // If the slug is being set manually via the frontmatter (post.slug) and the version is NOT main, we
+        // need to prefix the slug with the version to avoid clashes (this happens automatically for pages whose
+        // slug is inferred from the directory path above with the exception of "main")
+        if (post.slug && version !== "main") {
+          slug = path.join(version, post.slug);
+
+          if (slug.endsWith("/")) {
+            slug = slug.slice(0, -1);
+          }
+        }
+
+        return slug;
+      },
     },
     section: {
       type: "string",
-      resolve: (post) => post._raw.sourceFileDir.replace(/pages\/?/, ""),
+      resolve: (post) => {
+        const version = post._raw.sourceFileDir.split("/")[0];
+        return post._raw.sourceFileDir
+          .replace(/pages\/?/, "")
+          .replace(`${version}/`, "");
+      },
     },
     headings: {
       type: "json",
@@ -77,6 +107,11 @@ export const Page = defineDocumentType(() => ({
 
         return [{ level: 1, title: doc.title }, ...headings];
       },
+    },
+    version: {
+      type: "string",
+      description: "The version of the documentation this page belongs to",
+      resolve: (post) => post._raw.sourceFileDir.split("/")[0],
     },
   },
 }));
