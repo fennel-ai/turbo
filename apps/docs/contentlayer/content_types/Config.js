@@ -1,23 +1,5 @@
 import { defineDocumentType, defineNestedType } from "contentlayer/source-files";
 
-const SidebarSection = defineNestedType(() => ({
-	name: 'SidebarSection',
-	fields: {
-		slug: {
-			type: 'string',
-			required: true
-		},
-		title: {
-			type: 'string',
-			required: true
-		},
-		pages: {
-			type: 'json',
-			required: true
-		}
-	}
-}))
-
 const Version = defineNestedType(() => ({
 	name: 'Version',
 	fields: {
@@ -48,6 +30,24 @@ export const VersionsManifest = defineDocumentType(() => ({
   },
 }));
 
+const SidebarSection = defineNestedType(() => ({
+  name: "SidebarSection",
+  fields: {
+    slug: {
+      type: "string",
+      required: true,
+    },
+    title: {
+      type: "string",
+      required: true,
+    },
+    pages: {
+      type: "json",
+      required: true,
+    },
+  },
+}));
+
 export const Config = defineDocumentType(() => ({
   name: "Config",
   filePathPattern: "**/index.yml",
@@ -56,6 +56,7 @@ export const Config = defineDocumentType(() => ({
     sidebar: {
       type: "list",
       of: SidebarSection,
+      required: true,
     },
   },
   computedFields: {
@@ -64,7 +65,7 @@ export const Config = defineDocumentType(() => ({
       description:
         "The version of the documentation that this config pertains to.",
       resolve: (post) => post._raw.sourceFileDir.split("/")[0],
-    },
+    }
   },
 }));
 
