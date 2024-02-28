@@ -1,10 +1,13 @@
-import { useContext, useRef } from 'react';
+import { ChangeEvent, ChangeEventHandler, useContext, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { media, rgba } from 'styles/utils';
-import { version } from 'contentlayer/generated';
+import { version as versionManifest } from 'contentlayer/generated';
+
 import { IconButton, Masthead, Button } from 'ui';
+import * as BUTTON_VARIANTS from 'ui/src/Button/variants';
 import SearchIcon from 'ui/icons/search.svg';
+import DropdownIcon from 'ui/icons/dropdown.svg';
 import GitHubIcon from 'ui/icons/github.svg';
 import SunIcon from 'ui/icons/sun.svg';
 import MoonIcon from 'ui/icons/moon.svg';
@@ -123,17 +126,81 @@ const NavButton = styled(Button)<{active: boolean}>`
 	border-bottom: ${props => props.active && `2px solid ${props.theme.primary.accent}`};
 `
 
+const VersionDropdown = styled.div<{children: any}>`
+    position: relative;
+    padding: 0 !important;
+    display: flex;
 
-const Header = () => {
+    & > select {
+        flex: 1;
+        border-radius: 0.5rem;
+        appearance: none;
+        user-select: none;
+        cursor: pointer;
+        font: inherit;
+        letter-spacing: inherit;
+        color: currentcolor;
+        padding-left: 0.75rem;
+        padding-right: 2rem;
+        border: 0px;
+        box-sizing: content-box;
+        background: none;
+        height: 1.4375em;
+        margin: 0px;
+        -webkit-tap-highlight-color: transparent;
+        display: block;
+        min-width: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    & svg {
+        position: absolute;
+        top: 50%;
+        right: 0.5rem;
+        transform: translate3d(0%, -50%, 0);
+        pointer-events: none;
+    }
+
+    ${({ theme }) => BUTTON_VARIANTS.STYLE.outline({ disabled: false, theme })};
+    ${() => BUTTON_VARIANTS.SIZE.small()};
+    ${() => BUTTON_VARIANTS.SHAPE.rounded({ direction: 'row', hasIcon: false, size: 'small' })};
+`;
+
+function VersionSelector({ onChange, value }: { onChange: ChangeEventHandler<HTMLSelectElement>, value: string }) {
+    return versionManifest.versions?.length ? (
+        <VersionDropdown>
+            <select onChange={onChange} value={value}>
+                <option value="main">Latest</option>
+                {
+                    versionManifest.versions.map(({ name }) => (
+                        <option key={name} value={name}>{name}</option>
+                    ))
+                }
+            </select>
+            <DropdownIcon />
+        </VersionDropdown>
+    ) : null
+}
+
+const Header = ({ version }: { version: string }) => {
 	const docSearch = useRef<DocSearchHandle>(null);
 	const openSearch = () => docSearch.current ? docSearch.current.open() : null;
 
 	const router = useRouter();
-	const isAPI = router.pathname.includes("/api-reference/");
+	const isAPI = router.pathname.includes("/api-reference");
 
-	const navigateTo = (route: string) => {
-		router.push(route)
-	}
+    const handleChangeVersion = (e: ChangeEvent<HTMLSelectElement>) => {
+        let newVersion = e.target.value;
+        if (newVersion === version) {
+            return;
+        }
+
+        router.push({
+            pathname: router.pathname,
+            query: { slug: [newVersion, ...(router.query.slug as string[] ?? [])].filter((p) => p !== 'main' && p !== version) },
+        })
+    }
 
 	const {isDarkTheme, setTheme} = useContext(DarkThemeContext);
 
@@ -143,8 +210,8 @@ const Header = () => {
 			<LinkWrapper>
 				<Brand/>
 				<NavWrapper>
-					<NavButton variant='ghost' label="Documentation" active={!isAPI} onClick={()=>navigateTo('/')}/>
-					<NavButton variant='ghost' label="API Reference" active={isAPI} onClick={()=>navigateTo('/api-reference')}/>
+					<NavButton variant='ghost' label="Documentation" active={!isAPI} onClick={()=>router.push('/')}/>
+					<NavButton variant='ghost' label="API Reference" active={isAPI} onClick={()=>router.push('/api-reference')}/>
 				</NavWrapper>
 				</LinkWrapper>
 				<SearchWrapper>
@@ -156,14 +223,10 @@ const Header = () => {
 					/>
 				</SearchWrapper>
 				<Actions>
-                    <select>
-                        <option value="">Latest</option>
-                        {
-                            version.versions!.map(({ name }) => {
-                                return <option value={name}>{name}</option>
-                            })
-                        }
-                    </select>
+                    <VersionSelector 
+                        onChange={handleChangeVersion}
+                        value={version}
+                    />
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
 					<DemoButtons>
 						<IconButton size="small" icon={isDarkTheme ? SunIcon : MoonIcon} onClick={() => {setTheme(!isDarkTheme)}}/>

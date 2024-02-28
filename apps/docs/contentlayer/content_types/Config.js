@@ -23,11 +23,12 @@ export const VersionsManifest = defineDocumentType(() => ({
   fields: {
     versions: {
       type: "list",
+      required: false,
       description:
         "A list of available alternate versions of the documentation (excl. current/main)",
         of: Version,
     },
-  },
+  }
 }));
 
 const SidebarSection = defineNestedType(() => ({
@@ -86,5 +87,15 @@ export const APIConfig = defineDocumentType(() => ({
         "The version of the documentation that this config pertains to.",
       resolve: (post) => post._raw.sourceFileDir.split("/")[0],
     },
+    sidebar: {
+        type: 'json',
+        resolve: (post) => {
+            return post.sidebar._array.map(({ slug, pages, ...rest }) => ({
+                ...rest,
+                slug: slug.replace(/api-reference\/?/g, ""),
+                pages: pages.map((p) => p.replace(/api-reference\/?/g, ""))
+            }));
+        }
+    }
   },
 }));

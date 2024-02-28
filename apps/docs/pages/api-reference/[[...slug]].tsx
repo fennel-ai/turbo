@@ -1,19 +1,21 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { GetStaticPropsContext, GetStaticPaths, GetStaticProps, GetServerSideProps, GetServerSidePropsContext } from "next";
+import { PropsWithChildren, useCallback, useEffect } from "react";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPages, aPIConfig } from 'contentlayer/generated';
+import { useInView } from 'react-intersection-observer';
+import { allAPIPages, APIPage } from 'contentlayer/generated';
 
-import Layout, { LayoutContext } from 'components/Layout';
+import Layout from 'components/Layout';
 import * as components from 'components/MDXComponents';
-import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
+import { getNavigation, getRequestedVersionId, NavigationPage, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
 type Props = {
-    pages: NavigationPage[],
+    pages: APIPage[],
     navigation: NavigationTree,
     requestedSlug: string | null,
+    version: string,
 }
 
 
@@ -26,7 +28,7 @@ const PageWrapper = styled.div<{ index: number }>`
 `
 
 
-const APIReferencePage = ({ page }: { page: NavigationPage }) => {
+const APIReferencePage = ({ page }: { page: APIPage }) => {
     const { body } = page;
     const MDXContent = useMDXComponent(body.code);
 
@@ -34,24 +36,80 @@ const APIReferencePage = ({ page }: { page: NavigationPage }) => {
     return <MDXContent components={components} />
 }
 
+const APIReferenceSection = ({ children, index, slug, onWaypoint }: PropsWithChildren<{ index: number, slug: string, onWaypoint: (newSlug: string) => void }>) => {
+    const onChange = useCallback((inView: boolean) => {
+        if (inView) {
+            onWaypoint(slug);
+            window.dispatchEvent(new PopStateEvent('popstate'));
+        }
+    }, [slug]); // eslint-disable-line
+    
+    const { ref } = useInView({
+        threshold: 0.1,
+        trackVisibility: true,
+        delay: 100,
+        onChange
+    });
 
-export default function DocumentationPage({ pages, navigation, requestedSlug }: Props) {
+    return (
+        <PageWrapper id={slug} ref={ref} index={index}>
+            {children}
+        </PageWrapper>
+    );
+};
 
+export default function ApiReferencePage({ pages, navigation, requestedSlug, version }: Props) {
+    const router = useRouter();
     useEffect(() => {
         if (requestedSlug) {
             document.getElementById(requestedSlug)?.scrollIntoView();
         }
     }, [requestedSlug]);
 
+    const updateAddressBar = useCallback((slug: string) => {
+        const newUrl = ['/docs/api-reference', slug].filter((s) => s !== undefined).join('/');
+        window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+    }, []);
+    
+    // Handle overriding the routers pop state behavior
+    useEffect(() => {
+        router.beforePopState(({ as }) => {
+            if (as.replace("/docs", "") !== router.asPath) {
+                const slug = as.replace("/docs/api-reference/", "");
+                const element = document.getElementById(slug);
+                if (element) {
+                    updateAddressBar(slug);
+                    
+                    setTimeout(() => {
+                        element.scrollIntoView();
+                    }, 100);
+
+                    return false;
+                }
+            }
+            return true;
+        });
+
+        return () => {
+            router.beforePopState(() => true);
+        };
+    }, []); // eslint-disable-line
+
+    const renderPage = useCallback((page: APIPage, index: number) =>
+        <APIReferenceSection key={page.slug} index={index} slug={page.slug!} onWaypoint={updateAddressBar}>
+            <APIReferencePage page={page} />
+        </APIReferenceSection>
+    , [updateAddressBar])
+
     return (
         <div>
-            <Layout navigation={navigation} isAPI>
+            <Layout navigation={navigation} isAPI version={version}>
                 <Head>
                     <title>{"API Reference"}</title>
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <meta name="theme-color" content="#000000" />
 
-                    {requestedSlug ? <link rel="canonical" href="https://fennel.ai/docs/api-reference" /> : null}
+                    {requestedSlug ? <link rel="canonical" href={`https://fennel.ai/docs/api-reference${version !== 'main' ? `/${version}` : ''}`} /> : null}
 
                     <meta name="twitter:card" content="summary" />
                     <meta name="twitter:site" content="@fennel-ai" />
@@ -69,12 +127,7 @@ export default function DocumentationPage({ pages, navigation, requestedSlug }: 
                     <meta name="apple-mobile-web-app-title" content="Fennel" />
                     <meta name="application-name" content="Fennel" />
                 </Head>
-                {/* @ts-ignore */}
-                {pages.map((page, index) =>
-                    <PageWrapper id={page.slug} key={page.slug} index={index}>
-                        <APIReferencePage page={page} />
-                    </PageWrapper>
-                )}
+                {pages.map(renderPage)}
 
             </Layout>
         </div>
@@ -83,34 +136,35 @@ export default function DocumentationPage({ pages, navigation, requestedSlug }: 
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
     let requestedSlug = (ctx.params?.slug as string[])?.join('/');
-    const navigation = getNavigation('api');
+
+    const version = getRequestedVersionId(ctx.params);
+    const navigation = getNavigation(version, true);
     const navigationOrder = navigation.map((nav) => nav.pages).flat();
 
     const ordering: { [key: string]: number } = {};
     for (let i = 0; i < navigationOrder.length; i++) {
-        ordering[navigationOrder[i].slug.replace('api-reference/', '')] = i;
+        let cSlug = navigationOrder[i].slug;
+        ordering[cSlug] = i;
     }
-    const navigationOrderSlugs = navigationOrder.map((nav) => nav.slug.replace('api-reference/', ''))
 
+    const navigationOrderSlugs = navigationOrder.map((nav) => nav.slug)
 
-    const allApiReferencePages = allPages
+    const allApiReferencePages = allAPIPages
         .filter(shouldPublish)
-        .filter((p) => p.slug?.includes('api-reference'))
-        .map(({ slug, ...rest }) => ({ ...rest, slug: slug?.replace('api-reference/', '') }))
-        .filter((p) => navigationOrderSlugs.includes(p.slug as string))
+        .filter((p) => navigationOrderSlugs.includes(p.slug!))
         .sort((a, b) => ordering[a.slug || ''] - ordering[b.slug || '']);
 
-    // Only ever falsy if the user has requested /api-reference/ directly (i.e. with no specific page slug)
-    // in which case just show them the page
-    if (requestedSlug !== undefined) {
-
-        const isSection = navigation.find(({slug}) => slug.replace('api-reference/', '') === requestedSlug) 
+    // Only ever falsy if the user has requested /api-reference/[version?] directly (i.e. with no specific page slug)
+    // in which case just show them the page.
+    let isBasePath = !requestedSlug || requestedSlug === version;
+    
+    if (!isBasePath) {
+        const isSection = navigation.find(({slug}) => slug === requestedSlug) 
         const isPage = allApiReferencePages.find(({ slug }) => slug === requestedSlug)
 
         if(isSection) {
-            requestedSlug = isSection.pages[0].slug.replace('api-reference/', '');
+            requestedSlug = isSection.pages[0].slug;
         }
-        // const allSlugs = allApiReferencePages.map(({ slug }) => slug); // <- probably unnecessary, can just do find index
 
         if (!isSection && !isPage) {
             return {
@@ -119,12 +173,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
         }
     }
 
-
     return {
         props: {
             pages: allApiReferencePages,
             navigation,
-            requestedSlug: requestedSlug || null,
+            requestedSlug: isBasePath ? null : requestedSlug || null,
+            version,
         }
     }
 }

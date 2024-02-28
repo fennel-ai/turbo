@@ -21,6 +21,7 @@ type Props = {
 	headings?: Outline,
 	path? :string
 	navRoute?: string;
+    version: string;
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -214,13 +215,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, headings, path, navRoute }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings, path, navRoute, version }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
-			<Header />
+			<Header version={version} />
 			<Root isAPI={isAPI}>
-				<Navigation items={navigation} isAPI={isAPI} navRoute={navRoute}/>
+				<Navigation items={navigation} isAPI={isAPI} navRoute={navRoute} version={version} />
 				<AnimatePresence>
 					{showMobileMenu ? (
 						<MobileMenu items={navigation} onClose={closeMobileMenu} isAPI={isAPI}/>

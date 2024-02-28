@@ -17,7 +17,7 @@ import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
 // Content types
-import { Page } from "./contentlayer/content_types/Page";
+import { APIPage, Page } from "./contentlayer/content_types/Page";
 
 import fetchContent from "./contentlayer/fetchContent";
 import {
@@ -59,8 +59,10 @@ const githubSource = async () => {
 
     const { versions } = versionsManifest;
 
-    // Fetch all other versions listed in the versions manifest
-    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
+    if (versions?.length) {
+        // Fetch all other versions listed in the versions manifest
+        await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
+    }
 
   // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
   return () => {};
@@ -69,7 +71,7 @@ const githubSource = async () => {
 export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
-  documentTypes: [Page, Config, APIConfig, VersionsManifest],
+  documentTypes: [Page, APIPage, Config, APIConfig, VersionsManifest],
   contentDirExclude: [
     "main/.git",
     "main/.gitignore",
