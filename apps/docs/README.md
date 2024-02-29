@@ -19,7 +19,7 @@ Now open your terminal, `cd` to the turborepo and run:
 ```sh
 # From the root of the turborepo: 
 cd apps/docs && \
-ln -sFf ~/Code/fennel/client/docs _content
+ln -sFf ~/Code/fennel/client/docs _content/main
 ```
 > Note:
 > replace `~/Code/fennel/client/docs` with the path to the `client` repo on your machine
