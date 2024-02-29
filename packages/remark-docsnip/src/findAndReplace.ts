@@ -14,7 +14,7 @@ export const findAndReplace = async ({
 	node,
 	file,
     snippet_id
-}: ExampleFileDef) => {
+}: ExampleFileDef, version: string) => {
     // Clear the children of the node and set it to an empty array.
     node.children = [];
 
@@ -23,7 +23,7 @@ export const findAndReplace = async ({
     const filename = path.join("examples", file + ".py");
 
     // Get an absolute path to the python file on disk, and read it into a string.
-    const file_content = await readFile(path.join(process.cwd(), "_content", filename), "utf8");
+    const file_content = await readFile(path.join(process.cwd(), "_content", version, filename), "utf8");
 
     let parsed = parseMagicComments(extractSnippet(file_content, snippet_id));
     

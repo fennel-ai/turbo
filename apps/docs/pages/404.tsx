@@ -69,7 +69,7 @@ export default function NotFoundPage() {
 	const router = useRouter();
 	return (
 		<>
-			<Header />
+			<Header version="main" />
 			<Main>
 				<BackgroundText>404</BackgroundText>
 				<h2>We can&apos;t find the page you&apos;re looking for!</h2>

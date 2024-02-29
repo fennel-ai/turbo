@@ -7,15 +7,15 @@ import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
+import Head from 'next/head';
+
+import { useSystemDarkMode } from 'hooks';
+import { ShellContextProvider } from 'context/Shell';
 import { DarkThemeProvider } from 'context/CustomTheme/provider';
 
 import * as themes from 'styles';
 import 'styles/index.css';
 import "@docsearch/css";
-
-import { ShellContextProvider } from 'context/Shell';
-import Head from 'next/head';
-import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({
 	src: [{
