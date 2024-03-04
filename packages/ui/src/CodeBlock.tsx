@@ -57,7 +57,9 @@ const Message = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	${({ theme }) => theme.label.small};
+    font-size: ${({ theme }) => theme.label.small!.fontSize};
+    font-weight: ${({ theme }) => theme.label.small!.fontWeight};
+    line-height: ${({ theme }) => theme.label.small!.lineHeight};
 `
 
 const Actions = styled.div`
@@ -70,7 +72,9 @@ const Actions = styled.div`
     color: ${({ theme }) => theme.on_alt};
     & > p {
         margin: 0;
-        ${({ theme }) => theme.label.small};
+        font-size: ${({ theme }) => theme.label.small!.fontSize};
+        font-weight: ${({ theme }) => theme.label.small!.fontWeight};
+        line-height: ${({ theme }) => theme.label.small!.lineHeight};
     }
 `
 

@@ -48,7 +48,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.on};
-			font-family: ${haskoyVariable.style.fontFamily}, serif;
+			font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 			font-weight: 500;
 			margin: 0;
 			scroll-margin-top: 4rem;
