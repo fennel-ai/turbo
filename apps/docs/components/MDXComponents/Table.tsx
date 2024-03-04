@@ -48,7 +48,9 @@ const TableRoot = styled.table`
 				border: none;
 				text-transform: uppercase;
 				padding: 1rem;
-				${({ theme }) => theme.label.small};
+                font-size: ${({ theme }) => theme.label.small!.fontSize};
+                font-weight: ${({ theme }) => theme.label.small!.fontWeight};
+                line-height: ${({ theme }) => theme.label.small!.lineHeight};
 				color: ${({ theme }) => theme.on_alt };
             }
 		}
