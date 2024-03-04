@@ -119,7 +119,7 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
                             defaultVal || optional ? (
                                 <Meta>
                                     {optional ? <p>Optional</p> : null}
-                                    {defaultVal ? <p>{`Default Value: ${defaultVal}`}</p> : null}
+                                    {defaultVal ? <p>{`Default: ${defaultVal}`}</p> : null}
                                 </Meta>
                             ) : null
                         }
