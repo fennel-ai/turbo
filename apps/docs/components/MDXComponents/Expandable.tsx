@@ -83,9 +83,9 @@ const Meta = styled.div`
     & > p {
         margin: 0;
 
-        font-size: ${({ theme }) => theme.body.small.fontSize};
-        font-weight: ${({ theme }) => theme.body.small.fontWeight};
-        line-height: ${({ theme }) => theme.body.small.lineHeight};
+        font-size: ${({ theme }) => theme.body.small!.fontSize};
+        font-weight: ${({ theme }) => theme.body.small!.fontWeight};
+        line-height: ${({ theme }) => theme.body.small!.lineHeight};
         color: ${({ theme }) => theme.on_alt};
     }
 `;
