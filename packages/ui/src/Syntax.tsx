@@ -41,8 +41,8 @@ const Root = styled.div`
 		overflow: auto;
 	}
 
-	pre ::selection {
-		background: rgb(${({ theme }) => theme.ref.grey['30']});
+	code[class*="language-"]::selection, pre ::selection {
+		background: rgb(${({ theme }) => theme.ref.grey['120']}) !important;
 	}
 
 	:not(pre)>code[class*="language-"],
