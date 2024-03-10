@@ -1,5 +1,5 @@
 import { PropsWithChildren, useCallback, useEffect } from "react";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticProps, GetStaticPropsContext } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useInView } from 'react-intersection-observer';
 import { allAPIPages, APIPage } from 'contentlayer/generated';
@@ -60,6 +60,7 @@ const APIReferenceSection = ({ children, index, slug, onWaypoint }: PropsWithChi
 
 export default function ApiReferencePage({ pages, navigation, requestedSlug, version }: Props) {
     const router = useRouter();
+
     useEffect(() => {
         if (requestedSlug) {
             document.getElementById(requestedSlug)?.scrollIntoView();
@@ -134,7 +135,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
     );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
     let requestedSlug = (ctx.params?.slug as string[])?.join('/');
 
     const version = getRequestedVersionId(ctx.params);
@@ -180,5 +181,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
             requestedSlug: isBasePath ? null : requestedSlug || null,
             version,
         }
+    }
+}
+
+export const getStaticPaths = () => {
+    return {
+        paths: [
+            {
+                params: { slug: [] }
+            },
+        ],
+        fallback: 'blocking'
     }
 }
