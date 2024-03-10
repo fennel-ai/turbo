@@ -8,6 +8,7 @@ const Root = styled.div`
 	inset: 0;
 	backdrop-filter: blur(16px);
 	padding-top: 3rem;
+	z-index: 8;
 
 	nav ul {
 		margin: 1rem 0;

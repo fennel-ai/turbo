@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Global, css, ThemeProvider, useTheme } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import Script from 'next/script';
@@ -7,14 +7,15 @@ import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
+import Head from 'next/head';
+
+import { useSystemDarkMode } from 'hooks';
+import { ShellContextProvider } from 'context/Shell';
+import { DarkThemeProvider } from 'context/CustomTheme/provider';
 
 import * as themes from 'styles';
 import 'styles/index.css';
 import "@docsearch/css";
-
-import { ShellContextProvider } from 'context/Shell';
-import Head from 'next/head';
-import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({
 	src: [{
@@ -53,7 +54,7 @@ const GlobalStyles = () => {
 		}
 
 		body {
-			background-color: ${theme.background};
+			background-color: ${theme.surface};
 			color: ${theme.on_alt};
 			margin: 0;
 			padding: 0;
@@ -76,7 +77,8 @@ export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 
 	const system_dark_mode = useSystemDarkMode();
-	const currentTheme = system_dark_mode ? 'dark' : 'light';
+	const [currentTheme, setCurrentTheme] = useState<'dark'|'light'>(system_dark_mode ? 'dark' : 'light');
+
 
 	useEffect(() => {
 		// Track page views
@@ -129,11 +131,13 @@ export default function App({ Component, pageProps }: AppProps) {
                         `(function(e, f, g, h, i){$salespanel = window.$salespanel || (window.$salespanel = []);__sp = i;var a=f.createElement(g);a.type="text/javascript";a.async=1;a.src=("https:" == f.location.protocol ? "https://" : "http://") + h;var b = f.getElementsByTagName(g)[0];b.parentNode.insertBefore(a,b);})(window, document, "script", "salespanel.io/src/js/ff9fc453-2b98-4512-87e3-db4acce2b205/sp.js", "ff9fc453-2b98-4512-87e3-db4acce2b205");`
                     }
                 </Script>
-				<ThemeProvider theme={themes[currentTheme]}>
-					<GlobalStyles />
-					<Component {...pageProps} />
-					<Toaster position="bottom-left" toastOptions={toastOptions} />
-				</ThemeProvider>
+				<DarkThemeProvider theme={currentTheme} setTheme={setCurrentTheme}>
+					<ThemeProvider theme={themes[currentTheme]}>
+						<GlobalStyles />
+						<Component {...pageProps} />
+						<Toaster position="bottom-left" toastOptions={toastOptions} />
+					</ThemeProvider>
+				</DarkThemeProvider>
 			</ShellContextProvider>
 		</PostHogProvider>
 	)

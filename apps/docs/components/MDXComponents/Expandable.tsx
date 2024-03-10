@@ -1,80 +1,94 @@
 import { PropsWithChildren, useState } from "react";
 import styled from "@emotion/styled";
-import { media, rgba } from "styles/utils";
-import ChevronRightSmallIcon from 'ui/icons/chevron-right-small.svg';
 import ChevronDownSmallIcon from 'ui/icons/chevron-down-small.svg';
-
-const Root = styled.div`
-font-size: inherit;
-line-height: inherit
-`;
-
-
-const Title = styled.span<{optional?: boolean}>`
-    font-size: 0.875rem;
-    line-height: 1rem;
-    color: ${({ theme }) => theme.on};
-    font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
-    &:after {
-        content: "${({ optional }) => !!optional ? ":?" : ":" }";
-        color: ${({ theme }) => theme.on_alt};
-    }
-
-`
-
-
+import { stateLayer } from "styles/utils";
 
 const TitleContainer = styled.div`
-display: flex;
-padding: 0.5rem;
-align-items: center;
-gap: 0.25rem;
-align-self: stretch;
-cursor: pointer;
-position: relative;
-font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
-`
+    display: flex;
+    padding: 0.5rem;
+    align-self: stretch;
+    cursor: pointer;
+    position: relative;
+    ${stateLayer()};
 
-const ExpandedIcon = styled.span`
-    position: absolute;
-    left: -1.25rem;
-    top: 30%;
-    height: 1rem;
-    width: 1rem;
-    & path {
-        fill: ${({ theme }) => theme.on_alt};
+    ::before {
+        border-radius: ${({ theme }) => theme.radii.sm};
     }
-`
+`;
 
-const Type = styled.span<{isEnum?: boolean}>`
-    font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: ${({ theme, isEnum }) => isEnum ? theme.success.accent : theme.primary.accent};
-`
+const Title = styled.span`
+    color: ${({ theme }) => theme.on};
+    font-family: ${({ theme }) => theme.syntax.label.default.fontFamily};
+    font-size: ${({ theme }) => theme.syntax.label.default.fontSize};
+    font-weight: ${({ theme }) => theme.syntax.label.default.fontWeight};
+    line-height: ${({ theme }) => theme.syntax.label.default.lineHeight};
+`;
 
-const DefaultValue = styled.span`
-    font-size: 0.75rem;
-    color: ${({ theme }) => theme.on_alt};
-`
+const Separator = styled.span<{ show?: boolean }>`
+    display: ${({ show }) => show ? 'inline' : 'none'};
+    color: ${({ theme }) => theme.color.grey['60']};
+    margin-right: 0.25rem;
+`;
+
+const Type = styled.span<{ isEnum?: boolean; noTitle?: boolean; }>`
+    font-size: ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small'].fontSize};
+    font-weight: ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small'].fontWeight};
+    line-height: ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small'].lineHeight};
+    color: ${({ noTitle, theme, isEnum }) => noTitle ? theme.on : theme[isEnum ? 'success' : 'primary'].accent};
+`;
+
+const ExpandedIcon = styled(ChevronDownSmallIcon)`
+    position: absolute;
+    right: 100%;
+    top: 0.5rem;
+    transform: ${({ expanded }) => `rotateZ(${expanded ? 0 : -90}deg)`};
+    transform-origin: center center;
+    transition: 160ms transform ease-out;
+    
+    & path {
+        fill:  ${({ theme }) => theme.on_alt};
+    }
+`;
+
 const Child = styled.div`
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-margin-left: 0.5rem;
-align-self: stretch;
-margin-bottom: 1.5rem;
-& p:first-of-type{
-    margin-top: 0px;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 1.5rem;
+`;
 
-& > p {
-    font-size: 0.875rem !important;
-    line-height: 1.5rem !important;
-    font-weight: ${props => props.theme.type === "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
-}
-`
+const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
+    & p {
+        margin: 0;
+        font-size: ${({ theme }) => theme.body.default.fontSize};
+        font-weight: ${({ theme }) => theme.body.default.fontWeight};
+        line-height: ${({ theme }) => theme.body.default.lineHeight};
+    }
+`;
+
+const Meta = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    & > p {
+        margin: 0;
+
+        font-size: ${({ theme }) => theme.body.small!.fontSize};
+        font-weight: ${({ theme }) => theme.body.small!.fontWeight};
+        line-height: ${({ theme }) => theme.body.small!.lineHeight};
+        color: ${({ theme }) => theme.on_alt};
+    }
+`;
 interface Props {
     title: string;
     type: string | string[];
@@ -86,34 +100,46 @@ interface Props {
 export const Expandable = ({ title, optional, defaultVal, type, collapsed, children }: PropsWithChildren<Props>) => {
     const [isExpanded, toggleExpanded] = useState(!!!collapsed);
     const isTypeEnum = Array.isArray(type);
-	return (
-		<Root>
-            <TitleContainer onClick={()=>toggleExpanded(!isExpanded)}>
-                <ExpandedIcon>
-                    {isExpanded ? <ChevronDownSmallIcon/> : <ChevronRightSmallIcon/>}
-                </ExpandedIcon>
-            <Title optional={optional}>
-                {title}
-            </Title>
 
-            {!isTypeEnum ? <Type>{type}</Type> : <>
-                {type.map((val, index) => {
-                    return <><Type isEnum>{val}</Type> {index!==type.length-1 && " | "}</>
-                })}
-            </>
-            }
-            {defaultVal && <DefaultValue>
-                {`default: ${defaultVal}`}
-            </DefaultValue>
-            }
+	return (
+		<div>
+            <TitleContainer onClick={()=>toggleExpanded(!isExpanded)}>
+                <ExpandedIcon expanded={isExpanded} />
+                {title ? (
+                    <Title>
+                        {title}
+                        <Separator show={!!title && !!type}>:</Separator>
+                    </Title>
+                ) : null}
+                {
+                    !isTypeEnum ? <Type noTitle={!title}>{type}</Type> 
+                    : (
+                        <>
+                            {type.map((val, index) => {
+                                return <><Type isEnum key={val}>{val}</Type> {index !== type.length - 1 && " | "}</>
+                            })}
+                        </>
+                    )
+                }
             </TitleContainer>
-            {isExpanded && 
-            <Child>
-                {optional && <DefaultValue><p>Optional</p></DefaultValue>}
-                {children}
-            </Child>
+            {
+                isExpanded ? 
+                    <Child>
+                        {
+                            defaultVal || optional ? (
+                                <Meta>
+                                    {optional ? <p>Optional</p> : null}
+                                    {defaultVal ? <p>{`Default: ${defaultVal}`}</p> : null}
+                                </Meta>
+                            ) : null
+                        }
+                        <Content>
+                            {children}
+                        </Content>
+                    </Child>
+                : null  
 			}
             
-		</Root>
+		</div>
 	);
 };

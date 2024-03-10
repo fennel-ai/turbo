@@ -1,16 +1,19 @@
 import styled from "@emotion/styled";
-import type { NavigationTree } from "lib/utils";
+import type { NavigationPage, NavigationTree } from "lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { media } from 'styles/utils';
 
 import NavigationSection from "./NavigationSection";
 import NavigationItem from "./NavigationItem";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { throttle } from "lodash";
 
 type Props = {
 	items: NavigationTree
 	isAPI?: boolean;
+	navRoute?: string;
+    version: string;
 }
 
 const Root = styled.aside`
@@ -37,34 +40,45 @@ const Nav = styled.nav`
 `;
 
 const Navigation = ({ items, isAPI }: Props) => {
-	const router = useRouter();
+    const router = useRouter();
+    const [currentActive, setCurrentActive] = useState('')
 
-	const [currentActive, setCurrentActive] = useState('')
+    const renderItem = useCallback((title: string, slug: string, status: NavigationPage['status'], isActive: boolean) => {
+        return (
+            <NavigationItem id={isActive ? "active" : ""} active={isActive} status={status} fade={!isActive} key={slug}>
+                <Link 
+                    shallow={isAPI} 
+                    aria-label={title} 
+                    href={slug}
+                    onClick={() => {
+                        if (isAPI) {
+                            document.getElementById(slug)?.scrollIntoView();
+                        }
+                    }}
+                >
+                        {title}
+                </Link>
+            </NavigationItem>
+        )
+    }, [isAPI]);
+
+    const handlePopState = useCallback(() => {
+        const path = window.location.pathname;
+        setCurrentActive(path.replace(/\/docs\/api-reference\/?/g, ''));
+    }, []);
 
     useEffect(() => {
-        const handleScroll = () => {
-          let current = ''
-          for (const section of items) {
-			for (const page of section.pages) { 
-            	const slug = page.slug as string;
-            	const element = document.getElementById(slug)
-				if (element && element.getBoundingClientRect().top < 200) {
-					current = slug
-				}
-			}
-          }
-          setCurrentActive(current)
+        if (isAPI) {
+            window.addEventListener('popstate', handlePopState);
         }
-		if(isAPI){
-        	handleScroll()
-        	window.addEventListener('scroll', handleScroll, { passive: true })
-		}	
+
         return () => {
-			if(isAPI){
-          		window.removeEventListener('scroll', handleScroll)
-			}
+            if (isAPI) {
+                window.removeEventListener('popstate', handlePopState)
+            }
         }
-      }, [])
+    }, [isAPI, handlePopState]);
+
 	return (
 		<Root>
 			<Nav>
@@ -72,19 +86,22 @@ const Navigation = ({ items, isAPI }: Props) => {
 					items.map((section) => {
 						return (
 							<NavigationSection 
-								expand
 								key={section.slug}
 								title={section.title} 
 								href={section.pages[0].slug}
 								isAPI={isAPI}
 							>
-								{section.pages.map(({ title, slug, status }) => {
-									const activePath = currentActive ? currentActive : `/${slug === '/' ? '' : slug}`;
-									const activeItem = isAPI ? slug === activePath : router.asPath === activePath;
-									return (
-										<NavigationItem active={activeItem} status={status} fade={!activeItem} key={slug}><Link aria-label={title} href={isAPI ? '#'+slug : slug}>{title}</Link></NavigationItem>
-									)
-								})}
+                                {
+                                    section.pages.map(item => {
+                                        const activePath = currentActive ? currentActive : `/${item.slug === '/' ? '' : item.slug}`;
+                                        return renderItem(
+                                            item.title,
+                                            item.slug,
+                                            item.status,
+                                            isAPI ? item.slug === currentActive : router.asPath === activePath
+                                        );
+                                    })
+                                }
 							</NavigationSection>
 						)
 					})

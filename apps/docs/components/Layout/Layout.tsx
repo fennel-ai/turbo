@@ -19,6 +19,9 @@ type Props = {
 	navigation: NavigationTree,
 	isAPI?: boolean,
 	headings?: Outline,
+	path? :string
+	navRoute?: string;
+    version: string;
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -45,13 +48,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.on};
-			font-family: ${haskoyVariable.style.fontFamily}, serif;
+			font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 			font-weight: 500;
 			margin: 0;
-			scroll-margin-top: 8rem;
+			scroll-margin-top: 4rem;
 
 			${media('md')} {
-				scroll-margin-top: 6.3125rem; 
+				scroll-margin-top: 5rem; 
 			}
 		}
 
@@ -81,8 +84,9 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			${media('md')} {
 			${({isAPI, theme}) => isAPI && `
 				position: sticky;
-				top: 4.5rem;
-				background: ${theme.background};
+				top: calc(3.5rem + 1px);
+				background: ${theme.glass};
+				backdrop-filter: blur(20px) saturate(1.4);
 				z-index: 2;
 			`}
 			}
@@ -94,7 +98,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 			margin-top: 1rem;
 			padding-bottom: 0.5rem;
-			margin-bottom: 0.5rem;
+			margin-bottom: 1rem;
 			border-bottom: 1px solid ${({ theme }) => theme.border};
 
 			${media('sm')} {
@@ -151,12 +155,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		img {
 			max-width: 100%;
 			height: auto;
+			margin-bottom: 1rem;
 		}
 
 		ul, ol {
 			padding-inline-start: 2rem;
 			margin-top: 0.5rem;
-			margin-bottom: 0.5rem;
+			margin-bottom: 1rem;
 
 		}
 
@@ -171,17 +176,17 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 		
 		code:not(pre > code) {
-			height: 1.25rem;
-			font-size: 0.75rem;
-			line-height: 1rem;
-			padding: 0 0.25rem;
-			font-family: ${({ theme }) => theme.fontFamilies.mono}, monospace;
-			font-weight: ${props => props.theme.fontWeights.primary.medium};
-			background: ${({ theme }) => theme.border};
-			${stateLayer(0.04)}
+            word-break: keep-all;
+			display: inline-flex;
+            align-items: center;
+            justify-content: center;
+			padding: 0.125rem 0.25rem;
 			color: ${({ theme }) => theme.on};
 			border: 0.5px solid ${({ theme }) => theme.border};
 			border-radius: 0.25rem;
+            overflow: hidden;
+			${props => props.theme.syntax.label.small}
+			${stateLayer({ initial: 0.06 , interact: false})}
 		}
 
 		strong {
@@ -210,13 +215,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, headings }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings, path, navRoute, version }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
-			<Header />
+			<Header version={version} />
 			<Root isAPI={isAPI}>
-				<Navigation items={navigation} isAPI={isAPI}/>
+				<Navigation items={navigation} isAPI={isAPI} navRoute={navRoute} version={version} />
 				<AnimatePresence>
 					{showMobileMenu ? (
 						<MobileMenu items={navigation} onClose={closeMobileMenu} isAPI={isAPI}/>
@@ -225,7 +230,7 @@ const Layout = ({ children, navigation, isAPI, headings }: Props) => {
 				<main>
 					{children}
 				</main>
-				{headings && <PageNavigation headings={headings}/>}
+				{!isAPI && <PageNavigation headings={headings!} path={path || ''} />}
 			</Root>
 			<Footer />
 		</>

@@ -5,19 +5,25 @@ import { FC, useState, useEffect } from 'react'
 import styled from "@emotion/styled";
 import { media } from 'styles/utils';
 import { motion } from 'framer-motion';
+import { Outline } from 'lib/utils';
+import Link from 'next/link';
+import GitHubIcon from 'ui/icons/github.svg';
 
 const Root = styled.div`
 	display: none;
 	${media('lg')} {
 		display: block;
 		grid-column: span 1;
-		max-height: calc(100vh - 8rem);
-		overflow-y: auto;
-		overflow-x: hidden;
-		position: sticky;
-		top: 8rem;
+		max-height: calc(100vh - 12rem);
+    position: sticky;
+		top: 11rem;
 	}
 `;
+
+const Wrapper = styled.div`
+    overflow-y: auto;
+		overflow-x: hidden;
+`
 
 const Header = styled.h4`
     font-size: 1rem
@@ -38,6 +44,19 @@ font-size: 0.875rem;
 padding-inline-start: 0rem;
 `;
 
+const EditOnGithub = styled(Link)`
+    padding: 3rem 0;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: ${props => props.theme.on_alt};
+    &:hover{
+        color: ${props => props.theme.on};
+    }
+`
+
 const NavItem = styled.a<{level:number , active?: boolean}>`
     color: ${({theme, active}) => active? theme.primary.accent : theme.on_alt};   
     margin-left: ${({level }) => (level - 2)}rem
@@ -48,7 +67,7 @@ const sluggifyTitle = (title: string) => {
     return _title.toLowerCase().split(' ').join('-');
 }
 
-export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
+export const PageNavigation: FC<{ path: string, headings: Outline }> = ({ path, headings }) => {
   const [activeHeading, setActiveHeading] = useState('')
 
   useEffect(() => {
@@ -73,11 +92,11 @@ export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
 
   const headingsToRender = headings.filter((_) => _.level > 1)
 
-  if ((headingsToRender ?? []).length === 0) return null
-
   return (
     <Root>
-      <Header>In this Section</Header>
+      <Wrapper>
+    {(headingsToRender ?? []).length !== 0 && <>
+      <Header>On This Page</Header>
       <H2List>
         {headingsToRender.map(({ title, level }, index) => (
           <li key={index}>
@@ -95,6 +114,14 @@ export const PageNavigation: FC<{ headings: any[] }> = ({ headings }) => {
           </li>
         ))}
       </H2List>
+      </>}
+      {path!=='/' &&
+      <EditOnGithub href={'https://github.com/fennel-ai/client/blob/main/docs/'+ path} >
+        <GitHubIcon/>
+        <div> Edit this Page on Github</div>
+      </EditOnGithub>
+      }
+      </Wrapper>
     </Root>
   )
 }

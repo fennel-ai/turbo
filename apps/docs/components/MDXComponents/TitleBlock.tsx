@@ -4,7 +4,12 @@ import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
-	margin: 0.25rem 0;
+	padding-bottom: 0.5rem;
+
+	${media('md')} {
+		margin-bottom: 1rem;
+		border-bottom: 1px solid ${({ theme }) => theme.border};
+	}
 `;
 
 const TitleWrapper = styled.div`
@@ -29,11 +34,6 @@ const Title = styled.div`
 		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
 		font-size: 2.5rem;
 		line-height: 3rem;
-		
-		${media('md')} {
-			font-size: 2.5rem;
-			line-height: 3rem;
-		}
 	}
 
 	& > span  {
@@ -62,13 +62,14 @@ const SectionTitle = styled.div`
 	display: none;
 	align-items: center;
 
-	${media('lg')} {
+	${media('md')} {
 		display: flex;
 	}
 
 	& > p {
 		margin: 0;
-		font-size: 1.5rem;
+		font-size: 1rem;
+		line-height: 1rem;
 		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 		color: ${({ theme }) => theme.primary.accent};
 	}

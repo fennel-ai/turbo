@@ -2,6 +2,7 @@ import "dotenv/config";
 import fs from "fs-extra";
 import path from "node:path";
 import { makeSource } from "contentlayer/source-remote-files";
+import yaml from "yaml";
 
 // Remark/Rehype plugins
 import remarkGfm from "remark-gfm";
@@ -9,36 +10,68 @@ import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from "remark-directive";
 import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
-import docsnip from 'remark-docsnip';
-import remarkValidateHref from 'remark-validate-href';
+import remarkValidateHref from "remark-validate-href";
+import codeTabs from "remark-code-tabs";
+import docsnip from "remark-docsnip";
+import versionedContent from "remark-versioned-content";
+import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
 // Content types
-import { Page } from "./contentlayer/content_types/Page";
+import { APIPage, Page } from "./contentlayer/content_types/Page";
 
 import fetchContent from "./contentlayer/fetchContent";
-import { Config, APIConfig } from "./contentlayer/content_types/Config";
+import {
+  Config,
+  APIConfig,
+  VersionsManifest,
+} from "./contentlayer/content_types/Config";
 
 const CONTENT_DIR = "_content";
 
 const githubSource = async () => {
+  let contentDir = path.join(process.cwd(), CONTENT_DIR);
+  let publicDir = path.join(process.cwd(), "public");
+
+  await fs.ensureDir(contentDir);
+
   if (process.env.MODE === "EDIT") {
     console.log(
       `[Edit Mode]: Content will not be fetched from the content repo`
     );
-    await fs.ensureDir(path.join(process.cwd(), CONTENT_DIR));
+
+    // When MODE === 'EDIT' the content is being symlinked to _content
+    // so we can skip everything else and instead just move the assets
+    // to public.
+    const assetPath = path.join(publicDir, "main", "assets");
+    await fs.ensureDir(assetPath);
+    await fs.copy(
+      path.join(process.cwd(), CONTENT_DIR, "main", "assets"),
+      assetPath,
+      { overwrite: true }
+    );
   } else {
+    await fs.emptyDir(CONTENT_DIR);
+
     console.log(`Pulling content from content repo...`);
-    // replace this with octokit:
-    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR);
+    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, [
+      { name: "main", head: "main" },
+    ]);
   }
 
-  // Move assets to nexts static dir
-  await fs.copy(
-    path.join(process.cwd(), CONTENT_DIR, "assets"),
-    path.join(process.cwd(), "public", "assets"),
-    { overwrite: true }
+  const versionsManifestStr = await fs.readFile(
+    path.join(CONTENT_DIR, "main", "versions.yml"),
+    "utf-8"
   );
+  const versionsManifest = yaml.parse(versionsManifestStr);
+
+  const { versions } = versionsManifest;
+
+  if (versions?.length) {
+    // Fetch all other versions listed in the versions manifest
+    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
+  }
+
   // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
   return () => {};
 };
@@ -46,25 +79,31 @@ const githubSource = async () => {
 export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
-  documentTypes: [Page, Config, APIConfig],
+  documentTypes: [Page, APIPage, Config, APIConfig, VersionsManifest],
   contentDirExclude: [
-    ".git",
-    ".gitignore",
-    "docker-compose.yml",
-    "Makefile",
-    "README.md",
-    "algolia.config.json",
-    "deprecated",
+    "main/.git",
+    "main/.gitignore",
+    "main/docker-compose.yml",
+    "main/Makefile",
+    "main/README.md",
+    "main/algolia.config.json",
+    "main/deprecated",
   ],
   mdx: {
     remarkPlugins: [
-        remarkValidateHref,
+      remarkValidateHref,
       remarkMdxDisableExplicitJsx,
       remarkGfm,
       remarkDirective,
       remarkAdmonitions,
       docsnip,
+      codeTabs, //! <- NOTE: After docsnip
+      versionedContent,
     ],
-    rehypePlugins: [[rehypeImgSize, { dir: "public" }], rehypeSlug],
+    rehypePlugins: [
+      [rehypeImgSize, { dir: "public" }],
+      rehypeSlug,
+      rehypeMdxCodeProps,
+    ],
   },
 });

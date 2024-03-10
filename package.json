@@ -9,6 +9,9 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "clean": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
+    "deps": "pnpm update -i -r",
+    "deps:latest": "pnpm update -L -i -r",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "test": "turbo run test --parallel",

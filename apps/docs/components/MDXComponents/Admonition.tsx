@@ -24,6 +24,12 @@ const TYPE_MAP = {
 		icon_color: 'on',
 		text_color: 'on',
 		dark_text_color: 'on'
+	},
+	error:{
+		title: 'Error',
+		icon_color: 'error.accent',
+		text_color: 'error.accent',
+		dark_text_color: 'error.accent'
 	}
 }
 
@@ -39,31 +45,35 @@ type Props = {
 
 const Root = styled.div<{ type: Props['type'] }>`
 	padding: 0rem 1rem;
-	margin: 0.5rem 0;
+	margin: 1.5rem 0;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	width: max-content;
 	max-width: 100%;
-	font-size: 0.875rem;
-	border-left: 1px solid ${({ type,theme }) => rgba(get(TYPE_MAP[type].icon_color)({theme}), 1)};
+	font-size: 1rem;
+	font-weight: ${props => props.theme.fontWeights.primary.bold};
+	border-left: 2px solid ${({ type,theme }) => rgba(get(TYPE_MAP[type].icon_color)({theme}), 1)};
 	& > p {
-		color: ${({theme }) => theme.on_alt};
-		margin: 0;
-		font-size: 0.875rem !important;
-		line-height: 1.5rem !important;
+		margin: 0 !important;
+        font-size: ${({ theme }) => theme.body.default!.fontSize};
+        font-weight: ${({ theme }) => theme.body.default!.fontWeight};
+        line-height: ${({ theme }) => theme.body.default!.lineHeight};
 	}
 `;
 
-const Title = styled.div`
-	color: ${props => props.theme.primary.accent};
-	line-height: 1rem;
+const Title = styled.div<{type: Props['type']}>`
+	color: ${({ type,theme }) => rgba(get(TYPE_MAP[type].text_color)({theme}), 1)};
+    text-transform: uppercase;
+    font-size: ${({ theme }) => theme.label.default!.fontSize};
+    font-weight: ${({ theme }) => theme.label.default!.fontWeight};
+    line-height: ${({ theme }) => theme.label.default!.lineHeight};
 `;
 
 export const Admonition = ({ children, type }: PropsWithChildren<Props>) => {
 	return (
 		<Root type={type}>
-			<Title>
+			<Title type={type}>
 				{TYPE_MAP[type].title}
 			</Title>
 			{children}
