@@ -128,31 +128,33 @@ export const CodeBlock = ({
 	};
 
 	return (
-		<ThemeProvider theme={darkTheme}>
-            <Root className={className}>
-                {header || null}
+        <Root className={className}>
+                <ThemeProvider theme={darkTheme}>
+                    {header || null}
+                </ThemeProvider>
                 <Code 
                     language={language} 
                     code={code.trimEnd()} 
                     highlight={highlight} 
                 />
                 {toolbar ? (
-                    <Toolbar status={status}>
-                        <Message>
-                            {(status?.length || message?.length) ? <>
-                                {getStatusIcon(status)}<div>{message}</div>
-                            </> : ''}
-                        </Message>
-                        <Actions>
-                            <p>{language}</p>
-							<ActionButtons>
-                                {githubUrl ? <IconButton icon={GithubIcon} size='small' onClick={() => window.open(githubUrl, "_blank")} /> : null}
-                                <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
-							</ActionButtons>
-                        </Actions>
-                    </Toolbar>
+                    <ThemeProvider theme={darkTheme}>
+                        <Toolbar status={status}>
+                            <Message>
+                                {(status?.length || message?.length) ? <>
+                                    {getStatusIcon(status)}<div>{message}</div>
+                                </> : ''}
+                            </Message>
+                            <Actions>
+                                <p>{language}</p>
+                                <ActionButtons>
+                                    {githubUrl ? <IconButton icon={GithubIcon} size='small' onClick={() => window.open(githubUrl, "_blank")} /> : null}
+                                    <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
+                                </ActionButtons>
+                            </Actions>
+                        </Toolbar>
+                    </ThemeProvider>
                 ) : null}
             </Root>
-        </ThemeProvider>
 	);
 }
