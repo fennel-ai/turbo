@@ -9,16 +9,28 @@ const pathToSlug = (input: string) => {
 	return input.replace(CONTENT_BASE + '/', '').replace(ext, '');
 };
 
+export interface ContentManifest {
+    content: Record<string, Record<string, string>>;
+    assets: Record<string, string[]>;
+}
+
+export const createContentManifest = (): ContentManifest => {
+    const versions = fs.readdirSync(CONTENT_BASE);
+
+    return {
+        content: createContentMap(versions),
+        assets: createAssetMap(versions),
+    }
+};
+
 /**
  * Find all markdown files, and create a map with the _actual_ 
  * slugs (usually uses the path but may be overriden by frontmatter.slug)
  * 
  * Returns a Map of actual slug to path of the markdown file.
  */
-export const createContentMap = (): Record<string, Record<string, string>> => {
+export const createContentMap = (versions: string[]): Record<string, Record<string, string>> => {
 	let obj: Record<string, Record<string, string>> = {};
-
-    const versions = fs.readdirSync(CONTENT_BASE);
 
     for (const version of versions) {
         if (!obj[version]) {
@@ -43,11 +55,24 @@ export const createContentMap = (): Record<string, Record<string, string>> => {
 
             slug = slug.replace(new RegExp(`/${version}/pages`, 'g'), '');
 
-            console.log(full_path, slug);
-
             obj[version][slug] = full_path;
         }
     }
 
 	return obj;
+};
+
+export const createAssetMap = (versions: string[]): Record<string, string[]> => {
+    let obj: Record<string, string[]> = {};
+
+    for (const version of versions) {
+        if (!obj[version]) {
+            obj[version] = [];
+        }
+
+        const assets = glob.sync([path.join(process.cwd(), 'public', version, 'assets', '**')]);
+        obj[version] = assets.map((path) => path.split(version)[1]);
+    }
+
+    return obj;
 };

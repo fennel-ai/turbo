@@ -6,7 +6,7 @@ import { Visitor, visit } from 'unist-util-visit';
 import { Node } from 'mdast-util-to-string/lib';
 
 import { CONTENT_BASE } from "./constants";
-import { createContentMap } from './createContentMap';
+import { ContentManifest, createContentManifest } from './createContentMap';
 
 const getVersion = (file: VFile) => {
     // gets the current version for this page based on the source dir slug.
@@ -16,12 +16,11 @@ const getVersion = (file: VFile) => {
     return version;
 }
 
-// content map === { [version]: { [path]: [slug] } }
-let contentMap: Record<string, Record<string, string>> | undefined = undefined;
-// TODO: Validate image src attributes similarly.
+let contentManifest: ContentManifest | undefined = undefined;
+
 const remarkValidateHref: Plugin = (): Transformer => {
-	if (!contentMap) {
-		contentMap = createContentMap()
+	if (!contentManifest) {
+		contentManifest = createContentManifest()
 	}
 
 	return (tree, file) => {
@@ -35,17 +34,15 @@ const remarkValidateHref: Plugin = (): Transformer => {
 
             //! Here we are essentially ignoring the header anchor links for now
             //! this is a little more complex as we need rehype to run for the heading IDs to be present on each `node`
-            //! Need to work out a way around this when running the validator via remark-cli.
             if (link_path.includes('#')) {
                 link_path = link_path.split("#")[0];
             }
 
             if (!isExt) {
-
                 let full_path = path.join(CONTENT_BASE, version, `${link_path}.md`);
 
-                if (contentMap![version][link_path]) {
-                    full_path = contentMap![version][link_path];
+                if (contentManifest!.content[version][link_path]) {
+                    full_path = contentManifest!.content[version][link_path];
                 }
 
                 try {
@@ -59,6 +56,21 @@ const remarkValidateHref: Plugin = (): Transformer => {
                 }
             }
         });
+
+        visit(tree, 'image', (node: Node) => {
+            //@ts-ignore
+            let asset_path = node.url as string;
+
+            const isExt = asset_path.startsWith('http');
+
+            if (!isExt && !contentManifest!.assets[version].includes(asset_path)) {
+                file.message(
+                    `Broken asset reference: ${asset_path} @ ${node.position?.start.line}:${node.position?.start.offset}`,
+                    node.position,
+                    undefined,
+                )
+            }
+        })
 	}
 }
 

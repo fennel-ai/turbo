@@ -3,7 +3,7 @@ import { createContentMap } from './createContentMap';
 
 describe('createContentMap', () => {
 	it('should return an object', () => {
-		const res = createContentMap();
+		const res = createContentMap([]);
 
 		expect(typeof res, 'object');
 	});
