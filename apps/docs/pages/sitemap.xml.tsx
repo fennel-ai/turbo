@@ -1,4 +1,4 @@
-import { allPages } from "contentlayer/generated";
+import { allPages, version } from "contentlayer/generated";
 import { GetServerSideProps } from "next";
 
 /**
@@ -12,22 +12,33 @@ import { GetServerSideProps } from "next";
  * Now we can just map over allPages as before, and include /docs/api-reference by hand as the only URL that should be scraped by algolia.
  */
 function generateSiteMap() {
-	return `
-    <?xml version="1.0" encoding="UTF-8"?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        <url>
-            <loc>https://fennel.ai/docs</loc>
-        </url>
-        ${
-            allPages
-                .filter(({ status }) => status !== 'draft')
-                .map(({ slug }) => {
-                    return `<url><loc>${`https://fennel.ai/docs/${slug}`}</loc></url>`;
-                })
-                .join('')
-        }
-        <url><loc>${`https://fennel.ai/docs/api-reference`}</loc></url>
-    </urlset>
+	return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://fennel.ai/docs</loc>
+    </url>
+    ${
+        allPages
+            .filter(({ status }) => status !== 'draft')
+            .map(({ slug }) => {
+                return `
+    <url>
+        <loc>${`https://fennel.ai/docs/${slug}`}</loc>
+    </url>`;
+            })
+            .join('')
+    }
+    <url>
+        <loc>${`https://fennel.ai/docs/api-reference`}</loc>
+    </url>
+    ${
+        version.versions?.map(({ name }) => `
+    <url>
+        <loc>${`https://fennel.ai/docs/api-reference/${name}`}</loc>
+    </url>
+        `) || null
+    }
+</urlset>
  `;
 }
 
