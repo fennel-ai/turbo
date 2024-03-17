@@ -48,6 +48,10 @@ export const findAndReplace = async ({
             (attr: MdxJsxAttribute) => attr.name === "name"
         );
 
+        const activeAttr = node.attributes.find(
+            (attr: MdxJsxAttribute) => attr.name === 'active'
+        )
+
         node.type = "mdxJsxFlowElement";
         node.name = "pre";
 
@@ -86,6 +90,11 @@ export const findAndReplace = async ({
                 type: 'mdxJsxAttribute',
                 name: 'highlight',
                 value: highlightAttr?.value || ''
+            },
+            {
+                type: 'mdxJsxAttribute',
+                name: 'active',
+                value: activeAttr?.value === null ? true : false
             },
         ];
 

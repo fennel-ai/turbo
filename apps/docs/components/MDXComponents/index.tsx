@@ -24,7 +24,7 @@ export const pre = (props: CodeSnippetProps) => {
     )
 };
 
-export const CodeTabs = (props: { children: ReactNode }) =>  {
-    return <CodeSnippet>{props.children}</CodeSnippet>
+export const CodeTabs = (props: { active?: string, children: ReactNode }) =>  {
+    return <CodeSnippet defaultActive={props.active}>{props.children}</CodeSnippet>
 }
 export const img = Image;
