@@ -2,6 +2,7 @@ import { ReactNode, PropsWithChildren, useCallback, useEffect } from "react";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/router';
 import { allAPIPages, APIPage } from 'contentlayer/generated';
 import Head from "next/head";
 import styled from "@emotion/styled";
