@@ -10,9 +10,10 @@ import remarkMdxDisableExplicitJsx from "remark-mdx-disable-explicit-jsx";
 import remarkDirective from "remark-directive";
 import rehypeImgSize from "rehype-img-size";
 import rehypeSlug from "rehype-slug";
+import remarkValidateHref from "remark-validate-href";
 import codeTabs from "remark-code-tabs";
 import docsnip from "remark-docsnip";
-import versionedContent from 'remark-versioned-content';
+import versionedContent from "remark-versioned-content";
 import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 
@@ -29,40 +30,47 @@ import {
 const CONTENT_DIR = "_content";
 
 const githubSource = async () => {
-    let contentDir = path.join(process.cwd(), CONTENT_DIR);
-    let publicDir = path.join(process.cwd(), 'public');
+  let contentDir = path.join(process.cwd(), CONTENT_DIR);
+  let publicDir = path.join(process.cwd(), "public");
 
-    await fs.ensureDir(contentDir);
+  await fs.ensureDir(contentDir);
 
-    if (process.env.MODE === "EDIT") {
-        console.log(`[Edit Mode]: Content will not be fetched from the content repo`);
-        
-        // When MODE === 'EDIT' the content is being symlinked to _content
-        // so we can skip everything else and instead just move the assets 
-        // to public.
-        const assetPath = path.join(publicDir, "main", "assets");
-        await fs.ensureDir(assetPath);
-        await fs.copy(
-          path.join(process.cwd(), CONTENT_DIR, "main", "assets"),
-          assetPath,
-          { overwrite: true }
-        );
-    } else {
-        await fs.emptyDir(CONTENT_DIR);
+  if (process.env.MODE === "EDIT") {
+    console.log(
+      `[Edit Mode]: Content will not be fetched from the content repo`
+    );
 
-        console.log(`Pulling content from content repo...`);
-        await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, [{ name: "main", head: "main" }]);
-    }
+    // When MODE === 'EDIT' the content is being symlinked to _content
+    // so we can skip everything else and instead just move the assets
+    // to public.
+    const assetPath = path.join(publicDir, "main", "assets");
+    await fs.ensureDir(assetPath);
+    await fs.copy(
+      path.join(process.cwd(), CONTENT_DIR, "main", "assets"),
+      assetPath,
+      { overwrite: true }
+    );
+  } else {
+    await fs.emptyDir(CONTENT_DIR);
 
-    const versionsManifestStr = await fs.readFile(path.join(CONTENT_DIR, 'main', "versions.yml"), 'utf-8');
-    const versionsManifest = yaml.parse(versionsManifestStr);
+    console.log(`Pulling content from content repo...`);
+    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, [
+      { name: "main", head: "main" },
+    ]);
+  }
 
-    const { versions } = versionsManifest;
+  const versionsManifestStr = await fs.readFile(
+    path.join(CONTENT_DIR, "main", "versions.yml"),
+    "utf-8"
+  );
+  const versionsManifest = yaml.parse(versionsManifestStr);
 
-    if (versions?.length) {
-        // Fetch all other versions listed in the versions manifest
-        await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
-    }
+  const { versions } = versionsManifest;
+
+  if (versions?.length) {
+    // Fetch all other versions listed in the versions manifest
+    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
+  }
 
   // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
   return () => {};
@@ -83,6 +91,7 @@ export default makeSource({
   ],
   mdx: {
     remarkPlugins: [
+      remarkValidateHref,
       remarkMdxDisableExplicitJsx,
       remarkGfm,
       remarkDirective,
