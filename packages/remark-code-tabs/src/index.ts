@@ -1,7 +1,7 @@
 import type { Transformer } from 'unified';
 import type { Literal, Node, Parent } from 'unist';
 
-import { visit, SKIP } from "unist-util-visit";
+import { visit, SKIP, CONTINUE } from "unist-util-visit";
 
 const DELIMITER = "===";
 
@@ -33,7 +33,7 @@ export default function codeTabs(): Transformer {
                                 children: current
                             };
 
-                            parent.children.splice(startIndex, index as number + 1, codeTabNode);
+                            parent.children.splice(startIndex, (index! - startIndex) + 1, codeTabNode); // +1 includes the trailing `===`
 
                             // Finally clear the state
                             current = [];
@@ -50,6 +50,8 @@ export default function codeTabs(): Transformer {
                     // Stop traversing the children of the node and move on to the next sibling
                     return SKIP
                 }
+            } else {
+                return CONTINUE
             }
         });
     };
