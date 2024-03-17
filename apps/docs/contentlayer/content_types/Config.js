@@ -25,10 +25,19 @@ export const VersionsManifest = defineDocumentType(() => ({
       type: "list",
       required: false,
       description:
-        "A list of available alternate versions of the documentation (excl. current/main)",
+        "A list of available alternate versions of the documentation (excl. main)",
         of: Version,
     },
-  }
+  },
+  computedFields: process.env.MODE === "EDIT" ? { // Ignore versions in EDIT mode
+    versions: {
+        type: 'list',
+        required: false,
+        description: "A list of available alternate versions of the documentation (excl. main)",
+        of: Version,
+        resolve: () => []
+    }
+  } : undefined
 }));
 
 const SidebarSection = defineNestedType(() => ({

@@ -58,19 +58,19 @@ const githubSource = async () => {
     await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, [
       { name: "main", head: "main" },
     ]);
-  }
 
-  const versionsManifestStr = await fs.readFile(
-    path.join(CONTENT_DIR, "main", "versions.yml"),
-    "utf-8"
-  );
-  const versionsManifest = yaml.parse(versionsManifestStr);
+    const versionsManifestStr = await fs.readFile(
+      path.join(CONTENT_DIR, "main", "versions.yml"),
+      "utf-8"
+    );
+    const versionsManifest = yaml.parse(versionsManifestStr);
 
-  const { versions } = versionsManifest;
+    const { versions } = versionsManifest;
 
-  if (versions?.length) {
-    // Fetch all other versions listed in the versions manifest
-    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
+    if (versions?.length) {
+      // Fetch all other versions listed in the versions manifest
+      await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
+    }
   }
 
   // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
