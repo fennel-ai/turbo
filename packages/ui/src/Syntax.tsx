@@ -163,13 +163,13 @@ export const Syntax = ({ className, code, language, highlight }: { className?: s
         let style: CSSProperties = {};
         let className: string | undefined;
 
-        if (highlights?.length && highlights.every(h => h.start > lineNumber || h.end < lineNumber)) {
-            style.opacity = 0.64;
-        }
+        // if (highlights?.length && highlights.every(h => h.start > lineNumber || h.end < lineNumber)) {
+        //     style.opacity = 0.64;
+        // }
 
         highlights?.forEach((h) => {
             if (lineNumber >= h.start && lineNumber <= h.end) {
-                style.backgroundColor = "rgba(197, 198, 201, 0.02)";
+                style.backgroundColor = "rgba(197, 198, 201, 0.06)";
                 style.display = "block";
                 className = 'highlighted'
             }
