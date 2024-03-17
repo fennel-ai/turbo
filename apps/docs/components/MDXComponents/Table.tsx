@@ -47,10 +47,10 @@ const TableRoot = styled.table`
 			th {
 				border: none;
 				text-transform: uppercase;
-				padding: 0 1rem;
-                vertical-align: middle;
-                height: 2.5rem;
-				${({ theme }) => theme.label.small};
+				padding: 1rem;
+                font-size: ${({ theme }) => theme.label.small!.fontSize};
+                font-weight: ${({ theme }) => theme.label.small!.fontWeight};
+                line-height: ${({ theme }) => theme.label.small!.lineHeight};
 				color: ${({ theme }) => theme.on_alt };
             }
 		}

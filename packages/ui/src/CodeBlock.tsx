@@ -57,7 +57,9 @@ const Message = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	${({ theme }) => theme.label.small};
+    font-size: ${({ theme }) => theme.label.small!.fontSize};
+    font-weight: ${({ theme }) => theme.label.small!.fontWeight};
+    line-height: ${({ theme }) => theme.label.small!.lineHeight};
 `
 
 const Actions = styled.div`
@@ -70,7 +72,9 @@ const Actions = styled.div`
     color: ${({ theme }) => theme.on_alt};
     & > p {
         margin: 0;
-        ${({ theme }) => theme.label.small};
+        font-size: ${({ theme }) => theme.label.small!.fontSize};
+        font-weight: ${({ theme }) => theme.label.small!.fontWeight};
+        line-height: ${({ theme }) => theme.label.small!.lineHeight};
     }
 `
 
@@ -124,31 +128,33 @@ export const CodeBlock = ({
 	};
 
 	return (
-		<ThemeProvider theme={darkTheme}>
-            <Root className={className}>
-                {header || null}
+        <Root className={className}>
+                <ThemeProvider theme={darkTheme}>
+                    {header || null}
+                </ThemeProvider>
                 <Code 
                     language={language} 
                     code={code.trimEnd()} 
                     highlight={highlight} 
                 />
                 {toolbar ? (
-                    <Toolbar status={status}>
-                        <Message>
-                            {(status?.length || message?.length) ? <>
-                                {getStatusIcon(status)}<div>{message}</div>
-                            </> : ''}
-                        </Message>
-                        <Actions>
-                            <p>{language}</p>
-							<ActionButtons>
-                                {githubUrl ? <IconButton icon={GithubIcon} size='small' onClick={() => window.open(githubUrl, "_blank")} /> : null}
-                                <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
-							</ActionButtons>
-                        </Actions>
-                    </Toolbar>
+                    <ThemeProvider theme={darkTheme}>
+                        <Toolbar status={status}>
+                            <Message>
+                                {(status?.length || message?.length) ? <>
+                                    {getStatusIcon(status)}<div>{message}</div>
+                                </> : ''}
+                            </Message>
+                            <Actions>
+                                <p>{language}</p>
+                                <ActionButtons>
+                                    {githubUrl ? <IconButton icon={GithubIcon} size='small' onClick={() => window.open(githubUrl, "_blank")} /> : null}
+                                    <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
+                                </ActionButtons>
+                            </Actions>
+                        </Toolbar>
+                    </ThemeProvider>
                 ) : null}
             </Root>
-        </ThemeProvider>
 	);
 }

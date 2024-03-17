@@ -1,16 +1,13 @@
+import { CSSProperties, useCallback, useMemo } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import styled from '@emotion/styled';
-
-import { get } from 'styles/utils';
 
 const style_reset = {
 	['pre[class*="language-"]']: {}
 }
 
-const line_number_style = {
-	minWidth: 0,
-	width: '2.5rem',
-	paddingRight: '0.75rem'
+const lineNumberStyle: CSSProperties = {
+    minWidth: '2.5rem',
 }
 
 const Root = styled.div`
@@ -42,8 +39,8 @@ const Root = styled.div`
 		overflow: auto;
 	}
 
-	pre ::selection {
-		background: rgb(${({ theme }) => theme.ref.grey['30']});
+	code[class*="language-"]::selection, pre ::selection {
+		background: rgb(${({ theme }) => theme.ref.grey['120']}) !important;
 	}
 
 	:not(pre)>code[class*="language-"],
@@ -64,14 +61,30 @@ const Root = styled.div`
 		white-space: inherit;
 	}
 
-	.linenumber {
-		${({ theme }) => theme.syntax['lineNumber'].small};
+	.linenumber {		
+        position: relative;
+        font-size: ${({ theme }) => theme.syntax['lineNumber'].small.fontSize};
+        font-weight: ${({ theme }) => theme.syntax['lineNumber'].small.fontWeight};
+        line-height: ${({ theme }) => theme.syntax['lineNumber'].small.lineHeight};
+        letter-spacing: ${({ theme }) => theme.syntax['lineNumber'].small.letterSpacing};
 		pointer-events: none;
 		text-align: right;
 		user-select: none;
 		color: ${({ theme }) => theme.syntax.plain['line-number']};
-		width: 2rem;
+		min-width: 2.5rem;
+        padding-right: 0.75rem;
 	}
+
+    .highlighted .linenumber::after {
+        content: '';
+        position: absolute;
+        right: 0.25rem;
+        width: 0.25rem;
+        height: ${({ theme }) => theme.syntax['lineNumber'].small.lineHeight};
+        background-size: 3px 3px;
+        background-repeat: repeat-y;
+        background-image: ${({ theme }) => `linear-gradient(-45deg,${theme.color.yellow['70']} 25%,${theme.syntax.plain.background} 25%,${theme.syntax.plain.background} 50%,${theme.color.yellow['70']} 50%,${theme.color.yellow['70']} 75%,${theme.syntax.plain.background} 75%,${theme.syntax.plain.background})`};
+    }
 
 	/* Syntax tokens */
 	.token.comment,
@@ -136,37 +149,47 @@ const Root = styled.div`
 `;
 
 export const Syntax = ({ className, code, language, highlight }: { className?: string, code: string, language: string, highlight?: string }) => {
-	let highlights: {start: number, end: number}[] | undefined = [];
-	try {
-		highlights = highlight?.split(',').map((line) => line.includes('-') ? {
-			start: parseInt(line.split('-')[0]),
-			end: parseInt(line.split('-')[1])
-		}: { start: parseInt(line), end: parseInt(line)});
-	} catch {
-		console.log("Error in calculating ranges")
-	}
-	return (
-	<Root className={className}>
-		<SyntaxHighlighter
-			useInlineStyles={false}
-			lineNumberStyle={line_number_style}
-			language={language}
-			style={style_reset}
-			wrapLines={true}
-			showLineNumbers
-			lineProps={lineNumber => {
-				let style: Record<string, string> = {};
-				highlights?.forEach((h) => {
-					if(lineNumber >=h.start && lineNumber <=h.end) {
-						style["backgroundColor"] = "rgba(197, 198, 201, 0.06)";
-						style["display"] = "block";
-					}
-				})
-                return { style };
-              }}
-		>
-			{code}
-		</SyntaxHighlighter>
-	</Root>
-)
-			};
+    const highlights = useMemo(() => {
+        let highlights: { start: number, end: number }[] | undefined = [];
+        highlights = highlight?.split?.(',').map((line) => line.includes('-') ? {
+            start: parseInt(line.split('-')[0]),
+            end: parseInt(line.split('-')[1])
+        } : { start: parseInt(line), end: parseInt(line) });
+
+        return highlights
+    }, [highlight]);
+
+    const lineProps = useCallback((lineNumber: number) => {
+        let style: CSSProperties = {};
+        let className: string | undefined;
+
+        if (highlights?.length && highlights.every(h => h.start > lineNumber || h.end < lineNumber)) {
+            style.opacity = 0.64;
+        }
+
+        highlights?.forEach((h) => {
+            if (lineNumber >= h.start && lineNumber <= h.end) {
+                style.backgroundColor = "rgba(197, 198, 201, 0.02)";
+                style.display = "block";
+                className = 'highlighted'
+            }
+        })
+        return { style, class: className };
+    }, [highlights]);
+
+    return (
+        <Root className={className}>
+            <SyntaxHighlighter
+                useInlineStyles={false}
+                lineNumberStyle={lineNumberStyle}
+                language={language}
+                style={style_reset}
+                wrapLines={true}
+                showLineNumbers
+                lineProps={lineProps}
+            >
+                {code}
+            </SyntaxHighlighter>
+        </Root>
+    )
+};

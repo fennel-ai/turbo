@@ -21,6 +21,7 @@ type Props = {
 	headings?: Outline,
 	path? :string
 	navRoute?: string;
+    version: string;
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -47,7 +48,8 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.on};
-			font-family: ${haskoyVariable.style.fontFamily}, serif;
+			font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
+			font-weight: 500;
 			margin: 0;
 			scroll-margin-top: 4rem;
 
@@ -172,13 +174,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, headings, path, navRoute }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings, path, navRoute, version }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
-			<Header />
+			<Header version={version} />
 			<Root isAPI={isAPI}>
-				<Navigation items={navigation} isAPI={isAPI} navRoute={navRoute}/>
+				<Navigation items={navigation} isAPI={isAPI} navRoute={navRoute} version={version} />
 				<AnimatePresence>
 					{showMobileMenu ? (
 						<MobileMenu items={navigation} onClose={closeMobileMenu} isAPI={isAPI}/>

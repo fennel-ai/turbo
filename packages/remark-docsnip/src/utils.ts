@@ -12,7 +12,7 @@ export const normalizeIndentation = (str?: string) => {
 // Will return undefined if the snippet id is not found.
 export const extractSnippet = (file_content: string, snippet_id: string) => {
 	// const regex = /# docsnip\s+(\w+)\n([\s\S]+?)# \/docsnip/g;
-	const regex = new RegExp(`# docsnip\\s+${snippet_id}\\n([\\s\\S]+?)# \/docsnip`, 'g');
+	const regex = new RegExp(`# docsnip\\s+${snippet_id}\\n([\\s\\S]+?)\\n\\s*# \/docsnip`, 'g');
 	let snippet = regex.exec(file_content)?.[1];
 	return normalizeIndentation(snippet);
 };

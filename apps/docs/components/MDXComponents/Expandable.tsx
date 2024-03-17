@@ -18,7 +18,10 @@ const TitleContainer = styled.div`
 
 const Title = styled.span`
     color: ${({ theme }) => theme.on};
-    ${({ theme }) => theme.syntax.label.default};
+    font-family: ${({ theme }) => theme.syntax.label.default.fontFamily};
+    font-size: ${({ theme }) => theme.syntax.label.default.fontSize};
+    font-weight: ${({ theme }) => theme.syntax.label.default.fontWeight};
+    line-height: ${({ theme }) => theme.syntax.label.default.lineHeight};
 `;
 
 const Separator = styled.span<{ show?: boolean }>`
@@ -28,7 +31,9 @@ const Separator = styled.span<{ show?: boolean }>`
 `;
 
 const Type = styled.span<{ isEnum?: boolean; noTitle?: boolean; }>`
-    ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small']};
+    font-size: ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small'].fontSize};
+    font-weight: ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small'].fontWeight};
+    line-height: ${({ noTitle, theme }) => theme.syntax.label[noTitle ? 'default' : 'small'].lineHeight};
     color: ${({ noTitle, theme, isEnum }) => noTitle ? theme.on : theme[isEnum ? 'success' : 'primary'].accent};
 `;
 
@@ -63,7 +68,9 @@ const Content = styled.div`
 
     & p {
         margin: 0;
-        ${({ theme }) => theme.body.default};
+        font-size: ${({ theme }) => theme.body.default.fontSize};
+        font-weight: ${({ theme }) => theme.body.default.fontWeight};
+        line-height: ${({ theme }) => theme.body.default.lineHeight};
     }
 `;
 
@@ -75,7 +82,10 @@ const Meta = styled.div`
 
     & > p {
         margin: 0;
-        ${({ theme }) => theme.body.small};
+
+        font-size: ${({ theme }) => theme.body.small!.fontSize};
+        font-weight: ${({ theme }) => theme.body.small!.fontWeight};
+        line-height: ${({ theme }) => theme.body.small!.lineHeight};
         color: ${({ theme }) => theme.on_alt};
     }
 `;
@@ -119,7 +129,7 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
                             defaultVal || optional ? (
                                 <Meta>
                                     {optional ? <p>Optional</p> : null}
-                                    {defaultVal ? <p>{`Default Value: ${defaultVal}`}</p> : null}
+                                    {defaultVal ? <p>{`Default: ${defaultVal}`}</p> : null}
                                 </Meta>
                             ) : null
                         }
