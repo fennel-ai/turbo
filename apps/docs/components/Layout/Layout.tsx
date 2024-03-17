@@ -38,6 +38,10 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		grid-template-columns: repeat(5, 1fr);
 	}
 
+    @media (min-width: 100rem) {
+        gap: 4rem;
+    }
+
 
 	& > main {
 		padding-top: calc(6rem + 2rem);

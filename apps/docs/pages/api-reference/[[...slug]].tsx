@@ -20,7 +20,6 @@ type Props = {
     version: string,
 }
 
-
 const PageWrapper = styled.div<{ index: number }>`
     width: 100%;
     padding-top: ${({ index }) => index === 0 ? 0 : 4}rem;
