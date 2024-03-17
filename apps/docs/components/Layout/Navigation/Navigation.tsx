@@ -80,7 +80,7 @@ const Navigation = ({ items, isAPI }: Props) => {
     }, [isAPI, handlePopState]);
 
 	return (
-		<Root>
+		<Root id="sidenav">
 			<Nav>
 				{
 					items.map((section) => {
