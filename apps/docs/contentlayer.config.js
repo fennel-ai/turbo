@@ -99,7 +99,7 @@ export default makeSource({
       remarkAdmonitions,
       docsnip,
       codeTabs, //! <- NOTE: After docsnip
-      contentSpec
+      contentSpec,
       versionedContent,
     ],
     rehypePlugins: [
