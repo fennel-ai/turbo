@@ -59,67 +59,26 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 
 		h2 {
-			font-size: 1.75rem;
-			line-height: 2rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
-			margin-top: 3rem;
+			${({ theme }) => theme.subtitle.large};
 			margin-bottom: 0.5rem;
-
-			&:not(:first-of-type) {
-				margin-top: 2rem;
-
-				${media('md')} {
-					margin-top: 2.5rem;
-				}
-			}
 		}
 		
 		h3 {
-			font-size: 1.5rem;
-			line-height: 1.75rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
-			padding-top: 0.75rem;
-			padding-bottom: 0.75rem;
-
-			${media('md')} {
-			${({isAPI, theme}) => isAPI && `
-				position: sticky;
-				top: calc(3.5rem + 1px);
-				background: ${theme.glass};
-				backdrop-filter: blur(20px) saturate(1.4);
-				z-index: 2;
-			`}
-			}
+            ${({ theme }) => theme.subtitle.default};
+            margin-bottom: 0.75rem;
 		}
 
 		h4 {
-			font-size: 1.25rem;
-			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
-			margin-top: 1rem;
+            ${({ theme }) => theme.subtitle.small};
 			padding-bottom: 0.5rem;
 			margin-bottom: 1rem;
 			border-bottom: 1px solid ${({ theme }) => theme.border};
-
-			${media('sm')} {
-				margin-top: 1.5rem;
-			}
 		}
-
-
-		/** Target paragraphs that are direct children of the main element (we don't necessarily want to style paragraphs within e.g. lists in the same way.) */
-		& > p, & > div > p, & > div > div > p, & > div > div > div > p {
-			margin: 0;
-			font-size: 1rem;
-			line-height: 1.75rem;
-			margin-bottom: 1rem;
-			font-variation-settings: "wght" ${props => props.theme.type == "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
-		}
-
 
 		& a {
 			position: relative;
 			text-decoration: none;
+            cursor: pointer;
 			color: ${({ theme }) => theme.on_alt};
 			opacity: 0.8;
 			transition: 160ms opacity ease-out;

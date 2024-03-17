@@ -3,26 +3,6 @@ import styled from '@emotion/styled';
 import { media, stateLayer } from "styles/utils";
 import { CodeBlock } from "ui";
 
-const Root = styled(CodeBlock)`
-	margin: 1rem 0 2rem 0;
-
-	${media('2xs')} {
-		margin: 1rem 0 2rem 0;
-	}
-	
-	${media('xs')} {
-		margin: 2rem 0 1.5rem 0;
-	}
-
-	${media('sm')} {
-		margin: 3rem 0rem 2.5rem 0rem;
-	}
-
-	${media('md')} {
-		margin: 3rem 0 2.5rem 0;
-	}
-`
-
 const Tabs = styled.div`
     display: flex;
     align-items: center;
@@ -123,7 +103,7 @@ export const CodeSnippet = (props: { defaultActive?: string, children: ReactNode
     ) : undefined;
 
 	return (
-        <Root
+        <CodeBlock
             header={header}
             githubUrl={githubUrl}
             code={children.props.children}

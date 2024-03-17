@@ -5,11 +5,11 @@ import { toast } from "react-hot-toast"
 
 import { media, stateLayer } from 'styles/utils';
 import { Syntax } from './Syntax';
-import CopyIcon from '../icons/copy.svg';
-import GithubIcon from '../icons/github.svg'
-import XIcon from '../icons/x-circle.svg'
-import CheckIcon from '../icons/check-circle.svg'
 import { IconButton } from './IconButton';
+import CopyIcon from '../icons/copy.svg';
+import GithubIcon from '../icons/github.svg';
+import XIcon from '../icons/x-circle.svg';
+import CheckIcon from '../icons/check-circle.svg';
 
 const Root = styled.div`
 	background-color: ${({ theme }) => theme.syntax.plain.background};
