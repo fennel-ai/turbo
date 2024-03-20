@@ -1,5 +1,6 @@
 import type { Transformer } from 'unified';
 import type { Literal, Node, Parent } from 'unist';
+import type { MdxJsxAttribute, MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 
 import { visit, SKIP, CONTINUE } from "unist-util-visit";
 
@@ -27,10 +28,17 @@ export default function codeTabs(): Transformer {
                             // all of the nodes stored in current (incl. the `===` delimiters) 
                             // with the new node
 
+                            const activeTab: number = (current as MdxJsxFlowElement[]).findIndex(({ attributes }) => (attributes as MdxJsxAttribute[]).find(({ name, value }) => name === 'active' && !!value));
+
                             const codeTabNode = {
                                 type: 'mdxJsxFlowElement',
                                 name: 'CodeTabs',
-                                children: current
+                                children: current,
+                                attributes: [{
+                                    type: 'mdxJsxAttribute',
+                                    name: 'active',
+                                    value: activeTab !== -1 ? activeTab : 0
+                                }]
                             };
 
                             parent.children.splice(startIndex, (index! - startIndex) + 1, codeTabNode); // +1 includes the trailing `===`

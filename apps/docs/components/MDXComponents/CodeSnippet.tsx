@@ -75,9 +75,9 @@ export type CodeSnippetProps = {
 };
 
 // Wraps our CodeBlock component to override the code prop, either with the children from the original markdown, or the docsnip snippet referenced from the snippet prop.
-export const CodeSnippet = (props: { children: ReactNode }) => {
-    const [activeSnippet, setActiveSnippet] = useState<number>(0);
-    
+export const CodeSnippet = (props: { defaultActive?: string, children: ReactNode }) => {
+    const [activeSnippet, setActiveSnippet] = useState<number>(props.defaultActive ? parseInt(props.defaultActive, 10) : 0);
+
     const tabs = Children.toArray(props.children) as ReactElement[];
     const snippet = tabs[activeSnippet] as ReactElement<CodeSnippetProps>;
 

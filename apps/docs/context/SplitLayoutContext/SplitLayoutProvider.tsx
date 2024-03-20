@@ -13,6 +13,10 @@ const SplitLayout = styled.div`
 	${media('sm')} {
 		grid-template-columns: repeat(12, 1fr);
 	}
+
+    @media (min-width: 100rem) {
+        gap: 4rem;
+    }
 `;
 
 const Right = styled.div`
