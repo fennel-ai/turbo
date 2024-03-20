@@ -1,15 +1,17 @@
-import { PropsWithChildren, useCallback, useEffect } from "react";
-import { GetServerSideProps, GetServerSidePropsContext, GetStaticProps, GetStaticPropsContext } from "next";
+import { ReactNode, PropsWithChildren, useCallback, useEffect } from "react";
+import { GetStaticProps, GetStaticPropsContext } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/router';
 import { allAPIPages, APIPage } from 'contentlayer/generated';
+import Head from "next/head";
+import styled from "@emotion/styled";
+
+import { getNavigation, getRequestedVersionId, NavigationTree, shouldPublish } from "lib/utils";
 
 import Layout from 'components/Layout';
 import * as components from 'components/MDXComponents';
-import { getNavigation, getRequestedVersionId, NavigationPage, NavigationTree, shouldPublish } from "lib/utils";
-import Head from "next/head";
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
+import SplitLayoutProvider from "context/SplitLayoutContext/SplitLayoutProvider";
 
 type Props = {
     pages: APIPage[],
@@ -25,15 +27,29 @@ const PageWrapper = styled.div<{ index: number }>`
     padding-bottom: 4rem;
     border-bottom: 1px solid ${({ theme }) => theme.border};
     scroll-margin-top: 5rem; 
-`
+`;
 
+const Wrapper = ({ children }: { children: ReactNode | undefined }) => {
+    return (
+        <SplitLayoutProvider>
+            {children}
+        </SplitLayoutProvider>
+    );
+};
+
+// Each inner "page" that we render as one big continuous page is wrapped with
+// COMPONENTS.wrapper
+const COMPONENTS = {
+    ...components,
+    wrapper: Wrapper
+}
 
 const APIReferencePage = ({ page }: { page: APIPage }) => {
     const { body } = page;
     const MDXContent = useMDXComponent(body.code);
 
     {/** @ts-ignore */ }
-    return <MDXContent components={components} />
+    return <MDXContent components={COMPONENTS} />
 }
 
 const APIReferenceSection = ({ children, index, slug, onWaypoint }: PropsWithChildren<{ index: number, slug: string, onWaypoint: (newSlug: string) => void }>) => {

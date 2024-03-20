@@ -13,6 +13,7 @@ import rehypeSlug from "rehype-slug";
 import remarkValidateHref from "remark-validate-href";
 import codeTabs from "remark-code-tabs";
 import docsnip from "remark-docsnip";
+import contentSpec from "remark-content-spec";
 import versionedContent from "remark-versioned-content";
 import rehypeMdxCodeProps from "rehype-mdx-code-props";
 import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
@@ -57,19 +58,19 @@ const githubSource = async () => {
     await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, [
       { name: "main", head: "main" },
     ]);
-  }
 
-  const versionsManifestStr = await fs.readFile(
-    path.join(CONTENT_DIR, "main", "versions.yml"),
-    "utf-8"
-  );
-  const versionsManifest = yaml.parse(versionsManifestStr);
+    const versionsManifestStr = await fs.readFile(
+      path.join(CONTENT_DIR, "main", "versions.yml"),
+      "utf-8"
+    );
+    const versionsManifest = yaml.parse(versionsManifestStr);
 
-  const { versions } = versionsManifest;
+    const { versions } = versionsManifest;
 
-  if (versions?.length) {
-    // Fetch all other versions listed in the versions manifest
-    await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
+    if (versions?.length) {
+      // Fetch all other versions listed in the versions manifest
+      await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
+    }
   }
 
   // NOOP We don't need to do anything as we're not subscribing to any data changes right now.
@@ -98,6 +99,7 @@ export default makeSource({
       remarkAdmonitions,
       docsnip,
       codeTabs, //! <- NOTE: After docsnip
+      contentSpec,
       versionedContent,
     ],
     rehypePlugins: [
