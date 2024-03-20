@@ -3,26 +3,6 @@ import styled from '@emotion/styled';
 import { media, stateLayer } from "styles/utils";
 import { CodeBlock } from "ui";
 
-const Root = styled(CodeBlock)`
-	margin: 1rem 0 2rem 0;
-
-	${media('2xs')} {
-		margin: 1rem 0 2rem 0;
-	}
-	
-	${media('xs')} {
-		margin: 2rem 0 1.5rem 0;
-	}
-
-	${media('sm')} {
-		margin: 3rem 0rem 2.5rem 0rem;
-	}
-
-	${media('md')} {
-		margin: 3rem 0 2.5rem 0;
-	}
-`
-
 const Tabs = styled.div`
     display: flex;
     align-items: center;
@@ -95,9 +75,9 @@ export type CodeSnippetProps = {
 };
 
 // Wraps our CodeBlock component to override the code prop, either with the children from the original markdown, or the docsnip snippet referenced from the snippet prop.
-export const CodeSnippet = (props: { children: ReactNode }) => {
-    const [activeSnippet, setActiveSnippet] = useState<number>(0);
-    
+export const CodeSnippet = (props: { defaultActive?: string, children: ReactNode }) => {
+    const [activeSnippet, setActiveSnippet] = useState<number>(props.defaultActive ? parseInt(props.defaultActive, 10) : 0);
+
     const tabs = Children.toArray(props.children) as ReactElement[];
     const snippet = tabs[activeSnippet] as ReactElement<CodeSnippetProps>;
 
@@ -123,7 +103,7 @@ export const CodeSnippet = (props: { children: ReactNode }) => {
     ) : undefined;
 
 	return (
-        <Root
+        <CodeBlock
             header={header}
             githubUrl={githubUrl}
             code={children.props.children}
