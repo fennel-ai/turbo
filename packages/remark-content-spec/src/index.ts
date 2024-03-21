@@ -27,7 +27,8 @@ export default function contentSpec(): Transformer {
 
             if ((BREAKOUT_TYPES.includes(nodeType) || nodeType === 'heading') && !!current.length) {
                 createGroup()
-            } 
+            }
+            console.log(node, current);
             current.push(node);
 
             if (BREAKOUT_TYPES.includes(nodeType)) {
@@ -37,6 +38,8 @@ export default function contentSpec(): Transformer {
             return SKIP;
         });
 
+        groups.push(current);
+
         (tree as Parent).children = groups
             .filter(children => !!children.length)
             .map(children => children.length === 1 ? children[0] : ({
@@ -44,5 +47,8 @@ export default function contentSpec(): Transformer {
                 name: 'ContentBlock',
                 children,
             }))
+
+        // @ts-ignore
+        console.log(tree.children);
     }
 }
