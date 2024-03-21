@@ -47,8 +47,5 @@ export default function contentSpec(): Transformer {
                 name: 'ContentBlock',
                 children,
             }))
-
-        // @ts-ignore
-        console.log(tree.children);
     }
 }
