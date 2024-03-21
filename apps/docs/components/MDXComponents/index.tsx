@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import Link from 'next/link';
 import { Image } from './Image';
 import { TitleBlock } from './TitleBlock';
