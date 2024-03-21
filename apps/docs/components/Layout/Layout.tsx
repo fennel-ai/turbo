@@ -29,6 +29,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
 	scroll-behavior: smooth;
+    font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 
 	${media('xs')} {
 		grid-template-columns: repeat(8, 1fr);
@@ -64,16 +65,19 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 
 		h2 {
 			${({ theme }) => theme.subtitle.large};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 			margin-bottom: 0.5rem;
 		}
 		
 		h3 {
             ${({ theme }) => theme.subtitle.default};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
             margin-bottom: 0.75rem;
 		}
 
 		h4 {
             ${({ theme }) => theme.subtitle.small};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 			padding-bottom: 0.5rem;
 			margin-bottom: 1rem;
 			border-bottom: 1px solid ${({ theme }) => theme.border};

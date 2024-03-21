@@ -28,7 +28,7 @@ export default function contentSpec(): Transformer {
             if ((BREAKOUT_TYPES.includes(nodeType) || nodeType === 'heading') && !!current.length) {
                 createGroup()
             }
-            console.log(node, current);
+
             current.push(node);
 
             if (BREAKOUT_TYPES.includes(nodeType)) {
