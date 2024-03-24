@@ -27,6 +27,26 @@
     "value": "rgba({surface}, 90%)",
     "type": "color"
   },
+  "caption": {
+    "small": {
+      "value": {
+        "fontFamily": "{fontFamilies.primary}",
+        "fontWeight": "{fontWeights.primary.medium}",
+        "fontSize": "{typescale.0}",
+        "lineHeight": "{typescale.2}"
+      },
+      "type": "typography"
+    },
+    "default": {
+      "value": {
+        "fontFamily": "{fontFamilies.primary}",
+        "fontWeight": "{fontWeights.primary.medium}",
+        "fontSize": "12px",
+        "lineHeight": "{typescale.2}"
+      },
+      "type": "typography"
+    }
+  },
   "body": {
     "small": {
       "value": {
