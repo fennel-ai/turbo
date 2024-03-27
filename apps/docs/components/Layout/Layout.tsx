@@ -21,6 +21,7 @@ type Props = {
 	headings?: Outline,
 	path? :string
 	navRoute?: string;
+    version: string;
 }
 
 const Root = styled(Container)<{isAPI?: boolean}>`
@@ -28,6 +29,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
 	scroll-behavior: smooth;
+    font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 
 	${media('xs')} {
 		grid-template-columns: repeat(8, 1fr);
@@ -36,6 +38,10 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	${media('md')} {
 		grid-template-columns: repeat(5, 1fr);
 	}
+
+    @media (min-width: 100rem) {
+        gap: 4rem;
+    }
 
 
 	& > main {
@@ -47,7 +53,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.on};
-			font-family: ${haskoyVariable.style.fontFamily}, serif;
+			font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 			font-weight: 500;
 			margin: 0;
 			scroll-margin-top: 4rem;
@@ -58,67 +64,29 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 
 		h2 {
-			font-size: 1.75rem;
-			line-height: 2rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.bold};
-			margin-top: 3rem;
+			${({ theme }) => theme.subtitle.large};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 			margin-bottom: 0.5rem;
-
-			&:not(:first-of-type) {
-				margin-top: 2rem;
-
-				${media('md')} {
-					margin-top: 2.5rem;
-				}
-			}
 		}
 		
 		h3 {
-			font-size: 1.5rem;
-			line-height: 1.75rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
-			padding-top: 0.75rem;
-			padding-bottom: 0.75rem;
-
-			${media('md')} {
-			${({isAPI, theme}) => isAPI && `
-				position: sticky;
-				top: calc(3.5rem + 1px);
-				background: ${theme.glass};
-				backdrop-filter: blur(20px) saturate(1.4);
-				z-index: 2;
-			`}
-			}
+            ${({ theme }) => theme.subtitle.default};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
+            margin-bottom: 0.75rem;
 		}
 
 		h4 {
-			font-size: 1.25rem;
-			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
-			margin-top: 1rem;
+            ${({ theme }) => theme.subtitle.small};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 			padding-bottom: 0.5rem;
 			margin-bottom: 1rem;
 			border-bottom: 1px solid ${({ theme }) => theme.border};
-
-			${media('sm')} {
-				margin-top: 1.5rem;
-			}
 		}
-
-
-		/** Target paragraphs that are direct children of the main element (we don't necessarily want to style paragraphs within e.g. lists in the same way.) */
-		& > p, & > div > p, & > div > div > p, & > div > div > div > p {
-			margin: 0;
-			font-size: 1rem;
-			line-height: 1.75rem;
-			margin-bottom: 1rem;
-			font-variation-settings: "wght" ${props => props.theme.type == "dark" ? props.theme.fontWeights.primary.regular : props.theme.fontWeights.primary.medium};
-		}
-
 
 		& a {
 			position: relative;
 			text-decoration: none;
+            cursor: pointer;
 			color: ${({ theme }) => theme.on_alt};
 			opacity: 0.8;
 			transition: 160ms opacity ease-out;
@@ -175,14 +143,17 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 		
 		code:not(pre > code) {
-			display:inline-block;
-			height: 1.25rem;
-			padding: 0 0.25rem;
-			${props => props.theme.syntax.label.small}
-			${stateLayer({ initial: 0.04 , interact: false})}
+            word-break: keep-all;
+			display: inline-flex;
+            align-items: center;
+            justify-content: center;
+			padding: 0.125rem 0.25rem;
 			color: ${({ theme }) => theme.on};
 			border: 0.5px solid ${({ theme }) => theme.border};
 			border-radius: 0.25rem;
+            overflow: hidden;
+			${props => props.theme.syntax.label.small}
+			${stateLayer({ initial: 0.06 , interact: false})}
 		}
 
 		strong {
@@ -211,13 +182,13 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 	}
 `;
 
-const Layout = ({ children, navigation, isAPI, headings, path, navRoute }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings, path, navRoute, version }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
-			<Header />
+			<Header version={version} />
 			<Root isAPI={isAPI}>
-				<Navigation items={navigation} isAPI={isAPI} navRoute={navRoute}/>
+				<Navigation items={navigation} isAPI={isAPI} navRoute={navRoute} version={version} />
 				<AnimatePresence>
 					{showMobileMenu ? (
 						<MobileMenu items={navigation} onClose={closeMobileMenu} isAPI={isAPI}/>

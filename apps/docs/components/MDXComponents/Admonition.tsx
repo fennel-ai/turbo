@@ -55,17 +55,19 @@ const Root = styled.div<{ type: Props['type'] }>`
 	font-weight: ${props => props.theme.fontWeights.primary.bold};
 	border-left: 2px solid ${({ type,theme }) => rgba(get(TYPE_MAP[type].icon_color)({theme}), 1)};
 	& > p {
-		color: ${({theme }) => theme.on_alt};
 		margin: 0 !important;
-		font-weight: ${props => props.theme.fontWeights.primary.regular} !important;
-		font-size: 1rem;
-		line-height: 1.75rem;
+        font-size: ${({ theme }) => theme.body.default!.fontSize};
+        font-weight: ${({ theme }) => theme.body.default!.fontWeight};
+        line-height: ${({ theme }) => theme.body.default!.lineHeight};
 	}
 `;
 
 const Title = styled.div<{type: Props['type']}>`
-	color: ${({ type,theme }) => rgba(get(TYPE_MAP[type].text_color)({theme}), 1)}};
-	line-height: 1rem;
+	color: ${({ type,theme }) => rgba(get(TYPE_MAP[type].text_color)({theme}), 1)};
+    text-transform: uppercase;
+    font-size: ${({ theme }) => theme.label.default!.fontSize};
+    font-weight: ${({ theme }) => theme.label.default!.fontWeight};
+    line-height: ${({ theme }) => theme.label.default!.lineHeight};
 `;
 
 export const Admonition = ({ children, type }: PropsWithChildren<Props>) => {

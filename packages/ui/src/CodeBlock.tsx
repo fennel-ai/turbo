@@ -1,31 +1,17 @@
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@emotion/react';
-
-import { media, rgba, stateLayer } from 'styles/utils';
-import { Syntax } from './Syntax';
-import CopyIcon from '../icons/copy.svg';
-import GithubIcon from '../icons/github.svg'
-import XIcon from '../icons/x-circle.svg'
-import CheckIcon from '../icons/check-circle.svg'
 import { dark as darkTheme } from 'styles';
+import { toast } from "react-hot-toast"
+
+import { media, stateLayer } from 'styles/utils';
+import { Syntax } from './Syntax';
 import { IconButton } from './IconButton';
-import {toast} from "react-hot-toast"
+import CopyIcon from '../icons/copy.svg';
+import GithubIcon from '../icons/github.svg';
+import XIcon from '../icons/x-circle.svg';
+import CheckIcon from '../icons/check-circle.svg';
 
-type Props = {
-	className?: string,
-	code: string,
-	language: string,
-	filename?: string,
-	filenameHref?: string,
-	toolbar?: boolean,
-	onCopy?: () => void,
-	message?: string;
-	status?: string;
-	title?: string;
-	highlight?: string;
-}
-
-const Root = styled.div<{ toolbar?: boolean }>`
+const Root = styled.div`
 	background-color: ${({ theme }) => theme.syntax.plain.background};
 	${props => stateLayer({ initial: 0.04, color: props.theme.on_alt, interact: false })}
 	color: ${({ theme }) => theme.syntax.plain.foreground};
@@ -44,7 +30,7 @@ const Root = styled.div<{ toolbar?: boolean }>`
 	}
 `;
 
-const Toolbar = styled.div`
+const Toolbar = styled.div<{ status?: string }>`
 	height: 2.5rem;
 	position: relative;
 	align-items: center;
@@ -53,44 +39,12 @@ const Toolbar = styled.div`
 	align-self: stretch;
 	display: flex;
 	padding: 0.25rem 1rem;
-	color:${({ theme }) => theme.on_alt};
+	color: ${({ theme, status }) => status === "success" ? theme.color.green['90'] : status === "error" ? theme.color.red['90'] : theme.on};
 	border-top: 0.5px solid ${({ theme }) => theme.syntax.plain.border};
+    ${stateLayer({ initial: 0.04, interact: false })};
 `;
 
-const Filename = styled.a`
-	color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 0.64)} !important;
-	cursor: pointer;
-	display: flex;
-
-	&:hover {
-		color: ${({ theme }) => rgba(theme.syntax.plain.foreground, 1)} !important;
-	}
-`;
-
-const CopyButton = styled.button`
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	cursor: pointer;
-	margin: 0;
-	padding: 0;
-	outline: 0;
-	background: none;
-	color: ${({ theme }) => theme.syntax.plain.foreground};
-	opacity: 0.5;
-	font-size: 0.875rem;
-	line-height: 1.5rem;
-
-	&:hover {
-		opacity: 1;
-	}
-
-	&:active {
-		opacity: 0.5;
-	}
-`;
-
-const Code = styled(Syntax)<{ toolbar: boolean }>`
+const Code = styled(Syntax)`
 	& > pre {
 		padding-top: 0.75rem;
         background: transparent;
@@ -98,28 +52,36 @@ const Code = styled(Syntax)<{ toolbar: boolean }>`
 	}
 `;
 
-const Title = styled.div<{ status?: string }>`
-	color: ${({ theme, status }) => status === "success" ? theme.success.accent : status === "error" ? theme.error.accent : theme.on};
+const Message = styled.div`
+	color: currentColor;
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	font-size: 0.875rem;
+    font-size: ${({ theme }) => theme.label.small!.fontSize};
+    font-weight: ${({ theme }) => theme.label.small!.fontWeight};
+    line-height: ${({ theme }) => theme.label.small!.lineHeight};
 `
 
 const Actions = styled.div`
-text-transform: capitalize;
-display: flex;
-height: 2rem;
-justify-content: flex-end;
-align-items: center;
-gap: 1rem;
-font-size: 0.875rem;
+    text-transform: capitalize;
+    height: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    color: ${({ theme }) => theme.on_alt};
+    & > p {
+        margin: 0;
+        font-size: ${({ theme }) => theme.label.small!.fontSize};
+        font-weight: ${({ theme }) => theme.label.small!.fontWeight};
+        line-height: ${({ theme }) => theme.label.small!.lineHeight};
+    }
 `
 
 const ActionButtons = styled.div`
-display: flex;
-align-items: center;
-gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 `
 
 const getStatusIcon = (status?: string) => {
@@ -133,7 +95,32 @@ const getStatusIcon = (status?: string) => {
 	}
 }
 
-export const CodeBlock = ({ className, code, filename, filenameHref, language, onCopy, toolbar = true, message, status, highlight }: Props) => {
+type Props = {
+    className?: string;
+    code: string;
+    language: string;
+    githubUrl?: string;
+    header?: JSX.Element;
+    toolbar?: boolean;
+    onCopy?: () => void;
+    message?: string;
+    status?: string;
+    title?: string;
+    highlight?: string;
+}
+
+export const CodeBlock = ({ 
+    className, 
+    code, 
+    githubUrl, 
+    header,
+    language, 
+    onCopy, 
+    toolbar = true, 
+    message, 
+    status, 
+    highlight 
+}: Props) => {
 	const handleCopy = () => {
 		navigator.clipboard.writeText(code);
 		if (onCopy) onCopy();
@@ -141,26 +128,33 @@ export const CodeBlock = ({ className, code, filename, filenameHref, language, o
 	};
 
 	return (
-		<ThemeProvider theme={darkTheme}>
-            <Root className={className} toolbar={toolbar}>
-                <Code toolbar={toolbar} language={language} code={code.trimEnd()} highlight={highlight}/>
+        <Root className={className}>
+                <ThemeProvider theme={darkTheme}>
+                    {header || null}
+                </ThemeProvider>
+                <Code 
+                    language={language} 
+                    code={code.trimEnd()} 
+                    highlight={highlight} 
+                />
                 {toolbar ? (
-                    <Toolbar>
-                        <Title status={status}>
-                            {(status?.length || message?.length) ? <>
-                                {getStatusIcon(status)}<div>{message}</div>
-                            </> : ''}
-                        </Title>
-                        <Actions>
-                            {language}
-							<ActionButtons>
-                            {filename && <IconButton icon={GithubIcon} size='small' onClick={() => window.open(filenameHref, "_blank")} />}
-                            <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
-							</ActionButtons>
-                        </Actions>
-                    </Toolbar>
+                    <ThemeProvider theme={darkTheme}>
+                        <Toolbar status={status}>
+                            <Message>
+                                {(status?.length || message?.length) ? <>
+                                    {getStatusIcon(status)}<div>{message}</div>
+                                </> : ''}
+                            </Message>
+                            <Actions>
+                                <p>{language}</p>
+                                <ActionButtons>
+                                    {githubUrl ? <IconButton icon={GithubIcon} size='small' onClick={() => window.open(githubUrl, "_blank")} /> : null}
+                                    <IconButton icon={CopyIcon} size='small' onClick={handleCopy} />
+                                </ActionButtons>
+                            </Actions>
+                        </Toolbar>
+                    </ThemeProvider>
                 ) : null}
             </Root>
-        </ThemeProvider>
 	);
 }

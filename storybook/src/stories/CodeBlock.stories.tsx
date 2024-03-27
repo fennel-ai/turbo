@@ -61,17 +61,7 @@ Default.args = {
 	code: LONG_EXAMPLE_CODE,
 	onCopy: () => alert('Copied to clipbaord'),
 	language: 'python',
-}
-
-export const ShowFilename = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-ShowFilename.args = {
-	code: EXAMPLE_CODE,
-	toolbar: true,
-	onCopy: () => alert('Copied to clipbaord'),
-	filename: "user_dataset.py",
-	language: 'python',
-}
+};
 
 export const NoToolbar = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
@@ -79,4 +69,4 @@ NoToolbar.args = {
 	code: EXAMPLE_CODE,
 	toolbar: false,
 	language: 'python',
-}
+};

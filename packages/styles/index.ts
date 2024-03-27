@@ -17,10 +17,9 @@ type ColorScale = {
 	'120': string,
 	'130': string,
 	'140': string,
-	'150': string,
 };
 
-type RefColors = Record<string, ColorScale | string>;
+type RefColors = Record<string, ColorScale & { '150': string } | string>;
 
 type ThemeAccentPalette = {
 	accent: string,
@@ -174,6 +173,14 @@ export type Theme = {
 
     // Scales
 	ref: RefColors,
+    color: {
+        purple: ColorScale,
+        blue: ColorScale,
+        green: ColorScale,
+        red: ColorScale,
+        yellow: ColorScale,
+        grey: ColorScale,
+    },
     typescale: Typescale,
     opacity: OpacityScale,
     radii: {
