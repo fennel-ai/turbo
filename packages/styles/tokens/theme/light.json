@@ -31,7 +31,7 @@
     "small": {
       "value": {
         "fontFamily": "{fontFamilies.primary}",
-        "fontWeight": "{fontWeights.primary.medium}",
+        "fontWeight": "{fontWeights.primary.regular}",
         "fontSize": "12px",
         "lineHeight": "{typescale.2}"
       },
@@ -40,7 +40,7 @@
     "default": {
       "value": {
         "fontFamily": "{fontFamilies.primary}",
-        "fontWeight": "{fontWeights.primary.medium}",
+        "fontWeight": "{fontWeights.primary.regular}",
         "fontSize": "{typescale.0}",
         "lineHeight": "{typescale.2}"
       },
