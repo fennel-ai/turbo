@@ -365,7 +365,8 @@
       "color.cyan.110": "S:bf7274c4dd04768e7df7e27abac959269be39114,",
       "color.cyan.120": "S:164a8b0e956bad3a20d5c2524a30de1efc5a928c,",
       "color.cyan.130": "S:414b956a279fb01f4c208faf3c1f3f3356e31b71,",
-      "color.cyan.140": "S:ef8ba1b9584f5d129b766bc9c2c301c28bebf061,"
+      "color.cyan.140": "S:ef8ba1b9584f5d129b766bc9c2c301c28bebf061,",
+      "outline": "S:f08bfa95d8d5248ace789eb25bfb6c9738f66504,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2453",
     "$figmaModeId": "1763:0",
@@ -865,7 +866,8 @@
       "color.cyan.110": "S:399803d2eab27ebaf81acd98e58cd0c95f1c8f77,",
       "color.cyan.120": "S:b1ec686aba57e69fd962debf5eb284cfb3592731,",
       "color.cyan.130": "S:2a350291280161f6d31640bed53c349769bed1f3,",
-      "color.cyan.140": "S:9e716f5f86a029d571313504fbed1cf7740d590a,"
+      "color.cyan.140": "S:9e716f5f86a029d571313504fbed1cf7740d590a,",
+      "outline": "S:95e9f2b5c80d6e1c38c7918374007486843c2ea5,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2562",
     "$figmaModeId": "1763:1",

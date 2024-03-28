@@ -19,6 +19,10 @@
     "value": "{color.grey.10}",
     "type": "color"
   },
+  "outline": {
+    "value": "{color.grey.20}",
+    "type": "color"
+  },
   "shadow": {
     "value": "{color.grey.120}",
     "type": "color"
