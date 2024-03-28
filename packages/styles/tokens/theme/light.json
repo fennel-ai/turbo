@@ -16,11 +16,11 @@
     "type": "color"
   },
   "border": {
-    "value": "{color.grey.10}",
+    "value": "rgba({on}, 8%)",
     "type": "color"
   },
   "outline": {
-    "value": "{color.grey.20}",
+    "value": "rgba({on}, 16%)",
     "type": "color"
   },
   "shadow": {
