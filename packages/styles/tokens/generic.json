@@ -418,8 +418,8 @@
             {
               "x": "0",
               "y": "-3",
-              "blur": "1",
-              "spread": "1",
+              "blur": "3",
+              "spread": "-1",
               "color": "rgba({ref.black}, 2%)",
               "type": "innerShadow"
             }
@@ -662,16 +662,16 @@
               "x": "0",
               "y": "0",
               "blur": "0",
-              "spread": "1",
+              "spread": "0.5",
               "color": "{border}",
               "type": "dropShadow"
             },
             {
               "x": "0",
-              "y": "-2",
-              "blur": "1",
-              "spread": "1",
-              "color": "rgba( {ref.black}, 2%)",
+              "y": "-1",
+              "blur": "3",
+              "spread": "-1",
+              "color": "rgba({shadow}, 10%)",
               "type": "innerShadow"
             }
           ],
@@ -691,16 +691,16 @@
               "x": "0",
               "y": "0",
               "blur": "0",
-              "spread": "1",
+              "spread": "0.5",
               "color": "{border}",
               "type": "dropShadow"
             },
             {
               "x": "0",
-              "y": "-3",
-              "blur": "1",
-              "spread": "1",
-              "color": "rgba( {ref.black}, 2%)",
+              "y": "-1",
+              "blur": "3",
+              "spread": "-1",
+              "color": "rgba( {shadow}, 10%)",
               "type": "innerShadow"
             }
           ],
@@ -720,16 +720,16 @@
               "x": "0",
               "y": "0",
               "blur": "0",
-              "spread": "1",
+              "spread": "0.5",
               "color": "{border}",
               "type": "dropShadow"
             },
             {
               "x": "0",
-              "y": "-1",
-              "blur": "1",
-              "spread": "0",
-              "color": "rgba( {ref.black}, 4%)",
+              "y": "-0.5",
+              "blur": "3",
+              "spread": "-1.5",
+              "color": "rgba( {shadow}, 16%)",
               "type": "innerShadow"
             }
           ],
@@ -741,7 +741,7 @@
               "x": "0",
               "y": "0",
               "blur": "0",
-              "spread": "1",
+              "spread": "0.5",
               "color": "{border}",
               "type": "dropShadow"
             }
