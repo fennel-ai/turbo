@@ -833,6 +833,35 @@
         ],
         "type": "boxShadow"
       }
+    },
+    "tooltip": {
+      "value": [
+        {
+          "x": "0",
+          "y": "1",
+          "blur": "1",
+          "spread": "0",
+          "color": "rgba( {ref.black}, 6%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "10",
+          "blur": "16",
+          "spread": "-8",
+          "color": "rgba({ref.black}, 16%)",
+          "type": "dropShadow"
+        },
+        {
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "0.5",
+          "color": "{outline}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow"
     }
   },
   "secondary": {
