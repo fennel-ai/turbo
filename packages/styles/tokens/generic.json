@@ -802,6 +802,29 @@
         }
       ],
       "type": "boxShadow"
+    },
+    "console": {
+      "panel": {
+        "value": [
+          {
+            "x": "0",
+            "y": "2",
+            "blur": "8",
+            "spread": "-3",
+            "color": "rgba( {shadow}, 24%)",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "0",
+            "blur": "0",
+            "spread": "0.5",
+            "color": "{border}",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow"
+      }
     }
   },
   "secondary": {
