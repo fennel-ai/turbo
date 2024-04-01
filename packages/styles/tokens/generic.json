@@ -816,10 +816,10 @@
         "value": [
           {
             "x": "0",
-            "y": "2",
+            "y": "3",
             "blur": "8",
-            "spread": "-3",
-            "color": "rgba( {shadow}, 24%)",
+            "spread": "-4",
+            "color": "rgba( {shadow}, 32%)",
             "type": "dropShadow"
           },
           {
