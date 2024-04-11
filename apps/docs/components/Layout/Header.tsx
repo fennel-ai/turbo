@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, useContext, useRef } from 'react';
+import { ChangeEvent, ChangeEventHandler, useContext, useMemo, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { media, rgba } from 'styles/utils';
@@ -202,6 +202,10 @@ const Header = ({ version }: { version: string }) => {
         })
     }
 
+    const searchParameters = useMemo(() => ({
+        facetFilters: `version:${version}`
+    }), [version]);
+
 	const {isDarkTheme, setTheme} = useContext(DarkThemeContext);
 
 	return (
@@ -217,6 +221,7 @@ const Header = ({ version }: { version: string }) => {
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}
+                        searchParameters={searchParameters}
 						appId={process.env.NEXT_PUBLIC_ALGOLIA_ID!}
 						indexName={process.env.NEXT_PUBLIC_ALGOLIA_INDEX!}
 						apiKey={process.env.NEXT_PUBLIC_ALGOLIA_KEY!}
