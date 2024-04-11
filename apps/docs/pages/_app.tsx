@@ -122,6 +122,11 @@ export default function App({ Component, pageProps }: AppProps) {
 						s.parentNode.insertBefore(b, s);})(window.lintrk);
 					`}
 				</Script>
+                <Script id="koala">
+                    {
+                        `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_7c31a0d9bc3b7f2b546734e2a7a028b235d5/sdk.js"),(document.body || document.head).appendChild(n)}();`
+                    }
+                </Script>
 				<noscript>
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>
