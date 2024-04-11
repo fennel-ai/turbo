@@ -227,6 +227,8 @@ const Header = ({ version }: { version: string }) => {
                         onChange={handleChangeVersion}
                         value={version}
                     />
+                    {/** NOTE: This <p> is used by the algolia scraper to facet based on version */}
+                    <p id="version-num" style={{display: 'none'}}>{version}</p>
 					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
 					<DemoButtons>
 						<IconButton size="small" icon={isDarkTheme ? SunIcon : MoonIcon} onClick={() => {setTheme(!isDarkTheme)}}/>

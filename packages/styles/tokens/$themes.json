@@ -320,7 +320,9 @@
       "shadows.button.outlined.hover": "S:fb5f1e141f9c0708b2021c3605c118a9a4b4a9e0,",
       "shadows.button.outlined.active": "S:b7ca68872560eac4209098073ee3972e8a16e7d8,",
       "shadows.button.outlined.disabled": "S:60aa3bcb4c5e20253522927b2f7c787bcbb8cfda,",
-      "shadows.sheet": "S:4a8d641b31baa0cbf169b3c9152880884bf8c564,"
+      "shadows.sheet": "S:4a8d641b31baa0cbf169b3c9152880884bf8c564,",
+      "caption.small": "S:fb25837d5e7885b8158236e8e13cc8669bcf8aa4,",
+      "caption.default": "S:22c6a6b62da334b8aa8117118c04e883a68114ab,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2453",
     "$figmaModeId": "1763:0",
@@ -775,7 +777,9 @@
       "shadows.button.outlined.hover": "S:120dd34f232f6862f243efca54ec9faeba91c601,",
       "shadows.button.outlined.active": "S:2ede945273f0d4ec077d03563a164aa76749ff09,",
       "shadows.button.outlined.disabled": "S:710d4d665357aded3d048a9b31416c67ede15a3f,",
-      "shadows.sheet": "S:72f1317483911a56d6b1ad7a2ad3deecc9650a27,"
+      "shadows.sheet": "S:72f1317483911a56d6b1ad7a2ad3deecc9650a27,",
+      "caption.small": "S:4a0ae56f2bc011caa7dd13d2a6b6fec4a9c06765,",
+      "caption.default": "S:ac3651337e4d2ea6d6eb9c2bfa5acc3b1388d253,"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:2562",
     "$figmaModeId": "1763:1",
