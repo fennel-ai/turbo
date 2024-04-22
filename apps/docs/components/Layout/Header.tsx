@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, useContext, useMemo, useRef } from 'react';
+import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useMemo, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { media, rgba } from 'styles/utils';
@@ -202,6 +202,15 @@ const Header = ({ version }: { version: string }) => {
         })
     }
 
+    const handleNavigate = useCallback((pathname: string) => {
+        router.push({ 
+            pathname, 
+            query: { 
+                slug: [version].filter(p => p !== 'main') 
+            } 
+        })
+    }, [version, router])
+
     const searchParameters = useMemo(() => ({
         facetFilters: `version:${version}`
     }), [version]);
@@ -214,8 +223,8 @@ const Header = ({ version }: { version: string }) => {
 			<LinkWrapper>
 				<Brand/>
 				<NavWrapper>
-					<NavButton variant='ghost' label="Documentation" active={!isAPI} onClick={()=>router.push('/')}/>
-					<NavButton variant='ghost' label="API Reference" active={isAPI} onClick={()=>router.push('/api-reference')}/>
+                        <NavButton variant='ghost' label="Documentation" active={!isAPI} onClick={() => handleNavigate('/[[...slug]]')}/>
+                        <NavButton variant='ghost' label="API Reference" active={isAPI} onClick={() => handleNavigate('/api-reference/[[...slug]]')}/>
 				</NavWrapper>
 				</LinkWrapper>
 				<SearchWrapper>
