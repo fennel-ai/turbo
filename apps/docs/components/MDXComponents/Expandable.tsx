@@ -103,11 +103,11 @@ export const Expandable = ({ title, optional, defaultVal, type, collapsed, child
     const isTypeEnum = Array.isArray(type);
 
 	return (
-		<div>
+		<div className='expandable'>
             <TitleContainer onClick={()=>toggleExpanded(!isExpanded)}>
                 <ExpandedIcon expanded={isExpanded} />
                 {title ? (
-                    <Title>
+                    <Title className="expandable-title">
                         {title}
                         <Separator show={!!title && !!type}>:</Separator>
                     </Title>
