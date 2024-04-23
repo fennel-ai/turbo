@@ -1,7 +1,7 @@
 FROM node:18 AS base
 
 # install pnpm and turbo
-RUN npm i -g pnpm 
+RUN npm i -g pnpm@9.0.3
 RUN npm i -g turbo
 
 ######
