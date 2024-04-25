@@ -203,8 +203,8 @@ const Header = ({ version }: { version: string }) => {
     }
 
 	useEffect(() => {
-		router.prefetch("/docs/api-reference")
-		router.prefetch("/docs")
+		router.prefetch("/api-reference")
+		router.prefetch("/")
 	}, [])
 
     const handleNavigate = useCallback((pathname: string) => {
