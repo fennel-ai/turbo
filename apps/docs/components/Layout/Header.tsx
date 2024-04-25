@@ -203,12 +203,15 @@ const Header = ({ version }: { version: string }) => {
     }
 
     const handleNavigate = useCallback((pathname: string) => {
+		// const newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + `${pathname}`;
+		// window.history.pushState({ path: newUrl }, '', newUrl);
+
         router.push({ 
-            pathname, 
+            pathname,
             query: { 
                 slug: [version].filter(p => p !== 'main') 
             } 
-        })
+        }, undefined, { shallow: true })
     }, [version, router])
 
     const searchParameters = useMemo(() => ({
