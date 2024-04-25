@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useMemo, useRef } from 'react';
+import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { media, rgba } from 'styles/utils';
@@ -202,10 +202,12 @@ const Header = ({ version }: { version: string }) => {
         })
     }
 
-    const handleNavigate = useCallback((pathname: string) => {
-		// const newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + `${pathname}`;
-		// window.history.pushState({ path: newUrl }, '', newUrl);
+	useEffect(() => {
+		router.prefetch("/docs/api-reference")
+		router.prefetch("/docs")
+	}, [])
 
+    const handleNavigate = useCallback((pathname: string) => {
         router.push({ 
             pathname,
             query: { 
