@@ -75,7 +75,7 @@ const Root = styled.div`
         padding-right: 0.75rem;
 	}
 
-    .highlighted .linenumber::after {
+    [data="highlighted"] .linenumber::after {
         content: '';
         position: absolute;
         right: 0.25rem;
@@ -161,20 +161,19 @@ export const Syntax = ({ className, code, language, highlight }: { className?: s
 
     const lineProps = useCallback((lineNumber: number) => {
         let style: CSSProperties = {};
-        let className: string | undefined;
+		let isHighlighted: boolean = false;
 
         // if (highlights?.length && highlights.every(h => h.start > lineNumber || h.end < lineNumber)) {
         //     style.opacity = 0.64;
         // }
-
         highlights?.forEach((h) => {
             if (lineNumber >= h.start && lineNumber <= h.end) {
                 style.backgroundColor = "rgba(197, 198, 201, 0.06)";
                 style.display = "block";
-                className = 'highlighted'
+                isHighlighted = true;
             }
         })
-        return { style, class: className };
+        return { style, data: isHighlighted?  'highlighted' : undefined};
     }, [highlights]);
 
     return (
@@ -185,7 +184,7 @@ export const Syntax = ({ className, code, language, highlight }: { className?: s
                 language={language}
                 style={style_reset}
                 wrapLines={true}
-                showLineNumbers
+                showLineNumbers 
                 lineProps={lineProps}
             >
                 {code}
