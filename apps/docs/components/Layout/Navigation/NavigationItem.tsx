@@ -10,6 +10,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	display: flex;
 	align-items: center;
 	border-left:  1px solid ${({ theme, active }) => active ? theme.primary.accent : theme.border};
+	scroll-margin-bottom: 2rem;
 	&::after {
 		content: '';
 		width: 6px;

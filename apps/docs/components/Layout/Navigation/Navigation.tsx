@@ -43,6 +43,11 @@ const Navigation = ({ items, isAPI }: Props) => {
     const router = useRouter();
     const [currentActive, setCurrentActive] = useState('')
 
+    useEffect(() => {
+        const navItem = document.getElementById("active");
+        navItem?.scrollIntoView({block: "end"});
+    }, [currentActive])
+
     const renderItem = useCallback((title: string, slug: string, status: NavigationPage['status'], isActive: boolean) => {
         return (
             <NavigationItem id={isActive ? "active" : ""} active={isActive} status={status} fade={!isActive} key={slug}>
