@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useMemo, useRef } from 'react';
+import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { media, rgba } from 'styles/utils';
@@ -202,13 +202,18 @@ const Header = ({ version }: { version: string }) => {
         })
     }
 
+	useEffect(() => {
+		router.prefetch("/api-reference")
+		router.prefetch("/")
+	}, [])
+
     const handleNavigate = useCallback((pathname: string) => {
         router.push({ 
-            pathname, 
+            pathname,
             query: { 
                 slug: [version].filter(p => p !== 'main') 
             } 
-        })
+        }, undefined, { shallow: true })
     }, [version, router])
 
     const searchParameters = useMemo(() => ({
