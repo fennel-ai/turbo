@@ -50,4 +50,13 @@ module.exports = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/oss",
+        destination: "https://forms.gle/fECePNfkZvug5nNHA",
+        permanent: true
+      },
+    ];
+  }
 };
