@@ -143,7 +143,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 		
 		code:not(pre > code) {
-            word-break: keep-all;
+            word-break: break-word;
 			display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -169,6 +169,9 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 
 		${media('md')} {
+			code:not(pre > code) {
+				word-break: keep-all;
+			}
 			grid-column: span 12;
 			padding-top: calc(7.5rem + 2.5rem);
 		}
@@ -178,6 +181,12 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 			padding-top: calc(4.5rem + 3.5rem);
 			padding-bottom: 7.5rem;
 			
+		}
+
+		summary {
+    		width: 100%;
+    		text-overflow: ellipsis;
+			overflow-x: hidden;
 		}
 	}
 `;

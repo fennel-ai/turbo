@@ -118,7 +118,6 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
     , [updateAddressBar])
 
     return (
-        <div>
             <Layout navigation={navigation} isAPI version={version}>
                 <Head>
                     <title>{"API Reference"}</title>
@@ -146,7 +145,6 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
                 {pages.map(renderPage)}
 
             </Layout>
-        </div>
     );
 }
 
