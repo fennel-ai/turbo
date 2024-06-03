@@ -136,6 +136,14 @@ export default function App({ Component, pageProps }: AppProps) {
                         `(function(e, f, g, h, i){$salespanel = window.$salespanel || (window.$salespanel = []);__sp = i;var a=f.createElement(g);a.type="text/javascript";a.async=1;a.src=("https:" == f.location.protocol ? "https://" : "http://") + h;var b = f.getElementsByTagName(g)[0];b.parentNode.insertBefore(a,b);})(window, document, "script", "salespanel.io/src/js/ff9fc453-2b98-4512-87e3-db4acce2b205/sp.js", "ff9fc453-2b98-4512-87e3-db4acce2b205");`
                     }
                 </Script>
+				<Script id="apollo">
+					{
+						`function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+						o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+						o.onload=function(){window.trackingFunctions.onLoad({appId:"663146dcde13170300f134d7"})},
+						document.head.appendChild(o)}initApollo();`
+					}
+				</Script>
 				<DarkThemeProvider theme={currentTheme} setTheme={setCurrentTheme}>
 					<ThemeProvider theme={themes[currentTheme]}>
 						<GlobalStyles />
