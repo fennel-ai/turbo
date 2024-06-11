@@ -1,4 +1,4 @@
-import { ReactNode, PropsWithChildren, useCallback, useEffect } from "react";
+import { ReactNode, PropsWithChildren, useCallback, useEffect, useLayoutEffect } from "react";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useInView } from 'react-intersection-observer';
@@ -76,10 +76,15 @@ const APIReferenceSection = ({ children, index, slug, onWaypoint }: PropsWithChi
 export default function ApiReferencePage({ pages, navigation, requestedSlug, version }: Props) {
     const router = useRouter();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        let timeoutId = undefined;
         if (requestedSlug) {
-            document.getElementById(requestedSlug)?.scrollIntoView();
+            timeoutId = setTimeout(() => {
+                document.getElementById(requestedSlug)?.scrollIntoView(true);
+            }, 0)
+            
         }
+        return () => clearTimeout(timeoutId)
     }, [requestedSlug]);
 
     const updateAddressBar = useCallback((slug: string) => {
@@ -89,6 +94,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
     
     // Handle overriding the routers pop state behavior
     useEffect(() => {
+        let timeoutId: NodeJS.Timeout | undefined = undefined
         router.beforePopState(({ as }) => {
             if (as.replace("/docs", "") !== router.asPath) {
                 const slug = as.replace("/docs/api-reference/", "");
@@ -96,7 +102,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
                 if (element) {
                     updateAddressBar(slug);
                     
-                    setTimeout(() => {
+                    timeoutId = setTimeout(() => {
                         element.scrollIntoView();
                     }, 100);
 
@@ -107,6 +113,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
         });
 
         return () => {
+            clearTimeout(timeoutId)
             router.beforePopState(() => true);
         };
     }, []); // eslint-disable-line
