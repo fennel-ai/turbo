@@ -175,6 +175,7 @@ importers:
       '@types/react': ^18.0.22
       '@types/react-dom': ^18.0.7
       '@types/react-modal': ^3.16.3
+      '@uidotdev/usehooks': ^2.4.1
       basqui: workspace:*
       clsx: ^1.2.1
       ddd: workspace:*
@@ -211,6 +212,7 @@ importers:
       '@hookform/resolvers': 2.9.11_react-hook-form@7.45.1
       '@react-three/drei': 9.77.7_dc2vrcg3palnvdney5o6uvsvsu
       '@react-three/fiber': 8.13.4_n6dprpn3rmprwi5di5qol3dh4y
+      '@uidotdev/usehooks': 2.4.1_biqbaboplfbrettd7655fr4n2y
       basqui: link:../../packages/basqui
       clsx: 1.2.1
       ddd: link:../../packages/ddd
@@ -7394,6 +7396,17 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.60.1
       eslint-visitor-keys: 3.4.1
+    dev: false
+
+  /@uidotdev/usehooks/2.4.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-1I+RwWyS+kdv3Mv0Vmc+p0dPYH0DTRAo04HLyXReYBL9AeseDWUJyi4THuksBJcu9F0Pih69Ak150VDnqbVnXg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@use-gesture/core/10.2.27:
