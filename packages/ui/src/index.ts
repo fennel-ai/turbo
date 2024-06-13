@@ -12,6 +12,7 @@ export * from "./KeyIndicator";
 export * from "./PillButton";
 export * from "./Masthead";
 export * from "./Sparkles";
+export * from "./Spinner";
 export * from "./Syntax";
 export * from "./TextBlock";
 export * from "./TitleBlock";
