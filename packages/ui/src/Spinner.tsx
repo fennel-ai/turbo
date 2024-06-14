@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 const Root = styled.svg<{ indeterminate: boolean }>`
     display: block;
     color: black;
+    transform: ${({ indeterminate }) => `rotate(${indeterminate ? -180 : -90}deg)`};
     ${({ indeterminate }) => indeterminate ? `animation: 1.4s linear 0s infinite normal none running rotationAnimation;` : ""}
 
     @keyframes rotationAnimation {
@@ -16,10 +17,11 @@ const Root = styled.svg<{ indeterminate: boolean }>`
     }
 `;
 
-const ProgressCircle = styled.circle`
-    stroke-dasharray: 80px, 200px;
-    stroke-dashoffset: 0;
-    animation: strokeAnimation 1.4s ease-in-out infinite;
+const ProgressCircle = styled.circle<{ indeterminate: boolean; progress: number; }>`
+    stroke-dasharray: ${({ indeterminate }) => indeterminate ? `80px, 200px` : `126.90`};
+    stroke-dashoffset: ${({ indeterminate, progress }) => indeterminate ? `0` : `${126.90 * (1 - (progress / 100))}`};
+    ${({ indeterminate }) => indeterminate ? `animation: strokeAnimation 1.4s ease-in-out infinite;` : ""};
+    ${({ indeterminate }) => !indeterminate ? `transition: 200ms stroke-dasharray ease-out` : ""};
 
     @keyframes strokeAnimation {
         0% {
@@ -63,6 +65,8 @@ export const Spinner = ({ className, background = true, progress, size = 24 }: S
         <Root className={className} indeterminate={indeterminate} viewBox="22 22 44 44" width={size} height={size}>
             {background ? <circle cx="44" cy="44" r="20.2" fill="none" stroke={theme.border} strokeWidth="4" strokeLinecap='round' /> : null}
             <ProgressCircle 
+                progress={progress || 0}
+                indeterminate={indeterminate}
                 cx="44" 
                 cy="44" 
                 r="20.2" 

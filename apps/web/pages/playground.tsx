@@ -50,7 +50,7 @@ const IntroText = styled.p`
 
 function ProvisionButton() {
     const [loading, setLoading] = useState<boolean>(false);
-    const [checking, setChecking] = useState<boolean>(false);
+    const [checked, setChecked] = useState<boolean>(false);
     const [cached, setCached] = useLocalStorage<CachedPlayground | null>("playground", null);
 
     const checkPlayground = useCallback(async () => {
@@ -58,26 +58,27 @@ function ProvisionButton() {
             return;
         }
         try {
-            setChecking(true);
+            setChecked(true);
             const response = await fetch(`http://localhost:4000/apps/check/${cached.name}`);
             const { expired }: { expired: boolean } = await response.json();
 
             if (expired) {
-                setChecking(false);
                 toast("Your playground has expired.");
                 setCached(null);
             } else {
-                setChecking(false);
+                setChecked(false);
             }
         } catch (error) {
             
         }
     }, [setCached, cached]);
 
-    // NOTE: Disabled lint on dep array as we only want this to run once on mount.
     useEffect(() => {
+        if (checked) {
+            return;
+        }
         checkPlayground();
-    }, []); // eslint-disable-line
+    }, [checked, checkPlayground]);
 
     const handleRequestPlayground = useCallback(async () => {
         try {
@@ -105,9 +106,9 @@ function ProvisionButton() {
         <ButtonWrapper>
             {
                 cached?.url ? (
-                    <Button icon={<ArrowNarrowUpRightIcon />} color="primary" shape='pill' disabled={checking} onClick={() => window.open(cached.url, "_blank")} label="Go to Playground" />
+                    <Button icon={<ArrowNarrowUpRightIcon />} color="primary" shape='pill' onClick={() => window.open(cached.url, "_blank")} label="Go to Playground" />
                 ) : loading ? (
-                    <LoadingSpinner background />
+                    <LoadingSpinner  background />
                 ) : (
                     <Button shape='pill' disabled={loading} onClick={handleRequestPlayground} label="Request a Playground" />
                 )
