@@ -82,7 +82,7 @@ function ProvisionButton() {
     const handleRequestPlayground = useCallback(async () => {
         try {
             setLoading(true);
-            const response = await fetch("/api/playground//provision", { method: 'POST', headers: { "Content-Type": "application/json" } });
+            const response = await fetch("/api/playground/provision", { method: 'POST', headers: { "Content-Type": "application/json" } });
             const data = await response.json();
 
             setCached({
@@ -95,7 +95,6 @@ function ProvisionButton() {
             setLoading(false);
             toast.success("Your playground is ready.")
         } catch (_) {
-            console.log(_);
             setLoading(false);
             toast.error("Failed to provision playground. Please try again.");
         }
