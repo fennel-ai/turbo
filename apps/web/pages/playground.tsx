@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import styled from '@emotion/styled';
 import { useLocalStorage, useIsClient } from "@uidotdev/usehooks";
@@ -41,6 +41,7 @@ const IntroText = styled.p`
 	color: ${({ theme }) => theme.on_alt};
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+    max-width: 53.5rem;
 	
 	${media('md')} {
         padding-left: 7.5rem;
@@ -50,7 +51,7 @@ const IntroText = styled.p`
 
 function ProvisionButton() {
     const [loading, setLoading] = useState<boolean>(false);
-    const [checked, setChecked] = useState<boolean>(false);
+    let checked = useRef<boolean>(false);
     const [cached, setCached] = useLocalStorage<CachedPlayground | null>("playground", null);
 
     const checkPlayground = useCallback(async () => {
@@ -58,15 +59,12 @@ function ProvisionButton() {
             return;
         }
         try {
-            setChecked(true);
-            const response = await fetch(`http://localhost:4000/apps/check/${cached.name}`);
+            const response = await fetch(`/api/playground/apps/check/${cached.name}`);
             const { expired }: { expired: boolean } = await response.json();
 
             if (expired) {
                 toast("Your playground has expired.");
                 setCached(null);
-            } else {
-                setChecked(false);
             }
         } catch (error) {
             
@@ -74,16 +72,17 @@ function ProvisionButton() {
     }, [setCached, cached]);
 
     useEffect(() => {
-        if (checked) {
+        if (checked.current) {
             return;
         }
+        checked.current = true;
         checkPlayground();
     }, [checked, checkPlayground]);
 
     const handleRequestPlayground = useCallback(async () => {
         try {
             setLoading(true);
-            const response = await fetch("http://localhost:4000/provision", { method: 'POST', headers: { "Content-Type": "application/json" } });
+            const response = await fetch("/api/playground//provision", { method: 'POST', headers: { "Content-Type": "application/json" } });
             const data = await response.json();
 
             setCached({

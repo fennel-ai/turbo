@@ -15,7 +15,7 @@ export const STYLE = {
         let resolvedColor = !disabled ? color : 'neutral';
 
         return css`
-            background-color: ${disabled ? 'rgba(7, 4, 58, 0.04)' : theme[color].accent};
+            background-color: ${theme[resolvedColor].accent};
             color: ${theme[resolvedColor].on};
             opacity: ${!disabled ? 1.0 : 0.24};
             box-shadow: ${theme.shadows.button[resolvedColor][!disabled ? 'default' : 'disabled']};
