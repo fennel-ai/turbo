@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { method } = req;
 
     if (method !== 'GET') {
-        return res.status(404).end();
+        return res.status(404).json({});
     }
 
     const apps = await listApps();

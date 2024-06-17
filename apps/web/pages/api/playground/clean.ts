@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { method } = req;
 
     if (method !== 'POST') {
-        return res.status(404).end()
+        return res.status(404).json({})
     }
 
     const apps = await listApps();
@@ -23,5 +23,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
     }));
 
-    res.status(200).end();
+    res.status(200).json({});
 }

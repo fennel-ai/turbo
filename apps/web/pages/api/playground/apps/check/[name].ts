@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { method, query } = req;
 
     if (method !== 'GET') {
-        return res.status(404).end()
+        return res.status(404).json({})
     }
 
     const { name } = query as CleanQueryParameters;

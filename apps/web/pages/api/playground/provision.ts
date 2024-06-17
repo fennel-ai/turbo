@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { method } = req;
 
     if (method  !== 'POST') {   
-        return res.status(404).end()
+        return res.status(404).json({})
     }
 
     const appName = `fennel-playground-${Date.now()}`;
