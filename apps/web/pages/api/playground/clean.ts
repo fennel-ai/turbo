@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { deleteApp, listApps } from './utils/fly';
-import { isExpired } from './utils/helpers';
+import { deleteApp, listApps } from './_utils/fly';
+import { isExpired } from './_utils/helpers';
 
 /**
  * Handles cleaning up old and inactive playground instances.
@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { method } = req;
 
     if (method !== 'POST') {
-        res.status(404).json({ message: "Not Found" })
+        return res.status(404).end()
     }
 
     const apps = await listApps();
