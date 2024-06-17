@@ -1,3 +1,4 @@
+// @ts-ignore
 import { gql, GraphQLClient } from 'graphql-request';
 
 import { FLYIO_BASE, FLYIO_TOKEN } from './constants';
