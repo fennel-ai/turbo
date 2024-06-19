@@ -20,13 +20,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const { name } = query as CleanQueryParameters;
+    let expired = false;
 
-    const app = await getApp(name);
+    try {
+        const app = await getApp(name);
 
-    let expired = isExpired(app);
+        expired = isExpired(app);
 
-    if (expired) {
-        await deleteApp(app.name);
+        if (expired) {
+            await deleteApp(app.name);
+        }
+    } catch {
+        expired = true;
+        await deleteApp(name);
     }
 
     res.status(200).json({ expired })
