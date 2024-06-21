@@ -85,15 +85,17 @@ function ProvisionButton() {
             const response = await fetch("/api/playground/provision", { method: 'POST', headers: { "Content-Type": "application/json" } });
             const data = await response.json();
 
+            await new Promise<void>(res => setTimeout(() => res(), 5000));
+
             setCached({
                 id: data.id,
                 name: data.name,
                 url: `https://${data.name}.fly.dev`,
                 createdAt: data.createdAt,
             });
-
+            window.open(`https://${data.name}.fly.dev`, "_blank");
             setLoading(false);
-            toast.success("Your playground is ready.")
+
         } catch (_) {
             setLoading(false);
             toast.error("Failed to provision playground. Please try again.");
