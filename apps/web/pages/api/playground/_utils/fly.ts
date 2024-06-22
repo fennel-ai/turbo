@@ -31,6 +31,7 @@ export type App = {
  */
 /**
  * Creates a machine running fennel-vs, assigned to the provided app name.
+ * TODO: In the request body we're hardcoding the fennel token from env. This should be replaced with a call to an endpoint that creates a branch and token for the user, and returns the credentials
  */
 export const createMachine = async (appName: string): Promise<string> => {
     const machineResponse = await fetch(`${FLYIO_BASE}/apps/${appName}/machines`, {
@@ -46,7 +47,9 @@ export const createMachine = async (appName: string): Promise<string> => {
                 skip_service_registration: false,
                 env: {
                     "AUTH": "none",
-                    "PASSWORD": ""
+                    "PASSWORD": "",
+                    "FENNEL_ENDPOINT": process.env.FENNEL_ENDPOINT,
+                    "FENNEL_TOKEN": process.env.FENNEL_TOKEN,
                 },
                 guest: {
                     cpus: 1,
