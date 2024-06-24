@@ -85,7 +85,7 @@ function ProvisionButton() {
             const response = await fetch("/api/playground/provision", { method: 'POST', headers: { "Content-Type": "application/json" } });
             const data = await response.json();
 
-            await new Promise<void>(res => setTimeout(() => res(), 5000));
+            await new Promise<void>(res => setTimeout(() => res(), 6000));
 
             setCached({
                 id: data.id,
