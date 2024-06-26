@@ -77,7 +77,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
     const router = useRouter();
 
     useLayoutEffect(() => {
-        let timeoutId = undefined;
+        let timeoutId: NodeJS.Timeout | undefined = undefined
         if (requestedSlug) {
             timeoutId = setTimeout(() => {
                 document.getElementById(requestedSlug)?.scrollIntoView(true);
