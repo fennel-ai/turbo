@@ -79,6 +79,10 @@ export default function App({ Component, pageProps }: AppProps) {
 	const system_dark_mode = useSystemDarkMode();
 	const [currentTheme, setCurrentTheme] = useState<'dark'|'light'>(system_dark_mode ? 'dark' : 'light');
 
+	useEffect(()=> {
+		setCurrentTheme(system_dark_mode ? 'dark' : 'light')
+	}, [system_dark_mode])
+
 
 	useEffect(() => {
 		// Track page views

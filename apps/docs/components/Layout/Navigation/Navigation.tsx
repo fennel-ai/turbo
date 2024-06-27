@@ -25,8 +25,8 @@ const Root = styled.aside`
 		overflow-y: auto;
 		overflow-x: hidden;
 		position: sticky;
-		top: 0rem;
-		padding-top: 7.5rem;
+		top: 3.5rem;
+		padding-top: 2rem;
 		padding-bottom: 4rem;
 	}
 `;
