@@ -50,7 +50,7 @@ export const createMachine = async (appName: string): Promise<string> => {
                     "PASSWORD": "",
                     "FENNEL_ENDPOINT": process.env.FENNEL_ENDPOINT,
                     "FENNEL_TOKEN": process.env.FENNEL_TOKEN,
-                    "FENNEL_BRANCH": appName,
+                    "FENNEL_BRANCH": appName
                 },
                 guest: {
                     cpus: 1,
