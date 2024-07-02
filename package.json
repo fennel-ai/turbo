@@ -18,11 +18,13 @@
     "coverage": "turbo run coverage --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "dependencies": {
+    "turbo": "latest"
+  },
   "devDependencies": {
     "eslint-config-fennel": "workspace:*",
     "prettier": "latest",
-    "sass": "^1.63.2",
-    "turbo": "latest"
+    "sass": "^1.63.2"
   },
   "engines": {
     "node": ">=14.0.0"
