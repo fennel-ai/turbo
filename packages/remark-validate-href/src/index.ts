@@ -30,7 +30,7 @@ const remarkValidateHref: Plugin = (): Transformer => {
             //@ts-ignore
             let link_path = node.url as string;
 
-            const isExt = link_path.startsWith('http');
+            const isExt = link_path.startsWith('http') || link_path.startsWith("mailto:");
 
             //! Here we are essentially ignoring the header anchor links for now
             //! this is a little more complex as we need rehype to run for the heading IDs to be present on each `node`
@@ -48,7 +48,7 @@ const remarkValidateHref: Plugin = (): Transformer => {
                 try {
                     fs.accessSync(full_path);
                 } catch (err) {
-                    file.message(
+                    file.fail(
                         `Broken link: ${link_path} @ ${node.position?.start.line}:${node.position?.start.offset}`,
                         node.position,
                         undefined,
@@ -64,7 +64,7 @@ const remarkValidateHref: Plugin = (): Transformer => {
             const isExt = asset_path.startsWith('http');
 
             if (!isExt && !contentManifest!.assets[version].includes(asset_path)) {
-                file.message(
+                file.fail(
                     `Broken asset reference: ${asset_path} @ ${node.position?.start.line}:${node.position?.start.offset}`,
                     node.position,
                     undefined,
