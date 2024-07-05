@@ -34,6 +34,8 @@ const githubSource = async () => {
   let contentDir = path.join(process.cwd(), CONTENT_DIR);
   let publicDir = path.join(process.cwd(), "public");
 
+  const processHead = process.env.HEAD_REF;
+
   await fs.ensureDir(contentDir);
 
   if (process.env.MODE === "EDIT") {
@@ -56,7 +58,7 @@ const githubSource = async () => {
 
     console.log(`Pulling content from content repo...`);
     await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, [
-      { name: "main", head: "main" },
+      { name: "main", head: processHead || "main"},
     ]);
 
     const versionsManifestStr = await fs.readFile(
@@ -67,7 +69,7 @@ const githubSource = async () => {
 
     const { versions } = versionsManifest;
 
-    if (versions?.length) {
+    if (versions?.length && !processHead) {
       // Fetch all other versions listed in the versions manifest
       await fetchContent(process.env.GITHUB_TOKEN, CONTENT_DIR, versions);
     }
