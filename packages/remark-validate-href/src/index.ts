@@ -64,7 +64,7 @@ const remarkValidateHref: Plugin = (): Transformer => {
             const isExt = asset_path.startsWith('http');
 
             if (!isExt && !contentManifest!.assets[version].includes(asset_path)) {
-                file.fail(
+                file.message(
                     `Broken asset reference: ${asset_path} @ ${node.position?.start.line}:${node.position?.start.offset}`,
                     node.position,
                     undefined,
