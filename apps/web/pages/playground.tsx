@@ -67,7 +67,7 @@ function ProvisionButton() {
                 setCached(null);
             }
         } catch (error) {
-            
+            console.error(error);
         }
     }, [setCached, cached]);
 
@@ -84,6 +84,12 @@ function ProvisionButton() {
             setLoading(true);
             const response = await fetch("/api/playground/provision", { method: 'POST', headers: { "Content-Type": "application/json" } });
             const data = await response.json();
+
+            if (data.error) {
+                setLoading(false);
+                toast.error("Failed to provision playground. Please try again.");
+                return;
+            }
 
             await new Promise<void>(res => setTimeout(() => res(), 6000));
 
