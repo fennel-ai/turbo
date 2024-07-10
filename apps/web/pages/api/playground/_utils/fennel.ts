@@ -1,3 +1,5 @@
+import * as path from 'node:path';
+
 function randomString(length: number, chars = 'aA!#') {
     var mask = '';
     if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
@@ -10,7 +12,14 @@ function randomString(length: number, chars = 'aA!#') {
 }
 
 export const createFennelToken = async (appName: string): Promise<string> => {
-    const res = await fetch(`${process.env.FENNEL_ENDPOINT}/playground/init`, {
+    if (!process.env.FENNEL_ENDPOINT) {
+        throw new Error("No fennel endpoint provided.")
+    }
+    if (!process.env.FENNEL_TOKEN) {
+        throw new Error("No fennel token provided.")
+    }
+
+    const res = await fetch(path.join(process.env.FENNEL_ENDPOINT, 'playground', 'init'), {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${process.env.FENNEL_TOKEN}`,
@@ -19,7 +28,7 @@ export const createFennelToken = async (appName: string): Promise<string> => {
         body: JSON.stringify({
             first_name: "Playground",
             last_name: "User",
-            email: `${appName}@fennel.ai`,
+            email: `${appName.replace('fennel-', '')}@fennel.ai`,
             password: randomString(12)
         })
     });
