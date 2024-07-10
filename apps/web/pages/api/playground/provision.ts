@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { allocateIpAddress, createApp, createMachine, deleteApp } from './_utils/fly';
+import { createFennelToken } from './_utils/fennel';
 
 /**
  * Handles provisioning a new sandboxed playground for the user by first
@@ -20,13 +21,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await allocateIpAddress(app.name);
 
     try {
-        await createMachine(app.name);
+        const token = await createFennelToken(app.name)
+        await createMachine(app.name, token);
     } catch (error) {
-        console.log(`Machine creation failed. Cleaning up App: ${app.name}`);
+        console.log(`Machine creation failed. Cleaning up dangling App: ${app.name}`);
         await deleteApp(app.name);
 
         return res.status(500).json({
-            detail: `Machine creation failed for ${app.name}`,
+            detail: `Machine creation failed for ${app.name}.`,
             error: error
         });
     }
