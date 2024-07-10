@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["BLOG_URL", "DOCS_URL", "GITHUB_TOKEN"],
+  "globalEnv": ["BLOG_URL", "DOCS_URL", "GITHUB_TOKEN", "FENNEL_ENDPOINT", "FENNEL_TOKEN"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
