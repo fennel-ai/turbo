@@ -30,7 +30,7 @@ const remarkValidateHref: Plugin = (): Transformer => {
             //@ts-ignore
             let link_path = node.url as string;
 
-            const isExt = link_path.startsWith('http');
+            const isExt = link_path.startsWith('http') || link_path.includes("@fennel.ai");
 
             //! Here we are essentially ignoring the header anchor links for now
             //! this is a little more complex as we need rehype to run for the heading IDs to be present on each `node`
