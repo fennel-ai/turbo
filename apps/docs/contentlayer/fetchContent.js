@@ -22,7 +22,7 @@ const moveFiles = async (patterns, src, target) => {
 
 const fetchContent = async (token, dir, versions) => {
     if (!token) {
-        reject("No github token provided.");
+        throw new Error("No github token provided.");
     }
 
     const octo = new Octokit({
