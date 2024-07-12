@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import styled from '@emotion/styled';
 
 import { media } from 'styles/utils';
@@ -121,6 +122,11 @@ const CTA = styled.div`
 `;
 
 const Hero = () => {
+
+    const goToForm = useCallback(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, []);
+
     return (
         <Root>
             <Wrapper>
@@ -142,7 +148,7 @@ const Hero = () => {
                 <Separator />
                 <CTA>
                     <p>Join us on <b>Aug 6, 2024</b> for a deep dive into the latest trends in feature engineering. See you there!</p>
-                    <Button color='primary' label="Register now for Aug 6th" shape="pill" />
+                    <Button color='primary' label="Register now for Aug 6th" shape="pill" onClick={goToForm} />
                 </CTA>
             </Wrapper>
         </Root>
