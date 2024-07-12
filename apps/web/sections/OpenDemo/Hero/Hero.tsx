@@ -6,6 +6,7 @@ import { Container } from 'ui';
 import CalendarIcon from 'ui/icons/calendar.svg';
 
 import AuthorBlock from 'components/AuthorBlock';
+import GlobeSVG from './globe.svg';
 
 const Root = styled.div`
     position: relative;
@@ -23,6 +24,7 @@ const Wrapper = styled(Container)`
 	grid-template-columns: repeat(12, 1fr);
     padding: 4rem 0;
     gap: 2rem;
+    align-items: center;
 `;
 
 const Content = styled.div`
@@ -121,6 +123,21 @@ const Form = styled.div`
     }
 `;
 
+const GlobeIllustration = styled(GlobeSVG)`
+    position: absolute;
+    bottom: -12.5rem;
+    right: -15rem;
+    width: 47.5rem;
+    height: 47.5rem;
+    color: ${({ theme }) => theme.on};
+
+     ${media('md')} {
+        width: 86rem;
+        height: 86rem;
+        bottom: -30rem;
+    }
+`;
+
 const Hero = () => {
     return (
         <Root>
@@ -149,8 +166,10 @@ const Hero = () => {
                 </Content>
                 <Form>
                     Form
+                    <div style={{height: 498}} />
                 </Form>
             </Wrapper>
+            <GlobeIllustration />
         </Root>
     );
 };

@@ -24,6 +24,7 @@ export default function OpenDemo() {
             </Head>
             <main>
                 <Hero />
+                
             </main>
         </>
     );
