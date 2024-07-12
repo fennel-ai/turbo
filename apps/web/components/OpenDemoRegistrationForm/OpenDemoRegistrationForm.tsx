@@ -13,7 +13,8 @@ function hubspotCookie() {
 }
 
 interface IFormData {
-	name: string;
+	firstname: string;
+	lastname: string;
 	email: string;
     company: string;
     jobtitle: string;
@@ -121,7 +122,8 @@ const Input = forwardRef((
 Input.displayName = 'Input';
 
 const validation = yup.object({
-	name: yup.string().required('This is required.'),
+	firstname: yup.string().required('This is required.'),
+	lastname: yup.string().required('This is required.'),
 	email: yup.string().email().required('This is required.'),
 	jobtitle: yup.string().required('This is required.'),
 	company: yup.string().required('This is required.'),
@@ -158,11 +160,12 @@ const OpenDemoRegistrationForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 
 	return (
 		<Form onSubmit={handleSubmit(submitForm)}>
-			<Input {...register('name')} error={errors['name']} placeholder="Enter your name" label="Name" required />
+			<Input {...register('firstname')} error={errors['firstname']} placeholder="Enter your name" label="First Name" required />
+			<Input {...register('lastname')} error={errors['lastname']} placeholder="Enter your surname" label="Last Name" required />
 			<Input {...register('email')} error={errors['email']} placeholder="Enter your work email" label="Email" required />
 			<Input {...register('company')} error={errors['company']} placeholder="Which company do you work for?" label="Company" />
 			<Input {...register('jobtitle')} error={errors['jobtitle']} placeholder="What is your role?" label="Job Title" />
-			<Button color="primary" shape="pill" ariaLabel="Register for our Open Demo on August 6th" label="Register" type="submit" />
+			<Button color="primary" shape="pill" ariaLabel="Register for our Open Demo on August 6th" label="Register Now" type="submit" />
 		</Form>
 	);
 };

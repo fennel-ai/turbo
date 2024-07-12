@@ -8,7 +8,6 @@ import CalendarIcon from 'ui/icons/calendar.svg';
 import AuthorBlock from 'components/AuthorBlock';
 import GlobeSVG from './globe.svg';
 import OpenDemoRegistrationForm from 'components/OpenDemoRegistrationForm';
-import toast from 'react-hot-toast';
 
 const Root = styled.div`
     position: relative;
