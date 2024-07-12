@@ -1,6 +1,5 @@
-import { GetStaticPropsResult } from "next";
 import Head from "next/head";
-import { Hero } from 'sections/OpenDemo';
+import { Hero, TalkingPoints } from 'sections/OpenDemo';
 
 export default function OpenDemo() {
     return (
@@ -24,7 +23,7 @@ export default function OpenDemo() {
             </Head>
             <main>
                 <Hero />
-                
+                <TalkingPoints />
             </main>
         </>
     );

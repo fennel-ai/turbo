@@ -13,6 +13,7 @@ const Root = styled.div`
     overflow: hidden;
     padding: 3rem 0 0 0;
 	background-color: ${({ theme }) => theme.surface};
+    border-bottom: 0.5px solid ${({ theme }) => theme.border};
 
     ${media('md')} {
         padding: 5rem 0 0 0;
