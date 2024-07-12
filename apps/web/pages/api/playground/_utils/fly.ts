@@ -34,6 +34,7 @@ export type App = {
  * TODO: In the request body we're hardcoding the fennel token from env. This should be replaced with a call to an endpoint that creates a branch and token for the user, and returns the credentials
  */
 export const createMachine = async (appName: string, token: string): Promise<string> => {
+    console.log('Creating playground with token: ', token);
     const machineResponse = await fetch(`${FLYIO_BASE}/apps/${appName}/machines`, {
         method: 'POST',
         headers: {

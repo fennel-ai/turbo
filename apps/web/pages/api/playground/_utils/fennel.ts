@@ -33,7 +33,11 @@ export const createFennelToken = async (appName: string): Promise<string> => {
         })
     });
 
-    const { token } = await res.json()
+    const { token } = await res.json();
+    
+    if (!token) {
+        throw new Error("Token creation failed.")
+    } 
 
     return token 
 }

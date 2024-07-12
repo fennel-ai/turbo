@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const token = await createFennelToken(app.name)
         await createMachine(app.name, token);
     } catch (error) {
-        console.log(`Machine creation failed. Cleaning up dangling App: ${app.name}`);
+        console.log(`Machine creation failed. Cleaning up dangling App: ${app.name}`, error);
         await deleteApp(app.name);
 
         return res.status(500).json({
