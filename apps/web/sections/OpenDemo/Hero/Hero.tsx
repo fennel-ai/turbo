@@ -179,7 +179,7 @@ const Hero = () => {
                         </DateLockup>
                     </Title>
                     <p>
-                        Join Co-Founder / CEO Nikhil Garg for a live demo. Take a technical deep dive, and learn learn why Fennel is the hottest feature engineering platform out there.
+                        Join Co-Founder / CEO Nikhil Garg for a live demo as we take a technical deep dive, and learn learn why Fennel is the hottest feature engineering platform out there.
                     </p>
                     <AuthorBlock
                         image="/images/Person=Nikhil.png"
