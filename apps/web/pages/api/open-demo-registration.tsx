@@ -54,11 +54,11 @@ export default async function handler(
 
         await fetch(`https://api.hsforms.com/submissions/v3/integration/secure/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_OPEN_DEMO_FORM_ID}`, requestInit);
 
-        await sendMail({
-            to: 'hello@fennel.ai',
-            subject: `New Demo Request <${body.email}>`,
-            component: <RequestADemoInternal name={body.name} role={body.role} email={body.email} />
-        });
+        // await sendMail({
+        //     to: 'hello@fennel.ai',
+        //     subject: `New Demo Request <${body.email}>`,
+        //     component: <RequestADemoInternal name={body.name} role={body.role} email={body.email} />
+        // });
 
         response.status(200).json({
             body: {

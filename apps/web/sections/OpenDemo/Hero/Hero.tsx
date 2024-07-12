@@ -7,6 +7,8 @@ import CalendarIcon from 'ui/icons/calendar.svg';
 
 import AuthorBlock from 'components/AuthorBlock';
 import GlobeSVG from './globe.svg';
+import OpenDemoRegistrationForm from 'components/OpenDemoRegistrationForm';
+import toast from 'react-hot-toast';
 
 const Root = styled.div`
     position: relative;
@@ -14,6 +16,7 @@ const Root = styled.div`
     padding: 3rem 0 0 0;
 	background-color: ${({ theme }) => theme.surface};
     border-bottom: 0.5px solid ${({ theme }) => theme.border};
+    z-index: 0;
 
     ${media('md')} {
         padding: 5rem 0 0 0;
@@ -23,7 +26,8 @@ const Root = styled.div`
 const Wrapper = styled(Container)`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-    padding: 4rem 0;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
     gap: 2rem;
     align-items: center;
 `;
@@ -117,10 +121,28 @@ const Title = styled.div`
 `;
 
 const Form = styled.div`
+    position: relative;
     grid-column: span 12;
+    background-color: ${({ theme }) => theme.border};
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        background-color: ${({ theme }) => theme.glass};
+        border-radius: calc(0.5rem - 1px);
+    }
 
     ${media('md')} {
-        grid-column: span 3;
+        grid-column: span 4;
+        padding: 2rem;
+        border-radius: 1rem;
+
+        &::before {
+            border-radius: calc(1rem - 1px);
+        }
     }
 `;
 
@@ -131,6 +153,7 @@ const GlobeIllustration = styled(GlobeSVG)`
     width: 47.5rem;
     height: 47.5rem;
     color: ${({ theme }) => theme.on};
+    z-index: -1;
 
      ${media('md')} {
         width: 86rem;
@@ -166,8 +189,7 @@ const Hero = () => {
                     />
                 </Content>
                 <Form>
-                    Form
-                    <div style={{height: 498}} />
+                    <OpenDemoRegistrationForm />
                 </Form>
             </Wrapper>
             <GlobeIllustration />
