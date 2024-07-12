@@ -24,7 +24,7 @@ const Wrapper = styled(Container)`
 	grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: 0;
     row-gap: 3rem;
-    align-items: center;
+    align-items: flex-start;
 
     ${media('md')} {
         column-gap: 2rem;
@@ -108,6 +108,7 @@ const CTA = styled.div`
         line-height: 1.5rem;
         font-weight: 500;
         font-variation-settings: "wght" 500;
+        max-width: 40rem;
 
         & b {
             font-weight: 700;
