@@ -20,8 +20,8 @@ const Root = styled.div`
 
 const Wrapper = styled(Container)`
 	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-    column-gap: 2.5rem;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 0;
     row-gap: 3rem;
     align-items: center;
 
