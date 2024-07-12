@@ -15,6 +15,7 @@ const Root = styled.div`
     padding: 3rem 0 0 0;
 	background-color: ${({ theme }) => theme.surface};
     border-bottom: 0.5px solid ${({ theme }) => theme.border};
+    color: ${({ theme }) => theme.on};
     z-index: 0;
 
     ${media('md')} {
