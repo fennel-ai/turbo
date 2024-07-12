@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { media } from 'styles/utils';
-import { Container } from 'ui';
+import { Button, Container } from 'ui';
 
 import EmpowersSVG from './empowers.svg';
 import EngineSVG from './engine.svg';
@@ -21,11 +21,13 @@ const Root = styled.div`
 const Wrapper = styled(Container)`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-    gap: 2.5rem;
+    column-gap: 2.5rem;
+    row-gap: 3rem;
     align-items: center;
 
     ${media('md')} {
-        gap: 2rem;
+        column-gap: 2rem;
+        row-gap: 4rem;
     }
 `;
 
@@ -84,6 +86,40 @@ const TalkingPoint = styled.div`
     }
 `;
 
+const Separator = styled.div`
+    height: 0;
+    grid-column: span 12;
+    border-top: 0.5px solid ${({ theme }) => theme.border};
+`;
+
+const CTA = styled.div`
+    grid-column: span 12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+
+    & p {
+        margin: 0;
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+        font-weight: 500;
+        font-variation-settings: "wght" 500;
+
+        & b {
+            font-weight: 700;
+            font-variation-settings: "wght" 700;
+        }
+
+        ${media('md')} {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+    }
+`;
+
 const Hero = () => {
     return (
         <Root>
@@ -103,6 +139,11 @@ const Hero = () => {
                     <ApproachSVG />
                     <p>How Fennel approaches ensuring high-quality and reliable data/feature pipelines.</p>
                 </TalkingPoint>
+                <Separator />
+                <CTA>
+                    <p>Join us on <b>Aug 6, 2024</b> for a deep dive into the latest trends in feature engineering. See you there!</p>
+                    <Button color='primary' label="Register now for Aug 6th" shape="pill" />
+                </CTA>
             </Wrapper>
         </Root>
     );
