@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { TitleBlock } from '../TitleBlock';
 
 import { media } from 'styles/utils';
+import { ReactNode } from 'react';
 
 const Root = styled.div`
     display: flex;
@@ -9,7 +10,6 @@ const Root = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: ${({ theme }) => theme.glass};
     border-bottom: 0.5px solid ${({ theme }) => theme.border};
     overflow: hidden;
     min-height: 35rem;
@@ -64,17 +64,19 @@ const IntroText = styled.p`
 
 interface HeroProps {
     actions?: JSX.Element[],
+    subtitle?: ReactNode,
     title: string;
     text?: string;
 }
 
-export const Hero = ({ actions, text, title, }: HeroProps) => {
+export const Hero = ({ actions, subtitle, text, title }: HeroProps) => {
     return <Root>
         <Wrapper>
             <TitleBlock 
                 actions={actions} 
                 center
             >
+                {subtitle ? subtitle : null}
                 <h1>{title}</h1>
                 {text ? <IntroText>{text}</IntroText> : null}
             </TitleBlock>
