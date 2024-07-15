@@ -14,10 +14,6 @@ const Root = styled.div`
     align-items: center;
     flex-direction: row;
     gap: 0.5rem;
-
-    ${media('md')} {
-        gap: 1rem;
-    }
 `;
 
 const Meta = styled.div`
@@ -30,11 +26,6 @@ const Meta = styled.div`
         font-weight: 500;
         font-variation-settings: 'wght' 500;
         margin: 0;
-
-        ${media('md')} {
-            font-size: 1.5rem;
-            line-height: 1.5rem;
-        }
     }
 
     & > p {
@@ -44,11 +35,6 @@ const Meta = styled.div`
         font-variation-settings: 'wght' 500;
         opacity: 0.64;
         margin: 0;
-        
-        ${media('md')} {
-            font-size: 1rem;
-            line-height: 1.5rem;
-        }
     }
 `;
 
@@ -69,16 +55,6 @@ const Avatar = styled.div`
         transform: translateX(-50%);
         height: 3.5rem;
         width: 3.5rem;
-    }
-
-    ${media('md')} {
-        width: 5rem; 
-        height: 5rem;
-
-        & img {
-            width: 5.5rem;
-            height: 5.5rem;
-        }
     }
 `;
 
