@@ -6,15 +6,14 @@ import styled from '@emotion/styled';
 import { toast } from 'react-hot-toast';
 import { Button } from 'ui';
 import { haskoyVariable } from 'pages/_app';
-import { rgba } from 'styles/utils';
+import { media, rgba } from 'styles/utils';
 
 function hubspotCookie() {
     return document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 }
 
 interface IFormData {
-	firstname: string;
-	lastname: string;
+	name: string;
 	email: string;
     company: string;
     jobtitle: string;
@@ -30,6 +29,20 @@ const Form = styled.form`
 		margin-top: 1rem;
 		width: 100%;
 	}
+
+    & h3 {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        margin: 0;
+        font-weight: 700;
+        font-variation-settings: "wght" 700;
+        color: ${({ theme }) => theme.on};
+        margin-bottom: 1rem;
+
+        ${media('md')} {
+            font-size: 1.5rem;
+        }
+    }
 `;
 
 const InputRoot = styled.div<{ required?: boolean }>`
@@ -122,8 +135,7 @@ const Input = forwardRef((
 Input.displayName = 'Input';
 
 const validation = yup.object({
-	firstname: yup.string().required('This is required.'),
-	lastname: yup.string().required('This is required.'),
+	name: yup.string().required('This is required.'),
 	email: yup.string().email().required('This is required.'),
 	jobtitle: yup.string().required('This is required.'),
 	company: yup.string().required('This is required.'),
@@ -160,12 +172,12 @@ const OpenDemoRegistrationForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 
 	return (
 		<Form onSubmit={handleSubmit(submitForm)}>
-			<Input {...register('firstname')} error={errors['firstname']} placeholder="Enter your name" label="First Name" required />
-			<Input {...register('lastname')} error={errors['lastname']} placeholder="Enter your surname" label="Last Name" required />
+            <h3>Register Now</h3>
+			<Input {...register('name')} error={errors['name']} placeholder="Enter your name" label="Name" required />
 			<Input {...register('email')} error={errors['email']} placeholder="Enter your work email" label="Email" required />
-			<Input {...register('company')} error={errors['company']} placeholder="Which company do you work for?" label="Company" />
-			<Input {...register('jobtitle')} error={errors['jobtitle']} placeholder="What is your role?" label="Job Title" />
-			<Button color="primary" shape="pill" ariaLabel="Register for our Open Demo on August 6th" label="Register Now" type="submit" />
+			<Input {...register('company')} error={errors['company']} placeholder="Which company do you work for?" label="Company" required />
+			<Input {...register('jobtitle')} error={errors['jobtitle']} placeholder="What is your role?" label="Job Title" required />
+			<Button color="primary" shape="pill" ariaLabel="Register for our Open Demo on August 6th" label="Submit" type="submit" />
 		</Form>
 	);
 };

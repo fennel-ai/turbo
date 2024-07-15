@@ -82,8 +82,8 @@ const TalkingPoint = styled.div`
         font-variation-settings: "wght" 500;
 
         ${media('md')} {
-            font-size: 1.25rem;
-            line-height: 1.75rem;
+            font-size: 1.125rem;
+            line-height: 1.5rem;
         }
     }
 `;
@@ -123,17 +123,16 @@ const CTA = styled.div`
     }
 `;
 
-const Hero = () => {
+type TalkingPointsProps = {
+    onCTAClick: () => void;
+};
 
-    const goToForm = useCallback(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, []);
-
+const TalkingPoints = ({ onCTAClick }: TalkingPointsProps) => {
     return (
         <Root>
             <Wrapper>
                 <Title>
-                    <p>Join us to learn:</p>
+                    <p>Join us to learn about:</p>
                 </Title>
                 <TalkingPoint>
                     <EmpowersSVG />
@@ -150,11 +149,11 @@ const Hero = () => {
                 <Separator />
                 <CTA>
                     <p>Join us on <b>Aug 6, 2024</b> for a deep dive into the latest trends in feature engineering. See you there!</p>
-                    <Button color='primary' label="Register now for Aug 6th" shape="pill" onClick={goToForm} />
+                    <Button color='primary' label="Register now for Aug 6th" shape="pill" onClick={onCTAClick} />
                 </CTA>
             </Wrapper>
         </Root>
     );
 };
 
-export default Hero;
+export default TalkingPoints;

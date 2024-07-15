@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import fetch, { RequestInit } from 'node-fetch';
-import sendMail from '../../emails';
-import RequestADemoInternal from '../../emails/RequestADemoInternal';
 
 export default async function handler(
     request: NextApiRequest,
@@ -16,6 +14,8 @@ export default async function handler(
             });
         }
 
+        const [firstname, ...restName]  = body.name.split(' ');
+
         const requestInit: RequestInit = {
             method: 'POST',
             headers: {
@@ -26,11 +26,11 @@ export default async function handler(
                 fields: [
                     {
                         name: 'firstname',
-                        value: body.firstname
+                        value: firstname
                     }, 
                     {
                         name: 'lastname',
-                        value: body.lastname
+                        value: restName.join(' '),
                     }, 
                     {
                         name: 'email',
@@ -53,12 +53,6 @@ export default async function handler(
         };
 
         await fetch(`https://api.hsforms.com/submissions/v3/integration/secure/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_OPEN_DEMO_FORM_ID}`, requestInit);
-
-        // await sendMail({
-        //     to: 'hello@fennel.ai',
-        //     subject: `New Demo Request <${body.email}>`,
-        //     component: <RequestADemoInternal name={body.name} role={body.role} email={body.email} />
-        // });
 
         response.status(200).json({
             body: {

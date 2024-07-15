@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import { MouseEventHandler } from 'react';
+import { useMatchMedia } from 'hooks';
 
 import ChevronRightIcon from 'ui/icons/chevron-right-small.svg';
+import { useTheme } from '@emotion/react';
 
 const Root = styled.div`
     display: flex;
@@ -71,7 +73,8 @@ const Link = styled.div`
     font-variation-settings: "wght" 500;
 
     & svg {
-        fill: currentColor !important;
+        width: 1rem;
+        height: 1rem;
     }
 `;
 
@@ -80,12 +83,14 @@ type CTAPillProps = {
 };
 
 const CTAPill = (props: CTAPillProps) => {
+    const theme = useTheme();
+    const isDesktop = useMatchMedia(`(min-width: ${theme.breakpoints.md}rem)`);
     return (
         <Root onClick={props.onClick}>
             <TitleChip><div />Live Open Demo</TitleChip>
-            <p>Join us on August 6th as we deep-dive into Fennel.</p>
+            {isDesktop ? <p>Join us on August 6th as we deep-dive into Fennel.</p> : null}
             <Link>
-                Learn more 
+                {isDesktop ? "Learn more" : "Join us on Aug 6th"}
                 <ChevronRightIcon />
             </Link>
         </Root>

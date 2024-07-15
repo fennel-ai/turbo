@@ -8,6 +8,7 @@ import CalendarIcon from 'ui/icons/calendar.svg';
 import AuthorBlock from 'components/AuthorBlock';
 import GlobeSVG from './globe.svg';
 import OpenDemoRegistrationForm from 'components/OpenDemoRegistrationForm';
+import { ForwardedRef, forwardRef, useImperativeHandle, useRef } from 'react';
 
 const Root = styled.div`
     position: relative;
@@ -51,8 +52,8 @@ const Content = styled.div`
         max-width: 39.25rem;
 
         ${media('md')} {
-            font-size: 1.5rem;
-            line-height: 2rem;
+            font-size: 1.125rem;
+            line-height: 1.5rem;
         }
     }
 `;
@@ -69,8 +70,8 @@ const DateLockup = styled.div`
         height: 1rem;
 
         ${media('md')} {
-            width: 1.25rem;
-            height: 1.25rem;
+            width: 1rem;
+            height: 1rem;
         }
     }
 
@@ -78,9 +79,9 @@ const DateLockup = styled.div`
         margin: 0;
         font-size: 1rem;
         line-height: 1rem;
+        font-weight: 500;
         
         ${media('md')} {
-            font-size: 1.25rem;
             line-height: 1.5rem;
         }
     }
@@ -126,6 +127,19 @@ const Form = styled.div`
     background-color: ${({ theme }) => theme.border};
     padding: 1rem;
     border-radius: 0.5rem;
+    transform: translate3d(0, 0, 0);
+    
+    &.shake {
+        animation: shake 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    @keyframes shake {
+        0% { transform: rotate(0deg); box-shadow: 0px 0px 0px 0px ${({ theme }) => theme.color.purple['30']} }
+        25% { transform: rotate(2deg); box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.color.purple['30']} }
+        50% { transform: rotate(0deg); box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.color.purple['30']} }
+        75% { transform: rotate(-2deg); box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.color.purple['30']} }
+        100% { transform: rotate(0deg); box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.color.purple['30']} }
+    }
 
     &::before {
         content: "";
@@ -162,7 +176,25 @@ const GlobeIllustration = styled(GlobeSVG)`
     }
 `;
 
-const Hero = () => {
+export type HeroRefHandle = {
+    el?: HTMLDivElement;
+    shakeForm: () => void;
+}
+
+const Hero = forwardRef((_, ref: ForwardedRef<HeroRefHandle>) => {
+    const formRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => ({
+        el: formRef.current,
+        shakeForm: () => {
+            if (formRef.current) {
+                if (formRef.current.classList.contains('shake')) {
+                    formRef.current.classList.remove('shake');
+                }
+                formRef.current.classList.add('shake');
+            }
+        }
+    }) as HeroRefHandle, []);
+
     return (
         <Root>
             <Wrapper>
@@ -188,13 +220,15 @@ const Hero = () => {
                         subtext="Co-Founder & CEO · Fennel"
                     />
                 </Content>
-                <Form>
+                <Form ref={formRef}>
                     <OpenDemoRegistrationForm />
                 </Form>
             </Wrapper>
             <GlobeIllustration />
         </Root>
     );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

@@ -1,7 +1,19 @@
+import { useCallback, useRef } from 'react';
 import Head from "next/head";
+
 import { Hero, TalkingPoints } from 'sections/OpenDemo';
+import type { HeroRefHandle } from 'sections/OpenDemo/Hero/Hero';
 
 export default function OpenDemo() {
+    const heroRef = useRef<HeroRefHandle>(null);
+    const focusForm = useCallback(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setTimeout(() => {
+            if (heroRef.current) {
+                heroRef.current?.shakeForm();
+            }
+        }, 750);
+    }, []);
     return (
         <>
             <Head>
@@ -22,8 +34,8 @@ export default function OpenDemo() {
                 <meta name="twitter:image" content="https://fennel.ai/images/og/default.jpg" />
             </Head>
             <main>
-                <Hero />
-                <TalkingPoints />
+                <Hero ref={heroRef} />
+                <TalkingPoints onCTAClick={focusForm} />
             </main>
         </>
     );
