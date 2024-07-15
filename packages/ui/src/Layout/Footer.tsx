@@ -206,10 +206,10 @@ export const Footer = () => {
                         <h4>Resources</h4>
                         <ul>
                             <li>
-                                <Link href="/docs">Documentation</Link>
+                                <Link href="https://fennel.ai/docs">Documentation</Link>
                             </li>
                             <li>
-                                <Link href="/blog">Blog</Link>
+                                <Link href="https://fennel.ai/blog">Blog</Link>
                             </li>
                         </ul>
                     </Menu>
@@ -217,16 +217,16 @@ export const Footer = () => {
                         <h4>Company</h4>
                         <ul>
                             <li>
-                                <Link href="/company">About</Link>
+                                <Link href="https://fennel.ai/company">About</Link>
                             </li>
                             <li>
-                                <Link href="/get-a-demo">Request a Demo</Link>
+                                <Link href="https://fennel.ai/get-a-demo">Request a Demo</Link>
                             </li>
                             <li>
-                                <Link href="/careers">Careers</Link>
+                                <Link href="https://fennel.ai/careers">Careers</Link>
                             </li>
                             <li>
-                                <Link href="/legal/subprocessors">Subprocessors</Link>
+                                <Link href="https://fennel.ai/legal/subprocessors">Subprocessors</Link>
                             </li>
                         </ul>
                     </Menu>

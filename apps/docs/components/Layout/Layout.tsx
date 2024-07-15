@@ -45,7 +45,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 
 
 	& > main {
-		padding-top: calc(6rem + 2rem);
+		padding-top: 2rem;
 		padding-bottom: 5rem;
 		color: ${({ theme }) => theme.on};
 		
@@ -143,7 +143,7 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 		
 		code:not(pre > code) {
-            word-break: keep-all;
+            word-break: break-word;
 			display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -169,15 +169,24 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		}
 
 		${media('md')} {
+			code:not(pre > code) {
+				word-break: keep-all;
+			}
 			grid-column: span 12;
-			padding-top: calc(7.5rem + 2.5rem);
+			padding-top: 2.5rem;
 		}
 
 		${media('lg')} {
 			grid-column: ${({ isAPI }) => isAPI ? "span 4" : "span 3" };
-			padding-top: calc(4.5rem + 3.5rem);
+			padding-top: 4rem;
 			padding-bottom: 7.5rem;
 			
+		}
+
+		summary {
+    		width: 100%;
+    		text-overflow: ellipsis;
+			overflow-x: hidden;
 		}
 	}
 `;

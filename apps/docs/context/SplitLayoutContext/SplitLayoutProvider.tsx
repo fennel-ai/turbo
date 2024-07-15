@@ -8,9 +8,9 @@ const SplitLayout = styled.div`
 	display: grid;
     width: 100%;
 	grid-template-columns: 1fr;
-	grid-gap: 2rem;
 
 	${media('sm')} {
+        grid-gap: 2rem;
 		grid-template-columns: repeat(12, 1fr);
 	}
 

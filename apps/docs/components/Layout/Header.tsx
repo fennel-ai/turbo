@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useMemo, useRef } from 'react';
+import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { media, rgba } from 'styles/utils';
@@ -6,9 +6,9 @@ import { version as versionManifest } from 'contentlayer/generated';
 
 import { IconButton, Masthead, Button } from 'ui';
 import * as BUTTON_VARIANTS from 'ui/src/Button/variants';
-import SearchIcon from 'ui/icons/search.svg';
 import DropdownIcon from 'ui/icons/dropdown.svg';
 import GitHubIcon from 'ui/icons/github.svg';
+import GridIcon from 'ui/icons/grid.svg';
 import SunIcon from 'ui/icons/sun.svg';
 import MoonIcon from 'ui/icons/moon.svg';
 
@@ -20,7 +20,7 @@ import { DarkThemeContext } from 'context/CustomTheme/provider';
 
 const Root = styled.div`
 	grid-column: span 12;
-	position: fixed;
+	position: sticky;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -56,6 +56,7 @@ const SearchWrapper = styled.div`
 `;
 
 const Brand = styled(Masthead)`
+	padding-top: 4px;
 	position: relative;
 
 	& svg {
@@ -75,13 +76,6 @@ const Actions = styled.div`
 	justify-content: flex-end;
 `;
 
-const SearchButton = styled(IconButton)`
-	${media('md')} {
-		margin-left: auto;
-		display: none;
-	}
-`;
-
 const DemoButton = styled(Button)`
 	display: none;
 
@@ -94,21 +88,39 @@ const LinkWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	flex: 1;
+	${media('md')} {
 	gap: 2rem;
+	}
 `
 
 const NavWrapper = styled.div`
+	display: none;
+
+	${media('sm')} {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	gap: 1rem;
+	}
+`
+
+const NavWrapperMobile = styled.div`
+	padding-left:0.25rem;
+	display: flex;
+	gap: 0.25rem;
+	align-items: center;
+
+	${media('sm')} {
+		display: none;
+	}
 `
 
 const DemoButtons = styled.div`
-	display: flex;
 	align-items: center;
 	gap: 1rem;
+	display: none;
 	${media('md')} {
+		display: flex;
 		margin-left: auto;
 	}
 
@@ -118,15 +130,31 @@ const DemoButtons = styled.div`
 
 `
 
-const NavButton = styled(Button)<{active: boolean}>`
+const NavButton = styled(Button) <{ active: boolean }>`
 	font-weight: 500;
-	color: ${({ theme, active }) => active ? theme.primary.accent: theme.on };
+	color: ${({ theme, active }) => active ? theme.primary.accent : theme.on};
 	height: 3.5rem;
 	border-radius: 0;
 	border-bottom: ${props => props.active && `2px solid ${props.theme.primary.accent}`};
 `
 
-const VersionDropdown = styled.div<{children: any}>`
+const MobileNavText = styled.div<{ active: boolean }>`
+	font-weight: 500;
+	color: ${({ theme, active }) => active ? theme.primary.accent : rgba(theme.on_alt, 0.6)};
+
+	${media('sm')} {
+		display: none;
+	}
+`
+
+const ThemeChangeButton = styled(IconButton)`
+	margin-left: 0.5rem;
+	${media('md')} {
+		display: none;
+	}
+`
+
+const VersionDropdown = styled.div<{ children: any }>`
     position: relative;
     padding: 0 !important;
     display: flex;
@@ -168,19 +196,19 @@ const VersionDropdown = styled.div<{children: any}>`
 `;
 
 function VersionSelector({ onChange, value }: { onChange: ChangeEventHandler<HTMLSelectElement>, value: string }) {
-    return versionManifest.versions?.length ? (
-        <VersionDropdown>
-            <select onChange={onChange} value={value}>
-                <option value="main">Latest</option>
-                {
-                    versionManifest.versions.map(({ name }) => (
-                        <option key={name} value={name}>{name}</option>
-                    ))
-                }
-            </select>
-            <DropdownIcon />
-        </VersionDropdown>
-    ) : null
+	return versionManifest.versions?.length ? (
+		<VersionDropdown>
+			<select onChange={onChange} value={value}>
+				<option value="main">Latest</option>
+				{
+					versionManifest.versions.map(({ name }) => (
+						<option key={name} value={name}>{name}</option>
+					))
+				}
+			</select>
+			<DropdownIcon />
+		</VersionDropdown>
+	) : null
 }
 
 const Header = ({ version }: { version: string }) => {
@@ -190,81 +218,100 @@ const Header = ({ version }: { version: string }) => {
 	const router = useRouter();
 	const isAPI = router.pathname.includes("/api-reference");
 
-    const handleChangeVersion = (e: ChangeEvent<HTMLSelectElement>) => {
-        let newVersion = e.target.value;
-        if (newVersion === version) {
-            return;
-        }
+	const handleChangeVersion = (e: ChangeEvent<HTMLSelectElement>) => {
+		let newVersion = e.target.value;
+		if (newVersion === version) {
+			return;
+		}
 
-        router.push({
-            pathname: router.pathname,
-            query: { slug: [newVersion, ...(router.query.slug as string[] ?? [])].filter((p) => p !== 'main' && p !== version) },
-        })
-    }
+		router.push({
+			pathname: router.pathname,
+			query: { slug: [newVersion, ...(router.query.slug as string[] ?? [])].filter((p) => p !== 'main' && p !== version) },
+		})
+	}
 
-    const handleNavigate = useCallback((pathname: string) => {
-        router.push({ 
-            pathname, 
-            query: { 
-                slug: [version].filter(p => p !== 'main') 
-            } 
-        })
-    }, [version, router])
+	useEffect(() => {
+		router.prefetch("/api-reference")
+		router.prefetch("/")
+	}, [])
 
-    const searchParameters = useMemo(() => ({
-        facetFilters: `version:${version}`
-    }), [version]);
+	const handleNavigate = useCallback((pathname: string) => {
+		router.push({
+			pathname,
+			query: {
+				slug: [version].filter(p => p !== 'main')
+			}
+		}, undefined, { shallow: true })
+	}, [version, router])
 
-	const {isDarkTheme, setTheme} = useContext(DarkThemeContext);
+	const searchParameters = useMemo(() => ({
+		facetFilters: `version:${version}`
+	}), [version]);
+
+	const { isDarkTheme, setTheme } = useContext(DarkThemeContext);
+
+	const navItems = [
+		{ name: 'API', path: '/api-reference/[[...slug]]', active: isAPI },
+		{ name: 'Docs', path: '/[[...slug]]', active: !isAPI }
+	]
 
 	return (
 		<Root>
 			<Wrapper>
-			<LinkWrapper>
-				<Brand/>
-				<NavWrapper>
-                        <NavButton variant='ghost' label="Documentation" active={!isAPI} onClick={() => handleNavigate('/[[...slug]]')}/>
-                        <NavButton variant='ghost' label="API Reference" active={isAPI} onClick={() => handleNavigate('/api-reference/[[...slug]]')}/>
-				</NavWrapper>
+				<LinkWrapper>
+					<Brand />
+					<NavWrapperMobile>
+						{navItems.sort(item => item.active ? -1 : 1)  // Sorting to put the active item first
+							.map(item => (
+								<MobileNavText key={item.name} active={item.active} onClick={() => handleNavigate(item.path)}>
+									{item.name}
+								</MobileNavText>
+							))
+						}
+					</NavWrapperMobile>
+					<NavWrapper>
+						<NavButton variant='ghost' label="Documentation" active={!isAPI} onClick={() => handleNavigate('/[[...slug]]')} />
+						<NavButton variant='ghost' label="API Reference" active={isAPI} onClick={() => handleNavigate('/api-reference/[[...slug]]')} />
+					</NavWrapper>
 				</LinkWrapper>
 				<SearchWrapper>
 					<DocSearch
 						ref={docSearch}
-                        searchParameters={searchParameters}
+						searchParameters={searchParameters}
 						appId={process.env.NEXT_PUBLIC_ALGOLIA_ID!}
 						indexName={process.env.NEXT_PUBLIC_ALGOLIA_INDEX!}
 						apiKey={process.env.NEXT_PUBLIC_ALGOLIA_KEY!}
 					/>
 				</SearchWrapper>
 				<Actions>
-                    <VersionSelector 
-                        onChange={handleChangeVersion}
-                        value={version}
-                    />
-                    {/** NOTE: This <p> is used by the algolia scraper to facet based on version */}
-                    <p id="version-num" style={{display: 'none'}}>{version}</p>
-					<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} />
+					<VersionSelector
+						onChange={handleChangeVersion}
+						value={version}
+					/>
+					{/** NOTE: This <p> is used by the algolia scraper to facet based on version */}
+					<p id="version-num" style={{ display: 'none' }}>{version}</p>
 					<DemoButtons>
-						<IconButton size="small" icon={isDarkTheme ? SunIcon : MoonIcon} onClick={() => {setTheme(!isDarkTheme)}}/>
-					<a href="https://github.com/fennel-ai/client/">
-						<DemoButton
-							size="small"
-							label="Github"
-							variant="outline"
-							icon={<GitHubIcon/>}
-						/>
-					</a>
-					<a href="https://fennel.ai/get-a-demo">
-						<DemoButton
-							size="small"
-							label="Request a demo"
-							variant="outline"
-						/>
-					</a>
+						<IconButton size="small" icon={isDarkTheme ? SunIcon : MoonIcon} onClick={() => { setTheme(!isDarkTheme) }} />
+						<a href="https://github.com/fennel-ai/client/">
+							<DemoButton
+								size="small"
+								label="Github"
+								variant="outline"
+								icon={<GitHubIcon />}
+							/>
+						</a>
+						<a href="https://fennel.ai/get-a-demo">
+							<DemoButton
+								size="small"
+								label="Request a demo"
+								variant="outline"
+							/>
+						</a>
 					</DemoButtons>
 				</Actions>
+				<ThemeChangeButton size="small" icon={isDarkTheme ? SunIcon : MoonIcon} onClick={() => { setTheme(!isDarkTheme) }} />
 			</Wrapper>
-			<MobileToolbar />
+			<MobileToolbar openSearch={openSearch} />
 		</Root>
 	);
 };

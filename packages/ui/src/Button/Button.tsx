@@ -37,7 +37,7 @@ const Root = styled.button<{
 	justify-content: center;
 	gap: 0.25rem;
 	font-size: 0.875rem;
-	line-height: 1.5rem;
+	line-height: 1rem;
     font-variation-settings: "wght" 500;
 	cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
 	user-select: none;

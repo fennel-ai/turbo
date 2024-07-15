@@ -1,13 +1,11 @@
 import { FC, useState, useEffect } from 'react'
-// import { type DocHeading } from '../../contentlayer/document/Doc'
-// import { getNodeText, sluggifyTitle } from '../../utils/sluggify'
-// import { Icon } from './Icon'
 import styled from "@emotion/styled";
 import { media } from 'styles/utils';
 import { motion } from 'framer-motion';
 import { Outline } from 'lib/utils';
 import Link from 'next/link';
 import GitHubIcon from 'ui/icons/github.svg';
+import { version } from 'contentlayer/generated';
 
 const Root = styled.div`
 	display: none;
@@ -91,6 +89,8 @@ export const PageNavigation: FC<{ path: string, headings: Outline }> = ({ path, 
 
 
   const headingsToRender = headings.filter((_) => _.level > 1)
+  const [versionName, ...restPath] = path.split('/')
+  const versionBranch = versionName === "main" ? "main" : version.versions?.find(v => v.name === versionName)?.head;
 
   return (
     <Root>
@@ -116,7 +116,7 @@ export const PageNavigation: FC<{ path: string, headings: Outline }> = ({ path, 
       </H2List>
       </>}
       {path!=='/' &&
-      <EditOnGithub href={'https://github.com/fennel-ai/client/blob/main/docs/'+ path} >
+      <EditOnGithub href={`https://github.com/fennel-ai/client/blob/${versionBranch}/docs/${restPath.join('/')}`} >
         <GitHubIcon/>
         <div> Edit this Page on Github</div>
       </EditOnGithub>

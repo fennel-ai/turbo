@@ -16,7 +16,6 @@ export interface ContentManifest {
 
 export const createContentManifest = (): ContentManifest => {
     const versions = fs.readdirSync(CONTENT_BASE);
-
     return {
         content: createContentMap(versions),
         assets: createAssetMap(versions),
@@ -38,7 +37,6 @@ export const createContentMap = (versions: string[]): Record<string, Record<stri
         }
 
         const pages = glob.sync([path.join(CONTENT_BASE, version, 'pages', '**', '*.md')]);
-
         for (const [full_path, original_slug] of pages.map((p) => [p, pathToSlug(p)])) {
             let slug = original_slug;
 
@@ -56,6 +54,13 @@ export const createContentMap = (versions: string[]): Record<string, Record<stri
             slug = slug.replace(new RegExp(`/${version}/pages`, 'g'), '');
 
             obj[version][slug] = full_path;
+            if(slug.includes("api-reference/")) {
+                const parentSlugSplit = slug.split("/");
+                const parentSlug = `/${parentSlugSplit[1]}/${parentSlugSplit[2]}`
+                if(!obj[version][parentSlug]){
+                    obj[version][parentSlug] = full_path
+                }
+            }
         }
     }
 

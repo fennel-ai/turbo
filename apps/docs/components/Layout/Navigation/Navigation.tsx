@@ -25,8 +25,8 @@ const Root = styled.aside`
 		overflow-y: auto;
 		overflow-x: hidden;
 		position: sticky;
-		top: 0rem;
-		padding-top: 7.5rem;
+		top: 3.5rem;
+		padding-top: 2rem;
 		padding-bottom: 4rem;
 	}
 `;
@@ -37,11 +37,27 @@ const Nav = styled.nav`
 	flex-direction: column;
 	gap: 0.5rem;
 	align-self: flex-start;
+    scroll-behavior: smooth;
 `;
 
 const Navigation = ({ items, isAPI }: Props) => {
     const router = useRouter();
     const [currentActive, setCurrentActive] = useState('')
+    const navbarRef = useRef<HTMLDivElement>(null)
+    const [navbarHeight, setNavbarHeight] = useState(0);
+
+    useEffect(() => {
+        const activeNavItem = document.getElementById("active");
+        if (activeNavItem && navbarRef.current) {
+            let _navbarHeight = navbarHeight;
+            if(!_navbarHeight) {
+                _navbarHeight = navbarRef.current.getBoundingClientRect().height;
+                setNavbarHeight(_navbarHeight);
+            }
+            const activeNavItemRect = activeNavItem.getBoundingClientRect();
+            navbarRef.current!.scrollTop += activeNavItemRect.top - _navbarHeight / 2 + activeNavItemRect.height / 2;
+        }
+    }, [currentActive])
 
     const renderItem = useCallback((title: string, slug: string, status: NavigationPage['status'], isActive: boolean) => {
         return (
@@ -80,7 +96,7 @@ const Navigation = ({ items, isAPI }: Props) => {
     }, [isAPI, handlePopState]);
 
 	return (
-		<Root id="sidenav">
+		<Root id="sidenav" ref={navbarRef}>
 			<Nav>
 				{
 					items.map((section) => {
