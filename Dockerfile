@@ -1,7 +1,7 @@
 FROM node:21.7.4 AS base
 
 # install pnpm and turbo
-RUN npm i -g pnpm@9.0.3
+RUN npm i -g pnpm@8.11.0
 RUN npm i -g turbo
 
 ######
