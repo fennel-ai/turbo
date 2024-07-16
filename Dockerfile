@@ -24,7 +24,7 @@ COPY --from=builder /app/out/full/ .
 COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 EXPOSE 3001:3001
 CMD pnpm run dev --filter=docs...
