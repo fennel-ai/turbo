@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { media } from 'styles/utils';
-import { Container } from 'ui';
+import { Button, Container } from 'ui';
+import CheckCircleIcon from 'ui/icons/check-circle.svg';
 
 import ApproachSVG from './approach.svg';
 import EmpowersSVG from './empowers.svg';
@@ -162,7 +164,7 @@ const TalkingPoints = styled.div`
         align-items: center;
         justify-content: center;
         text-align: center;
-        gap: 0.5rem;
+        gap: 1rem;
        
         ${media('sm')} {
             flex: 1 1 auto;
@@ -187,45 +189,96 @@ const TalkingPoints = styled.div`
     }
 `;
 
+const SuccessOverlay = styled.div`
+    position: absolute;
+    inset: 0;
+    padding: 1rem;
+    background-color: ${({ theme }) => theme.surface};
+    display: flex;
+    flex-direction: column;
+    border-radius: calc(1rem - 4px);
+    ${media('md')} {
+        padding: 2rem;
+    }
+`;
 
-const Hero = () => (
-    <Root>
-        <Wrapper>
-            <Content>
-                <Title>
-                    <h1>
-                        A Deep Dive Into Fennel
-                    </h1>
-                    <AuthorBlock
-                        image="/images/Person=Nikhil.png"
-                        name="Nikhil Garg"
-                        subtext="Co-Founder & CEO · Fennel"
-                    />                
-                </Title>
-                <p>
-                    Join Co-Founder / CEO Nikhil Garg for a live demo as we take a technical deep dive, and learn learn why Fennel is the hottest feature engineering platform out there. Join us to learn about:
-                </p>
-                <TalkingPoints>
-                    <div>
-                        <EmpowersSVG />
-                        <p>Reducing dependency <br/>on Engineering.</p>
-                    </div>
-                    <div>
-                        <EngineSVG />
-                        <p>High-Quality Data and <br />Feature Pipelines</p>
-                    </div>
-                    <div>
-                        <ApproachSVG />
-                        <p>Unified batch & real-time <br />computation engine.</p>
-                    </div>
-                </TalkingPoints>
-            </Content>
-            <Form>
-                <OpenDemoRegistrationForm />
-            </Form>
-        </Wrapper>
-        <GlobeIllustration />
-    </Root>
-);
+const SuccessContent = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & > svg {
+        color: ${({ theme }) => theme.color.green['80']};
+    }
+
+    & h4 {
+        margin: 0;
+        margin-top: 1rem;
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+    }
+
+    & p {
+        margin: 0;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+`; 
+
+const Hero = () => {
+    const [success, setSuccess] = useState(true);
+
+    return (
+        <Root>
+            <Wrapper>
+                <Content>
+                    <Title>
+                        <h1>
+                            A Deep Dive Into Fennel
+                        </h1>
+                        <AuthorBlock
+                            image="/images/Person=Nikhil.png"
+                            name="Nikhil Garg"
+                            subtext="Co-Founder & CEO · Fennel"
+                        />
+                    </Title>
+                    <p>
+                        Join Co-Founder / CEO Nikhil Garg for a live demo as we take a technical deep dive, and learn learn why Fennel is the hottest feature engineering platform out there. Join us to learn about:
+                    </p>
+                    <TalkingPoints>
+                        <div>
+                            <EmpowersSVG />
+                            <p>Reducing dependency <br />on Engineering.</p>
+                        </div>
+                        <div>
+                            <EngineSVG />
+                            <p>High-Quality Data and <br />Feature Pipelines</p>
+                        </div>
+                        <div>
+                            <ApproachSVG />
+                            <p>Unified batch & real-time <br />computation engine.</p>
+                        </div>
+                    </TalkingPoints>
+                </Content>
+                <Form>
+                    <OpenDemoRegistrationForm onSubmit={() => setSuccess(true)} />
+                    {success ? (
+                        <SuccessOverlay>
+                            <SuccessContent>
+                                <CheckCircleIcon width={40} height={40} />
+                                <h4>Thanks for Registering!</h4>
+                                <p>See you on August 6th</p>
+                            </SuccessContent>
+                            <Button variant='outline' shape="pill" ariaLabel="Add to your calendar" label="Add to Calendar" type="submit" />
+                        </SuccessOverlay>
+                    ) : null}
+                </Form>
+            </Wrapper>
+            <GlobeIllustration />
+        </Root>
+    );
+}
 
 export default Hero;

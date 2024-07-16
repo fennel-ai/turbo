@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 import { useForm, ChangeHandler, SubmitHandler, FieldError } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -193,7 +193,7 @@ const OpenDemoRegistrationForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 
 	const submitForm: SubmitHandler<IFormData> = async data => {
 		try {
-			fetch('/api/open-demo-registration', {
+			await fetch('/api/open-demo-registration', {
 				method: "POST",
 				headers: {
 					'Content-Type': 'application/json'
