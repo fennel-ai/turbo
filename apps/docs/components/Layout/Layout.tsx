@@ -39,11 +39,6 @@ const Root = styled(Container)<{isAPI?: boolean}>`
 		grid-template-columns: repeat(5, 1fr);
 	}
 
-    @media (min-width: 100rem) {
-        gap: 4rem;
-    }
-
-
 	& > main {
 		padding-top: 2rem;
 		padding-bottom: 5rem;
