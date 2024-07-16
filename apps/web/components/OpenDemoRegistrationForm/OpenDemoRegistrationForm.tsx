@@ -4,9 +4,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styled from '@emotion/styled';
 import { toast } from 'react-hot-toast';
-import { Button } from 'ui';
 import { haskoyVariable } from 'pages/_app';
+
 import { media, rgba } from 'styles/utils';
+
+import { Button } from 'ui';
+import CalendarIcon from 'ui/icons/calendar.svg';
 
 function hubspotCookie() {
     return document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -29,20 +32,6 @@ const Form = styled.form`
 		margin-top: 1rem;
 		width: 100%;
 	}
-
-    & h3 {
-        font-size: 1.25rem;
-        line-height: 1.5rem;
-        margin: 0;
-        font-weight: 700;
-        font-variation-settings: "wght" 700;
-        color: ${({ theme }) => theme.on};
-        margin-bottom: 1rem;
-
-        ${media('md')} {
-            font-size: 1.5rem;
-        }
-    }
 `;
 
 const InputRoot = styled.div<{ required?: boolean }>`
@@ -102,6 +91,62 @@ const HelperRow = styled.div`
 		font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 		color: ${({ theme }) => theme.error.accent};
 	}
+`;
+
+const Title = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    & h3 {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        margin: 0;
+        font-weight: 700;
+        font-variation-settings: "wght" 700;
+        color: ${({ theme }) => theme.on};
+
+        ${media('md')} {
+            font-size: 1.5rem;
+        }
+    }
+
+   ${media('md')} {
+        align-items: flex-start;
+        text-align: left;
+    }  
+`;
+
+const DateLockup = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
+    opacity: 0.64;
+
+    & svg {
+        width: 1rem;
+        height: 1rem;
+
+        ${media('md')} {
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+
+    & p {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1rem;
+        font-weight: 500;
+        
+        ${media('md')} {
+            line-height: 1.5rem;
+        }
+    }
 `;
 
 const Input = forwardRef((
@@ -172,12 +217,18 @@ const OpenDemoRegistrationForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 
 	return (
 		<Form onSubmit={handleSubmit(submitForm)}>
-            <h3>Register Now</h3>
+            <Title>
+                <h3>Register for Live Open Demo</h3>
+                <DateLockup>
+                    <CalendarIcon />
+                    <p>Aug 6th 2024 · 9AM PST</p>
+                </DateLockup>
+            </Title>
 			<Input {...register('name')} error={errors['name']} placeholder="Enter your name" label="Name" required />
 			<Input {...register('email')} error={errors['email']} placeholder="Enter your work email" label="Email" required />
 			<Input {...register('company')} error={errors['company']} placeholder="Which company do you work for?" label="Company" required />
 			<Input {...register('jobtitle')} error={errors['jobtitle']} placeholder="What is your role?" label="Job Title" required />
-			<Button color="primary" shape="pill" ariaLabel="Register for our Open Demo on August 6th" label="Submit" type="submit" />
+			<Button color="primary" shape="pill" ariaLabel="Register for our Open Demo on August 6th" label="Register" type="submit" />
 		</Form>
 	);
 };

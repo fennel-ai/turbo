@@ -75,7 +75,7 @@ const GlobalStyles = () => {
 			`} />
 }
 
-export default function App({ Component, pageProps }: AppProps<{ theme: 'light' | 'dark' }>) {
+export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 	const router = useRouter();
 	const system_dark_mode = useSystemDarkMode(false);
 	const currentTheme = pageProps.theme || system_dark_mode ? 'dark' : 'light';
@@ -151,7 +151,7 @@ export default function App({ Component, pageProps }: AppProps<{ theme: 'light' 
 					</SectionTheme>
 					<Component {...pageProps} />
 					<ThemeProvider theme={themes.light}>
-						<Footer />
+						<Footer slim={pageProps.footer === 'slim'} />
 					</ThemeProvider>
 					<Toaster position="bottom-left" toastOptions={toastOptions} />
 				</ThemeProvider>
