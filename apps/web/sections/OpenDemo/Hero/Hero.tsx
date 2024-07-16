@@ -269,7 +269,7 @@ const Hero = () => {
                             <SuccessContent>
                                 <CheckCircleIcon width={40} height={40} />
                                 <h4>Thanks for Registering!</h4>
-                                <p>See you on August 6th.</p>
+                                <p>See you on August 6th. Check your inbox for an invitation to add to your calendar.</p>
                             </SuccessContent>
                         </SuccessOverlay>
                     ) : null}

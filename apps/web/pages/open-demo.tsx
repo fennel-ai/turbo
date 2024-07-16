@@ -1,14 +1,9 @@
 import { GetStaticPropsResult } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
 
 import { Hero } from 'sections/OpenDemo';
 
-export default function OpenDemo({ dismissCTA }: { dismissCTA?: () => void }) {
-    useEffect(() => {
-        dismissCTA?.()
-    }, [dismissCTA]);
-
+export default function OpenDemo() {
     return (
         <>
             <Head>

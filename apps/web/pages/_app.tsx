@@ -17,7 +17,6 @@ import Head from 'next/head';
 import SectionThemeProvider, { SectionTheme } from 'context/SectionTheme';
 
 import { Header } from 'components/Header';
-import BannerCTA from 'components/BannerCTA';
 import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({
@@ -79,13 +78,6 @@ export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 	const router = useRouter();
 	const system_dark_mode = useSystemDarkMode(false);
 	const currentTheme = pageProps.theme || system_dark_mode ? 'dark' : 'light';
-    const [showCTA, setShowCTA] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (localStorage.getItem('hideCTA') !== 'true') {
-            setShowCTA(true);
-        }
-    }, [])
 
 	useEffect(() => {
 		// Track page views
@@ -96,11 +88,6 @@ export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 			router.events.off('routeChangeComplete', handleRouteChange)
 		}
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-    const handleDismissCTA = useCallback(() => {
-        localStorage.setItem('hideCTA', 'true');
-        setShowCTA(false);
-    }, [])
 
 	return (
 		<SectionThemeProvider>
@@ -158,11 +145,10 @@ export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 				</Script>
 				<ThemeProvider theme={themes[currentTheme]}>
 					<GlobalStyles />
-                    {showCTA ? <BannerCTA onDismiss={handleDismissCTA} /> : null}
 					<SectionTheme defaultTheme={currentTheme}>
-						<Header hasCTA={showCTA} />
+						<Header />
 					</SectionTheme>
-					<Component {...pageProps} dismissCTA={handleDismissCTA} />
+					<Component {...pageProps} />
 					<ThemeProvider theme={themes.light}>
 						<Footer slim={pageProps.footer === 'slim'} />
 					</ThemeProvider>
