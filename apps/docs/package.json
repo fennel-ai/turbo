@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "contentlayer dev & next dev --port 3001",
+    "dev": "next dev --port 3001",
     "build": "contentlayer build && next build",
     "start": "next start",
     "lint": "next lint"
