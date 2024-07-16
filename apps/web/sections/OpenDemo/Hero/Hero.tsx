@@ -20,7 +20,6 @@ const Root = styled.div`
 	background-color: ${({ theme }) => theme.surface};
     color: ${({ theme }) => theme.on};
     z-index: 0;
-    min-height: calc(100vh - 4rem);
 
     ${media('md')} {
         padding: 5rem 0 0 0;
@@ -89,7 +88,7 @@ const Form = styled.div`
     position: relative;
     grid-column: span 12;
     background-color: ${({ theme }) => theme.border};
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     border-radius: 0.5rem;
     transform: translate3d(0, 0, 0);
     border: 1px solid ${({ theme }) => theme.color.purple['30']}; 
@@ -196,8 +195,9 @@ const SuccessOverlay = styled.div`
     background-color: ${({ theme }) => theme.surface};
     display: flex;
     flex-direction: column;
-    border-radius: calc(1rem - 4px);
+    border-radius: calc(0.5rem - 1px);
     ${media('md')} {
+        border-radius: calc(1rem - 4px);
         padding: 2rem;
     }
 `;
@@ -228,7 +228,7 @@ const SuccessContent = styled.div`
 `; 
 
 const Hero = () => {
-    const [success, setSuccess] = useState(true);
+    const [success, setSuccess] = useState(false);
 
     return (
         <Root>

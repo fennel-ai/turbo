@@ -162,7 +162,7 @@ export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 					<SectionTheme defaultTheme={currentTheme}>
 						<Header hasCTA={showCTA} />
 					</SectionTheme>
-					<Component {...pageProps} />
+					<Component {...pageProps} dismissCTA={handleDismissCTA} />
 					<ThemeProvider theme={themes.light}>
 						<Footer slim={pageProps.footer === 'slim'} />
 					</ThemeProvider>

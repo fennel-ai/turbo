@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
+import { useTheme } from '@emotion/react';
 import NextLink from 'next/link'
 import { Container } from 'ui';
 import ArrowUpRightIcon from 'ui/icons/arrow-narrow-up-right.svg';
 import CloseIcon from 'ui/icons/close.svg';
+import { useMatchMedia } from 'hooks';
 
 const Root = styled.div`
     position: fixed;
@@ -14,6 +16,16 @@ const Root = styled.div`
     background-color: ${({ theme }) => theme.color.purple['20']};
     display: flex;
     align-items: stretch;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(to left, #F8AC66 0%, #E883CA 24%, #6958CA 46%)
+    }
 `;
 
 const Wrapper = styled(Container)`
@@ -111,19 +123,33 @@ const Dismiss = styled(Link)`
 `;
 
 const BannerCTA = ({ onDismiss }: { onDismiss: () => void }) => {
+    const theme = useTheme();
+    const isDesktop = useMatchMedia(`(min-width: ${theme.breakpoints.md}rem)`);
+
     return (
         <Root>
             <Wrapper>
                 <Content href="/open-demo">
                     <TitleChip><div />Live Open Demo</TitleChip>
-                    <p>Join Co-Founder & CEO Nikhil Garg on August 6th as we deep-dive into Fennel.</p>
-                    <Link>
-                        Learn More
-                        <ArrowUpRightIcon />
-                    </Link>
+                    {
+                        isDesktop ? (
+                            <p>Join Co-Founder & CEO Nikhil Garg on August 6th as we deep-dive into Fennel.</p>
+                        ) : (
+                            <Link>
+                                <p>Join us on Aug 6th</p>
+                                <ArrowUpRightIcon />
+                            </Link>
+                        )
+                    }
+                    {isDesktop ? (
+                        <Link>
+                            Learn More
+                            <ArrowUpRightIcon />
+                        </Link>
+                    ) : null}
                 </Content>
                 <Dismiss onClick={onDismiss}>
-                    Dismiss
+                    {isDesktop ? 'Dismiss' : ''}
                     <CloseIcon />
                 </Dismiss>
             </Wrapper>
