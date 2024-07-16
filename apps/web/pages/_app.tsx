@@ -1,5 +1,5 @@
 import { Global, css, ThemeProvider, useTheme } from '@emotion/react';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import type { AppProps } from 'next/app';
@@ -79,6 +79,13 @@ export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 	const router = useRouter();
 	const system_dark_mode = useSystemDarkMode(false);
 	const currentTheme = pageProps.theme || system_dark_mode ? 'dark' : 'light';
+    const [showCTA, setShowCTA] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (localStorage.getItem('hideCTA') !== 'true') {
+            setShowCTA(true);
+        }
+    }, [])
 
 	useEffect(() => {
 		// Track page views
@@ -89,6 +96,11 @@ export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 			router.events.off('routeChangeComplete', handleRouteChange)
 		}
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handleDismissCTA = useCallback(() => {
+        localStorage.setItem('hideCTA', 'true');
+        setShowCTA(false);
+    }, [])
 
 	return (
 		<SectionThemeProvider>
@@ -146,9 +158,9 @@ export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 				</Script>
 				<ThemeProvider theme={themes[currentTheme]}>
 					<GlobalStyles />
-                    <BannerCTA />
+                    {showCTA ? <BannerCTA onDismiss={handleDismissCTA} /> : null}
 					<SectionTheme defaultTheme={currentTheme}>
-						<Header hasCTA={true} />
+						<Header hasCTA={showCTA} />
 					</SectionTheme>
 					<Component {...pageProps} />
 					<ThemeProvider theme={themes.light}>

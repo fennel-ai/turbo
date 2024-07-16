@@ -110,7 +110,7 @@ const Dismiss = styled(Link)`
     }
 `;
 
-const BannerCTA = () => {
+const BannerCTA = ({ onDismiss }: { onDismiss: () => void }) => {
     return (
         <Root>
             <Wrapper>
@@ -122,7 +122,7 @@ const BannerCTA = () => {
                         <ArrowUpRightIcon />
                     </Link>
                 </Content>
-                <Dismiss>
+                <Dismiss onClick={onDismiss}>
                     Dismiss
                     <CloseIcon />
                 </Dismiss>
