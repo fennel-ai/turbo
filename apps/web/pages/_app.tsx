@@ -1,5 +1,5 @@
 import { Global, css, ThemeProvider, useTheme } from '@emotion/react';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import type { AppProps } from 'next/app';
@@ -17,7 +17,7 @@ import Head from 'next/head';
 import SectionThemeProvider, { SectionTheme } from 'context/SectionTheme';
 
 import { Header } from 'components/Header';
-// import { Footer } from 'components/Footer';
+import BannerCTA from 'components/BannerCTA';
 import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({
@@ -75,10 +75,17 @@ const GlobalStyles = () => {
 			`} />
 }
 
-export default function App({ Component, pageProps }: AppProps<{ theme: 'light' | 'dark' }>) {
+export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 	const router = useRouter();
 	const system_dark_mode = useSystemDarkMode(false);
 	const currentTheme = pageProps.theme || system_dark_mode ? 'dark' : 'light';
+    const [showCTA, setShowCTA] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (localStorage.getItem('hideCTA') !== 'true') {
+            setShowCTA(true);
+        }
+    }, [])
 
 	useEffect(() => {
 		// Track page views
@@ -89,6 +96,11 @@ export default function App({ Component, pageProps }: AppProps<{ theme: 'light' 
 			router.events.off('routeChangeComplete', handleRouteChange)
 		}
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handleDismissCTA = useCallback(() => {
+        localStorage.setItem('hideCTA', 'true');
+        setShowCTA(false);
+    }, [])
 
 	return (
 		<SectionThemeProvider>
@@ -146,12 +158,13 @@ export default function App({ Component, pageProps }: AppProps<{ theme: 'light' 
 				</Script>
 				<ThemeProvider theme={themes[currentTheme]}>
 					<GlobalStyles />
+                    {showCTA ? <BannerCTA onDismiss={handleDismissCTA} /> : null}
 					<SectionTheme defaultTheme={currentTheme}>
-						<Header />
+						<Header hasCTA={showCTA} />
 					</SectionTheme>
-					<Component {...pageProps} />
+					<Component {...pageProps} dismissCTA={handleDismissCTA} />
 					<ThemeProvider theme={themes.light}>
-						<Footer />
+						<Footer slim={pageProps.footer === 'slim'} />
 					</ThemeProvider>
 					<Toaster position="bottom-left" toastOptions={toastOptions} />
 				</ThemeProvider>
