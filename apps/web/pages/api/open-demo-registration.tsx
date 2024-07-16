@@ -8,8 +8,8 @@ export default async function handler(
     try {
         const { body } = request;
 
-        if (!body.name || !body.role || !body.email) {
-            response.status(400).json({
+        if (!body.name || !body.jobtitle || !body.email) {
+            return response.status(400).json({
                 body: "Malformed Request Body"
             });
         }
@@ -42,7 +42,7 @@ export default async function handler(
                     }, 
                     {
                         name: 'jobtitle',
-                        value: body.role
+                        value: body.jobtitle
                     }
                 ],
                 context: {
@@ -62,6 +62,7 @@ export default async function handler(
             cookies: request.cookies,
         });
     } catch (e) {
+        console.log(e);
         response.status(500).json({
             body: {
                 "status": "error"
