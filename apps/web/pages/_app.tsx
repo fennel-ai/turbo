@@ -17,7 +17,7 @@ import Head from 'next/head';
 import SectionThemeProvider, { SectionTheme } from 'context/SectionTheme';
 
 import { Header } from 'components/Header';
-// import { Footer } from 'components/Footer';
+import BannerCTA from 'components/BannerCTA';
 import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({
@@ -146,8 +146,9 @@ export default function App({ Component, pageProps }: AppProps<BasePageProps>) {
 				</Script>
 				<ThemeProvider theme={themes[currentTheme]}>
 					<GlobalStyles />
+                    <BannerCTA />
 					<SectionTheme defaultTheme={currentTheme}>
-						<Header />
+						<Header hasCTA={true} />
 					</SectionTheme>
 					<Component {...pageProps} />
 					<ThemeProvider theme={themes.light}>
