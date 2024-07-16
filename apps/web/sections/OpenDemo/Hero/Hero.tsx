@@ -269,9 +269,8 @@ const Hero = () => {
                             <SuccessContent>
                                 <CheckCircleIcon width={40} height={40} />
                                 <h4>Thanks for Registering!</h4>
-                                <p>See you on August 6th</p>
+                                <p>See you on August 6th.</p>
                             </SuccessContent>
-                            <Button variant='outline' shape="pill" ariaLabel="Add to your calendar" label="Add to Calendar" type="submit" />
                         </SuccessOverlay>
                     ) : null}
                 </Form>
