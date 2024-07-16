@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, useState } from 'react';
+import { FormEventHandler, ForwardedRef, forwardRef, KeyboardEvent, useCallback } from 'react';
 import { useForm, ChangeHandler, SubmitHandler, FieldError } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,7 +22,7 @@ interface IFormData {
     jobtitle: string;
 }
 
-const Form = styled.form`
+const RegistrationForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -191,32 +191,31 @@ const OpenDemoRegistrationForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 		resolver: yupResolver(validation),
 	});
 
-	const submitForm: SubmitHandler<IFormData> = async data => {
-		try {
-			await fetch('/api/open-demo-registration', {
-				method: "POST",
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
+    const submitForm: SubmitHandler<IFormData> = useCallback(async data => {
+        try {
+            await fetch('/api/open-demo-registration', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
                     ...data,
                     pageUri: window.location.href,
                     hutk: hubspotCookie()
-
                 })
-			});
+            });
 
-			reset();
+            reset();
 
             toast.success("Thanks for registering, See you in August!")
-			onSubmit?.();
-		} catch (error) {
-			toast.error('Something went wrong! Please try again.')
-		}
-	};
+            onSubmit?.();
+        } catch (error) {
+            toast.error('Something went wrong! Please try again.')
+        }
+    }, [onSubmit, reset]);
 
 	return (
-		<Form onSubmit={handleSubmit(submitForm)}>
+        <RegistrationForm id='open_demo_registration' onSubmit={handleSubmit(submitForm)}>
             <Title>
                 <h3>Register for Live Open Demo</h3>
                 <DateLockup>
@@ -228,8 +227,8 @@ const OpenDemoRegistrationForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 			<Input {...register('email')} error={errors['email']} placeholder="Enter your work email" label="Email" required />
 			<Input {...register('company')} error={errors['company']} placeholder="Which company do you work for?" label="Company" required />
 			<Input {...register('jobtitle')} error={errors['jobtitle']} placeholder="What is your role?" label="Job Title" required />
-			<Button color="primary" shape="pill" ariaLabel="Register for our Open Demo on August 6th" label="Register" type="submit" />
-		</Form>
+            <Button color="primary" shape="pill" ariaLabel="Register for our Open Demo on August 6th" label="Register" type="submit" />
+		</RegistrationForm>
 	);
 };
 
