@@ -1,10 +1,7 @@
 import { Hero } from "ui";
 import styled from '@emotion/styled';
-import { useRouter } from "next/router";
 
 import { media } from "styles/utils";
-import CTAPill from "components/CTAPill";
-import Link from "next/link";
 
 const Root = styled.div`
     position: relative;
@@ -33,7 +30,6 @@ export const HeroV2 = () => {
 		<Root data-section>
 			<Background />
             <Hero
-                subtitle={<Link href="/open-demo"><CTAPill /></Link>}
                 title="Realtime Feature Platform. Beautifully Built."
                 text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features."
             />

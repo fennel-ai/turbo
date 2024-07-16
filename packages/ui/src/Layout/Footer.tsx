@@ -9,7 +9,7 @@ import Logo from '../../icons/logo.svg';
 import { media } from 'styles/utils';
 import {SubscribeToNewsletter} from './SubscribeToNewsletter';
 
-const Root = styled.footer`
+const Root = styled.footer<{slim?: boolean}>`
     background-color: ${({ theme }) => theme.surface};
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -23,8 +23,8 @@ const Root = styled.footer`
     }
 
     ${media('sm')} {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
+        padding-top: ${({ slim }) => slim ? 1 : 5}rem;
+        padding-bottom: ${({ slim }) => slim ? 1 : 5}rem;
     }
 `;
 
@@ -36,12 +36,12 @@ const Wrapper = styled(Container)`
 
 `;
 
-const Credit = styled.div`
+const Credit = styled.div<{ slim?: boolean }>`
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 1rem;
-    border-top: 0.5px solid ${({ theme }) => theme.border};
-    padding-top: 2rem;
+    border-top: ${({ slim, theme }) => slim ? 'unset' : `0.5px solid ${theme.border}`};
+    padding-top: ${({ slim }) => slim ? 0 : 2}rem;
 
     & > p {
         text-align: center;
@@ -192,46 +192,50 @@ const Menu = styled.div`
     }
 `;
 
-export const Footer = () => {
+export const Footer = ({ slim = false }: { slim?: boolean }) => {
     return (
-        <Root>
+        <Root slim={slim}>
             <Wrapper>
-                <Content>
-                    <SubscribeCta>
-                        <h4>Subscribe for updates:</h4>
-                        <SubscribeToNewsletter/>
-                    </SubscribeCta>
-                    <Spacer />
-                    <Menu>
-                        <h4>Resources</h4>
-                        <ul>
-                            <li>
-                                <Link href="https://fennel.ai/docs">Documentation</Link>
-                            </li>
-                            <li>
-                                <Link href="https://fennel.ai/blog">Blog</Link>
-                            </li>
-                        </ul>
-                    </Menu>
-                    <Menu>
-                        <h4>Company</h4>
-                        <ul>
-                            <li>
-                                <Link href="https://fennel.ai/company">About</Link>
-                            </li>
-                            <li>
-                                <Link href="https://fennel.ai/get-a-demo">Request a Demo</Link>
-                            </li>
-                            <li>
-                                <Link href="https://fennel.ai/careers">Careers</Link>
-                            </li>
-                            <li>
-                                <Link href="https://fennel.ai/legal/subprocessors">Subprocessors</Link>
-                            </li>
-                        </ul>
-                    </Menu>
-                </Content>
-                <Credit>
+                {
+                    !slim ? (
+                        <Content>
+                            <SubscribeCta>
+                                <h4>Subscribe for updates:</h4>
+                                <SubscribeToNewsletter />
+                            </SubscribeCta>
+                            <Spacer />
+                            <Menu>
+                                <h4>Resources</h4>
+                                <ul>
+                                    <li>
+                                        <Link href="https://fennel.ai/docs">Documentation</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="https://fennel.ai/blog">Blog</Link>
+                                    </li>
+                                </ul>
+                            </Menu>
+                            <Menu>
+                                <h4>Company</h4>
+                                <ul>
+                                    <li>
+                                        <Link href="https://fennel.ai/company">About</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="https://fennel.ai/get-a-demo">Request a Demo</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="https://fennel.ai/careers">Careers</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="https://fennel.ai/legal/subprocessors">Subprocessors</Link>
+                                    </li>
+                                </ul>
+                            </Menu>
+                        </Content>
+                    ) : null
+                }
+                <Credit slim={slim}>
                    <Brand>
                         <Logo />
                         <p>Fennel</p>

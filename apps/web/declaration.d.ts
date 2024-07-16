@@ -5,4 +5,5 @@ declare module '*.scss' {
 
 interface BasePageProps {
 	theme: 'dark' | 'light';
+    footer?: 'slim' | 'default';
 }
