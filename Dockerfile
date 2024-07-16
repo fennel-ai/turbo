@@ -1,4 +1,4 @@
-FROM node:21.7.4 AS base
+FROM node:20 AS base
 
 # install pnpm and turbo
 RUN npm i -g pnpm@8.11.0
