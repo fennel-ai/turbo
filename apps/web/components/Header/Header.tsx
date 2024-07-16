@@ -10,9 +10,9 @@ import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
 import { MobileMenu } from './MobileMenu';
 
-const Root = styled.div<{ hasCTA?: boolean }>`
+const Root = styled.div`
 	position: fixed;
-	top: ${({ hasCTA }) => hasCTA ? '2.5rem' : 0 };
+	top: 0;
 	left: 0;
 	right: 0;
 	height: 3rem;
@@ -149,7 +149,7 @@ const NavButton = styled.button`
 	}
 `;
 
-export const Header = ({ hasCTA }: { hasCTA?: boolean }) => {
+export const Header = () => {
 	const router = useRouter();
 	const [showMobileMenu, toggleMobileMenu] = useState(false);
 
@@ -160,7 +160,7 @@ export const Header = ({ hasCTA }: { hasCTA?: boolean }) => {
 	}, [router.pathname]);
 
 	return (
-		<Root data-header hasCTA={hasCTA}>
+		<Root data-header>
 			<Backdrop />
 			<Wrapper>
 				<Brand />
