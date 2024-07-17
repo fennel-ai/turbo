@@ -1,4 +1,4 @@
-FROM node:22 AS base
+FROM node:20 AS base
 
 # install pnpm and turbo
 RUN npm i -g pnpm@9.0.3
@@ -27,4 +27,4 @@ COPY --from=builder /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 RUN pnpm install
 
 EXPOSE 3001:3001
-CMD pnpm run dev --filter=docs...
+CMD (cd apps/docs && npx contentlayer dev) & pnpm run dev --filter=docs...
