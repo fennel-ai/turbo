@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3001 & contentlayer dev",
+    "dev": "next dev --port 3001",
     "build": "contentlayer build && next build",
     "start": "next start",
-    "lint": "next lint",
-    "dev-cl": "contentlayer build"
+    "lint": "next lint"
   },
   "dependencies": {
     "@docsearch/react": "3",
