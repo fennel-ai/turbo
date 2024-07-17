@@ -7,7 +7,7 @@
     "build": "contentlayer build && next build",
     "start": "next start",
     "lint": "next lint",
-    "dev-cl": "contentlayer dev"
+    "dev-cl": "contentlayer build"
   },
   "dependencies": {
     "@docsearch/react": "3",
