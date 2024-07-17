@@ -104,7 +104,7 @@ const Stars = () => {
 	});
 
 	return (
-		<lineSegments ref={linesRef}>
+		<lineSegments ref={linesRef as any}>
 			<bufferGeometry>
 				<bufferAttribute
 					attach="attributes-position"

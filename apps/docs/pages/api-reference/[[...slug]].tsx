@@ -76,7 +76,7 @@ const APIReferenceSection = ({ children, index, slug, onWaypoint }: PropsWithChi
 export default function ApiReferencePage({ pages, navigation, requestedSlug, version }: Props) {
     const router = useRouter();
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         let timeoutId: NodeJS.Timeout | undefined = undefined
         if (requestedSlug) {
             timeoutId = setTimeout(() => {
