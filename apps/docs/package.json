@@ -6,7 +6,8 @@
     "dev": "next dev --port 3001",
     "build": "contentlayer build && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev-cl": "contentlayer dev"
   },
   "dependencies": {
     "@docsearch/react": "3",

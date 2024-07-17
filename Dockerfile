@@ -1,7 +1,7 @@
 FROM node:20 AS base
 
 # install pnpm and turbo
-RUN npm i -g pnpm@8.11.0
+RUN npm i -g pnpm@9.0.3
 RUN npm i -g turbo
 
 ######
@@ -27,4 +27,6 @@ COPY --from=builder /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 RUN pnpm install
 
 EXPOSE 3001:3001
-CMD pnpm turbo run dev --filter=docs...
+RUN cd apps/docs
+RUN pnpm run dev-cl
+CMD cd ../../ && pnpm run dev --filter=docs...
