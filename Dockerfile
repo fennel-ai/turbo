@@ -1,7 +1,7 @@
 FROM node:20 AS base
 
 
-RUN apt-get update && apt-get install -y netcat
+RUN apt-get update && apt-get install -y netcat-traditional
 
 # install pnpm and turbo
 RUN npm i -g pnpm@9.0.3
