@@ -26,10 +26,5 @@ COPY --from=builder /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
 RUN pnpm install
 
-RUN cd apps/docs && \
-    touch .env && \
-    echo MODE=EDIT >> .env && \
-    cd ../../
-
 EXPOSE 3001:3001
 CMD pnpm run dev --filter=docs...
