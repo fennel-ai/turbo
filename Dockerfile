@@ -1,4 +1,4 @@
-FROM node:18 AS base
+FROM node:20 AS base
 
 # install pnpm and turbo
 RUN npm i -g pnpm@9.0.3
@@ -25,6 +25,11 @@ COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
 RUN pnpm install
+
+RUN cd apps/docs && \
+    touch .env && \
+    echo MODE=EDIT >> .env && \
+    cd ../../
 
 EXPOSE 3001:3001
 CMD pnpm run dev --filter=docs...

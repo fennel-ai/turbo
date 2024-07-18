@@ -36,6 +36,7 @@ const githubSource = async () => {
 
   const processHead = process.env.HEAD_REF;
 
+  console.log("Checking contentDir")
   await fs.ensureDir(contentDir);
 
   if (process.env.MODE === "EDIT") {
@@ -54,6 +55,7 @@ const githubSource = async () => {
       { overwrite: true }
     );
   } else {
+    console.log("Emptying contentDir")
     await fs.emptyDir(CONTENT_DIR);
 
     console.log(`Pulling content from content repo...`);
