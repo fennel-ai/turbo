@@ -40,6 +40,7 @@ const githubSource = async () => {
   await fs.ensureDir(contentDir);
   console.log("contentDir checked")
 
+  console.log("process.env.MODE:", process.env.MODE)
   if (process.env.MODE === "EDIT") {
     console.log(
       `[Edit Mode]: Content will not be fetched from the content repo`
