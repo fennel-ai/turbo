@@ -23,7 +23,7 @@ const Bubble = styled.div`
 	padding-left: 0.25rem;
 	padding-right: 0.25rem;
 	flex: 1;
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.semibold};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.semibold};
 `;
 
 export const KeyIndicator = ({ className, label }: { className?: string, label: string }) => {

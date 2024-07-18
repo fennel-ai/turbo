@@ -1,10 +1,15 @@
-import { Button, Hero } from "ui";
+import { Hero } from "ui";
 import styled from '@emotion/styled';
+import { useRouter } from "next/router";
 
+import { media } from "styles/utils";
+import CTAPill from "components/CTAPill";
 import Link from "next/link";
-import { media, rgba } from "styles/utils";
-import ArrowNarrowUpRightIcon from 'ui/icons/arrow-narrow-up-right.svg'
 
+const Root = styled.div`
+    position: relative;
+    overflow: hidden;
+`;
 
 const Background = styled.div`
 	position: absolute;
@@ -12,7 +17,7 @@ const Background = styled.div`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 1;
+	z-index: -1;
 	background: url('/images/herov2.png') no-repeat;
 	background-position: center top;
 	height: 35rem;
@@ -21,17 +26,17 @@ const Background = styled.div`
 	${media('sm')} {
         height: 43rem;
 	}
-
 `;
 
 export const HeroV2 = () => {
-	return (
-		<div data-section>
-			<Background />
-                    <Hero
-                        title="Realtime Feature Platform. Beautifully Built."
-                        text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features."
-                    />
-		</div>
-	);
+    return (
+        <Root data-section>
+            <Background />
+            <Hero
+                subtitle={<Link href="/open-demo"><CTAPill /></Link>}
+                title="Realtime Feature Platform. Beautifully Built."
+                text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features."
+            />
+        </Root>
+    );
 };

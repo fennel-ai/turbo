@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Global, css, ThemeProvider, useTheme } from '@emotion/react';
 import type { AppProps } from 'next/app'
 import Script from 'next/script';
@@ -7,14 +7,15 @@ import localFont from '@next/font/local';
 import { Toaster } from 'react-hot-toast';
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
+import Head from 'next/head';
+
+import { useSystemDarkMode } from 'hooks';
+import { ShellContextProvider } from 'context/Shell';
+import { DarkThemeProvider } from 'context/CustomTheme/provider';
 
 import * as themes from 'styles';
 import 'styles/index.css';
 import "@docsearch/css";
-
-import { ShellContextProvider } from 'context/Shell';
-import Head from 'next/head';
-import { useSystemDarkMode } from 'hooks';
 
 export const haskoyVariable = localFont({
 	src: [{
@@ -46,14 +47,14 @@ const GlobalStyles = () => {
 	const theme = useTheme();
 
 	return <Global styles={css`
-		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap');
 
 		* {
 			box-sizing: border-box;
 		}
 
 		body {
-			background-color: ${theme.background};
+			background-color: ${theme.surface};
 			color: ${theme.on_alt};
 			margin: 0;
 			padding: 0;
@@ -76,7 +77,12 @@ export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter()
 
 	const system_dark_mode = useSystemDarkMode();
-	const currentTheme = system_dark_mode ? 'dark' : 'light';
+	const [currentTheme, setCurrentTheme] = useState<'dark'|'light'>(system_dark_mode ? 'dark' : 'light');
+
+	useEffect(()=> {
+		setCurrentTheme(system_dark_mode ? 'dark' : 'light')
+	}, [system_dark_mode])
+
 
 	useEffect(() => {
 		// Track page views
@@ -120,6 +126,11 @@ export default function App({ Component, pageProps }: AppProps) {
 						s.parentNode.insertBefore(b, s);})(window.lintrk);
 					`}
 				</Script>
+                <Script id="koala">
+                    {
+                        `!function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://cdn.getkoala.com/v1/pk_7c31a0d9bc3b7f2b546734e2a7a028b235d5/sdk.js"),(document.body || document.head).appendChild(n)}();`
+                    }
+                </Script>
 				<noscript>
 					<img height="1" width="1" style={{ display: 'none' }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=3952620&fmt=gif`} />
 				</noscript>
@@ -129,11 +140,21 @@ export default function App({ Component, pageProps }: AppProps) {
                         `(function(e, f, g, h, i){$salespanel = window.$salespanel || (window.$salespanel = []);__sp = i;var a=f.createElement(g);a.type="text/javascript";a.async=1;a.src=("https:" == f.location.protocol ? "https://" : "http://") + h;var b = f.getElementsByTagName(g)[0];b.parentNode.insertBefore(a,b);})(window, document, "script", "salespanel.io/src/js/ff9fc453-2b98-4512-87e3-db4acce2b205/sp.js", "ff9fc453-2b98-4512-87e3-db4acce2b205");`
                     }
                 </Script>
-				<ThemeProvider theme={themes[currentTheme]}>
-					<GlobalStyles />
-					<Component {...pageProps} />
-					<Toaster position="bottom-left" toastOptions={toastOptions} />
-				</ThemeProvider>
+				<Script id="apollo">
+					{
+						`function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+						o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+						o.onload=function(){window.trackingFunctions.onLoad({appId:"663146dcde13170300f134d7"})},
+						document.head.appendChild(o)}initApollo();`
+					}
+				</Script>
+				<DarkThemeProvider theme={currentTheme} setTheme={setCurrentTheme}>
+					<ThemeProvider theme={themes[currentTheme]}>
+						<GlobalStyles />
+						<Component {...pageProps} />
+						<Toaster position="bottom-left" toastOptions={toastOptions} />
+					</ThemeProvider>
+				</DarkThemeProvider>
 			</ShellContextProvider>
 		</PostHogProvider>
 	)

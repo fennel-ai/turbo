@@ -1,21 +1,51 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { GetStaticPropsContext, GetStaticPaths, GetStaticProps } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { allPages } from 'contentlayer/generated';
+import { allPages, allConfigs } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
 import * as components from 'components/MDXComponents';
-import { getNavigation, getPageData, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
+import { getNavigation, getPageData, getRequestedVersionId, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 type Props = {
 	page: NavigationPage,
 	navigation: NavigationTree,
 	section: NavigationSection,
 	code: string,
+	headings: {level: number, title: string}[]
+	redirect?: string;
+    version: string;
 }
 
-export default function DocumentationPage({ page, navigation, section, code }: Props) {
+const Wrapper = styled.div`
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+`
+const MDXWrapper = styled.div`
+	grid-column: span 8;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3rem;
+`
+
+const MarginWrapper = styled.div`
+	grid-column: span 1;
+`
+
+export default function DocumentationPage({ page, navigation, section, code, headings, redirect, version }: Props) {
+
+	const router = useRouter();
+
+	useEffect((() => {
+		if (redirect) {
+			router.push(redirect);
+		}
+	}), [redirect])
+
 	const ctxValue = useMemo(() => ({
 		page,
 		section,
@@ -23,9 +53,9 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 
 	const MDXContent = useMDXComponent(code);
 
-	return (
+	return !redirect ? (
 		<LayoutContext.Provider value={ctxValue}>
-			<Layout navigation={navigation}>
+			<Layout navigation={navigation} headings={headings} path={page._id} version={version}>
 				<Head>
 					<title>{page.title}</title>
 					{page.description ? <meta name="description" content={page.description} /> : null}
@@ -54,37 +84,65 @@ export default function DocumentationPage({ page, navigation, section, code }: P
 					<meta name="apple-mobile-web-app-title" content="Fennel" />
 					<meta name="application-name" content="Fennel" />
 				</Head>
-				{/** @ts-ignore */}
-				<MDXContent components={components} />
+				<Wrapper>
+					<MDXWrapper>
+					{/* @ts-ignore */}
+						<MDXContent components={components} />
+					</MDXWrapper>
+					<MarginWrapper/>
+				</Wrapper>
 			</Layout>
 		</LayoutContext.Provider>
-	);
+	) : null;
 }
 
-export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 	const { params } = ctx;
-	const slug = (params!.slug as string[])?.join('/');
-	const { code, page, section } = getPageData(slug || '/');
+    let slug = (params!.slug as string[])?.join('/');
+
+    const version = getRequestedVersionId(params);
+    const navigation = getNavigation(version, false);
+
+    // If the user directly requests a "slug section" i.e. navigates directly to /concepts rather than /concepts/introduction,
+    // then redirect them to the first page in the section.
+	const isSlugSection = navigation.find(({slug: secSlug}) => secSlug === slug)
+    
+    let redirect = '';
+	if (isSlugSection) {
+		redirect = isSlugSection.pages[0].slug;
+		slug = redirect;
+	}
+
+    const { code, page, section, headings } = getPageData(slug || '/');
 
 	return {
 		props: {
-			navigation: getNavigation(),
+			navigation,
 			section,
 			page,
 			code,
+			headings,
+			redirect,
+            version
 		}
 	}
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
+    const pagePaths = allPages
+        .filter(shouldPublish)
+        .filter(({ section, version }) => {
+            const config = allConfigs.find((c) => c.version === version)!;
+            return !!config.sidebar!.find((s) => s.slug === section)
+        }) // HOTFIX
+        .map((page) => ({
+            params: {
+                slug: page.slug!.split('/'),
+            }
+        }));
+
 	return {
-		paths: allPages
-			.filter(shouldPublish)
-			.map((page) => ({
-				params: {
-					slug: page.slug!.split('/'),
-				}
-			})),
+		paths: pagePaths,
 		fallback: false,
 	}
 }

@@ -1,23 +1,23 @@
 import styled from '@emotion/styled';
 import { Page } from 'contentlayer/generated';
+import { rgba, stateLayer } from "styles/utils";
 
 const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page['status'] }>`
-	font-size: 1.125rem;
-	line-height: 2rem;
-	color: ${({ active, theme }) => active ? theme.primary.accent : theme.on_alt};
-	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.medium};
-	opacity: ${({ fade }) => fade ? 0.64 : 1};
+	font-size: 0.875rem;
+	color: ${({ active, theme }) => active ? theme.on : theme.on_alt};
+	font-variation-settings: 'wght' ${({ theme }) => theme.fontWeights.primary.medium};
 	position: relative;
 	display: flex;
-	align-items: stretch;
-
-	&::before {
+	align-items: center;
+	border-left:  1px solid ${({ theme, active }) => active ? theme.primary.accent : theme.border};
+	scroll-margin-bottom: 2rem;
+	&::after {
 		content: '';
 		width: 6px;
 		height: 6px;
 		position: absolute;
-		top: calc(50% - 3px);
-		left: calc(-16px - 3px);
+		left: 90%;
+		margin-right: 50px;
 		border-radius: 50%;
 		background-color: ${({ status, theme }) => {
 			switch (status) {
@@ -30,10 +30,16 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	}
 
 	&:hover {
-		color: ${({ active, theme }) => active ? theme.primary.accent : theme.on};
+		background-color: ${({ theme }) => rgba(theme.on,0.04)};
+		border-radius: 0 5px 5px 0;
 	}
 
 	& > a {
+		
+		display: flex;
+		align-items: center;
+		padding-left: 1rem;
+		height: 2rem;
 		text-decoration: none;
 		color: inherit;
 		flex: 1;

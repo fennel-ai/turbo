@@ -7,7 +7,7 @@ import { media } from "styles/utils";
 import { useRouter } from "next/router";
 
 const Main = styled.main`
-	min-height: calc(100vh - 4.5rem - 8rem);
+	min-height: calc(100vh - 3.5rem - 8rem);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -38,7 +38,7 @@ const Main = styled.main`
 		margin: 0;
 		color: ${({ theme }) => theme.on_alt};
 		font-size: 1rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 		${media('xs')} {
 			font-size: 1.5rem;
 		}
@@ -69,7 +69,7 @@ export default function NotFoundPage() {
 	const router = useRouter();
 	return (
 		<>
-			<Header />
+			<Header version="main" />
 			<Main>
 				<BackgroundText>404</BackgroundText>
 				<h2>We can&apos;t find the page you&apos;re looking for!</h2>

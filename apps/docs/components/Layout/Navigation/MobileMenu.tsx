@@ -19,6 +19,8 @@ import ModalSheet from 'components/ModalSheet';
 import { useLayoutContext } from '../useLayoutContext';
 import { useBreakpoint } from 'hooks/useBreakpoint';
 
+import GitHubIcon from 'ui/icons/github.svg';
+
 const Root = styled(motion.div)`
 	position: fixed;
 	top: 0;
@@ -74,7 +76,8 @@ const DemoCta = styled(Button)`
 
 type Props = {
 	onClose: MouseEventHandler,
-	items: NavigationTree
+	items: NavigationTree,
+	isAPI?: boolean,
 }
 
 const ANIM = {
@@ -108,7 +111,6 @@ const MobileMenu = (props: Props) => {
 							const sectionActive = ctx.section.slug === section.slug;
 							return (
 								<NavigationSection
-									expand
 									key={section.slug}
 									title={section.title}
 									href={section.pages[0].slug}
@@ -123,7 +125,7 @@ const MobileMenu = (props: Props) => {
 												key={slug} 
 												onClick={toggleMobileMenu}
 											>
-												<Link aria-label={title} href={slug}>{title}</Link>
+												<Link aria-label={title} href={props.isAPI ? slug.replace('api-reference/','') : slug}>{title}</Link>
 											</NavigationItem>
 										)
 									})}
@@ -133,9 +135,14 @@ const MobileMenu = (props: Props) => {
 					}
 					{
 						showCta ? (
+							<>
 							<a aria-label="Request a demo" href="https://fennel.ai/get-a-demo">
 								<DemoCta ariaLabel="Request a demo" label='Request a demo' />
 							</a>
+							<a aria-label="Github" href="https://github.com/fennel-ai/client/">
+								<DemoCta ariaLabel="Github" label='Github' icon={<GitHubIcon/>} />
+							</a>
+							</>
 						) : null
 					}
 				</Menu>

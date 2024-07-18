@@ -1,52 +1,104 @@
 import { Octokit } from "octokit";
 import { Readable } from "node:stream";
+import path from 'node:path';
 import fs from "fs-extra";
+import { globby } from 'globby';
 import tar from "tar-fs";
 import gunzip from "gunzip-maybe";
 
-const fetchContent = async (token, dir) =>
-  new Promise(async (resolve, reject) => {
+const moveFiles = async (patterns, src, target) => {
+   const files = await globby(
+     patterns.map((pattern) => path.join(src, pattern))
+   );
+
+   console.log("Getting all files: ", files)
+   
+   for await (const file of files) {
+        const targetPath = path.join(target, path.relative(src, file));
+        console.log(`Moving file ${file} to ${targetPath}`)
+        await fs.move(file, targetPath, { overwrite: true });
+      }
+};
+
+const fetchContent = async (token, dir, versions) => {
     if (!token) {
-      reject("No github token provided.");
+        throw new Error("No github token provided.");
     }
 
     const octo = new Octokit({
       auth: token,
     });
 
-    // Clear the content dir, this also created the dir if it doesn't exist.
-    await fs.emptyDir(dir);
+    const processVersion = async (version) => {
+        const outputDir = path.join(dir, version.name);
+        const publicDir = path.join(process.cwd(), 'public');
+        const tmpDir = path.join('.tmp', version.head);
 
-    // Fetch the repo as a tarball
-    const { data } = await octo.request(
-      "GET /repos/{owner}/{repo}/tarball/{?ref}",
-      {
-        owner: "fennel-ai",
-        repo: "client",
-        ref: "main",
-      }
-    );
+        await fs.emptyDir(outputDir);
+        await fs.ensureDir(tmpDir, { recursive: true });
 
-    // Create a readable stream from the tar blob
-    const stream = new Readable();
-    stream._read = () => {};
+        const { data } = await octo.request(
+            "GET /repos/{owner}/{repo}/tarball/{ref}",
+            {
+                owner: "fennel-ai",
+                repo: "client",
+                ref: version.head,
+            }
+        );
 
-    stream.push(Buffer.from(data));
-    stream.push(null);
+        const stream = new Readable({
+            read() {
+                this.push(Buffer.from(data));
+                this.push(null);
+            },
+        });
 
-    // gunzip it and then extract.
-    stream.pipe(gunzip()).pipe(
-      tar.extract('.tmp', {
-        finish: () => {
-			// TODO: THis isn't the most efficient right now, but will need changing either way to support incremental builds
-			// Will circle back when working on support for incremental builds.
-			fs.moveSync('.tmp/docs', dir, { overwrite: true });
-			fs.rmSync('.tmp', { recursive: true });
-			resolve();
-		},
-        strip: 1, // Here we strip the first path segment so that the files are placed directly into the content dir instead of `content_dir/repo_name_with_hash/*`
-      })
-    );
-  });
+        return new Promise((resolve, reject) => 
+            stream
+                .pipe(gunzip())
+                .pipe(
+                    tar.extract(tmpDir, {
+                        finish: async () => {
+                          // Move source content and config files to _content/{version.name}
+                          await moveFiles(
+                            [
+                              "pages/**",
+                              "examples/**",
+                              "api.yml",
+                              "index.yml",
+                              "versions.yml",
+                            ],
+                            path.join(tmpDir, "docs"),
+                            outputDir
+                          );
+
+                          // Move assets related files to public/{version.name}
+                          console.log(`Moving assets to public/${version.name}`)
+                          await moveFiles(
+                            ["assets/**"],
+                            path.join(tmpDir, "docs"),
+                            path.join(publicDir, version.name)
+                          );
+
+                          // Clean up
+                          await fs.rm(tmpDir, { recursive: true });
+                          resolve();
+                        },
+                        strip: 1, // Here we strip the first path segment so that the files are placed directly into outputDir instead of `{outputDir}/repo_name_with_hash/*`
+                    })
+                )
+                .on('error', reject)
+        )
+    };
+
+    // Create .tmp if not present
+    await fs.ensureDir(".tmp");
+
+    // Process all versions
+    await Promise.all(versions.map(processVersion));
+
+    // Clean up
+    await fs.rm(".tmp", { recursive: true });
+};
 
 export default fetchContent;

@@ -46,7 +46,7 @@ const Root = styled.button<{ size: 'small' | 'large', hasIcon: boolean, invert: 
         flex-shrink: 0;
     }
 
-	${({ invert, theme }) => stateLayer(invert ? 0.80 : 0.04, theme.on)};
+	${({ invert, theme }) => stateLayer({ initial: invert ? 0.80 : 0.04, color: theme.on})};
 	${SIZE.small}
 
 	${media('md')} {

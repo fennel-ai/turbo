@@ -58,7 +58,8 @@ interface SubmittableInputProps extends HTMLAttributes<HTMLInputElement> {
     size?: "small" | "large";
     onButtonClick?: MouseEventHandler<HTMLButtonElement>
     variant?: 'ghost' | 'flat';
-    fill?: boolean
+    fill?: boolean;
+    placeholder?: string;
 }
 
 export const SubmittableInput = forwardRef<HTMLInputElement,SubmittableInputProps>(({ size = 'small', variant = 'ghost', ...props }, ref) => {

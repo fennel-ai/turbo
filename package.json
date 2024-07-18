@@ -9,20 +9,25 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "clean": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
+    "deps": "pnpm update -i -r",
+    "deps:latest": "pnpm update -L -i -r",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "test": "turbo run test --parallel",
     "coverage": "turbo run coverage --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "dependencies": {
+    "turbo": "latest"
+  },
   "devDependencies": {
     "eslint-config-fennel": "workspace:*",
     "prettier": "latest",
-    "sass": "^1.63.2",
-    "turbo": "latest"
+    "sass": "^1.63.2"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "packageManager": "pnpm@7.21.0"
+  "packageManager": "pnpm@9.0.3"
 }

@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 import { Container, IconButton } from "ui";
-import SidebarLeftIcon from 'ui/icons/sidebar-left.svg';
+import ChevronDownSmall from 'ui/icons/chevron-down-small.svg';
+import SidebarLeft from 'ui/icons/sidebar-left.svg';
 import { media, get, rgba } from 'styles/utils';
 
 import { useShell } from 'context/Shell';
 import { useLayoutContext } from './Layout';
+import SearchIcon from 'ui/icons/search.svg';
 
 const Root = styled(Container)`
 	height: 3rem;
@@ -54,8 +56,16 @@ const MenuButton = styled(IconButton)`
 	color: ${({ theme }) => theme.on};
 `;
 
-const MobileToolbar = () => {
-	const {toggleMobileMenu} = useShell();
+
+const SearchButton = styled(IconButton)`
+	margin-left: auto;
+	${media('md')} {
+		display: none;
+	}
+`;
+
+const MobileToolbar = ({ openSearch }: { openSearch: () => void }) => {
+	const { toggleMobileMenu } = useShell();
 	const { page, section } = useLayoutContext();
 
 	if (!section) {
@@ -63,10 +73,15 @@ const MobileToolbar = () => {
 	}
 	return (
 		<Root as="nav">
-			<MenuButton aria-label="Navigation Menu" icon={SidebarLeftIcon} onClick={toggleMobileMenu} />
-			<p>{section.title}</p>
-			<p>/</p>
-			<p>{page.title}</p>
+			{section.title && page.title ? <>
+				<p>{section.title}</p>
+				<p>/</p>
+				<p>{page.title}</p>
+				<MenuButton aria-label="Navigation Menu" icon={ChevronDownSmall} onClick={toggleMobileMenu} />
+			</> :
+				<MenuButton aria-label="Navigation Menu" icon={SidebarLeft} onClick={toggleMobileMenu} />
+			}
+			<SearchButton ariaLabel="Search" icon={SearchIcon} onClick={openSearch} size='small' />
 			<Border>
 				<div />
 			</Border>

@@ -1,0 +1,6 @@
+plugins:
+  - remark-mdx-disable-explicit-jsx
+  - remark-gfm
+  - remark-directive
+  - remark-docsnip
+  - remark-validate-href

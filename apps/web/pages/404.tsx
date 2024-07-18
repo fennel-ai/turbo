@@ -37,7 +37,7 @@ const Main = styled.main`
 		margin: 0;
 		color: ${({ theme }) => theme.on_alt};
 		font-size: 1rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 		${media('xs')} {
 			font-size: 1.5rem;
 		}

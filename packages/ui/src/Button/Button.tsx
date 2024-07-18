@@ -37,7 +37,7 @@ const Root = styled.button<{
 	justify-content: center;
 	gap: 0.25rem;
 	font-size: 0.875rem;
-	line-height: 1.5rem;
+	line-height: 1rem;
     font-variation-settings: "wght" 500;
 	cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
 	user-select: none;
@@ -45,7 +45,7 @@ const Root = styled.button<{
 	text-decoration: none;
 	z-index: 0;
 
-    ${props => !props.disabled ? stateLayer(props.variant === 'glass' ? 0.04 : 0) : null};
+    ${props => !props.disabled ? stateLayer({ initial: props.variant === 'glass' ? 0.04 : 0 }) : null};
     ${(props) => VARIANTS.STYLE[props.variant]}
     ${(props) => VARIANTS.SHAPE[props.shape]}
     ${(props) => VARIANTS.SIZE[props.size]};

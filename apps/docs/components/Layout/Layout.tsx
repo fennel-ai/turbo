@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import styled from '@emotion/styled';
-import { media, rgba } from "styles/utils";
+import { media, rgba, stateLayer } from "styles/utils";
 import { Footer } from 'ui';
 
-import type { NavigationTree } from "lib/utils";
+import type { NavigationTree, Outline } from "lib/utils";
 
 import Header from './Header';
 import Navigation from "./Navigation";
@@ -12,100 +12,81 @@ import MobileMenu from "./Navigation/MobileMenu";
 import { useShell } from "context/Shell";
 import { AnimatePresence } from "framer-motion";
 import { haskoyVariable } from "pages/_app";
+import { PageNavigation } from "./PageNavigation";
 
 type Props = {
 	children: ReactNode,
-	navigation: NavigationTree
+	navigation: NavigationTree,
+	isAPI?: boolean,
+	headings?: Outline,
+	path? :string
+	navRoute?: string;
+    version: string;
 }
 
-const Root = styled(Container)`
+const Root = styled(Container)<{isAPI?: boolean}>`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
-	padding-top: calc(6rem + 2rem);
-	padding-bottom: 5rem;
+	scroll-behavior: smooth;
+    font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 
 	${media('xs')} {
 		grid-template-columns: repeat(8, 1fr);
 	}
 
 	${media('md')} {
-		grid-template-columns: repeat(12, 1fr);
-		padding-top: calc(7.5rem + 2.5rem);
+		grid-template-columns: repeat(5, 1fr);
 	}
 
-	${media('lg')} {
-		padding-top: calc(4.5rem + 3.5rem);
-		padding-bottom: 7.5rem;
-	}
+    @media (min-width: 100rem) {
+        gap: 4rem;
+    }
+
 
 	& > main {
-		color: ${({ theme }) => theme.on_alt};
+		padding-top: 2rem;
+		padding-bottom: 5rem;
+		color: ${({ theme }) => theme.on};
+		
 
 		/** Content Styles */
 		h1, h2, h3, h4, h5, h6 {
 			color: ${({ theme }) => theme.on};
-			font-family: ${haskoyVariable.style.fontFamily}, serif;
+			font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
 			font-weight: 500;
 			margin: 0;
+			scroll-margin-top: 4rem;
 
-			&:first-of-type {
-				margin-top: 0 !important;
+			${media('md')} {
+				scroll-margin-top: 5rem; 
 			}
 		}
 
 		h2 {
-			font-size: 1.5rem;
-			line-height: 2rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
-			margin-top: 2rem;
-			margin-bottom: 1rem;
-
-			${media('md')} {
-				font-size: 2rem;
-				line-height: 2.5rem;
-			}
-
-			&:not(:first-of-type) {
-				margin-top: 2rem;
-
-				${media('md')} {
-					margin-top: 2.5rem;
-				}
-			}
+			${({ theme }) => theme.subtitle.large};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
+			margin-bottom: 0.5rem;
 		}
 		
 		h3 {
-			font-size: 1.25rem;
-			line-height: 1.5rem;
-			font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.extrabold};
-			margin-top: 1rem;
-			margin-bottom: 1rem;
-
-			${media('sm')} {
-				font-size: 1.5rem;
-				line-height: 2rem;
-				margin-top: 1.5rem;
-			}
+            ${({ theme }) => theme.subtitle.default};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
+            margin-bottom: 0.75rem;
 		}
 
-		/** Target paragraphs that are direct children of the main element (we don't necessarily want to style paragraphs within e.g. lists in the same way.) */
-		& > p {
-			margin: 0;
-			font-size: 1.125rem;
-			line-height: 2rem;
-			margin-bottom: 1.5rem;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
-
-			${media('sm')} {
-				font-size: 1.25rem;
-				line-height: 2.5rem;
-			}
+		h4 {
+            ${({ theme }) => theme.subtitle.small};
+            font-family: ${haskoyVariable.style.fontFamily}, sans-serif;
+			padding-bottom: 0.5rem;
+			margin-bottom: 1rem;
+			border-bottom: 1px solid ${({ theme }) => theme.border};
 		}
 
 		& a {
 			position: relative;
 			text-decoration: none;
+            cursor: pointer;
 			color: ${({ theme }) => theme.on_alt};
 			opacity: 0.8;
 			transition: 160ms opacity ease-out;
@@ -141,37 +122,38 @@ const Root = styled(Container)`
 		img {
 			max-width: 100%;
 			height: auto;
+			margin-bottom: 1rem;
 		}
 
 		ul, ol {
 			padding-inline-start: 2rem;
-			margin-top: 0;
-			margin-bottom: 2rem;
+			margin-top: 0.5rem;
+			margin-bottom: 1rem;
+
 		}
 
 		li {
-			font-size: 1.125rem;
-			line-height: 2rem;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
+			font-size: 1rem;
+			line-height: 1.75rem;
+			font-variation-settings: "wght" ${props => props.theme.fontWeights.primary.medium};
 			margin-bottom: 0.75rem;
-
-			${media('sm')} {
-				font-size: 1.25rem;
-				line-height: 2.5rem;
+			&:last-child {
+				margin-bottom: 0rem;
 			}
 		}
 		
 		code:not(pre > code) {
-			font-size: 0.875rem;
-			line-height: 1rem;
-			font-family: ${({ theme }) => theme.fontFamilies.code}, monospace;
-			font-variation-settings: "wght" ${props => props.theme.fontWeights.medium};
-			padding: 0.25rem 0.375rem;
-			margin: 0 0.25rem;
-			background-color: ${({ theme }) => rgba(theme.on_alt, 0.04)};
-			color: ${({ theme }) => theme.primary.accent};
-			border: 0.5px solid ${({ theme }) => rgba(theme.on_alt, 0.12)};
-			border-radius: 0.375rem;
+            word-break: break-word;
+			display: inline-flex;
+            align-items: center;
+            justify-content: center;
+			padding: 0.125rem 0.25rem;
+			color: ${({ theme }) => theme.on};
+			border: 0.5px solid ${({ theme }) => theme.border};
+			border-radius: 0.25rem;
+            overflow: hidden;
+			${props => props.theme.syntax.label.small}
+			${stateLayer({ initial: 0.06 , interact: false})}
 		}
 
 		strong {
@@ -187,34 +169,44 @@ const Root = styled(Container)`
 		}
 
 		${media('md')} {
+			code:not(pre > code) {
+				word-break: keep-all;
+			}
 			grid-column: span 12;
+			padding-top: 2.5rem;
 		}
 
 		${media('lg')} {
-			grid-column: span 9;
+			grid-column: ${({ isAPI }) => isAPI ? "span 4" : "span 3" };
+			padding-top: 4rem;
+			padding-bottom: 7.5rem;
+			
 		}
-		
-		${media('xl')} {
-			grid-column: span 8;
+
+		summary {
+    		width: 100%;
+    		text-overflow: ellipsis;
+			overflow-x: hidden;
 		}
 	}
 `;
 
-const Layout = ({ children, navigation }: Props) => {
+const Layout = ({ children, navigation, isAPI, headings, path, navRoute, version }: Props) => {
 	const { showMobileMenu, closeMobileMenu } = useShell();
 	return (
 		<>
-			<Header />
-			<Root>
-				<Navigation items={navigation} />
+			<Header version={version} />
+			<Root isAPI={isAPI}>
+				<Navigation items={navigation} isAPI={isAPI} navRoute={navRoute} version={version} />
 				<AnimatePresence>
 					{showMobileMenu ? (
-						<MobileMenu items={navigation} onClose={closeMobileMenu} />
+						<MobileMenu items={navigation} onClose={closeMobileMenu} isAPI={isAPI}/>
 					) : null}
 				</AnimatePresence>
 				<main>
 					{children}
 				</main>
+				{!isAPI && <PageNavigation headings={headings!} path={path || ''} />}
 			</Root>
 			<Footer />
 		</>

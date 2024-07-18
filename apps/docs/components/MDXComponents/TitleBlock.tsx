@@ -4,11 +4,11 @@ import { media, get } from 'styles/utils';
 import { useLayoutContext } from 'components/Layout';
 
 const Root = styled.div`
-	padding-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
 
 	${media('md')} {
-		padding-bottom: 2rem;
-		border-bottom: 1px solid rgba(${({ theme }) => theme.ref.grey['10']}, 8%);
+		margin-bottom: 1rem;
+		border-bottom: 1px solid ${({ theme }) => theme.border};
 	}
 `;
 
@@ -31,52 +31,30 @@ const Title = styled.div`
 	& h1 {
 		position: relative;
 		margin: 0;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.bold};
-		font-size: 2rem;
-		line-height: 2rem;
-		
-		${media('md')} {
-			font-size: 3rem;
-			line-height: 3rem;
-		}
+		${({ theme }) => theme.title.default};
 	}
 
 	& > span  {
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.medium};
-		font-size: 1.5rem;
-		line-height: 2rem;
+        ${({ theme }) => theme.title.default};
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.medium};
 		vertical-align: middle;
 		opacity: 0.64;
 	}
 `;
 
-const Description = styled.p`
-	margin: 0;
-	font-size: 1.125rem;
-	line-height: 1.75rem;
-	font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
-	color: ${({ theme }) => theme.on_alt};
-
-	${media('md')} {
-		font-size: 1.25rem;
-		line-height: 2.25rem;
-	}
-`;
-
 const SectionTitle = styled.div`
-	height: 2.5rem;
 	display: none;
 	align-items: center;
 
-	${media('lg')} {
+	${media('md')} {
 		display: flex;
 	}
 
 	& > p {
 		margin: 0;
-		font-size: 1.25rem;
-		line-height: 1.5rem;
-		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.semibold};
+		font-size: 1rem;
+		line-height: 1rem;
+		font-variation-settings: "wght" ${({ theme }) => theme.fontWeights.primary.semibold};
 		color: ${({ theme }) => theme.primary.accent};
 	}
 `;
@@ -89,7 +67,6 @@ export const TitleBlock = ({ children }: PropsWithChildren) => {
 			{section.title ? <SectionTitle><p id="section_title">{section.title}</p></SectionTitle> : null}
 			<TitleWrapper>
 				<Title><h1>{children}</h1>{page.status === 'wip' ? <span>WIP</span> : null}</Title>
-				{page.description ? <Description id="page_description">{page.description}</Description> : null}
 			</TitleWrapper>
 		</Root>
 	)
