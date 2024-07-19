@@ -78,7 +78,7 @@ const Hero = () => {
 					<TitleBlock 
 						center
 					>
-						<h1>Changelog Prototype</h1>
+						<h1>Changelog</h1>
 						<IntroText>
 							<p>The latest product updates, and news from the Fennel team.</p>
 						</IntroText>

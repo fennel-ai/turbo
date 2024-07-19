@@ -233,10 +233,7 @@ export type Theme = {
 	surface: string;
 	on: string;
 	on_alt: string;
-	border: {
-        light: string;
-        heavy: string;
-    };
+	border: string;
 	shadow: string;
 	glass: string;
 
