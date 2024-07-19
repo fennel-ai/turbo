@@ -192,7 +192,7 @@ const OpenDemoRegistrationForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 	const { formState: { errors }, register, handleSubmit, reset } = useForm<IFormData>({
 		resolver: yupResolver(validation),
         defaultValues: {
-            webinarId: '835 6721 6260'
+            webinarId: '83567216260'
         }
 	});
 
