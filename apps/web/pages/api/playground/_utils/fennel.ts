@@ -1,14 +1,36 @@
 import * as path from 'node:path';
 
-function randomString(length: number, chars = 'aA!#') {
-    var mask = '';
-    if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
-    if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (chars.indexOf('#') > -1) mask += '0123456789';
-    if (chars.indexOf('!') > -1) mask += '~`!@#$_?./';
-    var result = '';
-    for (var i = length; i > 0; --i) result += mask[Math.floor(Math.random() * mask.length)];
-    return result;
+function generateRandomString() {
+    const length = 8; // Minimum length of 8 characters
+    const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+    const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "0123456789";
+    const symbols = "@$!%*?&_";
+    const allChars = lowerCase + upperCase + numbers + symbols;
+
+    let randomString = '';
+
+    // Ensuring at least one lowercase character
+    randomString += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+
+    // Ensuring at least one uppercase character
+    randomString += upperCase[Math.floor(Math.random() * upperCase.length)];
+
+    // Ensuring at least one number
+    randomString += numbers[Math.floor(Math.random() * numbers.length)];
+
+    // Ensuring at least one symbol
+    randomString += symbols[Math.floor(Math.random() * symbols.length)];
+
+    // Filling the rest of the string
+    while (randomString.length < length) {
+        randomString += allChars[Math.floor(Math.random() * allChars.length)];
+    }
+
+    // Shuffle the string to ensure random distribution
+    randomString = randomString.split('').sort(() => 0.5 - Math.random()).join('');
+
+    return randomString;
 }
 
 export const createFennelToken = async (appName: string): Promise<string> => {
@@ -29,15 +51,15 @@ export const createFennelToken = async (appName: string): Promise<string> => {
             first_name: "Playground",
             last_name: "User",
             email: `${appName.replace('fennel-', '')}@fennel.ai`,
-            password: randomString(12)
+            password: generateRandomString()
         })
     });
 
-    const { token } = await res.json();
-    
+    const { token, detail } = await res.json();
+
     if (!token) {
-        throw new Error("Token creation failed.")
-    } 
+        throw new Error(`Token creation failed: ${detail}`)
+    }
 
     return token 
 }
