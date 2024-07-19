@@ -3,7 +3,8 @@
   "globalEnv": [
     "BLOG_URL",
     "DOCS_URL",
-    "GITHUB_TOKEN"
+    "GITHUB_TOKEN",
+    "MODE"
   ],
   "tasks": {
     "build": {

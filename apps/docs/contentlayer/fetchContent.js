@@ -10,12 +10,9 @@ const moveFiles = async (patterns, src, target) => {
    const files = await globby(
      patterns.map((pattern) => path.join(src, pattern))
    );
-
-   console.log("Getting all files: ", files)
    
    for await (const file of files) {
         const targetPath = path.join(target, path.relative(src, file));
-        console.log(`Moving file ${file} to ${targetPath}`)
         await fs.move(file, targetPath, { overwrite: true });
       }
 };
@@ -73,7 +70,6 @@ const fetchContent = async (token, dir, versions) => {
                           );
 
                           // Move assets related files to public/{version.name}
-                          console.log(`Moving assets to public/${version.name}`)
                           await moveFiles(
                             ["assets/**"],
                             path.join(tmpDir, "docs"),
