@@ -20,6 +20,7 @@ interface IFormData {
 	email: string;
     company: string;
     jobtitle: string;
+    webinarId: string;
 }
 
 const RegistrationForm = styled.form`
@@ -184,11 +185,15 @@ const validation = yup.object({
 	email: yup.string().email().required('This is required.'),
 	jobtitle: yup.string().required('This is required.'),
 	company: yup.string().required('This is required.'),
+	webinarId: yup.string().required('This is required.'),
 }).required();
 
 const OpenDemoRegistrationForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 	const { formState: { errors }, register, handleSubmit, reset } = useForm<IFormData>({
 		resolver: yupResolver(validation),
+        defaultValues: {
+            webinarId: '835 6721 6260'
+        }
 	});
 
     const submitForm: SubmitHandler<IFormData> = useCallback(async data => {
