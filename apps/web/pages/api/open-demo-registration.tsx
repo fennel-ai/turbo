@@ -61,17 +61,15 @@ const toHubspot = async (body: NextApiRequest['body']) => {
 const toZoom = async (body: NextApiRequest['body']) => {
     const [firstName, lastName] = getName(body.name);
 
-    const { ZOOM_ACCOUNT_ID, ZOOM_CLIENT_ID, ZOOM_SECRET } = process.env;
-
     const formData = new FormData();
 
     formData.append('grant_type', "account_credentials");
-    formData.append('account_id', ZOOM_ACCOUNT_ID!);
+    formData.append('account_id', process.env.ZOOM_ACCOUNT_ID!);
 
     const tokenRes = await fetch(`https://zoom.us/oauth/token`, {
         method: 'POST',
         headers: {
-            'Authorization': `Basic ${Buffer.from(`${ZOOM_CLIENT_ID}:${ZOOM_SECRET}`).toString('base64')}`,
+            'Authorization': `Basic ${Buffer.from(`${process.env.ZOOM_CLIENT_ID}:${process.env.ZOOM_SECRET}`).toString('base64')}`,
             'Host': 'zoom.us'
         },
         body: formData
@@ -117,6 +115,7 @@ export default async function handler(
 
         await toHubspot(body);
         await toZoom(body)
+
         response.status(200).json({
             body: {
                 "status": "ok"
