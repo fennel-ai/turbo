@@ -3,13 +3,12 @@ import { GetStaticProps, GetStaticPropsContext } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 import Layout from 'components/Layout';
-import * as components from 'components/MDXComponents';
+import * as components from 'mdx-components';
 import { NavigationPage, shouldPublish } from "lib/utils";
 import { Container, TitleBlock } from "ui";
 import styled from '@emotion/styled';
-import { useEffect, useRef, useState } from 'react';
-import { useScroll } from 'framer-motion';
-
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useInView } from 'framer-motion';
 
 
 const NavItem = styled.div`
@@ -18,9 +17,11 @@ const NavItem = styled.div`
     color: ${({ theme }) => theme.base};
     font-size: 1rem;
     line-height: 2.5rem;
+	scroll-margin-top:2rem;
 `
 
 import { media, rgba } from "styles/utils";
+import Head from 'next/head';
 
 const Root = styled.div`
 	position: relative;
@@ -92,9 +93,6 @@ const Hero = () => {
 
 type Props = {
 	pages: NavigationPage[],
-	// navigation: NavigationTree,
-	// section: NavigationSection,
-	// code: string,
 }
 
 function ChangelogPage({ page }: {page : typeof allPages[0]}) {
@@ -106,40 +104,36 @@ function ChangelogPage({ page }: {page : typeof allPages[0]}) {
 }
 
 
+const renderChangelogPage = ({_page, onChange}: {
+	_page: any, 
+	onChange: (date: string) => void;
+}) => {
+	const ref = useRef(null)
+	const isInView = useInView(ref, {amount: 0.5});
+
+	useEffect(() => {
+		if(isInView){
+			onChange(_page.date)
+		}
+	  }, [isInView])
+
+	return <NavItem id={_page.date} key={_page.date} ref={ref}>
+			<h2>{_page.title}</h2>
+			<p>Published on {_page.date}</p>
+			<ChangelogPage page={_page} />
+		</NavItem>
+}
+
+
+
 export default function ChangelogPages({ pages }: Props) {
-	// const ctxValue = useMemo(() => ({
-	// 	pages,
-	// 	section,
-	// }), [page, section]);
     const navDates = pages.map((_page) => _page.date);
     const [currentActive, setCurrentActive] = useState(navDates[0])
     const containerRef = useRef(null);
-    const {scrollY} = useScroll({
-        target: containerRef.current as any
-    });
-    
 
-    useEffect(() => {
-        const scrollCallback = () => {
-            let currentPage = '';
-            for(let i =0;i < navDates.length; i++) {
-                const section = document.getElementById(navDates[i] as string);
-                if(section?.offsetTop! < scrollY.get() + 80) {
-                    currentPage = navDates[i] || '';
-                }
-            }
-            setCurrentActive(currentPage);
-        }
-
-        document.addEventListener('scroll', scrollCallback);
-        document.addEventListener('hashchange', () => console.log('fire'));
-        return () => {
-            document.removeEventListener('scroll', scrollCallback);
-            // document.removeEventListener('hashchange', scrollCallback);
-        }
-    }, [])
-
-
+	const onChange = useCallback((date: string) => {
+		setCurrentActive(date)
+	}, [setCurrentActive])
 
 	return (
         <div ref={containerRef}>
@@ -148,54 +142,40 @@ export default function ChangelogPages({ pages }: Props) {
                 items: navDates as string[],
                 active: currentActive as string
             }}>
-                {
-                    pages.map((_page: any) => {
-                        return <NavItem id={_page.date} key={_page.date}>
-                            <h2>{_page.title}</h2>
-                            Published on {_page.date}
-                            <ChangelogPage page={_page} />
-                        </NavItem>
-                    })
-                }
-				{/* <Head>
-					// 
-					{page.description ? <meta name="description" content={page.description} /> : null}
+				<Head>
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
-					<meta name="canonical" content={`https://fennel.ai/docs/${page.slug === '/' ? '' : page.slug}/`} />
 					<meta name="theme-color" content="#000000" />
 					
 					<meta name="twitter:card" content="summary" />
 					<meta name="twitter:site" content="@fennel-ai" />
-					<meta name="twitter:title" content={page.title} />
-					<meta name="twitter:description" content={page.description} />
-					{/* <meta name="twitter:image" content="https://fennel.ai/images/fennel-logo.png" /> */}
-					{/* <meta name="twitter:creator" content="@fennel-ai" />
+					<meta name="twitter:title" content={"Fennel | Changelog"} />
+					<meta name="twitter:description" content={"page.description"} />
+					<meta name="twitter:image" content="https://fennel.ai/images/fennel-logo.png" />
+					<meta name="twitter:creator" content="@fennel-ai" />
 					<meta name="twitter:domain" content="fennel.ai" />
 
-					<meta name="og:title" content={page.title} />
-					<meta name="og:description" content={page.description} />
+					<meta name="og:title" content={"Fennel | Changelog"} />
+					<meta name="og:description" content={"The latest product updates, and news from the Fennel team."} />
 					<meta name="og:type" content="website" />
-					<meta name="og:url" content={`https://fennel.ai/docs/${page.slug === '/' ? '' : page.slug}/`} />
+					<meta name="og:url" content={`https://fennel.ai/changelog`} />
 					<meta name="og:site_name" content="Fennel" />
 					<meta name="og:locale" content="en_US" />
-					{/* <meta name="og:image" content="https://fennel.ai/images/fennel-logo.png" /> */}
-					{/* /* <meta name="og:image:secure_url" content="https://fennel.ai/images/fennel-logo.png" /> */}
-					{/* <meta name="og:image:alt" content="Fennel Docs" /> */}
+					<meta name="og:image" content="https://fennel.ai/images/fennel-logo.png" />
+					<meta name="og:image:secure_url" content="https://fennel.ai/images/fennel-logo.png" />
+					<meta name="og:image:alt" content="Fennel Docs" />
 
-					{/* <meta name="apple-mobile-web-app-title" content="Fennel" /> */}
-					{/* <meta name="application-name" content="Fennel" /> */}
-				{/* </Head> */}
-				
-
-				
+					<meta name="apple-mobile-web-app-title" content="Fennel" />
+					<meta name="application-name" content="Fennel" />
+				</Head>
+				{
+                    pages.map((p)=>renderChangelogPage({_page: p, onChange}))
+                }
 			</Layout>
         </div>
 	);
 }
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-	// const { params } = ctx;
-    // console.log()
     const sortedPages = [...allPages].sort((a,b) => {
         const aDate = new Date(a.date);
         const bDate = new Date(b.date);
@@ -209,16 +189,3 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
 		}
 	}
 }
-
-// export const getStaticPaths: GetStaticPaths = () => {
-// 	return {
-// 		paths: allPages
-// 			.filter(shouldPublish)
-// 			.map((page) => ({
-// 				params: {
-// 					slug: page.slug!.split('/'),
-// 				}
-// 			})),
-// 		fallback: false,
-// 	}
-// }

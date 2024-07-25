@@ -59,7 +59,7 @@ const GlobalStyles = () => {
 					background-color: ${theme.background};
 					margin: 0;
 					padding: 0;
-					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					font-family: ${haskoyVariable.style?.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 					font-synthesis: none;
 					font-feature-settings: "tnum"; /*! Enables the numeric character variants with Satoshi Variable - may want to restrict this to only li:marker elements */
 					text-rendering: optimizeLegibility;
@@ -69,7 +69,7 @@ const GlobalStyles = () => {
 				}
 
 				button, input {
-					font-family: ${haskoyVariable.style.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					font-family: ${haskoyVariable.style?.fontFamily}, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 				}
 			`} />
 }

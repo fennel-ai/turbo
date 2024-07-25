@@ -4,7 +4,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import { allPages, allConfigs } from 'contentlayer/generated';
 
 import Layout, { LayoutContext } from 'components/Layout';
-import * as components from 'components/MDXComponents';
+import * as components from 'mdx-components';
 import { getNavigation, getPageData, getRequestedVersionId, NavigationPage, NavigationSection, NavigationTree, shouldPublish } from "lib/utils";
 import Head from "next/head";
 import styled from "@emotion/styled";

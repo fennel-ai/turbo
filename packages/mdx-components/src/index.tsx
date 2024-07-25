@@ -39,3 +39,5 @@ export const CodeTabs = (props: { children: ReactNode }) =>  {
         </Sticky>
     );
 }
+
+export { SplitLayoutContext, SplitLayoutProvider } from "./context/SplitLayoutContext";

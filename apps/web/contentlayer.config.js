@@ -16,12 +16,11 @@ import remarkAdmonitions from "./contentlayer/plugins/remark-admonitions";
 import { Page } from "./contentlayer/content_types/Page";
 
 import fetchContent from "./contentlayer/fetchContent";
-import { Config } from "./contentlayer/content_types/Config";
 
 const CONTENT_DIR = "_content";
 
 const githubSource = async () => {
-  if (process.env.MODE === '“EDIT”') {
+  if (process.env.MODE === 'EDIT') {
     console.log(
       `[Edit Mode]: Content will not be fetched from the content repo`
     );
@@ -45,7 +44,7 @@ const githubSource = async () => {
 export default makeSource({
   syncFiles: githubSource,
   contentDirPath: CONTENT_DIR,
-  documentTypes: [Page, Config],
+  documentTypes: [Page,],
   contentDirExclude: [
     ".git",
     ".gitignore",

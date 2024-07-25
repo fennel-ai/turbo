@@ -5,11 +5,17 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	font-size: ${({ active }) => active ? "1rem" : "0.875rem"};
 	line-height: 1rem;
 	color: ${({ active, theme }) => active ? theme.on : theme.on_alt};
-	font-variation-settings: 'wght' ${({ active, theme }) => active ? theme.fontWeights.semibold : theme.fontWeights.medium};
+	font-variation-settings: 'wght' ${({ active, theme }) => active ? theme.fontWeights.primary.semibold : theme.fontWeights.primary.medium};
 	position: relative;
 	display: flex;
 	align-items: stretch;
 	padding: ${({ active }) => active ? "1.5rem" : "0"} 0;
+	
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+
 	&::before {
 		content: '';
 		width: 6px;
@@ -29,7 +35,7 @@ const NavigationItem = styled.li<{ active: boolean, fade: boolean, status: Page[
 	}
 
 	&:hover {
-		color: ${({ active, theme }) => active ? theme.primary.accent : theme.on};
+		color: ${({ theme }) => theme.on};
 	}
 
 	& > a {

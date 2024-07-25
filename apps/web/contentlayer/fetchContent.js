@@ -19,12 +19,11 @@ const fetchContent = async (token, dir) =>
 
     // Fetch the repo as a tarball
     const { data } = await octo.request(
-      "GET /repos/{owner}/{repo}/tarball/{?ref}/{dir}",
+      "GET /repos/{owner}/{repo}/tarball/{ref}",
       {
         owner: "fennel-ai",
         repo: "client",
-        ref: "rk-changelog",
-        dir: "changelog"
+        ref: "rk/changelog",
       }
     );
 
@@ -39,9 +38,7 @@ const fetchContent = async (token, dir) =>
     stream.pipe(gunzip()).pipe(
       tar.extract('.tmp', {
         finish: () => {
-			// TODO: THis isn't the most efficient right now, but will need changing either way to support incremental builds
-			// Will circle back when working on support for incremental builds.
-			fs.moveSync('.tmp/docs', dir, { overwrite: true });
+			fs.moveSync('.tmp/changelog', dir, { overwrite: true });
 			fs.rmSync('.tmp', { recursive: true });
 			resolve();
 		},

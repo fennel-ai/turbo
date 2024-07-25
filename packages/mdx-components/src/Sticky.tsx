@@ -1,6 +1,6 @@
 import { type ReactNode, useContext } from 'react';
 import { createPortal } from 'react-dom';
-import { SplitLayoutContext } from 'context/SplitLayoutContext';
+import { SplitLayoutContext } from './context/SplitLayoutContext';
 
 
 export const Sticky = ({ children }: { children: ReactNode }) => {

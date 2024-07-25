@@ -10,8 +10,7 @@ import styled from "@emotion/styled";
 import { getNavigation, getRequestedVersionId, NavigationTree, shouldPublish } from "lib/utils";
 
 import Layout from 'components/Layout';
-import * as components from 'components/MDXComponents';
-import SplitLayoutProvider from "context/SplitLayoutContext/SplitLayoutProvider";
+import * as components from "mdx-components";
 
 type Props = {
     pages: APIPage[],
@@ -30,9 +29,9 @@ const PageWrapper = styled.div<{ index: number }>`
 
 const Wrapper = ({ children }: { children: ReactNode | undefined }) => {
     return (
-        <SplitLayoutProvider>
+        <components.SplitLayoutProvider>
             {children}
-        </SplitLayoutProvider>
+        </components.SplitLayoutProvider>
     );
 };
 

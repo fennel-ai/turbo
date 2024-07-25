@@ -1,3 +1,4 @@
 .mailing
 node_modules
 .vercel
+_content
