@@ -104,8 +104,8 @@ function ChangelogPage({ page }: {page : typeof allPages[0]}) {
 }
 
 
-const renderChangelogPage = ({_page, onChange}: {
-	_page: any, 
+const RenderChangelogPage = ({page, onChange}: {
+	page: typeof allPages[0], 
 	onChange: (date: string) => void;
 }) => {
 	const ref = useRef(null)
@@ -113,14 +113,14 @@ const renderChangelogPage = ({_page, onChange}: {
 
 	useEffect(() => {
 		if(isInView){
-			onChange(_page.date)
+			onChange(page.date)
 		}
 	  }, [isInView])
 
-	return <NavItem id={_page.date} key={_page.date} ref={ref}>
-			<h2>{_page.title}</h2>
-			<p>Published on {_page.date}</p>
-			<ChangelogPage page={_page} />
+	return <NavItem id={page.date} key={page.date} ref={ref}>
+			<h2>{page.title}</h2>
+			<p>Published on {page.date}</p>
+			<ChangelogPage page={page} />
 		</NavItem>
 }
 
@@ -168,7 +168,7 @@ export default function ChangelogPages({ pages }: Props) {
 					<meta name="application-name" content="Fennel" />
 				</Head>
 				{
-                    pages.map((p)=>renderChangelogPage({_page: p, onChange}))
+                    pages.map((p)=><RenderChangelogPage page={p as typeof allPages[0]} onChange={onChange}/>)
                 }
 			</Layout>
         </div>
