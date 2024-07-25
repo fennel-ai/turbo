@@ -55,7 +55,7 @@ const Navigation = ({ navigation }: Props) => {
             const activeNavItemRect = activeNavItem.getBoundingClientRect();
             navbarRef.current!.scrollTop += activeNavItemRect.top - _navbarHeight / 2 + activeNavItemRect.height / 2;
         }
-    }, [active])
+    }, [active, navbarHeight])
 
 	return (
 		<Root>

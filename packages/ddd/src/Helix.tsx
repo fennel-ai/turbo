@@ -61,7 +61,7 @@ const Particle = ({ order, alternate, color, opacity, size, radius }: {
 	});
 
 	return (
-		<mesh ref={mesh}>
+		<mesh ref={mesh as any}>
 			<sphereGeometry />
 			<meshBasicMaterial 
 				color={color} 
@@ -103,7 +103,7 @@ const Helix = () => {
 		return arr;
 	}, []);
 	return (
-		<group ref={group}>
+		<group ref={group as any}>
 			{particles.map(({ order, alternate, color, opacity, size, radius }, i) =>
 				<Particle
 					key={i}

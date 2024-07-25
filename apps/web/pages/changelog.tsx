@@ -115,7 +115,7 @@ const RenderChangelogPage = ({page, onChange}: {
 		if(isInView){
 			onChange(page.date)
 		}
-	  }, [isInView])
+	  }, [isInView, onChange, page.date])
 
 	return <NavItem id={page.date} key={page.date} ref={ref}>
 			<h2>{page.title}</h2>

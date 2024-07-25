@@ -157,7 +157,7 @@ export const Header = () => {
 		if (showMobileMenu) {
 			toggleMobileMenu(false)
 		}
-	}, [router.pathname]);
+	}, [router.pathname, showMobileMenu]);
 
 	return (
 		<Root data-header>
