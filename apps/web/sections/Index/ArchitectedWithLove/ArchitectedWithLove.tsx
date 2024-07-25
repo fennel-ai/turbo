@@ -164,7 +164,7 @@ const Marquee = styled.div`
 const Technology = styled.div`
 	border-radius: 1rem;
 	padding: 1rem;
-	border: 1px solid ${({ theme }) => theme.border.light};
+	border: 1px solid ${({ theme }) => theme.border};
 	align-self: stretch;
 	height: 172px;
 	display: flex;

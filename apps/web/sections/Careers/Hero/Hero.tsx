@@ -7,7 +7,7 @@ const Root = styled.div`
 	padding: 8rem 0 5rem 0;
 	color: ${({ theme }) => theme.on};
 	z-index: 0;
-    border-bottom: 1px solid ${({ theme }) => theme.border.light};
+    border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
 
 const Background = styled.div`

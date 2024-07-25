@@ -30,7 +30,7 @@ const Root = styled.div`
 			font-size: 1.25rem;
 			line-height: 1.5rem;
 			font-variation-settings: "wght" 600;
-			border-bottom: 1px solid ${({ theme }) => theme.border.light};;
+			border-bottom: 1px solid ${({ theme }) => theme.border};;
 		}
 
 		li:hover {

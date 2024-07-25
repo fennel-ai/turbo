@@ -58,7 +58,7 @@ const BackgroundText = styled.span`
 	font-variation-settings: "wght" 900;
 	letter-spacing: -56px;
 	opacity: 0.24;
-	color: ${({ theme }) => theme.border.light};
+	color: ${({ theme }) => theme.border};
 	user-select: none;
 	pointer-events: none;
 	z-index: -1;
