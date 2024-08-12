@@ -50,6 +50,8 @@ const TeamMembers = () => {
 				<TeamMember additional="Ex-Civo" name="Balajinaidu V" role="Engineer" src="/images/Person=Balaji.png" />
 				<TeamMember additional="Ex-Epifi · Ex-CureFit" name="Nitin Bansal" role="Engineer" src="/images/Person=Nitin.png" />
 				<TeamMember additional="Ex-Cred · Ex-Innovaccer" name="Vedant Rathore" role="Engineer" src="/images/Person=Vedant.png" />
+				<TeamMember additional="Ex-Rubrik" name="Satwant Rana" role="Engineer" src="/images/Person=Satwant.png" />
+				<TeamMember additional="Ex-Onehouse · Ex-Uber" name="Hemanth Kannekanti" role="Engineer" src="/images/Person=Hemanth.png" />
 			</Wrapper>
 		</Root>
 	);
