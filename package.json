@@ -2,11 +2,6 @@
   "name": "turbo",
   "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "storybook"
-  ],
   "scripts": {
     "build": "turbo run build",
     "clean": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
