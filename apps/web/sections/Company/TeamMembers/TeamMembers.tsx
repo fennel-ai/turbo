@@ -39,7 +39,6 @@ const TeamMembers = () => {
 			<Wrapper>
 				<TeamMember additional="Ex-Facebook · Ex-Quora" name="Nikhil Garg" role="Co-Founder & CEO" src="/images/Person=Nikhil.png" />
 				<TeamMember additional="Ex-ThoughtSpot · Ex-Facebook" name="Abhay Bothra" role="Co-Founder & CTO" src="/images/Person=Abhay.png" />
-				<TeamMember additional="Ex-Google Brain · Ex-Google Cloud" name="Mohit Reddy" role="Co-Founder & Engineer" src="/images/Person=Mohit.png" />
 				<TeamMember additional="Ex-Facebook · Ex-Google Research" name="Aditya Nambiar" role="Co-Founder & Engineer" src="/images/Person=Aditya.png" />
 				<TeamMember additional="Ex-Databricks" name="Ryan Horner" role="Sales" src="/images/Person=Ryan.png" />
 				<TeamMember additional="Ex-Dremio" name="Peeyush Bhatt" role="Sales" src="/images/Person=Peeyush.png" />
@@ -50,6 +49,8 @@ const TeamMembers = () => {
 				<TeamMember additional="Ex-Civo" name="Balajinaidu V" role="Engineer" src="/images/Person=Balaji.png" />
 				<TeamMember additional="Ex-Epifi · Ex-CureFit" name="Nitin Bansal" role="Engineer" src="/images/Person=Nitin.png" />
 				<TeamMember additional="Ex-Cred · Ex-Innovaccer" name="Vedant Rathore" role="Engineer" src="/images/Person=Vedant.png" />
+				<TeamMember additional="Ex-Rubrik" name="Satwant Rana" role="Engineer" src="/images/Person=Satwant.png" />
+				<TeamMember additional="Ex-Onehouse · Ex-Uber" name="Hemanth Kannekanti" role="Engineer" src="/images/Person=Hemanth.png" />
 			</Wrapper>
 		</Root>
 	);
