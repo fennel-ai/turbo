@@ -55,7 +55,6 @@ const ShortcutIndicator = styled(KeyIndicator)`
 type Props = {
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 	placeholder?: string;
-	ref: React.RefObject<HTMLButtonElement>;
 }
 
 export const Searchbar = forwardRef<HTMLButtonElement, Props>(({ onClick, placeholder = "Search" }: Props, ref) => {
