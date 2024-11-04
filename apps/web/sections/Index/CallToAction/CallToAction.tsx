@@ -141,7 +141,7 @@ const CallToAction = () => {
 			<Wrapper>
 				<TitleWrapper>
 					<TitleBlock center>
-						<h2>Experience the Slickest Feature Engineering Workflow</h2>
+						<h2>Ready to step into the future?</h2>
 					</TitleBlock>
 					<Button color="primary" label="Request a Demo" onClick={() => router.push('/get-a-demo')} />
 				</TitleWrapper>

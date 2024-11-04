@@ -33,8 +33,8 @@ export const HeroV2 = () => {
         <Root data-section>
             <Background />
             <Hero
-                title="Realtime Feature Platform. Beautifully Built."
-                text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features."
+                title="Next Generation Data Pipelines"
+                text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML pipelines."
             />
         </Root>
     );

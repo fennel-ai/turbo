@@ -35,8 +35,8 @@ const Root = styled.div<{ center: boolean }>`
 		}
 		
 		${media('sm')} {
-			font-size: 4.5rem;
-			line-height: 5rem;
+			font-size: 4rem;
+			line-height: 4.5rem;
 		}
 	}
 
