@@ -7,11 +7,11 @@ export default function Index() {
 	return (
 		<>
 			<Head>
-                <title>Realtime Feature Store for Machine Learning | Fennel</title>
+                <title>Next Generation Data Pipelines | Fennel</title>
 				<meta name="description" content="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features." />
 				<link rel="canonical" href="https://fennel.ai/" />
 
-                <meta property="og:title" content="Realtime Feature Store for Machine Learning | Fennel" />
+                <meta property="og:title" content="Next Generation Data Pipelines | Fennel" />
                 <meta property="og:description" content="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML features." />
 				<meta property="og:url" content="https://fennel.ai/" />
 				<meta property="og:image" content="https://fennel.ai/images/og/default.jpg" />

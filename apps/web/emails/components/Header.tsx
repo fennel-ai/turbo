@@ -32,9 +32,9 @@ export default function Header() {
               lineHeight={lineHeight.tight}
               fontWeight="600"
             >
-              Realtime Feature Platform.
+              Next Generation
               <br />
-              Beautifully Built.
+              Data Pipelines
             </Text>
           </MjmlColumn>
         </MjmlGroup>
