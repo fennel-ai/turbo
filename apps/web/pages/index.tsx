@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { ArchitectedWithLove, CallToAction, HassleFreeScaling, HeroV2, HowItWorks, NoMoreBugs, SeeItInAction, ShipFasterV2, TrulyRealtime } from 'sections/Index';
+import { ArchitectedWithLove, CallToAction, HassleFreeScaling, HeroV2, HowItWorks, NoMoreBugs } from 'sections/Index';
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as themes from 'styles';
