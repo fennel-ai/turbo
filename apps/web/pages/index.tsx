@@ -1,7 +1,55 @@
 import Head from 'next/head';
 import { ArchitectedWithLove, CallToAction, HassleFreeScaling, HeroV2, HowItWorks, NoMoreBugs, SeeItInAction, ShipFasterV2, TrulyRealtime } from 'sections/Index';
 import { ThemeProvider } from '@emotion/react';
+import styled from '@emotion/styled';
 import * as themes from 'styles';
+import { Hero } from 'ui';
+
+import UpworkLogo from 'assets/logos/upwork.svg';
+import PorterLogo from 'assets/logos/porter.svg';
+import EpifiLogo from 'assets/logos/epifi.svg';
+import CredLogo from 'assets/logos/cred.svg';
+import AplazoLogo from 'assets/logos/aplazo.svg';
+import CricutLogo from 'assets/logos/cricut.svg';
+import { media } from 'styles/utils';
+import Incrementality from 'sections/Index/Incrementality';
+
+const Logos = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-top: 5.5rem;
+
+    & p {
+        margin: 0;
+    }
+
+    & > div {
+        align-self: stretch;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 2.5rem;
+        column-gap: 2rem;
+        width: 100%;
+
+        ${media('sm')} {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-auto-rows: 3.5rem;
+        }
+
+        & > div {
+            display: flex;
+            flex: 1 1 100%;
+            align-items: center;
+            justify-content: center;
+
+        }
+    }
+`;
 
 export default function Index() {
 	return (
@@ -24,11 +72,33 @@ export default function Index() {
 				<meta name="twitter:image" content="https://fennel.ai/images/og/default.jpg" />
 			</Head>
 			<main>
-				<HeroV2 />
-				<SeeItInAction/>
-				<ShipFasterV2 />
+                <Hero title="Next Generation Data Pipelines" text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML pipelines.">
+                    <Logos>
+                        <p>Trusted by leading ML & Data teams as the best way to serve features at scale</p>
+                        <div>
+                            <div>
+                                <UpworkLogo width="100%" height={24} />
+                            </div>
+                            <div>
+                                <PorterLogo width="100%" height={24} />
+                            </div>
+                            <div>
+                                <CredLogo width="100%" height={24} />
+                            </div>
+                            <div>
+                                <AplazoLogo width="100%" height={24} />
+                            </div>
+                            <div>
+                                <CricutLogo width="100%" height={24} />
+                            </div>
+                            <div>
+                                <EpifiLogo width="100%" height={24} />
+                            </div>
+                        </div>
+                    </Logos>
+                </Hero>
+                <Incrementality />
 				<NoMoreBugs />
-				<TrulyRealtime />
 				<HassleFreeScaling />
 				<HowItWorks />
 				<ThemeProvider theme={themes.dark}>

@@ -23,7 +23,7 @@ const Root = styled.div<{ center: boolean }>`
 	}
 
 	h1 {
-		margin: 1rem;
+        margin: 1rem 0;
 		font-size: 2.5rem;
 		line-height: 2.5rem;
 		font-variation-settings: "wght" 700;
@@ -35,20 +35,22 @@ const Root = styled.div<{ center: boolean }>`
 		}
 		
 		${media('sm')} {
-			font-size: 4rem;
-			line-height: 4.5rem;
+			font-size: 3.5rem;
+			line-height: 3.5rem;
 		}
 	}
 
 	h2 {
-		margin: 0.5rem 0 1rem 0;
+        margin: 0;
+        margin-top: 0.25rem;
+        margin-bottom: 0.75rem;
 		font-size: 2rem;
         line-height: 2rem;
 		font-variation-settings: "wght" 700;
 
 		${media('sm')} {
-			font-size: 3.5rem;
-			line-height: 4rem;
+			font-size: 2rem;
+			line-height: 2rem;
 		}
 	}
 
@@ -61,7 +63,7 @@ const Root = styled.div<{ center: boolean }>`
 	}
 
 	h3 {
-		margin: 0.5rem 0;
+        margin: 0;
 		font-size: 1.75rem;
 		line-height: 2rem;
 		font-variation-settings: "wght" 800;
@@ -73,15 +75,19 @@ const Root = styled.div<{ center: boolean }>`
 	}
 
 	h6 {
-		margin: 0;
+        margin: 0;
 		font-size: 1rem;
 		line-height: 1rem;
-		opacity: 50%;
+		opacity: 70%;
 		font-variation-settings: "wght" 500;
 		color: ${({ theme }) => theme.on_alt};
 	}
 
-	p {
+    p {
+        margin: 0;
+    }
+
+	/* p {
 		margin: 0;
 		font-size: 1rem;
 		line-height: 1.5rem;
@@ -96,7 +102,7 @@ const Root = styled.div<{ center: boolean }>`
 			font-size: 1.125rem;
 			line-height: 2rem;
 		}
-	}
+	} */
 
 	p + p {
 		margin-top: 1rem;

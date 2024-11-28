@@ -5,7 +5,4 @@ export { default as Hero } from './Hero';
 export {HeroV2} from './Hero';
 export { default as HowItWorks } from './HowItWorks';
 export { default as NoMoreBugs } from './NoMoreBugs';
-export { default as ShipFaster } from './ShipFaster';
-export {ShipFasterV2} from './ShipFaster';
-export { default as TrulyRealtime } from './TrulyRealtime';
 export {default as SeeItInAction} from './SeeItInAction';
