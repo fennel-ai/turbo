@@ -4,7 +4,7 @@ import { Card } from 'ui';
 import { media } from 'styles/utils';
 
 const Root = styled(Card)`
-	height: 20rem;
+	height: 32rem;
 
 	${media('sm')} {
 		height: 40rem;

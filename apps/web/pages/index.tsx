@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { ArchitectedWithLove, CallToAction, HassleFreeScaling, HeroV2, HowItWorks, NoMoreBugs } from 'sections/Index';
+import { ArchitectedWithLove, CallToAction, HassleFreeScaling, HowItWorks, NoMoreBugs } from 'sections/Index';
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as themes from 'styles';
@@ -26,6 +26,13 @@ const Logos = styled.div`
 
     & p {
         margin: 0;
+        font-size: 0.875rem; 
+        line-height: 1.25rem;
+
+        ${media('sm')} {
+            font-size: 1rem; 
+        line-height: 1.5rem;
+        }
     }
 
     & > div {
@@ -34,6 +41,7 @@ const Logos = styled.div`
         grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-auto-rows: 2.5rem;
         column-gap: 2rem;
+        row-gap: 0.5rem;
         width: 100%;
 
         ${media('sm')} {
@@ -89,10 +97,10 @@ export default function Index() {
                                 <AplazoLogo width="100%" height={24} />
                             </div>
                             <div>
-                                <CricutLogo width="100%" height={24} />
+                                <EpifiLogo width="100%" height={24} />
                             </div>
                             <div>
-                                <EpifiLogo width="100%" height={24} />
+                                <CricutLogo width="100%" height={24} />
                             </div>
                         </div>
                     </Logos>

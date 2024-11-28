@@ -39,14 +39,14 @@ const Illustration = styled.div<{ reverse: boolean }>`
 const Content = styled.div<{ reverse: boolean }>`
 	display: flex;
 	flex-direction: column;
-	gap: 2.5rem;
+	gap: 2rem;
 	align-items: flex-start;
 	justify-content: center;
 	grid-column: span 12;
 	order: -1;
 
 	${media('sm')} {
-		gap: 4rem;
+		gap: 1.5rem;
 		order: ${({ reverse }) => reverse ? -1 : 2};
 		grid-column: ${({ reverse }) => reverse ? 'span 6' : '7 / span 6'};
 	}

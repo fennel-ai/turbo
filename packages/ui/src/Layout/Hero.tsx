@@ -43,7 +43,7 @@ const Root = styled.div`
 `;
 
 const Wrapper = styled.div`
-    padding: 0;
+    padding: 0 1rem;
     margin: 0 auto;
     color: ${({ theme }) => theme.on_alt};;
 
@@ -55,15 +55,25 @@ const Wrapper = styled.div`
 const IntroText = styled.p`
 	padding: 0;
 	color: ${({ theme }) => theme.on_alt};
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-    font-size: 1.25rem; 
-    line-height: 1.75rem;
     font-variation-settings: "wght" 500;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    
+    ${media('2xs')} {
+        max-width: 85%;
+	}
+    
 	
-	${media('md')} {
-        padding-left: 7.5rem;
-        padding-right: 7.5rem;
+	${media('sm')} {
+        font-size: 1.25rem; 
+        line-height: 1.75rem;
+        max-width: 85%;
+	}
+	
+    ${media('lg')} {
+        font-size: 1.25rem; 
+        line-height: 1.75rem;
+        max-width: 75%;
 	}
 `;
 
