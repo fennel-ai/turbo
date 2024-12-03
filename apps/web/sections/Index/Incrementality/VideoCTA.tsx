@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Image from 'next/image';
 import styled from "@emotion/styled";
 import { useTheme } from "@emotion/react";
 import ReactModal from "react-modal";
@@ -18,6 +19,7 @@ const Root = styled(motion.div)`
     justify-content: center;
     position: relative;
     overflow: hidden;
+    box-shadow: 0px 0px 0px 1px ${({ theme }) => rgba(theme.on, 0.04)}
 `;
 
 const Illustration = styled.div`
@@ -29,6 +31,10 @@ const Illustration = styled.div`
 const ImageCard = styled(motion.div)`
     border-radius: 0.375rem;
     transform-origin: center center;
+     & > img {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 const ConsoleCard = styled(ImageCard)`
@@ -36,7 +42,7 @@ const ConsoleCard = styled(ImageCard)`
     width: 32rem;
     height: 18rem;
     aspect-ratio: 16/9;
-    box-shadow: 0px 0px 0px 0.5px ${({ theme }) => rgba(theme.on, 0.08)}, 0px 4px 10px -2.5px ${({ theme }) => rgba(theme.on_alt, 0.18)};
+    box-shadow: 0px 0px 0px 0.5px ${({ theme }) => rgba(theme.on, 0.08)}, 0px 4px 10px -2.5px ${({ theme }) => rgba(theme.shadow, 0.18)};
     position: absolute;
     top: 5.5rem;
     left: 2rem;
@@ -47,7 +53,7 @@ const EditorCard = styled(ImageCard)`
     width: 34rem;
     height: 23.5rem;
     backdrop-filter: blur(0.75rem);
-    box-shadow: 0px 0px 0px 0.5px ${({ theme }) => rgba(theme.on, 0.08)}, 0px 281px 112px ${({ theme }) => rgba(theme.on, 0.01)}, 0px 158px 95px ${({ theme }) => rgba(theme.on, 0.05)}, 0px 70px 70px ${({ theme }) => rgba(theme.on, 0.09)}, 0px 18px 39px ${({ theme }) => rgba(theme.on, 0.01)};
+    box-shadow: 0px 0px 0px 0.5px ${({ theme }) => rgba(theme.on, 0.08)}, 0px 281px 112px ${({ theme }) => rgba(theme.shadow, 0.01)}, 0px 158px 95px ${({ theme }) => rgba(theme.shadow, 0.05)}, 0px 70px 70px ${({ theme }) => rgba(theme.shadow, 0.09)}, 0px 18px 39px ${({ theme }) => rgba(theme.shadow, 0.01)};
     position: absolute;
     top: 2rem;
     left: 13rem;
@@ -86,16 +92,17 @@ const variants = {
 const transition = {
     type: 'spring',
     duration: 0.2,
-    bounce: 0.3
+    bounce: 0.2
 }
 
 function VideoCTA() {
     const theme = useTheme();
+    const isThemeDark = theme.type === "dark";
     const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
     const [allowExit, setAllowExit] = useState(false)
-    const sectionRef = useRef<HTMLDivElement>(null)
     const [overlayRefState, setOverlayRefState] = useState<HTMLDivElement | null>(null)
     const [contentRefState, setContentRefState] = useState<HTMLDivElement | null>(null)
+
     const modalStyles = {
         overlay: {
             zIndex: 10,
@@ -162,11 +169,15 @@ function VideoCTA() {
         <>
             <Root initial="default" whileHover="hover">
                 <Illustration>
-                    <ConsoleCard variants={variants.console}></ConsoleCard>
-                    <EditorCard variants={variants.editor}></EditorCard>
+                    <ConsoleCard variants={variants.console}>
+                        <Image alt="Fennel Console" src={isThemeDark ? "/images/console-metrics-dark.png" : "/images/console-metrics.png"} width={4536} height={2946} />
+                    </ConsoleCard>
+                    <EditorCard variants={variants.editor}>
+                        <Image alt="Code Editor" src={isThemeDark ? "/images/editor-dark.png" : "/images/editor.png"} width={1643} height={1113} />
+                    </EditorCard>
                 </Illustration>
                 <ButtonWrapper>
-                    <Button onClick={() => setIsVideoModalOpen(true)} direction="row-reverse" icon={<PlayCircleIcon />} color="primary" label="Watch 3 min. Demo" />
+                    <Button onClick={() => setIsVideoModalOpen(true)} direction="row-reverse" icon={<PlayCircleIcon />} color="primary" label="Watch a Demo" />
                 </ButtonWrapper>
             </Root>
             <ReactModal

@@ -13,6 +13,7 @@ import AplazoLogo from 'assets/logos/aplazo.svg';
 import CricutLogo from 'assets/logos/cricut.svg';
 import { media } from 'styles/utils';
 import Incrementality from 'sections/Index/Incrementality';
+import ShipFaster from 'sections/Index/ShipFaster/ShipFaster';
 
 const Logos = styled.div`
     display: flex;
@@ -106,6 +107,7 @@ export default function Index() {
                     </Logos>
                 </Hero>
                 <Incrementality />
+                <ShipFaster />
 				<NoMoreBugs />
 				<HassleFreeScaling />
 				<HowItWorks />
