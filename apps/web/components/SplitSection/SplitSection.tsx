@@ -6,7 +6,10 @@ import { media } from 'styles/utils';
 type Props = {
 	className?: string;
 	direction?: 'forward' | 'reverse';
+    contentSpan?: number;
 	illustration: ReactElement;
+    gapSpan?: number;
+    illustrationSpan?: number;
 	style?: StyleHTMLAttributes<HTMLDivElement>;
 }
 
@@ -28,15 +31,15 @@ const Wrapper = styled(Container)`
 	}
 `;
 
-const Illustration = styled.div<{ reverse: boolean }>`
+const Illustration = styled.div<{ reverse: boolean, span: number, gapSpan: number }>`
 	grid-column: span 12;
 
 	${media('sm')} {
-		grid-column: ${({ reverse }) => reverse ? `8 / span 5` : `span 5`};
+		grid-column: ${({ reverse, gapSpan, span }) => reverse ? `${(12 - span) + gapSpan} / span ${span}` : `span ${span}`};
 	}
 `;
 
-const Content = styled.div<{ reverse: boolean }>`
+const Content = styled.div<{ reverse: boolean, span: number, gapSpan: number }>`
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
@@ -48,18 +51,27 @@ const Content = styled.div<{ reverse: boolean }>`
 	${media('sm')} {
 		gap: 1.5rem;
 		order: ${({ reverse }) => reverse ? -1 : 2};
-		grid-column: ${({ reverse }) => reverse ? 'span 6' : '7 / span 6'};
+		grid-column: ${({ reverse, gapSpan, span }) => reverse ? `span ${span}` : `${(12 - span) + gapSpan} / span ${span}`};
 	}
 `;
 
-export const SplitSection = forwardRef(({ className, children, direction = "forward", illustration, style }: PropsWithChildren<Props>, ref: ForwardedRef<HTMLDivElement>) => {
+export const SplitSection = forwardRef(({ 
+    className, 
+    children, 
+    contentSpan = 6, 
+    direction = "forward", 
+    illustration,
+    illustrationSpan = 5, 
+    gapSpan = 1,
+    style 
+}: PropsWithChildren<Props>, ref: ForwardedRef<HTMLDivElement>) => {
 	return (
 		<Root ref={ref} data-section className={className} style={style}>
 			<Wrapper>
-				<Illustration reverse={direction === 'reverse'}>
+				<Illustration gapSpan={gapSpan} span={illustrationSpan} reverse={direction === 'reverse'}>
 					{illustration}
 				</Illustration>
-				<Content reverse={direction === 'reverse'}>
+				<Content span={contentSpan} gapSpan={gapSpan} reverse={direction === 'reverse'}>
 					{children}
 				</Content>
 			</Wrapper>
