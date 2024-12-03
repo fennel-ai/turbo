@@ -83,7 +83,7 @@ export default function Index() {
 			<main>
                 <Hero title="Next Generation Data Pipelines" text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML pipelines.">
                     <Logos>
-                        <p>Trusted by leading ML & Data teams as the best way to serve features at scale</p>
+                        <p>Trusted by leading ML & Data teams</p>
                         <div>
                             <div>
                                 <UpworkLogo width="100%" height={24} />
