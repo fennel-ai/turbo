@@ -16,6 +16,10 @@ import { SplitSection } from "components/SplitSection";
 import Image from 'next/image';
 import Link from 'next/link';
 
+const Root = styled(SplitSection)`
+    background-color: ${({ theme }) => theme.surface};
+`;
+
 const Grid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -70,7 +74,7 @@ const NoMoreBugs = () => {
 	const theme = useTheme();
 
 	return (
-		<SplitSection 
+		<Root 
 			ref={ref}
 			direction="reverse" 
 			illustration={
@@ -116,7 +120,7 @@ const NoMoreBugs = () => {
 					Data Quality with Fennel
 				</CTAButton>
 			</Link>
-		</SplitSection>
+		</Root>
 	);
 };
 
