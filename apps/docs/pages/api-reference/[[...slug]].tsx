@@ -118,7 +118,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
             // Wait for next frame so layout stabilizes
             requestAnimationFrame(() => {
                 const el = document.getElementById(requestedSlug);
-                if (el) el.scrollIntoView({ block: 'start', behavior: 'instant' });
+                if (el) el.scrollIntoView({ block: 'start', behavior: 'instant'} as any);
                 
                 setTimeout(() => setLoading(false), 100);
             });
