@@ -7,7 +7,6 @@ import { media } from 'styles/utils';
 import NavigationSection from "./NavigationSection";
 import NavigationItem from "./NavigationItem";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { throttle } from "lodash";
 
 type Props = {
 	items: NavigationTree
@@ -59,16 +58,29 @@ const Navigation = ({ items, isAPI }: Props) => {
         }
     }, [currentActive])
 
-    const renderItem = useCallback((title: string, slug: string, status: NavigationPage['status'], isActive: boolean) => {
+    const renderItem = useCallback((title: string, sectionSlug: string,slug: string, status: NavigationPage['status'], isActive: boolean) => {
         return (
             <NavigationItem id={isActive ? "active" : ""} active={isActive} status={status} fade={!isActive} key={slug}>
                 <Link 
-                    shallow={isAPI} 
                     aria-label={title} 
                     href={slug}
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.preventDefault();
                         if (isAPI) {
-                            document.getElementById(slug)?.scrollIntoView();
+                            const currentSection = window.location.pathname.split('/')[3];
+                            if (currentSection === sectionSlug) {
+                                // Same section: use shallow routing and scroll
+                                router.push(slug, undefined, { shallow: true })
+                                    .then(() => {
+                                        document.getElementById(slug)?.scrollIntoView();
+                                    });
+                            } else {
+                                // Different section: full navigation
+                                router.push(slug, undefined, { shallow: false });
+                            }
+                        } else {
+                            // Not isAPI: normal navigation
+                            router.push(slug);
                         }
                     }}
                 >
@@ -112,6 +124,7 @@ const Navigation = ({ items, isAPI }: Props) => {
                                         const activePath = currentActive ? currentActive : `/${item.slug === '/' ? '' : item.slug}`;
                                         return renderItem(
                                             item.title,
+                                            section.slug,
                                             item.slug,
                                             item.status,
                                             isAPI ? item.slug === currentActive : router.asPath === activePath
