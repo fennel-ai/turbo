@@ -16,7 +16,11 @@
     "type": "color"
   },
   "border": {
-    "value": "{color.grey.10}",
+    "value": "rgba({on}, 8%)",
+    "type": "color"
+  },
+  "outline": {
+    "value": "rgba({on}, 16%)",
     "type": "color"
   },
   "shadow": {
@@ -31,7 +35,7 @@
     "small": {
       "value": {
         "fontFamily": "{fontFamilies.primary}",
-        "fontWeight": "{fontWeights.primary.medium}",
+        "fontWeight": "{fontWeights.primary.regular}",
         "fontSize": "12px",
         "lineHeight": "{typescale.2}"
       },
@@ -40,7 +44,7 @@
     "default": {
       "value": {
         "fontFamily": "{fontFamilies.primary}",
-        "fontWeight": "{fontWeights.primary.medium}",
+        "fontWeight": "{fontWeights.primary.regular}",
         "fontSize": "{typescale.0}",
         "lineHeight": "{typescale.2}"
       },
