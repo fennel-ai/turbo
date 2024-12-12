@@ -199,7 +199,7 @@
         "value": {
           "fontFamily": "{fontFamilies.mono}",
           "fontWeight": "{fontWeights.mono.regular}",
-          "fontSize": "12",
+          "fontSize": "12px",
           "lineHeight": "{typescale.4}"
         },
         "type": "typography"
@@ -219,7 +219,7 @@
         "value": {
           "fontFamily": "{fontFamilies.mono}",
           "fontWeight": "{fontWeights.mono.regular}",
-          "fontSize": "12",
+          "fontSize": "12px",
           "lineHeight": "{typescale.4}"
         },
         "type": "typography"
