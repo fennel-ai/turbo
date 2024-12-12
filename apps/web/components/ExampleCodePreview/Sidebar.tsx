@@ -1,6 +1,6 @@
 import { useMemo, useState, type MouseEventHandler } from 'react';
 import styled from '@emotion/styled';
-import { stateLayer } from 'styles/utils';
+import { rgba, stateLayer } from 'styles/utils';
 
 import GithubIcon from 'ui/icons/github.svg';
 import FolderIcon from 'ui/icons/folder.svg';
@@ -44,7 +44,8 @@ const TreeList = styled.ul`
         cursor: pointer;
 
         &[data-selected=true] {
-            ${stateLayer({ initial: 0.06, interact: true })}
+            box-shadow: 0 0 0 0.5px ${({ theme }) => rgba(theme.primary.on_container, 0.06)};
+            background-image: radial-gradient(124.43% 148.21% at 56.38% 28.57%, rgba(18, 18, 18, 0) 23.5%, rgba(18, 18, 18, 0.11) 100%);
         }
 
         & svg {
