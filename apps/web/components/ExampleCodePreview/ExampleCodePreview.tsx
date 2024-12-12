@@ -1,6 +1,12 @@
+import { useCallback, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
-import { Sidebar } from './Sidebar';
 import { Syntax } from 'ui';
+import PythonIcon from 'ui/icons/python.svg';
+
+import { Sidebar } from './Sidebar';
+import { Toolbar } from './Toolbar';
+import { ToolbarTab } from './ToolbarTab';
+import { FILES, fileTree } from './dummy_data';
 
 const Root = styled.div`
     border: 1px solid hsla(0, 0%, 7%, 4%);
@@ -28,17 +34,6 @@ const Content = styled.div`
     overflow: scroll;
 `;
 
-const Toolbar = styled.div`
-    height: 3rem;
-    border-bottom: 1px solid hsla(0, 0%, 7%, 4%);
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    background-color: hsla(0, 0%, 98%, 81%);
-    backdrop-filter: blur(12px);
-`;
-
 const Code = styled.div`
     overflow: hidden;
 `;
@@ -47,122 +42,59 @@ const CodeHighlight = styled(Syntax)`
 	code[class*="language-"],
     pre {
 		background: transparent;
-        color: rgb(${({ theme }) => theme.ref.grey['110']}) !important;
-	}
-
-    .linenumber {
-        color: #121212;
-        opacity: 35%;
-    }
-
-    /* Syntax tokens */
-	.token.comment,
-	.token.prolog,
-	.token.doctype,
-	.token.cdata {
-		color: rgb(${({ theme }) => theme.ref.grey['110']}) !important;
-		opacity: 56%;
-	}
-
-	.namespace {
-		opacity: .7;
-	}
-
-	.token.keyword,
-	.token.builtin {
-		color: rgb(${({ theme }) => theme.ref.purple['80']});
-	}
-
-	.token.class-name {
-		color: rgb(${({ theme }) => theme.ref.blue['90']});
-	}
-
-	.token.function,
-	.token.symbol,
-	.token.regex,
-	.token.variable,
-	.token.constant {
-		color: rgba(${({ theme }) => theme.ref.green['90']});
-	}
-
-	.token.boolean {
-		color: ${({ theme }) => theme.syntax.boolean};
-	}
-
-	.token.number,
-	.token.important {
-		color: rgb(${({ theme }) => theme.ref.red['70']}) !important;
-	}
-
-	.token.string,
-	.token.char,
-	.token.url {
-		color: rgb(${({ theme }) => theme.ref.purple['60']}) !important;
-	}
-
-	.token.operator { 
-		color: ${({ theme }) => theme.syntax.operator};
-	}
-
-	.token.property {
-        color: rgb(${({ theme }) => theme.ref.grey['110']}) !important;
-	}
-
-	.token.punctuation:not(.decorator) {
-		color: rgb(${({ theme }) => theme.ref.grey['80']}) !important;
-	}
-
-	.token.decorator.annotation.punctuation {
-		color: rgb(${({ theme }) => theme.ref.green['90']}) !important;
 	}
 `;
 
-const codeStr = `@meta(owner="test@test.com")
-@featureset
-class UserFeatures:
-    userid: int = feature(id=1)
-    name: str = feature(id=2)
-    country_geoid: int = feature(id=3)
-    # The users age
-    age: int = feature(id=4).meta(owner="aditya@fennel.ai")
-    age_squared: int = feature(id=5)
-    age_cubed: int = feature(id=6)
-    is_name_common: bool = feature(id=7)
-
-    @extractor(depends_on=[UserInfoDataset])
-    @inputs(userid)
-    @outputs(age, name)
-    def get_user_age_and_name(cls, ts: pd.Series, user_id: pd.Series):
-        df, _found = UserInfoDataset.lookup(ts, user_id=user_id)
-        return df[["age", "name"]]
-
-    @extractor
-    @inputs(age, name)
-    @outputs(age_squared, age_cubed, is_name_common)
-    def get_age_and_name_features(
-        cls, ts: pd.Series, user_age: pd.Series, name: pd.Series
-    ):
-        is_name_common = name.isin(["John", "Mary", "Bob"])
-        df = pd.concat([user_age**2, user_age**3, is_name_common], axis=1)
-        df.columns = [
-            str(cls.age_squared),
-            str(cls.age_cubed),
-            str(cls.is_name_common),
-        ]
-        return df`;
-
+const defaultTabs = ['sync.py'];
 export const ExampleCodePreview = () => {
+    const [currentTabs, setCurrentTabs] = useState<string[]>(defaultTabs);
+    const [activeTab, setActiveTab] = useState<number>(0);
+
+    const handleCloseTab = useCallback((index: number) => {
+        setCurrentTabs(prev => {
+            setActiveTab(prev => {
+                if (index === prev) {
+                    return 0
+                }
+
+                return prev;
+            });
+
+            const value = [...prev];
+            value.splice(index, 1);
+            return value
+        })
+    }, []);
+
+    const onSelectFile = useCallback((file: string) => {
+        setCurrentTabs(prev => {
+            let idx = prev.findIndex((p) => p === file);
+            if (idx !== -1) {
+                setActiveTab(idx);
+                return prev
+            } else {
+                setActiveTab(prev.length);
+                return [...prev, file];
+            }
+        });
+    }, []);
+
     return (
         <Root>
-            <Sidebar>
-                Hello from Sidebar
-            </Sidebar>
+            <Sidebar onSelect={onSelectFile} tree={fileTree} currentFile={currentTabs[activeTab]} />
             <Content>
-                <Toolbar>
-                    Toolbar
+                <Toolbar active={activeTab} onSelect={setActiveTab} onClose={currentTabs.length > 1 ? handleCloseTab : undefined}>
+                    {
+                        currentTabs.map((name) => (
+                            <ToolbarTab key={name}>
+                                <PythonIcon />
+                                <span>{name}</span>
+                            </ToolbarTab>
+                        ))
+                    }
                 </Toolbar>
                 <Code>
-                    <CodeHighlight language="python" code={codeStr} />
+                    <CodeHighlight language="python" code={FILES[currentTabs[activeTab]]} />
                 </Code>
             </Content>
         </Root>

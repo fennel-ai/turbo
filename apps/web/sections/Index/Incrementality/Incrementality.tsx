@@ -7,7 +7,6 @@ import VideoCTA from './VideoCTA';
 
 const Root = styled(SplitSection)`
     background-color: ${({ theme }) => theme.surface};
-    padding-bottom: 0 !important;
 `;
 
 const Text = styled.p`
@@ -16,8 +15,6 @@ const Text = styled.p`
     font-variation-settings: "wght" 500;
     opacity: 0.7;
 `;
-
-
 
 const Incrementality = () => {
 	return (

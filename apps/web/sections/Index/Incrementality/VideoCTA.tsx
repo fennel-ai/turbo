@@ -173,7 +173,7 @@ function VideoCTA() {
                         <Image alt="Fennel Console" src={isThemeDark ? "/images/console-metrics-dark.png" : "/images/console-metrics.png"} width={4536} height={2946} />
                     </ConsoleCard>
                     <EditorCard variants={variants.editor}>
-                        <Image alt="Code Editor" src={isThemeDark ? "/images/editor-dark.png" : "/images/editor.png"} width={1643} height={1113} />
+                        <Image alt="Code Editor" priority src={isThemeDark ? "/images/editor-dark.png" : "/images/editor.png"} width={1643} height={1113} />
                     </EditorCard>
                 </Illustration>
                 <ButtonWrapper>

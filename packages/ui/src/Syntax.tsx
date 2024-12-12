@@ -20,6 +20,7 @@ const Root = styled.div`
 		word-spacing: normal;
 		word-break: normal;
 		${({ theme }) => theme.syntax.code.small};
+        font-weight: 500;
 
 		-moz-tab-size: 4;
 		-o-tab-size: 4;

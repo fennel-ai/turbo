@@ -22,8 +22,10 @@ type ColorScale = {
 type RefColors = Record<string, ColorScale & { '150': string } | string>;
 
 type ThemeAccentPalette = {
-	accent: string,
-	on: string,
+	accent: string;
+	on: string;
+    container: string;
+    on_container: string;
 }
 
 type Typescale = {

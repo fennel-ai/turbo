@@ -6,11 +6,12 @@ import PythonIcon from 'ui/icons/python.svg';
 import CubeIcon from 'ui/icons/cube-01.svg';
 import ClockRefreshIcon from 'ui/icons/clock-refresh.svg';
 import SearchIcon from 'ui/icons/search.svg';
+import { ExampleCodePreview } from 'components/ExampleCodePreview';
 
 const Root = styled.div`
     padding-bottom: 3rem;
     padding-top: 3rem;
-    background-image: ${({ theme }) => `linear-gradient(to bottom, ${theme.surface}, ${theme.background})`};
+    background-image: ${({ theme }) => `linear-gradient(to top, ${theme.surface}, ${theme.background})`};
     ${media('md')} {
         padding-top: 5rem;
         padding-bottom: 5rem;
@@ -37,6 +38,10 @@ const Grid = styled.div`
 	}
 `;
 
+const EditorWrapper = styled.div`
+    padding: 1rem 0;
+`;
+
 function ShipFaster() {
     return (
         <Root>
@@ -45,6 +50,9 @@ function ShipFaster() {
                     <h6>Incredibly easy to install and use.</h6>
                     <h2>Ship 100x Faster. Yes, 100x.</h2>
                 </TitleBlock>
+                <EditorWrapper>
+                    <ExampleCodePreview />
+                </EditorWrapper>
                 <Grid>
                     <TextBlock icon={<PythonIcon />}>
                         <b>Real Python. No DSLs.</b><br />
