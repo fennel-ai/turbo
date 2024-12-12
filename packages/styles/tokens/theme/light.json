@@ -198,17 +198,16 @@
       "small": {
         "value": {
           "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.regular}",
-          "fontSize": "{typescale.0}",
-          "lineHeight": "{typescale.5}",
-          "letterSpacing": "-0.25px"
+          "fontWeight": "{fontWeights.mono.medium}",
+          "fontSize": "12",
+          "lineHeight": "{typescale.4}"
         },
         "type": "typography"
       },
       "default": {
         "value": {
           "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.regular}",
+          "fontWeight": "{fontWeights.mono.medium}",
           "fontSize": "{typescale.2}",
           "lineHeight": "{typescale.6}"
         },
@@ -219,16 +218,16 @@
       "small": {
         "value": {
           "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.light}",
-          "fontSize": "{typescale.0}",
-          "lineHeight": "{typescale.5}"
+          "fontWeight": "{fontWeights.mono.regular}",
+          "fontSize": "12",
+          "lineHeight": "{typescale.4}"
         },
         "type": "typography"
       },
       "default": {
         "value": {
           "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.mono.light}",
+          "fontWeight": "{fontWeights.mono.regular}",
           "fontSize": "{typescale.1}",
           "lineHeight": "{typescale.6}"
         },
