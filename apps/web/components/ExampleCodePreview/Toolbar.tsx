@@ -1,14 +1,15 @@
 import { type ReactNode, Children, cloneElement, ReactElement } from 'react';
 import styled from '@emotion/styled';
+import { rgba } from 'styles/utils';
 
 const Root = styled.div`
     height: 3rem;
-    border-bottom: 1px solid hsla(0, 0%, 7%, 4%);
+    border-bottom: 1px solid ${({ theme }) => theme.border};
     position: sticky;
     top: 0;
     left: 0;
     z-index: 5;
-    background-color: hsla(0, 0%, 98%, 81%);
+    background-color: ${({ theme }) => theme.type !== 'dark' ? "hsla(0, 0%, 98%, 70%)" : rgba(theme.surface, 0.81)};;
     backdrop-filter: blur(12px);
     display: flex;
     align-items: center;

@@ -57,9 +57,7 @@ export const ToolbarTab = ({ active, children, onClick, onClose }: { active?: bo
     return (
         <Root data-selected={active} onClick={onClick}>
             {children}
-            {
-                onClose ? <CloseButton icon={CloseIcon} onClick={onClose} /> : null
-            }
+            {onClose ? <CloseButton icon={CloseIcon} onClick={onClose} /> : null}
         </Root>
     );
 };

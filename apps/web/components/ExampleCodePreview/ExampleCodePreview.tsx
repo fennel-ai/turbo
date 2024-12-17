@@ -7,6 +7,7 @@ import { Sidebar } from './Sidebar';
 import { Toolbar } from './Toolbar';
 import { ToolbarTab } from './ToolbarTab';
 import { FILES, fileTree } from './dummy_data';
+import { rgba } from 'styles/utils';
 
 const Root = styled.div`
     border: 1px solid hsla(0, 0%, 7%, 4%);
@@ -16,7 +17,7 @@ const Root = styled.div`
     display: flex;
     align-items: stretch;
     padding: 0.25rem;
-    background-color: hsla(0, 0%, 100%, 81%);
+    background-color: ${({ theme }) => theme.type !== 'dark' ? "hsla(0, 0%, 100%, 81%)" : rgba(theme.background, 0.81)};
     background-image: linear-gradient(hsla(0, 0%, 7%, 1%),  hsla(0, 0%, 7%, 1%));
     box-shadow: 0px 93px 56px rgba(43, 39, 100, 0.02), 0px 41px 41px rgba(43, 39, 100, 0.03), 0px 10px 23px rgba(43, 39, 100, 0.03);
     display: grid;
@@ -26,7 +27,7 @@ const Root = styled.div`
 `;
 
 const Content = styled.div`
-    background-color: hsla(0, 0%, 98%, 70%);
+    background-color: ${({ theme }) => theme.type !== 'dark' ? "hsla(0, 0%, 98%, 70%)" : rgba(theme.surface, 0.81)};;
     border-radius: calc(1rem - 0.25rem);
     width: 100%;
     height: 100%;
