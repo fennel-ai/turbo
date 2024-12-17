@@ -19,6 +19,7 @@ type Props = {
     navigation: NavigationTree,
     requestedSlug: string | null,
     version: string,
+    canonicalSlug: string,
 }
 
 const PageWrapper = styled.div<{ index: number }>`
@@ -38,29 +39,6 @@ const spin = keyframes`
   }
 `;
 
-const Spinner = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 5px solid ${({ theme }) => theme.border};
-  border-top: 5px solid ${({ theme }) => theme.primary.accent}; /* Blue border for animation */
-  border-radius: 50%;
-  animation: ${spin} 1s linear infinite;
-`;
-
-const LoaderContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Loader = () => {
-  return (
-    <LoaderContainer>
-      <Spinner />
-    </LoaderContainer>
-  );
-};
 
 
 const Wrapper = ({ children }: { children: ReactNode | undefined }) => {
@@ -108,10 +86,9 @@ const APIReferenceSection = ({ children, index, slug, onWaypoint }: PropsWithChi
     );
 };
 
-export default function ApiReferencePage({ pages, navigation, requestedSlug, version }: Props) {
+export default function ApiReferencePage({ pages, navigation, requestedSlug, version, canonicalSlug }: Props) {
     const router = useRouter();
 
-    const [loading, setLoading] = useState(Boolean(requestedSlug));
     
     useEffect(() => {
         if (requestedSlug) {
@@ -120,7 +97,6 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
                 const el = document.getElementById(requestedSlug);
                 if (el) el.scrollIntoView({ block: 'start', behavior: 'instant'} as any);
                 
-                setTimeout(() => setLoading(false), 100);
             });
         }
     }, [requestedSlug]);
@@ -163,14 +139,6 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
     , [updateAddressBar])
 
 
-    if (loading) {
-        return (
-            <Layout navigation={navigation} isAPI version={version}>
-                <Loader/>
-            </Layout>
-        );
-    }
-
     return (
             <Layout navigation={navigation} isAPI version={version}>
                 <Head>
@@ -178,7 +146,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <meta name="theme-color" content="#000000" />
 
-                    {requestedSlug ? <link rel="canonical" href={`https://fennel.ai/docs/api-reference${version !== 'main' ? `/${version}` : ''}`} /> : null}
+                    {canonicalSlug ? <link rel="canonical" href={`https://fennel.ai/docs/api-reference${version !== 'main' ? `/${version}` : ''}/${canonicalSlug}`} /> : null}
 
                     <meta name="twitter:card" content="summary" />
                     <meta name="twitter:site" content="@fennel-ai" />
@@ -234,14 +202,21 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
     if(!requestedSlug) {
         requestedSlug = allApiReferencePages[0].slug as string
     }
+    
     const currentPage = allApiReferencePages.find((p) => p.slug === requestedSlug);
+
+    const canonicalSlug = requestedSlug
+    .split('/')
+    .filter((_, index, arr) => index < arr.length - 1)
+    .join('/');
     
     return {
         props: {
             pages: allApiReferencePages.filter((p) => p.section === currentPage?.section),
             navigation,
-            requestedSlug: requestedSlug || null,
+            requestedSlug,
             version,
+            canonicalSlug
         }
     }
 }
