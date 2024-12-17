@@ -1,4 +1,4 @@
-import { allPages, version } from "contentlayer/generated";
+import { allAPIPages, allPages, version } from "contentlayer/generated";
 import { GetServerSideProps } from "next";
 
 /**
@@ -37,6 +37,17 @@ function generateSiteMap() {
         <loc>${`https://fennel.ai/docs/api-reference/${name}`}</loc>
     </url>
         `) || null
+    }
+        ${
+        allAPIPages
+            .filter(({ status }) => status !== 'draft')
+            .map(({ slug }) => {
+                return `
+    <url>
+        <loc>${`https://fennel.ai/docs/api-reference/${slug}`}</loc>
+    </url>`;
+            })
+        .join('')
     }
 </urlset>
  `;

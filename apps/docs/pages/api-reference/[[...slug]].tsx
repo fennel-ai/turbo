@@ -1,4 +1,4 @@
-import { ReactNode, PropsWithChildren, useCallback, useEffect, useLayoutEffect } from "react";
+import { ReactNode, PropsWithChildren, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useInView } from 'react-intersection-observer';
@@ -6,8 +6,9 @@ import { useRouter } from 'next/router';
 import { allAPIPages, APIPage } from 'contentlayer/generated';
 import Head from "next/head";
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 
-import { getNavigation, getRequestedVersionId, NavigationTree, shouldPublish } from "lib/utils";
+import { getNavigation,getRequestedVersionId, NavigationTree, shouldPublish } from "lib/utils";
 
 import Layout from 'components/Layout';
 import * as components from 'components/MDXComponents';
@@ -27,6 +28,40 @@ const PageWrapper = styled.div<{ index: number }>`
     border-bottom: 1px solid ${({ theme }) => theme.border};
     scroll-margin-top: 5rem; 
 `;
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+const Spinner = styled.div`
+  width: 50px;
+  height: 50px;
+  border: 5px solid ${({ theme }) => theme.border};
+  border-top: 5px solid ${({ theme }) => theme.primary.accent}; /* Blue border for animation */
+  border-radius: 50%;
+  animation: ${spin} 1s linear infinite;
+`;
+
+const LoaderContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Loader = () => {
+  return (
+    <LoaderContainer>
+      <Spinner />
+    </LoaderContainer>
+  );
+};
+
 
 const Wrapper = ({ children }: { children: ReactNode | undefined }) => {
     return (
@@ -76,15 +111,18 @@ const APIReferenceSection = ({ children, index, slug, onWaypoint }: PropsWithChi
 export default function ApiReferencePage({ pages, navigation, requestedSlug, version }: Props) {
     const router = useRouter();
 
+    const [loading, setLoading] = useState(Boolean(requestedSlug));
+    
     useEffect(() => {
-        let timeoutId: NodeJS.Timeout | undefined = undefined
         if (requestedSlug) {
-            timeoutId = setTimeout(() => {
-                document.getElementById(requestedSlug)?.scrollIntoView(true);
-            }, 0)
-            
+            // Wait for next frame so layout stabilizes
+            requestAnimationFrame(() => {
+                const el = document.getElementById(requestedSlug);
+                if (el) el.scrollIntoView({ block: 'start', behavior: 'instant'} as any);
+                
+                setTimeout(() => setLoading(false), 100);
+            });
         }
-        return () => clearTimeout(timeoutId)
     }, [requestedSlug]);
 
     const updateAddressBar = useCallback((slug: string) => {
@@ -124,7 +162,14 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
         </APIReferenceSection>
     , [updateAddressBar])
 
-    console.log(requestedSlug)
+
+    if (loading) {
+        return (
+            <Layout navigation={navigation} isAPI version={version}>
+                <Loader/>
+            </Layout>
+        );
+    }
 
     return (
             <Layout navigation={navigation} isAPI version={version}>
@@ -158,7 +203,8 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
 }
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-    let requestedSlug = (ctx.params?.slug as string[])?.join('/');
+    const { params } = ctx;
+    let requestedSlug = (params!.slug as string[])?.join('/');
 
     const version = getRequestedVersionId(ctx.params);
     const navigation = getNavigation(version, true);
@@ -177,30 +223,24 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
         .filter((p) => navigationOrderSlugs.includes(p.slug!))
         .sort((a, b) => ordering[a.slug || ''] - ordering[b.slug || '']);
 
-    // Only ever falsy if the user has requested /api-reference/[version?] directly (i.e. with no specific page slug)
-    // in which case just show them the page.
-    let isBasePath = !requestedSlug || requestedSlug === version;
+    	const isSlugSection = navigation.find(({slug: secSlug}) => secSlug === requestedSlug)
     
-    if (!isBasePath) {
-        const isSection = navigation.find(({slug}) => slug === requestedSlug) 
-        const isPage = allApiReferencePages.find(({ slug }) => slug === requestedSlug)
+        let redirect = '';
+	    if (isSlugSection) {
+		    redirect = isSlugSection.pages[0].slug;
+		    requestedSlug = redirect;
+	    }
 
-        if(isSection) {
-            requestedSlug = isSection.pages[0].slug;
-        }
-
-        if (!isSection && !isPage) {
-            return {
-                notFound: true
-            }
-        }
+    if(!requestedSlug) {
+        requestedSlug = allApiReferencePages[0].slug as string
     }
-
+    const currentPage = allApiReferencePages.find((p) => p.slug === requestedSlug);
+    
     return {
         props: {
-            pages: allApiReferencePages,
+            pages: allApiReferencePages.filter((p) => p.section === currentPage?.section),
             navigation,
-            requestedSlug: isBasePath ? null : requestedSlug || null,
+            requestedSlug: requestedSlug || null,
             version,
         }
     }
