@@ -124,6 +124,8 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
         </APIReferenceSection>
     , [updateAddressBar])
 
+    console.log(requestedSlug)
+
     return (
             <Layout navigation={navigation} isAPI version={version}>
                 <Head>
@@ -131,7 +133,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <meta name="theme-color" content="#000000" />
 
-                    {requestedSlug ? <link rel="canonical" href={`https://fennel.ai/docs/api-reference${version !== 'main' ? `/${version}` : ''}`} /> : null}
+                    {requestedSlug ? <link rel="canonical" href={`https://fennel.ai/docs/api-reference${version !== 'main' ? `/${version}` : ''}/${requestedSlug.split('/')[0]}`} /> : null}
 
                     <meta name="twitter:card" content="summary" />
                     <meta name="twitter:site" content="@fennel-ai" />
