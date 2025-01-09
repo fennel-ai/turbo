@@ -10,6 +10,7 @@ import PorterLogo from 'assets/logos/porter.svg';
 import EpifiLogo from 'assets/logos/epifi.svg';
 import CredLogo from 'assets/logos/cred.svg';
 import AplazoLogo from 'assets/logos/aplazo.svg';
+import RipplingLogo from 'assets/logos/rippling.svg';
 import CricutLogo from 'assets/logos/cricut.svg';
 import { media } from 'styles/utils';
 import Incrementality from 'sections/Index/Incrementality';
@@ -39,14 +40,14 @@ const Logos = styled.div`
     & > div {
         align-self: stretch;
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         grid-auto-rows: 2.5rem;
         column-gap: 2rem;
         row-gap: 0.5rem;
         width: 100%;
 
         ${media('sm')} {
-            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-template-columns: repeat(7, minmax(0, 1fr));
             grid-auto-rows: 3.5rem;
         }
 
@@ -86,19 +87,22 @@ export default function Index() {
                         <p>Trusted by leading ML & Data teams</p>
                         <div>
                             <div>
-                                <UpworkLogo width="100%" height={24} />
+                                <EpifiLogo width="100%" height={24} />
                             </div>
                             <div>
                                 <PorterLogo width="100%" height={24} />
+                            </div>
+                            <div>
+                                <UpworkLogo width="100%" height={24} />
+                            </div>
+                            <div>
+                                <RipplingLogo width="100%" height={24} />
                             </div>
                             <div>
                                 <CredLogo width="100%" height={24} />
                             </div>
                             <div>
                                 <AplazoLogo width="100%" height={24} />
-                            </div>
-                            <div>
-                                <EpifiLogo width="100%" height={24} />
                             </div>
                             <div>
                                 <CricutLogo width="100%" height={24} />
