@@ -3,6 +3,7 @@ import { ArchitectedWithLove, CallToAction, HassleFreeScaling, HowItWorks, NoMor
 import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as themes from 'styles';
+import { media } from 'styles/utils';
 import { Hero } from 'ui';
 
 import UpworkLogo from 'assets/logos/upwork.svg';
@@ -12,7 +13,6 @@ import CredLogo from 'assets/logos/cred.svg';
 import AplazoLogo from 'assets/logos/aplazo.svg';
 import RipplingLogo from 'assets/logos/rippling.svg';
 import CricutLogo from 'assets/logos/cricut.svg';
-import { media } from 'styles/utils';
 import Incrementality from 'sections/Index/Incrementality';
 import ShipFaster from 'sections/Index/ShipFaster/ShipFaster';
 
@@ -38,25 +38,34 @@ const Logos = styled.div`
     }
 
     & > div {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
         align-self: stretch;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        grid-auto-rows: 2.5rem;
         column-gap: 2rem;
-        row-gap: 0.5rem;
+        row-gap: 1rem;
         width: 100%;
 
-        ${media('sm')} {
+        ${media('xs')} {
+            display: grid;
             grid-template-columns: repeat(7, minmax(0, 1fr));
             grid-auto-rows: 3.5rem;
+            row-gap: 0.5rem;
         }
 
         & > div {
             display: flex;
-            flex: 1 1 100%;
+            flex: 1 1 15%;
             align-items: center;
             justify-content: center;
 
+            ${media('xs')} {
+                flex: 1 1 100%;
+            }
+        }
+
+        svg {
+            flex-shrink: 0;
         }
     }
 `;
@@ -96,7 +105,7 @@ export default function Index() {
                                 <UpworkLogo width="100%" height={24} />
                             </div>
                             <div>
-                                <RipplingLogo width="100%" height={24} />
+                                <RipplingLogo width="120%" height={28} />
                             </div>
                             <div>
                                 <CredLogo width="100%" height={24} />
@@ -105,7 +114,7 @@ export default function Index() {
                                 <AplazoLogo width="100%" height={24} />
                             </div>
                             <div>
-                                <CricutLogo width="100%" height={24} />
+                                <CricutLogo width="100%" height={24} style={{ transform: 'translateY(-4px)'}} />
                             </div>
                         </div>
                     </Logos>
