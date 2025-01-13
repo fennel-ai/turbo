@@ -133,10 +133,9 @@ export const CodeBlock = ({
 	};
 
 	return (
-        <Root className={className}>
-                <ThemeProvider theme={darkTheme}>
-                    {header || null}
-                </ThemeProvider>
+        <ThemeProvider theme={darkTheme}>
+            <Root className={className}>
+                {header || null}
                 <Code 
                     language={language} 
                     code={code.trimEnd()} 
@@ -161,5 +160,6 @@ export const CodeBlock = ({
                     </ThemeProvider>
                 ) : null}
             </Root>
+        </ThemeProvider>
 	);
 }
