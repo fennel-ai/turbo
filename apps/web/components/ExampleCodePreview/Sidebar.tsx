@@ -8,7 +8,8 @@ import PythonIcon from 'ui/icons/python.svg';
 
 const Root = styled.div`
     padding: 0.375rem;
-    color: ${({ theme }) => theme.primary.on_container};
+    color: ${({ theme }) => rgba(theme.on_alt, 0.8)};
+    user-select: none;
 `;
 
 const Header = styled.div`
@@ -19,6 +20,7 @@ const Header = styled.div`
     gap: 0.5rem;
     font-size: 0.75rem;
     line-height: 1.25rem;
+    position: relative;
 
     & svg {
         width: 1rem;
@@ -44,8 +46,9 @@ const TreeList = styled.ul`
         cursor: pointer;
 
         &[data-selected=true] {
+            color: ${({ theme }) => theme.on};
             box-shadow: 0 0 0 0.5px ${({ theme }) => rgba(theme.primary.on_container, 0.06)};
-            background-image: radial-gradient(124.43% 148.21% at 56.38% 28.57%, rgba(18, 18, 18, 0) 23.5%, rgba(18, 18, 18, 0.11) 100%);
+            background-image: radial-gradient(124.43% 148.21% at 56.38% 28.57%, ${({ theme }) => rgba(theme.primary.on_container, 0)}, ${({ theme }) => rgba(theme.primary.on_container, 0.11)} 100%);
         }
 
         & svg {
@@ -113,7 +116,6 @@ const TreeNode: React.FC<TreeNodeProps> = ({ active, node, onClickItem }) => {
     return (
         <TreeList>
             {Object.entries(node).map(([label, value]) => {
-                console.log(active, value);
                 return <TreeItem active={active} key={label} onClick={onClickItem} label={label} value={value} />
             })}
         </TreeList>

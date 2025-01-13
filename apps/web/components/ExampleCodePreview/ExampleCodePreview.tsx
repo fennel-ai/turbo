@@ -10,7 +10,7 @@ import { FILES, fileTree } from './dummy_data';
 import { rgba } from 'styles/utils';
 
 const Root = styled.div`
-    border: 1px solid hsla(0, 0%, 7%, 4%);
+    border: 1px solid ${({ theme }) => rgba(theme.on, 0.06)};
     width: 100%;
     height: 33.5rem;
     border-radius: 1rem;
@@ -19,7 +19,7 @@ const Root = styled.div`
     padding: 0.25rem;
     background-color: ${({ theme }) => theme.type !== 'dark' ? "hsla(0, 0%, 100%, 81%)" : rgba(theme.background, 0.81)};
     background-image: linear-gradient(hsla(0, 0%, 7%, 1%),  hsla(0, 0%, 7%, 1%));
-    box-shadow: 0px 93px 56px rgba(43, 39, 100, 0.02), 0px 41px 41px rgba(43, 39, 100, 0.03), 0px 10px 23px rgba(43, 39, 100, 0.03);
+    box-shadow: ${({ theme }) => `0px 93px 56px ${rgba(theme.type === 'dark' ? theme.shadow : theme.primary.on_container, 0.02)}, 0px 41px 41px ${rgba(theme.type === 'dark' ? theme.shadow : theme.primary.on_container, 0.03)}, 0px 10px 23px ${rgba(theme.type === 'dark' ? theme.shadow : theme.primary.on_container, 0.03)}`};
     display: grid;
     grid-template-columns: 12.5rem 1fr;
     grid-auto-rows: 1fr;
@@ -31,9 +31,9 @@ const Content = styled.div`
     border-radius: calc(1rem - 0.25rem);
     width: 100%;
     height: 100%;
-    border: 1px solid hsla(0, 0%, 7%, 4%);
+    border: 1px solid ${({ theme }) => rgba(theme.on, 0.04)};
     overflow: scroll;
-`;
+`; 
 
 const Code = styled.div`
     overflow: hidden;
@@ -89,7 +89,7 @@ export const ExampleCodePreview = () => {
                         currentTabs.map((name) => (
                             <ToolbarTab key={name}>
                                 <PythonIcon />
-                                <span>{name}</span>
+                                <p>{name}</p>
                             </ToolbarTab>
                         ))
                     }

@@ -33,7 +33,7 @@ export const Toolbar = ({ active, children, onClose, onSelect }: ToolbarProps) =
                 (child, i) => cloneElement(child as ReactElement, { 
                     active: active === i, 
                     onClick: () => onSelect(i), 
-                    onClose: onClose ? () => onClose(i) : undefined
+                    onClose: onClose ? () => onClose(i) : undefined,
                 })
             )}
         </Root>

@@ -10,17 +10,24 @@ const Root = styled.div`
     height: 100%;
     border-radius: 0.5rem;
     flex: 1 1 auto;
-    background-color: #F5F5F5;
+    background-color: ${({ theme }) => rgba(theme.primary.on_container, 0.04)};
     color: ${({ theme }) => rgba(theme.primary.on_container, 0.5)};
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 0.5rem;
     padding: 0 0.625rem;
+    padding-right: 1.75rem;
     cursor: pointer;
     min-width: 9rem;
     font-size: 0.75rem; 
     line-height: 1.25rem;
+    
+    & p {
+        flex: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 
     svg {
         width: 1rem;
@@ -48,7 +55,7 @@ const CloseButton = styled(IconButton)`
     transform: translateY(-50%);
     display: none;
 
-    button:hover > & {
+    div:hover > & {
         display: flex;
     }
 `;
@@ -57,7 +64,7 @@ export const ToolbarTab = ({ active, children, onClick, onClose }: { active?: bo
     return (
         <Root data-selected={active} onClick={onClick}>
             {children}
-            {onClose ? <CloseButton icon={CloseIcon} onClick={onClose} /> : null}
+            {onClose ? <CloseButton icon={CloseIcon} size="small" onClick={onClose} /> : null}
         </Root>
     );
 };

@@ -40,6 +40,11 @@ const Grid = styled.div`
 
 const EditorWrapper = styled.div`
     padding: 1rem 0;
+    display: none;
+
+    ${media('sm')} {
+        display: block;
+    }
 `;
 
 function ShipFaster() {
