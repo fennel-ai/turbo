@@ -1,4 +1,4 @@
-import { ReactNode, PropsWithChildren, useCallback, useEffect, useLayoutEffect } from "react";
+import { ReactNode, PropsWithChildren, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useInView } from 'react-intersection-observer';
@@ -6,8 +6,9 @@ import { useRouter } from 'next/router';
 import { allAPIPages, APIPage } from 'contentlayer/generated';
 import Head from "next/head";
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 
-import { getNavigation, getRequestedVersionId, NavigationTree, shouldPublish } from "lib/utils";
+import { getNavigation,getRequestedVersionId, NavigationTree, shouldPublish } from "lib/utils";
 
 import Layout from 'components/Layout';
 import * as components from 'components/MDXComponents';
@@ -18,6 +19,7 @@ type Props = {
     navigation: NavigationTree,
     requestedSlug: string | null,
     version: string,
+    canonicalSlug: string,
 }
 
 const PageWrapper = styled.div<{ index: number }>`
@@ -27,6 +29,17 @@ const PageWrapper = styled.div<{ index: number }>`
     border-bottom: 1px solid ${({ theme }) => theme.border};
     scroll-margin-top: 5rem; 
 `;
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+
 
 const Wrapper = ({ children }: { children: ReactNode | undefined }) => {
     return (
@@ -73,18 +86,19 @@ const APIReferenceSection = ({ children, index, slug, onWaypoint }: PropsWithChi
     );
 };
 
-export default function ApiReferencePage({ pages, navigation, requestedSlug, version }: Props) {
+export default function ApiReferencePage({ pages, navigation, requestedSlug, version, canonicalSlug }: Props) {
     const router = useRouter();
 
+    
     useEffect(() => {
-        let timeoutId: NodeJS.Timeout | undefined = undefined
         if (requestedSlug) {
-            timeoutId = setTimeout(() => {
-                document.getElementById(requestedSlug)?.scrollIntoView(true);
-            }, 0)
-            
+            // Wait for next frame so layout stabilizes
+            requestAnimationFrame(() => {
+                const el = document.getElementById(requestedSlug);
+                if (el) el.scrollIntoView({ block: 'start', behavior: 'instant'} as any);
+                
+            });
         }
-        return () => clearTimeout(timeoutId)
     }, [requestedSlug]);
 
     const updateAddressBar = useCallback((slug: string) => {
@@ -124,6 +138,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
         </APIReferenceSection>
     , [updateAddressBar])
 
+
     return (
             <Layout navigation={navigation} isAPI version={version}>
                 <Head>
@@ -131,7 +146,7 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <meta name="theme-color" content="#000000" />
 
-                    {requestedSlug ? <link rel="canonical" href={`https://fennel.ai/docs/api-reference${version !== 'main' ? `/${version}` : ''}`} /> : null}
+                    {canonicalSlug ? <link rel="canonical" href={`https://fennel.ai/docs/api-reference${version !== 'main' ? `/${version}` : ''}/${canonicalSlug}`} /> : null}
 
                     <meta name="twitter:card" content="summary" />
                     <meta name="twitter:site" content="@fennel-ai" />
@@ -156,7 +171,8 @@ export default function ApiReferencePage({ pages, navigation, requestedSlug, ver
 }
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-    let requestedSlug = (ctx.params?.slug as string[])?.join('/');
+    const { params } = ctx;
+    let requestedSlug = (params!.slug as string[])?.join('/');
 
     const version = getRequestedVersionId(ctx.params);
     const navigation = getNavigation(version, true);
@@ -175,31 +191,32 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
         .filter((p) => navigationOrderSlugs.includes(p.slug!))
         .sort((a, b) => ordering[a.slug || ''] - ordering[b.slug || '']);
 
-    // Only ever falsy if the user has requested /api-reference/[version?] directly (i.e. with no specific page slug)
-    // in which case just show them the page.
-    let isBasePath = !requestedSlug || requestedSlug === version;
+    	const isSlugSection = navigation.find(({slug: secSlug}) => secSlug === requestedSlug)
     
-    if (!isBasePath) {
-        const isSection = navigation.find(({slug}) => slug === requestedSlug) 
-        const isPage = allApiReferencePages.find(({ slug }) => slug === requestedSlug)
+        let redirect = '';
+	    if (isSlugSection) {
+		    redirect = isSlugSection.pages[0].slug;
+		    requestedSlug = redirect;
+	    }
 
-        if(isSection) {
-            requestedSlug = isSection.pages[0].slug;
-        }
-
-        if (!isSection && !isPage) {
-            return {
-                notFound: true
-            }
-        }
+    if(!requestedSlug) {
+        requestedSlug = allApiReferencePages[0].slug as string
     }
+    
+    const currentPage = allApiReferencePages.find((p) => p.slug === requestedSlug);
 
+    const canonicalSlug = requestedSlug
+    .split('/')
+    .filter((_, index, arr) => index < arr.length - 1)
+    .join('/');
+    
     return {
         props: {
-            pages: allApiReferencePages,
+            pages: allApiReferencePages.filter((p) => p.section === currentPage?.section),
             navigation,
-            requestedSlug: isBasePath ? null : requestedSlug || null,
+            requestedSlug,
             version,
+            canonicalSlug
         }
     }
 }
