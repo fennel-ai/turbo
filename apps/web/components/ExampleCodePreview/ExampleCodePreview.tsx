@@ -6,10 +6,10 @@ import PythonIcon from 'ui/icons/python.svg';
 import { Sidebar } from './Sidebar';
 import { Toolbar } from './Toolbar';
 import { ToolbarTab } from './ToolbarTab';
-import { FILES, fileTree } from './dummy_data';
+import { FILES, fileTree } from './constants';
 import { rgba } from 'styles/utils';
 
-const Root = styled.div`
+const Root = styled.div<{ $noSidebar: boolean }>`
     border: 1px solid ${({ theme }) => rgba(theme.on, 0.06)};
     width: 100%;
     height: 33.5rem;
@@ -21,7 +21,7 @@ const Root = styled.div`
     background-image: linear-gradient(hsla(0, 0%, 7%, 1%),  hsla(0, 0%, 7%, 1%));
     box-shadow: ${({ theme }) => `0px 93px 56px ${rgba(theme.type === 'dark' ? theme.shadow : theme.primary.on_container, 0.02)}, 0px 41px 41px ${rgba(theme.type === 'dark' ? theme.shadow : theme.primary.on_container, 0.03)}, 0px 10px 23px ${rgba(theme.type === 'dark' ? theme.shadow : theme.primary.on_container, 0.03)}`};
     display: grid;
-    grid-template-columns: 12.5rem 1fr;
+    grid-template-columns: ${({ $noSidebar }) => $noSidebar ? '1fr' : '12.5rem 1fr'};
     grid-auto-rows: 1fr;
     gap: 0.25rem;
 `;
@@ -46,7 +46,7 @@ const CodeHighlight = styled(Syntax)`
 	}
 `;
 
-const defaultTabs = ['sync.py'];
+const defaultTabs = ['getting_started.py'];
 export const ExampleCodePreview = () => {
     const [currentTabs, setCurrentTabs] = useState<string[]>(defaultTabs);
     const [activeTab, setActiveTab] = useState<number>(0);
@@ -80,9 +80,15 @@ export const ExampleCodePreview = () => {
         });
     }, []);
 
+    const singleFile = useMemo(() => Object.keys(fileTree).length <= 1, []);
+
     return (
-        <Root>
-            <Sidebar onSelect={onSelectFile} tree={fileTree} currentFile={currentTabs[activeTab]} />
+        <Root $noSidebar={singleFile}>
+            {
+                !singleFile ? (
+                    <Sidebar onSelect={onSelectFile} tree={fileTree} currentFile={currentTabs[activeTab]} />
+                ) : null
+            }
             <Content>
                 <Toolbar active={activeTab} onSelect={setActiveTab} onClose={currentTabs.length > 1 ? handleCloseTab : undefined}>
                     {
@@ -95,7 +101,10 @@ export const ExampleCodePreview = () => {
                     }
                 </Toolbar>
                 <Code>
-                    <CodeHighlight language="python" code={FILES[currentTabs[activeTab]]} />
+                    <CodeHighlight 
+                        code={FILES[currentTabs[activeTab]]} 
+                        language="python" 
+                    />
                 </Code>
             </Content>
         </Root>

@@ -49,7 +49,7 @@ const GlobalStyles = () => {
 	const theme = useTheme();
 
 	return <Global styles={css`
-				@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap');
+				@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
 
 				* {
 					box-sizing: border-box;
