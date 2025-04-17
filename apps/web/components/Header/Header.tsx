@@ -9,10 +9,13 @@ import { media, rgba, stateLayer } from 'styles/utils';
 import MenuIcon from 'ui/icons/menu.svg';
 import CloseIcon from 'ui/icons/close.svg';
 import { MobileMenu } from './MobileMenu';
+import { ThemeProvider } from '@emotion/react';
+import ChevronRightIcon from 'ui/icons/chevron-right-small.svg';
+import * as themes from 'styles';
 
 const Root = styled.div`
 	position: fixed;
-	top: 0;
+	top: 2rem;
 	left: 0;
 	right: 0;
 	height: 3rem;
@@ -149,9 +152,35 @@ const NavButton = styled.button`
 	}
 `;
 
+const AnnouncementBanner = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+	display: inline-flex;
+    background-color: ${({ theme }) => theme.primary.accent};
+	align-items: center;
+	justify-content: center;
+	height: 2rem;
+	color: ${({ theme }) => theme.surface};
+	z-index: 999;
+	font-size: ${({ theme }) => theme.body.small?.fontSize};
+
+	& a {
+	color: ${({ theme }) => theme.primary.on};
+	}
+
+	${media('md')} {
+		font-size: ${({ theme }) => theme.body.default?.fontSize};
+	}
+`
+
+
+
 export const Header = () => {
 	const router = useRouter();
 	const [showMobileMenu, toggleMobileMenu] = useState(false);
+	
 
 	useEffect(() => {
 		if (showMobileMenu) {
@@ -159,8 +188,17 @@ export const Header = () => {
 		}
 	}, [router.pathname]);
 
-	return (
+	return (<>
+	<ThemeProvider theme={themes.light}>
+		<AnnouncementBanner><p> 🎉 Fennel is now part of Databricks. <Link style={{
+			"display": "inline-flex",
+			"gap": 0.25,
+			"alignItems": "center",
+			"justifyContent":"center"
+		}} href="https://www.databricks.com/blog/fennel-joins-databricks-democratize-access-machine-learning">Learn More<ChevronRightIcon/></Link></p></AnnouncementBanner>
+	</ThemeProvider>
 		<Root data-header>
+			
 			<Backdrop />
 			<Wrapper>
 				<Brand />
@@ -211,5 +249,6 @@ export const Header = () => {
 				}
 			</AnimatePresence>
 		</Root>
+		</>
 	);
 };
