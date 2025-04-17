@@ -14,6 +14,8 @@ import CricutLogo from 'assets/logos/cricut.svg';
 import { media } from 'styles/utils';
 import Incrementality from 'sections/Index/Incrementality';
 import ShipFaster from 'sections/Index/ShipFaster/ShipFaster';
+import CTAPill from 'components/CTAPill';
+
 
 const Logos = styled.div`
     display: flex;
@@ -81,7 +83,9 @@ export default function Index() {
 				<meta name="twitter:image" content="https://fennel.ai/images/og/default.jpg" />
 			</Head>
 			<main>
-                <Hero title="Next Generation Data Pipelines" text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML pipelines.">
+                <Hero title="Next Generation Data Pipelines" 
+                text="Fennel helps you author, compute, store, serve, monitor & govern both realtime and batch ML pipelines."
+                >
                     <Logos>
                         <p>Trusted by leading ML & Data teams</p>
                         <div>
