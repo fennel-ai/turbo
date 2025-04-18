@@ -39,7 +39,7 @@ const TeamMembers = () => {
 			<Wrapper>
 				<TeamMember additional="Ex-Facebook · Ex-Quora" name="Nikhil Garg" role="Co-Founder & CEO" src="/images/Person=Nikhil.png" />
 				<TeamMember additional="Ex-ThoughtSpot · Ex-Facebook" name="Abhay Bothra" role="Co-Founder & CTO" src="/images/Person=Abhay.png" />
-				<TeamMember additional="Ex-Facebook · Ex-Google Research" name="Aditya Nambiar" role="Co-Founder & Engineer" src="/images/Person=Aditya.png" />
+				<TeamMember additional="Ex-Facebook · Ex-Google Research" name="Aditya Nambiar" role="Co-Founder" src="/images/Person=Aditya.png" />
 				<TeamMember additional="Ex-Databricks" name="Ryan Horner" role="Sales" src="/images/Person=Ryan.png" />
 				<TeamMember additional="Ex-Dremio" name="Peeyush Bhatt" role="Sales" src="/images/Person=Peeyush.png" />
 				<TeamMember additional="Ex-Stream" name="Luke Smetham" role="Design" src="/images/Person=Luke.png" />
